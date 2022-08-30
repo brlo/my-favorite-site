@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Библио́ѯ</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" href="<%= asset_path("favicon.svg") %>" type="image/svg+xml">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag "application" %>
+    <% if current_lang == 'csl-pnm' %>
+      <style type="text/css">
+        @font-face {
+          font-family: "Ponomar";
+          src: url(<%= asset_path('PonomarUnicode.otf') %>) format("opentype");
+        }
+        .line {
+          font-family: "Ponomar", Verdana, Tahoma;
+          font-size: 1.4em;
+          line-height: 1.5em;
+        }
+      </style>
+    <% end %>
+    <%= javascript_include_tag "application", media: "all" %>
+  </head>
+
+  <% classes = @is_night_mode ? "night-mode" : "" %>
+  <body class="<%= classes %>">
+    <header>
+      <div class='container'>
+        <div class="logo">
+          <a href="/"><%= image_tag("bibleox-#{ ['cs', 'gr', 'en'].sample }.png") %></a>
+        </div>
+        <nav>
+          <a href="/search?acc=1&t=Христос">Поиск</a>
+          <a id="night-mode-switcher" onclick="switchNightMode()"><%= @is_night_mode ? "Ночь" : "День" %></a>
+        </nav>
+
+        <select id="lang-select" name="lang-select" onchange="selectLang();return false;">
+          <option value='ru' <% if cookies[:'b-lang'] == 'ru' %>selected<% end %>>Русский (синодальный)</option>
+          <option value='csl-pnm' <% if cookies[:'b-lang'] == 'csl-pnm' %>selected<% end %>>Церковнославянский старый</option>
+          <option value='csl-ru' <% if cookies[:'b-lang'] == 'csl-ru' %>selected<% end %>>Церковнославянский простой</option>
+        </select>
+      </div>
+    </header>
+
+    <div class='flex-wrap'>
+      <div class="content">
+        <%= yield %>
+      </div>
+    </div>
+
+    <footer>
+      <dd>Библио́ѯ — Βιβλιо́ξ — Bibleox</dd>
+      <dd>2022 год от Рождества Христова</dd>
+      <dd><a href='/about'>О сайте</a></dd>
+    </footer>
+  </body>
+
+  <script>
+    var element = document.querySelector('#lang-select');
+    new Choices(element, {
+      shouldSort: false,
+      shouldSortItems: false,
+      placeholder: true,
+      placeholderValue: 'Язык Библии',
+      searchEnabled: false,
+      prependValue: null,
+      appendValue: null,
+      renderSelectedChoices: 'auto',
+      itemSelectText: '',
+      position: 'down',
+      classNames: {
+        containerOuter: 'choices lang-select'
+      },
+    });
+  </script>
+</html>

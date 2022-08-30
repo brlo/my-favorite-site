@@ -1,0 +1,112 @@
+<script>
+  function goToSearch() {
+    searchInput = document.getElementById('search-input');
+    text = searchInput.value; //. /[^\sA-Za-zА-Яа-я0-9-]*/, ''
+    book = document.getElementById('search-books').value;
+    acc = document.getElementById('search-accuracy').value;
+
+    let params = [];
+    if (book && book.length > 0) { params.push('book=' + book) };
+    if (acc && acc.length > 0) { params.push('acc=' + acc) };
+    if (text && text.length > 0) { params.push('t=' + text) };
+    document.location.href = '/search?' + params.join('&');
+  };
+</script>
+
+<div class='hint' style='margin-top: 0;'>Поиск: </div>
+<form action="/" onsubmit="goToSearch();return false;">
+  <input class='pretty' name="text" type="text" id='search-input' placeholder='Фраза' value='<%= @search_text %>'>
+</form>
+
+<br>
+
+<div class='search-options'>
+  <select id="search-books" name="books" onchange="goToSearch();return false;">
+    <option value='' <% if @search_books.blank? %>selected<% end %>>Любая Книга</option>
+    <option value='z1' <% if @search_books == 'z1' %>selected<% end %>>Ветхий Завет</option>
+    <option value='z2' <% if @search_books == 'z2' %>selected<% end %>>Новый Завет</option>
+    <% BOOKS.each do |book, params| %>
+      <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= params[:name] %></option>
+    <% end %>
+  </select>
+
+  <select id="search-accuracy" name="accuracy" onchange="goToSearch();return false;">
+    <option value='1' <% if @search_accuracy == '1' %>selected<% end %>>Точная фраза</option>
+    <option value='2' <% if @search_accuracy == '2' %>selected<% end %>>Похожая фраза</option>
+    <option value='3' <% if @search_accuracy == '3' %>selected<% end %>>Часть слова</option>
+  </select>
+</div>
+
+<div class='hint'>Совпадений: <%= @matches_count %></div>
+<hr>
+
+<% @verses.each do |v| %>
+  <div class='line'>
+    "<%= verse_alone_clean(v.text.html_safe) %>"
+    <a href="/<%= v.book %>/<%= v.chapter %>/?lines=<%= v.line %>">
+      (<%= ::I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %>)
+    </a>
+  </div>
+  <br>
+<% end %>
+
+<script>
+  var element = document.querySelector('#search-books');
+  new Choices(element, {
+    shouldSort: false,
+    shouldSortItems: false,
+    // removeItemButton: true,
+    placeholder: true,
+    placeholderValue: 'Искать в книгах',
+    searchPlaceholderValue: '',
+    prependValue: null,
+    appendValue: null,
+    renderSelectedChoices: 'auto',
+    loadingText: 'Поиск...',
+    noResultsText: 'Ничего не найдено',
+    noChoicesText: 'Ничего не выбрано',
+    itemSelectText: '',
+    position: 'down',
+    classNames: {
+      containerOuter: 'choices search-books'
+    },
+  });
+  var element = document.querySelector('#search-accuracy');
+  new Choices(element, {
+    shouldSort: false,
+    shouldSortItems: false,
+    placeholder: true,
+    placeholderValue: 'Искать в книгах',
+    searchEnabled: false,
+    prependValue: null,
+    appendValue: null,
+    renderSelectedChoices: 'auto',
+    itemSelectText: '',
+    position: 'down',
+    classNames: {
+      containerOuter: 'choices search-accuracy'
+    },
+  });
+
+  let searchInput = document.getElementById('search-input');
+  let searchText = searchInput.value;
+  let verses = document.getElementsByClassName('line');
+
+  if (typeof searchText === 'string') {
+    searchWords = searchText.split(' ');
+
+    for (var i = 0; i < verses.length; i++) {
+      let el = verses.item(i);
+      let text = el.innerHTML;
+
+      for (var n = 0; n < searchWords.length; n++) {
+        let word = searchWords[n]
+        let regex = new RegExp(word, 'gi');
+        text = text.replace(regex, "<span class='highlight'>" + word + "</span>");
+      };
+
+      el.innerHTML = text;
+    };
+  };
+</script>
+

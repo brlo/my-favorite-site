@@ -1,0 +1,152 @@
+<nav id="menu-books">
+  <div class='small hint' style='margin-top: 0;'>Ветхий Завет</div>
+  <a class="<%= @book_code == 'gen' ? 'selected ' : nil %>kanon" href="/gen/1" title="Пятикнижие Моисея">Бытие</a>
+  <a class="<%= @book_code == 'ish' ? 'selected ' : nil %>kanon" href="/ish/1" title="Пятикнижие Моисея">Исход</a>
+  <a class="<%= @book_code == 'lev' ? 'selected ' : nil %>kanon" href="/lev/1" title="Пятикнижие Моисея">Левит</a>
+  <a class="<%= @book_code == 'chis' ? 'selected ' : nil %>kanon" href="/chis/1" title="Пятикнижие Моисея">Числа</a>
+  <a class="<%= @book_code == 'vtor' ? 'selected ' : nil %>kanon" href="/vtor/1" title="Пятикнижие Моисея">Второзаконие</a>
+  <a class="<%= @book_code == 'nav' ? 'selected ' : nil %>kanon" href="/nav/1" title="Книги исторические">Иисус Навин</a>
+  <a class="<%= @book_code == 'sud' ? 'selected ' : nil %>kanon" href="/sud/1" title="Книги исторические">Судьи</a>
+  <a class="<%= @book_code == 'ruf' ? 'selected ' : nil %>kanon" href="/ruf/1" title="Книги исторические">Руфь</a>
+  <a class="<%= @book_code == '1ts' ? 'selected ' : nil %>kanon" href="/1ts/1" title="Книги исторические">1-я Царств</a>
+  <a class="<%= @book_code == '2ts' ? 'selected ' : nil %>kanon" href="/2ts/1" title="Книги исторические">2-я Царств</a>
+  <a class="<%= @book_code == '3ts' ? 'selected ' : nil %>kanon" href="/3ts/1" title="Книги исторические">3-я Царств</a>
+  <a class="<%= @book_code == '4ts' ? 'selected ' : nil %>kanon" href="/4ts/1" title="Книги исторические">4-я Царств</a>
+  <a class="<%= @book_code == '1par' ? 'selected ' : nil %>kanon" href="/1par/1" title="Книги исторические">1-я Паралипоменон</a>
+  <a class="<%= @book_code == '2par' ? 'selected ' : nil %>kanon" href="/2par/1" title="Книги исторические">2-я Паралипоменон</a>
+  <a class="<%= @book_code == 'ezd' ? 'selected ' : nil %>kanon" href="/ezd/1" title="Книги исторические">Ездра</a>
+  <a class="<%= @book_code == 'neem' ? 'selected ' : nil %>kanon" href="/neem/1" title="Книги исторические">Неемия</a>
+  <a class="<%= @book_code == '2ezd' ? 'selected ' : nil %>non-kanon" href="/2ezd/1" title="Книги исторические">2-я Ездры</a>
+  <a class="<%= @book_code == 'tov' ? 'selected ' : nil %>non-kanon" href="/tov/1" title="Книги исторические">Товит</a>
+  <a class="<%= @book_code == 'iudf' ? 'selected ' : nil %>non-kanon" href="/iudf/1" title="Книги исторические">Иудифь</a>
+  <a class="<%= @book_code == 'esf' ? 'selected ' : nil %>kanon" href="/esf/1" title="Книги исторические">Есфирь</a>
+  <a class="<%= @book_code == 'pr' ? 'selected ' : nil %>kanon" href="/pr/1" title="Книги учительные">Притчи</a>
+  <a class="<%= @book_code == 'ekl' ? 'selected ' : nil %>kanon" href="/ekl/1" title="Книги учительные">Екклесиаст</a>
+  <a class="<%= @book_code == 'pp' ? 'selected ' : nil %>kanon" href="/pp/1" title="Книги учительные">Песня Песней</a>
+  <a class="<%= @book_code == 'prs' ? 'selected ' : nil %>non-kanon" href="/prs/1" title="Книги учительные">Премудрость Соломона</a>
+  <a class="<%= @book_code == 'prsir' ? 'selected ' : nil %>non-kanon" href="/prsir/1" title="Книги учительные">Сирах</a>
+  <a class="<%= @book_code == 'iov' ? 'selected ' : nil %>kanon" href="/iov/1" title="Книги учительные">Иов</a>
+  <a class="<%= @book_code == 'is' ? 'selected ' : nil %>kanon" href="/is/1" title="Книги пророческие">Исаия</a>
+  <a class="<%= @book_code == 'ier' ? 'selected ' : nil %>kanon" href="/ier/1" title="Книги пророческие">Иеремия</a>
+  <a class="<%= @book_code == 'pier' ? 'selected ' : nil %>kanon" href="/pier/1" title="Книги пророческие">Плач Иеремии</a>
+  <a class="<%= @book_code == 'pos' ? 'selected ' : nil %>non-kanon" href="/pos/1" title="Книги пророческие">Послание Иеремии</a>
+  <a class="<%= @book_code == 'var' ? 'selected ' : nil %>non-kanon" href="/var/1" title="Книги пророческие">Варух</a>
+  <a class="<%= @book_code == 'iez' ? 'selected ' : nil %>kanon" href="/iez/1" title="Книги пророческие">Иезекииль</a>
+  <a class="<%= @book_code == 'dan' ? 'selected ' : nil %>kanon" href="/dan/1" title="Книги пророческие">Даниил</a>
+  <a class="<%= @book_code == 'os' ? 'selected ' : nil %>kanon" href="/os/1" title="Книги пророческие">Осия</a>
+  <a class="<%= @book_code == 'iol' ? 'selected ' : nil %>kanon" href="/iol/1" title="Книги пророческие">Иоиль</a>
+  <a class="<%= @book_code == 'am' ? 'selected ' : nil %>kanon" href="/am/1" title="Книги пророческие">Амос</a>
+  <a class="<%= @book_code == 'av' ? 'selected ' : nil %>kanon" href="/av/1" title="Книги пророческие">Авдий</a>
+  <a class="<%= @book_code == 'ion' ? 'selected ' : nil %>kanon" href="/ion/1" title="Книги пророческие">Иона</a>
+  <a class="<%= @book_code == 'mih' ? 'selected ' : nil %>kanon" href="/mih/1" title="Книги пророческие">Михей</a>
+  <a class="<%= @book_code == 'naum' ? 'selected ' : nil %>kanon" href="/naum/1" title="Книги пророческие">Наум</a>
+  <a class="<%= @book_code == 'avm' ? 'selected ' : nil %>kanon" href="/avm/1" title="Книги пророческие">Аввакум</a>
+  <a class="<%= @book_code == 'sof' ? 'selected ' : nil %>kanon" href="/sof/1" title="Книги пророческие">Софония</a>
+  <a class="<%= @book_code == 'ag' ? 'selected ' : nil %>kanon" href="/ag/1" title="Книги пророческие">Аггей</a>
+  <a class="<%= @book_code == 'zah' ? 'selected ' : nil %>kanon" href="/zah/1" title="Книги пророческие">Захария</a>
+  <a class="<%= @book_code == 'mal' ? 'selected ' : nil %>kanon" href="/mal/1" title="Книги пророческие">Малахия</a>
+  <a class="<%= @book_code == '1mak' ? 'selected ' : nil %>non-kanon" href="/1mak/1" title="Книги исторические">1-я Маккавейская</a>
+  <a class="<%= @book_code == '2mak' ? 'selected ' : nil %>non-kanon" href="/2mak/1" title="Книги исторические">2-я Маккавейская</a>
+  <a class="<%= @book_code == '3mak' ? 'selected ' : nil %>non-kanon" href="/3mak/1" title="Книги исторические">3-я Маккавейская</a>
+  <a class="<%= @book_code == '3ezd' ? 'selected ' : nil %>non-kanon" href="/3ezd/1" title="Книги пророческие">3-я Ездры</a>
+  <a class="<%= @book_code == 'ps' ? 'selected ' : nil %>kanon" href="/ps/1" title="Книги учительные">Псалтирь</a>
+
+  <div class='small hint'>Новый Завет</div>
+  <a class="<%= @book_code == 'mf' ? 'selected ' : nil %>kanon" href="/mf/1" title="Евангелие">Евангелие от Матфея</a>
+  <a class="<%= @book_code == 'mk' ? 'selected ' : nil %>kanon" href="/mk/1" title="Евангелие">От Марка</a>
+  <a class="<%= @book_code == 'lk' ? 'selected ' : nil %>kanon" href="/lk/1" title="Евангелие">От Луки</a>
+  <a class="<%= @book_code == 'in' ? 'selected ' : nil %>kanon" href="/in/1" title="Евангелие">От Иоанна</a>
+  <a class="<%= @book_code == 'act' ? 'selected ' : nil %>kanon" href="/act/1" title="Деяния святых апостолов">Деяния апостолов</a>
+  <a class="<%= @book_code == 'iak' ? 'selected ' : nil %>kanon" href="/iak/1" title="Соборные послания">Послание Иакова</a>
+  <a class="<%= @book_code == '1pet' ? 'selected ' : nil %>kanon" href="/1pet/1" title="Соборные послания">1-е Петра</a>
+  <a class="<%= @book_code == '2pet' ? 'selected ' : nil %>kanon" href="/2pet/1" title="Соборные послания">2-е Петра</a>
+  <a class="<%= @book_code == '1in' ? 'selected ' : nil %>kanon" href="/1in/1" title="Соборные послания">1-е Иоанна</a>
+  <a class="<%= @book_code == '2in' ? 'selected ' : nil %>kanon" href="/2in/1" title="Соборные послания">2-е Иоанна</a>
+  <a class="<%= @book_code == '3in' ? 'selected ' : nil %>kanon" href="/3in/1" title="Соборные послания">3-е Иоанна</a>
+  <a class="<%= @book_code == 'iud' ? 'selected ' : nil %>kanon" href="/iud/1" title="Соборные послания">Иуды</a>
+  <a class="<%= @book_code == 'rim' ? 'selected ' : nil %>kanon" href="/rim/1" title="Послания апостола Павла">К Римлянам</a>
+  <a class="<%= @book_code == '1kor' ? 'selected ' : nil %>kanon" href="/1kor/1" title="Послания апостола Павла">1-е Коринфянам</a>
+  <a class="<%= @book_code == '2kor' ? 'selected ' : nil %>kanon" href="/2kor/1" title="Послания апостола Павла">2-е Коринфянам</a>
+  <a class="<%= @book_code == 'gal' ? 'selected ' : nil %>kanon" href="/gal/1" title="Послания апостола Павла">К Галатам</a>
+  <a class="<%= @book_code == 'ef' ? 'selected ' : nil %>kanon" href="/ef/1" title="Послания апостола Павла">К Ефесянам</a>
+  <a class="<%= @book_code == 'fil' ? 'selected ' : nil %>kanon" href="/fil/1" title="Послания апостола Павла">К Филиппийцам</a>
+  <a class="<%= @book_code == 'kol' ? 'selected ' : nil %>kanon" href="/kol/1" title="Послания апостола Павла">К Колосянам</a>
+  <a class="<%= @book_code == '1sol' ? 'selected ' : nil %>kanon" href="/1sol/1" title="Послания апостола Павла">1-е Солунянам</a>
+  <a class="<%= @book_code == '2sol' ? 'selected ' : nil %>kanon" href="/2sol/1" title="Послания апостола Павла">2-е Солунянам</a>
+  <a class="<%= @book_code == '1tim' ? 'selected ' : nil %>kanon" href="/1tim/1" title="Послания апостола Павла">1-е Тимофею</a>
+  <a class="<%= @book_code == '2tim' ? 'selected ' : nil %>kanon" href="/2tim/1" title="Послания апостола Павла">2-е Тимофею</a>
+  <a class="<%= @book_code == 'tit' ? 'selected ' : nil %>kanon" href="/tit/1" title="Послания апостола Павла">К Титу</a>
+  <a class="<%= @book_code == 'fm' ? 'selected ' : nil %>kanon" href="/fm/1" title="Послания апостола Павла">К Филимону</a>
+  <a class="<%= @book_code == 'evr' ? 'selected ' : nil %>kanon" href="/evr/1" title="Послания апостола Павла">К Евреям</a>
+  <a class="<%= @book_code == 'otkr' ? 'selected ' : nil %>kanon" href="/otkr/1" title="Книга пророческая">Откровение</a>
+</nav>
+
+<div class='small hint'>Главы</div>
+<nav id='menu-chapters'>
+  <% (1..::BOOKS[@book_code][:chapters]).each do |i| %>
+    <% classes = @chapter == i ? 'selected' : '' %>
+    <a class="<%= classes %>" href="/<%= @book_code %>/<%= i %>">
+      <%= i %>
+    </a>
+  <% end %>
+</nav>
+
+<div class="title" id='current-book' data-short-name='<%= @book_name%>' data-chapter='<%= @chapter %>'>
+  <%= @book_name %>. <%= I18n.t('chapter') %> <%= @chapter %> <span id='copy-link-btn' onclick='copySelectedTextLink()'>🔖</span>
+</div>
+
+<div class="verses" onclick="saveSelectedTextLink()">
+  <ol>
+  <% @verses.each do |v| %>
+    <li><span class="line" id="line-<%= v.line %>" data-line="<%= "#{v.line}" %>"><%= v.text %></span></li>
+  <% end %>
+  </ol>
+</div>
+
+<script>
+  const params = new Proxy(new URLSearchParams(window.location.search), {
+    get: (searchParams, prop) => searchParams.get(prop),
+  });
+
+  const highlightLine = function(lineInt) {
+    el = document.getElementById('line-' + lineInt);
+    if (el) {
+      el.classList.add("line-highlight");
+      el.scrollIntoView();
+    };
+  };
+
+  const highlightLines = function(linesStr) {
+    if (linesStr == null) return;
+
+    lines = linesStr.split(',').slice(0, 8);
+
+    lines.forEach(function(line) {
+      line = line.split('-');
+      if (line.length == 1) {
+
+        highlightLine(line[0]);
+
+      } else if (line.length == 2) {
+
+        let start = line[0];
+        let end = line[1];
+
+        if (start > 300) return;
+        if (end > 300) return;
+
+        let seq = [];
+        for (var i = start; i <= end; i++) {
+          seq.push(i);
+        };
+
+        seq.forEach(function(l) {
+          highlightLine(l);
+        });
+
+      };
+    });
+  }
+
+  highlightLines(params.lines);
+</script>
