@@ -13,3 +13,200 @@
  *= require_tree .
  *= require_self
  */
+
+/* ШАПКО-ССЫЛКИ: Меню хэдера: Библия, Цитаты, Поиск */
+
+header nav {
+  padding: 10px 0 0 0;
+}
+header nav a {
+  padding-right: 10px;
+}
+
+.local {
+  text-decoration: underline;
+  text-decoration-style: dashed;
+}
+
+/* ЯЗЫК: выбор языка в шапке */
+
+.lang-select {
+  float: right;
+  position: absolute;
+  right: 10px;
+  top: 30px;
+  min-width: 150px;
+}
+
+/* КНИГИ: Меню книг: Бытие, Исход ... */
+
+#menu-books.hidden {
+  display: none;
+}
+
+#menu-books {
+  max-width: calc(100% - 20px);
+  padding: 15px;
+  margin: 0;
+  background-color: #d4e2ce;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 1;
+}
+
+#menu-books::after {
+  content: '';
+  position: absolute;
+  left: 20px;
+  top: -20px;
+  border: 10px solid transparent;
+  border-bottom: 10px solid #d4e2ce;
+}
+
+.night-mode #menu-books {
+  background-color:#94c181;
+}
+
+.night-mode #menu-books::after {
+  border-bottom: 10px solid #94c181;
+}
+
+#menu-books.bible-clicked {
+  top: -10px;
+}
+
+#menu-books.book-clicked {
+  top: 84px;
+}
+
+#menu-books.book-clicked::after {
+  left: 50%;
+  margin-left: -10px;
+}
+
+
+#menu-books a {
+  display: inline-block;
+  padding: 5px 5px 5px 0;
+}
+
+#menu-books a.kanon {
+  color: rgb(0 97 59);
+}
+#menu-books a.kanon:hover {
+  color: rgb(29, 102, 73);
+}
+#menu-books a.non-kanon {
+  color: #4a4139;
+}
+
+#menu-books a.non-kanon:hover {
+  color: #6d6156;
+}
+
+/* .night-mode #menu-books a.non-kanon {
+  color:#888;
+}
+
+.night-mode #menu-books a.non-kanon:hover {
+  color:#999;
+} */
+
+
+/* BOOK NAME */
+.content .title {
+  margin: 0;
+  font-size: 32px;
+}
+
+.content .title a {
+  text-decoration: none;
+}
+
+/* CHAPTERS */
+
+/* в блоке глав все надписи по центру  */
+#chapter-content .hint, nav#menu-chapters {
+  text-align: center;
+}
+
+nav#menu-chapters a {
+  display: inline-block;
+  min-width: 35px;
+  padding: 2px 5px;
+  font-size: 1.2em;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+  /* font-weight: bold; */
+}
+
+/* Альтернативный вариант с рамочкой, тоже красиво, смложно остановиться на одном варианте */
+/* nav#menu-chapters a.selected {
+  border: 1px solid rgba(205,151,101, 1);
+} */
+nav#menu-chapters a.selected {
+  border: 1px solid rgba(140,100,100, 1);
+  background-color: rgba(140,100,100, 1);
+  color: #fdfcf1;
+}
+
+.night-mode nav#menu-chapters a.selected {
+  border: 1px solid rgba(205,151,101, 1);
+  background-color: rgba(205,151,101, 1);
+  /* border: 1px solid rgba(97,175,239, 1);
+  background-color: rgba(97,175,239, 1); */
+  color: #282c34;
+}
+
+/* СТИХИ */
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+td {
+  line-height: 1.6em;
+}
+td.verse-line {
+  padding: 4px 10px 0 0;
+  cursor: pointer;
+
+  -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
+  vertical-align: top;
+  text-align: right;
+  color: #616562;
+  font-size: 13px;
+  font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+}
+
+td.verse-text {
+  display: table-cell;
+  border-left: 2px solid transparent;
+  padding-left: 7px;
+}
+
+td.highlighted {
+  background: #cd97652e;
+  border-left: 2px solid #cd9765;
+}
+
+tr:hover td.verse-line {
+  color: #a0ae62;
+}
+
+.night-mode td.highlighted {
+  color: #d4dded;
+}
+
+.night-mode tr:hover td.verse-line {
+  color: #828e88;
+}

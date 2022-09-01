@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Библио́ѯ</title>
+    <title>Библeокс — <%= @page_title %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="icon" href="<%= asset_path("favicon.svg") %>" type="image/svg+xml">
     <%= csrf_meta_tags %>
@@ -14,7 +14,7 @@
           font-family: "Ponomar";
           src: url(<%= asset_path('PonomarUnicode.otf') %>) format("opentype");
         }
-        .line {
+        .verse-text {
           font-family: "Ponomar", Verdana, Tahoma;
           font-size: 1.4em;
           line-height: 1.5em;
@@ -29,50 +29,37 @@
     <header>
       <div class='container'>
         <div class="logo">
-          <a href="/"><%= image_tag("bibleox-#{ ['cs', 'gr', 'en'].sample }.png") %></a>
+          <a href="/"><%= image_tag("bibleox-#{ ['ru', 'cs', 'gr', 'en'].sample }.png") %></a>
         </div>
         <nav>
-          <a href="/search?acc=1&t=Христос">Поиск</a>
-          <a id="night-mode-switcher" onclick="switchNightMode()"><%= @is_night_mode ? "Ночь" : "День" %></a>
+          <a href="javascript:" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>" onclick="menuBooks.show('bible-clicked');">Библия</a>
+          <a href="/q" class="<%= @current_menu_item == 'quotes' ? ' selected' : nil %>">Цитаты</a>
+          <a href="/search?acc=exact&t=Христос" class="<%= @current_menu_item == 'search' ? ' selected' : nil %>">Поиск</a>
+          <a href="javascript:" id="night-mode-switcher" class="local" onclick="switchNightMode()"><%= @is_night_mode ? "Ночь" : "День" %></a>
         </nav>
 
         <select id="lang-select" name="lang-select" onchange="selectLang();return false;">
-          <option value='ru' <% if cookies[:'b-lang'] == 'ru' %>selected<% end %>>Русский (синодальный)</option>
-          <option value='csl-pnm' <% if cookies[:'b-lang'] == 'csl-pnm' %>selected<% end %>>Церковнославянский старый</option>
-          <option value='csl-ru' <% if cookies[:'b-lang'] == 'csl-ru' %>selected<% end %>>Церковнославянский простой</option>
+          <option value='ru' <% if cookies[:'b-lang'] == 'ru' %>selected<% end %>>Русский</option>
+          <option value='csl-pnm' <% if cookies[:'b-lang'] == 'csl-pnm' %>selected<% end %>>Ц-Славянский</option>
+          <option value='csl-ru' <% if cookies[:'b-lang'] == 'csl-ru' %>selected<% end %>>Ц-Славянский (рус)</option>
         </select>
       </div>
     </header>
 
     <div class='flex-wrap'>
       <div class="content">
+        <%= render(partial: 'verses/books') %>
         <%= yield %>
       </div>
     </div>
 
     <footer>
-      <dd>Библио́ѯ — Βιβλιо́ξ — Bibleox</dd>
+      <dd>Библеокс — Библео́ѯ — Βιβλεо́ξ — Bibleox</dd>
       <dd>2022 год от Рождества Христова</dd>
       <dd><a href='/about'>О сайте</a></dd>
     </footer>
-  </body>
 
-  <script>
-    var element = document.querySelector('#lang-select');
-    new Choices(element, {
-      shouldSort: false,
-      shouldSortItems: false,
-      placeholder: true,
-      placeholderValue: 'Язык Библии',
-      searchEnabled: false,
-      prependValue: null,
-      appendValue: null,
-      renderSelectedChoices: 'auto',
-      itemSelectText: '',
-      position: 'down',
-      classNames: {
-        containerOuter: 'choices lang-select'
-      },
-    });
-  </script>
+    <%= content_for?(:end_of_page) ? yield(:end_of_page) : '' %>
+    <%= javascript_include_tag "all_after", media: "all" %>
+  </body>
 </html>

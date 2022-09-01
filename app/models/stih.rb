@@ -1,5 +1,3 @@
-# db.createUser({ user: 'bibl_explorer', pwd: '123', roles: [ { role: "readWrite", db: "biblia_production" } ] });
-# Stih.create_indexes
 class Stih
   include Mongoid::Document
 

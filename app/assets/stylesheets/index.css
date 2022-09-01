@@ -1,0 +1,78 @@
+
+/* PAGINATION  */
+#pagination-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-style: italic;
+  margin: 35px 0 10px 0;
+}
+
+#pagination-bottom #end-tip {
+  padding: 0 20px;
+  text-align: center;
+}
+
+/* SELECT-BAR  */
+
+#select-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 10px;
+  overflow: hidden;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: #d7d5ca;
+  user-select: none;
+}
+
+#select-bar.hidden {
+  display: none;
+}
+
+#select-bar span {
+  display: inline-block;
+  max-width: 135px;
+  min-height: 65px;
+  text-align: center;
+  padding: 10px 5px;
+  margin: 0 3px;
+  border: 2px solid transparent;
+  text-decoration: none;
+  font-size: 10px;
+  border-radius: 4px;
+}
+
+#select-bar span:hover {
+  border: 2px solid rgb(159 156 151 / 40%);
+  cursor: pointer;
+}
+#select-bar span:active {
+  border: 2px solid rgba(125, 118, 106, 0.4);
+}
+#select-bar span.active {
+  background-color: rgb(159 156 151 / 20%);
+}
+
+.night-mode #select-bar {
+  background-color: #3e4759;
+}
+
+.night-mode #select-bar span {
+  color: #cdd1db;
+}
+
+.night-mode #select-bar span:hover {
+  border: 2px solid #b8c6d566;
+}
+
+.night-mode #select-bar span:active {
+  border: 2px solid #b8c6d533;
+}
+.night-mode #select-bar span.active {
+  background-color: #596174;
+}

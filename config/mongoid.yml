@@ -23,7 +23,7 @@ development:
 
         # The timeout to wait to execute operations on a socket before raising an error.
         # (default: 5)
-        socket_timeout: 5
+        socket_timeout: 60
 
   # Configure Mongoid specific options. (optional)
   options:
@@ -79,7 +79,7 @@ test:
 
         # The timeout to wait to execute operations on a socket before raising an error.
         # (default: 5)
-        socket_timeout: 5
+        socket_timeout: 60
 
   # Configure Mongoid specific options. (optional)
   options:
@@ -135,7 +135,7 @@ production:
 
         # The timeout to wait to execute operations on a socket before raising an error.
         # (default: 5)
-        socket_timeout: 5
+        socket_timeout: 60
 
   # Configure Mongoid specific options. (optional)
   options:

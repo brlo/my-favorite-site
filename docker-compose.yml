@@ -1,0 +1,56 @@
+version: '3.9'
+
+services:
+  bibleox:
+    container_name: 'bibleox'
+    image: 'ruby:3.1.2'
+    entrypoint: '/bin/bash /app/start.sh'
+    environment:
+      # без этой переменной в docker.app логи застревают
+      # (появляются с задержкой, выталкиваются в видимую область, новыми логами)
+      # http://tarunlalwani.com/post/why-delayed-output-python-docker/
+      - 'PYTHONUNBUFFERED=1'
+    volumes:
+      - .:/app
+      - gems-volume:/gems
+    ports:
+      - '80:80'
+    # depends_on:
+    #   - mongo
+    dns:
+      - 77.88.8.8
+      - 77.88.8.1
+    # extra_hosts:
+    #   - 'host.docker.internal:host-gateway'
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '200k'
+        max-file: '2'
+    # networks:
+    #   - bib_network
+
+  # mongo:
+  #   container_name: 'mongo'
+  #   image: 'brlo/mongo:4.2'
+  #   # command: 'mongod --auth --storageEngine wiredTiger -f /etc/mongod.conf'
+  #   ports:
+  #     - '27017:27017'
+  #   volumes:
+  #    - /etc/bibleox/config/mongo/mongod.conf:/etc/mongod.conf
+  #    - /srv/mongodb:/data/db
+  #    - /var/log/mongo:/var/log/mongo
+  #   logging:
+  #     driver: 'json-file'
+  #     options:
+  #       max-size: '200k'
+  #       max-file: '2'
+  #   networks:
+  #     - bib_network
+
+# networks:
+#   bib_network:
+#     driver: bridge
+
+volumes:
+  gems-volume:

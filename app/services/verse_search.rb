@@ -24,16 +24,15 @@ class VerseSearch
 
     search_params = {lang: lang}
 
-    if accuracy == '1'
+    if accuracy == 'exact'
       # точное совпадение (пишем в кавычках)
       search_params['$text'] = {'$search' => "\"#{ text }\""}
-    elsif accuracy == '2'
+    elsif accuracy == 'similar'
       # похожая фраза (когда будет готово отдельное поле, перейти на него)
       arr = text.gsub(/[^[[:alpha:]]]\s/, '').split(' ').first(5)
       regex = arr.map { |w| len = [2, w.length-3].max; w[0..len] }.join('[^\s]+\s')
-      puts "=== regex: #{regex}"
       search_params['text'] = /#{regex}/i
-    elsif accuracy == '3'
+    elsif accuracy == 'partial'
       # часть слова
       regex = text.split(' ').first.gsub(/[^[[:alpha:]]]/, '')
       search_params['text'] = /#{regex}/i
@@ -53,6 +52,6 @@ class VerseSearch
     # https://www.mongodb.com/docs/manual/core/link-text-indexes/
     verses = ::Verse.where(
       **search_params
-    ).limit(count).to_a
+    ).limit(count).order_by(book_id: 1, chapter: 1, line: 1).to_a
   end
 end

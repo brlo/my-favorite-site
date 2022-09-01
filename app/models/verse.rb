@@ -21,6 +21,9 @@ class Verse
   # НАЙТИ ПУСТЫЕ СТИХИ
   # ImportVerse.where(text: ['', nil]).map{|v| [v.book_number.to_i, v.chapter.to_i, v.verse.to_i, v.text]}
 
+  # Add book_id
+  # Verse.all.each { |v| v.update(bid: BOOKS[v.book][:id]) }
+
   # veth = BOOKS.select{ |book,params| params[:zavet] == 1 }.keys
   # Verse.where(:book.in => veth).update_all(zavet: 1)
 
@@ -30,6 +33,7 @@ class Verse
   # lang       - ru
   # address    - zah:9:8
   # zavet      - 1
+  # book_id    - 10
   # book       - zah
   # chapter    - 9
   # line       - 8
@@ -43,6 +47,8 @@ class Verse
   field :a, as: :address, type: String
   # Завет (1 или 2)
   field :z, as: :zavet, type: Integer
+  # id книги (для сортировки)
+  field :bid, as: :book_id, type: Integer
   # код книги
   field :bc, as: :book, type: String
   # номер главы
@@ -66,11 +72,11 @@ class Verse
   # для отдачи нужной главы
   index({lang: 1, book: 1, ch: 1},               {background: true})
   # чтобы не создавались одинаковые стихи
-  index({lang: 1, book: 1, ch: 1, line: 1},      {unique: true, background: true})
+  index({lang: 1, book_id: 1, ch: 1, line: 1},   {unique: true, background: true})
   # для поиска по тексту
   index({lang: 1, text: 'text'},                 {background: true})
 
-  validates :address, :book, :chapter, :line, :text, presence: true
+  validates :address, :book_id, :book, :chapter, :line, :text, presence: true
 
   before_validation :set_address_if_nil
 

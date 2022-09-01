@@ -1,0 +1,78 @@
+// Кнопка: искать
+function goToSearch() {
+  searchInput = document.getElementById('search-input');
+  text = searchInput.value; //. /[^\sA-Za-zА-Яа-я0-9-]*/, ''
+  book = document.getElementById('search-books').value;
+  acc = document.getElementById('search-accuracy').value;
+
+  let params = [];
+  if (book && book.length > 0) { params.push('book=' + book) };
+  if (acc && acc.length > 0) { params.push('acc=' + acc) };
+  if (text && text.length > 0) { params.push('t=' + text) };
+  document.location.href = '/search?' + params.join('&');
+};
+
+// Выпадающие списки: выбор книги для поиска
+var element = document.querySelector('#search-books');
+new Choices(element, {
+  allowHTML: false,
+  shouldSort: false,
+  shouldSortItems: false,
+  // removeItemButton: true,
+  placeholder: true,
+  placeholderValue: 'Искать в книгах',
+  searchEnabled: !isMobileDevice(),
+  searchPlaceholderValue: 'поиск',
+  prependValue: null,
+  appendValue: null,
+  renderSelectedChoices: 'auto',
+  loadingText: 'Поиск...',
+  noResultsText: 'Ничего не найдено',
+  noChoicesText: 'Ничего не выбрано',
+  itemSelectText: '',
+  position: 'down',
+  classNames: {
+    containerOuter: 'choices search-books'
+  },
+});
+
+// Выпадающие списки: выбор точности поиска
+var element = document.querySelector('#search-accuracy');
+new Choices(element, {
+  allowHTML: false,
+  shouldSort: false,
+  shouldSortItems: false,
+  placeholder: true,
+  placeholderValue: 'Искать в книгах',
+  searchEnabled: false,
+  prependValue: null,
+  appendValue: null,
+  renderSelectedChoices: 'auto',
+  itemSelectText: '',
+  position: 'down',
+  classNames: {
+    containerOuter: 'choices search-accuracy'
+  },
+});
+
+// подсветка найденных слов
+let searchInput = document.getElementById('search-input');
+let searchText = searchInput.value;
+let verses = document.getElementsByClassName('line');
+
+if (typeof searchText === 'string') {
+  searchWords = searchText.split(' ');
+
+  for (var i = 0; i < verses.length; i++) {
+    let el = verses.item(i);
+    let text = el.innerHTML;
+
+    for (var n = 0; n < searchWords.length; n++) {
+      let word = searchWords[n]
+      let regex = new RegExp(word, 'gi');
+      text = text.replace(regex, "<span class='highlight'>" + word + "</span>");
+    };
+
+    el.innerHTML = text;
+  };
+};

@@ -1,0 +1,9 @@
+
+.choices.search-accuracy, .choices.search-books, #search-input {
+  width: 100%;
+}
+
+.search-options {
+  display: flex;
+  gap: 10px;
+}
