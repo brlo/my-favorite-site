@@ -28,16 +28,6 @@ header nav a {
   text-decoration-style: dashed;
 }
 
-/* ЯЗЫК: выбор языка в шапке */
-
-.lang-select {
-  float: right;
-  position: absolute;
-  right: 10px;
-  top: 30px;
-  min-width: 150px;
-}
-
 /* КНИГИ: Меню книг: Бытие, Исход ... */
 
 #menu-books.hidden {
@@ -72,7 +62,7 @@ header nav a {
 }
 
 #menu-books.bible-clicked {
-  top: -10px;
+  top: 0;
 }
 
 #menu-books.book-clicked {
@@ -210,3 +200,17 @@ tr:hover td.verse-line {
 .night-mode tr:hover td.verse-line {
   color: #828e88;
 }
+
+#Bogoroditsa {
+  width: calc(100% + 20px);
+  margin: -30px -10px 10px -10px;
+}
+
+@media (min-width: 700px){
+  #Bogoroditsa {
+    width: 100%;
+    margin: -30px 0 10px 0;
+  }
+}
+
+

@@ -1,3 +1,45 @@
+// NOTIFICATION
+
+window.BX.notifications = {
+  stack: [],
+};
+
+// Показ одного уведомления из стэка
+window.BX.notifications.show = function () {
+  // если сейчас уже нарисовано увдеомление, то ничего не делаем
+  // так как по таймауту из стэка само нарисуется слдующее уведомление
+  if (document.getElementById('popup-notif')) return;
+  // в стэке пусто
+  if (BX.notifications.stack.length < 1) return;
+
+  let htmlText = BX.notifications.stack.shift();
+
+  if (htmlText == undefined) return;
+
+  let el = document.createElement('div');
+
+  el.id = 'popup-notif';
+  el.innerHTML = htmlText;
+  body = document.getElementsByTagName('body')[0];
+  body.appendChild(el);
+
+  // через 2 сек - затухаем
+  setTimeout(() => document.getElementById('popup-notif').style.opacity = '0', 2000);
+  // через 2.5 сек - исчезаем и рисуем следующее уведомлене
+  setTimeout(function() {
+    el = document.getElementById('popup-notif');
+    body = document.getElementsByTagName('body')[0];
+    body.removeChild(el);
+    BX.notifications.show();
+  }, 2500);
+}
+
+// Добавление уведомления в очередь на показ
+window.BX.notifications.addNotification = function (htmlText) {
+  BX.notifications.stack.push(htmlText);
+  BX.notifications.show();
+};
+
 
 // ==========================================================================
 // ==========================================================================
@@ -89,16 +131,23 @@ selectBar.selectModeClicked = function () {
 selectBar.copyTextAndAddressClicked = function () {
   let text = selectBar.getSelectedText();
   let address = selectBar.getSelectedAddress();
-  let result = text + ' (' + address + ')';
+  let result = '"' + text + '"' + ' (' + address + ')';
 
   BX.tools.copyText(result);
+  BX.notifications.addNotification(
+    '<t>Скопировано:</t>' +
+    '"' + text.slice(0,30) + '..."' +
+    '<br>' +
+    '(' + address + ')'
+  );
   return;
 };
 
 selectBar.copyTextClicked = function () {
-  let text = '"' + selectBar.getSelectedText() + '"';
+  let text = selectBar.getSelectedText();
 
   BX.tools.copyText(text);
+  BX.notifications.addNotification('<t>Скопировано:</t>' + text.slice(0,30) + '...')
   return;
 };
 
@@ -106,11 +155,14 @@ selectBar.copyAddressClicked = function () {
   let address = selectBar.getSelectedAddress();
 
   BX.tools.copyText(address);
+  BX.notifications.addNotification('<t>Скопировано:</t>' + address)
   return;
 };
 
 selectBar.copyLinkClicked = function () {
-  BX.tools.copyText(window.location.href);
+  let link = window.location.href;
+  BX.tools.copyText(link);
+  BX.notifications.addNotification('<t>Скопировано:</t>' + link)
   return;
 };
 
@@ -415,7 +467,7 @@ const lineNumberClicked = function(event) {
 function lineTextClicked(event) {
   // если режим выделения включен, то выделение работает
   // не только по клику на номер стиха, но и на сам стих
-  if (selectBar.isEnabled) {
+  if (window.BX.options.isSelectMode == true) {
     lineNumberClicked(event);
   };
   return;

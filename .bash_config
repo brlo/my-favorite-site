@@ -1,0 +1,22 @@
+#!/bin/bash
+### EXTEND SCRIPT FOR .bashrc of main salon-container
+### WARNING: DON'T MOVE OR RENAME THIS SCRIPT
+
+### COMMON SETTINGS
+
+SHELL=/bin/bash
+
+## Colored prompt
+# open color: \[\033[01;32m\]
+# open deep color: \[\033[1;38;5;11m\] # faq: http://misc.flogisoft.com/bash/tip_colors_and_formatting
+# clear all styles: \[\033[0m\]
+PS1="\[\033[01;32m\][\$(date +%H:%M)][\u@moiprofi-container\[\033[01;34m\]:\w]$\[\033[0m\] "
+
+## Colored ls
+export LS_OPTIONS='--color=auto'
+eval "`SHELL=/bin/bash dircolors`"
+alias ls='ls $LS_OPTIONS'
+alias ll='ls $LS_OPTIONS -l'
+alias l='ls $LS_OPTIONS -lA'
+
+cd /app

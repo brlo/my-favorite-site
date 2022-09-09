@@ -54,3 +54,14 @@ ansible -m ping all
 ansible -m shell -a 'uname -a' all
 ansible -m setup all
 ```
+
+* Usage
+
+```shell
+# console
+docker exec -it bibleox_bibleox bash
+docker-compose exec app bundle exec rails console
+
+# Sitemap
+rake g:sitemap
+```

@@ -27,10 +27,23 @@ window.menuBooks = {
 }
 
 menuBooks.show = function (needAddClass = null) {
+  if (needAddClass == 'book-clicked') {
+    // Скрываем. Это повторный клик на название книги.
+    let isSameMenuOpened = document.getElementsByClassName('book-clicked').length > 0;
+    if (isSameMenuOpened) { menuBooks.hide(); return; };
+  };
+
+  if (needAddClass == 'bible-clicked') {
+    // Скрываем. Это повторный клик на Библию (в меню).
+    let isSameMenuOpened = document.getElementsByClassName('bible-clicked').length > 0;
+    if (isSameMenuOpened) { menuBooks.hide(); return; };
+  };
+
   // меню было скрыто, поэтому мы его покажем с нужным классом, предварительно всё почистив
   menuBooks.el.className = '';
   if (needAddClass !== null) menuBooks.el.classList.add(needAddClass);
   menuBooks.isShown = true;
+
   return false;
 };
 

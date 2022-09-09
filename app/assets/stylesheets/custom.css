@@ -77,8 +77,17 @@ header .container {
   position: relative;
   max-width: 700px;
   width: 100%;
-  padding: 30px 10px;
+  padding: 12px 10px;
   margin: 0 auto;
+}
+
+/* ЯЗЫК: выбор языка в шапке */
+.lang-select {
+  float: right;
+  position: absolute;
+  right: 10px;
+  top: 12px;
+  min-width: 150px;
 }
 
 .logo img {

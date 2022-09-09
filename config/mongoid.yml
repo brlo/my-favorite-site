@@ -3,7 +3,7 @@ development:
     default:
       database: biblia_production
       hosts:
-        - 0.0.0.0:27017
+        - host.docker.internal:27017
       options:
         user: bibl_explorer
         password: "123"
@@ -59,7 +59,7 @@ test:
     default:
       database: biblia_test
       hosts:
-        - 0.0.0.0:27017
+        - host.docker.internal:27017
       options:
         user: bibl_explorer
         password: "123"
@@ -115,7 +115,7 @@ production:
     default:
       database: biblia_production
       hosts:
-        - 0.0.0.0:27017
+        - host.docker.internal:27017
       options:
         user: bibl_explorer
         password: "123"

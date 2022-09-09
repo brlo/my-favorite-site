@@ -8,8 +8,15 @@ Bundler.require(*Rails.groups)
 
 module Bibleox
   class Application < Rails::Application
+    config.active_record.legacy_connection_handling = false
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.0
+
+    # bibleox.com
+    # res.bibleox.com
+    config.hosts << /([a-z0-9-]+\.)?([a-z0-9-]+\.)?bibleox\.com/
+
 
     config.i18n.default_locale = :'ru'
 
