@@ -1,6 +1,35 @@
 ru:
+  title: Библeокс
+  footer_title: Библеокс — Библео́ѯ — Βιβλεо́ξ — Bibleox
+  about_site: 'О сайте'
+  about_text: Сайт создан в 2022 году в городе Севастополь по благословению православного священнослужителя.
+  about_contact: Контакт с разработчиком
+
+  menu:
+    bible: Библия
+    quotes: Цитаты
+    search: Поиск
+    day: День
+    night: Ночь
+
   search: 'Поиск'
   chapter: глава
+  chapters: Главы
+  psalm: псалом
+  psalms: Псалмы
+
+  end_chapter:
+    the_end_of: Конец
+    suffix: '-й'
+    suffix_psalm: '-о'
+    chapter: главы
+    psalm: псалма
+
+  forward: Вперёд
+  backward: Назад
+
+  years_from: год от Рождества Христова
+
   books:
     short:
       gen: Быт
@@ -161,6 +190,7 @@ ru:
       otkr: Откровение Иоанна Богослова
 
   errors:
+    no_translation_for_this_book: 'В этом переводе книга отсутствует'
     messages:
       taken: "has already been taken"
 

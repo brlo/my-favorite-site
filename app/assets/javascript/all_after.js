@@ -1,6 +1,6 @@
 var element = document.querySelector('#lang-select');
 new Choices(element, {
-  allowHTML: false,
+  allowHTML: true,
   shouldSort: false,
   shouldSortItems: false,
   placeholder: true,

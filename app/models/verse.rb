@@ -4,32 +4,6 @@
 class Verse
   include Mongoid::Document
 
-  # FROM OLD MODEL TO NEW
-  # ::Stih.each do |s|
-  #   ::Verse.create!(lang: 'ru', book: s.book, chapter: s.chapter, line: s.number, text: s.text)
-  # end
-
-  # FROM SQLite to Mongo
-  # books_id_code = ::BOOKS.map { |code, data| [data[:id], code] }.to_h
-  # ::ImportVerse.order('verses.id').find_each do |s|
-  #   book = books_id_code[s.book_number.to_i]
-  #   zavet = ::BOOKS[book][:zavet]
-
-  #   ::Verse.create!(lang: 'csl-ru', book: book, zavet: zavet, chapter: s.chapter.to_i, line: s.verse.to_i, text: s.text)
-  # end
-
-  # НАЙТИ ПУСТЫЕ СТИХИ
-  # ImportVerse.where(text: ['', nil]).map{|v| [v.book_number.to_i, v.chapter.to_i, v.verse.to_i, v.text]}
-
-  # Add book_id
-  # Verse.all.each { |v| v.update(bid: BOOKS[v.book][:id]) }
-
-  # veth = BOOKS.select{ |book,params| params[:zavet] == 1 }.keys
-  # Verse.where(:book.in => veth).update_all(zavet: 1)
-
-  # nov = BOOKS.select{ |book,params| params[:zavet] == 2 }.keys
-  # Verse.where(:book.in => nov).update_all(zavet: 2)
-
   # lang       - ru
   # address    - zah:9:8
   # zavet      - 1
@@ -42,7 +16,7 @@ class Verse
   # created_at - дата-время-создания
 
   # язык
-  field :lang, as: :lang, type: String
+  field :lang, type: String
   # код стиха
   field :a, as: :address, type: String
   # Завет (1 или 2)
@@ -76,7 +50,7 @@ class Verse
   # для поиска по тексту
   index({lang: 1, text: 'text'},                 {background: true})
 
-  validates :address, :book_id, :book, :chapter, :line, :text, presence: true
+  validates :lang, :address, :book_id, :book, :chapter, :line, :text, presence: true
 
   before_validation :set_address_if_nil
 
@@ -90,3 +64,45 @@ class Verse
     end
   end
 end
+
+
+# ###############################################################################
+# FROM SQLite to Mongo
+# https://github.com/rails/rails-html-sanitizer
+# ###############################################################################
+
+# sanitizer = Rails::Html::SafeListSanitizer.new
+# books_id_code = ::BOOKS.map { |code, data| [data[:id], code] }.to_h
+# lang = 'gr-lxx-byz'
+# ::ImportVerse.all.order('verses.id').find_each do |s|
+#   # только для иврита пропускаем. Там вконце несколько строк пустых.
+#   s.text = '.' if s.text.blank?
+
+#   book = books_id_code[s.book_number.to_i]
+#   book_info = ::BOOKS[book]
+#   id = book_info[:id]
+#   zavet = book_info[:zavet]
+
+#   # удаляем что-то <f>
+#   str = s.text.dup.gsub(/<f>[^<f>]+<\/f>/, '')
+#   # удаляем стронг
+#   str = str.gsub(/<S>[^<S>]+<\/S>/, '')
+#   # что-то непонятное
+#   str = str.gsub(/<m>[^<m>]+<\/m>/, '')
+
+#   # убираем лишние тэги
+#   str = sanitizer.sanitize(str, tags: %w(i j br))
+
+#   # удалить множественные пробелы
+#   str = str.gsub(/[\s\t\n\r]+/, ' ')
+#   # удалить пробел в начале и в конце
+#   str = str.gsub(/^\s|\s$/, '')
+
+#   # меняем "| слово | VAR: слово2 |" на просто "слово2" (слово2 как на Азбуке)
+#   str = str.gsub(/\|[^\|]+\| VAR:([^\|]+)\|/i, '\1')
+
+#   v = Verse.find_or_initialize_by(lang: lang, bid: id, chapter: s.chapter.to_i, line: s.verse.to_i)
+#   v.update!(book: book, zavet: zavet, text: str, data: {'orig': s.text})
+# end
+
+# ###############################################################################

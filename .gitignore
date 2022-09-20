@@ -7,11 +7,13 @@
 # Ignore bundler config.
 /.bundle
 /TODO.txt
+/.irb_history
 
 # Ignore the default SQLite database.
-/db/*.sqlite3
-/db/*.zip
-/db/*.sqlite3-*
+/db/**/*.sqlite3
+/db/**/*.sqlite3-*
+/db/**/*.zip
+/db/**/*.json
 
 # Ignore all logfiles and tempfiles.
 /log/*

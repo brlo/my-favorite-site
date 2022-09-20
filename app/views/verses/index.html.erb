@@ -1,13 +1,3 @@
-<div
-    class="title"
-    id='current-address'
-    data-book-short-name='<%=  ::I18n.t("books.short.#{@book_code}") %>'
-    data-chapter='<%= @chapter %>'
-    style='text-align: center;'
-  >
-  <a href="javascript:;" id='current-book' onclick="menuBooks.show('book-clicked');"><%= ::I18n.t("books.full.#{@book_code}") %></a>
-</div>
-
 <div id='chapter-content'>
   <%= render(partial: 'verses/chapters') %>
 </div>

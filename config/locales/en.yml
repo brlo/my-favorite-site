@@ -30,8 +30,37 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  title: Bibleox
+  footer_title: Bibleox.com
+  about_site: 'About'
+  about_text: The site was created in 2022 in the city of Sevastopol with blessing of an orthodox priest.
+  about_contact: Contact with developer
+
+  menu:
+    bible: Bible
+    quotes: Quotes
+    search: Search
+    day: Day
+    night: Night
+
   search: 'Search'
   chapter: chapter
+  chapters: Chapters
+  psalm: psalm
+  psalms: Psalms
+
+  end_chapter:
+    the_end_of: The end of
+    suffix: ''
+    suffix_psalm: ''
+    chapter: chapter
+    psalm: psalm
+
+  forward: Forward
+  backward: Backward
+
+  years_from: from the birth of Jesus Christ
+
   books:
     short:
       gen: Gen
@@ -113,87 +142,128 @@ en:
       evr: Hebr
       otkr: Apok
 
-    full:
-      gen: Gen
-      ish: Ex
-      lev: Lev
-      chis: Num
-      vtor: Deut
-      nav: Nav
-      sud: Judg
-      ruf: Rth
-      1ts: 1Sam
-      2ts: 2Sam
-      3ts: 1King
-      4ts: 2King
-      1par: 1Chron
-      2par: 2Chron
-      ezd: Ezr
-      neem: Nehem
-      2ezd: 2Ezr
-      tov: Tov
-      iudf: Judf
-      esf: Est
-      pr: Prov
-      ekl: Eccl
-      pp: Song
-      prs: Solom
-      prsir: Sir
-      iov: Job
-      is: Is
-      ier: Jer
-      pier: Lam
-      pos: pJer
-      var: Bar
-      iez: Ezek
-      dan: Dan
-      os: Hos
-      iol: Joel
-      am: Am
-      av: Avd
-      ion: Jona
-      mih: Mic
-      naum: Naum
-      avm: Habak
-      sof: Sofon
-      ag: Hag
-      zah: Zah
-      mal: Mal
-      1mak: 1Mac
-      2mak: 2Mac
-      3mak: 3Mac
-      3ezd: 3Ezr
-      ps: Ps
 
-      mf: Mt
-      mk: Mk
-      lk: Lk
-      in: Jn
-      act: Act
-      iak: Jac
-      1pet: 1Pet
-      2pet: 2Pet
-      1in: 1Jn
-      2in: 2Jn
-      3in: 3Jn
-      iud: Juda
-      rim: Rom
-      1kor: 1Cor
-      2kor: 2Cor
-      gal: Gal
-      ef: Eph
-      fil: Phil
-      kol: Col
-      1sol: 1Thes
-      2sol: 2Thes
-      1tim: 1Tim
-      2tim: 2Tim
-      tit: Tit
-      fm: Phlm
-      evr: Hebr
-      otkr: Apok
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    full:
+      gen: The First Book of Moses Called GENESIS
+      ish: The Second Book of Moses Called EXODUS
+      lev: The Third Book of Moses Called LEVITICUS
+      chis: The Fourth Book of Moses Called NUMBERS
+      vtor: The Fifth Book of Moses Called DEUTERONOMY
+      nav: The Book of JOSHUA
+      sud: The Book of JUDGES
+      ruf: The Book of RUTH
+      1ts: The First Book of SAMUEL
+      2ts: The Second Book of SAMUEL
+      3ts: The First Book of the KINGS
+      4ts: The Second Book of the KINGS
+      1par: The First Book of the CHRONICLES
+      2par: The Second Book of the CHRONICLES
+      ezd: The Book of EZRA
+      neem: The Book of NEHEMIAH
+      2ezd: '2Ezr'
+      tov: 'Tov'
+      iudf: 'Judf'
+      esf: The Book of ESTHER
+      pr: The Book of PROVERBS
+      ekl: The Book of ECCLESIASTES
+      pp: The SONG OF SOLOMON
+      prs: 'Solom'
+      prsir: 'Sir'
+      iov: The Book of JOB
+      is: The Book of ISAIAH
+      ier: The Book of JEREMIAH
+      pier: 'Lam'
+      pos: The Book of LAMENTATIONS
+      var: 'Bar'
+      iez: The Book of EZEKIEL
+      dan: The Book of DANIEL
+      os: The Book of HOSEA
+      iol: The Book of JOEL
+      am: The Book of AMOS
+      av: The Book of OBADIAH
+      ion: The Book of JONAH
+      mih: The Book of MICAH
+      naum: The Book of NAHUM
+      avm: The Book of HABAKKUK
+      sof: The Book of ZEPHANIAH
+      ag: The Book of HAGGAI
+      zah: The Book of ZECHARIAH
+      mal: The Book of MALACHI
+      1mak: '1Mac'
+      2mak: '2Mac'
+      3mak: '3Mac'
+      3ezd: '3Ezr'
+      ps: The Book of PSALMS
+
+      mf: The Gospel According to MATTHEW
+      mk: The Gospel According to MARK
+      lk: The Gospel According to LUKE
+      in: The Gospel According to JOHN
+      act: THE ACTS of the Apostles
+      iak: The Epistle of JAMES
+      1pet: The First Epistle of PETER
+      2pet: The Second Epistle of PETER
+      1in: The First Epistle of JOHN
+      2in: The Second Epistle of JOHN
+      3in: The Third Epistle of JOHN
+      iud: The Epistle of JUDE
+      rim: The Epistle of Paul the Apostle to the ROMANS
+      1kor: The First Epistle of Paul the Apostle to the CORINTHIANS
+      2kor: The Second Epistle of Paul the Apostle to the CORINTHIANS
+      gal: The Epistle of Paul the Apostle to the GALATIANS
+      ef: The Epistle of Paul the Apostle to the EPHESIANS
+      fil: The Epistle of Paul the Apostle to the PHILIPPIANS
+      kol: The Epistle of Paul the Apostle to the COLOSSIANS
+      1sol: The First Epistle of Paul the Apostle to the THESSALONIANS
+      2sol: The Second Epistle of Paul the Apostle to the THESSALONIANS
+      1tim: The First Epistle of Paul the Apostle to TIMOTHY
+      2tim: The Second Epistle of Paul the Apostle to TIMOTHY
+      tit: The Epistle of Paul the Apostle to TITUS
+      fm: The Epistle of Paul the Apostle to PHILEMON
+      evr: The Epistle to the HEBREWS
+      otkr: THE REVELATION of Jesus Christ
 
   errors:
+    no_translation_for_this_book: 'There is no such translation for this book'
     messages:
       taken: "has already been taken"
 

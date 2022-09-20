@@ -16,8 +16,8 @@
   </select>
 
   <select id="search-accuracy" name="accuracy" onchange="goToSearch();return false;">
-    <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>>Точная фраза</option>
     <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>>Похожая фраза</option>
+    <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>>Точная фраза</option>
     <option value='partial' <% if @search_accuracy == 'partial' %>selected<% end %>>Часть слова</option>
   </select>
 </div>
@@ -25,11 +25,11 @@
 <div class='hint'>Совпадений: <%= @matches_count %></div>
 <hr>
 
-<% @verses.each do |v| %>
+<% @verses_json.each do |v| %>
   <div class='line'>
-    "<%= verse_alone_clean(v.text.html_safe) %>"
-    <a href="/<%= v.book %>/<%= v.chapter %>#L<%= v.line %>">
-      (<%= ::I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %>)
+    "<%= verse_alone_clean(v['t'].html_safe) %>"
+    <a href="/<%= v['bc'] %>/<%= v['ch'] %>#L<%= v['l'] %>">
+      (<%= ::I18n.t("books.short.#{ v['bc'] }") %>. <%= v['ch'] %>:<%= v['l'] %>)
     </a>
   </div>
   <br>

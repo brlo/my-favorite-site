@@ -338,11 +338,13 @@ var lastLineSelected = null;
 var lastShiftLineSelectedRange = null;
 
 // обработка клика на номер строки
-const lineNumberClicked = function(event) {
+const lineNumberClicked = function(event, isTextClicked = false) {
   // снимаем все нативные-выделения текста, которые хотя и блокируется в CSS,
   // но в Chrome всё равно иногда срабатывают. Выделения текста нам тут не нужны.
   // Мы сами всё что нужно выделяем
-  document.getSelection().removeAllRanges();
+  if (isTextClicked === false) {
+    document.getSelection().removeAllRanges();
+  }
 
   let elNum = event.target;
   let lineNumber = elNum.dataset.line;
@@ -468,7 +470,7 @@ function lineTextClicked(event) {
   // если режим выделения включен, то выделение работает
   // не только по клику на номер стиха, но и на сам стих
   if (window.BX.options.isSelectMode == true) {
-    lineNumberClicked(event);
+    lineNumberClicked(event, true);
   };
   return;
 };

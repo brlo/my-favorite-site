@@ -12,6 +12,7 @@ Rails.application.routes.draw do
 
   get 'about', to: 'pages#about'
   get 'search', to: 'verses#search'
+  get 'q', to: 'quotes#index'
 
   # Defines the root path route ("/")
   root "verses#index"

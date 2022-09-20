@@ -281,11 +281,19 @@
     left: 10px;
   }
 }
+
+
+/* наведенение на элемент меню */
 .choices__list--dropdown .choices__item--selectable.is-highlighted, .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
-  background-color: #f2f2f2;
+  background-color: #f2f2f266;
 }
 .choices__list--dropdown .choices__item--selectable.is-highlighted::after, .choices__list[aria-expanded] .choices__item--selectable.is-highlighted::after {
   opacity: 0.5;
+}
+
+/* выбранный элемент меню */
+.choices__item.is-selected {
+  background-color: #a7b77455 !important;
 }
 
 .choices__item {
@@ -394,10 +402,6 @@
   /* стрелочка вниз */
   border-color: #5d4734;
 }
-.night-mode .choices__list--dropdown .choices__item--selectable.is-highlighted,
-.night-mode .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
-  background-color: #4d4137;
-}
 .night-mode .choices__heading {
   border-bottom: 1px solid #4d4137;
   color: #59b682;
@@ -411,7 +415,8 @@
 .night-mode .choices__list[aria-expanded] .choices__item--selectable.is-highlighted {
   background-color: #57493e;
 }
+/* выбранный элемент меню */
 .night-mode .choices__item.is-selected {
-  background-color: #57493e;
+  background-color: #94c18155 !important;
 }
 /* =====  End of Choices  ====== */

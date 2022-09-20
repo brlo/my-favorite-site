@@ -1,42 +1,60 @@
-<div class='small hint'><% if @book_code == 'ps' %>Псалмы<% else %>Главы<% end %></div>
-<nav id='menu-chapters'>
-  <% prev_chapter = @chapter - 1 %>
-  <% now_chapter = @chapter %>
-  <% next_chapter = @chapter + 1 %>
-  <% (1..::BOOKS[@book_code][:chapters]).each do |i| %>
-    <% classes = '' %>
-    <% i == now_chapter ? classes = 'selected' : nil %>
-    <a class="<%= classes %>" href="/<%= @book_code %>/<%= i %>" onclick="loadChapter(this.href); return false;"><%= i %></a>
-  <% end %>
-</nav>
-
-<hr>
-
-<div class="verses">
-  <table>
-    <tbody>
-      <% @verses.each do |v| %>
-      <tr>
-        <td class='verse-line' id='L<%= v.line %>' data-line="<%= "#{v.line}" %>"><%= v.line %></td>
-        <td class='verse-text' id='T<%= v.line %>' data-line="<%= "#{v.line}" %>">
-          <%= sanitize(v.text, tags: ['e','j','br']) %>
-        </td>
-      </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <div id="pagination-bottom">
-    <% if prev_chapter > 0 %>
-      <a href="/<%= @book_code %>/<%= prev_chapter %>">← Назад</a>
-    <% else %>
-      <span class='invisible'>← Назад</span>
-    <% end %>
-    <span id="end-tip">Конец<br><%= now_chapter %>-й<br>главы</span>
-    <% if next_chapter <= ::BOOKS[@book_code][:chapters] %>
-      <a href="/<%= @book_code %>/<%= next_chapter %>">Вперёд →</a>
-    <% else %>
-      <span class='invisible'>Вперёд →</span>
-    <% end %>
-  </div>
+<div
+    class="title"
+    id='current-address'
+    data-book-short-name='<%= ::I18n.t("books.short.#{@book_code}") %>'
+    data-chapter='<%= @chapter %>'
+    style='text-align: center;'
+  >
+  <a href="javascript:;" id='current-book' onclick="menuBooks.show('book-clicked');"><%= ::I18n.t("books.full.#{@book_code}") %></a>
 </div>
+
+<% if @verses.none? %>
+  <div class='error'><%= ::I18n.t("errors.no_translation_for_this_book") %></div>
+<% else %>
+  <div class='small hint'><%= @is_psalm ? ::I18n.t('psalms') : ::I18n.t('chapters') %></div>
+  <nav id='menu-chapters'>
+    <% prev_chapter = @chapter - 1 %>
+    <% now_chapter = @chapter %>
+    <% next_chapter = @chapter + 1 %>
+    <% (1..::BOOKS[@book_code][:chapters]).each do |i| %>
+      <% classes = 'chapter-num' %>
+      <% i == now_chapter ? classes = ' selected' : nil %>
+      <a class="<%= classes %>" href="/<%= @book_code %>/<%= i %>" onclick="loadChapter(this.href); return false;"><%= i %></a>
+    <% end %>
+  </nav>
+
+  <hr>
+
+  <div class="verses">
+    <table>
+      <tbody>
+        <% @verses.each do |v| %>
+          <% if v.line == 0 %>
+            <tr><td colspan='2' class='csl zero-verse'><%= sanitize(v.text) %></tr>
+          <% else %>
+            <tr>
+              <td class='verse-line' id='L<%= v.line %>' data-line="<%= "#{v.line}" %>"><%= v.line %></td>
+              <td class='csl verse-text' id='T<%= v.line %>' data-line="<%= "#{v.line}" %>">
+                <%= sanitize(v.text, tags: %w(j e i br)) %>
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div id="pagination-bottom">
+      <% if prev_chapter > 0 %>
+        <a href="/<%= @book_code %>/<%= prev_chapter %>">← <%= I18n.t('backward') %></a>
+      <% else %>
+        <span class='invisible'>← <%= I18n.t('backward') %></span>
+      <% end %>
+      <span id="end-tip"><%= I18n.t('end_chapter.the_end_of') %><br><%= now_chapter %><%= @is_psalm ? ::I18n.t('end_chapter.suffix_psalm') : ::I18n.t('end_chapter.suffix') %><br><%= @is_psalm ? ::I18n.t('end_chapter.psalm') : ::I18n.t('end_chapter.chapter') %></span>
+      <% if next_chapter <= ::BOOKS[@book_code][:chapters] %>
+        <a href="/<%= @book_code %>/<%= next_chapter %>"><%= I18n.t('forward') %> →</a>
+      <% else %>
+        <span class='invisible'><%= I18n.t('forward') %> →</span>
+      <% end %>
+    </div>
+  </div>
+<% end %>

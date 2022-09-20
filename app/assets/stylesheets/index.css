@@ -56,7 +56,7 @@
   border: 2px solid #9f9c9733;
 }
 #select-bar span.active {
-  background-color: rgb(159 156 151 / 20%);
+  background-color: #a7b77455;
 }
 
 .night-mode #select-bar {
@@ -75,7 +75,7 @@
   border: 2px solid #b8c6d533;
 }
 .night-mode #select-bar span.active {
-  background-color: #596174;
+  background-color: rgba(97,175,239, 0.3)
 }
 
 /* POPUP for Select-bar */
@@ -100,7 +100,7 @@
 
 .night-mode #popup-notif {
   color: #cdd1db;
-  background-color: #3e4759;
+  background-color: rgba(74,103,133,1);
 }
 
 #popup-notif t {

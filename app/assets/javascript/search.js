@@ -56,22 +56,32 @@ new Choices(element, {
 });
 
 // подсветка найденных слов
-let searchInput = document.getElementById('search-input');
-let searchText = searchInput.value;
+let searchAccuracy = document.getElementById('search-accuracy').value;
+let searchText = document.getElementById('search-input').value;
 let verses = document.getElementsByClassName('line');
 
 if (typeof searchText === 'string') {
   searchWords = searchText.split(' ');
 
+  // проходим по стихам
   for (var i = 0; i < verses.length; i++) {
     let el = verses.item(i);
     let text = el.innerHTML;
 
-    for (var n = 0; n < searchWords.length; n++) {
-      let word = searchWords[n]
-      let regex = new RegExp(word, 'gi');
-      text = text.replace(regex, "<span class='highlight'>" + word + "</span>");
-    };
+    // if (searchAccuracy == 'exact') {
+    //   // подствечиваем всю фразу целиком
+    //   let regex = new RegExp(searchWords, 'gi');
+    //   text = text.replace(regex, "<span class='highlight'>" + searchWords + "</span>");
+    // } else {
+      // подсвечиваем слова запроса по отдельности
+      for (var n = 0; n < searchWords.length; n++) {
+        let word = searchWords[n]
+        if (word.length > 2) {
+          let regex = new RegExp(word, 'gi');
+          text = text.replace(regex, "<span class='highlight'>" + word + "</span>");
+        };
+      };
+    // };
 
     el.innerHTML = text;
   };

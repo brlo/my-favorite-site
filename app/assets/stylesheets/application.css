@@ -154,6 +154,7 @@ nav#menu-chapters a.selected {
 table {
   border-spacing: 0;
   border-collapse: collapse;
+  width: 100%;
 }
 
 td {
@@ -176,6 +177,12 @@ td.verse-line {
   color: #616562;
   font-size: 13px;
   font-family: ui-monospace,SFMono-Regular,SF Mono,Menlo,Consolas,Liberation Mono,monospace;
+}
+
+td.zero-verse {
+  text-align: center;
+  color: #df4a4a;
+  padding-bottom: 10px;
 }
 
 td.verse-text {
