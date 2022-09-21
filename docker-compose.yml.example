@@ -2,10 +2,12 @@ version: '3.9'
 
 services:
   bibleox:
+    # image: 'ruby:3.1.2'
+    build: .
     container_name: 'bibleox'
-    image: 'ruby:3.1.2'
-    entrypoint: '/bin/bash /app/start.sh production'
+    entrypoint: '/bin/bash /app/start.sh dev'
     restart: always
+    stop_grace_period: 2s # SIGKILL after 2s
     environment:
       # без этой переменной в docker.app логи застревают
       # (появляются с задержкой, выталкиваются в видимую область, новыми логами)
@@ -13,7 +15,7 @@ services:
       - 'PYTHONUNBUFFERED=1'
     volumes:
       - .:/app
-      - gems-volume:/gems
+      - gems-volume:/usr/local/bundle
     ports:
       - '80:3000'
     # depends_on:

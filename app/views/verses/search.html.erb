@@ -1,6 +1,9 @@
 <div class='hint' style='margin-top: 0;'>Поиск: </div>
 <form action="/" onsubmit="goToSearch();return false;">
-  <input class='pretty' name="text" type="text" id='search-input' placeholder='Фраза' value='<%= @search_text %>'>
+  <div id='search-input-area'>
+    <input class='pretty' name="text" type="text" id='search-input' placeholder='Фраза' value='<%= @search_text %>'>
+    <a onclick="goToSearch();return false;"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+  </div>
 </form>
 
 <br>
@@ -18,22 +21,27 @@
   <select id="search-accuracy" name="accuracy" onchange="goToSearch();return false;">
     <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>>Похожая фраза</option>
     <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>>Точная фраза</option>
-    <option value='partial' <% if @search_accuracy == 'partial' %>selected<% end %>>Часть слова</option>
+    <!-- <option value='partial' <% if @search_accuracy == 'partial'selected<% end %>>Часть слова</option> %> -->
   </select>
 </div>
 
 <div class='hint'>Совпадений: <%= @matches_count %></div>
 <hr>
 
-<% @verses_json.each do |v| %>
-  <div class='line'>
-    "<%= verse_alone_clean(v['t'].html_safe) %>"
-    <a href="/<%= v['bc'] %>/<%= v['ch'] %>#L<%= v['l'] %>">
-      (<%= ::I18n.t("books.short.#{ v['bc'] }") %>. <%= v['ch'] %>:<%= v['l'] %>)
-    </a>
-  </div>
-  <br>
-<% end %>
+<% if @matches_count > 0 %>
 
+  <% @verses_json.each do |v| %>
+    <div class='line'>
+      "<%= verse_alone_clean(v['t'].html_safe) %>"
+      <a href="/<%= v['bc'] %>/<%= v['ch'] %>#L<%= v['l'] %>">
+        (<%= ::I18n.t("books.short.#{ v['bc'] }") %>. <%= v['ch'] %>:<%= v['l'] %>)
+      </a>
+    </div>
+    <br>
+  <% end %>
+
+<% else %>
+  <div class='tip'>Ничего не найдено. Проверьте, может быть выбран не тот язык текста?</div>
+<% end %>
 
 <%= javascript_include_tag "search", media: "all" %>

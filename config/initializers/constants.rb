@@ -1,3 +1,13 @@
+TOPICS = {
+  'god-is-one' => 10,
+  'trinity' => 20,
+  'christ' => 30,
+  'truth' => 100,
+  'path' => 200,
+  'eresi' => 210,
+  'schism' => 220,
+}
+
 BOOKS = {
   'gen' => {id: 10, chapters: 50, name: 'Бытие', zavet: 1, is_kanon: true, desc: 'Пятикнижие Моисея'},
   'ish' => {id: 20, chapters: 40, name: 'Исход', zavet: 1, is_kanon: true, desc: 'Пятикнижие Моисея'},

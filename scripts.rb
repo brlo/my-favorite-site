@@ -1,3 +1,6 @@
+# рестарт web-сервера
+touch tmp/restart.txt
+
 # очистка поискового кэша
 rm ./db/cache_search/*/*/*.json
 

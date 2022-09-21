@@ -4,10 +4,14 @@
 # or operating system, you probably want to add a global ignore instead:
 #   git config --global core.excludesfile '~/.gitignore_global'
 
+/docker-compose.yml
+
 # Ignore bundler config.
 /.bundle
 /TODO.txt
 /.irb_history
+
+/config/mongoid.yml
 
 # Ignore the default SQLite database.
 /db/**/*.sqlite3

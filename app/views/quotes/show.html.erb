@@ -1,0 +1,18 @@
+<div class='quote'>
+  <h1 class='topic'><%= @topic_name %></h1>
+  <div class='row'>
+    <div class='column reason'>
+      <h3>Основания</h3>
+      <% @quotes_yes.each do |quote| %>
+        <% book, chapter, line = quote.address.split(':') %>
+        <a href="<%= "/#{book}/#{chapter}/#L#{line}" %>"><%= quote.address %></a>
+      <% end %>
+    </div>
+    <div class='column protestation'>
+      <h3>Возражения</h3>
+      <% @quotes_no.each do |quote| %>
+        <%= quote.address %>
+      <% end %>
+    </div>
+  </div>
+</div>

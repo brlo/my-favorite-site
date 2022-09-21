@@ -39,7 +39,6 @@
         </div>
         <nav>
           <a href="javascript:" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>" onclick="menuBooks.show('bible-clicked');"><%= I18n.t('menu.bible') %></a>
-          <a href="/q" class="<%= @current_menu_item == 'quotes' ? ' selected' : nil %>"><%= I18n.t('menu.quotes') %></a>
           <a href="/search?acc=similar&t=Христос" class="<%= @current_menu_item == 'search' ? ' selected' : nil %>"><%= I18n.t('menu.search') %></a>
           <a href="javascript:" id="night-mode-switcher" class="local" onclick="switchNightMode()"><%= @is_night_mode ? I18n.t('menu.night') : I18n.t('menu.day') %></a>
         </nav>
@@ -63,6 +62,7 @@
     </div>
 
     <footer>
+      <dd class='tip'>Попробуй выделить стих, нажав на его номер.<br>А ещё можно выделять через <div class='key'>Shift</div> или <div class='key'>Ctrl</div></dd>
       <dd><%= I18n.t('footer_title') %></dd>
       <dd>2022 <%= I18n.t('years_from') %></dd>
       <dd><a href='/about'><%= I18n.t('about_site') %></a></dd>

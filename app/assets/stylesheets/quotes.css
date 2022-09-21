@@ -1,0 +1,19 @@
+.quote .topic {
+  text-align: center;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+
+.column {
+  flex: 50%;
+}
+
+.reason {
+  background-color: #72ff7c3d;
+}
+
+.protestation {
+  background-color: #ff7b7b23;
+}

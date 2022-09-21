@@ -10,9 +10,10 @@ Rails.application.routes.draw do
       # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
     }
 
-  get 'about', to: 'pages#about'
-  get 'search', to: 'verses#search'
-  get 'q', to: 'quotes#index'
+  get '/about', to: 'pages#about'
+  get '/search', to: 'verses#search'
+  get '/q', to: 'quotes#index'
+  get '/q/:topic_name', to: 'quotes#show'
 
   # Defines the root path route ("/")
   root "verses#index"

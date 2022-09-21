@@ -44,8 +44,8 @@ class VerseSearch
 
     # подготовка запроса с предварительной проверкой результата в кэше
     verses_json =
-    begin
-    # ::CacheSearch.get(text, accuracy, lang) do
+    # begin
+    ::CacheSearch.get(text, accuracy, lang) do
       # готовим запрос
       search_params = prepare_search_params(text, accuracy, lang)
 

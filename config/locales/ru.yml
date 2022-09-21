@@ -1,4 +1,36 @@
 ru:
+  quotes:
+    god:
+      title: Бог
+      items:
+        god-is-one:
+          - 10
+          - Бог один
+        trinity:
+          - 20
+          - Бог троичен
+        christ:
+          - 30
+          - Христос — Бог
+    church:
+      title: Церковь
+      items:
+        truth:
+          - 100
+          - Истина
+    salvation:
+      title: Спасение
+      items:
+        path:
+          - 200
+          - Путь
+        eresi:
+          - 210
+          - Ереси
+        schism:
+          - 220
+          - Расколы
+
   title: Библeокс
   footer_title: Библеокс — Библео́ѯ — Βιβλεо́ξ — Bibleox
   about_site: 'О сайте'
