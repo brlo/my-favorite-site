@@ -494,7 +494,8 @@ addListenersForHighlightVerses();
 // =======================================================================
 
 // подгрузка текста другой главы
-function loadChapter(path) {
+function loadChapter(linkEl) {
+  let path = linkEl.getAttribute('href');
   var xmlhttp = new XMLHttpRequest();
 
   xmlhttp.onreadystatechange = function() {
@@ -518,7 +519,7 @@ function loadChapter(path) {
     }
   };
 
-  xmlhttp.open("GET", path + '.text', true);
+  xmlhttp.open("GET", '/chapters/' + path, true);
   xmlhttp.send();
 };
 

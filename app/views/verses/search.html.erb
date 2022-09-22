@@ -21,7 +21,6 @@
   <select id="search-accuracy" name="accuracy" onchange="goToSearch();return false;">
     <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>>Похожая фраза</option>
     <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>>Точная фраза</option>
-    <!-- <option value='partial' <% if @search_accuracy == 'partial'selected<% end %>>Часть слова</option> %> -->
   </select>
 </div>
 

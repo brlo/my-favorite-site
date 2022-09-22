@@ -19,7 +19,7 @@
     <% (1..::BOOKS[@book_code][:chapters]).each do |i| %>
       <% classes = 'chapter-num' %>
       <% i == now_chapter ? classes = ' selected' : nil %>
-      <a class="<%= classes %>" href="/<%= @book_code %>/<%= i %>" onclick="loadChapter(this.href); return false;"><%= i %></a>
+      <a class="<%= classes %>" href="/<%= @book_code %>/<%= i %>" onclick="loadChapter(this); return false;"><%= i %></a>
     <% end %>
   </nav>
 

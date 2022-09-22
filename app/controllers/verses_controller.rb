@@ -16,9 +16,27 @@ class VersesController < ApplicationController
     @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
 
     respond_to do |format|
-      format.text { render 'index', layout: false}
       format.html { render 'index' }
     end
+  end
+
+  def chapter_ajax
+    @current_menu_item = 'biblia'
+    @text_direction = current_lang == 'heb-osm' ? 'rtl' : 'ltr'
+
+    @book_code ||= params[:book_code] || 'gen'
+    @chapter = (params[:chapter] || 1).to_i
+
+    @is_psalm = @book_code == 'ps'
+
+    @page_title =
+      ::I18n.t("books.full.#{@book_code}") +
+      ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
+      " #{@chapter}"
+
+    @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+
+    render 'index', layout: false
   end
 
   def quotes
