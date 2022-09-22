@@ -5,9 +5,9 @@ namespace :g do
     require 'sitemap_generator'
 
     site_url = 'https://bibleox.com'
-    path = 'public/sitemaps/'
+    # будет в public
+    path = '/sitemaps/'
     changefreq = 'monthly'
-
 
     puts "Start generating sitemap..."
 

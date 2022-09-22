@@ -64,4 +64,7 @@ docker-compose exec app bundle exec rails console
 
 # Sitemap
 rake g:sitemap
+
+mkdir -p cache_search/similar/{csl-pnm,csl-ru,eng-nkjv,heb-osm,gr-lxx-byz,ru}
+mkdir -p cache_search/exact/{csl-pnm,csl-ru,eng-nkjv,heb-osm,gr-lxx-byz,ru}
 ```
