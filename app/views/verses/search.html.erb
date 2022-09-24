@@ -22,6 +22,15 @@
     <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>>Похожая фраза</option>
     <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>>Точная фраза</option>
   </select>
+
+  <select id="search-lang" name="lang-select" onchange="goToSearch();return false;">
+    <option value='ru' <% if @search_lang == 'ru' %>selected<% end %>>Русский <br>(RST)</option>
+    <option value='csl-pnm' <% if @search_lang == 'csl-pnm' %>selected<% end %>>Ц-Слав. (ELZ)</option>
+    <option value='csl-ru' <% if @search_lang == 'csl-ru' %>selected<% end %>>Ц-Слав. (ELZ-RU)</option>
+    <option value='eng-nkjv' <% if @search_lang == 'eng-nkjv' %>selected<% end %>>English (NKJV)</option>
+    <option value='heb-osm' <% if @search_lang == 'heb-osm' %>selected<% end %>>Hebrew (OSM)</option>
+    <option value='gr-lxx-byz' <% if @search_lang == 'gr-lxx-byz' %>selected<% end %>>Greek (LXX+Byz)</option>
+  </select>
 </div>
 
 <div class='hint'>Совпадений: <%= @matches_count %></div>

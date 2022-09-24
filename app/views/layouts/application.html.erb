@@ -39,18 +39,20 @@
         </div>
         <nav>
           <a href="javascript:" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>" onclick="menuBooks.show('bible-clicked');"><%= I18n.t('menu.bible') %></a>
-          <a href="/search?acc=similar&t=Христос" class="<%= @current_menu_item == 'search' ? ' selected' : nil %>"><%= I18n.t('menu.search') %></a>
+          <a href="/search?acc=similar&l=ru&t=Христос" class="<%= @current_menu_item == 'search' ? ' selected' : nil %>"><%= I18n.t('menu.search') %></a>
           <a href="javascript:" id="night-mode-switcher" class="local" onclick="switchNightMode()"><%= @is_night_mode ? I18n.t('menu.night') : I18n.t('menu.day') %></a>
         </nav>
 
-        <select id="lang-select" name="lang-select" onchange="selectLang();return false;">
-          <option value='ru' <% if cookies[:'b-lang'] == 'ru' %>selected<% end %>>Русский <br>(RST)</option>
-          <option value='csl-pnm' <% if cookies[:'b-lang'] == 'csl-pnm' %>selected<% end %>>Ц-Слав. (ELZ)</option>
-          <option value='csl-ru' <% if cookies[:'b-lang'] == 'csl-ru' %>selected<% end %>>Ц-Слав. (ELZ-RU)</option>
-          <option value='eng-nkjv' <% if cookies[:'b-lang'] == 'eng-nkjv' %>selected<% end %>>English (NKJV)</option>
-          <option value='heb-osm' <% if cookies[:'b-lang'] == 'heb-osm' %>selected<% end %>>Hebrew (OSM)</option>
-          <option value='gr-lxx-byz' <% if cookies[:'b-lang'] == 'gr-lxx-byz' %>selected<% end %>>Greek (LXX+Byz)</option>
-        </select>
+        <% if @current_menu_item == 'biblia' %>
+          <select id="lang-select" name="lang-select" onchange="selectLang();return false;">
+            <option value='ru' <% if cookies[:'b-lang'] == 'ru' %>selected<% end %>>Русский <br>(RST)</option>
+            <option value='csl-pnm' <% if cookies[:'b-lang'] == 'csl-pnm' %>selected<% end %>>Ц-Слав. (ELZ)</option>
+            <option value='csl-ru' <% if cookies[:'b-lang'] == 'csl-ru' %>selected<% end %>>Ц-Слав. (ELZ-RU)</option>
+            <option value='eng-nkjv' <% if cookies[:'b-lang'] == 'eng-nkjv' %>selected<% end %>>English (NKJV)</option>
+            <option value='heb-osm' <% if cookies[:'b-lang'] == 'heb-osm' %>selected<% end %>>Hebrew (OSM)</option>
+            <option value='gr-lxx-byz' <% if cookies[:'b-lang'] == 'gr-lxx-byz' %>selected<% end %>>Greek (LXX+Byz)</option>
+          </select>
+        <% end %>
       </div>
     </header>
 

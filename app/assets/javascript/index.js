@@ -54,6 +54,7 @@ window.selectBar = {
   // регулярка для валидации введённого значения (пример: L1-3,5,10-11)
   // TIP: всего допускается не более 7 адресов.
   fragmentRegexp: /^L(\d{1,3}|\d{1,3}-\d{1,3})(,\d{1,3}|\d{1,3}-\d{1,3}){0,6}$/,
+
 };
 
 selectBar.enable = function () {
@@ -62,7 +63,13 @@ selectBar.enable = function () {
 };
 
 selectBar.disable = function () {
+  // прячем селект-бар
   selectBar.el.classList.add('hidden');
+  // прячем меню копирования (вдруг было открыто)
+  selectBar.copyBurger.hide();
+  // отключаем режим выделения стихов (вдруг был включен)
+  if (window.BX.options.isSelectMode === true) selectBar.selectModeClicked();
+  // выключаем сам селект-бар
   selectBar.isEnabled = false;
 };
 
@@ -129,6 +136,9 @@ selectBar.selectModeClicked = function () {
 };
 
 selectBar.copyTextAndAddressClicked = function () {
+  // сначала прячем контекстное меню, в котором эта ссылка была нажата
+  selectBar.copyBurgerClicked();
+
   let text = selectBar.getSelectedText();
   let address = selectBar.getSelectedAddress();
   let result = '"' + text + '"' + ' (' + address + ')';
@@ -144,28 +154,72 @@ selectBar.copyTextAndAddressClicked = function () {
 };
 
 selectBar.copyTextClicked = function () {
+  // прячем контекстное меню, в котором эта ссылка была нажата
+  selectBar.copyBurger.hide();
+
   let text = selectBar.getSelectedText();
 
   BX.tools.copyText(text);
-  BX.notifications.addNotification('<t>Скопировано:</t>' + text.slice(0,30) + '...')
+  BX.notifications.addNotification('<t>Скопировано:</t>' + text.slice(0,30) + '...');
   return;
 };
 
 selectBar.copyAddressClicked = function () {
+  // прячем контекстное меню, в котором эта ссылка была нажата
+  selectBar.copyBurger.hide();
+
   let address = selectBar.getSelectedAddress();
 
   BX.tools.copyText(address);
-  BX.notifications.addNotification('<t>Скопировано:</t>' + address)
+  BX.notifications.addNotification('<t>Скопировано:</t>' + address);
   return;
 };
 
 selectBar.copyLinkClicked = function () {
+  // прячем контекстное меню, в котором эта ссылка была нажата
+  selectBar.copyBurger.hide();
+
   let link = window.location.href;
   BX.tools.copyText(link);
-  BX.notifications.addNotification('<t>Скопировано:</t>' + link)
+  BX.notifications.addNotification('<t>Скопировано:</t>' + link);
   return;
 };
 
+// =======
+// COPY BURGER
+// =======
+
+// Меню копирования: элемент
+selectBar.copyBurger = {
+  // меню
+  el: document.getElementById('copy-burger-menu'),
+  // Клик на elIcon показывает el
+  elIcon: document.getElementById('copy-burger-icon'),
+  isShown: false,
+}
+
+// ВКЛ
+selectBar.copyBurger.show = function () {
+  selectBar.copyBurger.el.classList.remove('hidden');
+  selectBar.copyBurger.isShown = true;
+};
+
+// ВЫКЛ
+selectBar.copyBurger.hide = function () {
+  selectBar.copyBurger.el.classList.add('hidden');
+  selectBar.copyBurger.isShown = false;
+};
+
+// КЛИК
+selectBar.copyBurgerClicked = function () {
+  if (selectBar.copyBurger.isShown === false) {
+    selectBar.copyBurger.show();
+  } else {
+    selectBar.copyBurger.hide();
+  };
+};
+
+// СОБЫТИЯ ВСЕГО СЕЛЕКТ_БАРА
 selectBar.enableListeners = function () {
   if (!selectBar.el) return;
 
@@ -183,6 +237,25 @@ selectBar.enableListeners = function () {
 
   let copyLink = document.getElementById('copy-link-btn');
   copyLink.addEventListener('click', selectBar.copyLinkClicked, false);
+
+  let copyBurgerIcon = document.getElementById('copy-burger-icon');
+  copyBurgerIcon.addEventListener('click', selectBar.copyBurgerClicked, false);
+
+  // Клик за границами меню прячет меню
+  document.addEventListener('click', event => {
+    if (selectBar.copyBurger.isShown) {
+      const el = event.target;
+
+      const isIconClicked = selectBar.copyBurger.elIcon.contains(el);
+      const isClickInsideMenu = selectBar.copyBurger.el.contains(el);
+      console.log('selectBar.copyBurger.el', selectBar.copyBurger.el);
+      console.log('isClickInsideMenu', isClickInsideMenu);
+      console.log('el', el);
+      // прячем меню
+      // нажали не на иконку показа, не на элементы меню
+      if (!isIconClicked && !isClickInsideMenu) selectBar.copyBurger.hide();
+    };
+  });
 };
 
 selectBar.enableListeners();

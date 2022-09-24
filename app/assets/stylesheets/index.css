@@ -21,7 +21,7 @@
   justify-content: center;
   align-items: center;
   margin: 0;
-  padding: 10px;
+  padding: 0 10px;
   overflow: hidden;
   position: fixed;
   bottom: 0;
@@ -29,68 +29,194 @@
   background-color: #d7d5ca;
   user-select: none;
   z-index: 10;
+  overflow: visible;
 }
 
 #select-bar.hidden {
   display: none;
 }
 
-#select-bar span {
+#select-bar .bar-el {
   display: inline-block;
   max-width: 135px;
-  min-height: 65px;
+  position: relative;
   text-align: center;
-  padding: 10px 5px;
-  margin: 0 3px;
-  border: 2px solid transparent;
+  padding: 13px 10px;
   text-decoration: none;
-  font-size: 10px;
-  border-radius: 4px;
+  font-size: 1em;
+  background-color: #54524912;
+  border-right: 1px solid #00000020;
+}
+#select-bar > .bar-el:first-child {
+  border-left: 1px solid #00000020;
 }
 
-#select-bar span:hover {
-  border: 2px solid #9f9c9766;
+#select-bar .bar-el:hover {
+  background-color: #e3c89e;
   cursor: pointer;
 }
-#select-bar span:active {
-  border: 2px solid #9f9c9733;
+#select-bar .bar-el:active {
+  background-color: #9f9c9733;
 }
-#select-bar span.active {
-  background-color: #a7b77455;
+#select-bar .bar-el.active {
+  color: #d7d5ca;
+  background-color: #8c6964;
+}
+
+#select-bar .bar-el svg {
+  width: 20px;
+  height: 20px;
+}
+
+#select-bar .icon-title {
+  font-size: 1.1em;
+}
+
+#select-bar .bar-el-group {
+  display: flex;
+  position: relative;
+}
+
+#select-bar .bar-el-group:hover {
+  background-color: #dbc7a8;
+}
+
+.night-mode #select-bar .bar-el-group:hover {
+  background-color: #1f6db2;
 }
 
 .night-mode #select-bar {
   background-color: #3e4759;
 }
 
-.night-mode #select-bar span {
+.night-mode #select-bar .bar-el {
+  color: #cdd1db;
+  background-color: #ffffff11;
+  border-right: 1px solid #00000022;
+}
+
+.night-mode #select-bar .bar-el:hover {
+  background-color: #257bc7;
+  color: #fff;
+}
+
+.night-mode #select-bar .bar-el:active {
+  background-color: #b8c6d533;
+}
+.night-mode #select-bar .bar-el.active {
+  background-color: rgba(205,151,101, 1);
+  color: #3e4759;
+}
+
+#copy-text-address-btn, #copy-burger-icon {
+  display: inline-block;
+}
+
+#copy-burger-icon {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* контекстное меню копирования */
+#copy-burger-menu {
+  position: absolute;
+  /* 0px - отступ справа, то есть прижимаем вправо */
+  /* calc(100% + 3px) - отступ снизу вверх на высотку селект-бара, плюс 3px */
+  inset: auto 0px calc(100% + 3px) auto;
+  background-color: #fdfcf1;
+  color: #000000;
+  border-radius: 5px;
+  border: 1px solid #b4ada2;
+  box-shadow: 0px 0px 8px #282c3471;
+  overflow: hidden;
+  font-size: 1em;
+  text-align: left;
+}
+
+#copy-burger-menu.hidden {
+  display: none;
+}
+
+/* элементы контекстного меню */
+/* все */
+#copy-burger-menu > div {
+  padding: 8px 5px;
+  border-bottom: 1px solid #9f9c9741;
+}
+#copy-burger-menu > div:last-child {
+  border-bottom: none !important;
+}
+/* заголовок */
+#copy-burger-menu .menu-title {
+  padding: 8px 28px;
+  color: #ffffff;
+  background-color: #817f7c8c;
+  font-weight: bold;
+  cursor: default;
+}
+/* активные */
+#copy-burger-menu > .active-el {
+  color: #000;
+}
+/* активные: наведённые */
+#copy-burger-menu > .active-el:hover {
+  background-color: #ebbc8177;
+  border-color: transparent;
+}
+/* иконка активного элемента */
+#copy-burger-menu > .active-el .icon-title {
+  font-weight: bold;
+  display: inline-block;
+  min-width: 75px;
+  text-align: right;
+  padding: 0 10px 0 0;
+  color: #00000040;
+}
+
+/* ночной режим */
+.night-mode #copy-burger-menu {
+  background-color: #3e4759;
+  color: #cdd1db;
+  border: 1px solid #ffffff11;
+  box-shadow: 0px 0px 9px #282c34;
+}
+.night-mode #copy-burger-menu > div {
+  border-bottom: 1px solid #ffffff11;
+}
+/* заголовок */
+.night-mode #copy-burger-menu .menu-title {
+  padding: 8px 28px;
+  color: #a3a7b1;
+  background-color: #343b49;
+}
+/* активные */
+.night-mode #copy-burger-menu > .active-el {
   color: #cdd1db;
 }
-
-.night-mode #select-bar span:hover {
-  border: 2px solid #b8c6d566;
+/* активные: наведённые */
+.night-mode #copy-burger-menu > .active-el:hover {
+  background-color: #257bc7;
+  color: white;
 }
 
-.night-mode #select-bar span:active {
-  border: 2px solid #b8c6d533;
-}
-.night-mode #select-bar span.active {
-  background-color: rgba(97,175,239, 0.3)
+.night-mode #copy-burger-menu > .active-el .icon-title {
+  color: #ffffff40
 }
 
 /* POPUP for Select-bar */
 
 #popup-notif {
   position: fixed;
-  padding: 6px;
+  padding: 6px 10px;;
   bottom: 130px;
   left: 50%;
   margin-left: -125px;
-  width: 250px;
+  min-width: 250px;
   border-radius: 4px;
   text-align: center;
   justify-content: center;
-  font-size: 0.7em;
+  font-size: 0.9em;
   color: #51504c;
   background-color: #d4e2ce;
   opacity: 1;

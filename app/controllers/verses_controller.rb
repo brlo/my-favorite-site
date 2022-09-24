@@ -36,7 +36,7 @@ class VersesController < ApplicationController
 
     @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
 
-    render 'index', layout: false
+    render 'chapter_ajax', layout: false
   end
 
   def quotes
@@ -51,8 +51,9 @@ class VersesController < ApplicationController
     # https://www.mongodb.com/docs/manual/core/link-text-indexes/
     if params[:t].present?
       # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9-,.
-      @search_text = params[:t].gsub(/[^\sA-Za-zА-Яа-я0-9\-\,\.\:\;]*/, '')
+      @search_text = params[:t].gsub(/[^\sA-ZА-ЯЁ0-9\-\,\.\:\;]*/i, '')
       @search_accuracy = params[:acc]
+      @search_lang = params[:l]
       @search_books = params[:book]
 
       @page_title += ": #{params[:t].to_s[0..20]}"
@@ -61,7 +62,7 @@ class VersesController < ApplicationController
         text: @search_text,
         book: @search_books,
         accuracy: @search_accuracy,
-        lang: current_lang
+        lang: @search_lang
       }
 
       @verses_json = ::VerseSearch.new(search_params).fetch_objects(500)
@@ -69,6 +70,7 @@ class VersesController < ApplicationController
     else
       @search_text = params[:t]
       @search_accuracy = params[:acc]
+      @search_lang = params[:lang]
       @search_books = params[:book]
 
       @verses_json = []

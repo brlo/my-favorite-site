@@ -4,10 +4,12 @@ function goToSearch() {
   text = searchInput.value; //. /[^\sA-Za-zА-Яа-я0-9-]*/, ''
   book = document.getElementById('search-books').value;
   acc = document.getElementById('search-accuracy').value;
+  lang = document.getElementById('search-lang').value;
 
   let params = [];
   if (book && book.length > 0) { params.push('book=' + book) };
   if (acc && acc.length > 0) { params.push('acc=' + acc) };
+  if (lang && lang.length > 0) { params.push('l=' + lang) };
   if (text && text.length > 0) { params.push('t=' + text) };
   document.location.href = '/search?' + params.join('&');
 };
@@ -52,6 +54,25 @@ new Choices(element, {
   position: 'down',
   classNames: {
     containerOuter: 'choices search-accuracy'
+  },
+});
+
+// Выпадающие списки: выбор языка поиска
+var element = document.querySelector('#search-lang');
+new Choices(element, {
+  allowHTML: false,
+  shouldSort: false,
+  shouldSortItems: false,
+  placeholder: true,
+  placeholderValue: 'Язык текста',
+  searchEnabled: false,
+  prependValue: null,
+  appendValue: null,
+  renderSelectedChoices: 'auto',
+  itemSelectText: '',
+  position: 'down',
+  classNames: {
+    containerOuter: 'choices search-lang'
   },
 });
 

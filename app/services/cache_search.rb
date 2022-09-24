@@ -1,7 +1,8 @@
 require 'json'
 
 class CacheSearch
-  SEARCH_TYPES = ['exact', 'similar', 'partial']
+  SEARCH_TYPES = %w(exact similar partial)
+  SEARCH_LANGS = %w(ru csl-pnm csl-ru eng-nkjv heb-osm gr-lxx-byz)
 
   class << self
     def get(term, search_type, lang)
@@ -13,16 +14,19 @@ class CacheSearch
 
       return unless term.present? && term.length > 2
       return unless filename.present?
-      return unless lang == 'ru'
+      return unless SEARCH_LANGS.include?(lang)
 
-      filepath = "db/cache_search/#{search_type}/#{lang}/#{filename}.json"
+      path_to_folder = "db/cache_search/#{search_type}/#{lang}"
+      # создаём весь уровень каталогов
+      FileUtils.mkdir_p(path_to_folder)
+      filepath = "#{path_to_folder}/#{filename}.json"
 
       verses_json =
       # КЭШ
       if ::File.file?(filepath)
         # читаем, парсим, отдаём
         begin
-          ::JSON.parse(::File.read(filepath))
+          ::JSON.parse(::File.read(filepath)) || []
         rescue ::JSON::ParserError
           []
         end

@@ -34,7 +34,9 @@ class VerseSearch
       return [] unless ::BOOKS.has_key?(book)
     end
 
-    return [] unless lang == 'ru'
+    if ::CacheSearch::SEARCH_LANGS.exclude?(lang)
+      return []
+    end
 
     # фильтрация
     text = ::CacheSearch.safe_term(text)
@@ -70,20 +72,20 @@ class VerseSearch
 
   def prepare_search_params text, accuracy, lang
     search_params = {lang: lang}
+    # меняем Ё на Е
+    text = text.gsub(/ё/i, 'е')
     # оставляем только буквы и пробелы (кто-то, что-то)
     clean_text = text.gsub(/[^[[:alpha:]]\s\-]/, '').gsub(/\s+/, ' ').strip
 
     if accuracy == 'exact'
       # точное совпадение (пишем в кавычках)
-      search_params['$text'] = {'$search' => "\"#{ text }\""}
+      arr = clean_text.split(' ').first(5)
+      regex = arr.join('[\,\.\-\s\!\?\:\;]+')
+      search_params['text'] = /#{regex}/i
     elsif accuracy == 'similar'
       # похожая фраза (когда будет готово отдельное поле, перейти на него)
       arr = clean_text.split(' ').first(5)
-      regex = arr.map { |w| len = [2, w.length-3].max; w[0..len] }.join('[A-ZА-ЯΑ-Ωא-ת\,\.\-\s\!\?\:\;]+')
-      search_params['text'] = /#{regex}/i
-    elsif accuracy == 'partial'
-      # часть слова
-      regex = text.gsub(/[^[[:alpha:]]\s]/, '').gsub(/\s+/, ' ').strip
+      regex = arr.map { |w| len = [2, w.length-3].max; w[0..len] }.join('[A-ZА-ЯЁΑ-Ωא-ת\,\.\-\s\!\?\:\;]+')
       search_params['text'] = /#{regex}/i
     end
 

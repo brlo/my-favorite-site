@@ -81,9 +81,8 @@ header .container {
   margin: 0 auto;
 }
 
-/* ЯЗЫК: выбор языка в шапке */
+/* ЯЗЫК: выбор языка на главной */
 .lang-select {
-  float: right;
   position: absolute;
   right: 10px;
   top: 12px;
@@ -155,11 +154,11 @@ a {
 /* LINKS */
 
 a:hover {
-  color: rgba(140,100,100, 1);
+  color: #8c6964;
 }
 
 a.selected {
-  color: rgba(140,100,100, 1);
+  color: #8c6964;
 }
 
 a.selected:hover {
