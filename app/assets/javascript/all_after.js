@@ -1,20 +1,22 @@
 var element = document.querySelector('#lang-select');
-new Choices(element, {
-  allowHTML: true,
-  shouldSort: false,
-  shouldSortItems: false,
-  placeholder: true,
-  placeholderValue: 'Язык Библии',
-  searchEnabled: false,
-  prependValue: null,
-  appendValue: null,
-  renderSelectedChoices: 'auto',
-  itemSelectText: '',
-  position: 'down',
-  classNames: {
-    containerOuter: 'choices lang-select'
-  },
-});
+if (element) {
+  new Choices(element, {
+    allowHTML: true,
+    shouldSort: false,
+    shouldSortItems: false,
+    placeholder: true,
+    placeholderValue: 'Язык Библии',
+    searchEnabled: false,
+    prependValue: null,
+    appendValue: null,
+    renderSelectedChoices: 'auto',
+    itemSelectText: '',
+    position: 'down',
+    classNames: {
+      containerOuter: 'choices lang-select'
+    },
+  });
+};
 
 // ================================================
 // LISTENERS
