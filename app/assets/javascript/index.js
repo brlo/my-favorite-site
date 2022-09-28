@@ -592,7 +592,8 @@ function loadChapter(linkEl) {
     }
   };
 
-  xmlhttp.open("GET", '/chapters/' + path, true);
+  // path.substr(3) - выкидываем из начала ссылки /ru
+  xmlhttp.open("GET", '/' + window.BX.locale + '/chapters/' + path.substr(3), true);
   xmlhttp.send();
 };
 

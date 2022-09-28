@@ -18,6 +18,38 @@ if (element) {
   });
 };
 
+window.selectLocale = function(locale) {
+  if (window.BX.locale == locale) return;
+
+  const path = location.pathname;
+  const query = location.search;
+
+  // формируем новую ссылку
+  if (path.length > 0) {
+    let new_path = path;
+    // удаляем локаль, если она уже есть в адресе
+    if (/^\/en|ru\//.test(new_path)) {
+      new_path = new_path.substr(3);
+    }
+
+    // добавляем новую локаль
+    new_path = '/' + locale + new_path;
+
+    // идём на новый адрес, если старый и новый path отличается
+    if (path != new_path) {
+      // переключаем язык Писания на соответствующий, чтобы человек сразу оказался в понятной обстановке
+      if (locale == 'ru') {
+        setCookie('b-lang', 'ru', 999);
+      } else if (locale == 'en') {
+        setCookie('b-lang', 'eng-nkjv', 999);
+      };
+
+      // пошли
+      window.location.href = new_path + query;
+    }
+  };
+}
+
 // ================================================
 // LISTENERS
 // ================================================

@@ -45,10 +45,7 @@
   text-decoration: none;
   font-size: 1em;
   background-color: #54524912;
-  border-right: 1px solid #00000020;
-}
-#select-bar > .bar-el:first-child {
-  border-left: 1px solid #00000020;
+  margin-right: 1px;
 }
 
 #select-bar .bar-el:hover {
@@ -92,7 +89,6 @@
 .night-mode #select-bar .bar-el {
   color: #cdd1db;
   background-color: #ffffff11;
-  border-right: 1px solid #00000022;
 }
 
 .night-mode #select-bar .bar-el:hover {
@@ -121,6 +117,7 @@
 /* контекстное меню копирования */
 #copy-burger-menu {
   position: absolute;
+  min-width: 155px;
   /* 0px - отступ справа, то есть прижимаем вправо */
   /* calc(100% + 3px) - отступ снизу вверх на высотку селект-бара, плюс 3px */
   inset: auto 0px calc(100% + 3px) auto;
@@ -153,6 +150,7 @@
   color: #ffffff;
   background-color: #817f7c8c;
   font-weight: bold;
+  text-align: center;
   cursor: default;
 }
 /* активные */

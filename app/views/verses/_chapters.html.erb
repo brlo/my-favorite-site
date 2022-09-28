@@ -1,12 +1,13 @@
-<div
+<h1
     class="title"
     id='current-address'
     data-book-short-name='<%= ::I18n.t("books.short.#{@book_code}") %>'
     data-chapter='<%= @chapter %>'
     style='text-align: center;'
+    itemprop="headline"
   >
   <a href="javascript:;" id='current-book' onclick="menuBooks.show('book-clicked');"><%= ::I18n.t("books.full.#{@book_code}") %></a>
-</div>
+</h1>
 
 <% if @verses.none? %>
   <div class='error'><%= ::I18n.t("errors.no_translation_for_this_book") %></div>
@@ -19,13 +20,13 @@
     <% (1..::BOOKS[@book_code][:chapters]).each do |i| %>
       <% classes = 'chapter-num' %>
       <% i == now_chapter ? classes = ' selected' : nil %>
-      <a class="<%= classes %>" href="/<%= @book_code %>/<%= i %>" onclick="loadChapter(this); return false;"><%= i %></a>
+      <a class="<%= classes %>" href="<%= my_link_to("/#{@book_code}/#{i}/") %>" onclick="loadChapter(this); return false;"><%= i %></a>
     <% end %>
   </nav>
 
   <hr>
 
-  <div class="verses">
+  <article itemprop="articleBody" class="verses">
     <table>
       <tbody>
         <% @verses.each do |v| %>
@@ -56,5 +57,5 @@
         <span class='invisible'><%= I18n.t('forward') %> →</span>
       <% end %>
     </div>
-  </div>
+  </article>
 <% end %>

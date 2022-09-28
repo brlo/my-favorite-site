@@ -16,4 +16,8 @@ module ApplicationHelper
       text
     end
   end
+
+  def my_link_to(path)
+    "/#{I18n.locale}#{path}"
+  end
 end

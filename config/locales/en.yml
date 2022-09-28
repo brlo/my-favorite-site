@@ -30,18 +30,51 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
+  tips:
+    click_on_verse: Highlight a verse by clicking on its number.
+    click_on_verse__working: Works
+    click_on_verse__and: and
+    search_was_return_zero_results: Nothing found. Check if the wrong text language is selected?
+
   title: Bibleox
   footer_title: Bibleox.com
   about_site: 'About'
   about_text: The site was created in 2022 in the city of Sevastopol with blessing of an orthodox priest.
   about_contact: Contact with developer
 
+  search_page:
+    title: Search
+    matches: Matches
+    any_book: Any book
+    old_testament: Old Testament
+    new_testament: New Testament
+    similar_phrase: Similar phrase
+    exact_phrase: Exact Phrase
+
+  bib_translations:
+    ru: Russian
+    csl: Church Slavonic
+    en: English
+    heb: Hebrew
+    gr: Greek
+
   menu:
     bible: Bible
     quotes: Quotes
     search: Search
+    locale: Language
     day: Day
     night: Night
+    veth_zavet: Old Testament
+    nov_zavet: New Testament
+
+  select_bar:
+    select_mode_btn: Select
+    copy_btn: Copy
+    copy_menu_title: Copy
+    copy_text_btn: Text
+    copy_address_btn: Address
+    copy_link_btn: Link
 
   search: 'Search'
   chapter: chapter
@@ -92,7 +125,7 @@ en:
       is: Is
       ier: Jer
       pier: Lam
-      pos: pJer
+      pos: lJer
       var: Bar
       iez: Ezek
       dan: Dan
@@ -119,7 +152,7 @@ en:
       lk: Lk
       in: Jn
       act: Act
-      iak: Jac
+      iak: Jas
       1pet: 1Pet
       2pet: 2Pet
       1in: 1Jn
@@ -140,47 +173,87 @@ en:
       tit: Tit
       fm: Phlm
       evr: Hebr
-      otkr: Apok
+      otkr: Rev
 
+    mid:
+      gen: Genesis
+      ish: Exodus
+      lev: Leviticus
+      chis: Numbers
+      vtor: Deuteronomy
+      nav: Joshua
+      sud: Judges
+      ruf: Ruth
+      1ts: I Samuel
+      2ts: II Samuel
+      3ts: I Kings
+      4ts: II Kings
+      1par: I Chronicles
+      2par: II Chronicles
+      ezd: I Esdras
+      neem: Nehemiah
+      2ezd: II Esdras
+      tov: Tobit
+      iudf: Judith
+      esf: Esther
+      pr: Proverbs
+      ekl: Ecclesiastes
+      pp: Song of Solomon
+      prs: Wisdom
+      prsir: Sirah
+      iov: Job
+      is: Isaiah
+      ier: Jeremiah
+      pier: Lamentations
+      pos: Letter of Jeremiah
+      var: Baruch
+      iez: Ezekiel
+      dan: Daniel
+      os: Hosea
+      iol: Joel
+      am: Amos
+      av: Obadiah
+      ion: Jonah
+      mih: Micah
+      naum: Nahum
+      avm: Habakkuk
+      sof: Zephaniah
+      ag: Haggai
+      zah: Zachariah
+      mal: Malachi
+      1mak: 1 Maccabees
+      2mak: 2 Maccabees
+      3mak: 3 Maccabees
+      3ezd: 3 Esdras
+      ps: Psalms
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      mf: Matthew
+      mk: Mark
+      lk: Luke
+      in: John
+      act: Acts
+      iak: James
+      1pet: I Peter
+      2pet: II Peter
+      1in: I John
+      2in: II John
+      3in: III John
+      iud: Jude
+      rim: Romans
+      1kor: I Corinthians
+      2kor: II Corinthians
+      gal: Galatians
+      ef: Ephesians
+      fil: Philippians
+      kol: Сolossians
+      1sol: I Thessalonians
+      2sol: II Thessalonians
+      1tim: I Timothy
+      2tim: II Timothy
+      tit: Titus
+      fm: Philemon
+      evr: Hebrews
+      otkr: Revelation
 
     full:
       gen: The First Book of Moses Called GENESIS
@@ -211,9 +284,9 @@ en:
       iov: The Book of JOB
       is: The Book of ISAIAH
       ier: The Book of JEREMIAH
-      pier: 'Lam'
-      pos: The Book of LAMENTATIONS
-      var: 'Bar'
+      pier: The Book of LAMENTATIONS
+      pos: Letter of JEREMIAH
+      var: The Book of BARUCH
       iez: The Book of EZEKIEL
       dan: The Book of DANIEL
       os: The Book of HOSEA

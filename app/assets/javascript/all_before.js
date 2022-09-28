@@ -1,5 +1,6 @@
 // Перенсти функции в хэш. Вызывать их из кэша
 window.BX = {
+  locale: document.documentElement.lang,
   options: {
     // включен ли режим выделения стихов (нужен мобилам, которые не могут нажать CTRL)
     isSelectMode: false,
@@ -89,11 +90,11 @@ window.switchNightMode = function() {
   if (body.classList.contains(nightClass)) {
     body.classList.remove(nightClass);
     setCookie('isNightMode', 0, 999);
-    modeSwitcher.innerHTML = "День";
+    modeSwitcher.innerHTML = window.BX.locale == 'ru' ? "День" : "Day";
   } else {
     body.classList.add(nightClass);
     setCookie('isNightMode', 1, 999);
-    modeSwitcher.innerHTML = "Ночь";
+    modeSwitcher.innerHTML = window.BX.locale == 'ru' ? "Ночь" : "Night";
   }
 
   return false;

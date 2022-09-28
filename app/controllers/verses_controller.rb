@@ -1,22 +1,26 @@
 class VersesController < ApplicationController
   def index
-    @current_menu_item = 'biblia'
-    @text_direction = current_lang == 'heb-osm' ? 'rtl' : 'ltr'
+    if params[:book_code].blank? || params[:chapter].blank?
+      redirect_to "/#{I18n.locale}/gen/1/"
+    else
+      @current_menu_item = 'biblia'
+      @text_direction = current_lang == 'heb-osm' ? 'rtl' : 'ltr'
 
-    @book_code ||= params[:book_code] || 'gen'
-    @chapter = (params[:chapter] || 1).to_i
+      @book_code ||= params[:book_code] || 'gen'
+      @chapter = (params[:chapter] || 1).to_i
 
-    @is_psalm = @book_code == 'ps'
+      @is_psalm = @book_code == 'ps'
 
-    @page_title =
-      ::I18n.t("books.full.#{@book_code}") +
-      ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
-      " #{@chapter}"
+      @page_title =
+        ::I18n.t("books.full.#{@book_code}") +
+        ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
+        " #{@chapter}"
 
-    @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+      @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
 
-    respond_to do |format|
-      format.html { render 'index' }
+      respond_to do |format|
+        format.html { render 'index' }
+      end
     end
   end
 
@@ -65,7 +69,7 @@ class VersesController < ApplicationController
         lang: @search_lang
       }
 
-      @verses_json = ::VerseSearch.new(search_params).fetch_objects(500)
+      @verses_json = ::VerseSearch.new(search_params).fetch_objects(5_000)
       @matches_count = @verses_json.count
     else
       @search_text = params[:t]
@@ -76,5 +80,9 @@ class VersesController < ApplicationController
       @verses_json = []
       @matches_count = 0
     end
+  end
+
+  def redirect_to_new_address
+    redirect_to "/#{I18n.locale}/#{params[:book_code]}/#{params[:chapter]}/", status: 301
   end
 end

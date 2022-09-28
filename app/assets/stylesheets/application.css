@@ -62,11 +62,11 @@ header nav a {
 }
 
 #menu-books.bible-clicked {
-  top: 0;
+  top: 6px;
 }
 
 #menu-books.book-clicked {
-  top: 84px;
+  top: 83px;
 }
 
 #menu-books.book-clicked::after {
@@ -238,6 +238,10 @@ tr:hover td.verse-line:before {
 footer dd.tip {
   margin: 0 0 20px 0;
   font-size: 0.7em;
+}
+
+#change-locale-area {
+  margin: 0 0 10px 0;
 }
 
 .key {

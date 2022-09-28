@@ -11,7 +11,7 @@ function goToSearch() {
   if (acc && acc.length > 0) { params.push('acc=' + acc) };
   if (lang && lang.length > 0) { params.push('l=' + lang) };
   if (text && text.length > 0) { params.push('t=' + text) };
-  document.location.href = '/search?' + params.join('&');
+  document.location.href = '/' + window.BX.locale + '/search?' + params.join('&');
 };
 
 // Выпадающие списки: выбор книги для поиска

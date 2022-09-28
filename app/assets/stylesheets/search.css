@@ -8,6 +8,10 @@
   gap: 10px;
 }
 
+.search-options > .choices {
+  flex-grow: 1;
+}
+
 #search-input-area {
   position: relative;
 }

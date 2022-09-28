@@ -1,5 +1,7 @@
+//= require vendor/vue-prod
+//= require vendor/axios
 //= require choices.min
 //= require all_before
 
-// require_tree .
-// require_self
+// не используем require_tree .
+// не используем require_self

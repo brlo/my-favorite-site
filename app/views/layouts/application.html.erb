@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= ::I18n.locale %>">
   <head>
     <title><%= I18n.t('title') %> — <%= @page_title %></title>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="icon" href="<%= asset_path("favicon.svg") %>" type="image/svg+xml">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -35,22 +37,22 @@
     <header>
       <div class='container'>
         <div class="logo">
-          <a href="/"><%= image_tag("bibleox-#{ ['ru', 'cs', 'gr', 'en'].sample }.png") %></a>
+          <a href="<%= my_link_to('/gen/1') %>"><%= image_tag("bibleox-#{ ::I18n.locale == :en ? 'en' : ['ru', 'cs', 'gr', 'en'].sample }.png") %></a>
         </div>
         <nav>
           <a href="javascript:" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>" onclick="menuBooks.show('bible-clicked');"><%= I18n.t('menu.bible') %></a>
-          <a href="/search?acc=similar&l=ru&t=Христос" class="<%= @current_menu_item == 'search' ? ' selected' : nil %>"><%= I18n.t('menu.search') %></a>
+          <a href="<%= my_link_to( I18n.locale == :ru ? '/search/?acc=similar&l=ru&t=Христос%20Бог' : '/search/?acc=similar&l=eng-nkjv&t=Christ%20God') %>" class="<%= @current_menu_item == 'search' ? ' selected' : nil %>"><%= I18n.t('menu.search') %></a>
           <a href="javascript:" id="night-mode-switcher" class="local" onclick="switchNightMode()"><%= @is_night_mode ? I18n.t('menu.night') : I18n.t('menu.day') %></a>
         </nav>
 
         <% if @current_menu_item == 'biblia' %>
           <select id="lang-select" name="lang-select" onchange="selectLang();return false;">
-            <option value='ru' <% if cookies[:'b-lang'] == 'ru' %>selected<% end %>>Русский <br>(RST)</option>
-            <option value='csl-pnm' <% if cookies[:'b-lang'] == 'csl-pnm' %>selected<% end %>>Ц-Слав. (ELZ)</option>
-            <option value='csl-ru' <% if cookies[:'b-lang'] == 'csl-ru' %>selected<% end %>>Ц-Слав. (ELZ-RU)</option>
-            <option value='eng-nkjv' <% if cookies[:'b-lang'] == 'eng-nkjv' %>selected<% end %>>English (NKJV)</option>
-            <option value='heb-osm' <% if cookies[:'b-lang'] == 'heb-osm' %>selected<% end %>>Hebrew (OSM)</option>
-            <option value='gr-lxx-byz' <% if cookies[:'b-lang'] == 'gr-lxx-byz' %>selected<% end %>>Greek (LXX+Byz)</option>
+            <option value='ru' <% if cookies[:'b-lang'] == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
+            <option value='csl-pnm' <% if cookies[:'b-lang'] == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
+            <option value='csl-ru' <% if cookies[:'b-lang'] == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>
+            <option value='eng-nkjv' <% if cookies[:'b-lang'] == 'eng-nkjv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NKJV)</option>
+            <option value='heb-osm' <% if cookies[:'b-lang'] == 'heb-osm' %>selected<% end %>><%= I18n.t('bib_translations.heb') %> (OSM)</option>
+            <option value='gr-lxx-byz' <% if cookies[:'b-lang'] == 'gr-lxx-byz' %>selected<% end %>><%= I18n.t('bib_translations.gr') %> (LXX+Byz)</option>
           </select>
         <% end %>
       </div>
@@ -64,13 +66,35 @@
     </div>
 
     <footer>
-      <dd class='tip'>Можно выделить стих, нажав на его номер.<br>Работает <div class='key'>Shift</div> и <div class='key'>Ctrl</div></dd>
+      <dd class='tip'><%= I18n.t('tips.click_on_verse') %> <%= I18n.t('tips.click_on_verse__working') %> <div class='key'>Shift</div> <%= I18n.t('tips.click_on_verse__and') %> <div class='key'>Ctrl</div></dd>
+      <dd id='change-locale-area'>
+        <%= I18n.t('menu.locale') %>:
+        <a href='/en/gen/1/' onclick="window.selectLocale('en');return false;">English</a>,
+        <a href='/ru/gen/1/' onclick="window.selectLocale('ru');return false;">Руссикй</a>
+      </dd>
       <dd><%= I18n.t('footer_title') %></dd>
       <dd>2022 <%= I18n.t('years_from') %></dd>
-      <dd><a href='/about'><%= I18n.t('about_site') %></a></dd>
+      <dd><a href='<%= my_link_to('/about/') %>'><%= I18n.t('about_site') %></a></dd>
     </footer>
 
     <%= content_for?(:end_of_page) ? yield(:end_of_page) : '' %>
     <%= javascript_include_tag "all_after", media: "all" %>
+
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+      ym(90555809, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true
+      });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/90555809" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
   </body>
 </html>

@@ -4,7 +4,7 @@
   <div class=:title><%= params[:title] %></div>
   <div class=:items>
     <% params[:items].each do |item, (item_id, item_name)| %>
-      <a href="/q/<%= item %>" target="_blank"><%= item_id %> - <%= item_name %></a><br>
+      <a href="/q/<%= item %>/" target="_blank"><%= item_id %> - <%= item_name %></a><br>
     <% end %>
   </div>
   <br>

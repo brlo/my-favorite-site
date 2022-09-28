@@ -17,14 +17,15 @@ class ApplicationController < ActionController::Base
   end
 
   def set_locale
-    I18n.locale =
-    case current_lang()
-    when 'ru', 'csl-pnm', 'csl-ru'
-      :ru
-    when 'eng-nkjv', 'heb-osm', 'gr-lxx-byz'
-      :en
-    else
-      :ru
-    end
+    # params[:locale] - заполняется в routes
+    I18n.locale = params[:locale]
+    # case current_lang()
+    # when 'ru', 'csl-pnm', 'csl-ru'
+    #   :ru
+    # when 'eng-nkjv', 'heb-osm', 'gr-lxx-byz'
+    #   :en
+    # else
+    #   :ru
+    # end
   end
 end

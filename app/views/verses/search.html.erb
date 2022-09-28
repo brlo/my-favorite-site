@@ -1,4 +1,4 @@
-<div class='hint' style='margin-top: 0;'>Поиск: </div>
+<div class='hint' style='margin-top: 0;'><%= t('search_page.title') %>: </div>
 <form action="/" onsubmit="goToSearch();return false;">
   <div id='search-input-area'>
     <input class='pretty' name="text" type="text" id='search-input' placeholder='Фраза' value='<%= @search_text %>'>
@@ -10,30 +10,30 @@
 
 <div class='search-options'>
   <select id="search-books" name="books" onchange="goToSearch();return false;">
-    <option value='' <% if @search_books.blank? %>selected<% end %>>Любая Книга</option>
-    <option value='z1' <% if @search_books == 'z1' %>selected<% end %>>Ветхий Завет</option>
-    <option value='z2' <% if @search_books == 'z2' %>selected<% end %>>Новый Завет</option>
+    <option value='' <% if @search_books.blank? %>selected<% end %>><%= I18n.t('search_page.any_book') %></option>
+    <option value='z1' <% if @search_books == 'z1' %>selected<% end %>><%= I18n.t('search_page.old_testament') %></option>
+    <option value='z2' <% if @search_books == 'z2' %>selected<% end %>><%= I18n.t('search_page.new_testament') %></option>
     <% BOOKS.each do |book, params| %>
-      <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= params[:name] %></option>
+      <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= I18n.t("books.short.#{book}") %></option>
     <% end %>
   </select>
 
   <select id="search-accuracy" name="accuracy" onchange="goToSearch();return false;">
-    <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>>Похожая фраза</option>
-    <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>>Точная фраза</option>
+    <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>><%= I18n.t('search_page.similar_phrase') %></option>
+    <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>><%= I18n.t('search_page.exact_phrase') %></option>
   </select>
 
   <select id="search-lang" name="lang-select" onchange="goToSearch();return false;">
-    <option value='ru' <% if @search_lang == 'ru' %>selected<% end %>>Русский <br>(RST)</option>
-    <option value='csl-pnm' <% if @search_lang == 'csl-pnm' %>selected<% end %>>Ц-Слав. (ELZ)</option>
-    <option value='csl-ru' <% if @search_lang == 'csl-ru' %>selected<% end %>>Ц-Слав. (ELZ-RU)</option>
-    <option value='eng-nkjv' <% if @search_lang == 'eng-nkjv' %>selected<% end %>>English (NKJV)</option>
-    <option value='heb-osm' <% if @search_lang == 'heb-osm' %>selected<% end %>>Hebrew (OSM)</option>
-    <option value='gr-lxx-byz' <% if @search_lang == 'gr-lxx-byz' %>selected<% end %>>Greek (LXX+Byz)</option>
+    <option value='ru' <% if @search_lang == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
+    <option value='csl-pnm' <% if @search_lang == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
+    <option value='csl-ru' <% if @search_lang == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>
+    <option value='eng-nkjv' <% if @search_lang == 'eng-nkjv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NKJV)</option>
+    <option value='heb-osm' <% if @search_lang == 'heb-osm' %>selected<% end %>><%= I18n.t('bib_translations.heb') %> (OSM)</option>
+    <option value='gr-lxx-byz' <% if @search_lang == 'gr-lxx-byz' %>selected<% end %>><%= I18n.t('bib_translations.gr') %> (LXX+Byz)</option>
   </select>
 </div>
 
-<div class='hint'>Совпадений: <%= @matches_count %></div>
+<div class='hint'><%= t('search_page.matches') %>: <%= @matches_count %></div>
 <hr>
 
 <% if @matches_count > 0 %>
@@ -41,7 +41,7 @@
   <% @verses_json.each do |v| %>
     <div class='line'>
       "<%= verse_alone_clean(v['t'].html_safe) %>"
-      <a href="/<%= v['bc'] %>/<%= v['ch'] %>#L<%= v['l'] %>">
+      <a href="<%= my_link_to("/#{ v['bc'] }/#{ v['ch'] }#L#{ v['l'] }") %>">
         (<%= ::I18n.t("books.short.#{ v['bc'] }") %>. <%= v['ch'] %>:<%= v['l'] %>)
       </a>
     </div>
@@ -49,7 +49,7 @@
   <% end %>
 
 <% else %>
-  <div class='tip'>Ничего не найдено. Проверьте, может быть выбран не тот язык текста?</div>
+  <div class='tip'><%= I18n.t('tips.search_was_return_zero_results') %></div>
 <% end %>
 
 <%= javascript_include_tag "search", media: "all" %>
