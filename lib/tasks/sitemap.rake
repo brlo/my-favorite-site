@@ -6,7 +6,7 @@ namespace :g do
 
     site_url = 'https://bibleox.com'
     # будет в public
-    path = '/sitemaps/'
+    path = 'sitemaps/'
     changefreq = 'monthly'
 
     puts "Start generating sitemap..."
