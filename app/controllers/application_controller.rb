@@ -3,12 +3,27 @@ class ApplicationController < ActionController::Base
   before_action :set_locale
 
   def current_lang
-    lang = cookies[:'b-lang']
+    # если поисковик не умеет куки, то хоть через локаль (которая в url) установит перевод
+    @current_lang ||= begin
+      _lang =
+      if cookies[:'b-lang'].present?
+        cookies[:'b-lang']
+      elsif params[:locale].present?
+        case params[:locale]
+        when 'ru' ; 'ru'
+        when 'en' ; 'eng-nkjv'
+        when 'cs' ; 'csl-ru'
+        when 'il' ; 'heb-osm'
+        when 'gr' ; 'gr-lxx-byz'
+        else      ; 'ru'
+        end
+      end
 
-    if %w(ru csl-pnm csl-ru eng-nkjv heb-osm gr-lxx-byz).include?(lang)
-      lang
-    else
-      'ru'
+      if ::CacheSearch::SEARCH_LANGS.include?(_lang)
+        _lang
+      else
+        'ru'
+      end
     end
   end
 

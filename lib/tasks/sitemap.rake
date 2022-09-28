@@ -16,11 +16,17 @@ namespace :g do
     SitemapGenerator::Sitemap.create do
       # Добавляется автоматически:
       # add "/", :priority => 1.0
-      add '/q', :changefreq => 'weekly', :priority => 0.8
-      add '/about', :changefreq => changefreq, :priority => 0.7
-      ::BOOKS.each do |book_code, params|
-        (1..params[:chapters]).each do |chapter|
-          add "/#{book_code}/#{chapter}", :changefreq => changefreq, :priority => 0.9
+      # add '/q', :changefreq => 'weekly', :priority => 0.8
+      add '/ru/about/', :changefreq => changefreq, :priority => 0.7
+      add '/ru/search/', :changefreq => changefreq, :priority => 0.7
+      add '/en/about/', :changefreq => changefreq, :priority => 0.7
+      add '/en/search/', :changefreq => changefreq, :priority => 0.7
+
+      %w(ru en il gr cs).each do |locale|
+        ::BOOKS.each do |book_code, params|
+          (1..params[:chapters]).each do |chapter|
+            add "/#{locale}/#{book_code}/#{chapter}/", :changefreq => changefreq, :priority => 0.9
+          end
         end
       end
     end

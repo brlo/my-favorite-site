@@ -4,6 +4,6 @@ class PagesController < ApplicationController
   end
 
   def about
-    @page_title = 'О сайте'
+    @page_title = I18n.t('about_site')
   end
 end

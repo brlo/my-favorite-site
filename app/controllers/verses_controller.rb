@@ -12,7 +12,7 @@ class VersesController < ApplicationController
       @is_psalm = @book_code == 'ps'
 
       @page_title =
-        ::I18n.t("books.full.#{@book_code}") +
+        ::I18n.t("books.mid.#{@book_code}") +
         ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
         " #{@chapter}"
 
@@ -34,7 +34,7 @@ class VersesController < ApplicationController
     @is_psalm = @book_code == 'ps'
 
     @page_title =
-      ::I18n.t("books.full.#{@book_code}") +
+      ::I18n.t("books.mid.#{@book_code}") +
       ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
       " #{@chapter}"
 

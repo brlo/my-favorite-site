@@ -17,8 +17,7 @@ module Bibleox
     # res.bibleox.com
     config.hosts << /([a-z0-9-]+\.)?([a-z0-9-]+\.)?bibleox\.com/
 
-
-    config.i18n.default_locale = :'ru'
+    config.i18n.default_locale = :ru
 
     # Configuration for the application, engines, and railties goes here.
     #

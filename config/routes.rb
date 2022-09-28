@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  scope "/:locale", :locale => /ru|en/ do
+  scope "/:locale", :locale => /ru|en|cs|il|gr/ do
     get '/:book_code/:chapter', to: 'verses#index', :constraints =>
       lambda { |req|
         book_code = req.params[:book_code]
