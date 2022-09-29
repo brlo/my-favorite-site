@@ -33,20 +33,25 @@ class VersesController < ApplicationController
   end
 
   def chapter_ajax
-    @current_menu_item = 'biblia'
-    @text_direction = current_lang == 'heb-osm' ? 'rtl' : 'ltr'
-
     @book_code ||= params[:book_code] || 'gen'
     @chapter = (params[:chapter] || 1).to_i
 
     @is_psalm = @book_code == 'ps'
 
+    @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+
+    @current_menu_item = 'biblia'
+    @text_direction = current_lang == 'heb-osm' ? 'rtl' : 'ltr'
     @page_title =
       ::I18n.t("books.mid.#{@book_code}") +
       ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
       " #{@chapter}"
-
-    @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+    @breadcrumbs = [::I18n.t('tags.bible')]
+    if @verses.first.z == 1
+      @breadcrumbs.push(::I18n.t('tags.VZ'))
+    else
+      @breadcrumbs.push(::I18n.t('tags.NZ'))
+    end
 
     render 'chapter_ajax', layout: false
   end
