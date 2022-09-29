@@ -39,6 +39,8 @@ ru:
     new_testament: Новый Завет
     similar_phrase: Похожая фраза
     exact_phrase: Точная фраза
+    meta_description: "Поиск \"%{search}\". Найдено результатов: %{matches}."
+    meta_description_first_verse: " Стих: %{verse}"
 
   bib_translations:
     ru: Русский
@@ -56,8 +58,10 @@ ru:
   title: Библeокс
   footer_title: Библеокс — Библео́ѯ — Βιβλεо́ξ — Bibleox
   about_site: 'О сайте'
+  about_site_description: 'Сайт для изучения Библии. Контакты с разработчиком.'
   about_text: Сайт создан в 2022 году в городе Севастополь по благословению православного священнослужителя.
   about_contact: Контакт с разработчиком
+
 
   menu:
     bible: Библия
@@ -77,7 +81,6 @@ ru:
     copy_address_btn: Адрес
     copy_link_btn: Ссылка
 
-  search: 'Поиск'
   chapter: глава
   chapters: Главы
   psalm: псалом

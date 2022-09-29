@@ -43,4 +43,8 @@ class ApplicationController < ActionController::Base
     #   :ru
     # end
   end
+
+  def build_canonical_url(path)
+    "https://bibleox.com/#{I18n.locale}#{path}"
+  end
 end

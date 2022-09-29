@@ -39,6 +39,7 @@ en:
   title: Bibleox
   footer_title: Bibleox.com
   about_site: 'About'
+  about_site_description: 'Website for Bible study. Contacts with developer.'
   about_text: The site was created in 2022 in the city of Sevastopol with blessing of an orthodox priest.
   about_contact: Contact with developer
 
@@ -50,6 +51,8 @@ en:
     new_testament: New Testament
     similar_phrase: Similar phrase
     exact_phrase: Exact Phrase
+    meta_description: "Search \"%{search}\". Matches: %{matches}."
+    meta_description_first_verse: " Verse: %{verse}"
 
   bib_translations:
     ru: Russian
@@ -76,7 +79,6 @@ en:
     copy_address_btn: Address
     copy_link_btn: Link
 
-  search: 'Search'
   chapter: chapter
   chapters: Chapters
   psalm: psalm
