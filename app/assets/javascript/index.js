@@ -145,7 +145,7 @@ selectBar.copyTextAndAddressClicked = function () {
 
   BX.tools.copyText(result);
   BX.notifications.addNotification(
-    '<t>Скопировано:</t>' +
+    '<t>' + window.BX.localization.copyTitle + ':</t>' +
     '"' + text.slice(0,30) + '..."' +
     '<br>' +
     '(' + address + ')'
@@ -160,7 +160,7 @@ selectBar.copyTextClicked = function () {
   let text = selectBar.getSelectedText();
 
   BX.tools.copyText(text);
-  BX.notifications.addNotification('<t>Скопировано:</t>' + text.slice(0,30) + '...');
+  BX.notifications.addNotification('<t>' + window.BX.localization.copyTitle + ':</t>' + text.slice(0,30) + '...');
   return;
 };
 
@@ -171,7 +171,7 @@ selectBar.copyAddressClicked = function () {
   let address = selectBar.getSelectedAddress();
 
   BX.tools.copyText(address);
-  BX.notifications.addNotification('<t>Скопировано:</t>' + address);
+  BX.notifications.addNotification('<t>' + window.BX.localization.copyTitle + ':</t>' + address);
   return;
 };
 
@@ -181,7 +181,7 @@ selectBar.copyLinkClicked = function () {
 
   let link = window.location.href;
   BX.tools.copyText(link);
-  BX.notifications.addNotification('<t>Скопировано:</t>' + link);
+  BX.notifications.addNotification('<t>' + window.BX.localization.copyTitle + ':</t>' + link);
   return;
 };
 

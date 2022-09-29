@@ -17,7 +17,7 @@ mongo-4.2
 sudo docker run --name mongo-4.2 -p 27017:27017 \
   --memory=500m \
   --restart always \
-  -v /srv/mongodb:/data/db \
+  -v /srv/warehouse/mongodb:/data/db \
   -v /etc/bibleox/config/mongo/mongod.conf:/etc/mongod.conf \
   -v /var/log/mongo:/var/log/mongo \
   --log-opt max-size=1m --log-opt max-file=1 \
@@ -59,12 +59,20 @@ ansible -m setup all
 
 ```shell
 # console
-docker exec -it bibleox_bibleox bash
+docker exec -it bibleox bash
 docker-compose exec app bundle exec rails console
 
 # Sitemap
 rake g:sitemap
 
-mkdir -p cache_search/similar/{csl-pnm,csl-ru,eng-nkjv,heb-osm,gr-lxx-byz,ru}
-mkdir -p cache_search/exact/{csl-pnm,csl-ru,eng-nkjv,heb-osm,gr-lxx-byz,ru}
+cd /projects/bibleox
+
+alias nginxerrors='sudo tail -n 30 -f /var/log/nginx/error.log'
+alias nginxlog='sudo tail -n 30 -f /var/log/nginx/access.log'
+alias bib_update_code='git fetch && git reset --hard && git checkout origin/main'
+alias bib_restart='sudo docker-compose restart -t 5'
+alias bib_reload='sudo rm /projects/bibleox/tmp/restart.txt && touch /projects/bibleox/tmp/restart.txt'
+alias bib_log='sudo docker logs -f bibleox'
+alias bib_docker='sudo docker exec -it bibleox bash'
+alias bib_cache_clear='sudo rm /projects/bibleox/db/cache_search/*/*/*.json'
 ```

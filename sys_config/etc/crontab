@@ -1,0 +1,1 @@
+6 0 * * * "/home/brlo/.acme.sh"/acme.sh --cron --home "/home/brlo/.acme.sh" > /dev/null

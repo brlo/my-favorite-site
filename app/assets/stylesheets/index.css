@@ -117,7 +117,6 @@
 /* контекстное меню копирования */
 #copy-burger-menu {
   position: absolute;
-  min-width: 155px;
   /* 0px - отступ справа, то есть прижимаем вправо */
   /* calc(100% + 3px) - отступ снизу вверх на высотку селект-бара, плюс 3px */
   inset: auto 0px calc(100% + 3px) auto;
@@ -140,6 +139,8 @@
 #copy-burger-menu > div {
   padding: 8px 5px;
   border-bottom: 1px solid #9f9c9741;
+  white-space: nowrap;
+  padding: 8px 15px;
 }
 #copy-burger-menu > div:last-child {
   border-bottom: none !important;

@@ -1,4 +1,17 @@
 // Перенсти функции в хэш. Вызывать их из кэша
+const localization = {
+    ru: {
+      copyTitle: 'Скопировано',
+      day: 'День',
+      night: 'Ночь',
+    },
+    en: {
+      copyTitle: 'Copied',
+      day: 'Day',
+      night: 'Night',
+    }
+};
+
 window.BX = {
   locale: document.documentElement.lang,
   options: {
@@ -24,7 +37,17 @@ window.BX = {
       document.body.removeChild(dummy);
     },
   },
+  localization: {
+    ru: {
+      copyTitle: 'Скопировано',
+    },
+    en: {
+      copyTitle: 'Copied',
+    }
+  },
 }
+
+window.BX.localization = localization[ window.BX.locale ];
 
 // COOKIES LIBS
 function setCookie(cname, cvalue, exdays) {
@@ -90,11 +113,11 @@ window.switchNightMode = function() {
   if (body.classList.contains(nightClass)) {
     body.classList.remove(nightClass);
     setCookie('isNightMode', 0, 999);
-    modeSwitcher.innerHTML = window.BX.locale == 'ru' ? "День" : "Day";
+    modeSwitcher.innerHTML = window.BX.localization.day;
   } else {
     body.classList.add(nightClass);
     setCookie('isNightMode', 1, 999);
-    modeSwitcher.innerHTML = window.BX.locale == 'ru' ? "Ночь" : "Night";
+    modeSwitcher.innerHTML = window.BX.localization.night;
   }
 
   return false;

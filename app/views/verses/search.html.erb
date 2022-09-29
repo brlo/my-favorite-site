@@ -14,7 +14,7 @@
     <option value='z1' <% if @search_books == 'z1' %>selected<% end %>><%= I18n.t('search_page.old_testament') %></option>
     <option value='z2' <% if @search_books == 'z2' %>selected<% end %>><%= I18n.t('search_page.new_testament') %></option>
     <% BOOKS.each do |book, params| %>
-      <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= I18n.t("books.short.#{book}") %></option>
+      <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= I18n.t("books.mid.#{book}") %></option>
     <% end %>
   </select>
 
