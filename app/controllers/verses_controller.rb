@@ -16,8 +16,15 @@ class VersesController < ApplicationController
         ::I18n.t("books.mid.#{@book_code}") +
         ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
         " #{@chapter}"
-      @meta_description = @verses.find{|v| v.line == 1}.text[0..200]
+      @meta_description = ::I18n.t("books.full.#{@book_code}") + ' — ' + @verses.find{|v| v.line == 1}.text[0..150]
       @canonical_url = build_canonical_url("/#{@book_code}/#{@chapter}/")
+      @breadcrumbs = [::I18n.t('tags.bible')]
+      if @verses.first.z == 1
+        @breadcrumbs.push(::I18n.t('tags.VZ'))
+      else
+        @breadcrumbs.push(::I18n.t('tags.NZ'))
+      end
+      @meta_book_tags = [*@breadcrumbs, ::I18n.t("books.mid.#{@book_code}")]
 
       respond_to do |format|
         format.html { render 'index' }

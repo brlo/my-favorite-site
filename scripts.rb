@@ -113,6 +113,7 @@ v2.delete
 # Add book_id
 # Verse.all.each { |v| v.update(bid: BOOKS[v.book][:id]) }
 
+# ПРОСТАВИТЬ ВЕТХИЙ И НОВЫЙ ЗАВЕТ
 # veth = BOOKS.select{ |book,params| params[:zavet] == 1 }.keys
 # Verse.where(:book.in => veth).update_all(zavet: 1)
 

@@ -30,19 +30,6 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  tips:
-    click_on_verse: Highlight a verse by clicking on its number.
-    click_on_verse__working: Works
-    click_on_verse__and: and
-    search_was_return_zero_results: Nothing found. Check if the wrong text language is selected?
-
-  title: Bibleox
-  footer_title: Bibleox.com
-  about_site: 'About'
-  about_site_description: 'Website for Bible study. Contacts with developer.'
-  about_text: The site was created in 2022 in the city of Sevastopol with blessing of an orthodox priest.
-  about_contact: Contact with developer
-
   search_page:
     title: Search
     matches: Matches
@@ -60,6 +47,24 @@ en:
     en: English
     heb: Hebrew
     gr: Greek
+
+  tips:
+    click_on_verse: Highlight a verse by clicking on its number.
+    click_on_verse__working: Works
+    click_on_verse__and: and
+    search_was_return_zero_results: Nothing found. Check if the wrong text language is selected?
+
+  tags:
+    bible: Bible
+    VZ: Old Testament
+    NZ: New Testament
+
+  title: Bibleox
+  footer_title: Bibleox.com
+  about_site: 'About'
+  about_site_description: 'Website for Bible study. Contacts with developer.'
+  about_text: The site was created in 2022 in the city of Sevastopol with blessing of an orthodox priest.
+  about_contact: Contact with developer
 
   menu:
     bible: Bible

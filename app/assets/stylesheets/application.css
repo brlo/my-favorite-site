@@ -109,6 +109,12 @@ header nav a {
   font-size: 32px;
 }
 
+.breadcrumbs {
+  font-size: 0.7em;
+  position: relative;
+  top: -15px;
+}
+
 .content .title a {
   text-decoration: none;
 }
