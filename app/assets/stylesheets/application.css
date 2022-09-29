@@ -120,6 +120,11 @@ header nav a {
   text-decoration: none;
 }
 
+.content .error {
+  text-align: center;
+  margin: 20px 0;
+  color: rgb(201, 41, 41);
+}
 /* CHAPTERS */
 
 /* в блоке глав все надписи по центру  */
