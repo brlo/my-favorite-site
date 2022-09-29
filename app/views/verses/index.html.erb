@@ -1,13 +1,13 @@
 <% content_for(:head) do %>
-  <meta property="og:image" content="<%= asset_path("bibleox-#{ ::I18n.locale == :ru ? 'ru' : 'en' }.png") %>"/>
-  <meta property="og:type" content="book"/>
-  <% @meta_book_tags.each do |tag| %>
-  <meta property="og:book:tag" content="<%= tag %>"/>
-  <% end %>
-  <meta name="keywords" content="<%= @meta_book_tags.join(', ') %>" />
-  <meta property="og:url" content= "<%= @canonical_url %>" />
-  <meta property="og:locale" content= "<%= ::I18n.locale %>" />
-  <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
+    <meta property="og:image" content="<%= asset_path("bibleox-#{ ::I18n.locale == :ru ? 'ru' : 'en' }.png") %>"/>
+    <meta property="og:type" content="book"/>
+    <% @meta_book_tags.each do |tag| %>
+    <meta property="og:book:tag" content="<%= tag %>"/>
+    <% end %>
+    <meta name="keywords" content="<%= @meta_book_tags.join(', ') %>" />
+    <meta property="og:url" content= "<%= @canonical_url %>" />
+    <meta property="og:locale" content= "<%= ::I18n.locale %>" />
+    <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
 <% end %>
 
 <section id='chapter-content' itemscope itemtype="http://schema.org/Article">

@@ -18,21 +18,11 @@
     <%= stylesheet_link_tag "application" %>
     <style type="text/css">
     <% if @current_lang == 'csl-pnm' %>
-      @font-face {
-        font-family: "Ponomar";
-        src: url(<%= asset_path('PonomarUnicode.otf') %>) format("opentype");
-      }
-      .csl {
-        font-family: "Ponomar", Verdana, Tahoma;
-        font-size: 1.4em;
-        line-height: 1.5em;
-      }
+      @font-face {font-family: "Ponomar";src: url(<%= asset_path('PonomarUnicode.otf') %>) format("opentype");}
+      .csl {font-family: "Ponomar", Verdana, Tahoma;font-size: 1.4em;line-height: 1.5em;}
     <% end %>
-
     <% if @text_direction %>
-      .verse-text {
-        direction: <%= @text_direction %>;
-      }
+      .verse-text {direction: <%= @text_direction %>;}
     <% end %>
     </style>
     <%= javascript_include_tag "application", media: "all" %>

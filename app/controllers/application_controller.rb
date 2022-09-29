@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     # params[:locale] - заполняется в routes
-    I18n.locale = params[:locale]
+    I18n.locale = params[:locale] || 'ru'
     # case current_lang()
     # when 'ru', 'csl-pnm', 'csl-ru'
     #   :ru
