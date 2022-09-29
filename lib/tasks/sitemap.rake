@@ -11,6 +11,17 @@ namespace :g do
 
     puts "Start generating sitemap..."
 
+    # Записываем карту карт сайта для Google. Он упорно не хочет парсить архивированную версию напрямую.
+    ::File.open('public/sitemaps/sitemap.xml', 'w') do |file|
+      file.write('<?xml version="1.0" encoding="UTF-8"?>')
+      file.write('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
+      file.write('<sitemap>')
+      file.write('<loc>https://bibleox.com/sitemap.xml.gz</loc>')
+      file.write('</sitemap>')
+      file.write('</sitemapindex>')
+    end
+
+    # А теперь и сама карта сайта
     SitemapGenerator::Sitemap.sitemaps_path = path
     SitemapGenerator::Sitemap.default_host = site_url
     SitemapGenerator::Sitemap.create do
