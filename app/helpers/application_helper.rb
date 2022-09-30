@@ -20,4 +20,14 @@ module ApplicationHelper
   def my_link_to(path)
     "/#{I18n.locale}#{path}"
   end
+
+  if Rails.env.production?
+    def my_res_link_to(path)
+      "https://res.bibleox.com#{path}"
+    end
+  else
+    def my_res_link_to(path)
+      path
+    end
+  end
 end

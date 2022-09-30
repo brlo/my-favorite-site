@@ -9,16 +9,29 @@
     <meta property="og:site_name" content="<%= I18n.t('title') %>"/>
     <meta property="og:title" content="<%= I18n.t('title') %> — <%= @page_title %>"/>
     <meta property="og:description" content="<%= @meta_description %>"/>
-    <%= content_for?(:head) ? yield(:head) : '' %>
-    <link rel="icon" href="<%= asset_path("favicon.ico") %>" type="image/x-icon">
-    <link rel="icon" href="<%= asset_path("favicon.svg") %>" type="image/svg+xml">
-    <link rel="icon" href="<%= asset_path("favicon.png") %>" type="image/png">
+<%= content_for?(:head) ? yield(:head) : '' %>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= my_res_link_to('/favicons/apple-touch-icon.png') %>">
+    <link rel="icon" type="image/svg+xml" href="<%= my_res_link_to('/favicons/favicon.svg') %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= my_res_link_to('/favicons/favicon-32x32.png') %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= my_res_link_to('/favicons/favicon-16x16.png') %>">
+    <link rel="shortcut icon" href="<%= my_res_link_to('/favicons/favicon.ico') %>">
+    <link rel="manifest" href="<%= my_res_link_to('/favicons/site.webmanifest') %>">
+    <link rel="mask-icon" href="<%= my_res_link_to('/favicons/safari-pinned-tab.svg') %>" color="#75a361">
+    <meta name="apple-mobile-web-app-title" content="Bibleox">
+    <meta name="application-name" content="Bibleox">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#a4d091">
+    <meta name="msapplication-TileColor" content="#a4d091">
+    <meta name="msapplication-config" content="<%= my_res_link_to('/favicons/browserconfig.xml') %>">
+    <meta name="theme-color" content="#a4d091">
+
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application" %>
     <style type="text/css">
     <% if @current_lang == 'csl-pnm' %>
-      @font-face {font-family: "Ponomar";src: url(<%= asset_path('PonomarUnicode.otf') %>) format("opentype");}
+      @font-face {font-family: "Ponomar";src: url('<%= my_res_link_to('/fonts/PonomarUnicode.otf') %>') format("opentype");}
       .csl {font-family: "Ponomar", Verdana, Tahoma;font-size: 1.4em;line-height: 1.5em;}
     <% end %>
     <% if @text_direction %>
@@ -33,7 +46,9 @@
     <header>
       <div class='container'>
         <div class="logo">
-          <a href="<%= my_link_to('/gen/1') %>"><%= image_tag("bibleox-#{ ::I18n.locale == :en ? 'en' : ['ru', 'cs', 'gr', 'en'].sample }.png") %></a>
+          <a href="<%= my_link_to('/gen/1/') %>">
+            <img src="<%= my_res_link_to("/logo/bibleox-#{ ::I18n.locale == :en ? 'en' : ['ru', 'cs', 'gr', 'en'].sample }.png") %>">
+          </a>
         </div>
         <nav>
           <a href="javascript:" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>" onclick="menuBooks.show('bible-clicked');"><%= I18n.t('menu.bible') %></a>
@@ -68,12 +83,11 @@
         <a href='/en/gen/1/' onclick="window.selectLocale('en');return false;">English</a>,
         <a href='/ru/gen/1/' onclick="window.selectLocale('ru');return false;">Руссикй</a>
       </dd>
-      <dd><%= I18n.t('footer_title') %></dd>
       <dd>2022 <%= I18n.t('years_from') %></dd>
       <dd><a href='<%= my_link_to('/about/') %>'><%= I18n.t('about_site') %></a></dd>
     </footer>
 
-    <%= content_for?(:end_of_page) ? yield(:end_of_page) : '' %>
+<%= content_for?(:end_of_page) ? yield(:end_of_page) : '' %>
     <%= javascript_include_tag "all_after", media: "all" %>
 
     <!-- Yandex.Metrika counter -->

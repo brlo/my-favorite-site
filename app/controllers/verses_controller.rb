@@ -100,6 +100,7 @@ class VersesController < ApplicationController
       @meta_description +=
       ::I18n.t('search_page.meta_description_first_verse', verse: @verses_json.first['t'].to_s[0..150])
     end
+    @meta_book_tags = [params[:t]] if params[:t].present?
     @canonical_url = build_canonical_url("/search/?acc=#{@search_accuracy}&l=#{@search_lang}&t=#{@search_text}")
   end
 

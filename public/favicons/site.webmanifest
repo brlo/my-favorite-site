@@ -1,0 +1,20 @@
+{
+    "name": "Bibleox",
+    "short_name": "Bibleox",
+    "icons": [
+        {
+            "src": "https://res.bibleox.com/favicons/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "https://res.bibleox.com/favicons/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#a4d091",
+    "background_color": "#a4d091",
+    "start_url": "https://bibleox.com/",
+    "display": "standalone"
+}
