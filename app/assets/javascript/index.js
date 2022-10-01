@@ -53,8 +53,7 @@ window.selectBar = {
   el: document.getElementById('select-bar'),
   // регулярка для валидации введённого значения (пример: L1-3,5,10-11)
   // TIP: всего допускается не более 7 адресов.
-  fragmentRegexp: /^L(\d{1,3}|\d{1,3}-\d{1,3})(,\d{1,3}|\d{1,3}-\d{1,3}){0,6}$/,
-
+  fragmentRegexp: /^L(\d{1,3}|\d{1,3}-\d{1,3})(,(\d{1,3}|\d{1,3}-\d{1,3})){0,6}$/,
 };
 
 selectBar.enable = function () {
@@ -248,9 +247,6 @@ selectBar.enableListeners = function () {
 
       const isIconClicked = selectBar.copyBurger.elIcon.contains(el);
       const isClickInsideMenu = selectBar.copyBurger.el.contains(el);
-      console.log('selectBar.copyBurger.el', selectBar.copyBurger.el);
-      console.log('isClickInsideMenu', isClickInsideMenu);
-      console.log('el', el);
       // прячем меню
       // нажали не на иконку показа, не на элементы меню
       if (!isIconClicked && !isClickInsideMenu) selectBar.copyBurger.hide();
