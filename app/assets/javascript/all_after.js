@@ -105,3 +105,94 @@ menuBooks.enableListeners = function () {
 
 menuBooks.enableListeners();
 
+
+// =======================================================================
+// =================== SETTINGS AREA =====================================
+// =======================================================================
+
+// Настройки в шапке
+window.settingsArea = {
+  // меню
+  el: document.getElementById('settings-area'),
+  // Клик на btn показывает el
+  btn: settingsBtn = document.getElementById('settings-btn'),
+  isShown: false,
+};
+
+// ВКЛ
+settingsArea.show = function () {
+  settingsArea.el.classList.remove('hidden');
+  settingsArea.isShown = true;
+};
+
+// ВЫКЛ
+settingsArea.hide = function () {
+  settingsArea.el.classList.add('hidden');
+  settingsArea.isShown = false;
+};
+
+// КЛИК - откр
+settingsArea.settingsBtnClicked = function () {
+  if (settingsArea.isShown === false) {
+    settingsArea.show();
+  } else {
+    settingsArea.hide();
+  };
+};
+
+// выбор размера текста
+settingsArea.textSizeBar = {
+  textEl: document.querySelector('article'),
+  btns: document.querySelectorAll('#text-menu > a'),
+}
+
+settingsArea.textSizeBar.someTextSizeBtnClicked = function (e) {
+  const btnClicked = e.target;
+  // имя класса для article
+  const fontSizeName = {
+    'text-small-btn': 'text-small',
+    'text-medium-btn': 'text-medium',
+    'text-large-btn': 'text-large',
+  }[btnClicked.id]
+  // размер текста для кук
+  const fontSizeCookie = {
+    'text-small-btn': '1',
+    'text-medium-btn': '2',
+    'text-large-btn': '3',
+  }[btnClicked.id]
+
+  // все кнопки "отжимаем"
+  for (const barBtn of settingsArea.textSizeBar.btns) { barBtn.classList.remove('active') };
+  // нажатую "нажимаем"
+  btnClicked.classList.add('active');
+  // размер текста выставляем
+  if (settingsArea.textSizeBar.textEl) settingsArea.textSizeBar.textEl.className = fontSizeName;
+  // в куки сохраняем
+  setCookie('textSize', fontSizeCookie, 999);
+};
+
+// СОБЫТИЯ НАСТРОЕК И ВНУТРЕННИХ ЭЛЕМЕНТОВ
+settingsArea.enableListeners = function () {
+  if (!settingsArea.el) return;
+
+  settingsArea.btn.addEventListener('click', settingsArea.settingsBtnClicked, false);
+
+  for (const barBtn of settingsArea.textSizeBar.btns) {
+    barBtn.addEventListener('click', settingsArea.textSizeBar.someTextSizeBtnClicked, false);
+  };
+
+  // Клик за границами меню прячет меню
+  document.addEventListener('click', event => {
+    if (settingsArea.isShown) {
+      const el = event.target;
+
+      const isBtnClicked = settingsArea.btn === el;
+      const isClickInsideMenu = settingsArea.el.contains(el);
+      // прячем меню
+      // нажали не на иконку показа, не на элементы меню
+      if (!isBtnClicked && !isClickInsideMenu) settingsArea.hide();
+    };
+  });
+};
+
+settingsArea.enableListeners();

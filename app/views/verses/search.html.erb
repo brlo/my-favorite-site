@@ -52,6 +52,7 @@
 <div class='hint'><%= t('search_page.matches') %>: <%= @matches_count %></div>
 <hr>
 
+<article class="text-<%= text_size_from_cookies %>">
 <% if @matches_count > 0 %>
 
   <% @verses_json.each do |v| %>
@@ -67,5 +68,6 @@
 <% else %>
   <div class='tip'><%= I18n.t('tips.search_was_return_zero_results') %></div>
 <% end %>
+</article>
 
 <%= javascript_include_tag "search", media: "all" %>

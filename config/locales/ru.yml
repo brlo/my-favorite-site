@@ -71,11 +71,16 @@ ru:
     bible: Библия
     quotes: Цитаты
     search: Поиск
+    settings: Настройки
     locale: Язык
     day: День
     night: Ночь
     veth_zavet: Ветхий Завет
     nov_zavet: Новый Завет
+
+  settings:
+    color_scheme: Цвета
+    font_size: Текст
 
   select_bar:
     select_mode_btn: Выделять

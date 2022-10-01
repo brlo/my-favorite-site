@@ -70,11 +70,16 @@ en:
     bible: Bible
     quotes: Quotes
     search: Search
+    settings: Settings
     locale: Language
     day: Day
     night: Night
     veth_zavet: Old Testament
     nov_zavet: New Testament
+
+  settings:
+    color_scheme: Colors
+    font_size: Text
 
   select_bar:
     select_mode_btn: Select
