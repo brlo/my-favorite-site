@@ -21,6 +21,24 @@ case "$RUN_MOD" in
     bundle install
     bundle exec rake assets:precompile
     bundle exec rake assets:clean
+    # minification
+    # sudo apt install uglifyjs
+    # sudo apt install cleancss
+    # JS
+    find public/assets/ -type f \
+        -name "*.js" ! -name "*.min.*" ! \
+        -exec echo {} \; \
+        -exec uglifyjs -c -o {}.min {} \; \
+        -exec rm {} \; \
+        -exec mv {}.min {} \;
+    # CSS
+    find public/assets/ -type f \
+        -name "*.css" ! -name "*.min.*" \
+        -exec echo {} \; \
+        -exec cleancss -o {}.min {} \; \
+        -exec rm {} \; \
+        -exec mv {}.min {} \;
+
     # bundle exec rake db:migrate
     exec bundle exec puma -C config/puma.rb -e production
     ;;

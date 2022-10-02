@@ -142,7 +142,8 @@ settingsArea.settingsBtnClicked = function () {
 
 // выбор размера текста
 settingsArea.textSizeBar = {
-  textEl: document.querySelector('article'),
+  // нельзя заранее искать область с текстом, т.к. она меняется при переключении глав
+  // textEl: document.querySelector('article'),
   btns: document.querySelectorAll('#text-menu > a'),
 }
 
@@ -166,7 +167,8 @@ settingsArea.textSizeBar.someTextSizeBtnClicked = function (e) {
   // нажатую "нажимаем"
   btnClicked.classList.add('active');
   // размер текста выставляем
-  if (settingsArea.textSizeBar.textEl) settingsArea.textSizeBar.textEl.className = fontSizeName;
+  const textEl = document.querySelector('article');
+  if (textEl) textEl.className = fontSizeName;
   // в куки сохраняем
   setCookie('textSize', fontSizeCookie, 999);
 };

@@ -24,6 +24,13 @@ RUN apt-get install -y --no-install-recommends locales && \
 
 ENV LC_ALL C.UTF-8
 
+# nodejs
+# RUN curl -sL https://deb.nodesource.com/setup_lts.x | bash -
+# RUN apt-get install -y nodejs
+
+# minificators (CSS, JS)
+RUN apt install -y uglifyjs cleancss
+
 WORKDIR /app
 
 # Configure the main process to run when running the image
