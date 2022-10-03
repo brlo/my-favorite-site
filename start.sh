@@ -19,26 +19,30 @@ cd `dirname $mypath`
 case "$RUN_MOD" in
 "prod")
     bundle install
+    echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
+    ./bin/bib_assets_remove.sh
+    echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     bundle exec rake assets:precompile
+    echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     bundle exec rake assets:clean
-    # minification
-    # sudo apt install uglifyjs
-    # sudo apt install cleancss
+    echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     # JS
     find public/assets/ -type f \
-        -name "*.js" ! -name "*.min.*" ! \
+        -name "*.js" ! -name "*.min.*" \
         -exec echo {} \; \
-        -exec uglifyjs -c -o {}.min {} \; \
+        -exec ./bin/bib_minify_js.rb -i {} -o {}.min \; \
         -exec rm {} \; \
         -exec mv {}.min {} \;
     # CSS
+    echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     find public/assets/ -type f \
         -name "*.css" ! -name "*.min.*" \
         -exec echo {} \; \
-        -exec cleancss -o {}.min {} \; \
+        -exec ./bin/bib_minify_css.sh -i {} -o {}.min \; \
         -exec rm {} \; \
         -exec mv {}.min {} \;
-
+    echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
+    rm -rf public/assets/*.gz
     # bundle exec rake db:migrate
     exec bundle exec puma -C config/puma.rb -e production
     ;;
