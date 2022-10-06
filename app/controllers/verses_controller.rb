@@ -15,7 +15,8 @@ class VersesController < ApplicationController
       @page_title =
         ::I18n.t("books.mid.#{@book_code}") +
         ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
-        " #{@chapter}"
+        " #{@chapter} / " +
+        ::I18n.t('bible')
       @meta_description = ::I18n.t("books.full.#{@book_code}")
       @canonical_url = build_canonical_url("/#{@book_code}/#{@chapter}/")
       @breadcrumbs = [::I18n.t('tags.bible')]

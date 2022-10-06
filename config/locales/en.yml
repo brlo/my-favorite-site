@@ -30,7 +30,8 @@
 # available at https://guides.rubyonrails.org/i18n.html.
 
 en:
-  title: Bibleox / Bible
+  title: Bibleox
+  bible: Bible
   about_site: 'About'
   about_site_description: 'Website for Bible study. Contacts with developer.'
   about_text: The site was created in 2022 in the city of Sevastopol with blessing of an orthodox priest.
