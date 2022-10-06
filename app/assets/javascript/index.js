@@ -156,7 +156,7 @@ selectBar.copyTextClicked = function () {
   // прячем контекстное меню, в котором эта ссылка была нажата
   selectBar.copyBurger.hide();
 
-  let text = selectBar.getSelectedText();
+  const text = selectBar.getSelectedText();
 
   BX.tools.copyText(text);
   BX.notifications.addNotification('<t>' + window.BX.localization.copyTitle + ':</t>' + text.slice(0,30) + '...');
@@ -167,9 +167,10 @@ selectBar.copyAddressClicked = function () {
   // прячем контекстное меню, в котором эта ссылка была нажата
   selectBar.copyBurger.hide();
 
-  let address = selectBar.getSelectedAddress();
+  const href = window.location.href;
+  const address = selectBar.getSelectedAddress();
 
-  BX.tools.copyText(address);
+  BX.tools.copyTextLink(address, href);
   BX.notifications.addNotification('<t>' + window.BX.localization.copyTitle + ':</t>' + address);
   return;
 };
@@ -178,7 +179,7 @@ selectBar.copyLinkClicked = function () {
   // прячем контекстное меню, в котором эта ссылка была нажата
   selectBar.copyBurger.hide();
 
-  let link = window.location.href;
+  const link = window.location.href;
   BX.tools.copyText(link);
   BX.notifications.addNotification('<t>' + window.BX.localization.copyTitle + ':</t>' + link);
   return;

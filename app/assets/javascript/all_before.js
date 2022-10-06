@@ -36,6 +36,20 @@ window.BX = {
       document.execCommand('copy');
       document.body.removeChild(dummy);
     },
+
+    copyTextLink: function (text, href) {
+      const html = '<a href="' + href + '">' + text + '</a>';
+      const dummy = document.createElement('div');
+
+      document.body.appendChild(dummy);
+      dummy.innerHTML = html;
+      const range = document.createRange();
+      range.selectNode(dummy);
+      window.getSelection().addRange(range);
+
+      document.execCommand('copy');
+      document.body.removeChild(dummy);
+    },
   },
   localization: {
     ru: {
