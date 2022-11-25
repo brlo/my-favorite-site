@@ -110,7 +110,7 @@ selectBar.getSelectedAddress = function () {
 
   // имеем строку: L1-3,5,10-11
   // убираем L, делим по ",", берём 7 элементов массива
-  lines = lineStr.substr(1)
+  const lines = lineStr.substr(1)
 
   let bookInfo = document.getElementById('current-address').dataset;
   let bookName = bookInfo.bookShortName;
@@ -290,20 +290,20 @@ const getLinesArrFromUrlFragment = function() {
 
   // имеем строку: L1-3,5,10-11
   // убираем L, делим по ",", берём 7 элементов массива
-  lines = lineStr.substr(1).split(',').slice(0, 6);
-  linesNums = [];
+  const lines = lineStr.substr(1).split(',').slice(0, 6);
+  const linesNums = [];
 
   // проходим по элементам массива с адресами
   lines.forEach(function(line) {
     line = line.split('-');
     if (line.length == 1) {
       // 1 элемент
-      linesNums.push(line[0]);
+      linesNums.push(parseInt(line[0]));
 
     } else if (line.length == 2) {
       // промежуток: 2 элемента
-      let start = line[0];
-      let end = line[1];
+      let start = parseInt(line[0]);
+      let end = parseInt(line[1]);
 
       if (start > 300) return;
       if (end > 300) return;
