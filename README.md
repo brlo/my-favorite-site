@@ -1,5 +1,15 @@
 # BIBLEOX.COM
 
+Запуск для разработки через docker-compose up
+
+Деплой через ./bin/bib_deploy.sh
+
+Или удалённый вход на сервер и там:
+
+bib_update_code
+
+bib_restart
+
 * Ruby version
 
 3.1+
