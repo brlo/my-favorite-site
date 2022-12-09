@@ -98,6 +98,9 @@ v2 = Verse.where(lang: lang, bc: book, ch: ch, l: 2).first
 v0.update!(t: v0.t + ' ' + v2.t)
 v2.delete
 
+# ======================================================
+# МИГРАЦИЮ КНИГИ ИЗ SQLite смотри в конце модели Verse
+# ======================================================
 
 # СТАРОЕ
 
@@ -132,6 +135,38 @@ v2.delete
 #   zero_text = splits.first.strip
 #   first_text = splits.last.strip
 #   puts zero_text, first_text
+
+#   zero = Verse.create!(lang: v.lang, bc: v.bc, bid: v.bid, ch: v.ch, l: 0, z: v.z, t: zero_text, data: {orig: zero_text})
+#   v.update!(t: first_text, data: {orig: first_text})
+# end; nil
+
+# ---------------------------------------------------------------------
+# # Вычленяем 0-й стих из первого стиха в греческой версии Псалтири
+# Verse.where(book: 'ps', :lang => "gr-lxx-byz").where(l: 1, text: /1/i).to_a.each do |v|
+#   splits = v.text.split(/1/)
+#   # splits = splits.reject{ |s| s.length < 3}
+#   next if splits.count != 2
+
+#   zero_text = splits.first.strip
+#   first_text = splits.last.strip
+#   puts zero_text, first_text
+#   puts '---'
+
+#   zero = Verse.create!(lang: v.lang, bc: v.bc, bid: v.bid, ch: v.ch, l: 0, z: v.z, t: zero_text, data: {orig: zero_text})
+#   v.update!(t: first_text, data: {orig: first_text})
+# end; nil
+
+# ---------------------------------------------------------------------
+# # Вычленяем 0-й стих из первого стиха в английской версии Псалтири
+# Verse.where(book: 'ps', :lang => "eng-nkjv").where(l: 1, text: /\[1\]/i).to_a.each do |v|
+#   splits = v.text.split(/\[1\]/)
+#   # splits = splits.reject{ |s| s.length < 3}
+#   raise('Wow! ' + v.inspect) if splits.count != 2
+
+#   zero_text = splits.first.strip
+#   first_text = splits.last.strip
+#   puts zero_text, first_text
+#   puts '---'
 
 #   zero = Verse.create!(lang: v.lang, bc: v.bc, bid: v.bid, ch: v.ch, l: 0, z: v.z, t: zero_text, data: {orig: zero_text})
 #   v.update!(t: first_text, data: {orig: first_text})

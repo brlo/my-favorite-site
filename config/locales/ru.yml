@@ -7,48 +7,30 @@ ru:
   about_news: Новости о развитии Библеокс
   about_contact: Контакт с разработчиком
 
-  quotes:
-    god:
-      title: Бог
-      items:
-        god-is-one:
-          - 10
-          - Бог один
-        trinity:
-          - 20
-          - Бог троичен
-        christ:
-          - 30
-          - Христос — Бог
-    church:
-      title: Церковь
-      items:
-        truth:
-          - 100
-          - Истина
-    salvation:
-      title: Спасение
-      items:
-        path:
-          - 200
-          - Путь
-        eresi:
-          - 210
-          - Ереси
-        schism:
-          - 220
-          - Расколы
-
   search_page:
     title: Поиск
     matches: Совпадений
     any_book: Любая Книга
     old_testament: Ветхий Завет
     new_testament: Новый Завет
+    gospel: Евангелие
     similar_phrase: Похожая фраза
     exact_phrase: Точная фраза
     meta_description: "Поиск \"%{search}\". Найдено результатов: %{matches}."
     meta_description_first_verse: " Стих: %{verse}"
+
+  login_page:
+    title: 'Вход'
+
+  profile_page:
+    title: 'Мой профиль'
+    logout: Выйти
+
+  quotes_page:
+    title: Цитаты из Библии
+
+  quote_page:
+    title: "%{term} / цитаты"
 
   bib_translations:
     ru: Русский
@@ -78,6 +60,8 @@ ru:
     night: Ночь
     veth_zavet: Ветхий Завет
     nov_zavet: Новый Завет
+    profile: Профиль
+    login: Войти
 
   settings:
     color_scheme: Цвета

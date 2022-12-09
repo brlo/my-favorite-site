@@ -1,0 +1,119 @@
+<div id='quotes-content'>
+  <h1 id='subject'><%= @page.title %></h1>
+  <div id='subject-desc'><%= @subject_desc %></div>
+  <div id='quotes'>
+    <% is_first = true %>
+    <% @page.addresses.each do |address| %><% book, chapter, line = address.split(':') %><%= is_first ? (is_first=false; '') : ', ' %><a href="<%= "/#{book}/#{chapter}/#L#{line}" %>"><%= address %></a><% end %>
+  </div>
+  <%= sanitize(@page.body, tags: %w(b i br)).html_safe %>
+</div>
+
+<% if logged_in?() %>
+  <style>
+  </style>
+
+  <script type="importmap">
+    {
+      "imports": {
+        // "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+        "vue": "/assets/vendor/vue-module-dev.js"
+      }
+    }
+  </script>
+
+  <script type="module">
+    import { createApp } from 'vue'
+
+    const quotesAll = [<%== @quotes.map{|q| "{id: '#{q._id.to_s}', address: '#{q.address}'}" }.join(',') %>];
+
+    const app = createApp({
+      template: `
+        <div id='quotes'>
+          <quote v-for="item in quotes" :item="item" @remove-from-list="removeFromList"></quote>
+        </div>
+        <input v-model="new_quote_address" placeholder="add" class="pretty" required/>
+        <input @click="createQuote" type="submit" class="pretty btn" value="Add quote"/>`,
+      data() {
+        return {
+          quotes: quotesAll,
+          // quotes: ['zah:1:3', 'in:2:5'],
+          new_quote_address: '',
+          subject_id: '<%= @subject._id.to_s %>',
+        }
+      },
+
+      methods: {
+        createQuote(e) {
+          const params = {
+            subject_id: this.subject_id,
+            quote_address: this.new_quote_address,
+          };
+          const self = this;
+          axios.post('/ru/api/quotes/add/', params)
+          .then(function (response) {
+            const data = response.data;
+            const newItem = {id: data.id, address: data.address};
+            self.quotes.push(newItem);
+            self.new_quote_address = '';
+          })
+          .catch(function (error) {
+            console.log('error', error);
+          });
+        },
+
+        removeFromList(item) {
+          const index = this.quotes.indexOf(item);
+          if (index > -1) { // only splice array when item is found
+            this.quotes.splice(index, 1); // 2nd parameter means remove one item only
+          };
+        },
+
+      },
+    });
+
+
+    app.component('quote', {
+      template: `<span @click="del">x</span><a :href="link">{{ item.address }}</a>`,
+      props: {
+        item: { id: '', address: '' }
+      },
+      data() {
+        return {
+          subject_id: '<%= @subject._id.to_s %>',
+        }
+      },
+      computed: {
+        link() {
+          let href = this.item.address;
+
+          try {
+            const [book, chapter, line] = href.split(':');
+            href = '/' + book + '/' + chapter + '/#L' + line;
+            return href;
+          } catch (error) {
+            return href;
+          }
+        }
+      },
+
+      methods: {
+        del(e) {
+          if (confirm("Remove? " + this.item.address)) {
+            const params = { id: this.item.id };
+            const self = this;
+            axios.delete('/ru/api/quotes/del/', { data: params })
+            .then(function (response) {
+              self.$emit("remove-from-list", self.item);
+            })
+            .catch(function (error) {
+              console.log('error', error);
+            });
+          };
+        },
+      },
+    });
+
+    app.mount('#quotes');
+
+  </script>
+<% end %>

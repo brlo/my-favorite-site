@@ -44,10 +44,24 @@ en:
     any_book: Any book
     old_testament: Old Testament
     new_testament: New Testament
+    gospel: Gospel
     similar_phrase: Similar phrase
     exact_phrase: Exact Phrase
     meta_description: "Search \"%{search}\". Matches: %{matches}."
     meta_description_first_verse: " Verse: %{verse}"
+
+  login_page:
+    title: 'Sign in'
+
+  profile_page:
+    title: 'Me'
+    logout: Logout
+
+  quotes_page:
+    title: Bible quotes
+
+  quote_page:
+    title: "%{term} — quotes"
 
   bib_translations:
     ru: Russian
@@ -77,6 +91,8 @@ en:
     night: Night
     veth_zavet: Old Testament
     nov_zavet: New Testament
+    profile: Profile
+    login: Sign in
 
   settings:
     color_scheme: Colors

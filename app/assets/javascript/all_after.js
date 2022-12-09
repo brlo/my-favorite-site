@@ -198,3 +198,20 @@ settingsArea.enableListeners = function () {
 };
 
 settingsArea.enableListeners();
+
+// ================================
+// LOGOUT
+
+window.BX.logout = function() {
+  axios.delete('/ru/logout/')
+  .then(function (response) {
+    window.location.href = '/';
+  })
+  .catch(function (error) {
+    console.log(error);
+  });
+};
+
+
+
+

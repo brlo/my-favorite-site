@@ -2,6 +2,7 @@
  * Vue.js v3.2.39
  * Released under the MIT License.
  *
+ * PROD:
  * download: https://unpkg.com/browse/vue@3.2.39/dist/vue.global.prod.js
  *
  */

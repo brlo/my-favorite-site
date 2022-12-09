@@ -19,7 +19,7 @@ default: &default
 
 development:
   <<: *default
-  database: db/RU-RSTM.sqlite3
+  database: db/GR-LXX-KOINE-Barach.SQLite3
 
 # greek: LXX + Byz
 # hebrew - OSM+ - это ленинградский кодекс, норм!

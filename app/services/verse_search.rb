@@ -19,7 +19,7 @@ class VerseSearch
     accuracy = params[:accuracy]
     lang = params[:lang]
     zavet = nil
-    book = nil
+    books = nil
 
     _book = params[:book]
     if _book.present?
@@ -27,22 +27,25 @@ class VerseSearch
         zavet = 1
       elsif _book == 'z2'
         zavet = 2
+      elsif _book == 'e4'
+        books = %w(mf mk lk in)
       else
-        book = _book
+        books = [_book]
       end
     end
 
     # валидации
-    if book.present?
-      return [] unless ::BOOKS.has_key?(book)
+    if books.present?
+      return [] unless books.all? { |b| ::BOOKS.has_key?(b) }
     end
 
     if ::CacheSearch::SEARCH_LANGS.exclude?(lang)
       return []
     end
 
+    cache_search_service = ::CacheSearch.new
     # фильтрация
-    text = ::CacheSearch.safe_term(text)
+    text = cache_search_service.safe_term(text)
 
     # не ищем меньше 3 символов и больше 100
     return [] unless text.present? && text.length > 2
@@ -50,7 +53,7 @@ class VerseSearch
     # подготовка запроса с предварительной проверкой результата в кэше
     verses_json =
     # begin
-    ::CacheSearch.get(text, accuracy, lang) do
+    cache_search_service.get(text, accuracy, lang) do
       # готовим запрос
       search_params = prepare_search_params(text, accuracy, lang)
 
@@ -68,7 +71,7 @@ class VerseSearch
 
     # в кэш положили поиск по всем книгам, но клиенту может быть нужен фильтр
     verses_json = verses_json.select { |v| v['z'] == zavet } if zavet
-    verses_json = verses_json.select { |v| v['bc'] == book } if book
+    verses_json = verses_json.select { |v| books.include?(v['bc']) } if books.present?
 
     verses_json
   end
@@ -115,9 +118,9 @@ class VerseSearch
 
     search_params['text'] = /#{regex}/i
 
-    puts "==="
-    puts "search_params: #{search_params}"
-    puts "==="
+    # puts "==="
+    # puts "search_params: #{search_params}"
+    # puts "==="
     search_params
   end
 

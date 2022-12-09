@@ -108,4 +108,10 @@ class VersesController < ApplicationController
   def redirect_to_new_address
     redirect_to "/#{I18n.locale}/#{params[:book_code]}/#{params[:chapter]}/", status: 301
   end
+
+  # Redirect: /ru/f/Дан. 1:2 -> /dan/1/#L2
+  def goto_verse_by_human_address
+    human_address = params[:human_address]
+    redirect_to ::AddressConverter.human_to_link(human_address)
+  end
 end
