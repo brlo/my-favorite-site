@@ -1,0 +1,23 @@
+[ <%= link_to "📚 Темы", admin_quotes_subjects_path %> ] —
+[ <%= link_to "📝 Страницы", admin_quotes_pages_path %> ] —
+<% if logged_in?() %>
+  [ <a href='/ru/profile'>👤 <%= I18n.t('menu.profile') %></a> ]
+<% else %>
+  [ <a href="<%= login_path(locale: ::I18n.locale) %>">🔑 <%= I18n.t('menu.login') %></a> ]
+<% end %>
+
+<p style="color: green"><%= notice %></p>
+
+<h1>Страницы цитат</h1>
+
+<br>
+<%= link_to "＋ Новая страница", new_admin_quotes_page_path %>
+<br>
+<br>
+<div id="quotes_pages">
+  <% @quotes_pages.each do |page| %>
+    <%= link_to page.title, [:admin, page] %>
+    <br>
+  <% end %>
+</div>
+

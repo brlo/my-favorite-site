@@ -1,19 +1,60 @@
-.quote .topic {
-  text-align: center;
-}
-.row {
-  display: flex;
-  flex-direction: row;
+#quotes-content .level .level {
+  margin-left: 10px;
 }
 
-.column {
-  flex: 50%;
+#quotes-content .subject-desc {
+  font-size: 0.9em;
 }
 
-.reason {
-  background-color: #72ff7c3d;
+#quotes-content .items h2 {
+  font-size: 1.8em;
 }
 
-.protestation {
-  background-color: #ff7b7b23;
+#quotes-content .items .items h2 {
+  font-size: 1.3em;
+}
+
+#quotes-content .pages {
+  margin: 0 0 20px 0;
+}
+
+#quotes-content #quotes {
+  margin: 20px 0;
+  font-size: 0.8em;
+  color: transparent;
+}
+
+#quotes-content #page-body {
+  margin: 20px 0;
+}
+
+.night-mode #quotes-content .subject {
+  color: #b2bbc1;
+}
+
+#quotes > a {
+  display: inline-block;
+  padding: 4px 7px;
+  margin-right: 4px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  background-color: #3fa353;
+  color: white;
+  text-decoration: none;
+  font-size: 1em;
+}
+
+#quotes > a:hover {
+  background-color:#32c450;
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+}
+
+blockquote {
+  border-left: 2px solid #90b990;
+  font-family: Arial,Helvetica,sans-serif;
+  font-style: italic;
+  margin: 20px 0;
+  padding: 5px 10px;
 }

@@ -1,0 +1,18 @@
+module Admin
+  class BaseController < ApplicationController
+    before_action :auth
+    before_action :reject_not_admins
+
+    def auth
+      if !logged_in?()
+        redirect_to login_path
+      end
+    end
+
+    def reject_not_admins
+      if ::Current.user.is_admin != true
+        raise ActionController::RoutingError.new('Not Found')
+      end
+    end
+  end
+end

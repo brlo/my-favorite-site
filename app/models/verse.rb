@@ -80,6 +80,7 @@ end
 
 #   book = books_id_code[s.book_number.to_i]
 #   book_info = ::BOOKS[book]
+#   next if book_info.nil?
 #   id = book_info[:id]
 #   zavet = book_info[:zavet]
 

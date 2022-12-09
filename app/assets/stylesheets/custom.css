@@ -215,6 +215,14 @@ input.pretty:focus {
   box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
 }
 
+input.btn {
+  background-color: #3a824b;
+  color: white;
+}
+input.btn:active, input.btn:focus {
+  background-color: #317441;
+}
+
 /* TEXT TAGS  */
 
 j {
@@ -292,4 +300,12 @@ body.night-mode {
 
 .night-mode #search-input {
   color: #59b682;
+}
+
+.night-mode input.btn {
+  background-color: #3a824b;
+  color: white;
+}
+.night-mode input.btn:active, .night-mode input.btn:focus {
+  background-color: #317441;
 }

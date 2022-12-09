@@ -1,18 +1,10 @@
-<div class='quote'>
-  <h1 class='topic'><%= @topic_name %></h1>
-  <div class='row'>
-    <div class='column reason'>
-      <h3>Основания</h3>
-      <% @quotes_yes.each do |quote| %>
-        <% book, chapter, line = quote.address.split(':') %>
-        <a href="<%= "/#{book}/#{chapter}/#L#{line}" %>"><%= quote.address %></a>
-      <% end %>
-    </div>
-    <div class='column protestation'>
-      <h3>Возражения</h3>
-      <% @quotes_no.each do |quote| %>
-        <%= quote.address %>
-      <% end %>
-    </div>
+<article id='quotes-content' class="text-<%= text_size_from_cookies %>" itemscope itemtype="http://schema.org/Article">
+  <h1 id='subject' itemprop='name'><%= @page.title %></h1>
+  <div id='quotes'>
+    <% is_first = true %>
+    <% @page.addresses.each do |quote_human,path| %><%= is_first ? (is_first=false; '') : ', ' %><a href="<%= my_link_to(path) %>"><%= quote_human %></a><% end %>
+  </div>
+  <div id='page-body' itemprop='articleBody'>
+    <%= sanitize(@page.body, tags: %w(div ul ol li h1 h2 blockquote b i strike u hr br a)).html_safe %>
   </div>
 </div>

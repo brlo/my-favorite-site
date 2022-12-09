@@ -1,0 +1,47 @@
+<%= form_with(model: [:admin, quotes_subject]) do |form| %>
+  <% if quotes_subject.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(quotes_subject.errors.count, "error") %> Ошибки при сохранении:</h2>
+
+      <ul>
+        <% quotes_subject.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label 'Заголовок RU 🇷🇺:', style: "display: block" %>
+    <%= form.text_area :title_ru %>
+  </div>
+
+  <div>
+    <%= form.label 'Заголовок EN 🇺🇸:', style: "display: block" %>
+    <%= form.text_area :title_en %>
+  </div>
+
+  <div>
+    <%= form.label 'Заголовок GR 🇬🇷:', style: "display: block" %>
+    <%= form.text_area :title_gr %>
+  </div>
+
+  <div>
+    <%= form.label 'Заголовок JP 🇯🇵:', style: "display: block" %>
+    <%= form.text_area :title_jp %>
+  </div>
+
+  <div>
+    <%= form.label 'Описание', style: "display: block" %>
+    <%= form.text_area :desc %>
+  </div>
+
+  <div>
+    <%= form.label 'Родитель', style: "display: block" %>
+    <%= form.select(:p_id, ::QuotesSubject.where(p_id: nil).pluck(:"title_#{ ::I18n.locale }", :id), {include_blank: 'Корневая тема'}, { :class => 'choices' }) %>
+  </div>
+<br>
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

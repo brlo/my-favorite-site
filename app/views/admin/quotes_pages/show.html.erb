@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<div>
+  [ <%= link_to "⏎ К списку", admin_quotes_pages_path %> ] —
+  [ <%= link_to "🏞 Посмотреть на сайте", "/#{@quotes_page.lang}/q/#{@quotes_page.path}" %> ] —
+  [ <%= link_to "🔧 Редактировать", edit_admin_quotes_page_path(@quotes_page) %> ]
+
+  <br>
+  <br>
+  <%= button_to "Удалить", [:admin, @quotes_page], method: :delete %>
+</div>
+
+<%= render @quotes_page %>
+

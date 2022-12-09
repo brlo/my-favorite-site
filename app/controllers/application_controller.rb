@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+  helper_method :logged_in?
+
+  around_action :set_current_user
   before_action :set_is_night_mode
   before_action :set_locale
 
@@ -33,7 +36,7 @@ class ApplicationController < ActionController::Base
 
   def set_locale
     # params[:locale] - заполняется в routes
-    I18n.locale = params[:locale] || 'ru'
+    ::I18n.locale = params[:locale] || 'ru'
     # case current_lang()
     # when 'ru', 'csl-pnm', 'csl-ru'
     #   :ru
@@ -42,6 +45,23 @@ class ApplicationController < ActionController::Base
     # else
     #   :ru
     # end
+  end
+
+  def logged_in?
+    ::Current.user.logged_in?()
+  end
+
+  def authorized
+    redirect to login_path unless logged_in?()
+  end
+
+  def set_current_user
+    user = session[:user_id].nil? ? nil : ::User.find_by(id: session[:user_id])
+    ::Current.user = ::CurrentUser.new(user)
+    yield # тут выполниться весь наш запрос
+  ensure
+    # to address the thread variable leak issues in Puma/Thin webserver
+    ::Current.user = nil
   end
 
   def build_canonical_url(path)

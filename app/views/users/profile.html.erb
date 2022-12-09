@@ -1,0 +1,37 @@
+<%= form_tag profile_update_path(locale: ::I18n.locale) do %>
+  <div>
+    <label class='hint' for='user[username]'>Enter Username</label><br>
+    <input class='pretty' type='text' name='user[username]'
+           id='user[username]' value='<%= @user.username %>'
+           autocomplete='username' disabled>
+  </div>
+  <div>
+    <label class='hint' for='user[name]'>Name</label><br>
+    <input class='pretty' type='text' name='user[name]'
+           id='user[name]' value='<%= @user.name %>'
+           autocomplete='name' disabled>
+  </div>
+  <div>
+    <label class='hint' for='user[new_password]'>New password</label><br>
+    <input class='pretty' type="password" name="user[new_password]" id="user_new_password" autocomplete="off">
+  </div>
+  <div>
+    <label class='hint' for='user[new_password_confirmation]'>Password confirmation</label><br>
+    <input class='pretty' type="password" name="user[new_password_confirmation]" id="user_new_password_confirmation" autocomplete="off">
+  </div>
+  <div>
+    <label class='hint' for='user[allow_ips]'>Allow IPs</label><br>
+    <% @user.allow_ips.each do |ip| %>
+      <input class='pretty' type="textbox" name="user[allow_ips][]" value="<%= ip %>"><br><br>
+    <% end %>
+    <input class='pretty' type="textbox" name="user[allow_ips][]" value="">
+  </div>
+  <div>
+    <br>
+    <%= submit_tag "Update", class: 'pretty btn' %>
+  </div>
+<% end %>
+
+<div style='color: red'>
+  <a onclick='window.BX.logout(); return false;'><%= I18n.t('profile_page.logout') %></a>
+</div>
