@@ -21,7 +21,7 @@
   </div>
   <div>
     <label class='hint' for='user[allow_ips]'>Allow IPs</label><br>
-    <% @user.allow_ips.each do |ip| %>
+    <% @user.allow_ips&.each do |ip| %>
       <input class='pretty' type="textbox" name="user[allow_ips][]" value="<%= ip %>"><br><br>
     <% end %>
     <input class='pretty' type="textbox" name="user[allow_ips][]" value="">

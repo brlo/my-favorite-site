@@ -17,7 +17,7 @@ class UsersController < ApplicationController
       ::User.by_site.where(username: params[:username]).first
     end
 
-    if @user && @user.authenticate(params[:password]) #&& @user.allow_ip?(request.ip)
+    if @user && @user.authenticate(params[:password]) && @user.allow_ip?(request.ip)
       session[:user_id] = @user._id.to_s
       redirect_to chapter_path(locale: ::I18n.locale, book_code: 'gen', chapter: 1)
     else

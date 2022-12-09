@@ -1,5 +1,5 @@
-<script src='/assets/vendor/pell.js'></script>
-<link rel="stylesheet" href='/assets/pell.css'>
+<%= javascript_include_tag "admin", media: "all" %>
+<%= stylesheet_link_tag "pell" %>
 
 <%= form_with(model: [:admin, quotes_page]) do |form| %>
   <% if quotes_page.errors.any? %>
