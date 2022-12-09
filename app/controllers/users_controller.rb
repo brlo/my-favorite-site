@@ -33,10 +33,11 @@ class UsersController < ApplicationController
 
     if auth_service.valid?
       user = auth_service.find_or_create_user!
-      session[:user_id] = @user._id.to_s
-      redirect_to chapter_path(locale: ::I18n.locale, book_code: 'gen', chapter: 1)
+      session[:user_id] = user._id.to_s
+      render json: {'success': 'ok', url: chapter_path(locale: ::I18n.locale, book_code: 'gen', chapter: 1)}
     else
-      redirect_to login_path(locale: ::I18n.locale)
+      render json: {'success': 'fail', params: params}
+      # redirect_to login_path(locale: ::I18n.locale)
     end
   end
 
