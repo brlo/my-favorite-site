@@ -16,28 +16,28 @@
 
 <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit class: 'pretty green' %>
   </div>
 <br>
 
-  <div>
+  <div class='large-block'>
+    <%= form.label 'Язык', style: "display: block" %>
+    <%= form.select(:lang, [['🇷🇺 RU','ru'], ['🇺🇸 EN','en'], ['🇬🇷 GR','gr'], ['🇯🇵 JP','jp']]) %>
+  </div>
+
+  <div class='large-block'>
     <%= form.label 'Тема', style: "display: block" %>
     <%= form.select(:s_id, ::QuotesSubject.pluck(:"title_#{ ::I18n.locale }", :id), {}, { :class => 'choices' }) %>
   </div>
 
-  <div>
+  <div class='large-block'>
     <%= form.label 'Заголовок', style: "display: block" %>
     <%= form.text_area :title %>
   </div>
 
-  <div>
+  <div class='large-block'>
     <%= form.label 'URL-путь', style: "display: block" %>
     <%= form.text_area :path %>
-  </div>
-
-  <div>
-    <%= form.label 'Язык', style: "display: block" %>
-    <%= form.text_field :lang %>
   </div>
 
   <div>

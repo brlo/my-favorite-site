@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div>
+  <div class='large-block'>
     <%= form.label 'Заголовок RU 🇷🇺:', style: "display: block" %>
     <%= form.text_area :title_ru %>
   </div>
 
-  <div>
+  <div class='large-block'>
     <%= form.label 'Заголовок EN 🇺🇸:', style: "display: block" %>
     <%= form.text_area :title_en %>
   </div>
 
-  <div>
+  <div class='large-block'>
     <%= form.label 'Заголовок GR 🇬🇷:', style: "display: block" %>
     <%= form.text_area :title_gr %>
   </div>
 
-  <div>
+  <div class='large-block'>
     <%= form.label 'Заголовок JP 🇯🇵:', style: "display: block" %>
     <%= form.text_area :title_jp %>
   </div>
@@ -36,12 +36,12 @@
     <%= form.text_area :desc %>
   </div>
 
-  <div>
+  <div class='large-block'>
     <%= form.label 'Родитель', style: "display: block" %>
     <%= form.select(:p_id, ::QuotesSubject.where(p_id: nil).pluck(:"title_#{ ::I18n.locale }", :id), {include_blank: 'Корневая тема'}, { :class => 'choices' }) %>
   </div>
 <br>
   <div>
-    <%= form.submit %>
+    <%= form.submit class: 'pretty green' %>
   </div>
 <% end %>

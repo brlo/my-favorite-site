@@ -229,6 +229,19 @@ j {
   color: #c54a4a;
 }
 
+.night-mode b {
+  color: #ddd;
+}
+
+/* FORM */
+
+.large-block {
+  margin: 15px 0;
+  font-size: 1.5em;
+}
+.large-block select {
+  font-size: 1.2em;
+}
 
 /* =========== NIGHT MODE =========== */
 
