@@ -14,6 +14,10 @@ class AuthTelegram
     @attrs = attrs
   end
 
+  def valid?
+    verified_user_data().present?
+  end
+
   def verified_user_data
     verification_hash = attrs[:hash]
 
@@ -43,12 +47,12 @@ class AuthTelegram
       raise('Data is NOT from Telegram')
     end
 
-    if (Time.now.to_i - auth_data['auth_date']) > 86400)
+    if (Time.now.to_i - auth_data['auth_date']) > 86400
       # старые данные (более 24h)
       raise('Data is outdated')
     end
 
-    true
+    auth_data
   end
 
   def find_or_create_user!
@@ -58,10 +62,15 @@ class AuthTelegram
     new_name = "#{attrs[:first_name]} #{attrs[:last_name]}"
 
     if @user.nil?
+      # random password
+      psw = (0...8).map { (65 + rand(26)).chr }.join
+      # create user
       @user = ::User.create!(
         uid: attrs[:id],
         username: new_username,
         name: new_name,
+        password: psw,
+        password_confirmation: psw,
         provider: 'telegram',
       )
     else
