@@ -16,10 +16,11 @@
   <% @quotes_subjects.each do |subject| %>
     <div class='quotes-subject'>
       <% title = "#{subject.title_ru} / #{ subject.title_en } / #{subject.title_gr} / #{subject.title_jp}" %>
-      <%= link_to title, [:admin, subject] %>
-      <br>
-      <%= subject.desc %>
-      <br>
+      <%= subject.position %>. <b><%= link_to title, [:admin, subject] %></b><br>
+      <% if subject.desc_ru.present? %>RU: <%= subject.desc_ru %><br><% end %>
+      <% if subject.desc_en.present? %>EN: <%= subject.desc_en %><br><% end %>
+      <% if subject.desc_gr.present? %>GR: <%= subject.desc_gr %><br><% end %>
+      <% if subject.desc_jp.present? %>JP: <%= subject.desc_jp %><br><% end %>
       <br>
     </div>
   <% end %>

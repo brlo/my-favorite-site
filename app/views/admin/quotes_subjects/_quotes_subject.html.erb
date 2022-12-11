@@ -1,27 +1,22 @@
 <div id="<%= dom_id quotes_subject %>">
   <p>
-    <strong>Заголовок RU 🇷🇺:</strong>
-    <%= quotes_subject.title_ru %>
+    <strong>Позиция:</strong> <%= quotes_subject.position %>
   </p>
 
   <p>
-    <strong>Заголовок EN 🇺🇸:</strong>
-    <%= quotes_subject.title_en %>
-  </p>
-
-  <p>
-    <strong>Заголовок GR 🇬🇷:</strong>
-    <%= quotes_subject.title_gr %>
-  </p>
-
-  <p>
-    <strong>Заголовок JP 🇯🇵:</strong>
+    <strong>Заголовок 🇷🇺🇺🇸🇬🇷🇯🇵:</strong>
+    <%= quotes_subject.title_ru %> /
+    <%= quotes_subject.title_en %> /
+    <%= quotes_subject.title_gr %> /
     <%= quotes_subject.title_jp %>
   </p>
 
   <p>
-    <strong>Описание:</strong>
-    <%= quotes_subject.desc %>
+    <strong>Описание 🇷🇺🇺🇸🇬🇷🇯🇵:</strong>
+    <%= quotes_subject.desc_ru %> /
+    <%= quotes_subject.desc_en %> /
+    <%= quotes_subject.desc_gr %> /
+    <%= quotes_subject.desc_jp %>
   </p>
 
   <p>

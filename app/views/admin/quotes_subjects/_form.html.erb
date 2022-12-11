@@ -12,28 +12,24 @@
   <% end %>
 
   <div class='large-block'>
-    <%= form.label 'Заголовок RU 🇷🇺:', style: "display: block" %>
-    <%= form.text_area :title_ru %>
+    <%= form.label 'Позиция', style: "display: block" %>
+    <%= form.number_field :position, step: 1 %>
   </div>
 
   <div class='large-block'>
-    <%= form.label 'Заголовок EN 🇺🇸:', style: "display: block" %>
-    <%= form.text_area :title_en %>
-  </div>
-
-  <div class='large-block'>
-    <%= form.label 'Заголовок GR 🇬🇷:', style: "display: block" %>
-    <%= form.text_area :title_gr %>
-  </div>
-
-  <div class='large-block'>
-    <%= form.label 'Заголовок JP 🇯🇵:', style: "display: block" %>
-    <%= form.text_area :title_jp %>
+    <%= form.label 'Заголовок', style: "display: block" %>
+    RU 🇷🇺: <%= form.text_area :title_ru %><br>
+    EN 🇺🇸: <%= form.text_area :title_en %><br>
+    GR 🇬🇷: <%= form.text_area :title_gr %><br>
+    JP 🇯🇵: <%= form.text_area :title_jp %>
   </div>
 
   <div>
     <%= form.label 'Описание', style: "display: block" %>
-    <%= form.text_area :desc %>
+    RU 🇷🇺: <%= form.text_area :desc_ru %><br>
+    EN 🇺🇸: <%= form.text_area :desc_en %><br>
+    GR 🇬🇷: <%= form.text_area :desc_gr %><br>
+    JP 🇯🇵: <%= form.text_area :desc_jp %>
   </div>
 
   <div class='large-block'>
@@ -42,6 +38,6 @@
   </div>
 <br>
   <div>
-    <%= form.submit class: 'pretty green' %>
+    <%= form.submit class: 'pretty btn' %>
   </div>
 <% end %>

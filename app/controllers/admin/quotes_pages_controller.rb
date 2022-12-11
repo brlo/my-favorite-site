@@ -4,7 +4,7 @@ module Admin
 
     # GET /quotes_pages or /quotes_pages.json
     def index
-      @quotes_pages = QuotesPage.all
+      @quotes_pages = QuotesPage.order(position: :asc).all
     end
 
     # GET /quotes_pages/1 or /quotes_pages/1.json
@@ -67,7 +67,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def quotes_page_params
-      params.require(:quotes_page).permit(:title, :path, :lang, :body, :s_id)
+      params.require(:quotes_page).permit(:title, :path, :lang, :body, :s_id, :position)
     end
   end
 end

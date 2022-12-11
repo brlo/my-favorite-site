@@ -10,7 +10,12 @@ class QuotesSubject
   field :title_gr, type: String
   field :title_jp, type: String
   # описание
-  field :desc, type: String
+  field :desc_ru, type: String
+  field :desc_en, type: String
+  field :desc_gr, type: String
+  field :desc_jp, type: String
+  # место в списке (1 - первое, и тд)
+  field :position, type: Integer
   # id старшей темы
   field :p_id, as: :parent_id, type: String
   # время создания можно получать из _id во так: id.generation_time
@@ -22,7 +27,7 @@ class QuotesSubject
   # для поиска в нужной книге
   index({p_id: 1}, {background: true})
 
-  before_validation :sanitize_attributes
+  before_validation :normalize_attributes
 
   validates :title_ru, presence: true
 
@@ -33,7 +38,7 @@ class QuotesSubject
     # 1 => [...] # вложения
     parent__els = ::Hash.new([].freeze)
 
-    ::QuotesSubject.all.each do |s|
+    ::QuotesSubject.all.order(position: :asc).each do |s|
       parent__els[s.p_id] += [{
         id: s.id.to_s,
         p_id: s.p_id&.to_s,
@@ -46,7 +51,7 @@ class QuotesSubject
 
     # страницы, сгруппированные по {s_id => [page_path, ...]}
     pages = ::Hash.new([])
-    ::QuotesPage.where(lang: ::I18n.locale).pluck(:s_id, :title, :path).to_a.map do |s_id, title, path|
+    ::QuotesPage.where(lang: ::I18n.locale).order(position: :asc).pluck(:s_id, :title, :path).to_a.map do |s_id, title, path|
       pages[s_id] += [[title, path]]
     end
 
@@ -74,15 +79,24 @@ class QuotesSubject
 
   private
 
-  def sanitize_attributes
-    self.title_ru = self.title_ru.strip
-    self.title_en = self.title_en.strip
-    self.title_gr = self.title_gr.strip
-    self.title_jp = self.title_jp.strip
-    self.desc = self.desc.strip
+  def normalize_attributes
+    self.title_ru = self.title_ru.to_s.strip
+    self.title_en = self.title_en.to_s.strip
+    self.title_gr = self.title_gr.to_s.strip
+    self.title_jp = self.title_jp.to_s.strip
+    self.desc_ru = self.desc_ru.to_s.strip
+    self.desc_en = self.desc_en.to_s.strip
+    self.desc_gr = self.desc_gr.to_s.strip
+    self.desc_jp = self.desc_jp.to_s.strip
     self.p_id = self.p_id.presence
+
+    if self.position.blank?
+      self.position = QuotesSubject.where(:position.nin => [nil, '']).order(position: :asc).last&.position.to_i + 1
+    end
   end
 end
+
+# i=1;QuotesSubject.each{|s| s.update!(position: i); i+=1; }
 
 # qs = QuotesSubject.create!(name_ru: 'Бог', name_en: 'God', p_id: nil)
 # QuotesSubject.create!(name_ru: 'Бог один', name_en: 'God is one', p_id: qs._id.to_s)

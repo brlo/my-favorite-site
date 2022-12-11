@@ -237,10 +237,10 @@ j {
 
 .large-block {
   margin: 15px 0;
-  font-size: 1.5em;
+  font-size: 1.2em;
 }
 .large-block select {
-  font-size: 1.2em;
+  font-size: 1em;
 }
 
 /* =========== NIGHT MODE =========== */

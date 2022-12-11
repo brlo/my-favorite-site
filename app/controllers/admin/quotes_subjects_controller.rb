@@ -4,7 +4,7 @@ module Admin
 
     # GET /quotes_subjects or /quotes_subjects.json
     def index
-      @quotes_subjects = QuotesSubject.all
+      @quotes_subjects = QuotesSubject.order(position: 1).all
     end
 
     # GET /quotes_subjects/1 or /quotes_subjects/1.json
@@ -66,7 +66,10 @@ module Admin
 
       # Only allow a list of trusted parameters through.
       def quotes_subject_params
-        params.require(:quotes_subject).permit(:title_ru, :title_en, :title_gr, :title_jp, :desc, :p_id)
+        params.require(:quotes_subject).permit(
+          :title_ru, :title_en, :title_gr, :title_jp,
+          :desc_ru, :desc_en, :desc_gr, :desc_jp,
+          :p_id, :position)
       end
   end
 end

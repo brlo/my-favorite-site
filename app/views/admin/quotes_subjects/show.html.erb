@@ -1,10 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @quotes_subject %>
-
 <div>
   <%= link_to "Редактировать", edit_admin_quotes_subject_path(@quotes_subject, locale: 'ru') %> |
   <%= link_to "К списку", admin_quotes_subjects_path %>
   <br>
   <%= button_to "Удалить", admin_quotes_subject_path(@quotes_subject, locale: 'ru'), method: :delete %>
 </div>
+
+<%= render @quotes_subject %>

@@ -16,7 +16,7 @@
 <br>
 <div id="quotes_pages">
   <% @quotes_pages.each do |page| %>
-    <%= link_to page.title, [:admin, page] %>
+    <%= page.position %>. <b><%= link_to page.title, [:admin, page] %></b> | <%= flag_by_lang(page.lang) %>
     <br>
   <% end %>
 </div>

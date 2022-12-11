@@ -9,12 +9,14 @@ class QuotesPage
   field :path, type: String
   # язык
   field :lang, type: String
-  # язык
+  # текст статьи
   field :body, type: String
   # ссылки на использованные стихи
   field :addresses, type: Array
   # id темы
   field :s_id, as: :subject_id, type: String
+  # место в списке (1 - первое, и тд)
+  field :position, type: Integer
   # время создания можно получать из _id во так: id.generation_time
   field :c_at, as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
 
@@ -25,6 +27,7 @@ class QuotesPage
   index({s_id: 1}, {background: true})
 
   before_validation :grab_quote_addresses
+  before_validation :normalize_attributes
   validates :title, :lang, :s_id, presence: true
 
   # находит в тексте статьи цитаты в скобках, возвращает массив без скобок:
@@ -41,7 +44,20 @@ class QuotesPage
   def grab_quote_addresses
     self.addresses = quotes().map { |q_human| [q_human, ::AddressConverter.human_to_link(q_human)] }
   end
+
+  def normalize_attributes
+    self.title = self.title.to_s.strip
+    self.path = self.path.to_s.strip
+    self.lang = self.lang.to_s.strip
+    self.body = self.body.to_s.strip
+
+    if self.position.blank?
+      self.position = QuotesPage.where(:position.nin => [nil, '']).order(position: :asc).last&.position.to_i + 1
+    end
+  end
 end
+
+# i=10;QuotesPage.each{|s| s.update!(position: i); i+=10; }
 
 # qs = QuotesSubject.create!(name_ru: 'Бог', name_en: 'God', p_id: nil)
 # QuotesSubject.create!(name_ru: 'Бог один', name_en: 'God is one', p_id: qs._id.to_s)

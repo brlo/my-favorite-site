@@ -16,13 +16,18 @@
 
 <br>
   <div>
-    <%= form.submit class: 'pretty green' %>
+    <%= form.submit class: 'pretty btn' %>
   </div>
 <br>
 
   <div class='large-block'>
     <%= form.label 'Язык', style: "display: block" %>
     <%= form.select(:lang, [['🇷🇺 RU','ru'], ['🇺🇸 EN','en'], ['🇬🇷 GR','gr'], ['🇯🇵 JP','jp']]) %>
+  </div>
+
+  <div class='large-block'>
+    <%= form.label 'Позиция', style: "display: block" %>
+    <%= form.number_field :position, step: 1 %>
   </div>
 
   <div class='large-block'>

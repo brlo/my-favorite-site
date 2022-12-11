@@ -46,4 +46,13 @@ module ApplicationHelper
       path
     end
   end
+
+  def flag_by_lang lang
+    case lang.to_s.downcase
+    when 'ru'; '🇷🇺'
+    when 'en'; '🇺🇸'
+    when 'gr'; '🇬🇷'
+    when 'jp'; '🇯🇵'
+    end
+  end
 end
