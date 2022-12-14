@@ -91,6 +91,21 @@ menuBooks.hide = function () {
 menuBooks.enableListeners = function () {
   if (!menuBooks.el) return;
 
+  // Клик на элементы, вызвающие меню
+  const currBookLink = document.getElementById('current-book');
+  if (currBookLink) {
+    currBookLink.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      menuBooks.show('book-clicked');
+  })};
+
+  const bibLink = document.getElementById('bible-link');
+  if (bibLink) {
+    bibLink.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      menuBooks.show('bible-clicked');
+  })};
+
   // Клик за границами меню прячет меню
   document.addEventListener('click', event => {
     const el = event.target;

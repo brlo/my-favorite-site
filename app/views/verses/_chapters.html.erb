@@ -8,7 +8,7 @@
       style='text-align: center;'
       itemprop="headline"
     >
-    <a href="javascript:;" id='current-book' onclick="menuBooks.show('book-clicked');"><%= ::I18n.t("books.full.#{@book_code}") %></a>
+    <a href="<%= my_link_to("/#{@book_code}/1/") %>" id='current-book'><%= ::I18n.t("books.full.#{@book_code}") %></a>
   </h1>
 
 <% if @verses.none? %>

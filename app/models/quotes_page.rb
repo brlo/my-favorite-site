@@ -51,6 +51,12 @@ class QuotesPage
     self.lang = self.lang.to_s.strip
     self.body = self.body.to_s.strip
 
+    sanitizer = Rails::Html::SafeListSanitizer.new
+    self.body = sanitizer.sanitize(
+      self.body,
+      tags: %w(div ul ol li h1 h2 blockquote b i strike u hr br a)
+    )
+
     if self.position.blank?
       self.position = QuotesPage.where(:position.nin => [nil, '']).order(position: :asc).last&.position.to_i + 1
     end
