@@ -10,7 +10,7 @@
       axios.post('/ru/login_telegram/', params)
       .then(function (response) {
         const data = response.data;
-        if (data.status == 'ok') {
+        if (data.success == 'ok') {
           window.location.href = data.url;
         } else {
           console.log(data);
