@@ -69,7 +69,7 @@ class VersesController < ApplicationController
     # https://www.mongodb.com/docs/manual/core/link-text-indexes/
     if params[:t].present?
       # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9-,.
-      @search_text = params[:t].gsub(/[^\sA-ZА-ЯЁ0-9\-\,\.\:\;]*/i, '')
+      @search_text = params[:t].gsub(/[^\s[[:alpha:]]\-\,\.\:\;]*/i, '')
       @search_accuracy = params[:acc]
       @search_lang = params[:l]
       @search_books = params[:book]

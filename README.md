@@ -86,3 +86,11 @@ alias bib_log='sudo docker logs -f bibleox'
 alias bib_docker='sudo docker exec -it bibleox bash'
 alias bib_cache_clear='sudo rm /projects/bibleox/db/cache_search/*/*/*.json'
 ```
+
+* DOMEN
+
+зарегистрирован в reg.ru
+
+обслуживается в https://dash.cloudflare.com/e5a70e8e380aa947cd45cdecbd410e6f/bibleox.com/dns/records
+
+через api-cloudflare происходит автоматическое продление сертификата letsencrypt на сервере bibleox
