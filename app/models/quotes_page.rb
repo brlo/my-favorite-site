@@ -36,8 +36,14 @@ class QuotesPage
   #   "King 1:2"
   # ]
   def quotes
-    regex = /\([[[:alnum:]]\s]{1,20}\.?\s*\d{1,3}:?[\d\,\-]{0,20}\)/i
-    self.body.scan(regex).map{ |s| s.gsub(/[()]/, '') }
+    # старый универсальный способ находить ссылки в скобках
+    # regex = /\([[[:alnum:]]\s]{1,20}\.?\s*\d{1,3}:?[\d\,\-]{0,20}\)/i
+
+    # новый способ находить ссылки без скобок, в том числе и много ссылок через запятую
+    regex = /([1-4\-аяое\s]*(Быт|Исх|Лев|Чис|Втор|Нав|Суд|Руф|Цар|Пар|Ездр|Неем|Тов|Иудифь|Есф|Притч|Еккл|Песн|Прем|Сир|Иов|Ис|Иер|Плач|Посл\.Иер|Вар|Иез|Дан|Ос|Иоиль|Ам|Авд|Иона|Мих|Наум|Авв|Соф|Агг|Зах|Мал|Макк|Пс|Мф|Мк|Лк|Ин|Деян|Иак|Пет|Ин|Иуд|Рим|Кор|Гал|Еф|Флп|Кол|Сол|Фес|Тим|Тит|Флм|Евр|Откр|Бытие|Исход|Левит|Числа|Второзаконие|Иисус Навин|Судьи|Руфь|Царств|Паралипоменон|Ездра|Неемия|Ездры|Товит|Иудифь|Есфирь|Притчи|Екклесиаст|Песня Песней|Премудрости Соломона|Сирах|Иов|Исаия|Иеремия|Плач Иеремии|Послание Иеремии|Варух|Иезекииль|Даниил|Осия|Иоиль|Амос|Авдий|Иона|Михей|Наум|Аввакум|Софония|Аггей|Захария|Малахия|Маккавейская|Псалтирь|Матфея|Марка|Луки|Иоанна|Деяния|Деяния апостолов|Иакова|Петра|Иоанна|Иуды|Римлянам|Коринфянам|Галатам|Ефесянам|Филиппийцам|Колосянам|Солунянам|Фессалоникийцам|Тимофею|Титу|Филимону|Евреям|Откровение|Gen|Ex|Lev|Num|Deut|Nav|Judg|Rth|Sam|King|Chron|Ezr|Nehem|Tov|Judf|Est|Prov|Eccl|Song|Solom|Sir|Job|Is|Jer|Lam|lJer|Bar|Ezek|Dan|Hos|Joel|Am|Avd|Jona|Mic|Naum|Habak|Sofon|Hag|Zah|Mal|Mac|Ps|Mt|Mk|Lk|Jn|Act|Jas|Pet|Jn|Juda|Rom|Cor|Gal|Eph|Phil|Col|Thes|Tim|Tit|Phlm|Hebr|Rev|Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|Samuel|Kings|Chronicles|Esdras|Nehemiah|Tobit|Judith|Esther|Proverbs|Ecclesiastes|Song of Solomon|Wisdom|Sirah|Job|Isaiah|Jeremiah|Lamentations|Letter of Jeremiah|Baruch|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zachariah|Malachi|Maccabees|Psalms|Matthew|Mark|Luke|John|Acts|James|Peter|John|Jude|Romans|Corinthians|Galatians|Ephesians|Philippians|Сolossians|Thessalonians|Timothy|Titus|Philemon|Hebrews|Revelation)\.?\s*\d{1,3}:?[\d\,\-]{0,20})[,;]?{1,}/i
+
+    # нужно избавляться от всех html-тэгов, иначе не все ссылки находит
+    sanitizer.sanitize(self.body.to_s).scan(regex).map{ |s| s.first.gsub(/[()]/, '') }
   end
 
   # находим и сохраняем цитаты из текста в спец. поле
@@ -51,7 +57,6 @@ class QuotesPage
     self.lang = self.lang.to_s.strip
     self.body = self.body.to_s.strip
 
-    sanitizer = Rails::Html::SafeListSanitizer.new
     self.body = sanitizer.sanitize(
       self.body,
       tags: %w(div ul ol li h1 h2 blockquote b i strike u hr br a)
@@ -60,6 +65,13 @@ class QuotesPage
     if self.position.blank?
       self.position = QuotesPage.where(:position.nin => [nil, '']).order(position: :asc).last&.position.to_i + 1
     end
+  end
+
+  private
+
+
+  def sanitizer
+    @sanitizer ||= ::Rails::Html::SafeListSanitizer.new
   end
 end
 
