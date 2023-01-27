@@ -134,15 +134,22 @@ selectBar.selectModeClicked = function () {
   return;
 };
 
+// Copy: "quote text" (Aa 1:1)
 selectBar.copyTextAndAddressClicked = function () {
   // сначала прячем контекстное меню, в котором эта ссылка была нажата
   selectBar.copyBurgerClicked();
 
   let text = selectBar.getSelectedText();
   let address = selectBar.getSelectedAddress();
-  let result = '"' + text + '"' + ' (' + address + ')';
 
-  BX.tools.copyText(result);
+  let textBefore = '"' + text + '"' + ' ';
+  let textAfter = '';
+  let linkText = '(' + address + ')';
+  const href = window.location.href;
+  BX.tools.copyTextLink(textBefore, linkText, textAfter, href);
+
+  //let result = '"' + text + '"' + ' (' + address + ')';
+  // BX.tools.copyText(result);
   BX.notifications.addNotification(
     '<t>' + window.BX.localization.copyTitle + ':</t>' +
     '"' + text.slice(0,30) + '..."' +
@@ -152,6 +159,7 @@ selectBar.copyTextAndAddressClicked = function () {
   return;
 };
 
+// Copy: quote text
 selectBar.copyTextClicked = function () {
   // прячем контекстное меню, в котором эта ссылка была нажата
   selectBar.copyBurger.hide();
@@ -163,6 +171,7 @@ selectBar.copyTextClicked = function () {
   return;
 };
 
+// Copy: Aa 1:1
 selectBar.copyAddressClicked = function () {
   // прячем контекстное меню, в котором эта ссылка была нажата
   selectBar.copyBurger.hide();
@@ -170,11 +179,12 @@ selectBar.copyAddressClicked = function () {
   const href = window.location.href;
   const address = selectBar.getSelectedAddress();
 
-  BX.tools.copyTextLink(address, href);
+  BX.tools.copyTextLink('', address, '', href);
   BX.notifications.addNotification('<t>' + window.BX.localization.copyTitle + ':</t>' + address);
   return;
 };
 
+// Copy: https://host.com/
 selectBar.copyLinkClicked = function () {
   // прячем контекстное меню, в котором эта ссылка была нажата
   selectBar.copyBurger.hide();

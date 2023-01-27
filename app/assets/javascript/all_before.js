@@ -32,14 +32,33 @@ window.BX = {
 
       document.body.appendChild(dummy);
       dummy.value = text;
+
+      // clear selection
+      if (window.getSelection) {
+        if (window.getSelection().empty) {  // Chrome
+          window.getSelection().empty();
+        } else if (window.getSelection().removeAllRanges) {  // Firefox
+          window.getSelection().removeAllRanges();
+        }
+      };
+
       dummy.select();
       document.execCommand('copy');
       document.body.removeChild(dummy);
     },
 
-    copyTextLink: function (text, href) {
-      const html = '<a href="' + href + '">' + text + '</a>';
+    copyTextLink: function (textBefore, LinkText, TextAfter, href) {
+      const html = textBefore + '<a href="' + href + '">' + LinkText + '</a>' + TextAfter;
       const dummy = document.createElement('div');
+
+      // clear selection
+      if (window.getSelection) {
+        if (window.getSelection().empty) {  // Chrome
+          window.getSelection().empty();
+        } else if (window.getSelection().removeAllRanges) {  // Firefox
+          window.getSelection().removeAllRanges();
+        }
+      };
 
       document.body.appendChild(dummy);
       dummy.innerHTML = html;
