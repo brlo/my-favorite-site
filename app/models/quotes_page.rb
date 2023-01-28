@@ -73,7 +73,7 @@ class QuotesPage
       # создаём новый элемент-ссылку
       new_node = doc.create_element('a')
       # заполняем href ссылки
-      new_node['href'] = href
+      new_node['href'] = "/#{self.lang}" + href
       # заполняем текст ссылки
       new_node.inner_html = q_human
       # заменяем все подобные адреса в документе на ссылку

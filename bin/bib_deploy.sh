@@ -17,7 +17,7 @@ do
     echo
   fi
 
-  sleep 2
+  sleep 5
 done
 
 exit 0
