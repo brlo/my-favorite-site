@@ -9,9 +9,9 @@ class AddressConverter
 
   # Переводит Зах. 1:1,2-3,8 -> /zah/1/#L1,2-3,8
   def self.human_to_link address
-    address = address.to_s.strip.downcase.gsub(/\s/, '')
+    address = address.to_s.strip.downcase.gsub(/[\s\(\)]/, '')
 
-    # адрес есть, > 3 символо, заканчивается цифрой
+    # адрес есть, > 3 символов, заканчивается цифрой
     if address.present? && address.length > 3 && address =~ /\d$/
       if address =~ /\:/
         # есть двоеточие, значит слева глава, а справа стихи
@@ -32,10 +32,10 @@ class AddressConverter
         str = str + "#L#{lines}" if lines
         str
       else
-        '/'
+        nil
       end
     else
-      '/'
+      nil
     end
   end
 end

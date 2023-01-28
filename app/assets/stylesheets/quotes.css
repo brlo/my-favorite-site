@@ -32,6 +32,16 @@
   color: #b2bbc1;
 }
 
+#quotes-content .pages a {
+  display: inline-block;
+  margin: 0 8px 0 0;
+  border-bottom: 1px solid;
+  text-decoration: none;
+}
+#quotes-content .pages a:hover {
+  border-bottom: 1px solid;
+}
+
 #quotes > a {
   display: inline-block;
   padding: 4px 7px;

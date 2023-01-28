@@ -142,9 +142,9 @@ selectBar.copyTextAndAddressClicked = function () {
   let text = selectBar.getSelectedText();
   let address = selectBar.getSelectedAddress();
 
-  let textBefore = '"' + text + '"' + ' ';
-  let textAfter = '';
-  let linkText = '(' + address + ')';
+  let textBefore = '"' + text + '"' + ' (';
+  let textAfter = ')';
+  let linkText = address;
   const href = window.location.href;
   BX.tools.copyTextLink(textBefore, linkText, textAfter, href);
 

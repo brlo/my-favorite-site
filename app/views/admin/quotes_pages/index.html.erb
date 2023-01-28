@@ -1,3 +1,6 @@
+<%= javascript_include_tag "admin", media: "all" %>
+<%= stylesheet_link_tag "admin" %>
+
 [ <%= link_to "📚 Темы", admin_quotes_subjects_path %> ] —
 [ <%= link_to "📝 Страницы", admin_quotes_pages_path %> ] —
 <% if logged_in?() %>
@@ -14,10 +17,14 @@
 <%= link_to "＋ Новая страница", new_admin_quotes_page_path %>
 <br>
 <br>
+<input type='text' class='filter' oninput='window.filterQueryPages(this.value);' value='' placeholder='Фильтр'>
+<br>
+<br>
 <div id="quotes_pages">
   <% @quotes_pages.each do |page| %>
-    <%= page.position %>. <b><%= link_to page.title, [:admin, page] %></b> | <%= flag_by_lang(page.lang) %>
-    <br>
+    <div class='q_page'>
+      <%= page.title.to_s[0].upcase %> | <b><%= link_to(page.title, [:admin, page], class: 'q_title') %></b> (<%= page.position %>) | <%= flag_by_lang(page.lang) %>
+    </div>
   <% end %>
 </div>
 

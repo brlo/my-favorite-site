@@ -21,6 +21,9 @@ gem "jbuilder"
 gem 'terser'
 gem 'mini_racer'
 
+# html parser for prettify links in articles
+gem 'nokogiri'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

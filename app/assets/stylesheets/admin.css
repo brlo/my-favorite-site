@@ -33,3 +33,9 @@
 .night-mode .pell-content {
   background-color: #DDDDDD11;
 }
+
+/* CUSTOM */
+
+.filter {
+  font-size: 24px;
+}

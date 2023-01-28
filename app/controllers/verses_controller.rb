@@ -66,8 +66,11 @@ class VersesController < ApplicationController
   end
 
   def search
+    # если это ссылка, то просто найдём её
+    if link = ::AddressConverter.human_to_link(params[:t])
+      redirect_to(link)
     # https://www.mongodb.com/docs/manual/core/link-text-indexes/
-    if params[:t].present?
+    elsif params[:t].present?
       # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9-,.
       @search_text = params[:t].gsub(/[^\s[[:alpha:]]\-\,\.\:\;]*/i, '')
       @search_accuracy = params[:acc]
@@ -112,6 +115,6 @@ class VersesController < ApplicationController
   # Redirect: /ru/f/Дан. 1:2 -> /dan/1/#L2
   def goto_verse_by_human_address
     human_address = params[:human_address]
-    redirect_to ::AddressConverter.human_to_link(human_address)
+    redirect_to(::AddressConverter.human_to_link(human_address) || '/' )
   end
 end

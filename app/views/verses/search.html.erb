@@ -59,9 +59,7 @@
   <% @verses_json.each do |v| %>
     <div class='line'>
       "<%= verse_alone_clean(v['t'].html_safe) %>"
-      <a href="<%= my_link_to("/#{ v['bc'] }/#{ v['ch'] }#L#{ v['l'] }") %>">
-        (<%= ::I18n.t("books.short.#{ v['bc'] }") %>. <%= v['ch'] %>:<%= v['l'] %>)
-      </a>
+      (<a href="<%= my_link_to("/#{ v['bc'] }/#{ v['ch'] }#L#{ v['l'] }") %>"><%= ::I18n.t("books.short.#{ v['bc'] }") %>. <%= v['ch'] %>:<%= v['l'] %></a>)
     </div>
     <br>
   <% end %>

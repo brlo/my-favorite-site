@@ -4,7 +4,7 @@ module Admin
 
     # GET /quotes_pages or /quotes_pages.json
     def index
-      @quotes_pages = QuotesPage.order(position: :asc).all
+      @quotes_pages = QuotesPage.order(title: 1).all
     end
 
     # GET /quotes_pages/1 or /quotes_pages/1.json
