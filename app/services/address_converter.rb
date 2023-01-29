@@ -21,6 +21,8 @@ class AddressConverter
         book, ch = address.scan(/^([\dI]{0,3}[А-ЯA-Z\.\-]{2,10})\s*(\d{1,3}})$/i).first
       end
 
+      return nil unless book
+
       # оставляем только буквы и цифры, убирая точки
       book = book.gsub(/[^0-9A-ZА-Я]/i, '')
       # находим наш код книги по человеческому названию
