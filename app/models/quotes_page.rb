@@ -70,6 +70,9 @@ class QuotesPage
     # TIP: у нас уже есть заранее найденные адреса и гиперссылки на них.
     # Просто пройдёмся по тексту и поменяем текст на текст со сылкой
     self.addresses.each do |q_human, href|
+      next if q_human.blank?
+      next if href.blank?
+
       # создаём новый элемент-ссылку
       new_node = doc.create_element('a')
       # заполняем href ссылки
