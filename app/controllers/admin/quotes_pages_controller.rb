@@ -67,7 +67,7 @@ module Admin
 
     # Only allow a list of trusted parameters through.
     def quotes_page_params
-      params.require(:quotes_page).permit(:title, :path, :lang, :body, :s_id, :position)
+      params.require(:quotes_page).permit(:title, :meta_desc, :path, :lang, :body, :s_id, :position)
     end
   end
 end

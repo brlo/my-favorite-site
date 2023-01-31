@@ -30,7 +30,7 @@ ru:
     title: Цитаты из Библии
 
   quote_page:
-    title: "%{term} / цитаты"
+    title: "%{term} / цитаты / Библия"
 
   bib_translations:
     ru: Русский

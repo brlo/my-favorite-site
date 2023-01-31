@@ -61,7 +61,7 @@ en:
     title: Bible quotes
 
   quote_page:
-    title: "%{term} — quotes"
+    title: "%{term} / quotes / Bible"
 
   bib_translations:
     ru: Russian

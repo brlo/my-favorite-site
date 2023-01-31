@@ -6,6 +6,8 @@ class QuotesPage
 
   # название
   field :title, type: String
+  # meta-описание (через запятую ключевые слова)
+  field :meta_desc, type: String
   # путь в url
   field :path, type: String
   # язык
@@ -88,6 +90,7 @@ class QuotesPage
 
   def normalize_attributes
     self.title = self.title.to_s.strip
+    self.meta_desc = self.meta_desc.to_s.strip
     self.path = self.path.to_s.strip
     self.lang = self.lang.to_s.strip
     self.body = self.body.to_s.strip
