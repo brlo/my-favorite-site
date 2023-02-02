@@ -45,6 +45,7 @@ Rails.application.routes.draw do
     namespace 'admin' do
       resources :quotes_subjects
       resources :quotes_pages
+      get '/dump', to: 'quotes_pages#dump', as: 'dump'
     end
 
     # Defines the root path route ('/')

@@ -8,6 +8,7 @@
 <% else %>
   [ <a href="<%= login_path(locale: ::I18n.locale) %>">🔑 <%= I18n.t('menu.login') %></a> ]
 <% end %>
+ — [ <%= link_to "📦 DUMP", admin_dump_path %> ]
 
 <p style="color: green"><%= notice %></p>
 
