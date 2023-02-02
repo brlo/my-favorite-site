@@ -284,13 +284,15 @@ body.night-mode {
   color: rgb(228, 180, 135);
 }
 
-.night-mode h1,
+.night-mode h1 {
+  color: #bcbcbc;
+}
 .night-mode h2,
 .night-mode h3,
 .night-mode h4,
 .night-mode h5,
 .night-mode h6 {
-  color: #868c90;
+  color: #abb2bf;
 }
 
 .hint {

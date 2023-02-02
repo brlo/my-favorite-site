@@ -82,7 +82,7 @@ module Admin
 
       send_data(
         data,
-        :filename => "bibleox-quotes.txt",
+        :filename => "bibleox-quotes-#{Date.today}.txt",
         :type => "text/plain"
       )
     end

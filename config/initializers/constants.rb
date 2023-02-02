@@ -82,7 +82,7 @@ BOOKS = {
 # ZAVET_VETH = BOOKS.select{ |book,params| params[:zavet] == 1 }.keys
 # ZAVET_NOV = BOOKS.select{ |book,params| params[:zavet] == 2 }.keys
 
-book_to_code = {
+BOOK_TO_CODE = {
   'бт' => 'gen',
   'быт' => 'gen',
   'бытие' => 'gen',

@@ -2,6 +2,10 @@
   margin-left: 10px;
 }
 
+#quotes-content h1#subject {
+  font-weight: 500;
+}
+
 #quotes-content .subject-desc {
   font-size: 0.9em;
 }

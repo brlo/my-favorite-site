@@ -10,7 +10,7 @@ class AuthTelegram
     # id: 252157034
     # last_name: "V"
     # photo_url: "https://t.me/i/userpic/320/MeYHzgfl6o-NvFoLNOJpwJJO82E7vYQJSZ1x0x2BWPY.jpg"
-    # username: "rvlasov"
+    # username: "rodion_orthodox"
     @attrs = attrs
   end
 
