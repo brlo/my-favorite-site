@@ -65,7 +65,14 @@
   transition: background-color 200ms linear;
 }
 
+#quotes #quotes-list-title {
+  margin: 0 0 10px 0;
+  font-size:0.8em;
+  color: #90b990;
+}
+
 blockquote {
+  background-color: #90b99011;
   border-left: 2px solid #90b990;
   font-family: Arial,Helvetica,sans-serif;
   font-style: italic;

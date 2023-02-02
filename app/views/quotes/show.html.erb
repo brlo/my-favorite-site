@@ -5,7 +5,11 @@
   </div>
   <hr>
   <div id='quotes'>
+    <div id='quotes-list-title'><%= ::I18n.t('quote_page.addresses_list_title') %></div>
     <% is_first = true %>
     <% @page.addresses.each do |quote_human,path| %><%= is_first ? (is_first=false; '') : ', ' %><a href="<%= my_link_to(path) %>"><%= quote_human %></a><% end %>
+  </div>
+  <div class='notification'>
+    <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox'>https://t.me/bibleox</a>
   </div>
 </div>

@@ -62,6 +62,8 @@ en:
 
   quote_page:
     title: "%{term} / quotes / Bible"
+    addresses_list_title: 'Only refs:'
+    whant_to_fix: 'Want to fix or add something? Tell us'
 
   bib_translations:
     ru: Russian

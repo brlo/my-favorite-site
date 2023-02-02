@@ -47,12 +47,13 @@ hr {
   border-bottom: 1px solid #555;
 }
 
+
 h1, h2, h3, h4, h5, h6 {
   margin-top: 0;
   margin-bottom: 12px;
   font-weight: 400;
   line-height: 1.2;
-  color: #aaa;
+  color: #333;
 }
 
 h1, .h1 { font-size: 32px; }
@@ -289,7 +290,7 @@ body.night-mode {
 .night-mode h4,
 .night-mode h5,
 .night-mode h6 {
-  color: #616562;
+  color: #868c90;
 }
 
 .hint {

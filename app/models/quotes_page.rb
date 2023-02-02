@@ -29,37 +29,52 @@ class QuotesPage
   # для поиска в нужной книге
   index({s_id: 1}, {background: true})
 
-  before_validation :grab_quote_addresses
   before_validation :normalize_attributes
+  before_validation :grab_quote_addresses
   before_validation :redefine_html_links
   validates :title, :lang, :s_id, presence: true
 
+  # находим и сохраняем цитаты из текста в спец. поле: addresses
   # находит в тексте статьи цитаты в скобках, возвращает массив без скобок:
   # [
-  #   "Зах. 1:2",
-  #   "King 1:2"
+  #   "Деян. 14:15",
+  #   "/act/14/#L15"
+  # ],
+  # [
+  #   "Исх. 20:11",
+  #   "/ish/20/#L11"
   # ]
-  def quotes
-    # старый универсальный способ находить ссылки в скобках
-    # regex = /\([[[:alnum:]]\s]{1,20}\.?\s*\d{1,3}:?[\d\,\-]{0,20}\)/i
-
-    # новый способ находить ссылки без скобок, в том числе и много ссылок через запятую
-    regex = /([1-4\-аяое\s]*(Быт|Исх|Лев|Чис|Втор|Нав|Суд|Руф|Цар|Пар|Ездр|Неем|Тов|Иудифь|Есф|Притч|Еккл|Песн|Прем|Сир|Иов|Ис|Иер|Плач|Посл\.Иер|Вар|Иез|Дан|Ос|Иоиль|Ам|Авд|Иона|Мих|Наум|Авв|Соф|Агг|Зах|Мал|Макк|Пс|Мф|Мк|Лк|Ин|Деян|Иак|Пет|Ин|Иуд|Рим|Кор|Гал|Еф|Флп|Кол|Сол|Фес|Тим|Тит|Флм|Евр|Откр|Бытие|Исход|Левит|Числа|Второзаконие|Иисус Навин|Судьи|Руфь|Царств|Паралипоменон|Ездра|Неемия|Ездры|Товит|Иудифь|Есфирь|Притчи|Екклесиаст|Песня Песней|Премудрости Соломона|Сирах|Иов|Исаия|Иеремия|Плач Иеремии|Послание Иеремии|Варух|Иезекииль|Даниил|Осия|Иоиль|Амос|Авдий|Иона|Михей|Наум|Аввакум|Софония|Аггей|Захария|Малахия|Маккавейская|Псалтирь|Матфея|Марка|Луки|Иоанна|Деяния|Деяния апостолов|Иакова|Петра|Иоанна|Иуды|Римлянам|Коринфянам|Галатам|Ефесянам|Филиппийцам|Колосянам|Солунянам|Фессалоникийцам|Тимофею|Титу|Филимону|Евреям|Откровение|Gen|Ex|Lev|Num|Deut|Nav|Judg|Rth|Sam|King|Chron|Ezr|Nehem|Tov|Judf|Est|Prov|Eccl|Song|Solom|Sir|Job|Is|Jer|Lam|lJer|Bar|Ezek|Dan|Hos|Joel|Am|Avd|Jona|Mic|Naum|Habak|Sofon|Hag|Zah|Mal|Mac|Ps|Mt|Mk|Lk|Jn|Act|Jas|Pet|Jn|Juda|Rom|Cor|Gal|Eph|Phil|Col|Thes|Tim|Tit|Phlm|Hebr|Rev|Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|Samuel|Kings|Chronicles|Esdras|Nehemiah|Tobit|Judith|Esther|Proverbs|Ecclesiastes|Song of Solomon|Wisdom|Sirah|Job|Isaiah|Jeremiah|Lamentations|Letter of Jeremiah|Baruch|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zachariah|Malachi|Maccabees|Psalms|Matthew|Mark|Luke|John|Acts|James|Peter|John|Jude|Romans|Corinthians|Galatians|Ephesians|Philippians|Сolossians|Thessalonians|Timothy|Titus|Philemon|Hebrews|Revelation)\.*\s*\d{1,3}:?[\d\,\-]{0,20})[,;]?{1,}/i
-
-    # нужно избавляться от всех html-тэгов, иначе не все ссылки находит
-    sanitizer.sanitize(self.body.to_s).scan(regex).map{ |s| s.first.gsub(/[()]/, '') }.uniq
-  end
-
-  # находим и сохраняем цитаты из текста в спец. поле
   def grab_quote_addresses
-    self.addresses = quotes().map { |q_human| [q_human, ::AddressConverter.human_to_link(q_human)] }
+    # старый универсальный способ находить ссылки в скобках
+    regex = /\b(\d{0,1}i{0,3}[[:alnum:]]*\.*[ \s]*\d{1,3}:*\d{0,3}[ \s\-,]*\d{0,3})\b/i
+
+    # TIP: СНОВА ВЕРНУЛИСЬ К СТАРОМУ СПОСОБУ КАК К БОЛЕЕ УНИВЕРСАЛЬНОМУ, А ДАЛЕЕ ПРОСТО ПРОВЕРЯЕМ НАЗВАНИЕ КНИГИ
+    # новый способ находить ссылки без скобок, в том числе и много ссылок через запятую
+    # regex = /([1-4\-аяое\s]*(Быт|Исх|Лев|Чис|Втор|Нав|Суд|Руф|Цар|Пар|Ездр|Неем|Тов|Иудифь|Есф|Притч|Еккл|Песн|Прем|Сир|Иов|Ис|Иер|Плач|Посл\.Иер|Вар|Иез|Дан|Ос|Иоиль|Ам|Авд|Иона|Мих|Наум|Авв|Соф|Агг|Зах|Мал|Макк|Пс|Мф|Мк|Лк|Ин|Деян|Иак|Пет|Ин|Иуд|Рим|Кор|Гал|Еф|Флп|Кол|Сол|Фес|Тим|Тит|Флм|Евр|Откр|Бытие|Исход|Левит|Числа|Второзаконие|Иисус Навин|Судьи|Руфь|Царств|Паралипоменон|Ездра|Неемия|Ездры|Товит|Иудифь|Есфирь|Притчи|Екклесиаст|Песня Песней|Премудрости Соломона|Сирах|Иов|Исаия|Иеремия|Плач Иеремии|Послание Иеремии|Варух|Иезекииль|Даниил|Осия|Иоиль|Амос|Авдий|Иона|Михей|Наум|Аввакум|Софония|Аггей|Захария|Малахия|Маккавейская|Псалтирь|Матфея|Марка|Луки|Иоанна|Деяния|Деяния апостолов|Иакова|Петра|Иоанна|Иуды|Римлянам|Коринфянам|Галатам|Ефесянам|Филиппийцам|Колосянам|Солунянам|Фессалоникийцам|Тимофею|Титу|Филимону|Евреям|Откровение|Gen|Ex|Lev|Num|Deut|Nav|Judg|Rth|Sam|King|Chron|Ezr|Nehem|Tov|Judf|Est|Prov|Eccl|Song|Solom|Sir|Job|Is|Jer|Lam|lJer|Bar|Ezek|Dan|Hos|Joel|Am|Avd|Jona|Mic|Naum|Habak|Sofon|Hag|Zah|Mal|Mac|Ps|Mt|Mk|Lk|Jn|Act|Jas|Pet|Jn|Juda|Rom|Cor|Gal|Eph|Phil|Col|Thes|Tim|Tit|Phlm|Hebr|Rev|Genesis|Exodus|Leviticus|Numbers|Deuteronomy|Joshua|Judges|Ruth|Samuel|Kings|Chronicles|Esdras|Nehemiah|Tobit|Judith|Esther|Proverbs|Ecclesiastes|Song of Solomon|Wisdom|Sirah|Job|Isaiah|Jeremiah|Lamentations|Letter of Jeremiah|Baruch|Ezekiel|Daniel|Hosea|Joel|Amos|Obadiah|Jonah|Micah|Nahum|Habakkuk|Zephaniah|Haggai|Zachariah|Malachi|Maccabees|Psalms|Matthew|Mark|Luke|John|Acts|James|Peter|John|Jude|Romans|Corinthians|Galatians|Ephesians|Philippians|Сolossians|Thessalonians|Timothy|Titus|Philemon|Hebrews|Revelation)\.*[ \s]*\d{1,3}:*[\d\,\-]{0,20})[,;]*/i
+
+    # Возможные совпадения. Regex не очень точный.
+    # Далее проверяем название книги из списка, и если книга неизвестна, то адресом не считаем
+    # TIP: нужно избавляться от всех html-тэгов, иначе не все ссылки находит
+    # TIP: если в sanitizer не передавать tags, то он не все тэги удалит (а надо все удалить)
+    maybe_matches = sanitizer.sanitize(self.body.to_s, tags: []).scan(regex).map{ |s| s.first.gsub(/[()]/, '') }.uniq
+
+    matches = []
+    maybe_matches.each do |q_human|
+      href = ::AddressConverter.human_to_link(q_human)
+      matches << [q_human, href] if href
+    end
+
+    self.addresses = matches
   end
 
+  # пересоздаём ссылки на библейские стихи (вдруг, они кривые или ведут на другие сайты)
   def redefine_html_links
     # удаляем имеющиеся ссылки на стихи (они могут быть неправильными, а мы пересоздадим)
     doc = ::Nokogiri.HTML(self.body.to_s)
     doc.css('a').each do |el|
       html_link_to_addr = ::AddressConverter.human_to_link(el.text)
+      # если у ссылки нет текста или поняли,
+      # что это ссылка на библейский стих, то меняем на текст, избавлясь от html-тэга
       if el.text.blank? || html_link_to_addr
         # el.replace(el.inner_html)
         el.replace(el.text)
@@ -95,13 +110,21 @@ class QuotesPage
     self.lang = self.lang.to_s.strip
     self.body = self.body.to_s.strip
 
+    # избавяемся от лишних в тэгов
     self.body = sanitizer.sanitize(
       self.body,
       tags: %w(div ul ol li h1 h2 blockquote b i strike u hr br a)
     )
 
+    # Заменяем неразрывные пробелы (&nbsp;) на обычные. Иначе строки не рвутся, выглядит очень странно
+    # приходят эти пробелы, походу, через редактор Pell. В базе выглядит уже не как &nbsp;, а как обычный пробел,
+    # поэтому сразу и не распознаешь, а вот в VSCode он выделяется жёлтым прямоугольником.
+    self.body = self.body.gsub(' ', ' ')
+    self.body = self.body.gsub('&nbsp;', ' ')
+
+    # если позиция не задана, ставим сами максимальную+1
     if self.position.blank?
-      self.position = QuotesPage.where(:position.nin => [nil, '']).order(position: :asc).last&.position.to_i + 1
+      self.position = ::QuotesPage.where(:position.nin => [nil, '']).order(position: :asc).last&.position.to_i + 1
     end
   end
 

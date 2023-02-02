@@ -31,6 +31,8 @@ ru:
 
   quote_page:
     title: "%{term} / цитаты / Библия"
+    addresses_list_title: 'Только ссылки:'
+    whant_to_fix: 'Хотите исправить или дополнить? Напишите нам'
 
   bib_translations:
     ru: Русский
