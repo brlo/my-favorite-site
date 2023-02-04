@@ -79,7 +79,8 @@
 }
 
 blockquote {
-  border-left: 2px solid #90b990;
+  border-left: 2px solid #d5cdb7;
+  background-color: #d5cdb724;
   font-family: Arial,Helvetica,sans-serif;
   font-style: italic;
   margin: 20px 0;
@@ -87,5 +88,6 @@ blockquote {
 }
 
 .night-mode blockquote {
+  border-left: 2px solid #90b990;
   background-color: #90b99011;
 }
