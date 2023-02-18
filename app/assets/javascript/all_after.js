@@ -50,6 +50,12 @@ window.selectLocale = function(locale) {
   };
 }
 
+// TRANSLIT TABLE
+window.en2ruTranslit = function(text) {
+  const tr_en_ru_dict = {"q":"й","w":"ц","e":"у","r":"к","t":"е","y":"н","u":"г","i":"ш","o":"щ","p":"з","[":"х","]":"ъ","a":"ф","s":"ы","d":"в","f":"а","g":"п","h":"р","j":"о","k":"л","l":"д",";":"ж","'":"Э"," z":" я","x":"ч","c":"с","v":"м","b":"и","n":"т","m":"ь",",":"б",".":"ю","/":".","Q":"Й","W":"Ц","E":"У","R":"К","T":"Е","Y":"Н","U":"Г","I":"Ш","O":"Щ","P":"З","{":"Х","}":"Ъ","A":"Ф","S":"Ы","D":"В","F":"А","G":"П","H":"Р","J":"О","K":"Л","L":"Д",":":"Ж","|":"/","Z":"Я","X":"Ч","C":"С","V":"М","B":"И","N":"Т","M":"Ь","<":"Б",">":"Ю","?":",","@":"'","#":"№","$":";","^":":","&":"?"};
+  return text.replace(/./g, m => (tr_en_ru_dict[m] || m) );
+};
+
 // ================================================
 // LISTENERS
 // ================================================
@@ -58,6 +64,8 @@ window.selectLocale = function(locale) {
 window.menuBooks = {
   isShown: false,
   el: document.getElementById('menu-books'),
+  searchInput: document.getElementById('filter-books'),
+  booksLinks: document.querySelectorAll('#menu-books a'),
 }
 
 menuBooks.show = function (needAddClass = null) {
@@ -78,6 +86,9 @@ menuBooks.show = function (needAddClass = null) {
   if (needAddClass !== null) menuBooks.el.classList.add(needAddClass);
   menuBooks.isShown = true;
 
+  // фокус на поисковом поле
+  menuBooks.searchInput.focus();
+
   return false;
 };
 
@@ -87,6 +98,71 @@ menuBooks.hide = function () {
   menuBooks.isShown = false;
   return false;
 };
+
+menuBooks.filterBooks = function(text, isNeedTranslit) {
+  const els = menuBooks.booksLinks;
+  let filterText = text.toLowerCase().replace(/[^a-zа-я0-9]/gi, '');
+
+  if (isNeedTranslit) {
+    filterText = window.en2ruTranslit(filterText);
+  };
+
+  if (filterText === '') {
+    // пользователь ничего не ввёл, надо всё почистить.
+    // удалить общую метку
+    menuBooks.el.classList.remove('dark');
+    // удалить метку с подсвеченных элементов
+    els.forEach(el => el.classList.remove('h-light'));
+  } else {
+    // ищем совпадения, если пользователь что-то ввёл
+    let isSomethingMatch = false;
+
+    // если есть совпадение по оригинальному тексту, или по транслиту, то подсвечиваем
+    userPattern = filterText.split('').join('{1}.*');
+    // получаем паттерн: б{1}.*ы{1}.*т{1}.*и{1}.*е
+    const regex = new RegExp(userPattern);
+
+    els.forEach(el => {
+      // подсвечиваем элементы
+      const elText = (el.innerText || el.textContent).toLowerCase();
+      const isThisMatch = regex.test(elText);
+      // if (elText.includes(filterText)) {
+      if (isThisMatch) {
+        el.classList.add('h-light');
+        isSomethingMatch = true;
+      } else {
+        el.classList.remove('h-light')
+      };
+    });
+
+    // если есть совпадения, то ставим общую метку на весь блок
+    if (isSomethingMatch) {
+      menuBooks.el.classList.add('dark');
+    } else {
+      // если нет результатов и транслит ещё не пробовали, то надо попробовать транслит поискать
+      if (isNeedTranslit != true) {
+        menuBooks.filterBooks(text, true);
+      }
+    };
+  };
+};
+
+menuBooks.eraseSearch = function () {
+  // отменяем подсветку искомых книг,
+  menuBooks.el.querySelectorAll('a.h-light').forEach(el => el.classList.remove('h-light'));
+
+  // стираем текст в поисковом поле
+  menuBooks.searchInput.value = '';
+}
+
+menuBooks.goToSearch = function() {
+  const text = menuBooks.searchInput.value;
+  let params = [];
+
+  if (text && text.length > 0) { params.push('t=' + text) };
+  const url = '/' + window.BX.locale + '/search?' + params.join('&');
+  document.location.href = url;
+}
 
 menuBooks.enableListeners = function () {
   if (!menuBooks.el) return;
@@ -113,7 +189,11 @@ menuBooks.enableListeners = function () {
     // Прячем. Так как нажали не на открывающие меню ссылки, а само меню при этом показано
     if (el.id != 'current-book' && el.id != 'bible-link' && menuBooks.isShown) {
       const isClickInside = menuBooks.el.contains(event.target);
-      if (!isClickInside) menuBooks.hide();
+      if (!isClickInside) {
+        menuBooks.hide();
+        // отменить поиск книги и стереть значение в поле для поиска
+        menuBooks.eraseSearch();
+      }
     };
   });
 };

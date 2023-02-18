@@ -66,8 +66,14 @@ class VersesController < ApplicationController
   end
 
   def search
+    # Сначала пробуем перевести: быт 1 1 -> быт 1:1
+    # этот алгоритм нужен только тут, а метод human_to_link универсальный, исползьуется везде
+    if params[:t].to_s =~ /[\d]+\s[\d\-,]+$/
+      posibleAddr = params[:t].to_s.sub(/([\d]+)\s([\d\-,]+)$/, '\1:\2')
+    end
+
     # если это ссылка, то просто найдём её
-    if link = ::AddressConverter.human_to_link(params[:t])
+    if link = ::AddressConverter.human_to_link(posibleAddr)
       redirect_to(link)
     # https://www.mongodb.com/docs/manual/core/link-text-indexes/
     elsif params[:t].present?

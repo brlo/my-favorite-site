@@ -72,7 +72,7 @@ header nav > a#settings-btn {
   max-width: calc(100% - 20px);
   padding: 15px;
   margin: 0;
-  background-color: #d4e2ce;
+  background-color: #d0d7be;
   border-radius: 5px;
   position: absolute;
   z-index: 1;
@@ -84,19 +84,58 @@ header nav > a#settings-btn {
   left: 20px;
   top: -20px;
   border: 10px solid transparent;
-  border-bottom: 10px solid #d4e2ce;
+  border-bottom: 10px solid #d0d7be;
 }
 
 .night-mode #menu-books {
-  background-color:#94c181;
+  background-color:#c0cda1;
 }
 
 .night-mode #menu-books::after {
-  border-bottom: 10px solid #94c181;
+  border-bottom: 10px solid #c0cda1;
 }
 
 #menu-books.bible-clicked {
   top: 6px;
+}
+
+#menu-books #filter-books {
+  display: block;
+  margin: 0 auto 10px auto;
+  font-size: 1.2em;
+  background-color: #e0e6d5;
+  border: 2px solid #b0be8f;
+  color: #565656;
+  border-radius: 4px;
+  outline: none;
+  padding: 5px 8px;
+  width: 100%;
+}
+
+#menu-books #filter-books:focus {
+  background-color: #f1f4ed;
+  color: black;
+}
+
+#menu-books form {
+  display: block;
+  position: relative;
+}
+
+#menu-books form a {
+  position: absolute;
+  right: 3px;
+  top: 3px;
+  cursor: pointer;
+  color: #565656;
+}
+
+#menu-books.dark a {
+  opacity: 0.3;
+}
+
+#menu-books .h-light {
+  opacity: 1 !important;
 }
 
 #menu-books.book-clicked {
@@ -108,17 +147,16 @@ header nav > a#settings-btn {
   margin-left: -10px;
 }
 
-
 #menu-books a {
   display: inline-block;
   padding: 5px 5px 5px 0;
 }
 
 #menu-books a.kanon {
-  color: rgb(0 97 59);
+  color: #00613b;
 }
 #menu-books a.kanon:hover {
-  color: rgb(29, 102, 73);
+  color: #277757;
 }
 #menu-books a.non-kanon {
   color: #4a4139;
