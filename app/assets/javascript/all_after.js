@@ -102,6 +102,7 @@ menuBooks.hide = function () {
 menuBooks.filterBooks = function(text, isNeedTranslit) {
   const els = menuBooks.booksLinks;
   let filterText = text.toLowerCase().replace(/[^a-zа-я0-9]/gi, '');
+  filterText = filterText.replace(/[\d\-,\s]+$/g, '');
 
   if (isNeedTranslit) {
     filterText = window.en2ruTranslit(filterText);
