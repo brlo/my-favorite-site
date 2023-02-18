@@ -86,8 +86,8 @@ menuBooks.show = function (needAddClass = null) {
   if (needAddClass !== null) menuBooks.el.classList.add(needAddClass);
   menuBooks.isShown = true;
 
-  // фокус на поисковом поле
-  menuBooks.searchInput.focus();
+  // // фокус на поисковом поле
+  // menuBooks.searchInput.focus();
 
   return false;
 };
@@ -101,10 +101,16 @@ menuBooks.hide = function () {
 
 menuBooks.filterBooks = function(text, isNeedTranslit) {
   const els = menuBooks.booksLinks;
+  // все буквы маленькие
+  // оставляем только буквы и цифры
+  // убираем цифры, -, "," и пробелы в конце строки
   let filterText = text.toLowerCase().replace(/[^a-zа-я0-9]/gi, '');
   filterText = filterText.replace(/[\d\-,\s]+$/g, '');
 
   if (isNeedTranslit) {
+    // в конце этой ф-ции мы снова обращаемся к ней, но просим предварительно
+    // исправить ползьовательский ввод в неправильной раскладке.
+    // мы делаем это только если ничего не удалось найти в первый раз.
     filterText = window.en2ruTranslit(filterText);
   };
 
