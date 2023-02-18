@@ -2,24 +2,24 @@
 <nav id="menu-books" class="hidden">
 
   <form action="/" id="form" onsubmit="menuBooks.goToSearch();return false;">
-    <input type="text" id="filter-books" oninput="menuBooks.filterBooks(this.value);" value="" placeholder="Поиск книги, главы, стиха или фразы" autofocus="">
+    <input type="text" id="filter-books" oninput="menuBooks.filterBooks(this.value);" value="" placeholder="<%= t('fast_search') %>" autofocus="">
     <a onclick="menuBooks.goToSearch();return false;"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
   </form>
 
-  <div class='small hint' style='margin-top: 0;'><%= I18n.t('menu.veth_zavet') %></div>
+  <div class='small hint'><%= I18n.t('menu.nov_zavet') %></div>
 
   <% ::BOOKS.each do |book_code, data| %>
-    <% next if data[:zavet] == 2 %>
+    <% next if data[:zavet] == 1 %>
     <% classes = [] %>
     <% @book_code == book_code ? classes.push('selected') : nil %>
     <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
     <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}") %></a>
   <% end %>
 
-  <div class='small hint'><%= I18n.t('menu.nov_zavet') %></div>
+  <div class='small hint'><%= I18n.t('menu.veth_zavet') %></div>
 
   <% ::BOOKS.each do |book_code, data| %>
-    <% next if data[:zavet] == 1 %>
+    <% next if data[:zavet] == 2 %>
     <% classes = [] %>
     <% @book_code == book_code ? classes.push('selected') : nil %>
     <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
