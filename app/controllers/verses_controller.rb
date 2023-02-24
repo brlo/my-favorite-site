@@ -66,10 +66,16 @@ class VersesController < ApplicationController
   end
 
   def search
+    # default
+    @search_accuracy = params[:acc] || 'similar'
+    @search_lang = params[:l] || (::I18n.locale == :ru ? 'ru' : 'eng-nkjv')
+    @search_books = params[:book]
+
+    posibleAddr = params[:t].to_s
     # Сначала пробуем перевести: быт 1 1 -> быт 1:1
     # этот алгоритм нужен только тут, а метод human_to_link универсальный, исползьуется везде
-    if params[:t].to_s =~ /[\d]+\s[\d\-,]+$/
-      posibleAddr = params[:t].to_s.sub(/([\d]+)\s([\d\-,]+)$/, '\1:\2')
+    if posibleAddr =~ /[\d]+\s[\d\-,]+$/
+      posibleAddr = posibleAddr.sub(/([\d]+)\s([\d\-,]+)$/, '\1:\2')
     end
 
     # если это ссылка, то просто найдём её
@@ -79,9 +85,6 @@ class VersesController < ApplicationController
     elsif params[:t].present?
       # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9-,.
       @search_text = params[:t].gsub(/[^\s[[:alpha:]]\-\,\.\:\;]*/i, '')
-      @search_accuracy = params[:acc]
-      @search_lang = params[:l]
-      @search_books = params[:book]
 
       search_params = {
         text: @search_text,
@@ -94,9 +97,6 @@ class VersesController < ApplicationController
       @matches_count = @verses_json.count
     else
       @search_text = params[:t]
-      @search_accuracy = params[:acc]
-      @search_lang = params[:lang]
-      @search_books = params[:book]
 
       @verses_json = []
       @matches_count = 0
