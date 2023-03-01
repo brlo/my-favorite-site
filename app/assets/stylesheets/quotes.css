@@ -10,6 +10,12 @@
   font-size: 0.9em;
 }
 
+#quotes-content h1 {
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
 #quotes-content .items h2 {
   font-size: 1.8em;
 }
