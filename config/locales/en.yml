@@ -72,6 +72,10 @@ en:
     en: English
     heb: Hebrew
     gr: Greek
+    jp: Japanese
+    cn: Chinese
+    ge: German
+    arab: Arab
 
   tips:
     click_on_verse: Highlight a verse by clicking on its number.

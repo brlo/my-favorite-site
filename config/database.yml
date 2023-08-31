@@ -19,7 +19,11 @@ default: &default
 
 development:
   <<: *default
-  database: db/GR-LXX-KOINE-Barach.SQLite3
+  # database: db/bib-arab-avd.SQLite3
+  database: db/bib-ch-ccbs.SQLite3
+  # database: db/bib-ge-sch51.SQLite3
+  # database: db/bib-jap-new-interconf.SQLite3
+  # database: db/GR-LXX-KOINE-Barach.SQLite3
 
 # greek: LXX + Byz
 # hebrew - OSM+ - это ленинградский кодекс, норм!
@@ -27,6 +31,10 @@ development:
 # цся(ру) - elz
 # ру - optina
 # цся - elz?
+# jp-ni - new interconfessional translation (новый межконфессиональный перевод). Вроде, католики сделали, один из наиболее нормальных из имеющихся переводов.
+# ge-sch51 - женевское биб общество SCH 1951 Schlachter Genfer Bibelgesellschaft
+# cn-ccbs - так до конца не разобрался чьё это, но Царство Божие хотя бы внутри, а не среди
+# arab-avd - проверил ключевые места в этом и других переводах (jp, ge, cn, arab), они наиболее приемлемы по сравнению с остальными
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

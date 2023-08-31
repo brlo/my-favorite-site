@@ -78,10 +78,19 @@ class VerseSearch
 
   def prepare_search_params text, accuracy, lang
     search_params = {lang: lang}
+
     # меняем Ё на Е
     text = text.gsub(/ё/i, 'е')
     # оставляем только буквы и пробелы (кто-то, что-то)
     clean_text = text.gsub(/[^[[:alpha:]]\s\-]/, '').gsub(/\s+/, ' ').strip
+
+    # с этими языками никаких манипуляций не предпринимаем.
+    # Там пробелов нет, иероглифы, что там с окончаниями я вообще не знаю
+    if %w(jp-ni cn-ccbs arab-avd).include?(lang)
+      clean_text = clean_text.to_s.first(150)
+      search_params['text'] = /#{clean_text}/i
+      return search_params
+    end
 
     if accuracy == 'exact'
       # точное совпадение (пишем в кавычках)
@@ -112,7 +121,7 @@ class VerseSearch
       when 'gr-lxx-byz'
         arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.join('[Α-Ω\,\.\-\s\!\?\:\;]+')
       else
-        arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.join('[A-ZА-ЯЁΑ-Ωא-ת\,\.\-\s\!\?\:\;]+')
+        arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.join('[\p{Alnum}\,\.\-\s\!\?\:\;]+')
       end
     end
 
@@ -130,5 +139,3 @@ class VerseSearch
     @params[:lang]
   end
 end
-
-

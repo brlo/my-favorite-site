@@ -2,7 +2,7 @@ require 'json'
 
 class CacheSearch
   SEARCH_TYPES = %w(exact similar partial)
-  SEARCH_LANGS = %w(ru csl-pnm csl-ru eng-nkjv heb-osm gr-lxx-byz)
+  SEARCH_LANGS = %w(ru csl-pnm csl-ru eng-nkjv heb-osm gr-lxx-byz jp-ni ge-sch cn-ccbs arab-avd)
 
   def get(term, search_type, lang)
     return unless term.present?

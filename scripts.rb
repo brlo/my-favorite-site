@@ -4,6 +4,118 @@ touch tmp/restart.txt
 # очистка поискового кэша
 rm ./db/cache_search/*/*/*.json
 
+
+# ИМПОРТ НОВОГО ПЕРЕВОДА ИЗ SQLite в Mongo
+
+# ###############################################################################
+# FROM SQLite to Mongo
+# https://github.com/rails/rails-html-sanitizer
+# ###############################################################################
+
+sanitizer = Rails::Html::SafeListSanitizer.new
+books_id_code = ::BOOKS.map { |code, data| [data[:id], code] }.to_h
+lang = 'cn-ccbs' # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ПОПРАВИТЬ ТОЛЬКО ТУТ
+::ImportVerse.all.order('verses.id').find_each do |s|
+  # только для иврита пропускаем. Там вконце несколько строк пустых.
+  s.text = '.' if s.text.blank?
+
+  book = books_id_code[s.book_number.to_i]
+  book_info = ::BOOKS[book]
+  next if book_info.nil?
+  id = book_info[:id]
+  zavet = book_info[:zavet]
+
+  # удаляем что-то <f>
+  str = s.text.dup.gsub(/<f>[^<f>]+<\/f>/, '')
+  # удаляем стронг
+  str = str.gsub(/<S>[^<S>]+<\/S>/, '')
+  # что-то непонятное
+  str = str.gsub(/<m>[^<m>]+<\/m>/, '')
+  # заменяем красвые кавычки «» на обычные "
+  str = str.gsub(/[«»]/, '"')
+  # Перенос строки <br/> на пробел
+  str = str.gsub(/<br\/>/, ' ')
+
+  # убираем лишние тэги
+  str = sanitizer.sanitize(str, tags: %w(i j br))
+
+  # удалить множественные пробелы
+  str = str.gsub(/[\s\t\n\r]+/, ' ')
+  # удалить пробел в начале и в конце
+  str = str.gsub(/^\s|\s$/, '')
+
+  # # меняем "| слово | VAR: слово2 |" на просто "слово2" (слово2 как на Азбуке)
+  # str = str.gsub(/\|[^\|]+\| VAR:([^\|]+)\|/i, '\1')
+
+  v = Verse.find_or_initialize_by(lang: lang, bid: id, chapter: s.chapter.to_i, line: s.verse.to_i)
+  v.update!(book: book, zavet: zavet, text: str, data: {'orig': s.text})
+end
+
+# ###############################################################################
+
+
+
+# ПОИСК НАИБОЛЕЕ ВСТРЕЧАЮЩИХСЯ СЛОВ
+
+
+# regex doc: https://www.php.net/manual/fr/function.preg-match.php#105324
+
+# # GREEK - regexp: a-zA-Z\p{Greek}
+h=Hash.new(0);Verse.where(lang: :'gr-lxx-byz').each{|v| v.t.to_s.gsub(/[^A-Za-zΑ-Ωα-ωίϊΐόάέύϋΰήώ\s]/i, '').split(' ').each {|w| puts(w); w.length > 2 ? h[w] += 1 : nil}};nil
+h=Hash.new(0);Verse.where(lang: :'gr-lxx-byz').each{|v| v.t.to_s.gsub(/[^\p{Alpha}\s]/i, '').split(' ').each {|w| w.length > 2 ? h[w] += 1 : nil}};nil
+
+h.select{|k,v| k.length > 4}.sort_by{|k,v| v}.last(40).reverse.to_h
+
+# RU - regexp: a-zA-Z\p{Cyrilic}
+h=Hash.new(0);Verse.where(lang: :'ru').each{|v| v.t.to_s.gsub(/[^\p{Alpha}\s]/i, '').split(' ').each {|w| w.length > 3 ? h[w] += 1 : nil}};h.select{|k,v| k.length > 4}.sort_by{|k,v| v}.last(40).reverse.to_h
+
+# =>
+# {
+#   "αὐτοῦ"      => 9770,
+#   "αὐτῶν"      => 5303,
+#   "κύριος"     => 3564,
+#   "εἶπεν"      => 3225,
+#   "Ισραηλ"     => 2702,
+#   "κυρίου"     => 2638,
+#   "αὐτὸν"      => 2461,
+#   "αὐτῆς"      => 2064,
+#   "αὐτοῖς"     => 1914,
+#   "αὐτοὺς"     => 1617,
+#   "πάντα"      => 1520,
+#   "ἐστιν"      => 1489,
+#   "ἔσται"      => 1367,
+#   "τοῦτο"      => 1089,
+#   "Δαυιδ"      => 1083,
+#   "αὐτόν"      => 1081,
+#   "λέγει"      => 1068,
+#   "λέγων"      => 970,
+#   "βασιλεὺς"   => 936,
+#   "ἐγένετο"    => 921,
+#   "κυρίῳ"      => 894,
+#   "ἡμέρας"     => 890,
+#   "οὕτως"      => 849,
+#   "αὐτούς"     => 849,
+#   "βασιλέως"   => 825,
+#   "Ιερουσαλημ" => 815,
+#   "ταῦτα"      => 798,
+#   "πάντες"     => 795,
+#   "ἐποίησεν"   => 773,
+#   "ἡμέρᾳ"      => 771,
+#   "αὐτὴν"      => 755,
+#   "ἔστιν"      => 740,
+#   "κύριον"     => 715,
+#   "Ιουδα"      => 677,
+#   "οἶκον"      => 656,
+#   "αὐτὸς"      => 641,
+#   "Ἰησοῦς"     => 629,
+#   "ὄνομα"      => 590,
+#   "κύριε"      => 585,
+#   "προσώπου"   => 571
+# }
+
+
+
+
 # Приведение в порядок нумерации стихов, где вынесен в стих-0 заголок
 # в каждом языке
 %w(ru csl-pnm csl-ru eng-nkjv heb-osm gr-lxx-byz).each do |lang|
@@ -82,7 +194,7 @@ Verse.where(lang: 'ru', bc: 'ps').each(&:delete)
 # импорт одной книги из sql
 ImportVerse.where(book_number: 230).each{|v| Verse.create!(lang: 'ru', bid: 230, bc: 'ps', ch: v.chapter.to_i, l: v.verse.to_i, t: v.text) };nil
 
-# поиск в синодатльном тексте заголовков в скобках { }, кроме строк со {Слава:}
+# поиск в синодальном тексте заголовков в скобках { }, кроме строк со {Слава:}
 Verse.where(t: /{.+}/i).to_a.reject{|v| v.t=~/{Слава:}/}.each do |v|
   title = v.text.scan(/{(.+)}/).first&.first
   Verse.create!(lang: v.lang, bid: v.bid, bc: v.bc, ch: v.ch, l: 0, t: title)
@@ -97,6 +209,91 @@ v0 = Verse.where(lang: lang, bc: book, ch: ch, l: 0).first
 v2 = Verse.where(lang: lang, bc: book, ch: ch, l: 2).first
 v0.update!(t: v0.t + ' ' + v2.t)
 v2.delete
+
+# разгруппировка сгруппированных стихов по следующим пустым строкам.
+# Короче, в один стих почему-то засунули несколько стихов и вначале обозначили промежуток номеров стихов:
+# "5-9 потом текст". Надо разгруппировать, разбить по точкам и распихать как получится по следующим пустым
+# строкам, в которых записана просто точка.
+# поиск в синодальном тексте заголовков в скобках { }, кроме строк со {Слава:}
+Verse.where(lang: 'ge-gnb').where(t: /^\s*[0-9]+\-[0-9]+/i).each do |v|
+  # find range
+  from, to = v.text.scan(/([0-9]+)\-([0-9]+)/).first
+
+  # raise if range not start from current line
+
+  if from.to_i != v.l.to_i
+    puts("from: #{from}")
+    puts("to: #{to}")
+    puts("v.l: #{v.l}")
+    puts("v: #{v.inspect}")
+    raise('AAA')
+  end
+
+  # remove range
+  text = v.text.gsub(/([0-9]+)\-([0-9]+)/, '')
+
+  # делим на предложения, чистим пробелы, добавляем в конец предложений точки
+  sentences = text.split('.').map(&:strip).map{|s| s+'.' }
+
+  # считаем сколько предложений попадёт в каждый следующий стих.
+  # next lines: [5,6,7,8,9]
+  lines = (from..to).to_a
+  lines=Verse.where(lang: v.lang, bid: v.bid, bc: v.bc, ch: v.ch, :l.in => lines).pluck(:l)
+  puts "---"
+  puts "lines: #{lines}"
+  raise('no lines') if lines.empty?
+  sent_in_lines = {}
+  lines.each { |l| sent_in_lines[l] = 0 }
+
+  i = 0
+  loop do
+    puts "lines: #{lines}"
+    puts "sentences.count: #{sentences.count}"
+    puts "i: #{i}"
+    puts
+    lines.each do |l|
+      # если все предложения раскидали — выходим
+      break if sentences.count == i
+      sent_in_lines[l]+=1
+      i+=1
+    end
+
+    break if sentences.count == i
+  end
+
+  i=0
+  sent_in_lines.each do |line, sent_count|
+    next if sent_count < 1
+    break if sentences.blank?
+    text = sentences.shift(sent_count).join(' ')
+    vers=Verse.where(lang: v.lang, bid: v.bid, bc: v.bc, ch: v.ch, l: line).first
+    puts "v: #{v.inspect}"
+    raise('no verse found') unless vers
+    if i==0
+      vers.text = text
+      vers.save!
+    else
+      if vers.text = '.'
+        vers.text = text
+        vers.save!
+      else
+        puts "text: #{text}"
+        puts "vers.inspect: #{vers.inspect}"
+        raise
+      end
+    end
+    i+=1
+  end
+
+  # break
+end; nil
+
+
+
+
+
+
+
 
 # ======================================================
 # МИГРАЦИЮ КНИГИ ИЗ SQLite смотри в конце модели Verse

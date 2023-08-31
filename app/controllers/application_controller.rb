@@ -18,6 +18,10 @@ class ApplicationController < ActionController::Base
         when 'cs' ; 'csl-ru'
         when 'il' ; 'heb-osm'
         when 'gr' ; 'gr-lxx-byz'
+        when 'jp' ; 'jp-ni'
+        when 'cn' ; 'cn-ccbs'
+        when 'de' ; 'ge-sch'
+        when 'ar' ; 'arab-avd'
         else      ; 'ru'
         end
       end

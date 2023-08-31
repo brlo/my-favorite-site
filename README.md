@@ -1,8 +1,16 @@
 # BIBLEOX.COM
 
-Запуск для разработки через docker-compose up
+Запуск для разработки:
 
-Деплой через ./bin/bib_deploy.sh
+docker-compose up -d
+
+Консольи разработчика:
+
+docker exec -it bibleox rails c
+
+Деплой в прод через:
+
+./bin/bib_deploy.sh
 
 Или удалённый вход на сервер и там:
 
@@ -94,3 +102,7 @@ alias bib_cache_clear='sudo rm /projects/bibleox/db/cache_search/*/*/*.json'
 обслуживается в https://dash.cloudflare.com/e5a70e8e380aa947cd45cdecbd410e6f/bibleox.com/dns/records
 
 через api-cloudflare происходит автоматическое продление сертификата letsencrypt на сервере bibleox
+
+* СКРИПТЫ
+
+см. всё в ./scripts.rb
