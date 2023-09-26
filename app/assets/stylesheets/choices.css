@@ -419,6 +419,13 @@
 }
 /* выбранный элемент меню */
 .night-mode .choices__item.is-selected {
-  background-color: #94c18155 !important;
+  background-color: #59b68255 !important;
 }
+.night-mode .choices[data-type*=select-one]::after {
+  border-color: #90909090 transparent transparent transparent;
+}
+.night-mode .choices[data-type*=select-one].is-open::after {
+  border-color: transparent transparent #90909090 transparent;
+}
+
 /* =====  End of Choices  ====== */
