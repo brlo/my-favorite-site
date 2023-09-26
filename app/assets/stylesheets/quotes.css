@@ -97,3 +97,9 @@ blockquote {
   border-left: 2px solid #90b990;
   background-color: #90b99011;
 }
+
+/* у админа в добавлении страницы */
+form #quotes-content {
+  border-top: 1px solid #888;
+  border-bottom: 1px solid #888;
+}

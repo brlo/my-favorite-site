@@ -40,6 +40,7 @@
 
 /public/assets
 /public/sitemaps
+/public/s
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key

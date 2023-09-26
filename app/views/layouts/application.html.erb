@@ -83,21 +83,6 @@
             </el>
           </div>
         </nav>
-
-        <% if @current_menu_item == 'biblia' %>
-          <select id="lang-select" name="lang-select" onchange="selectLang();return false;">
-            <option value='ru' <% if @current_lang == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
-            <option value='csl-pnm' <% if @current_lang == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
-            <option value='csl-ru' <% if @current_lang == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>
-            <option value='gr-lxx-byz' <% if @current_lang == 'gr-lxx-byz' %>selected<% end %>><%= I18n.t('bib_translations.gr') %> (LXX+Byz)</option>
-            <option value='eng-nkjv' <% if @current_lang == 'eng-nkjv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NKJV)</option>
-            <option value='heb-osm' <% if @current_lang == 'heb-osm' %>selected<% end %>><%= I18n.t('bib_translations.heb') %> (OSM)</option>
-            <option value='arab-avd' <% if @current_lang == 'arab-avd' %>selected<% end %>><%= I18n.t('bib_translations.arab') %> (AVD)</option>
-            <option value='jp-ni' <% if @current_lang == 'jp-ni' %>selected<% end %>><%= I18n.t('bib_translations.jp') %> (N.Interc)</option>
-            <option value='cn-ccbs' <% if @current_lang == 'cn-ccbs' %>selected<% end %>><%= I18n.t('bib_translations.cn') %> (CCBS)</option>
-            <option value='ge-sch' <% if @current_lang == 'ge-sch' %>selected<% end %>><%= I18n.t('bib_translations.ge') %> (SCH)</option>
-          </select>
-        <% end %>
       </div>
     </header>
 
@@ -115,7 +100,7 @@
         <a href='/en/gen/1/' onclick="window.selectLocale('en');return false;">English</a>,
         <a href='/ru/gen/1/' onclick="window.selectLocale('ru');return false;">Русский</a>
       </dd>
-      <dd>2022 <%= I18n.t('years_from') %></dd>
+      <dd><%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>
       <dd><a href='<%= my_link_to('/about/') %>'><%= I18n.t('about_site') %></a></dd>
     </footer>
 

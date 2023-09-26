@@ -1,7 +1,8 @@
 #chapter-image {
+  position: relative;
   border-bottom: 1px solid #aca08f;
   padding-bottom: 30px;
-  margin-bottom: 30px;
+  margin-bottom: 0;
 }
 
 .night-mode #chapter-image {
@@ -242,6 +243,31 @@
 
 .night-mode #copy-burger-menu > .active-el .icon-title {
   color: #ffffff40
+}
+
+po {
+  display: inline-block;
+  background-color: #88888833;
+  border-radius: 2px;
+}
+po:hover {
+  display: inline-block;
+  background-color: #829eba33;
+  border-radius: 2px;
+  cursor: pointer;
+}
+
+dict .desc {
+  background: #333;
+  color: white;
+  padding: 1rem;
+  max-width: 600px;
+  position: fixed;
+  top: 1rem;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+  white-space: pre-wrap;
 }
 
 /* POPUP for Select-bar */

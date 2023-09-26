@@ -90,12 +90,79 @@ header .container {
   margin: 0 auto;
 }
 
+/* ==================================================== */
+/* text bar -- настройки перед текстом (язык, озвучить) */
+/* ==================================================== */
+
+#text-bar {
+  display: flex;
+  /* justify-content: space-between; */
+  position: relative;
+  margin: 0 -10px 10px -10px;
+}
+
+#text-bar .bar-el {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
+}
+
+#text-bar .bar-el.right {
+  margin-left: auto;
+}
+
+#text-bar .bar-el.btn {
+  padding: 0 10px;
+  border: 1px solid #66666633;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  cursor: pointer;
+  background-color: #f6f4e4;
+}
+#text-bar .bar-el.btn:hover { background-color: #e3dfbe; }
+
+.night-mode #text-bar .bar-el.btn {
+  background-color: #4d4137;
+  color: #ccc;
+  border: 1px solid #5d4734;
+}
+.night-mode #text-bar .bar-el.btn:hover { background-color: #574a3f; }
+.night-mode #text-bar .bar-el.btn:active { background-color: #5b4d41; }
+
+/* ==================================================== */
+/* АУДИО-ПЛЕЕР */
+/* ==================================================== */
+
+#audio-player {
+  position: sticky;
+  top: 0;
+}
+
+#audio-player audio {
+  width: 100%;
+}
+
+#audio-player audio::-webkit-media-controls-enclosure {
+  border-radius: 0;
+  background-color: #f6f4e4;
+}
+.night-mode #audio-player audio::-webkit-media-controls-enclosure {
+  background-color: #444;
+}
+
 /* ЯЗЫК: выбор языка на главной */
 .lang-select {
-  position: absolute;
-  right: 10px;
-  top: 12px;
   min-width: 170px;
+}
+
+.lang-select .choices__inner {
+  border-radius: 0 0 4px 4px;
+  border-top: none;
+}
+
+.lang-select.is-open .choices__inner {
+  border-radius: 0;
 }
 
 /* .lang-select i {

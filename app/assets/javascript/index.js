@@ -576,19 +576,26 @@ addListenersForHighlightVerses();
 // подгрузка текста другой главы
 function loadChapter(linkEl) {
   let path = linkEl.getAttribute('href');
+  let currentChapter = linkEl.id.replace('ch-', ''); // берём id (там ch-5) и удаляем 'ch-'
   var xmlhttp = new XMLHttpRequest();
 
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == XMLHttpRequest.DONE) { // XMLHttpRequest.DONE == 4
       if (xmlhttp.status == 200) {
         // рендерим новый контент
-        document.getElementById("chapter-content").innerHTML = xmlhttp.responseText;
+        document.getElementById('chapter-text').innerHTML = xmlhttp.responseText;
         // вешаем события
         addListenersForHighlightVerses();
         // переключаем адрес стрианцы
         window.history.pushState({}, '', path);
         // прям меню работы с текстом
         selectBar.disable();
+        // переключаем номер активной главы
+        const chapters = document.getElementById('menu-chapters');
+        chapters.querySelector('.selected').classList.remove('selected');
+        chapters.querySelector('#ch-' + currentChapter).classList.add('selected');
+        // сбрасываем player — аудио текста (вдруг он был запущен)
+        window.BX.player.update();
       }
       else if (xmlhttp.status == 400) {
         alert('Erorr 400');
