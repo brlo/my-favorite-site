@@ -13,7 +13,7 @@ class VersesController < ApplicationController
       audio_file = "#{audio_prefix}#{@book_code}/#{@book_code}#{ @chapter }.mp3"
       if ::File.exists?("#{Rails.root}/public/#{ audio_file }")
         # во view сохраним только префикс, а ссылку будем собирать при запуске аудио
-        @prefix_for_audio_link = my_res_link_to(audio_prefix)
+        @prefix_for_audio_link = audio_prefix
       end
 
       @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
