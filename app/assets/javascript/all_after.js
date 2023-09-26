@@ -301,6 +301,111 @@ settingsArea.enableListeners = function () {
 
 settingsArea.enableListeners();
 
+// Аудио-плеер
+window.BX.player = {
+  el: undefined, // audio tag
+  containerEl: document.getElementById('audio-player'),
+  btnEnableEl: document.getElementById('btn-play-text'),
+  isShown: false,
+  isPlaing: false,
+}
+
+// play
+window.BX.player.play = function() {
+  // ничего не делаем, если нет плеера
+  if (!window.BX.player.el) return;
+
+  window.BX.player.el.play();
+  window.BX.player.isPlaing = true;
+  window.BX.player.el.innerHTML = window.BX.player.playIcon;
+};
+// stop
+window.BX.player.stop = function() {
+  // ничего не делаем, если нет плеера
+  if (!window.BX.player.el) return;
+
+  window.BX.player.el.pause();
+  window.BX.player.isPlaing = false;
+  window.BX.player.el.innerHTML = window.BX.player.pauseIcon;
+};
+
+// toggle: Play/Stop
+window.BX.player.toggle = function() {
+  if (window.BX.player.isPlaing == true) {
+    window.BX.player.stop();
+  } else {
+    window.BX.player.play();
+  };
+};
+
+// Update player SRC after AJAX page reloading
+window.BX.player.update = function() {
+  if (!window.BX.player.el) return;
+
+  // собираемся доставать номер главы и код книги из path
+  const path = window.location.pathname;
+  // выкидываем пустые элементы после разделения по '/'
+  const path_arr = path.split('/').filter(function (el) {
+    return (el != null) && el != '';
+  });
+  const bookCode = path_arr[path_arr.length-2];
+  const chapter = path_arr[path_arr.length-1];
+
+  const audio_prefix = window.BX.player.containerEl.dataset.audioPrefix;
+  const newAudioLink = audio_prefix + bookCode + '/' + bookCode + chapter + '.mp3';
+  console.log(newAudioLink);
+  window.BX.player.el.src = newAudioLink;
+};
+
+window.BX.player.showAndPlay = function() {
+  // если элемент уже показан, то ничего не делаем
+  if (window.BX.player.el) return;
+
+  // создали элемент
+  window.BX.player.containerEl.innerHTML = "<audio controls>test</audio>";
+  // запомнили html-элемент плеера
+  window.BX.player.el = window.BX.player.containerEl.querySelector('audio');
+  // показали
+  window.BX.player.isShown = true;
+  // настроили его (добавили актуальный src)
+  window.BX.player.update();
+  // настроили события
+  window.BX.player.enableListeners();
+  // воспроизвели
+  window.BX.player.play();
+};
+
+window.BX.player.hide = function() {
+  // остановили воспроизведение
+  window.BX.player.stop();
+  // скрыли элемент
+  window.BX.player.containerEl.innerHTML = '';
+  window.BX.player.el = undefined;
+  window.BX.player.isShown = false;
+};
+
+// СОБЫТИЯ НАСТРОЕК И ВНУТРЕННИХ ЭЛЕМЕНТОВ
+window.BX.player.enableListeners = function() {
+  if (!window.BX.player.el) return;
+
+  // когда аудио кончилось
+  window.BX.player.el.onended = window.BX.player.hide;
+}
+
+// Переключить видимость audio-тэга
+window.BX.player.toggleVision = function() {
+  if (window.BX.player.isShown == true) {
+    window.BX.player.hide();
+  } else {
+    window.BX.player.showAndPlay();
+  };
+};
+
+// Кнопка "Озвучить"
+if (window.BX.player.btnEnableEl) {
+  window.BX.player.btnEnableEl.addEventListener('click', window.BX.player.toggleVision, false);
+}
+
 // ================================
 // LOGOUT
 
