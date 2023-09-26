@@ -374,20 +374,20 @@
 
 .night-mode .choices.is-disabled .choices__inner,
 .night-mode .choices.is-disabled .choices__input {
-  background-color: #4d4137;
+  background-color: #4d41375e;
 }
 
 .night-mode .choices[data-type*=select-one] .choices__input {
   color: #59b682;
-  border-bottom: 1px solid #4d4137;
-  background-color: #4d4137;
+  border-bottom: 1px solid #4d41375e;
+  background-color: #4d41375e;
 }
 .night-mode .choices[data-type*=select-one] .choices__button:focus {
   box-shadow: 0 0 0 2px #00bcd4;
 }
 .night-mode .choices__inner {
-  background-color: #4d4137;
-  border: 1px solid #5d4734;
+  background-color: #4d41375e;
+  border: 1px solid #5d47345e;
 }
 .night-mode .is-focused .choices__inner,
 .night-mode .is-open .choices__inner {

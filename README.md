@@ -67,6 +67,14 @@ Verse.create_indexes
 
 * Deployment instructions
 
+git:
+
+```shell
+git add -A .
+git push origin HEAD:main
+./bin/bib_deploy.sh
+```
+
 ```shell
 ansible -m ping all
 ansible -m shell -a 'uname -a' all
