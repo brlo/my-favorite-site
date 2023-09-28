@@ -362,7 +362,7 @@ window.BX.player.showAndPlay = function() {
   if (window.BX.player.el) return;
 
   // создали элемент
-  window.BX.player.containerEl.innerHTML = "<audio controls>test</audio>";
+  window.BX.player.containerEl.innerHTML = "<audio controls>test</audio><a class='copy' href='https://jesus-portal.ru/life/video/audiobibliya/'>© материал православного портала \"Иисус\"</a>";
   // запомнили html-элемент плеера
   window.BX.player.el = window.BX.player.containerEl.querySelector('audio');
   // показали

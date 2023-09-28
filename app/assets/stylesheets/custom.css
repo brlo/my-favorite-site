@@ -114,6 +114,7 @@ header .container {
 
 #text-bar .bar-el.btn {
   padding: 0 10px;
+  font-size: 14px;
   color: #222;
   border: 1px solid #66666633;
   border-top: none;
@@ -145,9 +146,22 @@ header .container {
   width: 100%;
 }
 
+#audio-player a.copy {
+  font-size: 8px;
+  display: block;
+  position: absolute;
+  bottom: 7px;
+  right: 2px;
+  color:#b7b5a6;
+}
+
 #audio-player audio::-webkit-media-controls-enclosure {
   border-radius: 0;
   background-color: #f6f4e4;
+}
+
+.night-mode #audio-player a.copy {
+  color:#1e1e1e;
 }
 .night-mode #audio-player audio::-webkit-media-controls-enclosure {
   background-color: #444;
