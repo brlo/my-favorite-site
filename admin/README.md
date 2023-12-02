@@ -9,3 +9,22 @@ This template should help get you started developing with Vue 3 in Vite. The tem
 
 npm install
 npm run dev
+
+
+
+links:
+
+SFC (SCRIPT SETUP):
+https://v3.ru.vuejs.org/ru/api/sfc-script-setup.html#defineprops-и-defineemits
+
+ПОЛУЧИТЬ ДАННЫЕ ОТ КОМПОНЕНТА:
+https://vueschool.io/articles/vuejs-tutorials/techniques-for-sharing-data-between-vue-js-components/
+
+props и emits
+https://vueframework.com/docs/v3/ru/ru/guide/component-basics.html#передача-данных-вместе-с-событием
+
+СВЯЗЬ ПЕРЕМЕННОЙ С ПОЛЕМ ФОРМЫ
+https://vuejs.org/guide/essentials/forms.html
+
+ПЕРЕДАЧА ПЕРЕМЕННОЙ ИЗ РОУТА В КОМПОНЕНТ
+https://router.vuejs.org/guide/essentials/passing-props.html

@@ -1,5 +1,5 @@
 module Api
-  class QuotesController < ApplicationController
+  class QuotesController < ApiApplicationController
     def add
       quote = ::Quote.create(address: attrs[:quote_address], s_id: attrs[:subject_id])
       if quote

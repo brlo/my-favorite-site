@@ -101,7 +101,7 @@
         <a href='/ru/gen/1/' onclick="window.selectLocale('ru');return false;">Русский</a>
       </dd>
       <dd><%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>
-      <dd><a href='<%= my_link_to('/about/') %>'><%= I18n.t('about_site') %></a></dd>
+      <dd><a title='<%= day_visit() %>' href='<%= my_link_to('/about/') %>'><%= I18n.t('about_site') %></a></dd>
     </footer>
 
 <%= content_for?(:end_of_page) ? yield(:end_of_page) : '' %>

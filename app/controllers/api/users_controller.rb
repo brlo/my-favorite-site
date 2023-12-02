@@ -1,0 +1,43 @@
+module Api
+  class UsersController < ApiApplicationController
+    # Вход через сайт
+    def psw_login
+      @attrs = params.permit(:username, :password)
+
+      @user =
+      if params[:username].present?
+        ::User.by_site.where(username: params[:username]).first
+      end
+
+      if @user && @user.authenticate(params[:password]) && @user.allow_ip?(request.ip)
+        render json: {api_token: @user.get_api_token()}.merge(success_response)
+      else
+        render json: {errors: 'access denied'}.merge(fail_response), status: 422
+      end
+    end
+
+    # Вход через Телеграм
+    def telegram_login
+      # хэш, с которым мы сравниваем наши рассчёты
+      attrs = params.permit(:hash, :auth_date, :first_name, :id, :last_name, :photo_url, :username)
+      auth_service = ::AuthTelegram.new(attrs)
+
+      if auth_service.valid?
+        user = auth_service.find_or_create_user!
+        render json: {api_token: user.get_api_token()}.merge(success_response)
+      else
+        render json: {params: params}.merge(fail_response)
+      end
+    end
+
+    private
+
+    def success_response
+      {'success': 'ok'}
+    end
+
+    def fail_response
+      {'success': 'fail'}
+    end
+  end
+end

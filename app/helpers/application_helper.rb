@@ -55,4 +55,12 @@ module ApplicationHelper
     when 'jp'; '🇯🇵'
     end
   end
+
+  def day_visit
+    @count_visit ||= ::PageVisits.day_visit()
+  end
+
+  def page_visit(id)
+    @page_visit ||= ::PageVisits.page_visit(id)
+  end
 end

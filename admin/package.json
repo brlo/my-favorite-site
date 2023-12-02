@@ -9,7 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "vue": "^3.3.4"
+    "@tiptap/extension-highlight": "^2.1.12",
+    "@tiptap/extension-image": "^2.1.12",
+    "@tiptap/extension-link": "^2.1.12",
+    "@tiptap/extension-typography": "^2.1.12",
+    "@tiptap/extension-underline": "^2.1.12",
+    "@tiptap/pm": "^2.1.12",
+    "@tiptap/starter-kit": "^2.1.12",
+    "@tiptap/vue-3": "^2.1.12",
+    "axios": "^1.5.1",
+    "sass": "^1.69.4",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5",
+    "vue3-telegram-login": "^0.0.4"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",

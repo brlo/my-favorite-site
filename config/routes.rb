@@ -37,6 +37,8 @@ Rails.application.routes.draw do
 
     # API
     namespace 'api' do
+      post '/login/psw', to: 'users#psw_login'
+      post '/login/telegram', to: 'users#telegram_login'
       post '/quotes/add', to: 'quotes#add'
       delete '/quotes/del', to: 'quotes#del'
     end

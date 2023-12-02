@@ -1,5 +1,6 @@
 # User.create_indexes
-require 'bcrypt'
+require 'securerandom' # for generate uuid (api_token)
+require 'bcrypt' # for passwords
 
 class User
   include Mongoid::Document
@@ -17,6 +18,7 @@ class User
   field :password_digest, type: String
   field :provider, type: String # telegram
   field :uid, type: String
+  field :api_token, type: String
   field :allow_ips, type: Array
   field :is_admin, type: Boolean
   # время создания можно получать из _id во так: id.generation_time
@@ -47,6 +49,14 @@ class User
         message: 'no password present'
       )
     end
+  end
+
+  def get_api_token
+    if self.api_token.blank?
+      self.update!(api_token: ::SecureRandom.uuid)
+    end
+
+    self.api_token
   end
 
   def uid_validation

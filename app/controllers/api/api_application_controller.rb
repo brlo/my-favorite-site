@@ -1,9 +1,30 @@
-class ApplicationController < ActionController::Base
+# ВЗЯТО ТУТ: https://www.thegreatcodeadventure.com/rails-api-painless-error-handling-and-rendering-2/
+# class ApiExceptionSerializer < ActiveModel::Serializers
+#   attributes :status, :code, :message
+# end
+
+class ApiApplicationController < ActionController::Base
   helper_method :logged_in?
 
+  # skip_before_action :verify_authenticity_token
   around_action :set_current_user
-  before_action :set_is_night_mode
   before_action :set_locale
+
+  rescue_from ::ActiveRecord::RecordNotFound, with: :record_not_found
+  rescue_from ::NameError, with: :error_occurred
+  rescue_from ::ActionController::RoutingError, with: :route_not_found
+
+  def route_not_found(error)
+    render json: {success: 'fail', error: 'route not found'}, status: 404
+  end
+
+  def record_not_found(error)
+    render json: {success: 'fail', error: 'record not found'}, status: 404
+  end
+
+  def error_occurred(error)
+    render json: {success: 'fail', error: error.message}, status: 500
+  end
 
   def current_lang
     # если поисковик не умеет куки, то хоть через локаль (которая в url) установит перевод
@@ -34,10 +55,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def set_is_night_mode
-    @is_night_mode = cookies[:isNightMode] == '1'
-  end
-
   def set_locale
     # params[:locale] - заполняется в routes
     ::I18n.locale = params[:locale] || 'ru'
@@ -55,10 +72,6 @@ class ApplicationController < ActionController::Base
     ::Current.user.logged_in?()
   end
 
-  def authorized
-    redirect to login_path unless logged_in?()
-  end
-
   def set_current_user
     user =
     if request.headers['API_TOKEN'].present?
@@ -74,9 +87,5 @@ class ApplicationController < ActionController::Base
   ensure
     # to address the thread variable leak issues in Puma/Thin webserver
     ::Current.user = nil
-  end
-
-  def build_canonical_url(path)
-    "https://bibleox.com/#{I18n.locale}#{path}"
   end
 end

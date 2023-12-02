@@ -1,0 +1,2 @@
+redis:
+  url: "redis://:passw@bibredis:6379/0"
