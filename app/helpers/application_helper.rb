@@ -61,6 +61,6 @@ module ApplicationHelper
   end
 
   def page_visit(id)
-    @page_visit ||= ::PageVisits.page_visit(id)
+    @page_visit ||= ::PageVisits.visit(id)
   end
 end

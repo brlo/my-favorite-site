@@ -1,2 +1,11 @@
-redis:
-  url: "redis://:passw@bibredis:6379/0"
+test:
+  redis:
+    url:
+
+development:
+  redis:
+    url: "redis://:psw@bibredis:6379/0"
+
+production:
+  redis:
+    url:

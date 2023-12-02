@@ -32,7 +32,7 @@ class QuotesSubject
   validates :title_ru, presence: true
 
   # построение дерева тем
-  def self.tree_data
+  def self.tree_data(is_visits: false)
     # раскладываем элементы по полочкам с подписью parent_id
     # nil => [...] # корневые
     # 1 => [...] # вложения
@@ -51,8 +51,14 @@ class QuotesSubject
 
     # страницы, сгруппированные по {s_id => [page_path, ...]}
     pages = ::Hash.new([])
-    ::QuotesPage.where(lang: ::I18n.locale).order(position: :asc).pluck(:s_id, :title, :path).to_a.map do |s_id, title, path|
-      pages[s_id] += [[title, path]]
+    q_pluck = ::QuotesPage.where(lang: ::I18n.locale).order(position: :asc).pluck(:id, :s_id, :title, :path).to_a
+
+    # если надо, добываем просмотры всех этих страниц
+    p_id__visits = is_visits ? ::PageVisits.visits(q_pluck.map(&:first), lang: ::I18n.locale) : {}
+
+    q_pluck.map do |id, s_id, title, path|
+      visits = p_id__visits[id]
+      pages[s_id] += [[title, path, visits]]
     end
 
     # конечное дерево элементов

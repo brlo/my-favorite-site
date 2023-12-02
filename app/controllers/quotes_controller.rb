@@ -3,7 +3,7 @@ class QuotesController < ApplicationController
     @page_title = ::I18n.t('quotes_page.title') #'Избранные цитаты'
     @current_menu_item = 'quotes'
 
-    @tree_data = ::QuotesSubject.tree_data
+    @tree_data = ::QuotesSubject.tree_data(is_visits: true)
   end
 
   # TODO: открывать по имени статьи в любом регистре, но редиректить на правильный регистр

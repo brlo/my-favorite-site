@@ -11,6 +11,7 @@ module RedisConnectionPool
     # перенаправляем только используемые методы (при необходимости добавить)
     def_delegators :connection_pool, # <- сюда делегируются все следующие методы (get, set, ...)
                    :get,
+                   :mget,
                    :set,
                    :exists,
                    :exists?,

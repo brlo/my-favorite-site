@@ -14,10 +14,19 @@ class PageVisits
     int_to_human_s(count)
   end
 
-  def self.page_visit(id)
-    redis_key = "vis:#{id}"
+  def self.visit(page)
+    redis_key = "vis:#{page.lang}-#{page.id}"
     count = ::RedisConnectionPool.incr(redis_key)
     int_to_human_s(count)
+  end
+
+  # Добывает просмотры всех страниц, отдаёт хэш:
+  # {p_id => 142, ...}
+  def self.visits(p_ids, lang: ::I18n.locale)
+    redis_keys = p_ids.map{|id| "vis:#{lang}-#{id}" }
+    vals = ::RedisConnectionPool.mget(redis_keys)
+    vals = vals.map{|v| int_to_human_s(v) }
+    p_ids.zip(vals).to_h
   end
 
   def self.int_to_human_s(numb)
