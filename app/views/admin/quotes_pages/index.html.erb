@@ -12,6 +12,12 @@
 
 <p style="color: green"><%= notice %></p>
 
+<p style='font-size: 0.5em;'>
+  <% @week_visits.each do |date, visits| %>
+    <%= date %>: <%= visits %><br>
+  <% end %>
+</p>
+
 <h1>Страницы цитат</h1>
 
 <br>
@@ -24,7 +30,7 @@
 <div id="quotes_pages">
   <% @quotes_pages.each do |page| %>
     <div class='q_page'>
-      <%= page.title.to_s[0].upcase %> | <b><%= link_to(page.title, [:admin, page], class: 'q_title') %></b> (<%= page.position %>) | <%= flag_by_lang(page.lang) %>
+      <%= page.title.to_s[0].upcase %> | <b><%= link_to(page.title, [:admin, page], class: 'q_title') %></b> (<%= page.position %>) | <%= flag_by_lang(page.lang) %> | <%= @page_visits[page.id.to_s] %>
     </div>
   <% end %>
 </div>

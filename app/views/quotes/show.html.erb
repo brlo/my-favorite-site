@@ -1,7 +1,7 @@
 <article id='quotes-content' class="text-<%= text_size_from_cookies %>" itemscope itemtype="http://schema.org/Article">
   <h1 id='subject' itemprop='name'><%= @page.title %></h1>
   <div id='page-body' itemprop='articleBody'>
-    <%= sanitize(@page.body, tags: %w(div ul ol li h1 h2 blockquote b i strike u hr br a)).html_safe %>
+    <%= sanitize(@page.body, tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br a mark img code)).html_safe %>
   </div>
   <div id='bottom-page-bar'>
     <div id="visits">

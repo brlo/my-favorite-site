@@ -4,7 +4,9 @@ module Admin
 
     # GET /quotes_pages or /quotes_pages.json
     def index
-      @quotes_pages = QuotesPage.order(title: 1).all
+      @quotes_pages = ::QuotesPage.order(title: 1).all
+      @week_visits = ::PageVisits.week_visits()
+      @page_visits = ::PageVisits.visits(@quotes_pages.map{|p| p.id.to_s })
     end
 
     # GET /quotes_pages/1 or /quotes_pages/1.json

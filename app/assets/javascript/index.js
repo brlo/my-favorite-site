@@ -114,7 +114,8 @@ selectBar.getSelectedAddress = function () {
 
   let bookInfo = document.getElementById('current-address').dataset;
   let bookName = bookInfo.bookShortName;
-  let chapter = bookInfo.chapter;
+
+  let chapter = document.querySelector('#menu-chapters .selected').innerHTML;
 
   let address = bookName + '. ' + chapter + ':' + lines;
 

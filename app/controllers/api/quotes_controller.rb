@@ -1,18 +1,38 @@
 module Api
   class QuotesController < ApiApplicationController
-    def add
-      quote = ::Quote.create(address: attrs[:quote_address], s_id: attrs[:subject_id])
-      if quote
-        render json: {id: quote._id.to_s, address: quote.address}.merge(success_response)
+    def list
+      @quotes_pages = ::QuotesPage.only(:id, :title, :position, :lang).order(title: 1).all
+    end
+
+    def show
+      set_quotes_page()
+    end
+
+    # POST /quotes_pages or /quotes_pages.json
+    def create
+      @quotes_page = ::QuotesPage.new(quotes_page_params)
+
+      if @quotes_page.save
+        render :show, status: :ok
       else
-        render json: {errors: quote.errors}, status: 422
+        render json: @quotes_page.errors, status: :unprocessable_entity
       end
     end
 
-    def del
-      quote = ::Quote.find_by(id: params.permit(:id)[:id])
+    def update
+      set_quotes_page()
+      if @quotes_page.update(quotes_page_params)
+        render :show, status: :ok
+      else
+        render json: @quotes_page.errors, status: :unprocessable_entity
+      end
+    end
+
+    def destroy
+      set_quotes_page()
+
       begin
-        quote.destroy!
+        @quotes_page.destroy!
         render json: success_response
       rescue ActiveRecord::RecordNotDestroyed => error
         render json: {errors: error.record.errors}, status: 422
@@ -25,12 +45,14 @@ module Api
       {'success': 'ok'}
     end
 
-    # def quote
-      # qs = ::QuotesSubject.where(id: attrs[:id]).first
-    # end
+    # Use callbacks to share common setup or constraints between actions.
+    def set_quotes_page
+      @quotes_page = ::QuotesPage.find(params[:id])
+    end
 
-    def attrs
-      @attrs ||= params.permit(:subject_id, :quote_address, :locale, :quote => {})
+    # Only allow a list of trusted parameters through.
+    def quotes_page_params
+      params.require(:quotes_page).permit(:title, :meta_desc, :path, :lang, :body, :s_id, :position)
     end
   end
 end

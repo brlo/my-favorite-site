@@ -14,7 +14,7 @@ const routes = [
   { path: "/", name: "Hello", component: ()=>import("@/views/Hello.vue")},
   { path: "/bibs", name: "Bibs", component: ()=>import("@/views/bibs/Index.vue")},
   { path: "/bibs/new", name: "NewBib", component: ()=>import("@/views/bibs/New.vue")},
-  { path: "/bibs/:id(\\d+)", name: "EditBib", component: ()=>import("@/views/bibs/Edit.vue"), props: true},
+  { path: "/bibs/:id([a-f0-9]+)", name: "EditBib", component: ()=>import("@/views/bibs/Edit.vue"), props: true},
   { path: "/fathers", name: "Fathers", component: ()=>import("@/views/fathers/Index.vue")},
   { path: "/fathers/new", name: "NewFather", component: ()=>import("@/views/fathers/New.vue")},
 ]

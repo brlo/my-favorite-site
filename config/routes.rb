@@ -36,11 +36,25 @@ Rails.application.routes.draw do
     delete '/logout', to: 'users#logout'
 
     # API
-    namespace 'api' do
+    namespace 'api', defaults: {format: :json} do
       post '/login/psw', to: 'users#psw_login'
       post '/login/telegram', to: 'users#telegram_login'
-      post '/quotes/add', to: 'quotes#add'
-      delete '/quotes/del', to: 'quotes#del'
+
+      scope 'quotes' do
+        get    'list', to: 'quotes#list'
+        post   '/',    to: 'quotes#create'
+        get    ':id',  to: 'quotes#show'
+        put    ':id',  to: 'quotes#update'
+        delete ':id',  to: 'quotes#destroy'
+      end
+
+      scope 'quotes_subjects' do
+        get    'list', to: 'quotes_subjects#list'
+        post   '/',    to: 'quotes_subjects#create'
+        get    ':id',  to: 'quotes_subjects#show'
+        put    ':id',  to: 'quotes_subjects#update'
+        delete ':id',  to: 'quotes_subjects#destroy'
+      end
     end
 
     # Admin

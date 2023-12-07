@@ -171,7 +171,7 @@ class QuotesPage
     # избавяемся от лишних в тэгов
     self.body = sanitizer.sanitize(
       self.body,
-      tags: %w(div ul ol li h1 h2 blockquote b i strike u hr br a)
+      tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br a mark img code)
     )
 
     # Заменяем неразрывные пробелы (&nbsp;) на обычные. Иначе строки не рвутся, выглядит очень странно

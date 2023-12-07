@@ -111,7 +111,7 @@ const editor = new Editor({
     // пока что не заработала: ни кнопка, ни вставка ссылок
     Image,
     // https://tiptap.dev/api/marks/link
-    Link,
+    Link.configure({ openOnClick: false }),
   ],
 
   // https://tiptap.dev/api/events#update

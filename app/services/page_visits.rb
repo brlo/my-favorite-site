@@ -3,15 +3,18 @@ class PageVisits
     redis_key = "vis#{Date.today}"
     count = ::RedisConnectionPool.incr(redis_key)
     if count == 1
-      ::RedisConnectionPool.expire(redis_key, 60*60*24)
+      # метка хранится неделю, чтобы смотреть статистику за неделю
+      ::RedisConnectionPool.expire(redis_key, 60*60*24*7)
     end
     int_to_human_s(count)
   end
 
-  def self.day_visits
-    redis_key = "vis#{Date.today}"
-    count = ::RedisConnectionPool.fetch(redis_key).to_i
-    int_to_human_s(count)
+  def self.week_visits
+    days = (6.days.ago.to_date..Date.today).to_a.map(&:to_s)
+    redis_keys = days.map{ |d| "vis#{d}" }
+    vals = ::RedisConnectionPool.mget(redis_keys)
+    vals = vals.map{|v| int_to_human_s(v) }
+    days.zip(vals).to_h
   end
 
   def self.visit(page)

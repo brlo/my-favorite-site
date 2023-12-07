@@ -6,6 +6,9 @@ module Api
   class ApiApplicationController < ActionController::Base
     helper_method :logged_in?
 
+    # skip CSRF-token checking
+    skip_forgery_protection
+
     # skip_before_action :verify_authenticity_token
     around_action :set_current_user
     before_action :set_locale
