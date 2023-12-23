@@ -1,15 +1,17 @@
 module Api
   class UsersController < ApiApplicationController
+    skip_before_action :reject_not_admins, only: [:psw_login, :telegram_login]
+
     # Вход через сайт
     def psw_login
       @attrs = params.permit(:username, :password)
 
       @user =
-      if params[:username].present?
-        ::User.by_site.where(username: params[:username]).first
+      if @attrs[:username].present?
+        ::User.by_site.where(username: @attrs[:username]).first
       end
 
-      if @user && @user.authenticate(params[:password]) && @user.allow_ip?(request.ip)
+      if @user && @user.authenticate(@attrs[:password]) && @user.allow_ip?(request.ip)
         render json: {api_token: @user.get_api_token()}.merge(success_response)
       else
         render json: {errors: 'access denied'}.merge(fail_response), status: 422

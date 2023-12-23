@@ -10,8 +10,9 @@ module Api
     skip_forgery_protection
 
     # skip_before_action :verify_authenticity_token
-    around_action :set_current_user
+    before_action :set_current_user
     before_action :reject_not_admins
+    around_action :delete_current_user
     before_action :set_locale
 
     rescue_from ::ActiveRecord::RecordNotFound, with: :record_not_found
@@ -77,9 +78,6 @@ module Api
       ::Current.user.logged_in?()
     end
 
-    def reject_not_admins
-    end
-
     def set_current_user
       user =
       if request.headers['API_TOKEN'].present?
@@ -91,13 +89,16 @@ module Api
       end
 
       ::Current.user = ::CurrentUser.new(user)
+    end
 
-      # reject_not_admins
+    def reject_not_admins
       if ::Current.user.is_admin != true
-        raise ActionController::RoutingError.new('Not Found')
+        render json: {success: 'fail', errors: 'access denied'}.merge(fail_response), status: 401
       end
+    end
 
-      yield # тут выполниться весь наш запрос
+    def delete_current_user
+      yield # тут выполнится весь наш запрос
     ensure
       # to address the thread variable leak issues in Puma/Thin webserver
       ::Current.user = nil
