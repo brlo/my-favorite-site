@@ -21,14 +21,17 @@ module Api
     rescue_from ::ActionController::RoutingError, with: :route_not_found
 
     def route_not_found(error)
+      log_error(error)
       render json: {success: 'fail', error: 'route not found'}, status: 404
     end
 
     def record_not_found(error)
+      log_error(error)
       render json: {success: 'fail', error: 'record not found'}, status: 404
     end
 
     def error_occurred(error)
+      log_error(error)
       render json: {success: 'fail', error: error.message}, status: 500
     end
 
@@ -93,15 +96,26 @@ module Api
 
     def reject_not_admins
       if ::Current.user.is_admin != true
-        render json: {success: 'fail', errors: 'access denied'}.merge(fail_response), status: 401
+        render json: {success: 'fail', errors: 'access denied'}, status: 401
       end
     end
 
     def delete_current_user
-      yield # тут выполнится весь наш запрос
+      begin
+        yield # тут выполнится весь наш запрос
+      rescue => e
+        logger.error e.message
+        logger.error e.backtrace.join("\n")
+        raise(e)
+      end
     ensure
       # to address the thread variable leak issues in Puma/Thin webserver
       ::Current.user = nil
+    end
+
+    def log_error(error)
+      logger.error(error.message)
+      logger.error(error.backtrace.join("\n"))
     end
   end
 end
