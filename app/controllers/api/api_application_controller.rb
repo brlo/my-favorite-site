@@ -82,11 +82,9 @@ module Api
     end
 
     def set_current_user
-      api_token = request.headers['X_API_TOKEN']
+      api_token = request.headers['HTTP_X_API_TOKEN']
       user =
       if api_token.present?
-        puts '---------X_API_TOKEN--------'
-        puts api_token
         ::User.find_by(api_token: api_token)
       elsif session[:user_id].present?
         ::User.find_by(id: session[:user_id])
@@ -98,6 +96,8 @@ module Api
     end
 
     def reject_not_admins
+      puts '-------------reject_not_admins----------------'
+      puts ::Current.user.inspect
       if ::Current.user.is_admin != true
         render json: {success: 'fail', errors: 'access denied'}, status: 401
       end
