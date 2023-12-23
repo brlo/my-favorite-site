@@ -56,6 +56,7 @@
         <nav>
           <a href="<%= my_link_to('/gen/1/') %>" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
           <a href="<%= my_link_to('/q/') %>" id='quotes-link' class="<%= @current_menu_item == 'quotes' ? ' selected' : nil %>"><%= I18n.t('menu.quotes') %></a>
+          <a href="<%= my_link_to('/w/') %>" id='pages-link' class="<%= @current_menu_item == 'articles' ? ' selected' : nil %>"><%= I18n.t('menu.articles') %></a>
           <a href="<%= my_link_to( I18n.locale == :ru ? '/search/?acc=similar&l=ru&t=Христос%20Бог' : '/search/?acc=similar&l=eng-nkjv&t=Christ%20God') %>" class="<%= @current_menu_item == 'search' ? ' selected' : nil %>"><%= I18n.t('menu.search') %></a>
 
           <a href="javascript:" id="settings-btn" class="local"><%= ::I18n.t('menu.settings') %></a>

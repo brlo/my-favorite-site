@@ -1,0 +1,58 @@
+<article id='page-content' class="text-<%= text_size_from_cookies %>" itemscope itemtype="http://schema.org/Article">
+  <% if @page.path_parent.presence %>
+    <div id='link-parent'>
+      <a href="<%= my_link_to("/w/#{@page.path_parent}") %>">
+        <%= @page.path_parent_title %>
+      </a>
+    </div>
+  <% end %>
+
+  <h1 id='subject' itemprop='name'><%= @page.title %></h1>
+  <% if @page.title_sub.presence %>
+    <div id='title-sub'><%= @page.title_sub %></div>
+  <% end %>
+
+  <% if @page.path_prev.presence %>
+    <div id='link-prev'>
+      <a href="<%= my_link_to("/w/#{@page.path_prev}") %>">
+        <%= @page.path_prev_title %>
+      </a>
+    </div>
+  <% end %>
+
+  <% if @page.path_next.presence %>
+    <div id='link-next'>
+      <a href="<%= my_link_to("/w/#{@page.path_next}") %>">
+        <%= @page.path_next_title %>
+      </a>
+    </div>
+  <% end %>
+
+  <div id='page-body' itemprop='articleBody'>
+    <%= sanitize(@page.body, tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)).html_safe %>
+  </div>
+
+  <div class='menu-tree'>
+    <div>
+    <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0}) %>
+    </div>
+  </div>
+
+  <div id='page-references'>
+    <%= sanitize(@page.references, tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)).html_safe %>
+  </div>
+
+  <div id='bottom-page-bar'>
+    <div id="visits">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+        <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+      <%= page_visit(@page) %>
+    </div>
+  </div>
+
+  <div class='notification'>
+    <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox'>https://t.me/bibleox</a>
+  </div>
+</div>

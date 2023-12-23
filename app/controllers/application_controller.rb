@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
   def set_current_user
     user =
     if request.headers['API_TOKEN'].present?
-      ::User.find_by(id: request.headers['API_TOKEN'])
+      ::User.find_by(api_token: request.headers['API_TOKEN'])
     elsif session[:user_id].present?
       ::User.find_by(id: session[:user_id])
     else

@@ -17,6 +17,7 @@ class VersesController < ApplicationController
       end
 
       @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+      # TODO: найти также все статьи для этой главы и встроить ссылки рядом со стихами
 
       @current_menu_item = 'biblia'
       @text_direction = current_lang == 'heb-osm' ? 'rtl' : 'ltr'
@@ -45,6 +46,7 @@ class VersesController < ApplicationController
   end
 
   def chapter_ajax
+    # TODO: в процессе апдейта надо ещё тэг title у страницы поменять
     @book_code ||= params[:book_code] || 'gen'
     @chapter = (params[:chapter] || 1).to_i
 

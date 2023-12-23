@@ -20,7 +20,7 @@ function install_node_modules () {
 
 # запуск
 function run_app () {
-  ecco "Runing app. env: $1 ..."
+  ecco "Runing app. ENV: $1 ..."
   NODE_ENV_NAME=$1
   exec npm run ${NODE_ENV_NAME}
 }

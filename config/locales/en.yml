@@ -58,6 +58,11 @@ en:
     title: 'Me'
     logout: Logout
 
+  page:
+    title: "%{term}"
+    main_title: "articles list"
+    main_meta_desc: "Articles on biblical, Christian and religious topics"
+
   quotes_page:
     title: Bible quotes
 
@@ -91,6 +96,7 @@ en:
   menu:
     bible: Bible
     quotes: Quotes
+    articles: Articles
     search: Search
     settings: Settings
     locale: Language

@@ -1,0 +1,25 @@
+<% if items.presence %>
+  <div class='items'>
+    <% items.each do |item| %>
+      <% if item[:obj] %>
+
+        <% obj = item[:obj] %>
+        <h3 class='subject depth-<%= depth %>'>
+          <% if obj[:path] %>
+            <a href="<%= my_link_to("/w/#{obj[:path]}") %>"><%= obj[:title] %></a>
+          <% else %>
+            <%= obj[:title] %>
+          <% end %>
+        </h2>
+
+      <% end %>
+
+      <div class='level'>
+        <% if item[:childs] %>
+          <%= render(partial: 'pages/menu', locals: {items: item[:childs], depth: depth+1}) %>
+        <% end %>
+      </div>
+
+    <% end %>
+  </div>
+<% end %>

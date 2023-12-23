@@ -11,9 +11,11 @@ module Api
 
     # skip_before_action :verify_authenticity_token
     around_action :set_current_user
+    before_action :reject_not_admins
     before_action :set_locale
 
     rescue_from ::ActiveRecord::RecordNotFound, with: :record_not_found
+    rescue_from ::Mongoid::Errors::DocumentNotFound, with: :record_not_found
     rescue_from ::NameError, with: :error_occurred
     rescue_from ::ActionController::RoutingError, with: :route_not_found
 
@@ -75,10 +77,13 @@ module Api
       ::Current.user.logged_in?()
     end
 
+    def reject_not_admins
+    end
+
     def set_current_user
       user =
       if request.headers['API_TOKEN'].present?
-        ::User.find_by(id: request.headers['API_TOKEN'])
+        ::User.find_by(api_token: request.headers['API_TOKEN'])
       elsif session[:user_id].present?
         ::User.find_by(id: session[:user_id])
       else
@@ -86,6 +91,12 @@ module Api
       end
 
       ::Current.user = ::CurrentUser.new(user)
+
+      # reject_not_admins
+      if ::Current.user.is_admin != true
+        raise ActionController::RoutingError.new('Not Found')
+      end
+
       yield # тут выполниться весь наш запрос
     ensure
       # to address the thread variable leak issues in Puma/Thin webserver

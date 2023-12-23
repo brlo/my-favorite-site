@@ -27,6 +27,11 @@ ru:
     title: 'Мой профиль'
     logout: Выйти
 
+  page:
+    title: "%{term}"
+    main_title: "Список статей"
+    main_meta_desc: "Статьи на библейскую, христианскую и религиозную тематику"
+
   quotes_page:
     title: Цитаты из Библии
 
@@ -60,6 +65,7 @@ ru:
   menu:
     bible: Библия
     quotes: Цитаты
+    articles: Статьи
     search: Поиск
     settings: Настройки
     locale: Язык
@@ -344,6 +350,13 @@ ru:
 
   mongoid:
     errors:
+      models:
+        menu:
+          attributes:
+            page_id:
+              blank: 'пусто'
+            path_parent:
+              blank: 'пусто'
       messages:
         blank_in_locale:
           "can't be blank in %{location}"

@@ -2,6 +2,7 @@
 </script>
 
 <template>
+<!--
 <footer>
   <dd class='tip'>Подсказка</dd>
   <dd id='change-locale-area'>
@@ -11,6 +12,7 @@
   <dd>2023</dd>
   <dd>о сайте</dd>
 </footer>
+-->
 </template>
 
 <style scoped>

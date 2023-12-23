@@ -1,0 +1,5 @@
+<div>
+  <% @pages.each do |page| %>
+    <div><a href="<%= my_link_to("/w/#{page.path}") %>"><%= page.title %></a></div>
+  <% end %>
+</div>

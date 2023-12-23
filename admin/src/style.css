@@ -249,6 +249,30 @@ j {
   font-size: 1em;
 }
 
+/* FLEX: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Typical_use_cases_of_flexbox */
+.field {
+  margin-bottom: 10px;
+}
+
+.group-fields {
+  display: flex;
+  gap: 20px;
+}
+
+.field.push-right {
+  margin-left: auto;
+}
+
+.field label {
+  display: block;
+  font-size: 0.85em;
+}
+
+.form-send-btn {
+  margin: 20px 0 40px 0;
+}
+
+
 /* =========== NIGHT MODE =========== */
 
 .night-mode ::selection {

@@ -10,10 +10,10 @@
       </a>
     </div>
     <nav>
-      <router-link to="/bibs">Из Библии</router-link>
-      <router-link to="/fathers">Из отцов</router-link>
+      <router-link to="/">Сводка</router-link>
+      <router-link to="/pages">Статьи</router-link>
 
-      <a href="javascript:" id="settings-btn" class="local">Настройки</a>
+      <!--<a href="javascript:" id="settings-btn" class="local">Настройки</a>-->
     </nav>
   </div>
 </header>

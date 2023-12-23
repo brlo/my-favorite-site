@@ -11,12 +11,10 @@ import { getCookie } from "@/libs/cookies"
 // Each route should map to a component.
 // We'll talk about nested routes later.
 const routes = [
-  { path: "/", name: "Hello", component: ()=>import("@/views/Hello.vue")},
-  { path: "/bibs", name: "Bibs", component: ()=>import("@/views/bibs/Index.vue")},
-  { path: "/bibs/new", name: "NewBib", component: ()=>import("@/views/bibs/New.vue")},
-  { path: "/bibs/:id([a-f0-9]+)", name: "EditBib", component: ()=>import("@/views/bibs/Edit.vue"), props: true},
-  { path: "/fathers", name: "Fathers", component: ()=>import("@/views/fathers/Index.vue")},
-  { path: "/fathers/new", name: "NewFather", component: ()=>import("@/views/fathers/New.vue")},
+  { path: "/", name: "Main", component: ()=>import("@/views/Main.vue")},
+  { path: "/pages", name: "Pages", component: ()=>import("@/views/pages/Index.vue")},
+  { path: "/pages/new", name: "NewPage", component: ()=>import("@/views/pages/Edit.vue")},
+  { path: "/pages/:id([a-f0-9]+)", name: "EditPage", component: ()=>import("@/views/pages/Edit.vue"), props: true},
 ]
 
 // docs: https://router.vuejs.org/guide/essentials/named-routes.html

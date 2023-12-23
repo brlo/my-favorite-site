@@ -29,8 +29,9 @@ class User
   # rake db:mongoid:create_indexes
   # rake db:mongoid:remove_indexes
   # rake db:mongoid:remove_undefined_indexes
-  index({username: 1},              {background: true})
-  index({username: 1, provider: 1}, {unique: true, background: true})
+  index({api_token: 1},             {unique: true, background: true})
+  index({username: 1},              {unique: true, background: true})
+  index({username: 1, provider: 1},               {background: true})
 
   scope :by_site,      -> { where(provider: 'site') }
   scope :by_telegram,  -> { where(provider: 'telegram') }

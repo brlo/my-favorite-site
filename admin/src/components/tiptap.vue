@@ -1,3 +1,75 @@
+<script setup>
+import { Editor, EditorContent } from '@tiptap/vue-3'
+import StarterKit from '@tiptap/starter-kit'
+import Typography from '@tiptap/extension-typography'
+import Underline from '@tiptap/extension-underline'
+import Link from '@tiptap/extension-link'
+import Highlight from '@tiptap/extension-highlight'
+import Image from '@tiptap/extension-image'
+
+const props = defineProps({
+  content: String
+})
+
+const emit = defineEmits(['change'])
+  // likes: Number,
+  // isPublished: Boolean,
+  // commentIds: Array,
+  // author: Object,
+  // callback: Function,
+  // contactsPromise: Promise // или любой другой конструктор
+
+// icons: https://github.com/neverbot/vue-tiptap/tree/master/src/assets/icons
+const editor = new Editor({
+  content: props.content || '',
+  // https://tiptap.dev/extensions
+  extensions: [
+    StarterKit,
+    Typography,
+    Underline,
+    Highlight,
+    // https://tiptap.dev/api/nodes/image
+    // пока что не заработала: ни кнопка, ни вставка ссылок
+    Image,
+    // https://tiptap.dev/api/marks/link
+    Link.configure({ openOnClick: false }),
+  ],
+
+  // https://tiptap.dev/api/events#update
+  onBlur({ editor, event }) {
+    // https://tiptap.dev/guide/output
+    emit('change', editor.getHTML())
+  },
+});
+
+function addImage() {
+  const url = window.prompt('URL')
+
+  if (url) {
+    editor.chain().focus().setImage({ src: url }).run()
+  }
+};
+
+function setLink() {
+  const previousUrl = editor.getAttributes('link').href
+  const url = window.prompt('URL', previousUrl)
+
+  // cancelled
+  if (url === null) {
+    return
+  }
+
+  // empty
+  if (url === '') {
+    editor.chain().focus().extendMarkRange('link').unsetLink().run()
+    return
+  }
+
+  // update link
+  editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
+}
+</script>
+
 <template>
 <div v-if="editor" class='tiptap-area'>
   <div class='tiptap-toolbar'>
@@ -76,78 +148,6 @@
   <editor-content :editor="editor" />
 </div>
 </template>
-
-<script setup>
-import { Editor, EditorContent } from '@tiptap/vue-3'
-import StarterKit from '@tiptap/starter-kit'
-import Typography from '@tiptap/extension-typography'
-import Underline from '@tiptap/extension-underline'
-import Link from '@tiptap/extension-link'
-import Highlight from '@tiptap/extension-highlight'
-import Image from '@tiptap/extension-image'
-
-const props = defineProps({
-  content: String
-})
-
-const emit = defineEmits(['change'])
-  // likes: Number,
-  // isPublished: Boolean,
-  // commentIds: Array,
-  // author: Object,
-  // callback: Function,
-  // contactsPromise: Promise // или любой другой конструктор
-
-// icons: https://github.com/neverbot/vue-tiptap/tree/master/src/assets/icons
-const editor = new Editor({
-  content: props.content || '<p>I’m running Tiptap with Vue.js. 🎉</p>',
-  // https://tiptap.dev/extensions
-  extensions: [
-    StarterKit,
-    Typography,
-    Underline,
-    Highlight,
-    // https://tiptap.dev/api/nodes/image
-    // пока что не заработала: ни кнопка, ни вставка ссылок
-    Image,
-    // https://tiptap.dev/api/marks/link
-    Link.configure({ openOnClick: false }),
-  ],
-
-  // https://tiptap.dev/api/events#update
-  onBlur({ editor, event }) {
-    // https://tiptap.dev/guide/output
-    emit('change', editor.getHTML())
-  },
-});
-
-function addImage() {
-  const url = window.prompt('URL')
-
-  if (url) {
-    editor.chain().focus().setImage({ src: url }).run()
-  }
-};
-
-function setLink() {
-  const previousUrl = editor.getAttributes('link').href
-  const url = window.prompt('URL', previousUrl)
-
-  // cancelled
-  if (url === null) {
-    return
-  }
-
-  // empty
-  if (url === '') {
-    editor.chain().focus().extendMarkRange('link').unsetLink().run()
-    return
-  }
-
-  // update link
-  editor.chain().focus().extendMarkRange('link').setLink({ href: url }).run()
-}
-</script>
 
 <style lang="scss">
 .tiptap-area {

@@ -1,59 +1,87 @@
-#quotes-content .level .level {
-  margin-left: 10px;
+#quotes-content .level .level,
+#page-content .level {
+  margin-left: 15px;
 }
 
-#quotes-content h1#subject {
+#quotes-content h1#subject,
+#page-content h1#subject {
   font-weight: 500;
 }
 
-#quotes-content .subject-desc {
+#quotes-content .subject-desc,
+#page-content .subject-desc {
   font-size: 0.9em;
 }
 
-#quotes-content h1 {
+#quotes-content h1,
+#page-content h1 {
   border-bottom: 1px solid;
   padding-bottom: 10px;
   margin-bottom: 20px;
 }
 
-#quotes-content .items h2 {
+#quotes-content .items h2,
+#page-content .items h2 {
   font-size: 1.8em;
 }
 
-#quotes-content .items .items h2 {
+#quotes-content .items .items h2,
+#page-content .items .items h2 {
   font-size: 1.3em;
 }
 
-#quotes-content .pages {
+#quotes-content .pages,
+#page-content .pages {
   margin: 0 0 20px 0;
   display: flex;
   flex-wrap: wrap;
   overflow-x: hidden;
 }
 
-#quotes-content #quotes {
+#quotes-content #quotes,
+#page-content #quotes {
   margin: 20px 0;
   font-size: 0.8em;
   color: transparent;
 }
 
-#quotes-content #page-body {
+#quotes-content #page-body,
+#page-content #page-body {
   margin: 20px 0;
 }
 
-.night-mode #quotes-content .subject {
+.night-mode #quotes-content .subject,
+.night-mode #page-content .subject {
   color: #b2bbc1;
 }
 
-#quotes-content .pages a {
+#quotes-content .pages a,
+#page-content .pages a {
   display: inline-block;
   margin: 0 12px 5px 0;
   border-bottom: 1px solid;
   text-decoration: none;
   white-space: nowrap;
 }
-#quotes-content .pages a:hover {
+#quotes-content .pages a:hover,
+#page-content .pages a:hover {
   border-bottom: 1px solid;
+}
+
+#page-content .depth-0 a {
+  color:#3fa353;
+}
+#page-content .depth-0 a:hover {
+  color:#367e45;
+}
+
+#page-references {
+  margin-top: 25px;
+}
+
+.menu-tree {
+  border-top: 1px solid;
+  padding: 25px 0 0 0;
 }
 
 #quotes > a {
@@ -103,3 +131,8 @@ form #quotes-content {
   border-top: 1px solid #888;
   border-bottom: 1px solid #888;
 }
+
+mark {
+  background-color: rgba(255, 243, 73, 0.5);
+}
+

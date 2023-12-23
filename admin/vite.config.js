@@ -4,6 +4,11 @@ import * as path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  // docs https://vitejs.dev/config/server-options.html
+  server: {
+    port: 5173,
+    strictPort: true, // не искать следующий свободный порт, а выходить, если занято
+  },
   plugins: [vue()],
   resolve: {
     alias: {

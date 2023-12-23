@@ -23,6 +23,8 @@ Rails.application.routes.draw do
     get '/search', to: 'verses#search'
     get '/q', to: 'quotes#index'
     get '/q/:page_path', to: 'quotes#show', as: 'quote_page'
+    get '/w', to: 'pages#list', as: 'pages'
+    get '/w/:page_path', to: 'pages#show', as: 'page'
 
     # ищем по человеческому адресу стих и редиректим на правильный адрес
     get '/f/:human_address', :constraints => {human_address: /[\sА-ЯA-Z0-9\-\.\,\:%]+/i}, to: 'verses#goto_verse_by_human_address'
@@ -40,12 +42,21 @@ Rails.application.routes.draw do
       post '/login/psw', to: 'users#psw_login'
       post '/login/telegram', to: 'users#telegram_login'
 
-      scope 'quotes' do
-        get    'list', to: 'quotes#list'
-        post   '/',    to: 'quotes#create'
-        get    ':id',  to: 'quotes#show'
-        put    ':id',  to: 'quotes#update'
-        delete ':id',  to: 'quotes#destroy'
+      scope 'pages' do
+        get    'list', to: 'pages#list'
+        post   '/',    to: 'pages#create'
+        get    ':id',  to: 'pages#show'
+        put    ':id',  to: 'pages#update'
+        delete ':id',  to: 'pages#destroy'
+        # меню
+        scope ':id' do
+          scope 'menus' do
+            get    '/list', to: 'menus#list'
+            post   '/',     to: 'menus#create'
+            put    ':menu_item_id', to: 'menus#update'
+            delete ':menu_item_id', to: 'menus#destroy'
+          end
+        end
       end
 
       scope 'quotes_subjects' do
