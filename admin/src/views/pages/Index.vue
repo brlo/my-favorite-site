@@ -29,7 +29,8 @@ function autoSearch() {
     'X-API-TOKEN': getCookie('api_token')
   }
   console.log('GET: ' + url)
-  fetch(url).then(response => response.json())
+  fetch(url, { headers: headers })
+  .then(response => response.json())
   .then(data => pages.value = data.items)
 }
 

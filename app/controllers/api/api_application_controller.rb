@@ -83,6 +83,8 @@ module Api
 
     def set_current_user
       api_token = request.headers['HTTP_X_API_TOKEN']
+      puts '-----------api_token----------------'
+      puts api_token
       user =
       if api_token.present?
         ::User.find_by(api_token: api_token)

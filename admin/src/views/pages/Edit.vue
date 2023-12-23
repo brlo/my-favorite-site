@@ -25,7 +25,7 @@ function getPage() {
   const headers = {
     'Accept': 'application/json',
     'Content-Type': 'application/json',
-    'X-API-TOKEN': getCookie('api_token')
+    'X-API-TOKEN': getCookie('api_token'),
   }
   console.log('GET: ' + url)
   fetch(url, {headers: headers})

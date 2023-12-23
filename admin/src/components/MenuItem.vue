@@ -1,6 +1,7 @@
 <script setup>
 // https://vue-hero-icons.netlify.app/
 // import { TrashIcon } from "@vue-hero-icons/outline"
+import { getCookie } from '@/libs/cookies.js'
 
 const props = defineProps({
   item: Object
@@ -13,8 +14,13 @@ function destroy() {
   if(confirm("Удалить элемент меню? \n" + obj.title)){
     const path = `/ru/api/pages/${obj.page_id}/menus/${obj.id}`
     const url = 'http://bibleox.lan' + path
+    const headers = {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json',
+      'X-API-TOKEN': getCookie('api_token')
+    }
     console.log('DELETE: ' + url)
-    fetch(url, {method: 'DELETE'})
+    fetch(url, {method: 'DELETE', headers: headers})
     .then(response => response.json())
     .then(data => {
       if (data.success == 'ok') {
