@@ -1,7 +1,7 @@
 # db.createUser({ user: 'bibl_explorer', pwd: '123', roles: [ { role: "readWrite", db: "biblia_production" } ] });
 # Verse.create_indexes
 
-class Verse
+class Verse < ApplicationMongoRecord
   include Mongoid::Document
 
   # lang       - ru

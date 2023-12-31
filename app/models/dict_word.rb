@@ -1,7 +1,7 @@
 # db.createUser({ user: 'bibl_explorer', pwd: '123', roles: [ { role: "readWrite", db: "biblia_production" } ] });
 # DictWord.create_indexes
 
-class DictWord
+class DictWord < ApplicationMongoRecord
   include Mongoid::Document
   # dict       - d (d - Дворецкий, w - Вайсман)
   # word       - εὐθεώρητος

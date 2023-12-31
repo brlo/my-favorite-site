@@ -78,9 +78,9 @@ module Api
         :published,
         :page_type, :title, :title_sub, :meta_desc,
         :path,
-        :path_parent, :path_parent_title,
-        :path_next, :path_next_title,
-        :path_prev, :path_prev_title,
+        :parent_id,
+        :next_id, :next_title,
+        :prev_id, :prev_title,
         :lang, :group_lang_id,
         :body, :references, :tags_str, :priority,
       )

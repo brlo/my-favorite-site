@@ -2,9 +2,9 @@ module Api
   class MenusController < ApiApplicationController
     def list
       set_page()
-      @tree_menu = @page.tree_menu
+      @menu = @page.menu
 
-      render(json: {'success': 'ok', items: @tree_menu}, status: :ok)
+      render(json: {'success': 'ok', items: @menu}, status: :ok)
     end
 
     # POST /menus
@@ -15,8 +15,7 @@ module Api
 
       # begin
         if @menu_item.save
-          @tree_menu = @page.tree_menu
-          render(json: {'success': 'ok', items: @tree_menu}, status: :ok)
+          render(json: {'success': 'ok', item: @menu_item.attrs_for_render}, status: :ok)
         else
           # puts '=======ERRORS======='
           # puts @menu_item.errors.messages.inspect
@@ -37,8 +36,7 @@ module Api
       @menu_item.page_id = @page.id
 
         if @menu_item.update(menu_item_params)
-          @tree_menu = @page.tree_menu
-          render(json: {'success': 'ok', items: @tree_menu}, status: :ok)
+          render(json: {'success': 'ok', item: @menu_item.attrs_for_render}, status: :ok)
         else
           puts '=======ERRORS======='
           puts @page.errors.messages.inspect
@@ -60,8 +58,7 @@ module Api
       else
         begin
           @menu_item.destroy!
-          @tree_menu = @page.tree_menu
-          render(json: {'success': 'ok', items: @tree_menu}, status: :ok)
+          render(json: {'success': 'ok', item: @menu_item.attrs_for_render}, status: :ok)
         rescue ActiveRecord::RecordNotDestroyed => error
           render json: {errors: error.record.errors}, status: 422
         end
@@ -86,7 +83,7 @@ module Api
 
     def menu_item_params
       params.require(:menu_item).except(:id, :created_at, :updated_at, :page_id).permit(
-        :title, :path, :path_parent, :priority,
+        :title, :path, :parent_id, :priority,
       )
     end
   end

@@ -2,7 +2,7 @@
 require 'securerandom' # for generate uuid (api_token)
 require 'bcrypt' # for passwords
 
-class User
+class User < ApplicationMongoRecord
   include Mongoid::Document
   include ActiveModel::SecurePassword
 

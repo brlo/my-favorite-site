@@ -5,7 +5,7 @@
 <header>
   <div class="container">
     <div class="logo">
-      <a href="/ru/gen/1/">
+      <a href="/">
         <img src="@/assets/bibleox-ru.png">
       </a>
     </div>

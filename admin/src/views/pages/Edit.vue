@@ -1,10 +1,15 @@
 <script setup>
 import { ref, computed } from 'vue'
-import {_} from 'vue-underscore'
 import Tiptap from "@/components/Tiptap.vue"
 import router from "@/router/index"
-import MenuItem from "@/components/MenuItem.vue"
+import EditMenu from "@/components/EditMenu.vue"
 import { getCookie } from '@/libs/cookies.js'
+import { useToast } from "primevue/usetoast";
+
+const toast = useToast();
+const toastError = (t, msg) => { toast.add({ severity: 'error', summary: t, detail: msg, life: 5000 }) }
+const toastSuccess = (t, msg) => { toast.add({ severity: 'success', summary: t, detail: msg, life: 5000 }) }
+const toastInfo = (t, msg) => { toast.add({ severity: 'info', summary: t, detail: msg, life: 5000 }) }
 
 const props = defineProps({
   id: String
@@ -13,9 +18,9 @@ const props = defineProps({
 const apiUrl = import.meta.env.VITE_API_URL
 
 const page = ref({page_type: 1, lang: 'ru', published: true})
-const currentMenuItem = ref({path_parent: ''})
-const treeMenu = ref([])
-const lineMenu = ref([])
+
+let pageMenu = null
+
 
 // СТАТЬЯ
 function getPage() {
@@ -33,30 +38,13 @@ function getPage() {
   .then(data => {
     console.log(data)
     page.value = data.item
-    treeMenu.value = data.tree_menu.items
-    lineMenu.value = treeMenuToLineMenu(data.tree_menu.items)
+    pageMenu = data.menu
   })
 }
 
 if (props.id) {
   getPage();
 }
-
-// // ТЕМЫ
-// const qSubjects = ref([])
-// function getSubjects() {
-//   const path = '/ru/api/quotes_subjects/list'
-//   const url = apiUrl + path
-//   console.log('GET: ' + url)
-//   fetch(url).then(response => response.json())
-//   .then(data => {
-//     qSubjects.value = _.map(
-//       data.items,
-//       function (subj) { return { name: subj.title_ru, code: subj.id } }
-//     )
-//   })
-// }
-// getSubjects();
 
 // ЯЗЫКИ
 const langs = [
@@ -71,6 +59,7 @@ const pageTypes = [
   { name: 'Книга', code: '2' },
   { name: 'Библ. стих', code: '3' },
   { name: 'Список', code: '4' },
+  { name: 'Книга стих', code: '4' },
 ]
 
 const pageTypesDesc = {
@@ -78,6 +67,7 @@ const pageTypesDesc = {
   '2': 'Книга — это режим публикации книг по одной главе. Если есть следующие или предыдущие части, то ссылки на них надо указать в соответствующих полях.',
   '3': 'Библейский стих — это режим публикации апологетичиских разборов того или иного стиха Библии. В названии статьи надо указать только адрес библейского стиха: Быт. 1:5. Тогда он привяжется к стиху на сайте и каждый увидит, что к данному стиху есть комментарий.',
   '4': 'Список — это режим публикации статьи, к которой можно добавить меню из ссылок на другие статьи. Эта возможность появиться только после создания статьи-списка.',
+  '5': 'Книга стих — режим публикации небольших книг древних писателей. Книга разобъётся на стихи. Будет предложено добавить её переводы и аудио-текст',
 }
 
 let seen = computed(() => {
@@ -87,61 +77,6 @@ let seen = computed(() => {
 let seenMenu = computed(() => {
   return (props.id != null || page.page_type == 4) ? true : false
 })
-
-function submitCurrentMenuItem() {
-  const httpMethod = currentMenuItem.value.id ? 'PUT' : 'POST'
-  let path = `/ru/api/pages/${props.id}/menus/`
-  if (currentMenuItem.value.id) path = path + currentMenuItem.value.id
-  const params = { session_key: 'test' }
-  const url = apiUrl + path + '?' + new URLSearchParams(params)
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'X-API-TOKEN': getCookie('api_token')
-  }
-  const bodyJSON = JSON.stringify({menu_item: currentMenuItem.value})
-  console.log(httpMethod + ': ' + url, bodyJSON)
-  fetch(url, {method: httpMethod, headers: headers, body: bodyJSON})
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
-    if (data.success == 'ok') {
-      loadNewMenu(data.items)
-    } else {
-      console.log('FAIL menu item create!', data)
-      if (data.errors) alert(data.errors)
-    }
-  })
-}
-
-function treeMenuToLineMenu(treeMenu, depth = 0) {
-  if (treeMenu == null) return []
-
-  let l_menu = []
-
-  _.each(
-    treeMenu,
-    function (item) {
-      l_menu.push({
-        name: '-'.repeat(depth) + ' ' + item.obj.title,
-        code: item.obj.path,
-      })
-
-      if (item.childs.length) {
-        l_menu = _.union(
-          l_menu,
-          treeMenuToLineMenu(item.childs, depth+1)
-        )
-      }
-    }
-  )
-  return l_menu
-}
-
-function loadNewMenu(items) {
-  treeMenu.value = items
-  lineMenu.value = treeMenuToLineMenu(items)
-}
 
 
 function submit() {
@@ -163,8 +98,10 @@ function submit() {
     console.log(data)
     page.value = data.item
     if (data.success == 'ok') {
+      toastSuccess('Успех', 'Статья создана')
       router.push({ name: "Pages" })
     } else {
+      toastError('Ошибка', 'Не удалось создать статью')
       console.log('FAIL!', data)
       if (data.errors) alert(data.errors)
     }
@@ -185,9 +122,11 @@ function destroy() {
     .then(response => response.json())
     .then(data => {
       if (data.success == 'ok') {
+        toastSuccess('Успех', 'Статья удалена')
         router.push({ name: "Pages" })
       } else {
         console.log('FAIL!', data)
+        toastError('Ошибка', 'Не удалось удалить статью')
         if (data.errors) alert(data.errors)
       }
     })
@@ -196,6 +135,7 @@ function destroy() {
 </script>
 
 <template>
+<Toast />
 <router-link :to="{ name: 'Pages'}">← Назад</router-link>
 
 <h1 v-if="props.id">Редактирование статьи</h1>
@@ -212,7 +152,7 @@ function destroy() {
 <div v-if="seen" class="form">
   <div class="field">
     <label>Тип документа</label>
-    <select v-model="page.page_type">
+    <select v-model="page.page_type" required>
       <option value="" disabled>Тип документа</option>
       <option v-for="pType in pageTypes" :value="pType.code">
         {{ pType.name }}
@@ -233,59 +173,56 @@ function destroy() {
 
   <div class="field">
     <label>Заголовок</label>
-    <input v-model="page.title" type="text" style="width: 100%;" />
+    <input v-model="page.title" required type="text" style="width: 100%;" />
   </div>
 
-  <div class="field">
-    <label>Подзаголовок</label>
-    <input v-model="page.title_sub" type="text" />
-  </div>
-
-  <div class="field">
-    <label>Адрес</label>
-    <input v-model="page.path" type="text" />
-  </div>
-
-  <div class="group-fields">
+  <div v-if="page.page_type == 2">
     <div class="field">
-      <label>Адрес родителя</label>
-      <input v-model="page.path_parent" type="text" />
+      <label>Подзаголовок</label>
+      <input v-model="page.title_sub" type="text" />
     </div>
 
     <div class="field">
-      <label>Название родителя</label>
-      <input v-model="page.path_parent_title" type="text" />
-    </div>
-  </div>
-
-  <div class="group-fields">
-    <div class="field">
-      <label>Адрес предыдущей страницы</label>
-      <input v-model="page.path_prev" type="text" />
+      <label>Адрес</label>
+      <input v-model="page.path" type="text" />
     </div>
 
-    <div class="field">
-      <label>Название предыдущей страницы</label>
-      <input v-model="page.path_prev_title" type="text" />
-    </div>
-  </div>
-
-  <div class="group-fields">
-    <div class="field">
-      <label>Адрес следующей страницы</label>
-      <input v-model="page.path_next" type="text" />
+    <div class="group-fields">
+      <div class="field">
+        <label>ID родителя</label>
+        <input v-model="page.parent_id" type="text" />
+      </div>
     </div>
 
-    <div class="field">
-      <label>Название следующей страницы</label>
-      <input v-model="page.path_next_title" type="text" />
+    <div class="group-fields">
+      <div class="field">
+        <label>ID предыдущей страницы</label>
+        <input v-model="page.prev_id" type="text" />
+      </div>
+
+      <div class="field">
+        <label>Как хотите назвать ссылку на пред. страницу</label>
+        <input v-model="page.prev_title" type="text" />
+      </div>
+    </div>
+
+    <div class="group-fields">
+      <div class="field">
+        <label>ID следующей страницы</label>
+        <input v-model="page.next_id" type="text" />
+      </div>
+
+      <div class="field">
+        <label>Как хотите назвать ссылку на след. страницу</label>
+        <input v-model="page.next_title" type="text" />
+      </div>
     </div>
   </div>
 
   <div class="group-fields">
     <div class="field">
       <label>Язык статьи</label>
-      <select v-model="page.lang">
+      <select v-model="page.lang" required>
         <option value="" disabled>Язык статьи</option>
         <option v-for="lang in langs" :value="lang.code">
           {{ lang.name }}
@@ -320,70 +257,10 @@ function destroy() {
   </div>
 
   <div v-if="seenMenu" class="tree-menu">
-    <div>
-      <h3>Добавить элемент меню</h3>
-
-      <div class="group-fields">
-        <div class="field">
-          <label>Приоритет</label>
-          <input v-model="currentMenuItem.priority" type="text" style="width:100px;"/>
-        </div>
-        <div class="field">
-          <label>Родитель</label>
-          <select v-model="currentMenuItem.path_parent">
-            <option value="">Нет родителя</option>
-            <option v-for="item in lineMenu" :value="item.code">
-              {{ item.name }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div class="group-fields">
-        <div class="field">
-          <label>Название</label>
-          <input v-model="currentMenuItem.title" type="text" style="width:300px;" />
-        </div>
-        <div class="field">
-          <label>Ссылка</label>
-          <input v-model="currentMenuItem.path" type="text" style="width:300px;" />
-        </div>
-      </div>
-
-      <button @click.prevent="submitCurrentMenuItem" class="menu-create-btn pretty btn">
-        {{ currentMenuItem.id ? 'Обновить' : 'Добавить' }} элемент
-      </button>
-    </div>
-
-    <h3>Меню</h3>
-
-    <div v-if="treeMenu" class="menu-items">
-      <MenuItem
-        v-for="item in treeMenu"
-        :item="item"
-        @destroy="(items) => { loadNewMenu(items) }"
-        @forUpdate="(item) => { currentMenuItem = item }"
-      />
-    </div>
+    <EditMenu :pageId="page.id" :pageMenu="pageMenu"/>
   </div>
 </div>
 </template>
 
 <style scoped>
-.tree-menu {
-  border-top: 1px solid #777;
-  padding: 40px 0 0 0;
-  margin: 40px 0 0 0;
-}
-
-.menu-items {
-  margin: 20px 0;
-}
-
-.menu-create-btn {
-  margin: 10px 0 30px 0;
-}
-
-h3 {
-  margin: 10px 0 20px 0;
-}
 </style>

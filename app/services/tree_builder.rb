@@ -1,18 +1,47 @@
 class TreeBuilder
   class << self
     # Вернёт полноценное дерево из объектов, в таком виде:
-    # [ {obj: _, childs: []}, ... ]
-    def build_tree_from_objects(objects, field_id: :id, field_parent_id: :parent_id)
-      # [id, parent_id]
-      ids_pairs = objects.map do |o|
-        [o[field_id],
-         o[field_parent_id]]
-      end
-      # {2=>{1=>nil, 3=>{4=>nil}}}
-      ids_tree = tree_by_parent_id(ids_pairs)
+    #
+    # TreeBuilder.build_tree_from_objects(array)
+    # => [ {obj: _, childs: []}, ... ]
+    def build_tree_from_objects(orig_array, field_id: :id, field_parent_id: :parent_id)
+      array = orig_array.dup
+      indexed_array = array.index_by { |i| i[field_id] }
 
-      id__object = objects.index_by { |o| o[field_id] }
-      objects_tree = tree_ids_to_objects(ids_tree, id__object)
+      # Создаем пустой хеш для хранения дерева
+      tree = []
+      # Проходим по всем элементам массива
+      array.each do |item|
+        # Если элемент имеет parent_id, то он является потомком какого-то узла
+        if item[field_parent_id]
+          # Находим родительский узел по parent_id
+          parent = indexed_array[item[field_parent_id]]
+          # Если родительский узел существует
+          if parent
+            # Если у родительского узла еще нет поля childs, то создаем его как пустой массив
+            parent[:childs] ||= []
+            # Добавляем текущий элемент в массив childs родительского узла
+            parent[:childs] << item
+          end
+        else
+          # Если элемент не имеет parent_id, то он является корневым узлом
+          # Добавляем его в хеш дерева по его id
+          tree.push(item)
+        end
+      end
+      # Возвращаем хеш дерева
+      tree
+
+      # # [id, parent_id]
+      # ids_pairs = objects.map do |o|
+      #   [o[field_id],
+      #    o[field_parent_id]]
+      # end
+      # # {2=>{1=>nil, 3=>{4=>nil}}}
+      # ids_tree = tree_by_parent_id(ids_pairs)
+
+      # id__object = objects.index_by { |o| o[field_id] }
+      # objects_tree = tree_ids_to_objects(ids_tree, id__object)
     end
 
     # Вернёт полноценное дерево из объектов, в таком виде:

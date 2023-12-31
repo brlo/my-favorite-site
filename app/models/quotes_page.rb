@@ -1,7 +1,7 @@
 require 'nokogiri'
 # QuotesPage.create_indexes
 
-class QuotesPage
+class QuotesPage < ApplicationMongoRecord
   include Mongoid::Document
 
   # название

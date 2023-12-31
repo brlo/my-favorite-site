@@ -17,7 +17,10 @@ class PagesController < ApplicationController
 
   def show
     path = params[:page_path].to_s
-    @page = Page.find_by!(path_low: path.downcase)
+    @page = ::Page.find_by!(path_low: path.downcase)
+    @page_parent = ::Page.only(:id, :title, :path).find_by!(id: @page.parent_id) if @page.parent_id
+    @page_next = ::Page.only(:id, :title, :path).find_by!(id: @page.next_id) if @page.next_id
+    @page_prev = ::Page.only(:id, :title, :path).find_by!(id: @page.prev_id) if @page.prev_id
     @canonical_url = build_canonical_url("/w/#{@page.path}")
 
     if @page.path != path
@@ -26,7 +29,7 @@ class PagesController < ApplicationController
     end
 
     if @page.page_type.to_i == ::Page::PAGE_TYPES['список']
-      @tree_menu = @page.tree_menu
+      @menu = @page.menu
     end
 
     @page_title = ::I18n.t('page.title', term: @page.title)

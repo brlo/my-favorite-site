@@ -1,12 +1,13 @@
 require 'nokogiri'
 # Page.create_indexes
 
-class Page
+class Page < ApplicationMongoRecord
   PAGE_TYPES = {
-    'статья'     => 1,
-    'книга'      => 2,
-    'библ. стих' => 3,
-    'список'     => 4,
+    'статья'        => 1,
+    'книга'         => 2,
+    'библ. стих'    => 3,
+    'список'        => 4,
+    'книга стихами' => 5,
   }
 
   include Mongoid::Document
@@ -25,18 +26,23 @@ class Page
   # path
   field :path, type: String
   field :path_low, type: String
-  field :path_p,     as: :path_parent, type: String
-  field :path_pt,    as: :path_parent_title, type: String
-  field :path_n,     as: :path_next, type: String
-  field :path_nt,    as: :path_next_title, type: String
-  field :path_pr,    as: :path_prev, type: String
-  field :path_prt,   as: :path_prev_title, type: String
+  field :path_p,     as: :parent_id, type: String
+  field :n_id,       as: :next_id, type: String
+  field :n_t,        as: :next_title, type: String
+  field :pr_id,      as: :prev_id, type: String
+  field :pr_t,       as: :prev_title, type: String
+  # старый путь к статье, с которого надо редиректить на текущий path
+  field :r_from,     as: :redirect_from, type: String
+  # аудио-файл
+  field :au,         as: :audio, type: String
   # язык
   field :lg,         as: :lang, type: String
   # языковой идентификатор страницы для поиска таких же страниц на другом языке
   field :gli,        as: :group_lang_id, type: String
   # текст статьи
   field :bd,         as: :body, type: String
+  # текст статьи
+  field :bd_arr,     as: :body_as_array, type: String
   # ссылки и заметки
   field :rfs,        as: :references, type: String
   # id темы
@@ -57,13 +63,20 @@ class Page
   before_validation :normalize_attributes
   validates :page_type, :title, :lang, :path, presence: true
 
+  def menu
+    if self.page_type.to_i == PAGE_TYPES['список']
+      # отдаём элементы меню простым массивом, а дерево построит фронтенд
+      ::Menu.where(page_id: self.id).to_a.map(&:attrs_for_render)
+    end
+  end
+
   def tree_menu
     if self.page_type.to_i == PAGE_TYPES['список']
       # строим меню-дерево из пунктов меню (Menu), принадлежащих этой странице (menu.page_id)
       ::TreeBuilder.build_tree_from_objects(
-        Menu.where(page_id: self.id).to_a.map(&:attrs_for_render),
-        field_id: :path,
-        field_parent_id: :path_parent
+        ::Menu.where(page_id: self.id).to_a.map(&:attrs_for_render),
+        field_id: :id,
+        field_parent_id: :parent_id
       )
     end
   end
@@ -86,12 +99,10 @@ class Page
       self.path = self.path.gsub('/#L', ':').gsub('/', ':')[1..-1]
     end
 
-    self.path_next = self.path_next.to_s.strip if self.path_next
-    self.path_next_title = self.path_next_title.to_s.strip if self.path_next_title
-    self.path_prev = self.path_prev.to_s.strip if self.path_prev
-    self.path_prev_title = self.path_prev_title.to_s.strip if self.path_prev_title
-    self.path_parent = self.path_parent.to_s.strip if self.path_parent
-    self.path_parent_title = self.path_parent_title.to_s.strip if self.path_parent_title
+    self.next_id = self.next_id.to_s.strip if self.next_id
+    self.next_title = self.next_title.to_s.strip if self.next_title
+    self.prev_id = self.prev_id.to_s.strip if self.prev_id
+    self.prev_title = self.prev_title.to_s.strip if self.prev_title
     self.tags = self.tags_str.to_s.split(',').map(&:strip) if self.tags_str.present?
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
     self.group_lang_id = self.group_lang_id.to_s.strip if self.group_lang_id.present?
@@ -118,31 +129,5 @@ class Page
     self.references = self.references.gsub('&nbsp;', ' ') if self.references.present?
 
     self.u_at = DateTime.now.utc.round
-  end
-
-  def updated_at_word
-    time = self.updated_at
-    diff_sec = Time.now - time
-
-    if diff_sec < 3.minute.to_i
-      'Сейчас'
-    elsif diff_sec < 60.minutes.to_i
-      min = (diff_sec / (60)).to_i
-      "#{min} мин."
-    elsif diff_sec < 24.hours.to_i
-      h = (diff_sec / (60*60)).to_i
-      "#{h} ч."
-    elsif diff_sec < 30.days.to_i
-      d = (diff_sec / (60*60*24)).to_i
-      "#{d} д."
-    else
-      time.strftime("%Y-%m-%d %H:%M:%S")
-    end
-  end
-
-  private
-
-  def sanitizer
-    @sanitizer ||= ::Rails::Html::SafeListSanitizer.new
   end
 end

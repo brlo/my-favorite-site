@@ -1,8 +1,8 @@
 <article id='page-content' class="text-<%= text_size_from_cookies %>" itemscope itemtype="http://schema.org/Article">
-  <% if @page.path_parent.presence %>
+  <% if @page_parent %>
     <div id='link-parent'>
-      <a href="<%= my_link_to("/w/#{@page.path_parent}") %>">
-        <%= @page.path_parent_title %>
+      <a href="<%= my_link_to("/w/#{@page_parent.path}") %>">
+        <%= @page_parent.title %>
       </a>
     </div>
   <% end %>
@@ -12,18 +12,18 @@
     <div id='title-sub'><%= @page.title_sub %></div>
   <% end %>
 
-  <% if @page.path_prev.presence %>
+  <% if @page_prev %>
     <div id='link-prev'>
-      <a href="<%= my_link_to("/w/#{@page.path_prev}") %>">
-        <%= @page.path_prev_title %>
+      <a href="<%= my_link_to("/w/#{@page_prev.path}") %>">
+        <%= @page_prev.title %>
       </a>
     </div>
   <% end %>
 
-  <% if @page.path_next.presence %>
+  <% if @page_next %>
     <div id='link-next'>
-      <a href="<%= my_link_to("/w/#{@page.path_next}") %>">
-        <%= @page.path_next_title %>
+      <a href="<%= my_link_to("/w/#{@page_next.path}") %>">
+        <%= @page_next.title %>
       </a>
     </div>
   <% end %>

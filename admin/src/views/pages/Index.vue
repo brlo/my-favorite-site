@@ -36,7 +36,6 @@ function autoSearch() {
 
 autoSearch()
 
-
 watchEffect(
   function() {
     if (searchTerm.value.length > 2) lazyAutoSearch();
@@ -59,9 +58,9 @@ watchEffect(
 <div id="pages" v-for="page in pages">
   <div class='page'>
     <router-link :to="{ name: 'EditPage', params: { id: page.id }}">
-      <b>{{ page.title }}</b>
+      {{ page.title }}
     </router-link>
-    | {{ page.lang }} | {{ page.updated_at_word  }}
+    / {{ page.lang }} / {{ page.updated_at_word  }}
   </div>
 </div>
 </template>

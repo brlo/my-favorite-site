@@ -1,7 +1,7 @@
 # Раздел для цитат
 # QuotesSubject.create_indexes
 
-class QuotesSubject
+class QuotesSubject < ApplicationMongoRecord
   include Mongoid::Document
 
   # название
