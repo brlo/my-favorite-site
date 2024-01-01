@@ -1,16 +1,7 @@
 <script setup>
-import { ref, watchEffect } from 'vue'
-import {_} from 'vue-underscore'
-import { getCookie } from '@/libs/cookies.js'
-
-// function getFirstUpcaseLetter(str) {
-//   str = String(str)
-//   str = Array.from(str)[0]
-//   return str.toUpperCase()
-// }
-
-
-const apiUrl = import.meta.env.VITE_API_URL
+import { ref, watchEffect } from 'vue';
+import {_} from 'vue-underscore';
+import { api } from '@/libs/api.js';
 
 const searchTerm = ref('')
 
@@ -20,28 +11,16 @@ let pages = ref({})
 // на 300 сек, превращая все эти попытки в одну.
 const lazyAutoSearch = _.debounce(autoSearch, 300);
 function autoSearch() {
-  const path = `/ru/api/pages/list`
-  const params = { session_key: 'test', term: searchTerm.value }
-  const url = apiUrl + path + '?' + new URLSearchParams(params)
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'X-API-TOKEN': getCookie('api_token')
-  }
-  console.log('GET: ' + url)
-  fetch(url, { headers: headers })
-  .then(response => response.json())
-  .then(data => pages.value = data.items)
+  api.get('/pages/list', { term: searchTerm.value }).then(data => pages.value = data.items)
 }
 
 autoSearch()
 
 watchEffect(
   function() {
-    if (searchTerm.value.length > 2) lazyAutoSearch();
+    if (searchTerm.value.length == 0 || searchTerm.value.length > 2) lazyAutoSearch();
   }
 )
-
 </script>
 
 <template>

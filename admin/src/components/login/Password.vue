@@ -1,15 +1,13 @@
 <script setup>
 import { ref, computed } from "vue"
 import { getCookie, setCookie } from "@/libs/cookies.js"
-import { inject } from "vue"
+import { api } from '@/libs/api.js'
 import router from "@/router/index"
 
 // уходим на главную, если уже авторизованы
 if (getCookie('api_token') !== '') {
   router.push('/')
 }
-
-const api = inject('api')
 
 const usernameInput = ref('')
 const pswInput = ref('')
@@ -21,9 +19,7 @@ function doLogin() {
     password: pswInput.value,
   }
 
-  api.post('/login/psw/', params)
-  .then(function (response) {
-    const data = response.data;
+  api.post('/login/psw/', params).then(data => {
     if (data.success == 'ok') {
       setCookie('api_token', data.api_token, '999');
       window.location.reload()
@@ -33,7 +29,7 @@ function doLogin() {
   }).catch(function (error) {
     console.log('error', error);
   });
-  // if (params.username == 'admin' && params.password == 'q1q2Q3') {
+  // if (params.username == 'admin' && params.password == '111') {
   //   setCookie('api_token', 'admin', 999)
   //   window.location.reload()
   // } else {

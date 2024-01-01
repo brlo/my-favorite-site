@@ -2,8 +2,13 @@ module Api
   class PagesController < ApiApplicationController
     def list
       @pages = ::Page.only(:id, :title, :lang, :c_at, :u_at)
-      term = params[:term].to_s.gsub(/[^[[:alnum:]]\s]/, '')
-      @pages = @pages.where(title: /.*#{term}.*/i) if term.length > 2
+
+      term = params[:term].to_s
+      if term.present? && term.length > 2
+        term = term.gsub(/[^[[:alnum:]]\s]/, '')
+        @pages = @pages.where(title: /.*#{term}.*/i)
+      end
+
       @pages = @pages.order_by(updated_at: -1).limit(100).to_a
       render :list, status: :ok
     end

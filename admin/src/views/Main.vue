@@ -1,27 +1,10 @@
 <script setup>
-import { ref } from 'vue'
-import { getCookie } from '@/libs/cookies.js'
-
-const apiUrl = import.meta.env.VITE_API_URL
+import { ref } from 'vue';
+import { api } from '@/libs/api.js';
 
 let pages = ref({})
 
-const path = `/ru/api/pages/list`
-const params = { session_key: 'test' }
-const url = apiUrl + path + '?' + new URLSearchParams(params)
-const headers = {
-  'Accept': 'application/json',
-  'Content-Type': 'application/json',
-  'X-API-TOKEN': getCookie('api_token')
-}
-console.log('GET: ' + url)
-fetch(url, { headers: headers })
-.then(response => response.json())
-.then(data => {
-  console.log(data.items)
-  pages.value = data.items
-})
-
+api.get('/pages/list').then(data => pages.value = data.items)
 </script>
 
 <template>

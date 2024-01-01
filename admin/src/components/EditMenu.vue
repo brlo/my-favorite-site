@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue"
-import {_} from 'vue-underscore'
-import { getCookie } from '@/libs/cookies.js'
+import { api } from '@/libs/api.js'
+import { arrayToTree, treeMenuToLineMenu } from '@/libs/menu_parser'
 import MenuItem from "@/components/MenuItem.vue"
 import { useToast } from "primevue/usetoast";
 
@@ -16,8 +16,6 @@ const props = defineProps({
   pageMenu: Array,
 })
 
-const apiUrl = import.meta.env.VITE_API_URL
-
 // информация для создания/редактирования одного элемента мею
 const currentMenuItem = ref({parent_id: ''})
 // обычное меню в виде массива от сервера
@@ -27,67 +25,9 @@ const treeMenu = ref([])
 // меню для select field
 const lineMenu = ref([])
 
-// Функция, которая преобразует массив в дерево
-function arrayToTree(originArray) {
-  const field_id = 'id'
-  const field_parent_id = 'parent_id'
-
-  // clone
-  // let array = [...originArray]
-  let array = [];
-  for (let item of originArray) { array.push(item) };
-
-  // Создаем пустой объект для хранения дерева
-  let tree = [];
-  // Проходим по всем элементам массива
-  for (let item of array) {
-    // Если элемент имеет parent_id, то он является потомком какого-то узла
-    if (item[field_parent_id]) {
-      // Находим родительский узел по parent_id
-      let parent = array.find((x) => x[field_id] === item[field_parent_id]);
-      // Если родительский узел существует
-      if (parent) {
-        // Если у родительского узла еще нет поля childs, то создаем его как пустой массив
-        if (!parent.childs) {
-          parent.childs = [];
-        }
-        // Добавляем текущий элемент в массив childs родительского узла
-        parent.childs.push(item);
-      }
-    } else {
-      // Если элемент не имеет parent_id, то он является корневым узлом
-      // Добавляем его в объект дерева по его id
-      tree.push(item);
-    }
-  }
-  // Возвращаем объект дерева
-  return tree;
-}
-
-// линейный список элементов для select (с чёрточками для отображения глубины)
-function treeMenuToLineMenu(treeMenu, depth = 0) {
-  if (treeMenu == null) return []
-
-  let l_menu = []
-
-  _.each(
-    treeMenu,
-    function (item) {
-      l_menu.push({
-        name: '-'.repeat(depth) + ' ' + item.title,
-        code: item.id,
-      })
-
-      if (item.childs) {
-        l_menu = _.union(
-          l_menu,
-          treeMenuToLineMenu(item.childs, depth+1)
-        )
-      }
-    }
-  )
-  return l_menu
-}
+// ======================================================================
+// ---------------------------- ЛОГИКА  ---------------------------------
+// ======================================================================
 
 // удалить элемент из меню по ID (потом вызови loadNewMenu())
 function removeMenuElement(objId) {
@@ -102,6 +42,8 @@ function removeMenuElement(objId) {
 function addMenuElement(obj) { arrMenu.value.push(obj) }
 
 function loadNewMenu() {
+  if (!arrMenu.value) return;
+
   // Вызываем функцию и выводим результат
   // arrMenu = items
   // затираем у всех детей, иначе они по второму разу добавятся, будет некрасиво.
@@ -114,27 +56,31 @@ function loadNewMenu() {
 }
 loadNewMenu()
 
+// ======================================================================
+// ---------------------------- ЗАПРОСЫ ---------------------------------
+// ======================================================================
+
 // СОЗДАТЬ / ОБНОВИТЬ
 function submitCurrentMenuItem() {
-  const isUpdate = currentMenuItem.value.id ? true : false
-  const httpMethod = isUpdate ? 'PUT' : 'POST'
-  let path = `/ru/api/pages/${props.pageId}/menus/`
-  if (isUpdate) path = path + currentMenuItem.value.id
-  const params = { session_key: 'test' }
-  const url = apiUrl + path + '?' + new URLSearchParams(params)
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'X-API-TOKEN': getCookie('api_token')
+  let isUpdate = false, httpMethod = '', path = '';
+  if (currentMenuItem.value.id) {
+    isUpdate = true
+    httpMethod = 'put'
+    path = `/pages/${props.pageId}/menus/${currentMenuItem.value.id}`
+  } else {
+    isUpdate = false
+    httpMethod = 'post'
+    path = `/pages/${props.pageId}/menus/`
   }
-  const bodyJSON = JSON.stringify({menu_item: currentMenuItem.value})
-  console.log(httpMethod + ': ' + url, bodyJSON)
-  fetch(url, {method: httpMethod, headers: headers, body: bodyJSON})
-  .then(response => response.json())
-  .then(data => {
+
+  const body = { menu_item: currentMenuItem.value }
+
+  const promise = api[httpMethod](path, body)
+  console.log(promise)
+  promise.then(data => {
     console.log(data)
     if (data.success == 'ok') {
-      toastSuccess('Успех', 'Новый пункт добавлен в меню')
+      toastSuccess('Создано', 'Новый пункт добавлен в меню')
       // если обновляли (а не создавали), то надо удалить старый элемент из меню
       if (isUpdate) { removeMenuElement(currentMenuItem.value.id) }
       // добавляем новый элемент в меню
@@ -154,21 +100,14 @@ function submitCurrentMenuItem() {
 // УДАЛИТЬ
 function destroy(obj) {
   if(confirm("Удалить элемент меню? \n" + obj.title)){
-    const path = `/ru/api/pages/${obj.page_id}/menus/${obj.id}`
-    const url = 'http://bibleox.lan' + path
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-API-TOKEN': getCookie('api_token')
-    }
-    console.log('DELETE: ' + url)
-    fetch(url, {method: 'DELETE', headers: headers})
-    .then(response => response.json())
-    .then(data => {
+    const path = `/pages/${obj.page_id}/menus/${obj.id}`
+    api.delete(path).then(data => {
       if (data.success == 'ok') {
         removeMenuElement(obj.id)
         loadNewMenu()
+        toastInfo('Удалено', 'Пункт меню удалён')
       } else {
+        toastError('Ошибка', 'Не удалось удалить пункт меню')
         console.log('FAIL!', data)
         if (data.errors) alert(data.errors)
       }

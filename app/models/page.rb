@@ -26,10 +26,10 @@ class Page < ApplicationMongoRecord
   # path
   field :path, type: String
   field :path_low, type: String
-  field :path_p,     as: :parent_id, type: String
-  field :n_id,       as: :next_id, type: String
+  field :path_p,     as: :parent_id, type: BSON::ObjectId
+  field :n_id,       as: :next_id, type: BSON::ObjectId
   field :n_t,        as: :next_title, type: String
-  field :pr_id,      as: :prev_id, type: String
+  field :pr_id,      as: :prev_id, type: BSON::ObjectId
   field :pr_t,       as: :prev_title, type: String
   # старый путь к статье, с которого надо редиректить на текущий path
   field :r_from,     as: :redirect_from, type: String
@@ -81,10 +81,20 @@ class Page < ApplicationMongoRecord
     end
   end
 
+  def generate_string(cnt = 8)
+    random_str = (('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a).sample(cnt).join
+  end
+
+  def generate_path
+    random_str = generate_string(8)
+    clean_path = self.title.to_s.gsub(/\s+/, '_').gsub(/[^[[:alnum:]]_]/, '')
+    "#{random_str}_#{clean_path}"
+  end
+
   def normalize_attributes
     self.title = self.title.to_s.strip
     self.meta_desc = self.meta_desc.to_s.strip
-    self.path = self.path.to_s.strip
+    self.path = self.path.to_s.strip.presence || generate_path()
     self.path_low = self.path.downcase
     self.page_type = self.page_type.to_i
 
@@ -105,7 +115,7 @@ class Page < ApplicationMongoRecord
     self.prev_title = self.prev_title.to_s.strip if self.prev_title
     self.tags = self.tags_str.to_s.split(',').map(&:strip) if self.tags_str.present?
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
-    self.group_lang_id = self.group_lang_id.to_s.strip if self.group_lang_id.present?
+    self.group_lang_id = self.group_lang_id.to_s.strip.presence || generate_string(16)
 
     self.body = self.body.to_s.strip
     self.references = self.references.to_s.strip if self.references.present?

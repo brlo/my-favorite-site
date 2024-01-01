@@ -5,15 +5,15 @@ json.success 'ok'
 json.item do
   json.id                pg.id.to_s
   json.published         pg.published
-  json.page_type         pg.page_type
+  json.page_type         pg.page_type.to_i
   json.title             pg.title
   json.title_sub         pg.title_sub
   json.meta_desc         pg.meta_desc
   json.path              pg.path
-  json.parent_id         pg.parent_id
-  json.next_id           pg.next_id
+  json.parent_id         pg.parent_id.to_s
+  json.next_id           pg.next_id.to_s
   json.next_title        pg.next_title
-  json.prev_id           pg.prev_id
+  json.prev_id           pg.prev_id.to_s
   json.prev_title        pg.prev_title
   json.lang              pg.lang
   json.group_lang_id     pg.group_lang_id

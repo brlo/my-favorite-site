@@ -1,10 +1,10 @@
 <script setup>
-import { ref, computed } from 'vue'
-import Tiptap from "@/components/Tiptap.vue"
-import router from "@/router/index"
-import EditMenu from "@/components/EditMenu.vue"
-import { getCookie } from '@/libs/cookies.js'
+import { ref, computed } from "vue";
+import Tiptap from "@/components/Tiptap.vue";
+import router from "@/router/index";
+import EditMenu from "@/components/EditMenu.vue";
 import { useToast } from "primevue/usetoast";
+import { api } from '@/libs/api.js';
 
 const toast = useToast();
 const toastError = (t, msg) => { toast.add({ severity: 'error', summary: t, detail: msg, life: 5000 }) }
@@ -15,28 +15,13 @@ const props = defineProps({
   id: String
 })
 
-const apiUrl = import.meta.env.VITE_API_URL
-
 const page = ref({page_type: 1, lang: 'ru', published: true})
 
 let pageMenu = null
 
-
 // СТАТЬЯ
 function getPage() {
-  const path = `/ru/api/pages/${props.id}`
-  const params = { session_key: 'test' }
-  const url = apiUrl + path + '?' + new URLSearchParams(params)
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'X-API-TOKEN': getCookie('api_token'),
-  }
-  console.log('GET: ' + url)
-  fetch(url, {headers: headers})
-  .then(response => response.json())
-  .then(data => {
-    console.log(data)
+  api.get(`/pages/${props.id}`).then(data => {
     page.value = data.item
     pageMenu = data.menu
   })
@@ -56,10 +41,10 @@ const langs = [
 
 const pageTypes = [
   { name: 'Статья', code: '1' },
-  { name: 'Книга', code: '2' },
-  { name: 'Библ. стих', code: '3' },
   { name: 'Список', code: '4' },
-  { name: 'Книга стих', code: '4' },
+  { name: 'Книга', code: '2' },
+  { name: 'Комментарий на библ. стих', code: '3' },
+  { name: 'Книга с разбивкой на стихи', code: '5' },
 ]
 
 const pageTypesDesc = {
@@ -75,31 +60,26 @@ let seen = computed(() => {
 })
 
 let seenMenu = computed(() => {
-  return (props.id != null || page.page_type == 4) ? true : false
+  return (props.id !== null && page.value.page_type === 4) ? true : false
 })
 
 
 function submit() {
-  const httpMethod = props.id ? 'PUT' : 'POST'
-  let path = '/ru/api/pages/'
-  if (props.id) path = path + props.id
-  const params = { session_key: 'test' }
-  const url = apiUrl + path + '?' + new URLSearchParams(params)
-  const headers = {
-    'Accept': 'application/json',
-    'Content-Type': 'application/json',
-    'X-API-TOKEN': getCookie('api_token')
+  let httpMethod = '', path = '';
+  if (props.id) {
+    httpMethod = 'put'
+    path = `/pages/${props.id}/`
+  } else {
+    httpMethod = 'post'
+    path = '/pages/'
   }
-  const bodyJSON = JSON.stringify({page: page.value})
-  console.log(httpMethod + ': ' + url)
-  fetch(url, {method: httpMethod, headers: headers, body: bodyJSON})
-  .then(response => response.json())
-  .then(data => {
+
+  api[httpMethod](path, { page: page.value }).then(data => {
     console.log(data)
-    page.value = data.item
     if (data.success == 'ok') {
+      page.value = data.item
       toastSuccess('Успех', 'Статья создана')
-      router.push({ name: "Pages" })
+      router.push({ name: 'Pages' })
     } else {
       toastError('Ошибка', 'Не удалось создать статью')
       console.log('FAIL!', data)
@@ -110,17 +90,7 @@ function submit() {
 
 function destroy() {
   if(confirm("Удалить статью? \n" + page.value.title)){
-    const path = `/ru/api/pages/${props.id}`
-    const url = apiUrl + path
-    const headers = {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json',
-      'X-API-TOKEN': getCookie('api_token')
-    }
-    console.log('DELETE: ' + url)
-    fetch(url, {method: 'DELETE', headers: headers})
-    .then(response => response.json())
-    .then(data => {
+    api.delete(`/pages/${props.id}`).then(data => {
       if (data.success == 'ok') {
         toastSuccess('Успех', 'Статья удалена')
         router.push({ name: "Pages" })
@@ -176,17 +146,34 @@ function destroy() {
     <input v-model="page.title" required type="text" style="width: 100%;" />
   </div>
 
+  <div class="field">
+    <label>Подзаголовок</label>
+    <input v-model="page.title_sub" type="text" />
+  </div>
+
+  <div class="group-fields">
+    <div class="field">
+      <label>Язык статьи</label>
+      <select v-model="page.lang" required>
+        <option value="" disabled>Язык статьи</option>
+        <option v-for="lang in langs" :value="lang.code">
+          {{ lang.name }}
+        </option>
+      </select>
+    </div>
+
+    <div class="field">
+      <label>ID для группировки переводов</label>
+      <input v-model="page.group_lang_id" type="text" />
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Адрес</label>
+    <input v-model="page.path" type="text" />
+  </div>
+
   <div v-if="page.page_type == 2">
-    <div class="field">
-      <label>Подзаголовок</label>
-      <input v-model="page.title_sub" type="text" />
-    </div>
-
-    <div class="field">
-      <label>Адрес</label>
-      <input v-model="page.path" type="text" />
-    </div>
-
     <div class="group-fields">
       <div class="field">
         <label>ID родителя</label>
@@ -216,23 +203,6 @@ function destroy() {
         <label>Как хотите назвать ссылку на след. страницу</label>
         <input v-model="page.next_title" type="text" />
       </div>
-    </div>
-  </div>
-
-  <div class="group-fields">
-    <div class="field">
-      <label>Язык статьи</label>
-      <select v-model="page.lang" required>
-        <option value="" disabled>Язык статьи</option>
-        <option v-for="lang in langs" :value="lang.code">
-          {{ lang.name }}
-        </option>
-      </select>
-    </div>
-
-    <div class="field">
-      <label>ID для группировки переводов</label>
-      <input v-model="page.group_lang_id" type="text" />
     </div>
   </div>
 

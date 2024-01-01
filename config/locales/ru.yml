@@ -351,6 +351,10 @@ ru:
   mongoid:
     errors:
       models:
+        page:
+          attributes:
+            path:
+              blank: 'пусто'
         menu:
           attributes:
             page_id:

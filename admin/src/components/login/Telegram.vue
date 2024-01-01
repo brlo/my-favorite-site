@@ -2,15 +2,13 @@
 import { telegramLoginTemp } from 'vue3-telegram-login'
 import { ref } from "vue"
 import { getCookie, setCookie } from "@/libs/cookies.js"
-import { inject } from "vue"
+import { api } from '@/libs/api.js'
 import router from "@/router/index"
 
 // уходим на главную, если уже авторизованы
 if (getCookie('api_token') !== '') {
   router.push('/')
 }
-
-const api = inject('api')
 
 const isLoaded = ref(false)
 
@@ -35,9 +33,8 @@ function yourCallbackFunction (user) {
     auth_date: user.auth_date,
     hash: user.hash,
   };
-  api.post('/login/telegram/', params)
-  .then(function (response) {
-    const data = response.data;
+
+  api.post('/login/telegram/', params).then(data => {
     if (data.success == 'ok') {
       setCookie('api_token', data.api_token, '999');
       window.location.reload()
@@ -48,23 +45,6 @@ function yourCallbackFunction (user) {
     console.log('error', error);
   });
 }
-
-
-// function () {
-// this.$http.post('http://somehost/user/login', {
-//   password: this.password,
-//   email: this.email
-// }).then(function (response) {
-//   if (response.status === 200 && 'token' in response.body) {
-//     this.$session.start()
-//     this.$session.set('jwt', response.body.token)
-//     Vue.http.headers.common['Authorization'] = 'Bearer ' + response.body.token
-//     this.$router.push('/panel/search')
-//   }
-// }, function (err) {
-//   console.log('err', err)
-// })
-// }
 </script>
 
 <template>

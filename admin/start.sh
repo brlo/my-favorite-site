@@ -6,6 +6,9 @@
 # Соберёт файлы для размещения в проде:
 # start.sh build
 
+# Просто запустить контейнер и открыть консоль
+# start.sh
+
 RUN_MOD=$1
 LOCATION="`dirname "$0"`"
 cd $LOCATION
@@ -50,7 +53,7 @@ case "$RUN_MOD" in
     ;;
 *)
     install_node_modules
-    build_app
+    /bin/sh
     ;;
 esac
 
