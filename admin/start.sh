@@ -1,7 +1,10 @@
-#!/bin/bash
+#!/bin/sh
 
+# Запустит сервер для разработки:
 # start.sh dev
-# start.sh prod
+
+# Соберёт файлы для размещения в проде:
+# start.sh build
 
 RUN_MOD=$1
 LOCATION="`dirname "$0"`"
@@ -21,23 +24,33 @@ function install_node_modules () {
 # запуск
 function run_app () {
   ecco "Runing app. ENV: $1 ..."
-  NODE_ENV_NAME=$1
-  exec npm run ${NODE_ENV_NAME}
+  # запустить можно только dev
+  # exec npm run dev
+  exec npx vite
 }
 
+# сборка
+function build_app () {
+  ecco "Building app. ENV: $1 ..."
+  # собрать можно только prod
+  # exec npm run build
+  exec npx vite build
+}
 
 case "$RUN_MOD" in
 "dev")
+    # dev
     install_node_modules
     run_app
     ;;
-"prod")
+"build")
+    # prod
     install_node_modules
-    run_app
+    build_app
     ;;
 *)
     install_node_modules
-    run_app
+    build_app
     ;;
 esac
 

@@ -18,6 +18,8 @@ services:
       - gems-volume:/usr/local/bundle
     ports:
       - '80:3000'
+    depends_on:
+      - redis
     # depends_on:
     #   - mongo
     dns:
@@ -31,8 +33,26 @@ services:
       options:
         max-size: '200k'
         max-file: '2'
-    # networks:
-    #   - bib_network
+    networks:
+      - bib_network
+
+  redis:
+    container_name: 'bibredis'
+    image: 'brlo/redis:5.0.0'
+    command: 'redis-server /usr/local/etc/redis/redis.conf'
+    ports:
+      - '6379:6379'
+    volumes:
+     - ./res/docker-data/config/redis/redis.conf:/usr/local/etc/redis/redis.conf
+     - ./res/docker-data/store/redis:/data
+     - ./res/docker-data/log/redis:/var/log/redis
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '200k'
+        max-file: '2'
+    networks:
+      - bib_network
 
   # mongo:
   #   container_name: 'mongo'
@@ -42,7 +62,7 @@ services:
   #     - '27017:27017'
   #   volumes:
   #    - /etc/bibleox/config/mongo/mongod.conf:/etc/mongod.conf
-  #    - /srv/mongodb:/data/db
+  #    - /srv/warehouse/mongodb:/data/db
   #    - /var/log/mongo:/var/log/mongo
   #   logging:
   #     driver: 'json-file'
@@ -52,9 +72,44 @@ services:
   #   networks:
   #     - bib_network
 
-# networks:
-#   bib_network:
-#     driver: bridge
+  # Контейнер для сборк кода в проде
+  #
+  # запускать так:
+  # docker compose up bib_admin
+  # или:
+  # docker compose run bib_admin npm run build
+  # или:
+  # docker compose run bib_admin npx vite build
+  #
+  bib_admin:
+    container_name: 'bib_admin'
+    image: "node:alpine"
+    working_dir: /app
+    entrypoint: /bin/sh /app/start.sh build
+    # tty: true
+    # command: "/bin/sh start.sh build"
+    # environment:
+    #   - NODE_ENV=production
+    #   # - NODE_ENV=development
+    #   # - NODE_PATH=/home/node/app/node_modules
+    volumes:
+      - ./admin/:/app
+    # expose:
+    #   - "5173"
+    dns:
+      - 77.88.8.8
+      - 77.88.8.1
+    # extra_hosts:
+    #   - 'host.docker.internal:host-gateway'
+    logging:
+      driver: 'json-file'
+      options:
+        max-size: '200k'
+        max-file: '2'
+
+networks:
+  bib_network:
+    driver: bridge
 
 volumes:
   gems-volume:
