@@ -9,7 +9,12 @@ class VersesController < ApplicationController
   def q_redirect
     # использую вставку названия статьи через CGI.escape потому что иначе какой-то
     # глюк возникает, и rails думает, что я отправляю пользователя на другой сайт, хотя это не так.
-    path  = "/#{I18n.locale}/#{I18n.locale}/q/#{CGI.escape(params[:page_path].to_s)}"
+    path  =
+    if params[:page_path].present?
+      "/#{I18n.locale}/#{I18n.locale}/w/#{CGI.escape(params[:page_path].to_s)}"
+    else
+      "/#{I18n.locale}/#{I18n.locale}/w/q/"
+    end
     path += "?#{request.query_string}" if request.query_string.present?
     redirect_to path, status: :found # :status => :moved_permanently
   end
@@ -19,6 +24,11 @@ class VersesController < ApplicationController
       redirect_to "/#{I18n.locale}/#{current_bib_lang()}/gen/1/"
     else
       @content_lang = current_bib_lang()
+      # не индексировать, где текст UI не совпадает с текстом контента
+      if locale_for_content_lang(@content_lang) != ::I18n.locale.to_s
+        @no_index = true
+      end
+
       @book_code ||= params[:book_code] || 'gen'
       @chapter = (params[:chapter] || 1).to_i
 
@@ -36,7 +46,7 @@ class VersesController < ApplicationController
       # TODO: найти также все статьи для этой главы и встроить ссылки рядом со стихами
 
       @current_menu_item = 'biblia'
-      @text_direction = @content_lang == 'heb-osm' ? 'rtl' : 'ltr'
+      @text_direction = ['heb-osm', 'arab-avd'].include?(@content_lang) ? 'rtl' : 'ltr'
       @page_title =
         ::I18n.t("books.mid.#{@book_code}") +
         ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
@@ -76,7 +86,7 @@ class VersesController < ApplicationController
     @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
 
     @current_menu_item = 'biblia'
-    @text_direction = @content_lang == 'heb-osm' ? 'rtl' : 'ltr'
+    @text_direction = ['heb-osm', 'arab-avd'].include?(@content_lang) ? 'rtl' : 'ltr'
     @page_title =
       ::I18n.t("books.mid.#{@book_code}") +
       ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +

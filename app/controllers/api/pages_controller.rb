@@ -80,7 +80,7 @@ module Api
     # Only allow a list of trusted parameters through.
     def page_params
       params.require(:page).except(:id, :created_at, :updated_at).permit(
-        :published,
+        :is_published,
         :page_type, :title, :title_sub, :meta_desc,
         :path,
         :parent_id,

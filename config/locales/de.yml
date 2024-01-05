@@ -235,45 +235,45 @@ de:
       otkr: Offb
 
     mid:
-      gen: 1Mo
-      ish: 2Mo
-      lev: 3Mo
-      chis: 4Mo
-      vtor: 5Mo
-      nav: Jos
-      sud: Ri
-      ruf: Rt
-      1ts: 1Sam
-      2ts: 2Sam
-      3ts: 1Kö
-      4ts: 2Kö
-      1par: 1Chr
-      2par: 2Chr
-      ezd: Esr
-      neem: Neh
-      esf: Est
-      iov: Hi
-      ps: Ps
-      pr: Spr
-      ekl: Pred
-      pp: Hl
-      is: Jes
-      ier: Jer
-      pier: Kla
-      iez: Ez
-      dan: Dan
-      os: Hos
-      iol: Joe
-      am: Am
-      av: Ob
-      ion: Jon
-      mih: Mi
-      naum: Nah
-      avm: Hab
-      sof: Zeph
-      ag: Hag
-      zah: Sach
-      mal: Mal
+      gen: Genesis
+      ish: Exodus
+      lev: Levitikus
+      chis: Numeri
+      vtor: Deuteronomium
+      nav: Josua
+      sud: Richter
+      ruf: Ruth
+      1ts: I Samuel
+      2ts: II Samuel
+      3ts: I Könige
+      4ts: II Könige
+      1par: I Chronik
+      2par: II Chronik
+      ezd: I Esra
+      neem: Nehemia
+      esf: Ester
+      iov: Hiob
+      ps: Psalmen
+      pr: Sprüche
+      ekl: Prediger
+      pp: Hohelied
+      is: Jesaja
+      ier: Jeremia
+      pier: Klagelieder Jeremias
+      iez: Ezechiel (Hesekiel)
+      dan: Daniel
+      os: Hosea
+      iol: Joel
+      am: Amos
+      av: Obadja
+      ion: Jona
+      mih: Micha
+      naum: Nahum
+      avm: Habakuk
+      sof: Zephanja
+      ag: Haggai
+      zah: Sacharja
+      mal: Maleachi
 
       # книги которых обычно нет в MyBible
       1mak: 1 Maccabees
@@ -288,33 +288,33 @@ de:
       prs: Wisdom
       prsir: Sirah
 
-      mf: Mt
-      mk: Mk
-      lk: Lk
-      in: Joh
-      act: Apg
-      rim: Röm
-      1kor: 1Kor
-      2kor: 2Kor
-      gal: Gal
-      ef: Eph
-      fil: Phil
-      kol: Kol
-      1sol: 1Th
-      2sol: 2Th
-      1tim: 1Tim
-      2tim: 2Tim
-      tit: Tit
-      fm: Phlm
-      evr: Hebr
-      iak: Jak
-      1pet: 1Pt
-      2pet: 2Pt
-      1in: 1Jo
-      2in: 2Jo
-      3in: 3Jo
-      iud: Jud
-      otkr: Offb
+      mf: Evangelium nach Matthäus
+      mk: nach Markus
+      lk: nach Lukas
+      in: nach Johannes
+      act: Apostelgeschichte
+      rim: Der Brief des Apostels Paulus an die Römer
+      1kor: Korinther 1
+      2kor: Korinther 2
+      gal: Galater
+      ef: Epheser
+      fil: Philipper
+      kol: Kolosser
+      1sol: Thessalonicher 1
+      2sol: Thessalonicher 2
+      1tim: Thimotheus 1
+      2tim: Thimotheus 2
+      tit: Titus
+      fm: Philemon
+      evr: Hebräer
+      iak: Jakobus
+      1pet: Petrus 1
+      2pet: Petrus 2
+      1in: Johannes 1
+      2in: Johannes 2
+      3in: Johannes 3
+      iud: Judas
+      otkr: Die Offenbarung Jesu Christi durch Johannes
 
     full:
       gen: Das erste Buch Mose (Genesis)

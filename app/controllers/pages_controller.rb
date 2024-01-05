@@ -4,14 +4,15 @@ class PagesController < ApplicationController
   end
 
   def list
+    @current_menu_item = 'articles'
+    @content_lang = params[:content_lang]
+
     path = params[:page_path].to_s
-    @pages = ::Page.where(page_type: 4, published: true).limit(100).to_a
+    @page = ::Page.find_by!(path_low: '', lang: @content_lang, page_type: 4, is_published: true)
     @canonical_url = build_canonical_url("/w/")
 
     @page_title = ::I18n.t('page.main_title')
     @meta_description = ::I18n.t('page.main_meta_desc')
-    @current_menu_item = 'articles'
-    @content_lang = params[:content_lang]
 
     render :index
   end
@@ -38,6 +39,11 @@ class PagesController < ApplicationController
     elsif @page.lang == @content_lang
 
       @canonical_url = build_canonical_url("/w/#{@page.path}")
+
+      # не индексировать, где текст UI не совпадает с текстом контента
+      if params[:locale] != params[:content_lang]
+        @no_index = true
+      end
 
       # В адресе указывается язык UI и отдельно язык контента /:ui/:content/...
       # если язык контента не совпадает с языком статьи, то надо сделать редирект

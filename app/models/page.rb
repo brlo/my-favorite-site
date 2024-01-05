@@ -16,7 +16,7 @@ class Page < ApplicationMongoRecord
 
   # Тип страницы (для писания и тд)
   field :pt,         as: :page_type, type: String
-  field :pub,        as: :published, type: Boolean
+  field :is_pub,     as: :is_published, type: Boolean
   # основной заголовок
   field :title, type: String
   # Название части книги (Том 1, или просто "1") или годы жизни автора
@@ -26,7 +26,7 @@ class Page < ApplicationMongoRecord
   # path
   field :path, type: String
   field :path_low, type: String
-  field :path_p,     as: :parent_id, type: BSON::ObjectId
+  field :p_id,       as: :parent_id, type: BSON::ObjectId
   # старый путь к статье, с которого надо редиректить на текущий path
   field :r_from,     as: :redirect_from, type: String
   # аудио-файл
@@ -37,9 +37,8 @@ class Page < ApplicationMongoRecord
   field :gli,        as: :group_lang_id, type: BSON::ObjectId
   # текст статьи
   field :bd,         as: :body, type: String
+  # текст статьи с разбивкой на стихи
   field :vrs,        as: :verses, type: Array
-  # текст статьи
-  field :bd_arr,     as: :body_as_array, type: String
   # ссылки и заметки
   field :rfs,        as: :references, type: String
   # id темы
@@ -109,7 +108,7 @@ class Page < ApplicationMongoRecord
 
     self.tags = self.tags_str.to_s.split(',').map(&:strip) if self.tags_str.present?
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
-    self.group_lang_id = self.group_lang_id || ObjectId()
+    self.group_lang_id = self.group_lang_id || BSON::ObjectId.new
 
     self.body = self.body.to_s.strip
     self.references = self.references.to_s.strip if self.references.present?

@@ -7,55 +7,67 @@ module ApplicationHelper
     nil => 'small'
   }
 
+  # Название перевода Библии переводим в I18n.locale
+  LANG_CONTENT_TO_LANG_UI = {
+    'ru'         => 'ru',
+    'eng-nkjv'   => 'en',
+    'csl-ru'     => 'ru',
+    'csl-pnm'    => 'ru',
+    'heb-osm'    => 'il',
+    'gr-lxx-byz' => 'gr',
+    'jp-ni'      => 'jp',
+    'cn-ccbs'    => 'cn',
+    'ge-sch'     => 'de',
+    'arab-avd'   => 'ar',
+  }
+
+  # I18n.locale переводим в название перевода Библии
+  LANG_UI_TO_LANG_CONTENT = {
+    # 'cs' => 'csl-ru',
+    ''   => 'ru',
+    nil  => 'ru',
+    'ru' => 'ru',
+    'en' => 'eng-nkjv',
+    'il' => 'heb-osm',
+    'gr' => 'gr-lxx-byz',
+    'jp' => 'jp-ni',
+    'cn' => 'cn-ccbs',
+    'de' => 'ge-sch',
+    'ar' => 'arab-avd',
+  }
+
+  # ПОЯСНЕНИЕ:
+  #
+  # В Билейской части сайта у нас всегда указано в path локаль и язык текста Библии:
+  # /ru/en-nkjv/...
+  # Первое определяем с помощью I18n.locale, а второе с помощью current_bib_lang()
+  #
+  # В страницах (pages) не так. Там нет перевода Библии,
+  # поэтому и локаль и язык статьи указываются одинаково:
+  # /en/en/w/название_статьи
+  # Первое определяем с помощью I18n.locale, а второе с помощью current_lang()
+  #
+
+  # Определить язык контента Библии по названию локали
   def locale_for_content_lang content_lang
-    case params[:content_lang]
-    when 'ru';         'ru'
-    when 'eng-nkjv';   'en'
-    when 'csl-ru';     'ru'
-    when 'csl-pnm';     'ru'
-    when 'heb-osm';    'il'
-    when 'gr-lxx-byz'; 'gr'
-    when 'jp-ni';      'jp'
-    when 'cn-ccbs';    'cn'
-    when 'ge-sch';     'de'
-    when 'arab-avd';   'ar'
-    end
+    LANG_CONTENT_TO_LANG_UI[params[:content_lang]]
   end
 
   # Язык библейского контента (язык интерфейса определяй просто по I18n.locale)
   def current_bib_lang
     @current_bib_lang ||= begin
-      _lang =
       if params[:content_lang].present?
         params[:content_lang]
       elsif params[:locale].present?
-        case params[:locale]
-        when 'ru' ; 'ru'
-        when 'en' ; 'eng-nkjv'
-        # when 'cs' ; 'csl-ru'
-        when 'il' ; 'heb-osm'
-        when 'gr' ; 'gr-lxx-byz'
-        when 'jp' ; 'jp-ni'
-        when 'cn' ; 'cn-ccbs'
-        when 'de' ; 'ge-sch'
-        when 'ar' ; 'arab-avd'
-        else      ; 'ru'
-        end
-      end
-
-      # пока что смотрим в стороннем файле, есть ли такой язык
-      if ::CacheSearch::SEARCH_LANGS.include?(_lang)
-        _lang
-      else
-        'ru'
+        LANG_UI_TO_LANG_CONTENT[params[:locale]]
       end
     end
   end
 
   # Язык контента (язык интерфейса определяй просто по I18n.locale)
   def current_lang
-    # Если явно указан язык контента — берём его,
-    # а иначе берём одноимённое название локали (языка интерфейса)
+    # Если явно указан язык контента — берём его — params[:content_lang],
+    # а иначе берём одноимённое название локали (языка интерфейса).
     @current_lang ||= params[:content_lang].presence || params[:locale].presence
   end
 

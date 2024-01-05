@@ -15,7 +15,7 @@ const props = defineProps({
   id: String
 })
 
-const page = ref({page_type: 1, lang: 'ru', published: true})
+const page = ref({page_type: 1, lang: 'ru', is_published: true})
 
 let pageMenu = null
 
@@ -135,9 +135,9 @@ function destroy() {
   </div>
 
   <div class="field">
-    <input v-model="page.published" type="checkbox" id="page-published" style="width: 20px; height: 20px;"/>
+    <input v-model="page.is_published" type="checkbox" id="page-published" style="width: 20px; height: 20px;"/>
     <label for="page-published" style="display: inline-block; padding: 0 0 5px 5px; font-size: 1.3em; position: relative; bottom: 3px;">
-      {{ page.published ? 'Доступно для чтения' : 'Скрыто' }}
+      {{ page.is_published ? 'Доступно для чтения' : 'Скрыто' }}
     </label>
   </div>
 

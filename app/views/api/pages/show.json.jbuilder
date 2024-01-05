@@ -4,7 +4,7 @@ json.success 'ok'
 
 json.item do
   json.id                pg.id.to_s
-  json.published         pg.published
+  json.is_published      pg.is_published
   json.page_type         pg.page_type.to_i
   json.title             pg.title
   json.title_sub         pg.title_sub
