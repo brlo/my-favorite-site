@@ -13,7 +13,7 @@ class TreeBuilder
       # Проходим по всем элементам массива
       array.each do |item|
         # Если элемент имеет parent_id, то он является потомком какого-то узла
-        if item[field_parent_id]
+        if item[field_parent_id].present?
           # Находим родительский узел по parent_id
           parent = indexed_array[item[field_parent_id]]
           # Если родительский узел существует

@@ -68,8 +68,8 @@ header nav > a#settings-btn {
 
 /* КНИГИ: Меню книг: Бытие, Исход ... */
 
-#menu-books {
-  max-width: calc(100% - 20px);
+.menu-books {
+  width: calc(100% - 20px);
   padding: 15px;
   margin: 0;
   background-color: #d0d7be;
@@ -78,7 +78,7 @@ header nav > a#settings-btn {
   z-index: 1;
 }
 
-#menu-books::after {
+.menu-books::after {
   content: '';
   position: absolute;
   left: 20px;
@@ -87,19 +87,20 @@ header nav > a#settings-btn {
   border-bottom: 10px solid #d0d7be;
 }
 
-.night-mode #menu-books {
+.night-mode .menu-books {
   background-color:#c0cda1;
 }
 
-.night-mode #menu-books::after {
+.night-mode .menu-books::after {
   border-bottom: 10px solid #c0cda1;
 }
 
-#menu-books.bible-clicked {
+.menu-books.bible-clicked {
   top: 6px;
 }
 
-#menu-books #filter-books {
+.menu-books #filter-books,
+.menu-books #filter-author-books {
   display: block;
   margin: 0 auto 10px auto;
   font-size: 1.2em;
@@ -112,17 +113,18 @@ header nav > a#settings-btn {
   width: 100%;
 }
 
-#menu-books #filter-books:focus {
+.menu-books #filter-books:focus,
+.menu-books #filter-author-books:focus {
   background-color: #f1f4ed;
   color: black;
 }
 
-#menu-books form {
+.menu-books form {
   display: block;
   position: relative;
 }
 
-#menu-books form a {
+.menu-books form a {
   position: absolute;
   right: 3px;
   top: 3px;
@@ -130,47 +132,47 @@ header nav > a#settings-btn {
   color: #565656;
 }
 
-#menu-books.dark a {
+.menu-books.dark a {
   opacity: 0.3;
 }
 
-#menu-books .h-light {
+.menu-books .h-light {
   opacity: 1 !important;
 }
 
-#menu-books.book-clicked {
+.menu-books.book-clicked {
   top: 89px;
 }
 
-#menu-books.book-clicked::after {
+.menu-books.book-clicked::after {
   left: 50%;
   margin-left: -10px;
 }
 
-#menu-books a {
+.menu-books a {
   display: inline-block;
   padding: 5px 5px 5px 0;
 }
 
-#menu-books a.kanon {
+.menu-books a.kanon {
   color: #00613b;
 }
-#menu-books a.kanon:hover {
+.menu-books a.kanon:hover {
   color: #277757;
 }
-#menu-books a.non-kanon {
+.menu-books a.non-kanon {
   color: #4a4139;
 }
 
-#menu-books a.non-kanon:hover {
+.menu-books a.non-kanon:hover {
   color: #6d6156;
 }
 
-/* .night-mode #menu-books a.non-kanon {
+/* .night-mode .menu-books a.non-kanon {
   color:#888;
 }
 
-.night-mode #menu-books a.non-kanon:hover {
+.night-mode .menu-books a.non-kanon:hover {
   color:#999;
 } */
 

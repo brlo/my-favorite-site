@@ -25,13 +25,13 @@
 
     <div id="pagination-bottom">
       <% if prev_chapter > 0 %>
-        <a href="/<%= @book_code %>/<%= prev_chapter %>">← <%= I18n.t('backward') %></a>
+        <a href="<%= my_bib_link_to("/#{@book_code}/#{prev_chapter}") %>">← <%= I18n.t('backward') %></a>
       <% else %>
         <span class='invisible'>← <%= I18n.t('backward') %></span>
       <% end %>
       <span id="end-tip"><%= I18n.t('end_chapter.the_end_of') %><br><%= now_chapter %><%= @is_psalm ? ::I18n.t('end_chapter.suffix_psalm') : ::I18n.t('end_chapter.suffix') %><br><%= @is_psalm ? ::I18n.t('end_chapter.psalm') : ::I18n.t('end_chapter.chapter') %></span>
       <% if next_chapter <= ::BOOKS[@book_code][:chapters] %>
-        <a href="/<%= @book_code %>/<%= next_chapter %>"><%= I18n.t('forward') %> →</a>
+        <a href="<%= my_bib_link_to("/#{@book_code}/#{next_chapter}") %>"><%= I18n.t('forward') %> →</a>
       <% else %>
         <span class='invisible'><%= I18n.t('forward') %> →</span>
       <% end %>

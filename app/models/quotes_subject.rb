@@ -33,6 +33,7 @@ class QuotesSubject < ApplicationMongoRecord
 
   # построение дерева тем
   def self.tree_data()
+    return {} if [:ru, :en].exclude?(I18n.locale)
     # раскладываем элементы по полочкам с подписью parent_id
     # nil => [...] # корневые
     # 1 => [...] # вложения

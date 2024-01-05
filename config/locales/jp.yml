@@ -1,381 +1,410 @@
-ru:
-  title: Библeокс
-  bible: Библия
-  about_site: 'О сайте'
-  about_site_description: 'Сайт для изучения Библии. Контакты с разработчиком.'
-  about_text: Сайт создан в 2022 году в городе Севастополь по благословению православного священнослужителя.
-  about_news: Новости о развитии Библеокс
-  about_contact: Контакт с разработчиком
-  fast_search: Быстрый поиск
-  voice: Озвучить
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   "true": "foo"
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+jp:
+  title: Bibleox
+  bible: 聖書
+  about_site: 'について'
+  about_site_description: '聖書研究のためのウェブサイト。 開発者との連絡。'
+  about_text: このサイトは、正教会の司祭の祝福を受けて、2022 年にセヴァストポリ市に設立されました。
+  about_news: バイブルックスのニュース
+  about_contact: 開発者との連絡
+  fast_search: 高速検索
+  voice: 声
 
   search_page:
-    title: Поиск
-    search_placeholder: Фраза
-    matches: Совпадений
-    any_book: Любая Книга
-    old_testament: Ветхий Завет
-    new_testament: Новый Завет
-    gospel: Евангелие
-    similar_phrase: Похожая фраза
-    exact_phrase: Точная фраза
-    meta_description: "Поиск \"%{search}\". Найдено результатов: %{matches}."
-    meta_description_first_verse: " Стих: %{verse}"
+    title: 検索
+    search_placeholder: フレーズ
+    matches: 一致
+    any_book: どの本でも
+    old_testament: 旧約聖書
+    new_testament: 新約聖書
+    gospel: 福音
+    similar_phrase: 似たようなフレーズ
+    exact_phrase: 正確なフレーズ
+    meta_description: "検索 \"%{search}\". 一致: %{matches}."
+    meta_description_first_verse: " 詩: %{verse}"
 
   login_page:
-    title: 'Вход'
+    title: 'サインイン'
 
   profile_page:
-    title: 'Мой профиль'
-    logout: Выйти
+    title: '自分'
+    logout: ログアウト
 
   page:
     title: "%{term}"
-    main_title: "Список статей"
-    main_meta_desc: "Статьи на библейскую, христианскую и религиозную тематику"
-    references: 'Примечания'
-    no_books_links_yet: 'Здесь пока что нет других ссылок. Загляните позже.'
+    main_title: "記事一覧"
+    main_meta_desc: "聖書、キリスト教、宗教的なトピックに関する記事"
+    references: '参考文献'
+    no_books_links_yet: 'まだリンクはありません。'
 
   quotes_page:
-    title: Цитаты из Библии
+    title: 聖書の引用
 
   quote_page:
-    title: "%{term} / цитаты / Библия"
-    addresses_list_title: 'Только ссылки:'
-    whant_to_fix: 'Хотите исправить или дополнить? Напишите нам'
+    title: "%{term} / 引用 / 聖書"
+    addresses_list_title: '参照のみ:'
+    whant_to_fix: '何かを修正または追加したいですか。教えて'
 
   page_translations:
-    ru: Русский
-    en: Английский
-    gr: Греческий
-    de: Немецкий
-    ar: Арабский
-    jp: Японский
-    cn: Китайский
-    il: Иврит
+    ru: ロシア語
+    en: 英語
+    gr: ギリシャ語
+    de: ドイツ語
+    ar: アラビア語
+    jp: 日本語
+    cn: 中国語
+    il: ヘブライ語
 
   bib_translations:
-    ru: Русский
-    csl: Церк. слав.
-    en: Английский
-    heb: Иврит
-    gr: Греческий
-    jp: Японский
-    cn: Китайский
-    ge: Немецкий
-    arab: Арабский
+    ru: ロシア語
+    csl: スラブ語
+    en: 英語
+    heb: ヘブライ語
+    gr: ギリシャ語
+    jp: 日本語
+    cn: 中国語
+    ge: ドイツ語
+    arab: アラビア語
 
   tips:
-    click_on_verse: Можно выделить стих, нажав на его номер.
-    click_on_verse__working: Работает
-    click_on_verse__and: и
-    search_was_return_zero_results: Ничего не найдено. Проверьте, может быть выбран не тот язык текста?
+    click_on_verse: 詩の番号をクリックしてその詩を強調表示します。
+    click_on_verse__working: 作品
+    click_on_verse__and: そして
+    search_was_return_zero_results: 何も見つかりません。 間違ったテキスト言語が選択されていないか確認してください?
 
   tags:
-    bible: Библия
-    VZ: Ветхий Завет
-    NZ: Новый Завет
-    articles: Статьи
+    bible: 聖書
+    VZ: 旧約聖書
+    NZ: 新約聖書
+    articles: 記事
 
   menu:
-    bible: Библия
-    quotes: Цитаты
-    articles: Статьи
-    search: Поиск
-    settings: Настройки
-    locale: Язык оформления сайта
-    day: День
-    night: Ночь
-    veth_zavet: Ветхий Завет
-    nov_zavet: Новый Завет
-    profile: Профиль
-    login: Войти
+    bible: 聖書
+    quotes: 引用
+    articles: 記事
+    search: 検索
+    settings: 設定
+    locale: 言語
+    day: 昼
+    night: 夜
+    veth_zavet: 旧約聖書
+    nov_zavet: 新約聖書
+    profile: プロフィール
+    login: サインイン
 
   settings:
-    color_scheme: Цвета
-    font_size: Текст
+    color_scheme: 色
+    font_size: 文章
 
   select_bar:
-    select_mode_btn: Выделять
-    copy_btn: Копировать
-    copy_menu_title: Копировать
-    copy_text_btn: Текст
-    copy_address_btn: Адрес
-    copy_link_btn: Ссылка
+    select_mode_btn: 選択する
+    copy_btn: コピー
+    copy_menu_title: コピー
+    copy_text_btn: 文章
+    copy_address_btn: 住所
+    copy_link_btn: リンク
 
-  chapter: глава
-  chapters: Главы
-  psalm: псалом
-  psalms: Псалмы
+  chapter: 章
+  chapters: 章
+  psalm: 詩篇
+  psalms: 詩篇
 
   end_chapter:
-    the_end_of: Конец
-    suffix: '-й'
-    suffix_psalm: '-о'
-    chapter: главы
-    psalm: псалма
+    the_end_of: の終わり
+    suffix: ''
+    suffix_psalm: ''
+    chapter: 章
+    psalm: 詩篇
 
-  forward: Вперёд
-  backward: Назад
+  forward: フォワード
+  backward: 後方へ
 
-  years_from: год от Рождества Христова
+  years_from: イエス・キリストの誕生から
 
   books:
     short:
-      gen: Быт
-      ish: Исх
-      lev: Лев
-      chis: Чис
-      vtor: Втор
-      nav: Нав
-      sud: Суд
-      ruf: Руф
-      1ts: 1Цар
-      2ts: 2Цар
-      3ts: 3Цар
-      4ts: 4Цар
-      1par: 1Пар
-      2par: 2Пар
-      ezd: Ездр
-      neem: Неем
-      2ezd: 2Ездр
-      tov: Тов
-      iudf: Иудифь
-      esf: Есф
-      pr: Притч
-      ekl: Еккл
-      pp: Песн
-      prs: Прем
-      prsir: Сир
-      iov: Иов
-      is: Ис
-      ier: Иер
-      pier: Плач
-      pos: Посл.Иер
-      var: Вар
-      iez: Иез
-      dan: Дан
-      os: Ос
-      iol: Иоиль
-      am: Ам
-      av: Авд
-      ion: Иона
-      mih: Мих
-      naum: Наум
-      avm: Авв
-      sof: Соф
-      ag: Агг
-      zah: Зах
-      mal: Мал
-      1mak: 1Макк
-      2mak: 2Макк
-      3mak: 3Макк
-      3ezd: 3Ездр
-      ps: Пс
-      mf: Мф
-      mk: Мк
-      lk: Лк
-      in: Ин
-      act: Деян
-      iak: Иак
-      1pet: 1Пет
-      2pet: 2Пет
-      1in: 1Ин
-      2in: 2Ин
-      3in: 3Ин
-      iud: Иуд
-      rim: Рим
-      1kor: 1Кор
-      2kor: 2Кор
-      gal: Гал
-      ef: Еф
-      fil: Флп
-      kol: Кол
-      1sol: 1Фес
-      2sol: 2Фес
-      1tim: 1Тим
-      2tim: 2Тим
-      tit: Тит
-      fm: Флм
-      evr: Евр
-      otkr: Откр
+      gen: 創
+      ish: 出
+      lev: レビ
+      chis: 民
+      vtor: 申
+      nav: ヨシュ
+      sud: 士
+      ruf: ルツ
+      1ts: サム上
+      2ts: サム下
+      3ts: 王上
+      4ts: 王下
+      1par: 代上
+      2par: 代下
+      ezd: エズ
+      neem: ネヘ
+      esf: エス
+      iov: ヨブ
+      ps: 詩
+      pr: 箴
+      ekl: コヘ
+      pp: 雅
+      is: イザ
+      ier: エレ
+      pier: 哀
+      iez: エゼ
+      dan: ダニ
+      os: ホセ
+      iol: ヨエ
+      am: アモ
+      av: オバ
+      ion: ヨナ
+      mih: ミカ
+      naum: ナホ
+      avm: ハバ
+      sof: ゼファ
+      ag: ハガ
+      zah: ゼカ
+      mal: マラ
+
+      # Книги, которыйх обычно нет в MyBible
+      1mak: １マカ
+      2mak: ２マカ
+      3mak: 3マカ
+      3ezd: 4マカ
+      pos: エレ手紙
+      var: バル
+      2ezd: ２エズ
+      tov: トビ
+      iudf: ユデ
+      prs: 知
+      prsir: シラ
+
+      mf: マタ
+      mk: マコ
+      lk: ルカ
+      in: ヨハ
+      act: 使
+      rim: ロマ
+      1kor: １コリ
+      2kor: ２コリ
+      gal: ガラ
+      ef: エフェ
+      fil: フィリ
+      kol: コロ
+      1sol: １テサ
+      2sol: ２テサ
+      1tim: １テモ
+      2tim: ２テモ
+      tit: テト
+      fm: フィレ
+      evr: ヘブ
+      iak: ヤコ
+      1pet: １ペト
+      2pet: ２ペト
+      1in: １ヨハ
+      2in: ２ヨハ
+      3in: ３ヨハ
+      iud: ユダ
+      otkr: 黙
 
     mid:
-      gen: Бытие
-      ish: Исход
-      lev: Левит
-      chis: Числа
-      vtor: Второзаконие
-      nav: Иисус Навин
-      sud: Судьи
-      ruf: Руфь
-      1ts: 1-я Царств
-      2ts: 2-я Царств
-      3ts: 3-я Царств
-      4ts: 4-я Царств
-      1par: 1-я Паралипоменон
-      2par: 2-я Паралипоменон
-      ezd: Ездра
-      neem: Неемия
-      2ezd: 2-я Ездры
-      tov: Товит
-      iudf: Иудифь
-      esf: Есфирь
-      pr: Притчи
-      ekl: Екклесиаст
-      pp: Песня Песней
-      prs: Премудрости Соломона
-      prsir: Сирах
-      iov: Иов
-      is: Исаия
-      ier: Иеремия
-      pier: Плач Иеремии
-      pos: Послание Иеремии
-      var: Варух
-      iez: Иезекииль
-      dan: Даниил
-      os: Осия
-      iol: Иоиль
-      am: Амос
-      av: Авдий
-      ion: Иона
-      mih: Михей
-      naum: Наум
-      avm: Аввакум
-      sof: Софония
-      ag: Аггей
-      zah: Захария
-      mal: Малахия
-      1mak: 1-я Маккавейская
-      2mak: 2-я Маккавейская
-      3mak: 3-я Маккавейская
-      3ezd: 3-я Ездры
-      ps: Псалтирь
-      mf: Евангелие от Матфея
-      mk: От Марка
-      lk: От Луки
-      in: От Иоанна
-      act: Деяния апостолов
-      iak: Послание Иакова
-      1pet: 1-е Петра
-      2pet: 2-е Петра
-      1in: 1-е Иоанна
-      2in: 2-е Иоанна
-      3in: 3-е Иоанна
-      iud: Иуды
-      rim: Послание апостола Павла к Римлянам
-      1kor: 1-е Коринфянам
-      2kor: 2-е Коринфянам
-      gal: Галатам
-      ef: Ефесянам
-      fil: Филиппийцам
-      kol: Колосянам
-      1sol: 1-е Солунянам (фессалоникийцам)
-      2sol: 2-е Солунянам (фессалоникийцам)
-      1tim: 1-е Тимофею
-      2tim: 2-е Тимофею
-      tit: Титу
-      fm: Филимону
-      evr: Евреям
-      otkr: Откровение Иоанна Богослова
+      gen: 創世記
+      ish: 出エジプト記
+      lev: レビ記
+      chis: 民数記
+      vtor: 申命記
+      nav: ヨシュア記
+      sud: 士師記
+      ruf: ルツ記
+      1ts: サムエル記上
+      2ts: サムエル記下
+      3ts: 列王記上
+      4ts: 列王記下
+      1par: 歴代誌上
+      2par: 歴代誌下
+      ezd: エズラ記
+      neem: ネヘミヤ記
+      esf: エステル記
+      iov: ヨブ記
+      ps: 詩編
+      pr: 箴言
+      ekl: コヘレトの言葉
+      pp: 雅歌
+      is: イザヤ書
+      ier: エレミヤ書
+      pier: 哀歌
+      iez: エゼキエル書
+      dan: ダニエル書
+      os: ホセア書
+      iol: ヨエル書
+      am: アモス書
+      av: オバデヤ書
+      ion: ヨナ書
+      mih: ミカ書
+      naum: ナホム書
+      avm: ハバクク書
+      sof: ゼファニヤ書
+      ag: ハガイ書
+      zah: ゼカリヤ書
+      mal: マラキ書
+
+      # книги которых обычно нет в MyBible
+      1mak: 'マカベア記１'
+      2mak: 'マカベア記２'
+      3mak: '3Mac'
+      3ezd: 'エズラ記 3'
+      pos: エレミヤの手紙
+      var: バルク書
+      2ezd: 'エズラ記２'
+      tov: 'トビト書'
+      iudf: 'ユディト書'
+      prs: '知恵の書'
+      prsir: 'シラ書'
+
+      mf: マタイによる福音書
+      mk: マルコによる福音書
+      lk: ルカによる福音書
+      in: ヨハネによる福音書
+      act: 使徒言行録
+      rim: ローマの信徒への手紙
+      1kor: コリントの信徒への手紙１
+      2kor: コリントの信徒への手紙２
+      gal: ガラテヤの信徒への手紙
+      ef: エフェソの信徒への手紙
+      fil: フィリピの信徒への手紙
+      kol: コロサイの信徒への手紙
+      1sol: テサロニケの信徒への手紙１
+      2sol: テサロニケの信徒への手紙２
+      1tim: テモテへの手紙１
+      2tim: テモテへの手紙２
+      tit: テトスへの手紙
+      fm: フィレモンへの手紙
+      evr: ヘブライ人への手紙
+      iak: ヤコブの手紙
+      1pet: ペトロの手紙１
+      2pet: ペトロの手紙２
+      1in: ヨハネの手紙１
+      2in: ヨハネの手紙２
+      3in: ヨハネの手紙３
+      iud: ユダの手紙
+      otkr: ヨハネの黙示録
 
     full:
-      gen: Бытие
-      ish: Исход
-      lev: Левит
-      chis: Числа
-      vtor: Второзаконие
-      nav: Книга Иисуса Навина
-      sud: Книга Судей Израилевых
-      ruf: Книга Руфи
-      1ts: 1-я книга Царств
-      2ts: 2-я книга Царств
-      3ts: 3-я книга Царств
-      4ts: 4-я книга Царств
-      1par: 1-я книга Паралипоменон
-      2par: 2-я книга Паралипоменон
-      ezd: 1-я книга Ездры
-      neem: Книга Неемии
-      2ezd: 2-я книга Ездры
-      tov: Книга Товита
-      iudf: Книга Иудифи
-      esf: Книга Есфири
-      pr: Книга Притчей Соломоновых
-      ekl: Екклесиаст
-      pp: Песнь Песней Соломона
-      prs: Книга Премудрости Соломона
-      prsir: Книга Премудрости Иисуса, Сына Сирахова
-      iov: Книга Иова
-      is: Книга пророка Исаии
-      ier: Книга пророка Иеремии
-      pier: Плач Иеремии
-      pos: Послание Иеремии
-      var: Книга пророка Варуха
-      iez: Книга пророка Иезекииля
-      dan: Книга пророка Даниила
-      os: Книга пророка Осии
-      iol: Книга пророка Иоиля
-      am: Книга пророка Амоса
-      av: Книга пророка Авдия
-      ion: Книга пророка Ионы
-      mih: Книга пророка Михея
-      naum: Книга пророка Наума
-      avm: Книга пророка Аввакума
-      sof: Книга пророка Софонии
-      ag: Книга пророка Аггея
-      zah: Книга пророка Захарии
-      mal: Книга пророка Малахии
-      1mak: 1-я книга Маккавейская
-      2mak: 2-я книга Маккавейская
-      3mak: 3-я книга Маккавейская
-      3ezd: 3-я книга Ездры
-      ps: Псалтирь
-      mf: Евангелие от Матфея
-      mk: Евангелие от Марка
-      lk: Евангелие от Луки
-      in: Евангелие от Иоанна
-      act: Деяния апостолов
-      iak: Послание Иакова
-      1pet: 1-е послание апостола Петра
-      2pet: 2-е послание апостола Петра
-      1in: 1-е послание апостола Иоанна
-      2in: 2-е послание апостола Иоанна
-      3in: 3-е послание апостола Иоанна
-      iud: Послание апостола Иуды
-      rim: Послание апостола Павла к Римлянам
-      1kor: Послание апостола Павла, 1-е к Коринфянам
-      2kor: Послание апостола Павла, 2-е к Коринфянам
-      gal: Послание апостола Павла к Галатам
-      ef: Послание апостола Павла к Ефесянам
-      fil: Послание апостола Павла к Филиппийцам
-      kol: Послание апостола Павла к Колосянам
-      1sol: Послание апостола Павла, 1-е Солунянам (фессалоникийцам)
-      2sol: Послание апостола Павла, 2-е Солунянам (фессалоникийцам)
-      1tim: Послание апостола Павла, 1-е Тимофею
-      2tim: Послание апостола Павла, 2-е Тимофею
-      tit: Послание апостола Павла к Титу
-      fm: Послание апостола Павла к Филимону
-      evr: Послание апостола Павла к Евреям
-      otkr: Откровение Иоанна Богослова
+      gen: 創世記
+      ish: 出エジプト記
+      lev: レビ記
+      chis: 民数記
+      vtor: 申命記
+      nav: ヨシュア記
+      sud: 士師記
+      ruf: ルツ記
+      1ts: サムエル記上
+      2ts: サムエル記下
+      3ts: 列王記上
+      4ts: 列王記下
+      1par: 歴代誌上
+      2par: 歴代誌下
+      ezd: エズラ記
+      neem: ネヘミヤ記
+      esf: エステル記
+      iov: ヨブ記
+      ps: 詩編
+      pr: 箴言
+      ekl: コヘレトの言葉
+      pp: 雅歌
+      is: イザヤ書
+      ier: エレミヤ書
+      pier: 哀歌
+      iez: エゼキエル書
+      dan: ダニエル書
+      os: ホセア書
+      iol: ヨエル書
+      am: アモス書
+      av: オバデヤ書
+      ion: ヨナ書
+      mih: ミカ書
+      naum: ナホム書
+      avm: ハバクク書
+      sof: ゼファニヤ書
+      ag: ハガイ書
+      zah: ゼカリヤ書
+      mal: マラキ書
+
+      # книги которых обычно нет в MyBible
+      1mak: 'マカベア記１'
+      2mak: 'マカベア記２'
+      3mak: '3Mac'
+      3ezd: 'エズラ記 3'
+      pos: エレミヤの手紙
+      var: バルク書
+      2ezd: 'エズラ記２'
+      tov: 'トビト書'
+      iudf: 'ユディト書'
+      prs: '知恵の書'
+      prsir: 'シラ書'
+
+      mf: マタイによる福音書
+      mk: マルコによる福音書
+      lk: ルカによる福音書
+      in: ヨハネによる福音書
+      act: 使徒言行録
+      rim: ローマの信徒への手紙
+      1kor: コリントの信徒への手紙１
+      2kor: コリントの信徒への手紙２
+      gal: ガラテヤの信徒への手紙
+      ef: エフェソの信徒への手紙
+      fil: フィリピの信徒への手紙
+      kol: コロサイの信徒への手紙
+      1sol: テサロニケの信徒への手紙１
+      2sol: テサロニケの信徒への手紙２
+      1tim: テモテへの手紙１
+      2tim: テモテへの手紙２
+      tit: テトスへの手紙
+      fm: フィレモンへの手紙
+      evr: ヘブライ人への手紙
+      iak: ヤコブの手紙
+      1pet: ペトロの手紙１
+      2pet: ペトロの手紙２
+      1in: ヨハネの手紙１
+      2in: ヨハネの手紙２
+      3in: ヨハネの手紙３
+      iud: ユダの手紙
+      otkr: ヨハネの黙示録
 
   errors:
-    no_translation_for_this_book: 'В этом переводе книга отсутствует'
+    no_translation_for_this_book: 'この本にはそのような翻訳はありません'
     messages:
       taken: "has already been taken"
 
   mongoid:
     errors:
-      models:
-        page:
-          attributes:
-            path:
-              blank: 'пусто'
-        menu:
-          attributes:
-            page_id:
-              blank: 'пусто'
-            path_parent:
-              blank: 'пусто'
       messages:
         blank_in_locale:
           "can't be blank in %{location}"

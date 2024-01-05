@@ -1,381 +1,410 @@
-ru:
-  title: Библeокс
-  bible: Библия
-  about_site: 'О сайте'
-  about_site_description: 'Сайт для изучения Библии. Контакты с разработчиком.'
-  about_text: Сайт создан в 2022 году в городе Севастополь по благословению православного священнослужителя.
-  about_news: Новости о развитии Библеокс
-  about_contact: Контакт с разработчиком
-  fast_search: Быстрый поиск
-  voice: Озвучить
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t "hello"
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t("hello") %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   "true": "foo"
+#
+# To learn more, please read the Rails Internationalization guide
+# available at https://guides.rubyonrails.org/i18n.html.
+
+de:
+  title: Bibleox
+  bible: Bibel
+  about_site: 'Um'
+  about_site_description: 'Website zum Bibelstudium. Kontakte mit Entwickler.'
+  about_text: Die Stätte wurde 2022 in der Stadt Sewastopol mit dem Segen eines orthodoxen Priesters gegründet.
+  about_news: Bibleox-Neuigkeiten
+  about_contact: Kontakt mit Entwickler
+  fast_search: Schnelle Suche
+  voice: Stimme
 
   search_page:
-    title: Поиск
-    search_placeholder: Фраза
-    matches: Совпадений
-    any_book: Любая Книга
-    old_testament: Ветхий Завет
-    new_testament: Новый Завет
-    gospel: Евангелие
-    similar_phrase: Похожая фраза
-    exact_phrase: Точная фраза
-    meta_description: "Поиск \"%{search}\". Найдено результатов: %{matches}."
-    meta_description_first_verse: " Стих: %{verse}"
+    title: Suchen
+    search_placeholder: Phrase
+    matches: Streichhölzer
+    any_book: Irgendein Buch
+    old_testament: Altes Testament
+    new_testament: Neues Testament
+    gospel: Evangelium
+    similar_phrase: Ähnlicher Satz
+    exact_phrase: Exakte Formulierung
+    meta_description: "Suchen \"%{search}\". Streichhölzer: %{matches}."
+    meta_description_first_verse: " Vers: %{verse}"
 
   login_page:
-    title: 'Вход'
+    title: anmelden
 
   profile_page:
-    title: 'Мой профиль'
-    logout: Выйти
+    title: Mich
+    logout: Ausloggen
 
   page:
     title: "%{term}"
-    main_title: "Список статей"
-    main_meta_desc: "Статьи на библейскую, христианскую и религиозную тематику"
-    references: 'Примечания'
-    no_books_links_yet: 'Здесь пока что нет других ссылок. Загляните позже.'
+    main_title: "Artikelliste"
+    main_meta_desc: "Artikel zu biblischen, christlichen und religiösen Themen"
+    references: 'Verweise'
+    no_books_links_yet: 'Es gibt noch keine Links.'
 
   quotes_page:
-    title: Цитаты из Библии
+    title: Bibelzitate
 
   quote_page:
-    title: "%{term} / цитаты / Библия"
-    addresses_list_title: 'Только ссылки:'
-    whant_to_fix: 'Хотите исправить или дополнить? Напишите нам'
+    title: "%{term} / Zitate / Bibel"
+    addresses_list_title: 'Nur Schiedsrichter:'
+    whant_to_fix: 'Möchten Sie etwas reparieren oder hinzufügen? Erzähl uns'
 
   page_translations:
-    ru: Русский
-    en: Английский
-    gr: Греческий
-    de: Немецкий
-    ar: Арабский
-    jp: Японский
-    cn: Китайский
-    il: Иврит
+    ru: Russisch
+    en: Englisch
+    gr: Griechisch
+    de: Deutsch
+    ar: Araber
+    jp: Japanisch
+    cn: Chinesisch
+    il: hebräisch
 
   bib_translations:
-    ru: Русский
-    csl: Церк. слав.
-    en: Английский
-    heb: Иврит
-    gr: Греческий
-    jp: Японский
-    cn: Китайский
-    ge: Немецкий
-    arab: Арабский
+    ru: Russisch
+    csl: Slawisch
+    en: Englisch
+    heb: Hebräisch
+    gr: Griechisch
+    jp: Japanisch
+    cn: Chinesisch
+    ge: Deutsch
+    arab: Araber
 
   tips:
-    click_on_verse: Можно выделить стих, нажав на его номер.
-    click_on_verse__working: Работает
-    click_on_verse__and: и
-    search_was_return_zero_results: Ничего не найдено. Проверьте, может быть выбран не тот язык текста?
+    click_on_verse: Markieren Sie einen Vers, indem Sie auf seine Nummer klicken.
+    click_on_verse__working: Funktioniert
+    click_on_verse__and: Und
+    search_was_return_zero_results: Nichts gefunden. Prüfen Sie, ob die falsche Textsprache ausgewählt ist?
 
   tags:
-    bible: Библия
-    VZ: Ветхий Завет
-    NZ: Новый Завет
-    articles: Статьи
+    bible: Bibel
+    VZ: Altes Testament
+    NZ: Neues Testament
+    articles: Artikel
 
   menu:
-    bible: Библия
-    quotes: Цитаты
-    articles: Статьи
-    search: Поиск
-    settings: Настройки
-    locale: Язык оформления сайта
-    day: День
-    night: Ночь
-    veth_zavet: Ветхий Завет
-    nov_zavet: Новый Завет
-    profile: Профиль
-    login: Войти
+    bible: Bibel
+    quotes: Zitate
+    articles: Artikel
+    search: Suchen
+    settings: Einstellungen
+    locale: Sprache
+    day: Tag
+    night: Nacht
+    veth_zavet: Altes Testament
+    nov_zavet: Neues Testament
+    profile: Profil
+    login: anmelden
 
   settings:
-    color_scheme: Цвета
-    font_size: Текст
+    color_scheme: Farben
+    font_size: Text
 
   select_bar:
-    select_mode_btn: Выделять
-    copy_btn: Копировать
-    copy_menu_title: Копировать
-    copy_text_btn: Текст
-    copy_address_btn: Адрес
-    copy_link_btn: Ссылка
+    select_mode_btn: Wählen
+    copy_btn: Kopieren
+    copy_menu_title: Kopieren
+    copy_text_btn: Text
+    copy_address_btn: Adresse
+    copy_link_btn: Verknüpfung
 
-  chapter: глава
-  chapters: Главы
-  psalm: псалом
-  psalms: Псалмы
+  chapter: Kapitel
+  chapters: Kapitel
+  psalm: Psalm
+  psalms: Psalmen
 
   end_chapter:
-    the_end_of: Конец
-    suffix: '-й'
-    suffix_psalm: '-о'
-    chapter: главы
-    psalm: псалма
+    the_end_of: Das Ende von
+    suffix: ''
+    suffix_psalm: ''
+    chapter: Kapitel
+    psalm: Psalm
 
-  forward: Вперёд
-  backward: Назад
+  forward: Nach vorne
+  backward: Rückwärts
 
-  years_from: год от Рождества Христова
+  years_from: seit der Geburt Jesu Christi
 
   books:
     short:
-      gen: Быт
-      ish: Исх
-      lev: Лев
-      chis: Чис
-      vtor: Втор
-      nav: Нав
-      sud: Суд
-      ruf: Руф
-      1ts: 1Цар
-      2ts: 2Цар
-      3ts: 3Цар
-      4ts: 4Цар
-      1par: 1Пар
-      2par: 2Пар
-      ezd: Ездр
-      neem: Неем
-      2ezd: 2Ездр
-      tov: Тов
-      iudf: Иудифь
-      esf: Есф
-      pr: Притч
-      ekl: Еккл
-      pp: Песн
-      prs: Прем
-      prsir: Сир
-      iov: Иов
-      is: Ис
-      ier: Иер
-      pier: Плач
-      pos: Посл.Иер
-      var: Вар
-      iez: Иез
-      dan: Дан
-      os: Ос
-      iol: Иоиль
-      am: Ам
-      av: Авд
-      ion: Иона
-      mih: Мих
-      naum: Наум
-      avm: Авв
-      sof: Соф
-      ag: Агг
-      zah: Зах
-      mal: Мал
-      1mak: 1Макк
-      2mak: 2Макк
-      3mak: 3Макк
-      3ezd: 3Ездр
-      ps: Пс
-      mf: Мф
-      mk: Мк
-      lk: Лк
-      in: Ин
-      act: Деян
-      iak: Иак
-      1pet: 1Пет
-      2pet: 2Пет
-      1in: 1Ин
-      2in: 2Ин
-      3in: 3Ин
-      iud: Иуд
-      rim: Рим
-      1kor: 1Кор
-      2kor: 2Кор
-      gal: Гал
-      ef: Еф
-      fil: Флп
-      kol: Кол
-      1sol: 1Фес
-      2sol: 2Фес
-      1tim: 1Тим
-      2tim: 2Тим
-      tit: Тит
-      fm: Флм
-      evr: Евр
-      otkr: Откр
+      gen: 1Mo
+      ish: 2Mo
+      lev: 3Mo
+      chis: 4Mo
+      vtor: 5Mo
+      nav: Jos
+      sud: Ri
+      ruf: Rt
+      1ts: 1Sam
+      2ts: 2Sam
+      3ts: 1Kö
+      4ts: 2Kö
+      1par: 1Chr
+      2par: 2Chr
+      ezd: Esr
+      neem: Neh
+      esf: Est
+      iov: Hi
+      ps: Ps
+      pr: Spr
+      ekl: Pred
+      pp: Hl
+      is: Jes
+      ier: Jer
+      pier: Kla
+      iez: Ez
+      dan: Dan
+      os: Hos
+      iol: Joe
+      am: Am
+      av: Ob
+      ion: Jon
+      mih: Mi
+      naum: Nah
+      avm: Hab
+      sof: Zeph
+      ag: Hag
+      zah: Sach
+      mal: Mal
+
+      # Книги, которыйх обычно нет в MyBible
+      1mak: 1Mac
+      2mak: 2Mac
+      3mak: 3Mac
+      3ezd: 3Ezr
+      pos: lJer
+      var: Bar
+      2ezd: 2Ezr
+      tov: Tov
+      iudf: Judf
+      prs: pSolom
+      prsir: pSir
+
+      mf: Mt
+      mk: Mk
+      lk: Lk
+      in: Joh
+      act: Apg
+      rim: Röm
+      1kor: 1Kor
+      2kor: 2Kor
+      gal: Gal
+      ef: Eph
+      fil: Phil
+      kol: Kol
+      1sol: 1Th
+      2sol: 2Th
+      1tim: 1Tim
+      2tim: 2Tim
+      tit: Tit
+      fm: Phlm
+      evr: Hebr
+      iak: Jak
+      1pet: 1Pt
+      2pet: 2Pt
+      1in: 1Jo
+      2in: 2Jo
+      3in: 3Jo
+      iud: Jud
+      otkr: Offb
 
     mid:
-      gen: Бытие
-      ish: Исход
-      lev: Левит
-      chis: Числа
-      vtor: Второзаконие
-      nav: Иисус Навин
-      sud: Судьи
-      ruf: Руфь
-      1ts: 1-я Царств
-      2ts: 2-я Царств
-      3ts: 3-я Царств
-      4ts: 4-я Царств
-      1par: 1-я Паралипоменон
-      2par: 2-я Паралипоменон
-      ezd: Ездра
-      neem: Неемия
-      2ezd: 2-я Ездры
-      tov: Товит
-      iudf: Иудифь
-      esf: Есфирь
-      pr: Притчи
-      ekl: Екклесиаст
-      pp: Песня Песней
-      prs: Премудрости Соломона
-      prsir: Сирах
-      iov: Иов
-      is: Исаия
-      ier: Иеремия
-      pier: Плач Иеремии
-      pos: Послание Иеремии
-      var: Варух
-      iez: Иезекииль
-      dan: Даниил
-      os: Осия
-      iol: Иоиль
-      am: Амос
-      av: Авдий
-      ion: Иона
-      mih: Михей
-      naum: Наум
-      avm: Аввакум
-      sof: Софония
-      ag: Аггей
-      zah: Захария
-      mal: Малахия
-      1mak: 1-я Маккавейская
-      2mak: 2-я Маккавейская
-      3mak: 3-я Маккавейская
-      3ezd: 3-я Ездры
-      ps: Псалтирь
-      mf: Евангелие от Матфея
-      mk: От Марка
-      lk: От Луки
-      in: От Иоанна
-      act: Деяния апостолов
-      iak: Послание Иакова
-      1pet: 1-е Петра
-      2pet: 2-е Петра
-      1in: 1-е Иоанна
-      2in: 2-е Иоанна
-      3in: 3-е Иоанна
-      iud: Иуды
-      rim: Послание апостола Павла к Римлянам
-      1kor: 1-е Коринфянам
-      2kor: 2-е Коринфянам
-      gal: Галатам
-      ef: Ефесянам
-      fil: Филиппийцам
-      kol: Колосянам
-      1sol: 1-е Солунянам (фессалоникийцам)
-      2sol: 2-е Солунянам (фессалоникийцам)
-      1tim: 1-е Тимофею
-      2tim: 2-е Тимофею
-      tit: Титу
-      fm: Филимону
-      evr: Евреям
-      otkr: Откровение Иоанна Богослова
+      gen: 1Mo
+      ish: 2Mo
+      lev: 3Mo
+      chis: 4Mo
+      vtor: 5Mo
+      nav: Jos
+      sud: Ri
+      ruf: Rt
+      1ts: 1Sam
+      2ts: 2Sam
+      3ts: 1Kö
+      4ts: 2Kö
+      1par: 1Chr
+      2par: 2Chr
+      ezd: Esr
+      neem: Neh
+      esf: Est
+      iov: Hi
+      ps: Ps
+      pr: Spr
+      ekl: Pred
+      pp: Hl
+      is: Jes
+      ier: Jer
+      pier: Kla
+      iez: Ez
+      dan: Dan
+      os: Hos
+      iol: Joe
+      am: Am
+      av: Ob
+      ion: Jon
+      mih: Mi
+      naum: Nah
+      avm: Hab
+      sof: Zeph
+      ag: Hag
+      zah: Sach
+      mal: Mal
+
+      # книги которых обычно нет в MyBible
+      1mak: 1 Maccabees
+      2mak: 2 Maccabees
+      3mak: 3 Maccabees
+      3ezd: 3 Esdras
+      pos: Letter of Jeremiah
+      var: Baruch
+      2ezd: II Esdras
+      tov: Tobit
+      iudf: Judith
+      prs: Wisdom
+      prsir: Sirah
+
+      mf: Mt
+      mk: Mk
+      lk: Lk
+      in: Joh
+      act: Apg
+      rim: Röm
+      1kor: 1Kor
+      2kor: 2Kor
+      gal: Gal
+      ef: Eph
+      fil: Phil
+      kol: Kol
+      1sol: 1Th
+      2sol: 2Th
+      1tim: 1Tim
+      2tim: 2Tim
+      tit: Tit
+      fm: Phlm
+      evr: Hebr
+      iak: Jak
+      1pet: 1Pt
+      2pet: 2Pt
+      1in: 1Jo
+      2in: 2Jo
+      3in: 3Jo
+      iud: Jud
+      otkr: Offb
 
     full:
-      gen: Бытие
-      ish: Исход
-      lev: Левит
-      chis: Числа
-      vtor: Второзаконие
-      nav: Книга Иисуса Навина
-      sud: Книга Судей Израилевых
-      ruf: Книга Руфи
-      1ts: 1-я книга Царств
-      2ts: 2-я книга Царств
-      3ts: 3-я книга Царств
-      4ts: 4-я книга Царств
-      1par: 1-я книга Паралипоменон
-      2par: 2-я книга Паралипоменон
-      ezd: 1-я книга Ездры
-      neem: Книга Неемии
-      2ezd: 2-я книга Ездры
-      tov: Книга Товита
-      iudf: Книга Иудифи
-      esf: Книга Есфири
-      pr: Книга Притчей Соломоновых
-      ekl: Екклесиаст
-      pp: Песнь Песней Соломона
-      prs: Книга Премудрости Соломона
-      prsir: Книга Премудрости Иисуса, Сына Сирахова
-      iov: Книга Иова
-      is: Книга пророка Исаии
-      ier: Книга пророка Иеремии
-      pier: Плач Иеремии
-      pos: Послание Иеремии
-      var: Книга пророка Варуха
-      iez: Книга пророка Иезекииля
-      dan: Книга пророка Даниила
-      os: Книга пророка Осии
-      iol: Книга пророка Иоиля
-      am: Книга пророка Амоса
-      av: Книга пророка Авдия
-      ion: Книга пророка Ионы
-      mih: Книга пророка Михея
-      naum: Книга пророка Наума
-      avm: Книга пророка Аввакума
-      sof: Книга пророка Софонии
-      ag: Книга пророка Аггея
-      zah: Книга пророка Захарии
-      mal: Книга пророка Малахии
-      1mak: 1-я книга Маккавейская
-      2mak: 2-я книга Маккавейская
-      3mak: 3-я книга Маккавейская
-      3ezd: 3-я книга Ездры
-      ps: Псалтирь
-      mf: Евангелие от Матфея
-      mk: Евангелие от Марка
-      lk: Евангелие от Луки
-      in: Евангелие от Иоанна
-      act: Деяния апостолов
-      iak: Послание Иакова
-      1pet: 1-е послание апостола Петра
-      2pet: 2-е послание апостола Петра
-      1in: 1-е послание апостола Иоанна
-      2in: 2-е послание апостола Иоанна
-      3in: 3-е послание апостола Иоанна
-      iud: Послание апостола Иуды
-      rim: Послание апостола Павла к Римлянам
-      1kor: Послание апостола Павла, 1-е к Коринфянам
-      2kor: Послание апостола Павла, 2-е к Коринфянам
-      gal: Послание апостола Павла к Галатам
-      ef: Послание апостола Павла к Ефесянам
-      fil: Послание апостола Павла к Филиппийцам
-      kol: Послание апостола Павла к Колосянам
-      1sol: Послание апостола Павла, 1-е Солунянам (фессалоникийцам)
-      2sol: Послание апостола Павла, 2-е Солунянам (фессалоникийцам)
-      1tim: Послание апостола Павла, 1-е Тимофею
-      2tim: Послание апостола Павла, 2-е Тимофею
-      tit: Послание апостола Павла к Титу
-      fm: Послание апостола Павла к Филимону
-      evr: Послание апостола Павла к Евреям
-      otkr: Откровение Иоанна Богослова
+      gen: Das erste Buch Mose (Genesis)
+      ish: Das zweite Buch Mose (Exodus)
+      lev: Das dritte Buch Mose (Levitikus)
+      chis: Das vierte Buch Mose (Numeri)
+      vtor: Das fünfte Buch Mose (Deuteronomium)
+      nav: Das Buch Josua
+      sud: Das Buch der Richter
+      ruf: Das Buch Ruth
+      1ts: Das erste Buch Samuel
+      2ts: Das zweite Buch Samuel
+      3ts: Das erste Buch der Könige
+      4ts: Das zweite Buch der Könige
+      1par: Das erste Buch der Chronik
+      2par: Das zweite Buch der Chronik
+      ezd: Das Buch Esra
+      neem: Das Buch Nehemia
+      esf: Das Buch Ester
+      iov: Das Buch Hiob
+      ps: Die Psalmen
+      pr: Die Sprüche
+      ekl: Der Prediger
+      pp: Das Hohelied
+      is: Das Buch des Propheten Jesaja
+      ier: Das Buch des Propheten Jeremia
+      pier: Die Klagelieder Jeremias
+      iez: Das Buch des Propheten Ezechiel (Hesekiel)
+      dan: Das Buch des Propheten Daniel
+      os: Das Buch des Propheten Hosea
+      iol: Das Buch des Propheten Joel
+      am: Das Buch des Propheten Amos
+      av: Das Buch des Propheten Obadja
+      ion: Das Buch des Propheten Jona
+      mih: Das Buch des Propheten Micha
+      naum: Das Buch des Propheten Nahum
+      avm: Das Buch des Propheten Habakuk
+      sof: Das Buch des Propheten Zephanja
+      ag: Das Buch des Propheten Haggai
+      zah: Das Buch des Propheten Sacharja
+      mal: Das Buch des Propheten Maleachi
+
+      # книги которых обычно нет в MyBible
+      1mak: '1Mac'
+      2mak: '2Mac'
+      3mak: '3Mac'
+      3ezd: 'The Third Book of EZRA'
+      pos: Letter of JEREMIAH
+      var: The Book of BARUCH
+      2ezd: 'The Second Book of EZRA'
+      tov: 'Tov'
+      iudf: 'Judf'
+      prs: 'P. Solom'
+      prsir: 'P. Sir'
+
+      mf: Das Evangelium nach Matthäus
+      mk: Das Evangelium nach Markus
+      lk: Das Evangelium nach Lukas
+      in: Das Evangelium nach Johannes
+      act: Die Apostelgeschichte
+      rim: Der Brief des Apostels Paulus an die Römer
+      1kor: Der erste Brief des Apostels Paulus an die Korinther
+      2kor: Der zweite Brief des Apostels Paulus an die Korinther
+      gal: Der Brief des Apostels Paulus an die Galater
+      ef: Der Brief des Apostels Paulus an die Epheser
+      fil: Der Brief des Apostels Paulus an die Philipper
+      kol: Der Brief des Apostels Paulus an die Kolosser
+      1sol: Der erste Brief des Apostels Paulus an die Thessalonicher
+      2sol: Der zweite Brief des Apostels Paulus an die Thessalonicher
+      1tim: Der erste Brief des Apostels Paulus an Thimotheus
+      2tim: Der zweite Brief des Apostels Paulus an Thimotheus
+      tit: Der Brief des Apostels Paulus an Titus
+      fm: Der Brief des Apostels Paulus an Philemon
+      evr: Der Brief des Apostels Paulus an die Hebräer
+      iak: Der Brief des Jakobus
+      1pet: Der erste Brief des Apostels Petrus
+      2pet: Der zweite Brief des Apostels Petrus
+      1in: Der erste Brief des Apostels Johannes
+      2in: Der zweite Brief des Apostels Johannes
+      3in: Der dritte Brief des Apostels Johannes
+      iud: Der Brief des Judas
+      otkr: Die Offenbarung Jesu Christi durch Johannes
 
   errors:
-    no_translation_for_this_book: 'В этом переводе книга отсутствует'
+    no_translation_for_this_book: 'Für dieses Buch gibt es keine solche Übersetzung'
     messages:
       taken: "has already been taken"
 
   mongoid:
     errors:
-      models:
-        page:
-          attributes:
-            path:
-              blank: 'пусто'
-        menu:
-          attributes:
-            page_id:
-              blank: 'пусто'
-            path_parent:
-              blank: 'пусто'
       messages:
         blank_in_locale:
           "can't be blank in %{location}"

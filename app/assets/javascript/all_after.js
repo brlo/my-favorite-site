@@ -18,37 +18,25 @@ if (element) {
   });
 };
 
-window.selectLocale = function(locale) {
-  if (window.BX.locale == locale) return;
-
-  const path = location.pathname;
-  const query = location.search;
-
-  // формируем новую ссылку
-  if (path.length > 0) {
-    let new_path = path;
-    // удаляем локаль, если она уже есть в адресе
-    if (/^\/en|ru\//.test(new_path)) {
-      new_path = new_path.substr(3);
-    }
-
-    // добавляем новую локаль
-    new_path = '/' + locale + new_path;
-
-    // идём на новый адрес, если старый и новый path отличается
-    if (path != new_path) {
-      // переключаем язык Писания на соответствующий, чтобы человек сразу оказался в понятной обстановке
-      if (locale == 'ru') {
-        setCookie('b-lang', 'ru', 999);
-      } else if (locale == 'en') {
-        setCookie('b-lang', 'eng-nkjv', 999);
-      };
-
-      // пошли
-      window.location.href = new_path + query;
-    }
-  };
-}
+var element = document.querySelector('#ui-lang-select');
+if (element) {
+  new Choices(element, {
+    allowHTML: true,
+    shouldSort: false,
+    shouldSortItems: false,
+    placeholder: true,
+    placeholderValue: 'Язык сайта',
+    searchEnabled: false,
+    prependValue: null,
+    appendValue: null,
+    renderSelectedChoices: 'auto',
+    itemSelectText: '',
+    position: 'auto',
+    classNames: {
+      containerOuter: 'choices ui-lang-select'
+    },
+  });
+};
 
 // TRANSLIT TABLE
 window.en2ruTranslit = function(text) {
@@ -69,6 +57,9 @@ window.menuBooks = {
 }
 
 menuBooks.show = function (needAddClass = null) {
+  // прячем меню трудов автора (он может быть открыто)
+  menuABooks.hide();
+
   if (needAddClass == 'book-clicked') {
     // Скрываем. Это повторный клик на название книги.
     let isSameMenuOpened = document.getElementsByClassName('book-clicked').length > 0;
@@ -81,8 +72,8 @@ menuBooks.show = function (needAddClass = null) {
     if (isSameMenuOpened) { menuBooks.hide(); return; };
   };
 
-  // меню было скрыто, поэтому мы его покажем с нужным классом, предварительно всё почистив
-  menuBooks.el.className = '';
+  // оставляем только один постоянно нужный класс, а класс hidden стираем
+  menuBooks.el.className = 'menu-books';
   if (needAddClass !== null) menuBooks.el.classList.add(needAddClass);
   menuBooks.isShown = true;
 
@@ -93,7 +84,7 @@ menuBooks.show = function (needAddClass = null) {
 };
 
 menuBooks.hide = function () {
-  menuBooks.el.className = '';
+  menuBooks.el.className = 'menu-books';
   menuBooks.el.classList.add('hidden');
   menuBooks.isShown = false;
   return false;
@@ -207,6 +198,153 @@ menuBooks.enableListeners = function () {
 
 menuBooks.enableListeners();
 
+
+
+// =======================================================================
+// =================== MENU FOR AUTHOR BOOK ==============================
+// =======================================================================
+
+
+// Меню для выбора книг
+window.menuABooks = {
+  isShown: false,
+  el: document.getElementById('menu-author-books'),
+  searchInput: document.getElementById('filter-author-books'),
+  booksLinks: document.querySelectorAll('#menu-author-books a'),
+}
+
+menuABooks.show = function (needAddClass = null) {
+  if (!window.menuABooks.el) return;
+
+  // прячем меню Библии (оно может быть открыто)
+  menuBooks.hide();
+
+  // Скрываем. Это повторный клик на название книги.
+  if (menuABooks.isShown == true) {
+    menuABooks.hide()
+  } else {
+    // оставляем только один постоянно нужный класс, а класс hidden стираем
+    menuABooks.el.className = 'menu-books book-clicked';
+    if (needAddClass !== null) menuABooks.el.classList.add(needAddClass);
+    menuABooks.isShown = true;
+
+    // // фокус на поисковом поле
+    // menuABooks.searchInput.focus();
+  }
+
+  return false;
+};
+
+menuABooks.hide = function () {
+  if (!window.menuABooks.el) return;
+
+  menuABooks.el.className = 'menu-books book-clicked';
+  menuABooks.el.classList.add('hidden');
+  menuABooks.isShown = false;
+  return false;
+};
+
+menuABooks.filterBooks = function(text, isNeedTranslit) {
+  const els = menuABooks.booksLinks;
+  // все буквы маленькие
+  // оставляем только буквы и цифры
+  // убираем цифры, -, "," и пробелы в конце строки
+  let filterText = text.toLowerCase().replace(/[^a-zа-я0-9]/gi, '');
+  filterText = filterText.replace(/[\d\-,\s]+$/g, '');
+
+  if (isNeedTranslit) {
+    // в конце этой ф-ции мы снова обращаемся к ней, но просим предварительно
+    // исправить ползьовательский ввод в неправильной раскладке.
+    // мы делаем это только если ничего не удалось найти в первый раз.
+    filterText = window.en2ruTranslit(filterText);
+  };
+
+  if (filterText === '') {
+    // пользователь ничего не ввёл, надо всё почистить.
+    // удалить общую метку
+    menuABooks.el.classList.remove('dark');
+    // удалить метку с подсвеченных элементов
+    els.forEach(el => el.classList.remove('h-light'));
+  } else {
+    // ищем совпадения, если пользователь что-то ввёл
+    let isSomethingMatch = false;
+
+    // если есть совпадение по оригинальному тексту, или по транслиту, то подсвечиваем
+    userPattern = filterText.split('').join('{1}.*');
+    // получаем паттерн: б{1}.*ы{1}.*т{1}.*и{1}.*е
+    const regex = new RegExp(userPattern);
+
+    els.forEach(el => {
+      // подсвечиваем элементы
+      const elText = (el.innerText || el.textContent).toLowerCase();
+      const isThisMatch = regex.test(elText);
+      // if (elText.includes(filterText)) {
+      if (isThisMatch) {
+        el.classList.add('h-light');
+        isSomethingMatch = true;
+      } else {
+        el.classList.remove('h-light')
+      };
+    });
+
+    // если есть совпадения, то ставим общую метку на весь блок
+    if (isSomethingMatch) {
+      menuABooks.el.classList.add('dark');
+    } else {
+      // если нет результатов и транслит ещё не пробовали, то надо попробовать транслит поискать
+      if (isNeedTranslit != true) {
+        menuABooks.filterBooks(text, true);
+      }
+    };
+  };
+};
+
+menuABooks.eraseSearch = function () {
+  // отменяем подсветку искомых книг,
+  menuABooks.el.querySelectorAll('a.h-light').forEach(el => el.classList.remove('h-light'));
+
+  // стираем текст в поисковом поле
+  menuABooks.searchInput.value = '';
+}
+
+menuABooks.goToSearch = function() {
+  return false;
+  // const text = menuABooks.searchInput.value;
+  // let params = [];
+
+  // if (text && text.length > 0) { params.push('t=' + text) };
+  // const url = '/' + window.BX.locale + '/search?' + params.join('&');
+  // document.location.href = url;
+}
+
+menuABooks.enableListeners = function () {
+  if (!menuABooks.el) return;
+
+  // Клик на элементы, вызвающие меню
+  const currBookLink = document.getElementById('current-author-book');
+  if (currBookLink) {
+    currBookLink.addEventListener('click', function(e){
+      e.preventDefault(); e.stopPropagation();
+      menuABooks.show();
+  })};
+
+  // Клик за границами меню прячет меню
+  document.addEventListener('click', event => {
+    const el = event.target;
+
+    // Прячем. Так как нажали не на открывающие меню ссылки, а само меню при этом показано
+    if (el.id != 'current-author-book' && menuABooks.isShown) {
+      const isClickInside = menuABooks.el.contains(event.target);
+      if (!isClickInside) {
+        menuABooks.hide();
+        // отменить поиск книги и стереть значение в поле для поиска
+        menuABooks.eraseSearch();
+      }
+    };
+  });
+};
+
+menuABooks.enableListeners();
 
 // =======================================================================
 // =================== SETTINGS AREA =====================================

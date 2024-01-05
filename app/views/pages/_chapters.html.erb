@@ -1,0 +1,45 @@
+<div id='chapter-image'>
+  <% if @breadcrumbs.present? && @breadcrumbs.length > 1 %>
+    <h2 class='breadcrumbs'><%= @breadcrumbs.join(' » ') %></h2>
+  <% end %>
+
+  <% if @parent_page %>
+    <h2 class='parent-address'>
+      <a href="<%= my_page_link_to("/#{@parent_page.path}") %>"><%= @parent_page.title %></a>
+    </h2>
+  <% end %>
+
+  <h1
+      class="title"
+      id='current-address'
+      data-book-short-name=''
+      data-lang-ui='<%= I18n.locale %>'
+      data-lang-content='<%= @content_lang %>'
+      data-book-code=''
+      data-page-path='<%= @page.path %>'
+      data-chapter='<%= @chapter_current %>'
+      itemprop="headline"
+    >
+    <a href="<%= my_page_link_to("/#{@page.path}") %>" id='current-author-book'><%= @page.title %></a>
+  </h1>
+
+  <% if @page.title_sub.present? %>
+    <div id='title-sub' class='small hint'><%= @page.title_sub %></div>
+  <% end %>
+
+  <div class='menu-tree'>
+    <div>
+    <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0}) %>
+    </div>
+  </div>
+
+<% if @chapters.present? %>
+  <nav id='menu-chapters'>
+    <% @chapters.each.with_index do |(title, path), i| %>
+      <% classes = "chapter-num" %>
+      <% i == @chapter_current ? classes = ' selected' : nil %>
+      <a id="ch-<%= i %>" class="<%= classes %>" href="<%= my_page_link_to("/#{path}") %>"><%= title %></a>
+    <% end %>
+  </nav>
+<% end %>
+</div>

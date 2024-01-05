@@ -35,35 +35,6 @@ module Api
       render json: {success: 'fail', error: error.message}, status: 500
     end
 
-    def current_lang
-      # если поисковик не умеет куки, то хоть через локаль (которая в url) установит перевод
-      @current_lang ||= begin
-        _lang =
-        if cookies[:'b-lang'].present?
-          cookies[:'b-lang']
-        elsif params[:locale].present?
-          case params[:locale]
-          when 'ru' ; 'ru'
-          when 'en' ; 'eng-nkjv'
-          when 'cs' ; 'csl-ru'
-          when 'il' ; 'heb-osm'
-          when 'gr' ; 'gr-lxx-byz'
-          when 'jp' ; 'jp-ni'
-          when 'cn' ; 'cn-ccbs'
-          when 'de' ; 'ge-sch'
-          when 'ar' ; 'arab-avd'
-          else      ; 'ru'
-          end
-        end
-
-        if ::CacheSearch::SEARCH_LANGS.include?(_lang)
-          _lang
-        else
-          'ru'
-        end
-      end
-    end
-
     def set_locale
       # params[:locale] - заполняется в routes
       ::I18n.locale = params[:locale] || 'ru'

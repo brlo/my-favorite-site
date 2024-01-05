@@ -7,7 +7,7 @@ window.BX.notifications = {
 // Показ одного уведомления из стэка
 window.BX.notifications.show = function () {
   // если сейчас уже нарисовано увдеомление, то ничего не делаем
-  // так как по таймауту из стэка само нарисуется слдующее уведомление
+  // так как по таймауту из стэка само нарисуется следующее уведомление
   if (document.getElementById('popup-notif')) return;
   // в стэке пусто
   if (BX.notifications.stack.length < 1) return;
@@ -92,7 +92,9 @@ selectBar.getSelectedText = function () {
   return text;
 }
 
+// добывает человекочитаемый адрес стиха: Быт. 1:16-17
 selectBar.getSelectedAddress = function () {
+  // сначала поработаем с фрагментом (то, что в адресе после решётки)
   let fragmentStr = window.location.hash;
 
   // это строка, не пустая и не только с решёткой
@@ -105,18 +107,21 @@ selectBar.getSelectedAddress = function () {
 
   let regexpLines = selectBar.fragmentRegexp;
 
-  // адрес линий построен правильно
+  // Если в фрагменте что-то кривое и непонятное, то выходим
   if (!regexpLines.test(lineStr)) return '';
 
   // имеем строку: L1-3,5,10-11
   // убираем L, делим по ",", берём 7 элементов массива
   const lines = lineStr.substr(1)
 
+  // Элемент в котором хранятся все идентификаторы адреса
   let bookInfo = document.getElementById('current-address').dataset;
+  // короткое название книги: Быт.
   let bookName = bookInfo.bookShortName;
+  // глава: 1
+  let chapter = bookInfo.chapter;
 
-  let chapter = document.querySelector('#menu-chapters .selected').innerHTML;
-
+  // итог: Быт. 1:16-17
   let address = bookName + '. ' + chapter + ':' + lines;
 
   return address;
@@ -360,7 +365,7 @@ const highlightLines = function() {
 highlightLines();
 
 // ---------------------
-// сохранен адрес выделенных строк в fragment
+// сохраняем адрес выделенных строк в fragment
 // ---------------------
 const saveHightlightedLinesToFragment = function() {
   let lightClass = 'highlighted';
@@ -577,14 +582,14 @@ addListenersForHighlightVerses();
 // подгрузка текста другой главы
 function loadChapter(linkEl) {
   let path = linkEl.getAttribute('href');
-  let currentChapter = linkEl.id.replace('ch-', ''); // берём id (там ch-5) и удаляем 'ch-'
+  let clickedChapter = linkEl.dataset.chapter;
   var xmlhttp = new XMLHttpRequest();
 
   xmlhttp.onreadystatechange = function() {
     if (xmlhttp.readyState == XMLHttpRequest.DONE) { // XMLHttpRequest.DONE == 4
       if (xmlhttp.status == 200) {
         // рендерим новый контент
-        document.getElementById('chapter-text').innerHTML = xmlhttp.responseText;
+        document.getElementById('bib-text-area').innerHTML = xmlhttp.responseText;
         // вешаем события
         addListenersForHighlightVerses();
         // переключаем адрес стрианцы
@@ -594,7 +599,9 @@ function loadChapter(linkEl) {
         // переключаем номер активной главы
         const chapters = document.getElementById('menu-chapters');
         chapters.querySelector('.selected').classList.remove('selected');
-        chapters.querySelector('#ch-' + currentChapter).classList.add('selected');
+        chapters.querySelector('#ch-' + clickedChapter).classList.add('selected');
+        // также надо обновить главу в элементе, который хранит всю инфу по текущему адресу
+        document.getElementById('current-address').dataset.chapter = clickedChapter;
         // сбрасываем player — аудио текста (вдруг он был запущен)
         window.BX.player.update();
       }
@@ -607,8 +614,19 @@ function loadChapter(linkEl) {
     }
   };
 
-  // path.substr(3) - выкидываем из начала ссылки /ru
-  xmlhttp.open("GET", '/' + window.BX.locale + '/chapters/' + path.substr(3), true);
+  // Элемент в котором хранятся все идентификаторы адреса
+  const bookInfo = document.getElementById('current-address').dataset;
+
+  const newPath = '/' +
+    bookInfo.langUi + '/' +
+    bookInfo.langContent + '/' +
+    'chapters' + '/' +
+    bookInfo.bookCode + '/' +
+    clickedChapter + '/' +
+    window.location.search +
+    window.location.hash;
+
+  xmlhttp.open('GET', newPath, true);
   xmlhttp.send();
 };
 

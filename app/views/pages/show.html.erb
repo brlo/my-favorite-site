@@ -1,44 +1,38 @@
-<article id='page-content' class="text-<%= text_size_from_cookies %>" itemscope itemtype="http://schema.org/Article">
-  <% if @page_parent %>
-    <div id='link-parent'>
-      <a href="<%= my_link_to("/w/#{@page_parent.path}") %>">
-        <%= @page_parent.title %>
-      </a>
+<% content_for(:head) do %>
+    <meta property="og:image" content="<%= my_res_link_to("/favicons/bibleox-for-social-#{ ::I18n.locale == :ru ? 'ru' : 'en' }.png") %>"/>
+    <meta property="og:image:width" content="1200"/>
+    <meta property="og:image:height" content="630"/>
+    <meta property="og:type" content="book"/>
+    <% @meta_book_tags&.each do |tag| %>
+    <meta property="og:book:tag" content="<%= tag %>"/>
+    <% end %>
+    <meta name="keywords" content="<%= @meta_book_tags&.join(', ') %>" />
+    <meta property="og:url" content= "<%= @canonical_url %>" />
+    <meta property="og:locale" content= "<%= ::I18n.locale %>" />
+    <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
+<% end %>
+
+<%= render(partial: 'pages/books') %>
+
+<article id='page-content' id='chapter-content' class="text-<%= text_size_from_cookies %>" itemscope itemtype="http://schema.org/Article">
+  <%= render(partial: 'pages/chapters') %>
+  <%= render(partial: 'pages/text_bar') %>
+  <%= render(partial: 'verses/audio_player') %>
+
+  <% if @verses.present? %>
+
+    <%= render(partial: 'verses/text') %>
+
+  <% else %>
+
+    <div id='page-body' itemprop='articleBody'>
+      <%= sanitize(@page.body, tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)).html_safe %>
     </div>
+
   <% end %>
-
-  <h1 id='subject' itemprop='name'><%= @page.title %></h1>
-  <% if @page.title_sub.presence %>
-    <div id='title-sub'><%= @page.title_sub %></div>
-  <% end %>
-
-  <% if @page_prev %>
-    <div id='link-prev'>
-      <a href="<%= my_link_to("/w/#{@page_prev.path}") %>">
-        <%= @page_prev.title %>
-      </a>
-    </div>
-  <% end %>
-
-  <% if @page_next %>
-    <div id='link-next'>
-      <a href="<%= my_link_to("/w/#{@page_next.path}") %>">
-        <%= @page_next.title %>
-      </a>
-    </div>
-  <% end %>
-
-  <div id='page-body' itemprop='articleBody'>
-    <%= sanitize(@page.body, tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)).html_safe %>
-  </div>
-
-  <div class='menu-tree'>
-    <div>
-    <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0}) %>
-    </div>
-  </div>
 
   <div id='page-references'>
+    <h2><%= ::I18n.t('page.references') %></h2>
     <%= sanitize(@page.references, tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)).html_safe %>
   </div>
 
@@ -55,4 +49,9 @@
   <div class='notification'>
     <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox'>https://t.me/bibleox</a>
   </div>
-</div>
+</section>
+
+<% content_for(:end_of_page) do %>
+  <%= render(partial: 'verses/select_bar') %>
+  <%= javascript_include_tag "index", media: "all" %>
+<% end %>

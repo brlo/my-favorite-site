@@ -1,30 +1,45 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  scope '/:locale', :locale => /ru|en|cs|il|gr/, defaults: {locale: "ru"} do
-    get '/:book_code/:chapter', to: 'verses#index', :constraints =>
-      lambda { |req|
-        book_code = req.params[:book_code]
-        book = BOOKS[book_code]
-        book && req.params[:chapter].to_i.between?(1, book[:chapters])
-        # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
-      },
-      as: 'chapter'
+  scope '/:locale', :locale => /ru|gr|en|il|ar|jp|cn|de/ do
+    scope '/:content_lang', :content_lang => /ru|csl-pnm|csl-ru|gr-lxx-byz|eng-nkjv|heb-osm|arab-avd|jp-ni|cn-ccbs|ge-sch/ do
+      get '/:book_code/:chapter', to: 'verses#index', :constraints =>
+        lambda { |req|
+          book_code = req.params[:book_code]
+          book = BOOKS[book_code]
+          book && req.params[:chapter].to_i.between?(1, book[:chapters])
+          # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
+        },
+        as: 'chapter'
 
-    get '/chapters/:book_code/:chapter', to: 'verses#chapter_ajax', :constraints =>
+      get '/chapters/:book_code/:chapter', to: 'verses#chapter_ajax', :constraints =>
+        lambda { |req|
+          book_code = req.params[:book_code]
+          book = BOOKS[book_code]
+          book && req.params[:chapter].to_i.between?(1, book[:chapters])
+          # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
+        }
+    end
+
+    scope '/:content_lang', :content_lang => /ru|gr|en|il|ar|jp|cn|de/ do
+      get '/q', to: 'quotes#index'
+      get '/q/:page_path', to: 'quotes#show', as: 'quote_page'
+      get '/w', to: 'pages#list', as: 'pages'
+      get '/w/:page_path', to: 'pages#show', as: 'page'
+    end
+
+    # СТАРАЯ АДРЕСАЦИЯ, БЕЗ УКАЗАНИЯ ЯЗЫКА КОНТЕНТА. Сейчас ловим для переадресации
+    get '/:book_code/:chapter', to: 'verses#index_redirect', :constraints =>
       lambda { |req|
         book_code = req.params[:book_code]
         book = BOOKS[book_code]
         book && req.params[:chapter].to_i.between?(1, book[:chapters])
-        # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
       }
+    get '/q', to: 'verses#q_redirect'
+    get '/q/:page_path', to: 'verses#q_redirect'
 
     get '/about', to: 'pages#about'
     get '/search', to: 'verses#search'
-    get '/q', to: 'quotes#index'
-    get '/q/:page_path', to: 'quotes#show', as: 'quote_page'
-    get '/w', to: 'pages#list', as: 'pages'
-    get '/w/:page_path', to: 'pages#show', as: 'page'
 
     # ищем по человеческому адресу стих и редиректим на правильный адрес
     get '/f/:human_address', :constraints => {human_address: /[\sА-ЯA-Z0-9\-\.\,\:%]+/i}, to: 'verses#goto_verse_by_human_address'

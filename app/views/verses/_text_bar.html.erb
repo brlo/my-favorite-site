@@ -1,16 +1,16 @@
 <div id='text-bar'>
   <div class='bar-el'>
     <select id="lang-select" name="lang-select" onchange="selectLang();return false;">
-      <option value='ru' <% if @current_lang == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
-      <option value='csl-pnm' <% if @current_lang == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
-      <option value='csl-ru' <% if @current_lang == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>
-      <option value='gr-lxx-byz' <% if @current_lang == 'gr-lxx-byz' %>selected<% end %>><%= I18n.t('bib_translations.gr') %> (LXX+Byz)</option>
-      <option value='eng-nkjv' <% if @current_lang == 'eng-nkjv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NKJV)</option>
-      <option value='heb-osm' <% if @current_lang == 'heb-osm' %>selected<% end %>><%= I18n.t('bib_translations.heb') %> (OSM)</option>
-      <option value='arab-avd' <% if @current_lang == 'arab-avd' %>selected<% end %>><%= I18n.t('bib_translations.arab') %> (AVD)</option>
-      <option value='jp-ni' <% if @current_lang == 'jp-ni' %>selected<% end %>><%= I18n.t('bib_translations.jp') %> (N.Interc)</option>
-      <option value='cn-ccbs' <% if @current_lang == 'cn-ccbs' %>selected<% end %>><%= I18n.t('bib_translations.cn') %> (CCBS)</option>
-      <option value='ge-sch' <% if @current_lang == 'ge-sch' %>selected<% end %>><%= I18n.t('bib_translations.ge') %> (SCH)</option>
+      <option value='ru' <% if @current_bib_lang == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
+      <option value='csl-pnm' <% if @current_bib_lang == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
+      <option value='csl-ru' <% if @current_bib_lang == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>
+      <option value='gr-lxx-byz' <% if @current_bib_lang == 'gr-lxx-byz' %>selected<% end %>><%= I18n.t('bib_translations.gr') %> (LXX+Byz)</option>
+      <option value='eng-nkjv' <% if @current_bib_lang == 'eng-nkjv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NKJV)</option>
+      <option value='heb-osm' <% if @current_bib_lang == 'heb-osm' %>selected<% end %>><%= I18n.t('bib_translations.heb') %> (OSM)</option>
+      <option value='arab-avd' <% if @current_bib_lang == 'arab-avd' %>selected<% end %>><%= I18n.t('bib_translations.arab') %> (AVD)</option>
+      <option value='jp-ni' <% if @current_bib_lang == 'jp-ni' %>selected<% end %>><%= I18n.t('bib_translations.jp') %> (N.Interc)</option>
+      <option value='cn-ccbs' <% if @current_bib_lang == 'cn-ccbs' %>selected<% end %>><%= I18n.t('bib_translations.cn') %> (CCBS)</option>
+      <option value='ge-sch' <% if @current_bib_lang == 'ge-sch' %>selected<% end %>><%= I18n.t('bib_translations.ge') %> (SCH)</option>
     </select>
   </div>
 
@@ -21,7 +21,7 @@
         <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />
       </svg>
 
-      Озвучить
+      <%= I18n.t('voice') %>
     </div>
   <% end %>
 </div>

@@ -15,22 +15,18 @@ class Page < ApplicationMongoRecord
   attr_accessor :tags_str
 
   # Тип страницы (для писания и тд)
-  field :pt, as: :page_type, type: String
-  field :pub, as: :published, type: Boolean
+  field :pt,         as: :page_type, type: String
+  field :pub,        as: :published, type: Boolean
   # основной заголовок
   field :title, type: String
-  # годы жизни, например
-  field :ts, as: :title_sub, type: String
+  # Название части книги (Том 1, или просто "1") или годы жизни автора
+  field :ts,         as: :title_sub, type: String
   # meta-описание (через запятую ключевые слова)
-  field :meta, as: :meta_desc, type: String
+  field :meta,       as: :meta_desc, type: String
   # path
   field :path, type: String
   field :path_low, type: String
   field :path_p,     as: :parent_id, type: BSON::ObjectId
-  field :n_id,       as: :next_id, type: BSON::ObjectId
-  field :n_t,        as: :next_title, type: String
-  field :pr_id,      as: :prev_id, type: BSON::ObjectId
-  field :pr_t,       as: :prev_title, type: String
   # старый путь к статье, с которого надо редиректить на текущий path
   field :r_from,     as: :redirect_from, type: String
   # аудио-файл
@@ -38,9 +34,10 @@ class Page < ApplicationMongoRecord
   # язык
   field :lg,         as: :lang, type: String
   # языковой идентификатор страницы для поиска таких же страниц на другом языке
-  field :gli,        as: :group_lang_id, type: String
+  field :gli,        as: :group_lang_id, type: BSON::ObjectId
   # текст статьи
   field :bd,         as: :body, type: String
+  field :vrs,        as: :verses, type: Array
   # текст статьи
   field :bd_arr,     as: :body_as_array, type: String
   # ссылки и заметки
@@ -59,6 +56,7 @@ class Page < ApplicationMongoRecord
   # для поиска в нужной книге
   index({path_low: 1},      { unique: true, background: true })
   index({group_lang_id: 1},               { background: true })
+  index({redirect_from: 1}, { sparse: true, background: true })
 
   before_validation :normalize_attributes
   validates :page_type, :title, :lang, :path, presence: true
@@ -109,13 +107,9 @@ class Page < ApplicationMongoRecord
       self.path = self.path.gsub('/#L', ':').gsub('/', ':')[1..-1]
     end
 
-    self.next_id = self.next_id.to_s.strip if self.next_id
-    self.next_title = self.next_title.to_s.strip if self.next_title
-    self.prev_id = self.prev_id.to_s.strip if self.prev_id
-    self.prev_title = self.prev_title.to_s.strip if self.prev_title
     self.tags = self.tags_str.to_s.split(',').map(&:strip) if self.tags_str.present?
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
-    self.group_lang_id = self.group_lang_id.to_s.strip.presence || generate_string(16)
+    self.group_lang_id = self.group_lang_id || ObjectId()
 
     self.body = self.body.to_s.strip
     self.references = self.references.to_s.strip if self.references.present?
@@ -138,6 +132,56 @@ class Page < ApplicationMongoRecord
     self.references = self.references.gsub(' ', ' ') if self.references.present?
     self.references = self.references.gsub('&nbsp;', ' ') if self.references.present?
 
+    if self.page_type == PAGE_TYPES['книга стихами'] && self.body.present? && self.verses.blank?
+      self.verses = split_to_verses(split_to_verses)
+    end
+
     self.u_at = DateTime.now.utc.round
+  end
+
+  def split_to_verses text
+    min_len = 25
+    mid_len = 120
+    max_len = 200
+
+    _text = text.to_s.split("\n")
+    _verses = []
+
+    current_verse = ''
+    _text.each do |t|
+      t.split(' ').each do |word|
+        current_verse += word
+
+        len = current_verse.length
+        is_full =
+        case len
+        when min_len..mid_len
+          # Если набрали минимальную длинну, то отрубаем по ближайшей точке
+          if word[-1] == '.'
+          end
+        when mid_len..max_len
+          # Если превысили средний размер, то отрубаем по любому знаку преминания (не букве)
+          if word[-1] =~ /[^[:alnum:]]/
+            true
+          end
+        when max_len..nil
+          # Если превысили максимум, то отрубаем по ближайшему пробелу
+          true
+        end
+
+        # закидываем стих в массив и готовимся загружать следующий стих
+        if if_full
+          _verses.push(current_verse)
+          current_verse = ''
+        end
+      end
+    end
+
+    # закидываем остаточный стих в массив
+    if current_verse.present?
+      _verses.push(current_verse)
+    end
+
+    _verses
   end
 end

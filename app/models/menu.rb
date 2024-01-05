@@ -4,6 +4,7 @@ require 'nokogiri'
 class Menu < ApplicationMongoRecord
   include Mongoid::Document
 
+  # родительский пункт меню
   field :parent_id, type: String
   # На какой странице отрисовывается этот список
   field :page_id, type: BSON::ObjectId

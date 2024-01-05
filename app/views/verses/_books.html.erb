@@ -1,5 +1,5 @@
 <% locale = I18n.locale %>
-<nav id="menu-books" class="hidden">
+<nav id="menu-books" class="menu-books hidden">
 
   <form action="/" id="form" onsubmit="menuBooks.goToSearch();return false;">
     <input type="text" id="filter-books" oninput="menuBooks.filterBooks(this.value);" value="" placeholder="<%= t('fast_search') %>">
@@ -13,7 +13,7 @@
     <% classes = [] %>
     <% @book_code == book_code ? classes.push('selected') : nil %>
     <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
-    <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}") %></a>
+    <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}") %></a>
   <% end %>
 
   <div class='small hint'><%= I18n.t('menu.veth_zavet') %></div>
@@ -23,6 +23,6 @@
     <% classes = [] %>
     <% @book_code == book_code ? classes.push('selected') : nil %>
     <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
-    <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}") %></a>
+    <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}") %></a>
   <% end %>
 </nav>

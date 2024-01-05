@@ -1,38 +1,11 @@
 class ApplicationController < ActionController::Base
+  include ApplicationHelper
+
   helper_method :logged_in?
 
   around_action :set_current_user
   before_action :set_is_night_mode
   before_action :set_locale
-
-  def current_lang
-    # если поисковик не умеет куки, то хоть через локаль (которая в url) установит перевод
-    @current_lang ||= begin
-      _lang =
-      if cookies[:'b-lang'].present?
-        cookies[:'b-lang']
-      elsif params[:locale].present?
-        case params[:locale]
-        when 'ru' ; 'ru'
-        when 'en' ; 'eng-nkjv'
-        when 'cs' ; 'csl-ru'
-        when 'il' ; 'heb-osm'
-        when 'gr' ; 'gr-lxx-byz'
-        when 'jp' ; 'jp-ni'
-        when 'cn' ; 'cn-ccbs'
-        when 'de' ; 'ge-sch'
-        when 'ar' ; 'arab-avd'
-        else      ; 'ru'
-        end
-      end
-
-      if ::CacheSearch::SEARCH_LANGS.include?(_lang)
-        _lang
-      else
-        'ru'
-      end
-    end
-  end
 
   def set_is_night_mode
     @is_night_mode = cookies[:isNightMode] == '1'
@@ -77,6 +50,13 @@ class ApplicationController < ActionController::Base
   end
 
   def build_canonical_url(path)
-    "https://bibleox.com/#{I18n.locale}#{path}"
+    canon_path = "https://bibleox.com"
+    if params[:content_lang].present?
+      canon_locale = locale_for_content_lang(params[:content_lang])
+      canon_path += "/#{canon_locale}/#{params[:content_lang]}"
+    else
+      canon_path += "/#{::I18n.locale}"
+    end
+    "#{canon_path}#{path}"
   end
 end

@@ -11,12 +11,8 @@ json.item do
   json.meta_desc         pg.meta_desc
   json.path              pg.path
   json.parent_id         pg.parent_id.to_s
-  json.next_id           pg.next_id.to_s
-  json.next_title        pg.next_title
-  json.prev_id           pg.prev_id.to_s
-  json.prev_title        pg.prev_title
   json.lang              pg.lang
-  json.group_lang_id     pg.group_lang_id
+  json.group_lang_id     pg.group_lang_id.to_s
   json.body              pg.body
   json.references        pg.references
   json.tags_str          pg.tags&.join(', ')

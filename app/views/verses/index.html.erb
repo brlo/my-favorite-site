@@ -16,7 +16,9 @@
   <%= render(partial: 'verses/chapters') %>
   <%= render(partial: 'verses/text_bar') %>
   <%= render(partial: 'verses/audio_player') %>
-  <%= render(partial: 'verses/text') %>
+  <div id='bib-text-area'>
+    <%= render(partial: 'verses/text') %>
+  </div>
 </section>
 
 <% content_for(:end_of_page) do %>

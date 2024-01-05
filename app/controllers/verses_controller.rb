@@ -1,26 +1,42 @@
 class VersesController < ApplicationController
+  def index_redirect
+    path  = "/#{I18n.locale}/#{current_bib_lang()}"
+    path += "/#{params[:book_code]}/#{params[:chapter]}/"
+    path += "?#{request.query_string}" if request.query_string.present?
+    redirect_to path, status: :found # :status => :moved_permanently
+  end
+
+  def q_redirect
+    # использую вставку названия статьи через CGI.escape потому что иначе какой-то
+    # глюк возникает, и rails думает, что я отправляю пользователя на другой сайт, хотя это не так.
+    path  = "/#{I18n.locale}/#{I18n.locale}/q/#{CGI.escape(params[:page_path].to_s)}"
+    path += "?#{request.query_string}" if request.query_string.present?
+    redirect_to path, status: :found # :status => :moved_permanently
+  end
+
   def index
     if params[:book_code].blank? || params[:chapter].blank?
-      redirect_to "/#{I18n.locale}/gen/1/"
+      redirect_to "/#{I18n.locale}/#{current_bib_lang()}/gen/1/"
     else
+      @content_lang = current_bib_lang()
       @book_code ||= params[:book_code] || 'gen'
       @chapter = (params[:chapter] || 1).to_i
 
       @is_psalm = @book_code == 'ps'
 
-      # аудио-файл для прослушивания текста
-      audio_prefix = "/s/audio/bib/#{current_lang}/"
+      # AUDIO
+      audio_prefix = "/s/audio/bib/#{@content_lang}/"
       audio_file = "#{audio_prefix}#{@book_code}/#{@book_code}#{ @chapter }.mp3"
       if ::File.exists?("#{Rails.root}/public#{ audio_file }")
         # во view сохраним только префикс, а ссылку будем собирать при запуске аудио
         @prefix_for_audio_link = audio_prefix
       end
 
-      @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+      @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
       # TODO: найти также все статьи для этой главы и встроить ссылки рядом со стихами
 
       @current_menu_item = 'biblia'
-      @text_direction = current_lang == 'heb-osm' ? 'rtl' : 'ltr'
+      @text_direction = @content_lang == 'heb-osm' ? 'rtl' : 'ltr'
       @page_title =
         ::I18n.t("books.mid.#{@book_code}") +
         ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
@@ -28,12 +44,16 @@ class VersesController < ApplicationController
         ::I18n.t('bible')
       @meta_description = ::I18n.t("books.full.#{@book_code}")
       @canonical_url = build_canonical_url("/#{@book_code}/#{@chapter}/")
+
+      # ХЛЕБНЫЕ КРОШКИ
       @breadcrumbs = [::I18n.t('tags.bible')]
       if ::BOOKS[@book_code][:zavet] == 1
         @breadcrumbs.push(::I18n.t('tags.VZ'))
       else
         @breadcrumbs.push(::I18n.t('tags.NZ'))
       end
+
+      # META-description
       if @verses.any?
         @meta_description += ': ' + @verses.first(4).pluck(:text).join(' ')[0..200]
       end
@@ -47,15 +67,16 @@ class VersesController < ApplicationController
 
   def chapter_ajax
     # TODO: в процессе апдейта надо ещё тэг title у страницы поменять
+    @content_lang = current_bib_lang()
     @book_code ||= params[:book_code] || 'gen'
     @chapter = (params[:chapter] || 1).to_i
 
     @is_psalm = @book_code == 'ps'
 
-    @verses = ::Verse.where(lang: current_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+    @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
 
     @current_menu_item = 'biblia'
-    @text_direction = current_lang == 'heb-osm' ? 'rtl' : 'ltr'
+    @text_direction = @content_lang == 'heb-osm' ? 'rtl' : 'ltr'
     @page_title =
       ::I18n.t("books.mid.#{@book_code}") +
       ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
@@ -80,6 +101,8 @@ class VersesController < ApplicationController
     @search_accuracy = params[:acc] || 'similar'
     @search_lang = params[:l] || (::I18n.locale == :ru ? 'ru' : 'eng-nkjv')
     @search_books = params[:book]
+    # не индексировать
+    @no_index = true
 
     posibleAddr = params[:t].to_s
     # Сначала пробуем перевести: быт 1 1 -> быт 1:1
@@ -90,7 +113,7 @@ class VersesController < ApplicationController
 
     # если это ссылка, то просто найдём её
     if link = ::AddressConverter.human_to_link(posibleAddr)
-      redirect_to(link)
+      redirect_to("/#{I18n.locale}/#{@search_lang}#{link}")
     # https://www.mongodb.com/docs/manual/core/link-text-indexes/
     elsif params[:t].present?
       # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9-,.
@@ -125,12 +148,18 @@ class VersesController < ApplicationController
   end
 
   def redirect_to_new_address
-    redirect_to "/#{I18n.locale}/#{params[:book_code]}/#{params[:chapter]}/", status: 301
+    redirect_to "/#{I18n.locale}/#{current_bib_lang()}/#{params[:book_code]}/#{params[:chapter]}/", status: 301
   end
 
-  # Redirect: /ru/f/Дан. 1:2 -> /dan/1/#L2
+  # Redirect: /ru/f/Дан. 1:2 -> /ru/ru/dan/1/#L2
   def goto_verse_by_human_address
     human_address = params[:human_address]
-    redirect_to(::AddressConverter.human_to_link(human_address) || '/' )
+    path = '/'
+
+    if link = ::AddressConverter.human_to_link(human_address)
+      path = "/#{I18n.locale}/#{current_bib_lang()}#{link}"
+    end
+
+    redirect_to(path)
   end
 end

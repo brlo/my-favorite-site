@@ -38,9 +38,11 @@ en:
   about_news: Bibleox news
   about_contact: Contact with developer
   fast_search: Fast search
+  voice: Voice
 
   search_page:
     title: Search
+    search_placeholder: Phrase
     matches: Matches
     any_book: Any book
     old_testament: Old Testament
@@ -62,6 +64,8 @@ en:
     title: "%{term}"
     main_title: "articles list"
     main_meta_desc: "Articles on biblical, Christian and religious topics"
+    references: 'References'
+    no_books_links_yet: 'There is no links yet.'
 
   quotes_page:
     title: Bible quotes
@@ -70,6 +74,16 @@ en:
     title: "%{term} / quotes / Bible"
     addresses_list_title: 'Only refs:'
     whant_to_fix: 'Want to fix or add something? Tell us'
+
+  page_translations:
+    ru: Russian
+    en: English
+    gr: Greek
+    de: German
+    ar: Arab
+    jp: Japanese
+    cn: Chinese
+    il: Hebrew
 
   bib_translations:
     ru: Russian
@@ -92,6 +106,7 @@ en:
     bible: Bible
     VZ: Old Testament
     NZ: New Testament
+    articles: Articles
 
   menu:
     bible: Bible
@@ -138,83 +153,85 @@ en:
 
   books:
     short:
-      gen: Gen
+      gen: Ge
       ish: Ex
-      lev: Lev
-      chis: Num
-      vtor: Deut
-      nav: Nav
-      sud: Judg
-      ruf: Rth
-      1ts: 1Sam
-      2ts: 2Sam
-      3ts: 1King
-      4ts: 2King
-      1par: 1Chron
-      2par: 2Chron
+      lev: Le
+      chis: Nu
+      vtor: De
+      nav: Jos
+      sud: Jud
+      ruf: Ru
+      1ts: 1Sa
+      2ts: 2Sa
+      3ts: 1Ki
+      4ts: 2Ki
+      1par: 1Ch
+      2par: 2Ch
       ezd: Ezr
-      neem: Nehem
-      2ezd: 2Ezr
-      tov: Tov
-      iudf: Judf
-      esf: Est
-      pr: Prov
-      ekl: Eccl
-      pp: Song
-      prs: Solom
-      prsir: Sir
+      neem: Ne
+      esf: Es
       iov: Job
-      is: Is
+      ps: Ps
+      pr: Pr
+      ekl: Ec
+      pp: So
+      is: Isa
       ier: Jer
-      pier: Lam
-      pos: lJer
-      var: Bar
-      iez: Ezek
-      dan: Dan
-      os: Hos
-      iol: Joel
+      pier: La
+      iez: Eze
+      dan: Da
+      os: Ho
+      iol: Joe
       am: Am
-      av: Avd
-      ion: Jona
+      av: Ob
+      ion: Jon
       mih: Mic
-      naum: Naum
-      avm: Habak
-      sof: Sofon
+      naum: Na
+      avm: Hab
+      sof: Zep
       ag: Hag
-      zah: Zah
+      zah: Zec
       mal: Mal
+
+      # Книги, которыйх обычно нет в MyBible
       1mak: 1Mac
       2mak: 2Mac
       3mak: 3Mac
       3ezd: 3Ezr
-      ps: Ps
+      pos: lJer
+      var: Bar
+      2ezd: 2Ezr
+      tov: Tov
+      iudf: Judf
+      prs: pSolom
+      prsir: pSir
 
       mf: Mt
-      mk: Mk
-      lk: Lk
-      in: Jn
-      act: Act
-      iak: Jas
-      1pet: 1Pet
-      2pet: 2Pet
-      1in: 1Jn
-      2in: 2Jn
-      3in: 3Jn
-      iud: Juda
-      rim: Rom
-      1kor: 1Cor
-      2kor: 2Cor
-      gal: Gal
+      mk: Mr
+      lk: Lu
+      in: Joh
+      act: Ac
+      rim: Ro
+      1kor: 1Co
+      2kor: 2Co
+      gal: Ga
       ef: Eph
-      fil: Phil
+      fil: Php
       kol: Col
-      1sol: 1Thes
-      2sol: 2Thes
-      1tim: 1Tim
-      2tim: 2Tim
+      1sol: 1Th
+      2sol: 2Th
+      1tim: 1Ti
+      2tim: 2Ti
       tit: Tit
-      fm: Phlm
-      evr: Hebr
+      fm: Phm
+      evr: Heb
+      iak: Jas
+      1pet: 1Pe
+      2pet: 2Pe
+      1in: 1Jo
+      2in: 2Jn
+      3in: 3Jo
+      iud: Jude
       otkr: Rev
 
     mid:
@@ -234,21 +251,15 @@ en:
       2par: II Chronicles
       ezd: I Esdras
       neem: Nehemiah
-      2ezd: II Esdras
-      tov: Tobit
-      iudf: Judith
       esf: Esther
+      iov: Job
+      ps: Psalms
       pr: Proverbs
       ekl: Ecclesiastes
       pp: Song of Solomon
-      prs: Wisdom
-      prsir: Sirah
-      iov: Job
       is: Isaiah
       ier: Jeremiah
       pier: Lamentations
-      pos: Letter of Jeremiah
-      var: Baruch
       iez: Ezekiel
       dan: Daniel
       os: Hosea
@@ -263,24 +274,25 @@ en:
       ag: Haggai
       zah: Zachariah
       mal: Malachi
+
+      # книги которых обычно нет в MyBible
       1mak: 1 Maccabees
       2mak: 2 Maccabees
       3mak: 3 Maccabees
       3ezd: 3 Esdras
-      ps: Psalms
+      pos: Letter of Jeremiah
+      var: Baruch
+      2ezd: II Esdras
+      tov: Tobit
+      iudf: Judith
+      prs: Wisdom
+      prsir: Sirah
 
       mf: Matthew
       mk: Mark
       lk: Luke
       in: John
       act: Acts
-      iak: James
-      1pet: I Peter
-      2pet: II Peter
-      1in: I John
-      2in: II John
-      3in: III John
-      iud: Jude
       rim: Romans
       1kor: I Corinthians
       2kor: II Corinthians
@@ -295,6 +307,13 @@ en:
       tit: Titus
       fm: Philemon
       evr: Hebrews
+      iak: James
+      1pet: I Peter
+      2pet: II Peter
+      1in: I John
+      2in: II John
+      3in: III John
+      iud: Jude
       otkr: Revelation
 
     full:
@@ -314,21 +333,15 @@ en:
       2par: The Second Book of the CHRONICLES
       ezd: The Book of EZRA
       neem: The Book of NEHEMIAH
-      2ezd: '2Ezr'
-      tov: 'Tov'
-      iudf: 'Judf'
       esf: The Book of ESTHER
+      iov: The Book of JOB
+      ps: The Book of PSALMS
       pr: The Book of PROVERBS
       ekl: The Book of ECCLESIASTES
       pp: The SONG OF SOLOMON
-      prs: 'Solom'
-      prsir: 'Sir'
-      iov: The Book of JOB
       is: The Book of ISAIAH
       ier: The Book of JEREMIAH
       pier: The Book of LAMENTATIONS
-      pos: Letter of JEREMIAH
-      var: The Book of BARUCH
       iez: The Book of EZEKIEL
       dan: The Book of DANIEL
       os: The Book of HOSEA
@@ -343,24 +356,25 @@ en:
       ag: The Book of HAGGAI
       zah: The Book of ZECHARIAH
       mal: The Book of MALACHI
+
+      # книги которых обычно нет в MyBible
       1mak: '1Mac'
       2mak: '2Mac'
       3mak: '3Mac'
-      3ezd: '3Ezr'
-      ps: The Book of PSALMS
+      3ezd: 'The Third Book of EZRA'
+      pos: Letter of JEREMIAH
+      var: The Book of BARUCH
+      2ezd: 'The Second Book of EZRA'
+      tov: 'Tov'
+      iudf: 'Judf'
+      prs: 'P. Solom'
+      prsir: 'P. Sir'
 
       mf: The Gospel According to MATTHEW
       mk: The Gospel According to MARK
       lk: The Gospel According to LUKE
       in: The Gospel According to JOHN
       act: THE ACTS of the Apostles
-      iak: The Epistle of JAMES
-      1pet: The First Epistle of PETER
-      2pet: The Second Epistle of PETER
-      1in: The First Epistle of JOHN
-      2in: The Second Epistle of JOHN
-      3in: The Third Epistle of JOHN
-      iud: The Epistle of JUDE
       rim: The Epistle of Paul the Apostle to the ROMANS
       1kor: The First Epistle of Paul the Apostle to the CORINTHIANS
       2kor: The Second Epistle of Paul the Apostle to the CORINTHIANS
@@ -375,6 +389,13 @@ en:
       tit: The Epistle of Paul the Apostle to TITUS
       fm: The Epistle of Paul the Apostle to PHILEMON
       evr: The Epistle to the HEBREWS
+      iak: The Epistle of JAMES
+      1pet: The First Epistle of PETER
+      2pet: The Second Epistle of PETER
+      1in: The First Epistle of JOHN
+      2in: The Second Epistle of JOHN
+      3in: The Third Epistle of JOHN
+      iud: The Epistle of JUDE
       otkr: THE REVELATION of Jesus Christ
 
   errors:

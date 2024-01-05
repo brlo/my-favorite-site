@@ -19,7 +19,7 @@ class UsersController < ApplicationController
 
     if @user && @user.authenticate(params[:password]) && @user.allow_ip?(request.ip)
       session[:user_id] = @user._id.to_s
-      redirect_to chapter_path(locale: ::I18n.locale, book_code: 'gen', chapter: 1)
+      redirect_to chapter_path(locale: ::I18n.locale, content_lang: current_bib_lang(), book_code: 'gen', chapter: 1)
     else
       redirect_to login_path(locale: ::I18n.locale)
     end

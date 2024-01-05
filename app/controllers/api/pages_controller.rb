@@ -84,8 +84,6 @@ module Api
         :page_type, :title, :title_sub, :meta_desc,
         :path,
         :parent_id,
-        :next_id, :next_title,
-        :prev_id, :prev_title,
         :lang, :group_lang_id,
         :body, :references, :tags_str, :priority,
       )

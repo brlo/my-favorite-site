@@ -33,7 +33,7 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "application" %>
     <style type="text/css">
-    <% if @current_lang == 'csl-pnm' %>
+    <% if @current_bib_lang == 'csl-pnm' %>
       @font-face {font-family: "Ponomar";src: url('<%= my_res_link_to('/fonts/PonomarUnicode.otf') %>') format("opentype");}
       .csl {font-family: "Ponomar", Verdana, Tahoma;font-size: 1.4em;line-height: 1.5em;}
     <% end %>
@@ -49,15 +49,15 @@
     <header>
       <div class='container'>
         <div class="logo">
-          <a href="<%= my_link_to('/gen/1/') %>">
+          <a href="<%= my_bib_link_to("/gen/1/") %>">
             <img src="<%= my_res_link_to("/logo/bibleox-#{ ::I18n.locale == :en ? 'en' : ['ru', 'cs', 'gr', 'en'].sample }.png") %>">
           </a>
         </div>
         <nav>
-          <a href="<%= my_link_to('/gen/1/') %>" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
-          <a href="<%= my_link_to('/q/') %>" id='quotes-link' class="<%= @current_menu_item == 'quotes' ? ' selected' : nil %>"><%= I18n.t('menu.quotes') %></a>
-         <!-- <a href="<%= my_link_to('/w/') %>" id='pages-link' class="<%= @current_menu_item == 'articles' ? ' selected' : nil %>"><%= I18n.t('menu.articles') %></a> -->
-          <a href="<%= my_link_to( I18n.locale == :ru ? '/search/?acc=similar&l=ru&t=Христос%20Бог' : '/search/?acc=similar&l=eng-nkjv&t=Christ%20God') %>" class="<%= @current_menu_item == 'search' ? ' selected' : nil %>"><%= I18n.t('menu.search') %></a>
+          <a href="<%= my_bib_link_to("/gen/1/") %>" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
+          <a href="<%= my_link_to("/q/") %>" id='quotes-link' class="<%= @current_menu_item == 'quotes' ? ' selected' : nil %>"><%= I18n.t('menu.quotes') %></a>
+         <!-- <a href="<%= my_page_link_to("/") %>" id='pages-link' class="<%= @current_menu_item == 'articles' ? ' selected' : nil %>"><%= I18n.t('menu.articles') %></a> -->
+          <a href="<%= my_link_to( I18n.locale == :ru ? '/search/?acc=similar&l=ru&t=Христос%20Бог' : "/search/?acc=similar&l=#{current_bib_lang()}") %>" class="<%= @current_menu_item == 'search' ? ' selected' : nil %>"><%= I18n.t('menu.search') %></a>
 
           <a href="javascript:" id="settings-btn" class="local"><%= ::I18n.t('menu.settings') %></a>
 
@@ -96,12 +96,20 @@
 
     <footer>
       <dd class='tip'><%= I18n.t('tips.click_on_verse') %> <%= I18n.t('tips.click_on_verse__working') %> <div class='key'>Shift</div> <%= I18n.t('tips.click_on_verse__and') %> <div class='key'>Ctrl</div></dd>
-      <dd id='change-locale-area'>
-        <%= I18n.t('menu.locale') %>:
-        <a href='/en/gen/1/' onclick="window.selectLocale('en');return false;">English</a>,
-        <a href='/ru/gen/1/' onclick="window.selectLocale('ru');return false;">Русский</a>
+      <dd id='change-ui-lang-area'>
+        <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
+        <select id="ui-lang-select" onchange="selectUILang(this);return false;">
+          <option value='ru' <% if ::I18n.locale == :ru %>selected<% end %>>🇷🇺 Русский</option>
+          <option value='en' <% if ::I18n.locale == :en %>selected<% end %>>🇬🇧 English</option>
+          <option value='gr' <% if ::I18n.locale == :gr %>selected<% end %>>🇬🇷 Greek</option>
+          <option value='de' <% if ::I18n.locale == :de %>selected<% end %>>🇩🇪 Deutsch</option>
+          <option value='ar' <% if ::I18n.locale == :ar %>selected<% end %>>🇪🇬 عرب</option>
+          <option value='il' <% if ::I18n.locale == :il %>selected<% end %>>🇮🇱 עִברִית</option>
+          <option value='cn' <% if ::I18n.locale == :cn %>selected<% end %>>🇨🇳 中国語</option>
+          <option value='jp' <% if ::I18n.locale == :jp %>selected<% end %>>🇯🇵 日本語</option>
+        </select>
       </dd>
-      <dd><%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>
+      <dd>2022-<%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>
       <dd><a title='<%= day_visit() %>' href='<%= my_link_to('/about/') %>'><%= I18n.t('about_site') %></a></dd>
     </footer>
 

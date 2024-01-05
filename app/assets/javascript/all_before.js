@@ -1,15 +1,45 @@
 // Перенсти функции в хэш. Вызывать их из кэша
 const localization = {
-    ru: {
-      copyTitle: 'Скопировано',
-      day: 'День',
-      night: 'Ночь',
-    },
-    en: {
-      copyTitle: 'Copied',
-      day: 'Day',
-      night: 'Night',
-    }
+  ar: {
+    copyTitle: 'نسخ',
+    day: 'يوم',
+    night: 'ليلة',
+  },
+  cn: {
+    copyTitle: '复制的',
+    day: '天',
+    night: '夜晚',
+  },
+  de: {
+    copyTitle: 'kopiert',
+    day: 'Tag',
+    night: 'Nacht',
+  },
+  en: {
+    copyTitle: 'Copied',
+    day: 'Day',
+    night: 'Night',
+  },
+  gr: {
+    copyTitle: 'αντιγράφηκε',
+    day: 'Ημέρα',
+    night: 'Νύχτα',
+  },
+  il: {
+    copyTitle: 'מוּעֲתָק',
+    day: 'יְוֹם',
+    night: 'לַיְלָה',
+  },
+  jp: {
+    copyTitle: 'コピーされました',
+    day: '昼',
+    night: '夜',
+  },
+  ru: {
+    copyTitle: 'Скопировано',
+    day: 'День',
+    night: 'Ночь',
+  },
 };
 
 window.BX = {
@@ -69,14 +99,6 @@ window.BX = {
       document.execCommand('copy');
       document.body.removeChild(dummy);
     },
-  },
-  localization: {
-    ru: {
-      copyTitle: 'Скопировано',
-    },
-    en: {
-      copyTitle: 'Copied',
-    }
   },
 }
 
@@ -156,14 +178,59 @@ window.switchNightMode = function() {
   return false;
 };
 
-// выбор языка
+// выбор языка контента (в выпыдающем списке языков возле текста)
 function selectLang() {
-  searchInput = document.getElementById('lang-select');
-  lang = searchInput.value;
-  setCookie('b-lang', lang, 999);
+  const langInput = document.getElementById('lang-select');
+  const contentLang = langInput.value;
 
-  location.reload();
-  return false;
+  // Элемент в котором хранятся все идентификаторы адреса
+  const bookInfo = document.getElementById('current-address').dataset;
+
+  const path = '/' +
+    bookInfo.langUi + '/' +
+    contentLang + '/' +
+    bookInfo.bookCode + '/' +
+    bookInfo.chapter + '/' +
+    window.location.search +
+    window.location.hash;
+
+  window.location.href = path;
+};
+
+// выбор языка контента (в выпыдающем списке языков возле текста)
+function selectPageLang(el) {
+  const langInput = el;
+  const fullPath = langInput.value;
+
+  // Элемент в котором хранятся все идентификаторы адреса
+  // const bookInfo = document.getElementById('current-address').dataset;
+
+  const path =
+    fullPath + '/' +
+    window.location.search +
+    window.location.hash;
+
+  window.location.href = path;
+};
+
+// Клик на выбор языка интерфейса в футере
+function selectUILang(el) {
+  const langUIInput = el;
+  const newUILang = langUIInput.value;
+
+  // Элемент в котором хранятся все идентификаторы адреса
+  // const bookInfo = document.getElementById('current-address').dataset;
+
+  let new_path = window.location.pathname;
+  // удаляем локаль вначале /ru
+  new_path = new_path.substr(3);
+
+  const path = '/' +
+    newUILang + '/' +
+    window.location.search +
+    window.location.hash;
+
+  window.location.href = path;
 };
 
 // ===========================

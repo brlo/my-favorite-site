@@ -2,6 +2,7 @@ class QuotesController < ApplicationController
   def index
     @page_title = ::I18n.t('quotes_page.title') #'Избранные цитаты'
     @current_menu_item = 'quotes'
+    @canonical_url = build_canonical_url("/q/")
 
     @tree_data = ::QuotesSubject.tree_data()
   end

@@ -173,36 +173,17 @@ function destroy() {
     <input v-model="page.path" type="text" />
   </div>
 
-  <div v-if="page.page_type == 2">
-    <div class="group-fields">
-      <div class="field">
-        <label>ID родителя</label>
-        <input v-model="page.parent_id" type="text" />
-      </div>
+  <div class="group-fields">
+    <div class="field">
+      <label>ID родителя</label>
+      <input v-model="page.parent_id" type="text" />
     </div>
+  </div>
 
-    <div class="group-fields">
-      <div class="field">
-        <label>ID предыдущей страницы</label>
-        <input v-model="page.prev_id" type="text" />
-      </div>
-
-      <div class="field">
-        <label>Как хотите назвать ссылку на пред. страницу</label>
-        <input v-model="page.prev_title" type="text" />
-      </div>
-    </div>
-
-    <div class="group-fields">
-      <div class="field">
-        <label>ID следующей страницы</label>
-        <input v-model="page.next_id" type="text" />
-      </div>
-
-      <div class="field">
-        <label>Как хотите назвать ссылку на след. страницу</label>
-        <input v-model="page.next_title" type="text" />
-      </div>
+  <div class="group-fields">
+    <div class="field">
+      <label>Аудио-файл</label>
+      <input v-model="page.audio" type="text" />
     </div>
   </div>
 
