@@ -1,11 +1,13 @@
 <div id='text-bar'>
-  <div class='bar-el'>
-    <select id="lang-select" name="lang-select" onchange="selectPageLang(this);return false;">
-      <% @page_langs.each do |lang, path| %>
-        <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @current_lang == lang %>selected<% end %>><%= I18n.t("page_translations.#{lang}") %></option>
-      <% end %>
-    </select>
-  </div>
+  <% if @page_langs.present? && @page_langs.count > 1 %>
+    <div class='bar-el'>
+      <select id="lang-select" name="lang-select" onchange="selectPageLang(this);return false;">
+        <% @page_langs.each do |lang, path| %>
+          <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @current_lang == lang %>selected<% end %>><%= I18n.t("page_translations.#{lang}") %></option>
+        <% end %>
+      </select>
+    </div>
+  <% end %>
 
   <% if @prefix_for_audio_link %>
     <div class='bar-el btn right' id='btn-play-text'>

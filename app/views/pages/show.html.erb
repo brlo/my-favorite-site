@@ -31,10 +31,12 @@
 
   <% end %>
 
-  <div id='page-references'>
-    <h2><%= ::I18n.t('page.references') %></h2>
-    <%= sanitize(@page.references, tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)).html_safe %>
-  </div>
+  <% if @page.references.present? %>
+    <div id='page-references'>
+      <h2><%= ::I18n.t('page.references') %></h2>
+      <%= sanitize(@page.references, tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)).html_safe %>
+    </div>
+  <% end %>
 
   <div id='bottom-page-bar'>
     <div id="visits">

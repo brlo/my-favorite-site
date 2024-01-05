@@ -12,6 +12,6 @@
       <a class="<%= classes.join(' ') %>" href="<%= my_page_link_to("/#{path}") %>"><%= title %></a>
     <% end %>
   <% else %>
-    <%= ::I18n.t("page.no_books_links_yet") %>
+    <div class="hint"><%= ::I18n.t("page.no_books_links_yet") %></div>
   <% end %>
 </nav>
