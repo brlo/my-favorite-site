@@ -60,6 +60,12 @@ class Page < ApplicationMongoRecord
   before_validation :normalize_attributes
   validates :page_type, :title, :lang, :path, presence: true
 
+  def is_page_simple?; self.page_type.to_i == 1; end
+  def is_page_book?; self.page_type.to_i == 2; end
+  def is_page_bib_comment?; self.page_type.to_i == 3; end
+  def is_page_menu?; self.page_type.to_i == 4; end
+  def is_page_verses?; self.page_type.to_i == 5; end
+
   def menu
     if self.page_type.to_i == PAGE_TYPES['список']
       # отдаём элементы меню простым массивом, а дерево построит фронтенд
@@ -95,13 +101,10 @@ class Page < ApplicationMongoRecord
     self.path_low = self.path.downcase
     self.page_type = self.page_type.to_i
 
-    # page_type:
-    # 1 - статья
-    # 2 - книга
-    # 3 - апология на стих Библии
-    if self.path.blank? && self.page_type == 3
+    # Доработки, если статья — комментарий на библейский стих
+    if self.path.blank? && self.is_page_bib_comment?
       # 'Быт. 1:14' -> '/zah/1/#L6'
-      self.path = ::AddressConverter.human_to_link('Быт. 1:14').to_s
+      self.path = ::AddressConverter.human_to_link(self.title).to_s
       # '/zah/1/#L1,2-3,8' -> 'zah:1:6'
       self.path = self.path.gsub('/#L', ':').gsub('/', ':')[1..-1]
     end
@@ -131,24 +134,43 @@ class Page < ApplicationMongoRecord
     self.references = self.references.gsub(' ', ' ') if self.references.present?
     self.references = self.references.gsub('&nbsp;', ' ') if self.references.present?
 
-    if self.page_type == PAGE_TYPES['книга стихами'] && self.body.present? && self.verses.blank?
-      self.verses = split_to_verses(split_to_verses)
+    puts "--------------------------------------#{self.page_type}"
+    if self.is_page_verses?
+      if self.body.present?
+        marker = '=%='
+        # если есть =%= то действовать по одному алгоритму,
+        # а если есть боди, но нет =%=, то действуем по-другому, как в первый раз.
+        if self.body.include?(marker)
+          self.verses = self.body.split("<p>#{marker}</p>")
+        else
+          self.verses = split_to_verses(self.body)
+        end
+
+        self.body = self.verses.map { |v| "<p>#{v}</p>" }.join("<p>#{marker}</p>")
+      end
+
+      puts '====================='
+      puts self.verses
     end
 
     self.u_at = DateTime.now.utc.round
   end
 
   def split_to_verses text
-    min_len = 25
-    mid_len = 120
-    max_len = 200
+    min_len = 85
+    mid_len = 250
+    max_len = 300
 
-    _text = text.to_s.split("\n")
+    _text = text.to_s
     _verses = []
+
+    _text = _text.gsub('<p>', '')
+    _text = _text.split('</p>').select(&:present?)
 
     current_verse = ''
     _text.each do |t|
       t.split(' ').each do |word|
+        current_verse += ' ' if current_verse.length > 0
         current_verse += word
 
         len = current_verse.length
@@ -156,20 +178,17 @@ class Page < ApplicationMongoRecord
         case len
         when min_len..mid_len
           # Если набрали минимальную длинну, то отрубаем по ближайшей точке
-          if word[-1] == '.'
-          end
+          true if word[-1] == '.'
         when mid_len..max_len
           # Если превысили средний размер, то отрубаем по любому знаку преминания (не букве)
-          if word[-1] =~ /[^[:alnum:]]/
-            true
-          end
+          true if word[-1] =~ /[^[:alnum:]]/
         when max_len..nil
           # Если превысили максимум, то отрубаем по ближайшему пробелу
           true
         end
 
         # закидываем стих в массив и готовимся загружать следующий стих
-        if if_full
+        if is_full
           _verses.push(current_verse)
           current_verse = ''
         end

@@ -21,12 +21,12 @@
 
   <% if @verses.present? %>
 
-    <%= render(partial: 'verses/text') %>
+    <%= render(partial: 'pages/text') %>
 
   <% else %>
 
     <div id='page-body' itemprop='articleBody'>
-      <%= sanitize(@page.body, tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)).html_safe %>
+      <%= sanitize(@page.body.to_s, tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)).html_safe %>
     </div>
 
   <% end %>

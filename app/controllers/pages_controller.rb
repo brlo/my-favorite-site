@@ -8,13 +8,34 @@ class PagesController < ApplicationController
     @content_lang = params[:content_lang]
 
     path = params[:page_path].to_s
-    @page = ::Page.find_by!(path_low: '', lang: @content_lang, page_type: 4, is_published: true)
+    @page = ::Page.find_by!(path_low: 'main', lang: @content_lang, page_type: 4, is_published: true)
     @canonical_url = build_canonical_url("/w/")
 
     @page_title = ::I18n.t('page.main_title')
     @meta_description = ::I18n.t('page.main_meta_desc')
 
     render :index
+
+    # МИГРАЦИЯ ОТ ЦИТАТ К СТРАНИЦАМ
+    #
+    # ::QuotesPage.each do |qpage|
+    #   page = Page.new()
+    #   page.lang = 'ru'
+    #   page.title = qpage.title
+    #   page.meta_desc = qpage.meta_desc
+    #   page.body = qpage.body
+    #   page.priority = qpage.position
+    #   page.path = qpage.path
+    #   page.page_type = 1
+    #   page.is_published = true
+    #   page.save
+    # end
+
+    # ::QuotesPage.each do |qpage|
+    #   page = Page.find_by(title: qpage.title, priority: qpage.position)
+    #   page.is_published = true
+    #   page.save
+    # end
   end
 
   def show
@@ -26,6 +47,10 @@ class PagesController < ApplicationController
     @content_lang = params[:content_lang]
 
     if @page.nil?
+      # ########################################################################
+      # СТРАНИЦА НЕ НАЙДЕНА — пытаемся найти редирект
+      # ########################################################################
+      #
       # Если страница не найдена, то попробовать найти страницу,
       # у которой указан наш адрес в качестве её старого адреса
       @page = ::Page.find_by(redirect_from: path)
@@ -37,6 +62,9 @@ class PagesController < ApplicationController
       end
 
     elsif @page.lang == @content_lang
+      # ########################################################################
+      # СТРАНИЦА НЕ НАЙДЕНА и язык совпадает - РЕНДЕРИМ
+      # ########################################################################
 
       @canonical_url = build_canonical_url("/w/#{@page.path}")
 
@@ -102,6 +130,10 @@ class PagesController < ApplicationController
       @meta_description = @page.meta_desc
       @current_menu_item = 'articles'
     else
+      # ########################################################################
+      # СТРАНИЦА НЕ НАЙДЕНА но возможно получится найти подходящую к этому языку страницу
+      # ########################################################################
+      #
       # Страницу нашли, но язык не тот, поэтому пытаемся отправить
       # пользователя на параллельную страницу с тем языком, который он искал
       @page = ::Page.find_by!(group_lang_id: @page.group_lang_id, lang: @content_lang)

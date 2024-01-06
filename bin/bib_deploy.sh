@@ -6,7 +6,7 @@ for var in 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
 do
   echo "Starts $var try..."
 
-  resp=`curl --write-out "%{http_code}\n" --silent --output /dev/null "https://bibleox.com/ru/gen/1/"`
+  resp=`curl --write-out "%{http_code}\n" --silent --output /dev/null "https://bibleox.com/ru/ru/gen/1/"`
 
   if [[ $resp == *"200"* ]]; then
     echo "Success response. Code: ${resp}"

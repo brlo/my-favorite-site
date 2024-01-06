@@ -9,7 +9,7 @@ module Api
         @pages = @pages.where(title: /.*#{term}.*/i)
       end
 
-      @pages = @pages.order_by(updated_at: -1).limit(100).to_a
+      @pages = @pages.order_by(updated_at: -1).limit(20).to_a
       render :list, status: :ok
     end
 
