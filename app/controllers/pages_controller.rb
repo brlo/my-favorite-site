@@ -94,19 +94,33 @@ class PagesController < ApplicationController
         if @parent_page.page_type.to_i == ::Page::PAGE_TYPES['список']
           # МЕНЮ: все элементы меню родителя
           menus = ::Menu.where(page_id: @parent_page.id).to_a
+          menus_by_id = menus.index_by(&:id)
+          # группировка всех элементов менюпо родителю
+          menus_by_parent_id = menus.group_by { |m| m.parent_id }
+          # родители, у которых есть дети со ссылками
+          parents_with_links = menus_by_parent_id.select { |p_id,group| group.find{ |el| el.path.presence } }
+
           # ТРУДЫ АВТОРА: корневые элементы меню (будем считать, что это труды автора)
-          @parent_books = menus.select{ |m| m.parent_id == nil }.map { |m| [m.title, m.path] }
+          @parent_books = parents_with_links.map do |p_id,group|
+            el = menus_by_id[p_id]
+            # ссылка из первого вложенного элемента
+            first_child_with_link = group&.
+              select{ |_m| _m.path.present? }&.
+              sort_by { |_m| _m.priority }&.
+              first&.path
+
+            [ el.title, first_child_with_link]
+          end
           # ЭТА СТРАНИЦА: элемент текущей страницы в меню
           @page_in_menu = menus.find{ |m| m.path == @page.path }
-          @parent_page_in_menu = menus.find{ |m| m.id == @page_in_menu.parent_id }
 
           # ГЛАВЫ: все соседи данной страницы в меню (будем считать, что это главы)
           if @page_in_menu
             # соседи из меню (одинаковый родитель)
-            @chapters = menus.
-              select{ |m| m.parent_id == @page_in_menu.parent_id }.
-              map { |m| [m.title, m.path] }.
-              sort_by { |title, path| title }
+            @chapters = menus_by_parent_id[@page_in_menu.parent_id].
+              select { |m| m.path.present? }.
+              sort_by { |m| m.priority }.
+              map { |m| [m.title, m.path] }
 
             # сохраняем индексы глав в массиве с главами
             @chapter_current = @chapters.index([@page_in_menu.title, @page_in_menu.path])
@@ -121,7 +135,7 @@ class PagesController < ApplicationController
       end
 
       # ХЛЕБНЫЕ КРОШКИ
-      @breadcrumbs = [::I18n.t('tags.articles'), @page_parent&.title, @page_in_menu&.first].compact
+      @breadcrumbs = [::I18n.t('tags.articles')]
 
       # Стихи страницы (как в Библии), если есть
       @verses = @page.verses

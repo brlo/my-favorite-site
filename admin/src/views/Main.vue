@@ -3,12 +3,20 @@ import { ref } from 'vue';
 import { api } from '@/libs/api.js';
 
 let pages = ref({})
+let errors = ref('')
 
-api.get('/pages/list').then(data => pages.value = data.items)
+api.get('/pages/list').then(data => {
+  console.log(data)
+  if (data.success == 'ok') {
+    pages.value = data.items;
+  } else {
+    errors.value = data.errors;
+  }
+})
 </script>
 
 <template>
-<div class="block">
+<div v-if="pages.length" class="block">
   <h2>Статьи: недавно изменённые</h2>
   <div v-for="page in pages">
     <div class='page'>
@@ -20,12 +28,7 @@ api.get('/pages/list').then(data => pages.value = data.items)
   </div>
 </div>
 
-<div class="block">
-  <h2>Комментарии</h2>
-  Комментарий 1<br>
-  Комментарий 2<br>
-  Комментарий 3
-</div>
+<div v-if="errors.length" class="block">{{ errors }}</div>
 </template>
 
 <style scoped>

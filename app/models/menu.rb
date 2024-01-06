@@ -5,7 +5,7 @@ class Menu < ApplicationMongoRecord
   include Mongoid::Document
 
   # родительский пункт меню
-  field :parent_id, type: String
+  field :parent_id, type: BSON::ObjectId
   # На какой странице отрисовывается этот список
   field :page_id, type: BSON::ObjectId
   # основной заголовок
@@ -43,7 +43,7 @@ class Menu < ApplicationMongoRecord
   def attrs_for_render
     {
       id: self.id.to_s,
-      parent_id: self.parent_id,
+      parent_id: self.parent_id.to_s,
       page_id: self.page_id.to_s,
       title: self.title,
       path: self.path,

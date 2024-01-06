@@ -30,4 +30,8 @@ class CurrentUser
   def logged_in?
     !@user.nil?
   end
+
+  def ability?(action)
+    @user&.ability?(action)
+  end
 end

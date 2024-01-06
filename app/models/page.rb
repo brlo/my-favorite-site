@@ -134,23 +134,19 @@ class Page < ApplicationMongoRecord
     self.references = self.references.gsub(' ', ' ') if self.references.present?
     self.references = self.references.gsub('&nbsp;', ' ') if self.references.present?
 
-    puts "--------------------------------------#{self.page_type}"
     if self.is_page_verses?
       if self.body.present?
         marker = '=%='
         # если есть =%= то действовать по одному алгоритму,
         # а если есть боди, но нет =%=, то действуем по-другому, как в первый раз.
         if self.body.include?(marker)
-          self.verses = self.body.split("<p>#{marker}</p>")
+          self.verses = self.body.gsub('<p>', '').gsub('</p>', '').split(marker)
         else
           self.verses = split_to_verses(self.body)
         end
 
         self.body = self.verses.map { |v| "<p>#{v}</p>" }.join("<p>#{marker}</p>")
       end
-
-      puts '====================='
-      puts self.verses
     end
 
     self.u_at = DateTime.now.utc.round
@@ -161,9 +157,13 @@ class Page < ApplicationMongoRecord
     mid_len = 250
     max_len = 300
 
-    _text = text.to_s
+    _text = sanitizer.sanitize(
+      text.to_s,
+      tags: %w(b i em strike s u p a mark j e)
+    )
     _verses = []
 
+    _text = _text.gsub('<p></p>', '')
     _text = _text.gsub('<p>', '')
     _text = _text.split('</p>').select(&:present?)
 

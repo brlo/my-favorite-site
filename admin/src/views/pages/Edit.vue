@@ -36,7 +36,11 @@ const langs = [
   { name: '🇷🇺 RU', code: 'ru' },
   { name: '🇺🇸 EN', code: 'en' },
   { name: '🇬🇷 GR', code: 'gr' },
+  { name: '🇮🇱 IL', code: 'il' },
+  { name: '🇪🇬 AR', code: 'ar' },
   { name: '🇯🇵 JP', code: 'jp' },
+  { name: '🇨🇳 CN', code: 'cn' },
+  { name: '🇩🇪 DE', code: 'de' },
 ]
 
 const pageTypes = [

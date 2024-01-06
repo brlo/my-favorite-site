@@ -6,12 +6,20 @@ import { api } from '@/libs/api.js';
 const searchTerm = ref('')
 
 let pages = ref({})
+let errors = ref('')
 
 // _ через функцию debounce откладывает все попытки выполнить указанную функцию
 // на 300 сек, превращая все эти попытки в одну.
 const lazyAutoSearch = _.debounce(autoSearch, 300);
 function autoSearch() {
-  api.get('/pages/list', { term: searchTerm.value }).then(data => pages.value = data.items)
+  api.get('/pages/list', { term: searchTerm.value }).then(data => {
+    console.log(data)
+    if (data.success == 'ok') {
+      pages.value = data.items;
+    } else {
+      errors.value = data.errors;
+    }
+  })
 }
 
 autoSearch()
@@ -42,6 +50,7 @@ watchEffect(
     / {{ page.lang }} / {{ page.updated_at_word  }}
   </div>
 </div>
+<div v-if="errors.length">{{ errors }}</div>
 </template>
 
 <style scoped>

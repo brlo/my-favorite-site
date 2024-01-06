@@ -1,5 +1,5 @@
 #page-content {
-  overflow: hidden;
+  word-wrap: break-word;
 }
 
 #page-content .level {

@@ -7,8 +7,8 @@
 
   <% if @parent_books.present? %>
     <% @parent_books.each do |title, path| %>
-      <% classes = [] %>
-      <% path == @parent_page_in_menu&.path ? classes.push('selected') : nil %>
+      <% classes = ['kanon'] %>
+      <% path == @page_in_menu&.path ? classes.push('selected') : nil %>
       <a class="<%= classes.join(' ') %>" href="<%= my_page_link_to("/#{path}") %>"><%= title %></a>
     <% end %>
   <% else %>

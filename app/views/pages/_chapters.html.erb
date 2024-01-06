@@ -1,10 +1,6 @@
 <div id='chapter-image'>
-  <% if @breadcrumbs.present? && @breadcrumbs.length > 1 %>
-    <h2 class='breadcrumbs'><%= @breadcrumbs.join(' » ') %></h2>
-  <% end %>
-
-  <% if @parent_page %>
-    <h2 class='parent-address'>
+  <% if @breadcrumbs.present? && @parent_page.present? %>
+    <h2 class='breadcrumbs'><%= @breadcrumbs.join(' » ') %> »
       <a href="<%= my_page_link_to("/#{@parent_page.path}") %>"><%= @parent_page.title %></a>
     </h2>
   <% end %>
@@ -12,15 +8,19 @@
   <h1
       class="title"
       id='current-address'
-      data-book-short-name=''
+      data-book-short-name='<%= @page.path %>'
       data-lang-ui='<%= I18n.locale %>'
       data-lang-content='<%= @content_lang %>'
       data-book-code=''
       data-page-path='<%= @page.path %>'
-      data-chapter='<%= @chapter_current %>'
+      data-chapter='<%= @chapter_current ? @chapter_current + 1 : nil %>'
       itemprop="headline"
     >
-    <a href="<%= my_page_link_to("/#{@page.path}") %>" id='current-author-book'><%= @page.title %></a>
+    <% if @parent_page %>
+      <a href="<%= my_page_link_to("/#{@page.path}") %>" id='current-author-book'><%= @page.title %></a>
+    <% else %>
+      <%= @page.title %>
+    <% end %>
   </h1>
 
   <% if @page.title_sub.present? %>

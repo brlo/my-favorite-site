@@ -21,6 +21,7 @@ class User < ApplicationMongoRecord
   field :api_token, type: String
   field :allow_ips, type: Array
   field :is_admin, type: Boolean
+  field :privs, type: Hash
   # время создания можно получать из _id во так: id.generation_time
   field :c_at, as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
 
@@ -77,6 +78,33 @@ class User < ApplicationMongoRecord
     else
       true
     end
+  end
+
+  # pages_read
+  # pages_write
+  # pages_destroy
+  # pages_merge_request
+  #
+  def ability?(action)
+    _privs = self.privs
+
+    # привелегии ещё не заданы, пользователю всё нельзя
+    return false unless _privs.present?
+
+    # super может всё
+    return true if _privs['super'] == true
+
+    _privs[action] == true
+  end
+
+  def can!(action)
+    self.privs = {} if self.privs.blank?
+    self.privs[action] = true
+  end
+
+  def cant!(action)
+    return if self.privs.blank?
+    self.privs.delete(action)
   end
 end
 

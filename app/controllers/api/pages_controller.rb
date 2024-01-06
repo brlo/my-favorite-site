@@ -1,5 +1,9 @@
 module Api
   class PagesController < ApiApplicationController
+    before_action :reject_by_read_privs
+    before_action :reject_by_write_privs, only: [:create, :update]
+    before_action :reject_by_destroy_privs, only: [:destroy]
+
     def list
       @pages = ::Page.only(:id, :title, :lang, :c_at, :u_at)
 
@@ -87,6 +91,24 @@ module Api
         :lang, :group_lang_id,
         :body, :references, :tags_str, :priority,
       )
+    end
+
+    def reject_by_read_privs
+      if !::Current.user.ability?('pages_read')
+        render json: {success: 'fail', errors: 'access denied'}, status: 401
+      end
+    end
+
+    def reject_by_write_privs
+      if !::Current.user.ability?('pages_write')
+        render json: {success: 'fail', errors: 'access denied'}, status: 401
+      end
+    end
+
+    def reject_by_destroy_privs
+      if !::Current.user.ability?('pages_destroy')
+        render json: {success: 'fail', errors: 'access denied'}, status: 401
+      end
     end
   end
 end

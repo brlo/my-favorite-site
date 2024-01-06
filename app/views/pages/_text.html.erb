@@ -1,8 +1,4 @@
 <% if @verses.present? %>
-  <%# prev_chapter = @chapter - 1 %>
-  <%# now_chapter = @chapter %>
-  <%# next_chapter = @chapter + 1 %>
-
   <div id='chapter-text'>
     <article itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
       <table>
@@ -12,7 +8,7 @@
             <tr>
               <td class='verse-line' id='L<%= i %>' data-line="<%= "#{i}" %>"><%= i %></td>
               <td class='csl verse-text' id='T<%= i %>' data-line="<%= "#{i}" %>">
-                <%= sanitize(v, tags: %w(j e i br)) %>
+                <%= sanitize(v, tags: %w(j e i b strong br)) %>
               </td>
             </tr>
           <% end %>
@@ -21,14 +17,14 @@
     </article>
 
     <div id="pagination-bottom">
-      <% if prev_chapter > 0 %>
-        <a href="<%#= %>">← <%= I18n.t('backward') %></a>
+      <% if @chapter_prev > 0 %>
+        <a href="<%= my_page_link_to("/#{@chapters[@chapter_prev].second}") %>">← <%= I18n.t('backward') %></a>
       <% else %>
         <span class='invisible'>← <%= I18n.t('backward') %></span>
       <% end %>
-      <span id="end-tip"><%= I18n.t('end_chapter.the_end_of') %><br><%#= now_chapter %><%= ::I18n.t('end_chapter.suffix') %><br><%= ::I18n.t('end_chapter.chapter') %></span>
-      <% if next_chapter <= ::BOOKS[@book_code][:chapters] %>
-        <a href="<%#= my_bib_link_to("/#{@book_code}/#{next_chapter}") %>"><%= I18n.t('forward') %> →</a>
+      <span id="end-tip"><%= I18n.t('end_chapter.the_end_of') %><br><%= @chapter_current + 1 %><%= ::I18n.t('end_chapter.suffix') %><br><%= ::I18n.t('end_chapter.chapter') %></span>
+      <% if @chapter_next < @chapters.count %>
+        <a href="<%= my_page_link_to("/#{@chapters[@chapter_next].second}") %>"><%= I18n.t('forward') %> →</a>
       <% else %>
         <span class='invisible'><%= I18n.t('forward') %> →</span>
       <% end %>

@@ -1,5 +1,8 @@
 module Api
   class MenusController < ApiApplicationController
+    before_action :reject_by_read_privs
+    before_action :reject_by_write_privs, only: [:create, :update, :destroy]
+
     def list
       set_page()
       @menu = @page.menu
@@ -85,6 +88,18 @@ module Api
       params.require(:menu_item).except(:id, :created_at, :updated_at, :page_id).permit(
         :title, :path, :parent_id, :priority,
       )
+    end
+
+    def reject_by_read_privs
+      if !::Current.user.ability?('pages_read')
+        render json: {success: 'fail', errors: 'access denied'}, status: 401
+      end
+    end
+
+    def reject_by_write_privs
+      if !::Current.user.ability?('pages_write')
+        render json: {success: 'fail', errors: 'access denied'}, status: 401
+      end
     end
   end
 end
