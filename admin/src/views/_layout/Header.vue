@@ -12,8 +12,7 @@
     <nav>
       <router-link to="/">Сводка</router-link>
       <router-link to="/pages">Статьи</router-link>
-
-      <!--<a href="javascript:" id="settings-btn" class="local">Настройки</a>-->
+      <router-link to="/merge_requests">Правки</router-link>
     </nav>
   </div>
 </header>

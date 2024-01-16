@@ -74,6 +74,9 @@ gr:
     title: "%{term} / εισαγωγικά / Αγια ΓΡΑΦΗ"
     addresses_list_title: 'Μόνο αναφ:'
     whant_to_fix: 'Θέλετε να διορθώσετε ή να προσθέσετε κάτι; Πες μας'
+    or_edit_page_by_yourself: Ή επεξεργαστείτε αυτό το άρθρο μόνοι σας
+    edit_link: Επεξεργασία
+    author: Συγγραφέας
 
   page_translations:
     ru: Ρωσική

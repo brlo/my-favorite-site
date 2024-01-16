@@ -1,14 +1,15 @@
 import { createApp } from "vue"
 
-import "@/style.css"
+import PrimeVue from 'primevue/config'
 import 'primevue/resources/themes/lara-light-green/theme.css'
+import 'primeicons/primeicons.css'
+import "@/style.css"
 
 import App from '@/App.vue'
 import Login from '@/Login.vue'
 import { getCookie } from "@/libs/cookies"
 import router from "@/router/index"
 
-import PrimeVue from 'primevue/config'
 import ToastService from 'primevue/toastservice'
 import Toast from 'primevue/toast'
 

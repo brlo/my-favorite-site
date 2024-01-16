@@ -15,6 +15,8 @@ const routes = [
   { path: "/pages", name: "Pages", component: ()=>import("@/views/pages/Index.vue")},
   { path: "/pages/new", name: "NewPage", component: ()=>import("@/views/pages/Edit.vue")},
   { path: "/pages/:id([a-f0-9]+)", name: "EditPage", component: ()=>import("@/views/pages/Edit.vue"), props: true},
+  { path: "/merge_requests", name: "MergeRequests", component: ()=>import("@/views/merge_requests/Index.vue")},
+  { path: "/merge_requests/:id([a-f0-9]+)", name: "ShowMergeRequest", component: ()=>import("@/views/merge_requests/Show.vue"), props: true},
 ]
 
 // docs: https://router.vuejs.org/guide/essentials/named-routes.html

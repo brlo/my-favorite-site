@@ -1,38 +1,18 @@
 <script setup>
-import { ref } from 'vue';
-import { api } from '@/libs/api.js';
+import IndexMergeRequests from "@/views/merge_requests/Index.vue";
+import IndexPages from "@/views/pages/Index.vue";
 
-let pages = ref({})
-let errors = ref('')
-
-api.get('/pages/list').then(data => {
-  console.log(data)
-  if (data.success == 'ok') {
-    pages.value = data.items;
-  } else {
-    errors.value = data.errors;
-  }
-})
 </script>
 
 <template>
-<div v-if="pages.length" class="block">
-  <h2>Статьи: недавно изменённые</h2>
-  <div v-for="page in pages">
-    <div class='page'>
-      <router-link :to="{ name: 'EditPage', params: { id: page.id }}">
-        <b>{{ page.title }}</b>
-      </router-link>
-      | {{ page.lang }} | {{ page.updated_at_word  }}
-    </div>
-  </div>
-</div>
-
-<div v-if="errors.length" class="block">{{ errors }}</div>
+<IndexMergeRequests :isListOnly="true" />
+<div class="divider"></div>
+<IndexPages :isListOnly="true" />
 </template>
 
 <style scoped>
-.block {
-  margin: 0 0 30px 0;
+.divider {
+  margin: 15px 0 25px 0;
+  border-top: 1px solid #777;
 }
 </style>

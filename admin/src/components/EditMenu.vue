@@ -2,7 +2,12 @@
 import { ref } from "vue"
 import { api } from '@/libs/api.js'
 import { arrayToTree, treeMenuToLineMenu } from '@/libs/menu_parser'
+import AutocompletePage from "@/components/AutocompletePage.vue";
 import MenuItem from "@/components/MenuItem.vue"
+import InputText from 'primevue/inputtext';
+import InputNumber from 'primevue/inputnumber';
+import Dropdown from 'primevue/dropdown';
+import Button from 'primevue/button';
 import { useToast } from "primevue/usetoast";
 
 const toast = useToast();
@@ -31,12 +36,21 @@ const lineMenu = ref([])
 
 // удалить элемент из меню по ID (потом вызови loadNewMenu())
 function removeMenuElement(objId) {
+  // Удаляем элемент из списка меню
   const item = arrMenu.value.find((x) => x.id === objId);
   const index = arrMenu.value.indexOf(item);
   if (index > -1) { // only splice array when item is found
     arrMenu.value.splice(index, 1); // 2nd parameter means remove one item only
   }
+
+  // обнуляем форму, если туда был загружен элемент, который только что удалили
+  if (currentMenuItem.value.id == objId) {
+    clearCurrentMenuItem()
+  }
 }
+
+// сбрасываем форму с редактированием элемента меню
+function clearCurrentMenuItem() { currentMenuItem.value = {parent_id: ''}};
 
 // добавить новый элемент в меню (потом вызови loadNewMenu())
 function addMenuElement(obj) { arrMenu.value.push(obj) }
@@ -88,7 +102,7 @@ function submitCurrentMenuItem() {
       // рендерим меню
       loadNewMenu()
       // обнуляем форму
-      currentMenuItem.value = {parent_id: ''}
+      clearCurrentMenuItem()
     } else {
       toastError('Ошибка', 'Не удалось добавить пункт в меню')
       console.log('FAIL menu item create!', data)
@@ -117,69 +131,112 @@ function destroy(obj) {
 </script>
 
 <template>
-<div>
-  <h3>Добавить элемент меню</h3>
+<div class="menu-preview">
 
-  <div class="group-fields">
-    <div class="field">
-      <label>Название</label>
-      <input v-model="currentMenuItem.title" required type="text" style="width:300px;" />
+  <h3>Меню</h3>
+
+  <div class="menu-form">
+    <h4>Добавить элемент меню</h4>
+
+    <div class="group-fields">
+      <div class="field">
+        <label>Название</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search" />
+          <InputText v-model="currentMenuItem.title" placeholder="Название" />
+        </span>
+      </div>
+      <div class="field">
+        <label>Ссылка</label>
+        <span class="p-input-icon-left">
+          <i class="pi pi-search" />
+          <AutocompletePage v-model="currentMenuItem.path" fetchKey="path" />
+        </span>
+      </div>
     </div>
-    <div class="field">
-      <label>Ссылка</label>
-      <input v-model="currentMenuItem.path" type="text" style="width:300px;" />
+
+    <div class="group-fields">
+      <div class="field">
+        <label>Приоритет</label>
+        <InputNumber v-model="currentMenuItem.priority" placeholder="Приоритет" />
+      </div>
+
+      <div class="field">
+        <label>Родитель</label>
+        <Dropdown
+          v-model="currentMenuItem.parent_id"
+          filter
+          showClear
+          :options="lineMenu"
+          optionLabel="name"
+          optionValue="code"
+          placeholder="Родитель"
+        />
+      </div>
+    </div>
+
+    <div class="btn-bar">
+      <Button
+        :label="`${currentMenuItem.id ? 'Обновить' : 'Добавить'} элемент`"
+        @click.prevent="submitCurrentMenuItem"
+        :icon="`${currentMenuItem.id ? 'pi pi-check' : 'pi pi-plus' }`"
+      />
+      <Button
+        v-if="currentMenuItem.id"
+        label="Отмена"
+        @click.prevent="clearCurrentMenuItem"
+        plain
+        text
+      />
     </div>
   </div>
 
-  <div class="group-fields">
-    <div class="field">
-      <label>Приоритет</label>
-      <input v-model="currentMenuItem.priority" type="text" style="width:100px;"/>
-    </div>
-    <div class="field">
-      <label>Родитель</label>
-      <select v-model="currentMenuItem.parent_id">
-        <option value="">Нет родителя</option>
-        <option v-for="item in lineMenu" :value="item.code">
-          {{ item.name }}
-        </option>
-      </select>
-    </div>
+  <div class="divider"></div>
+
+  <div v-if="treeMenu" class="menu-items">
+    <MenuItem
+      v-for="item in treeMenu"
+      :item="item"
+      @destroy="(item) => { destroy(item) }"
+      @forUpdate="(item) => { currentMenuItem = item }"
+    />
   </div>
-
-  <button @click.prevent="submitCurrentMenuItem" class="menu-create-btn pretty btn">
-    {{ currentMenuItem.id ? 'Обновить' : 'Добавить' }} элемент
-  </button>
-</div>
-
-<h3>Меню</h3>
-
-<div v-if="treeMenu" class="menu-items">
-  <MenuItem
-    v-for="item in treeMenu"
-    :item="item"
-    @destroy="(item) => { destroy(item) }"
-    @forUpdate="(item) => { currentMenuItem = item }"
-  />
 </div>
 </template>
 
 <style scoped>
-.tree-menu {
+.divider {
   border-top: 1px solid #777;
-  padding: 40px 0 0 0;
-  margin: 40px 0 0 0;
+  margin: 25px -15px;
 }
 
 .menu-items {
+  margin: -25px -15px -15px -15px;
+  padding: 15px;
+  background-color: #fff;
+  max-height: 500px;
+  overflow-y: scroll;
+}
+
+.menu-preview {
   margin: 20px 0;
+  padding: 30px 15px 15px 15px;
+  border: 1px solid #777;
+  border-radius: 6px;
+  overflow: hidden;
 }
 
-.menu-create-btn {
-  margin: 10px 0 30px 0;
+.menu-preview h3 {
+  border-bottom: 1px solid #777;
+  margin: -30px -15px 15px -15px;
+  padding: 15px;
+  background-color: #f0f0ea;
 }
 
-h3 {
-  margin: 10px 0 20px 0;
+.btn-bar {
+  margin: 15px 0 10px 0;
+}
+.btn-bar button {
+  margin: 0 5px 0 0;
 }
 </style>

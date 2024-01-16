@@ -3,6 +3,8 @@ import { ref, computed } from "vue"
 import { getCookie, setCookie } from "@/libs/cookies.js"
 import { api } from '@/libs/api.js'
 import router from "@/router/index"
+import Password from 'primevue/password';
+import InputText from 'primevue/inputtext';
 
 // уходим на главную, если уже авторизованы
 if (getCookie('api_token') !== '') {
@@ -12,6 +14,7 @@ if (getCookie('api_token') !== '') {
 const usernameInput = ref('')
 const pswInput = ref('')
 const errors = ref('')
+
 
 function doLogin() {
   const params = {
@@ -48,12 +51,12 @@ const isFormValid = computed(() => isValidUsername.value && isValidPsw.value);
 
     <div class="form-control">
       <label>Логин</label>
-      <input v-model="usernameInput" type="text" autocomplete="current-username" />
+      <InputText v-model="usernameInput" toggleMask autocomplete="current-username" />
     </div>
 
     <div class="form-control">
       <label>Пароль</label>
-      <input v-model="pswInput" type="password" autocomplete="current-password" />
+      <Password v-model="pswInput" toggleMask autocomplete="current-password" />
     </div>
 
     <input type="submit" value="Войти" class="btn" :disabled="!isFormValid"/>

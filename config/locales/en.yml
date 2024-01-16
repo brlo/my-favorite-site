@@ -74,6 +74,9 @@ en:
     title: "%{term} / quotes / Bible"
     addresses_list_title: 'Only refs:'
     whant_to_fix: 'Want to fix or add something? Tell us'
+    or_edit_page_by_yourself: Or edit this article by yourself
+    edit_link: Edit
+    author: Author
 
   page_translations:
     ru: Russian

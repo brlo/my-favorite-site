@@ -74,6 +74,9 @@ cn:
     title: "%{term} / 引号 / 圣经"
     addresses_list_title: '仅参考:'
     whant_to_fix: 想要修复或添加一些东西吗？ 告诉我们
+    or_edit_page_by_yourself: 或者自己编辑这篇文章
+    edit_link: 编辑
+    author: 作者
 
   page_translations:
     ru: 俄语

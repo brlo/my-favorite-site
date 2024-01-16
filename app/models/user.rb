@@ -27,6 +27,9 @@ class User < ApplicationMongoRecord
 
   has_secure_password
 
+  has_many :pages, foreign_key: 'u_id', primary_key: 'id'
+  has_many :merge_requests, foreign_key: 'u_id', primary_key: 'id'
+
   # rake db:mongoid:create_indexes
   # rake db:mongoid:remove_indexes
   # rake db:mongoid:remove_undefined_indexes
@@ -81,9 +84,16 @@ class User < ApplicationMongoRecord
   end
 
   # pages_read
-  # pages_write
+  # pages_create
+  # pages_update
   # pages_destroy
-  # pages_merge_request
+  #
+  # mr_read
+  # mr_create
+  # mr_update
+  # mr_destroy
+  #
+  # mr_max
   #
   def ability?(action)
     _privs = self.privs
@@ -105,6 +115,11 @@ class User < ApplicationMongoRecord
   def cant!(action)
     return if self.privs.blank?
     self.privs.delete(action)
+  end
+
+  def max_merge_requests_count
+    default = 5
+    (self.privs || {})['mr_max'] || default
   end
 end
 

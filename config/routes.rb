@@ -75,6 +75,19 @@ Rails.application.routes.draw do
         end
       end
 
+      scope 'merge_requests' do
+        get    'list', to: 'merge_requests#list'
+        post   '/',    to: 'merge_requests#create'
+        scope ':id' do
+          get    '/',        to: 'merge_requests#show'
+          put    '/',        to: 'merge_requests#update'
+          # delete '/',        to: 'merge_requests#destroy'
+          post   '/merge',   to: 'merge_requests#merge'
+          post   '/reject',  to: 'merge_requests#reject'
+          post   '/rebase',  to: 'merge_requests#rebase'
+        end
+      end
+
       scope 'quotes_subjects' do
         get    'list', to: 'quotes_subjects#list'
         post   '/',    to: 'quotes_subjects#create'

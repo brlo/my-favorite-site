@@ -22,9 +22,12 @@ body {
   flex-direction: column;
   font-family: "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
   font-size: 16px;
-  line-height: 1.4;
   overflow-x: hidden;
   background-color: #fdfcf1;
+}
+
+.flex {
+  display: flex;
 }
 
 .hidden {
@@ -78,7 +81,8 @@ h6, .h6 { font-size: 14px; }
   color: #111;
 }
 
-button {
+button.pretty,
+.tiptap-toolbar button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -90,14 +94,18 @@ button {
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
+button.pretty:hover,
+.tiptap-toolbar button:hover {
   border-color: #646cff;
 }
-button:focus,
-button:focus-visible {
+button.pretty:focus,
+button.pretty:focus-visible,
+.tiptap-toolbar button:focus,
+.tiptap-toolbar button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
-button.is-active {
+button.pretty.is-active,
+.tiptap-toolbar button.is-active {
   background-color: #798ca1;
 }
 
@@ -180,8 +188,9 @@ label {
 
 /* INPUTS */
 
-input, textarea, select {
+input.pretty, textarea.pretty, select.pretty {
   font-size: 20px;
+  height: 48px;
   padding: 5px 10px;
   color: #372b10;
   background-color: #ffffff;
@@ -204,7 +213,7 @@ input.pretty {
   font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
-  height: 45px;
+  height: 48px;
   color: #212529;
   background-color: #f6f4e4;
   background-clip: padding-box;
@@ -251,12 +260,14 @@ j {
 
 /* FLEX: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_flexible_box_layout/Typical_use_cases_of_flexbox */
 .field {
+  margin-right: 10px;
   margin-bottom: 10px;
 }
 
 .group-fields {
   display: flex;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
 .field.push-right {
@@ -270,6 +281,13 @@ j {
 
 .form-send-btn {
   margin: 20px 0 40px 0;
+}
+
+.action-bar {
+  margin: 5px 0 25px 0;
+  align-items: center;
+  padding: 20px 0 25px 0;
+  border-bottom: 1px solid #999;
 }
 
 
@@ -329,6 +347,25 @@ body.night-mode {
   margin: 10px 0;
   color: #616562;
 }
+
+/* БЭЙДЖИ BADGES */
+
+i.badge {
+  padding: 1px 3px 3px 3px;
+  border-radius: 3px;
+  font-style: normal;
+  font-size: 0.7em;
+  font-weight: 500;
+  position: relative;
+  bottom: 1px;
+}
+
+i.grey { background-color:#999; color: white;}
+i.red { background-color:#d02727; color: white;}
+i.orange { background-color:#e48838; color: white;}
+i.blue { background-color:#2d6ee7; color: white;}
+i.black { background-color:#272727; color: white;}
+i.green { background-color:#1dca8a; color: white;}
 
 .night-mode input.pretty {
   color: #ccc;

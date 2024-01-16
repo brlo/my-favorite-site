@@ -1,8 +1,9 @@
 <% if items.present? %>
   <div class='items'>
-    <% items.each do |item| %>
 
-      <div class='subject depth-<%= depth %>'>
+    <% items.sort_by{ |i| i[:childs].present? ? 1:0 }.each do |item| %>
+
+      <div class='<%= item[:childs].present? ? 'menu-subject' : 'menu-link' %> depth-<%= depth %>'>
         <% if item[:path].presence %>
           <a href="<%= my_page_link_to("/#{item[:path]}") %>"><%= item[:title] %></a>
         <% else %>
@@ -10,11 +11,11 @@
         <% end %>
       </div>
 
-      <div class='level'>
-        <% if item[:childs] %>
+      <% if item[:childs].present? %>
+        <div class='level'>
           <%= render(partial: 'pages/menu', locals: {items: item[:childs], depth: depth+1}) %>
-        <% end %>
-      </div>
+        </div>
+      <% end %>
 
     <% end %>
   </div>

@@ -1,11 +1,18 @@
 module Api
   class PagesController < ApiApplicationController
     before_action :reject_by_read_privs
-    before_action :reject_by_write_privs, only: [:create, :update]
+    before_action :reject_by_create_privs, only: [:create]
+    before_action :reject_by_update_privs, only: [:update]
     before_action :reject_by_destroy_privs, only: [:destroy]
 
     def list
-      @pages = ::Page.only(:id, :title, :lang, :c_at, :u_at)
+      # надо бы ещё автора показать
+      @pages = ::Page.
+        includes(:user).
+        only(
+          :id, :title, :is_published, :page_type,
+          :lang, :group_lang_id, :user_id, :parent_id, :c_at, :u_at
+        )
 
       term = params[:term].to_s
       if term.present? && term.length > 2
@@ -24,6 +31,8 @@ module Api
     # POST /pages or /pages.json
     def create
       @page = ::Page.new(page_params)
+      # автор статьи
+      @page.user_id = ::Current.user.id
 
       # begin
         if @page.save
@@ -42,6 +51,9 @@ module Api
 
     def update
       set_page()
+
+      # добавим редактора статьи
+      @page.editors = @page.editors.to_a | [::Current.user.id]
 
       # begin
         if @page.update(page_params)
@@ -93,22 +105,9 @@ module Api
       )
     end
 
-    def reject_by_read_privs
-      if !::Current.user.ability?('pages_read')
-        render json: {success: 'fail', errors: 'access denied'}, status: 401
-      end
-    end
-
-    def reject_by_write_privs
-      if !::Current.user.ability?('pages_write')
-        render json: {success: 'fail', errors: 'access denied'}, status: 401
-      end
-    end
-
-    def reject_by_destroy_privs
-      if !::Current.user.ability?('pages_destroy')
-        render json: {success: 'fail', errors: 'access denied'}, status: 401
-      end
-    end
+    def reject_by_read_privs;    ability?('pages_read'); end
+    def reject_by_create_privs;  ability?('pages_create'); end
+    def reject_by_update_privs;  ability?('pages_update'); end
+    def reject_by_destroy_privs; ability?('pages_destroy'); end
   end
 end

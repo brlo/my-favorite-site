@@ -1,7 +1,7 @@
 module Api
   class MenusController < ApiApplicationController
     before_action :reject_by_read_privs
-    before_action :reject_by_write_privs, only: [:create, :update, :destroy]
+    before_action :reject_by_update_privs, only: [:create, :update, :destroy]
 
     def list
       set_page()
@@ -96,8 +96,8 @@ module Api
       end
     end
 
-    def reject_by_write_privs
-      if !::Current.user.ability?('pages_write')
+    def reject_by_update_privs
+      if !::Current.user.ability?('pages_update')
         render json: {success: 'fail', errors: 'access denied'}, status: 401
       end
     end

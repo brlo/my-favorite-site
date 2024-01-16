@@ -93,5 +93,11 @@ module Api
       logger.error(error.message)
       logger.error(error.backtrace.join("\n"))
     end
+
+    def ability?(action)
+      if !::Current.user.ability?(action)
+        render json: {success: 'fail', errors: 'access to action is denied'}, status: 401
+      end
+    end
   end
 end

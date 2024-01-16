@@ -49,7 +49,22 @@
   </div>
 
   <div class='notification'>
-    <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox'>https://t.me/bibleox</a>
+    <div id="page-edit-telegram">
+      <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox'>https://t.me/bibleox</a>
+    </div>
+    <!--
+    <div id="page-edit">
+      <%= ::I18n.t('quote_page.or_edit_page_by_yourself') %>:
+      <a href="<%= "#{::SETTINGS['admin']['url'] }/pages/#{ @page.id.to_s }/" %>">
+        <%= I18n.t('quote_page.edit_link') %>
+      </a>
+    </div>
+    -->
+    <% if @page.user_id %>
+      <div id="page-author">
+        <%= ::I18n.t('quote_page.author') %>: <%= @page&.user&.name %>
+      </div>
+    <% end %>
   </div>
 </section>
 

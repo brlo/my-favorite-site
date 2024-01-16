@@ -43,6 +43,9 @@ ru:
     title: "%{term} / цитаты / Библия"
     addresses_list_title: 'Только ссылки:'
     whant_to_fix: 'Хотите исправить или дополнить? Напишите нам'
+    or_edit_page_by_yourself: Или отредактируйте статью сами
+    edit_link: Редактировать
+    author: Автор
 
   page_translations:
     ru: Русский

@@ -74,6 +74,9 @@ de:
     title: "%{term} / Zitate / Bibel"
     addresses_list_title: 'Nur Schiedsrichter:'
     whant_to_fix: 'Möchten Sie etwas reparieren oder hinzufügen? Erzähl uns'
+    or_edit_page_by_yourself: Oder bearbeiten Sie diesen Artikel selbst
+    edit_link: Bearbeiten
+    author: Autor
 
   page_translations:
     ru: Russisch

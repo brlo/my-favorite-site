@@ -3,7 +3,7 @@
     <div class='bar-el'>
       <select id="lang-select" name="lang-select" onchange="selectPageLang(this);return false;">
         <% @page_langs.each do |lang, path| %>
-          <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @current_lang == lang %>selected<% end %>><%= I18n.t("page_translations.#{lang}") %></option>
+          <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @content_lang == lang %>selected<% end %>><%= I18n.t("page_translations.#{lang}") %></option>
         <% end %>
       </select>
     </div>

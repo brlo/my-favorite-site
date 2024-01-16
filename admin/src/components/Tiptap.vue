@@ -32,7 +32,13 @@ const editor = new Editor({
     // пока что не заработала: ни кнопка, ни вставка ссылок
     Image,
     // https://tiptap.dev/api/marks/link
-    Link.configure({ openOnClick: false }),
+    Link.configure({
+      openOnClick: false,
+      HTMLAttributes: {
+        rel: null,
+        target: null
+      },
+    }),
   ],
 
   // https://tiptap.dev/api/events#update
@@ -156,6 +162,7 @@ function setLink() {
   background-color: white;
   border: 1px solid #222;
   border-radius: 5px;
+  line-height: 1.5;
 }
 
 .tiptap-area button {

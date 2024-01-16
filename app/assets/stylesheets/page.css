@@ -4,7 +4,13 @@
 
 #page-content .level {
   margin-left: 15px;
-  font-size: 0.8em;
+}
+
+#page-content .menu-subject.depth-0 {
+  font-weight: 500;
+}
+#page-content .menu-subject {
+  font-size: 1.1em;
 }
 
 #page-content h1#subject {

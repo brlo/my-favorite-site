@@ -15,8 +15,12 @@ class Page < ApplicationMongoRecord
   attr_accessor :tags_str
 
   # Тип страницы (для писания и тд)
-  field :pt,         as: :page_type, type: String
-  field :is_pub,     as: :is_published, type: Boolean
+  field :pt,         as: :page_type, type: String, default: 1
+  field :is_pub,     as: :is_published, type: Boolean, default: false
+  # автор
+  field :u_id,       as: :user_id, type: BSON::ObjectId
+  # редакторы
+  field :editors, type: Array
   # основной заголовок
   field :title, type: String
   # Название части книги (Том 1, или просто "1") или годы жизни автора
@@ -48,6 +52,8 @@ class Page < ApplicationMongoRecord
   # время создания можно получать из _id во так: id.generation_time
   field :c_at,       as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
   field :u_at,       as: :updated_at, type: DateTime, default: ->{ DateTime.now.utc.round }
+  # Дата последнего мерджа. Служит идентификатором мерджа.
+  field :m_at,       as: :merge_ver, type: DateTime, default: ->{ DateTime.now.utc.round }
 
   # rake db:mongoid:create_indexes
   # rake db:mongoid:remove_indexes
@@ -55,7 +61,13 @@ class Page < ApplicationMongoRecord
   # для поиска в нужной книге
   index({path_low: 1},      { unique: true, background: true })
   index({group_lang_id: 1},               { background: true })
+  index({user_id: 1},                     { background: true })
   index({redirect_from: 1}, { sparse: true, background: true })
+
+  has_many :merge_requests, foreign_key: 'p_id', primary_key: 'id', dependent: :destroy
+  belongs_to :user, foreign_key: 'u_id', primary_key: 'id'
+
+  scope :published, -> { where(is_published: true) }
 
   before_validation :normalize_attributes
   validates :page_type, :title, :lang, :path, presence: true
@@ -84,6 +96,11 @@ class Page < ApplicationMongoRecord
     end
   end
 
+  # текст в виде строк в массиве
+  def body_as_arr
+    self.body.to_s.gsub('<p>', '').split('</p>')
+  end
+
   def generate_string(cnt = 8)
     random_str = (('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a).sample(cnt).join
   end
@@ -107,6 +124,7 @@ class Page < ApplicationMongoRecord
       self.path = ::AddressConverter.human_to_link(self.title).to_s
       # '/zah/1/#L1,2-3,8' -> 'zah:1:6'
       self.path = self.path.gsub('/#L', ':').gsub('/', ':')[1..-1]
+      # ещё title надо обязательно валидировать, генерировать ошибку, если локализация стиха не совпадает с I18n.t
     end
 
     self.tags = self.tags_str.to_s.split(',').map(&:strip) if self.tags_str.present?
@@ -119,11 +137,11 @@ class Page < ApplicationMongoRecord
     # избавяемся от лишних в тэгов
     self.body = sanitizer.sanitize(
       self.body,
-      tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)
+      tags: %w(div ul ol li h1 h2 h3 blockquote strong b i em strike s u hr br p a mark img code)
     )
     self.references = sanitizer.sanitize(
       self.references,
-      tags: %w(div ul ol li h1 h2 h3 blockquote b i em strike s u hr br p a mark img code)
+      tags: %w(div ul ol li h1 h2 h3 blockquote strong b i em strike s u hr br p a mark img code)
     )
 
     # Заменяем неразрывные пробелы (&nbsp;) на обычные. Иначе строки не рвутся, выглядит очень странно
@@ -134,6 +152,7 @@ class Page < ApplicationMongoRecord
     self.references = self.references.gsub(' ', ' ') if self.references.present?
     self.references = self.references.gsub('&nbsp;', ' ') if self.references.present?
 
+    # Обработка страниц, где запрошена разбивка на стихи как в Библии.
     if self.is_page_verses?
       if self.body.present?
         marker = '=%='
@@ -152,6 +171,7 @@ class Page < ApplicationMongoRecord
     self.u_at = DateTime.now.utc.round
   end
 
+  # Разбивка сплошного текста на стихи с нумерацией, как в Библии.
   def split_to_verses text
     min_len = 85
     mid_len = 250
@@ -159,7 +179,7 @@ class Page < ApplicationMongoRecord
 
     _text = sanitizer.sanitize(
       text.to_s,
-      tags: %w(b i em strike s u p a mark j e)
+      tags: %w(b strong i em strike s u p a mark j e)
     )
     _verses = []
 
