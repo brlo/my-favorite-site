@@ -46,6 +46,11 @@ class PagesController < ApplicationController
     @page = ::Page.find_by(path_low: path.downcase)
     @content_lang = params[:content_lang]
 
+    # документ скрыт
+    if @page.is_published != true
+      raise(::Mongoid::Errors::DocumentNotFound)
+    end
+
     if @page.nil?
       # ########################################################################
       # СТРАНИЦА НЕ НАЙДЕНА — пытаемся найти редирект

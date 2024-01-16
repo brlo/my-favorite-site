@@ -3,9 +3,13 @@ test:
     url:
 
 development:
+  admin:
+    url: "http://localhost:5173"
   redis:
     url: "redis://:psw@bibredis:6379/0"
 
 production:
+  admin:
+    url: "https://edit.bibleox.com"
   redis:
     url:

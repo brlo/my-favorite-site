@@ -33,6 +33,9 @@ class User < ApplicationMongoRecord
   # rake db:mongoid:create_indexes
   # rake db:mongoid:remove_indexes
   # rake db:mongoid:remove_undefined_indexes
+  # User.remove_undefined_indexes
+  # User.remove_indexes
+  # User.create_indexes
   index({api_token: 1},             {unique: true, background: true})
   index({username: 1},              {unique: true, background: true})
   index({username: 1, provider: 1},               {background: true})

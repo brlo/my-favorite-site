@@ -58,7 +58,9 @@ class Page < ApplicationMongoRecord
   # rake db:mongoid:create_indexes
   # rake db:mongoid:remove_indexes
   # rake db:mongoid:remove_undefined_indexes
-  # для поиска в нужной книге
+  # Page.remove_undefined_indexes
+  # Page.remove_indexes
+  # Page.create_indexes
   index({path_low: 1},      { unique: true, background: true })
   index({group_lang_id: 1},               { background: true })
   index({user_id: 1},                     { background: true })

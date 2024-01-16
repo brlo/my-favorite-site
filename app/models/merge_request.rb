@@ -30,6 +30,9 @@ class MergeRequest < ApplicationMongoRecord
   # rake db:mongoid:create_indexes
   # rake db:mongoid:remove_indexes
   # rake db:mongoid:remove_undefined_indexes
+  # MergeRequest.remove_undefined_indexes
+  # MergeRequest.remove_indexes
+  # MergeRequest.create_indexes
   index({is_merged: 1}, { background: true })
   index({page_id: 1},   { background: true })
   index({user_id: 1},   { background: true })

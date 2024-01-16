@@ -23,6 +23,9 @@ class Menu < ApplicationMongoRecord
   # rake db:mongoid:remove_indexes
   # rake db:mongoid:remove_undefined_indexes
   # для поиска в нужной книге
+  # Menu.create_indexes
+  # Menu.remove_indexes
+  # Menu.remove_undefined_indexes
   index({page_id: 1}, {background: true})
 
   before_validation :normalize_attributes

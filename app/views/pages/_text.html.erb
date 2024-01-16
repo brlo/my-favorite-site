@@ -16,18 +16,20 @@
       </table>
     </article>
 
-    <div id="pagination-bottom">
-      <% if @chapter_prev > 0 %>
-        <a href="<%= my_page_link_to("/#{@chapters[@chapter_prev].second}") %>">← <%= I18n.t('backward') %></a>
-      <% else %>
-        <span class='invisible'>← <%= I18n.t('backward') %></span>
-      <% end %>
-      <span id="end-tip"><%= I18n.t('end_chapter.the_end_of') %><br><%= @chapter_current + 1 %><%= ::I18n.t('end_chapter.suffix') %><br><%= ::I18n.t('end_chapter.chapter') %></span>
-      <% if @chapter_next < @chapters.count %>
-        <a href="<%= my_page_link_to("/#{@chapters[@chapter_next].second}") %>"><%= I18n.t('forward') %> →</a>
-      <% else %>
-        <span class='invisible'><%= I18n.t('forward') %> →</span>
-      <% end %>
-    </div>
+    <% if @chapter_prev || @chapter_next %>
+      <div id="pagination-bottom">
+        <% if @chapter_prev > 0 %>
+          <a href="<%= my_page_link_to("/#{@chapters[@chapter_prev].second}") %>">← <%= I18n.t('backward') %></a>
+        <% else %>
+          <span class='invisible'>← <%= I18n.t('backward') %></span>
+        <% end %>
+        <span id="end-tip"><%= I18n.t('end_chapter.the_end_of') %><br><%= @chapter_current + 1 %><%= ::I18n.t('end_chapter.suffix') %><br><%= ::I18n.t('end_chapter.chapter') %></span>
+        <% if @chapter_next < @chapters.count %>
+          <a href="<%= my_page_link_to("/#{@chapters[@chapter_next].second}") %>"><%= I18n.t('forward') %> →</a>
+        <% else %>
+          <span class='invisible'><%= I18n.t('forward') %> →</span>
+        <% end %>
+      </div>
+    <% end %>
   </div>
 <% end %>
