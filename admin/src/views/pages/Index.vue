@@ -72,7 +72,7 @@ watchEffect(
     {{ langs[page.lang] }}
     <router-link :to="{ name: 'EditPage', params: { id: page.id }}">
       {{ page.title }}
-    </router-link><i class="badge grey" v-if="!!page.is_published">скрыто</i>
+    </router-link><i class="badge grey" v-if="!page.is_published">скрыто</i>
 
     <div class="hint">
       {{ page.updated_at_word  }},

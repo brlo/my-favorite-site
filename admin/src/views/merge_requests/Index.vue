@@ -87,7 +87,6 @@ watchEffect(
 
         <div class="descr">
           <span class="updated-at">{{ mr.updated_at_word  }}</span>,
-          <span class="diff-author">{{ mr.author?.name  }}</span>,
           <span class="diff-scores">
             <span class="plus">+{{ mr.plus_i }}</span> <span class="minus">-{{ mr.minus_i }}</span>
           </span>
@@ -148,7 +147,7 @@ watchEffect(
 
 .descr {
   margin: 5px 0 0 0;
-  font-size: 0.9em;
+  font-size: 0.8em;
   color: #999;
 }
 
