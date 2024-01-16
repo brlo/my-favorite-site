@@ -51,8 +51,8 @@ class Menu < ApplicationMongoRecord
       title: self.title,
       path: self.path,
       priority: self.priority,
-      created_at: self.c_at,
-      updated_at: self.u_at,
+      created_at: self.c_at&.strftime("%Y-%m-%d %H:%M:%S"),
+      updated_at: self.u_at&.strftime("%Y-%m-%d %H:%M:%S"),
     }
   end
 

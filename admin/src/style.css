@@ -109,6 +109,15 @@ button.pretty.is-active,
   background-color: #798ca1;
 }
 
+.tiptap-toolbar {
+  padding: 5px 7px 8px 7px !important;
+  position: sticky;
+  top: 0;
+  border-radius: 3px 3px 0 0;
+  background-color: #fff;
+  border-bottom: 1px solid #999;
+  z-index: 10;
+}
 
 
 .flex-wrap {

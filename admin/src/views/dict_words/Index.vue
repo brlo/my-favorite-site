@@ -5,7 +5,6 @@ import { api } from '@/libs/api.js';
 import InputText from 'primevue/inputtext';
 
 const props = defineProps({
-  isListOnly: Boolean,
   limit: Number,
 })
 
@@ -23,7 +22,7 @@ const langs = {
 
 const searchTerm = ref('')
 
-const pages = ref({})
+const dictWords = ref([])
 const errors = ref('')
 
 // _ через функцию debounce откладывает все попытки выполнить указанную функцию
@@ -32,17 +31,15 @@ const lazyAutoSearch = _.debounce(autoSearch, 300);
 function autoSearch() {
   let params = { term: searchTerm.value }
   if (props.limit) params.limit = props.limit;
-  api.get('/pages/list', params).then(data => {
+  api.get('/dict_words/list', params).then(data => {
     console.log(data)
     if (data.success == 'ok') {
-      pages.value = data.items;
+      dictWords.value = data.items;
     } else {
       errors.value = data.errors;
     }
   })
 }
-
-autoSearch()
 
 watchEffect(
   function() {
@@ -52,51 +49,51 @@ watchEffect(
 </script>
 
 <template>
-<h2 v-if="isListOnly">Недавно изменённые статьи</h2>
-<h2 v-else="isListOnly">Статьи</h2>
+<h2>Словарные слова</h2>
 
-<router-link v-if="!isListOnly" :to="{ name: 'NewPage'}">
-  ＋ Новая страница
+<router-link :to="{ name: 'NewDictWord'}">
+  ＋ Новое слово
 </router-link>
 
-<div v-if="!isListOnly" style="margin: 10px 0 20px 0">
+<div style="margin: 10px 0 20px 0">
   <span class="p-input-icon-left">
     <i class="pi pi-search" />
     <InputText v-model="searchTerm" placeholder='Фильтр' autofocus autocomplete="off" id="search-field" />
   </span>
 </div>
 
-<div v-if="pages.length == 0">
-  <div class='page'>Ничего не найдено</div>
+<div v-if="dictWords.length == 0">
+  <div class='word'>Ничего не найдено</div>
 </div>
 
-<div id="pages" v-for="page in pages">
-  <div class='page'>
-    {{ langs[page.lang] }}
-    <router-link :to="{ name: 'EditPage', params: { id: page.id }}">
-      {{ page.title }}
-    </router-link><i class="badge grey" v-if="!page.is_published">скрыто</i>
+<div id="words" v-for="word in dictWords">
+  <div class='word'>
+    {{ langs[word.src_lang] }}
+    <router-link :to="{ name: 'EditDictWord', params: { id: word.id }}">
+      {{ word.word }}
+    </router-link>
 
     <div class="hint">
-      {{ page.updated_at_word  }},
-      {{ page.author?.name  }},
-      <i class="pi pi-eye" style="font-size: 0.7rem"></i> {{ page.visits }}
+      {{ word.transcription }},
+      {{ word.translation_short }}
     </div>
+
+    <div class="desc" v-html="word.desc" />
   </div>
 </div>
 <div v-if="errors.length">{{ errors }}</div>
 </template>
 
 <style scoped>
-.page { margin: 15px 0;}
-.page a {
+.word { margin: 15px 0;}
+.word a {
   margin: 0 10px;
   color:rgb(116, 108, 80);
 }
-.page a:hover {
+.word a:hover {
   color:rgb(164, 155, 122);
 }
-.page .hint {
+.word .hint {
   margin: 0 0 0 30px;
   color: #999;
 }

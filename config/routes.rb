@@ -23,8 +23,6 @@ Rails.application.routes.draw do
     end
 
     scope '/:content_lang', :content_lang => /ru|gr|en|il|ar|jp|cn|de/ do
-      get '/q', to: 'quotes#index'
-      get '/q/:page_path', to: 'quotes#show', as: 'quote_page'
       get '/w', to: 'pages#list', as: 'pages'
       get '/w/:page_path', to: 'pages#show', as: 'page'
     end
@@ -45,19 +43,16 @@ Rails.application.routes.draw do
     # ищем по человеческому адресу стих и редиректим на правильный адрес
     get '/f/:human_address', :constraints => {human_address: /[\sА-ЯA-Z0-9\-\.\,\:%]+/i}, to: 'verses#goto_verse_by_human_address'
 
-    # resources :users
-    get '/profile', to: 'users#profile', as: 'profile'
-    post '/profile', to: 'users#profile_update', as: 'profile_update'
-    get '/login', to: 'users#login', as: 'login'
-    post '/login_site', to: 'users#handle_login_site', as: 'handle_login_site'
-    post '/login_telegram', to: 'users#handle_telegram_login', as: 'handle_login_telegram'
-    delete '/logout', to: 'users#logout'
+    # # resources :users
+    # get '/profile', to: 'users#profile', as: 'profile'
+    # post '/profile', to: 'users#profile_update', as: 'profile_update'
+    # get '/login', to: 'users#login', as: 'login'
+    # post '/login_site', to: 'users#handle_login_site', as: 'handle_login_site'
+    # post '/login_telegram', to: 'users#handle_telegram_login', as: 'handle_login_telegram'
+    # delete '/logout', to: 'users#logout'
 
     # API
     namespace 'api', defaults: {format: :json} do
-      post '/login/psw', to: 'users#psw_login'
-      post '/login/telegram', to: 'users#telegram_login'
-
       scope 'pages' do
         get    'list', to: 'pages#list'
         post   '/',    to: 'pages#create'
@@ -88,21 +83,33 @@ Rails.application.routes.draw do
         end
       end
 
-      scope 'quotes_subjects' do
-        get    'list', to: 'quotes_subjects#list'
-        post   '/',    to: 'quotes_subjects#create'
-        get    ':id',  to: 'quotes_subjects#show'
-        put    ':id',  to: 'quotes_subjects#update'
-        delete ':id',  to: 'quotes_subjects#destroy'
+      scope 'dict_words' do
+        get    'list', to: 'dict_words#list'
+        post   '/',    to: 'dict_words#create'
+        scope ':id' do
+          get    '/',        to: 'dict_words#show'
+          put    '/',        to: 'dict_words#update'
+          delete '/',        to: 'dict_words#destroy'
+        end
       end
+
+      scope 'stats' do
+        get 'visits', to: 'stats#visits'
+      end
+
+      scope 'users' do
+        get 'me', to: 'users#me'
+      end
+      post '/login/psw', to: 'users#psw_login'
+      post '/login/telegram', to: 'users#telegram_login'
     end
 
-    # Admin
-    namespace 'admin' do
-      resources :quotes_subjects
-      resources :quotes_pages
-      get '/dump', to: 'quotes_pages#dump', as: 'dump'
-    end
+    # # Admin
+    # namespace 'admin' do
+    #   resources :quotes_subjects
+    #   resources :quotes_pages
+    #   get '/dump', to: 'quotes_pages#dump', as: 'dump'
+    # end
 
     # Defines the root path route ('/')
     get '/', to: 'verses#index'

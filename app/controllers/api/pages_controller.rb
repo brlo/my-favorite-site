@@ -12,7 +12,9 @@ module Api
         only(
           :id, :title, :is_published, :page_type,
           :lang, :group_lang_id, :user_id, :parent_id, :c_at, :u_at
-        )
+        ).
+        limit(20).
+        order_by(updated_at: -1)
 
       term = params[:term].to_s
       if term.present? && term.length > 2
@@ -20,7 +22,17 @@ module Api
         @pages = @pages.where(title: /.*#{term}.*/i)
       end
 
-      @pages = @pages.order_by(updated_at: -1).limit(20).to_a
+      # указанный пользователем лимит, но не больше 100
+      if params[:limit].present?
+        @pages = @pages.limit([params[:limit].to_i, 100].min)
+      end
+
+      # страницы
+      @pages = @pages.to_a
+
+      # просмотры этих страниц из редиса
+      @page_visits = ::PageVisits.visits(@pages.map{|p| p.id.to_s })
+
       render :list, status: :ok
     end
 

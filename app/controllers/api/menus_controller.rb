@@ -33,23 +33,23 @@ module Api
     end
 
     def update
-      begin
       set_page()
       set_menu_item()
       @menu_item.page_id = @page.id
 
+      # begin
         if @menu_item.update(menu_item_params)
           render(json: {'success': 'ok', item: @menu_item.attrs_for_render}, status: :ok)
         else
-          puts '=======ERRORS======='
-          puts @page.errors.messages.inspect
+          # puts '=======ERRORS======='
+          # puts @page.errors.messages.inspect
           render json: @page.errors, status: :unprocessable_entity
         end
-      rescue => e
-        logger.error e.message
-        logger.error e.backtrace.join("\n")
-        raise(e)
-      end
+      # rescue => e
+        # logger.error e.message
+        # logger.error e.backtrace.join("\n")
+        # raise(e)
+      # end
     end
 
     def destroy

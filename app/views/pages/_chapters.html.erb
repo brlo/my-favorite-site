@@ -6,16 +6,16 @@
   <% end %>
 
   <h1
-      class="title"
-      id='current-address'
-      data-book-short-name='<%= @page.path %>'
-      data-lang-ui='<%= I18n.locale %>'
-      data-lang-content='<%= @content_lang %>'
-      data-book-code=''
-      data-page-path='<%= @page.path %>'
-      data-chapter='<%= @chapter_current ? @chapter_current + 1 : nil %>'
-      itemprop="headline"
-    >
+    class="title"
+    id='current-address'
+    data-book-short-name='<%= @page.path %>'
+    data-lang-ui='<%= I18n.locale %>'
+    data-lang-content='<%= @content_lang %>'
+    data-book-code=''
+    data-page-path='<%= @page.path %>'
+    data-chapter='<%= @chapter_current ? @chapter_current + 1 : 1 %>'
+    itemprop="headline"
+  >
     <% if @parent_page %>
       <a href="<%= my_page_link_to("/#{@page.path}") %>" id='current-author-book'><%= @page.title %></a>
     <% else %>

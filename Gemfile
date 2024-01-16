@@ -10,6 +10,9 @@ gem 'mongoid'
 gem 'redis'
 gem 'connection_pool'
 
+# для определения браузера, отсеивания ботов
+gem 'browser'
+
 gem 'rack-cors', :require => 'rack/cors'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]

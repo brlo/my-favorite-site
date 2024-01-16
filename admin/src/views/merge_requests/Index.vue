@@ -6,6 +6,7 @@ import Dropdown from 'primevue/dropdown';
 
 const props = defineProps({
   pageId: String,
+  limit: Number,
   isPartial: Boolean,
   isListOnly: Boolean,
 })
@@ -48,6 +49,8 @@ function getList() {
   if (filterPageId.value != '' && filterPageId.value != undefined) {
     params.page_id = filterPageId.value;
   }
+
+  if (props.limit) params.limit = props.limit;
 
   api.get('/merge_requests/list', params).then(data => {
     console.log(data)

@@ -9,10 +9,13 @@ module Api
       @mrs = ::MergeRequest.includes(:user).only(
         :id, :user_id, :page_id, :minus_i, :plus_i, :is_merged, :c_at, :u_at,
         :is_merged, :action_at
-      )
+      ).order_by(updated_at: -1).limit(20)
+
       @mrs = @mrs.where(page_id: params[:page_id]) if params[:page_id].present?
       @mrs = @mrs.where(is_merged: params[:is_merged]) if params.key?(:is_merged)
-      @mrs = @mrs.order_by(updated_at: -1).limit(20).to_a
+      # указанный пользователем лимит, но не больше 100
+      @mrs = @mrs.limit([params[:limit].to_i, 100].min) if params[:limit].present?
+      @mrs = @mrs.to_a
 
       page_ids = @mrs.pluck(:p_id)
       pages = ::Page.where(:id.in => page_ids).only(:id, :title).to_a

@@ -34,4 +34,8 @@ class CurrentUser
   def ability?(action)
     @user&.ability?(action)
   end
+
+  def privs_list
+    @user&.privs_list || {}
+  end
 end

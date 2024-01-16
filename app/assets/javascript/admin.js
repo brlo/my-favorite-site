@@ -1,4 +1,11 @@
-//= require vendor/pell
+// <input type='text' class='filter' oninput='window.filterQueryPages(this.value);' value='' placeholder='Фильтр' autofocus>
+// <div id="quotes_pages">
+//   <% @quotes_pages.each do |page| %>
+//     <div class='q_page'>
+//       <%= page.title.to_s[0].upcase %> | <b><%= link_to(page.title, [:admin, page], class: 'q_title') %></b> (<%= page.position %>) | <%= flag_by_lang(page.lang) %> | <%= @page_visits[page.id.to_s] %>
+//     </div>
+//   <% end %>
+// </div>
 
 window.filterQueryPages = function(text) {
   const pages = document.querySelectorAll("#quotes_pages .q_page");

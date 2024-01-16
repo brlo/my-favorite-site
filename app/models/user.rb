@@ -86,6 +86,23 @@ class User < ApplicationMongoRecord
     end
   end
 
+  def privs_list
+    _privs = self.privs.presence || {}
+    is_admin = _privs['super'] == true
+
+    privs_names = %w(
+      pages_read pages_create pages_update pages_destroy
+      mr_read    mr_create    mr_update    mr_destroy
+      dict_read  dict_create  dict_update  dict_destroy
+    )
+    if is_admin
+      privs_names.map { |n| [n, true] }.to_h
+    else
+      can_names = privs_names.select { |n| _privs[n] == true }
+      can_names.map { |n| [n, true] }.to_h
+    end
+  end
+
   # pages_read
   # pages_create
   # pages_update
@@ -95,6 +112,11 @@ class User < ApplicationMongoRecord
   # mr_create
   # mr_update
   # mr_destroy
+  #
+  # dict_read
+  # dict_create
+  # dict_update
+  # dict_destroy
   #
   # mr_max
   #

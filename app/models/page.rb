@@ -114,9 +114,9 @@ class Page < ApplicationMongoRecord
   end
 
   def normalize_attributes
-    self.title = self.title.to_s.strip
-    self.meta_desc = self.meta_desc.to_s.strip
-    self.path = self.path.to_s.strip.presence || generate_path()
+    self.title = self.title.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')
+    self.meta_desc = self.meta_desc.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')
+    self.path = self.path.to_s.strip.gsub(/[\t\s\n\r]+/, '_').presence || generate_path()
     self.path_low = self.path.downcase
     self.page_type = self.page_type.to_i
 

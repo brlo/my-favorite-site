@@ -1,13 +1,16 @@
 <script setup>
+import IndexStats from "@/views/stats/Index.vue";
 import IndexMergeRequests from "@/views/merge_requests/Index.vue";
 import IndexPages from "@/views/pages/Index.vue";
 
 </script>
 
 <template>
-<IndexMergeRequests :isListOnly="true" />
+<IndexStats />
 <div class="divider"></div>
-<IndexPages :isListOnly="true" />
+<IndexMergeRequests :isListOnly="true" :limit="5" />
+<div class="divider"></div>
+<IndexPages :isListOnly="true" :limit="5" />
 </template>
 
 <style scoped>

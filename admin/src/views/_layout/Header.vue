@@ -1,4 +1,21 @@
 <script setup>
+import { ref } from 'vue';
+import { api } from '@/libs/api.js';
+
+const privs = ref({});
+const errors = ref();
+
+function getPrivs() {
+  api.get('/users/me').then(data => {
+    console.log(data)
+    if (data.success == 'ok') {
+      privs.value = data.privs;
+    } else {
+      errors.value = data.errors;
+    }
+  })
+}
+getPrivs();
 </script>
 
 <template>
@@ -10,9 +27,10 @@
       </a>
     </div>
     <nav>
-      <router-link to="/">Сводка</router-link>
-      <router-link to="/pages">Статьи</router-link>
-      <router-link to="/merge_requests">Правки</router-link>
+      <router-link v-if="privs.pages_read" to="/">Сводка</router-link>
+      <router-link v-if="privs.pages_read" to="/pages">Статьи</router-link>
+      <router-link v-if="privs.mr_read" to="/merge_requests">Правки</router-link>
+      <router-link v-if="privs.dict_read" to="/dict_words">Словарь</router-link>
     </nav>
   </div>
 </header>
@@ -46,7 +64,6 @@ header nav > a#settings-btn {
 .logo img {
   width: 120px;
   background-color: #d0d7be;
-  /* background-color: #406c59; */
   padding: 8px 10px;
   border-radius: 4px;
   -webkit-transition: background-color 124ms linear;
@@ -56,15 +73,12 @@ header nav > a#settings-btn {
 
 .night-mode .logo img {
   background-color: #c0cda1;
-  /* background-color: #406c59; */
 }
 
 .logo img:hover {
   background-color: #a4d091;
-  /* background-color: #a4d091; */
 }
 .logo img:active {
   background-color: #a2b997;
-  /* background-color: #a2b997; */
 }
 </style>
