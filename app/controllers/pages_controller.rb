@@ -106,13 +106,16 @@ class PagesController < ApplicationController
           # ТРУДЫ АВТОРА: корневые элементы меню (будем считать, что это труды автора)
           @parent_books = parents_with_links.map do |p_id,group|
             el = menus_by_id[p_id]
+            next if el.nil?
+
             # ссылка из первого вложенного элемента
             first_child_with_link = group&.
               select{ |_m| _m.path.present? }&.
               sort_by { |_m| _m.priority }&.
               first&.path
+            next if first_child_with_link.nil?
 
-            [ el.title, first_child_with_link]
+            [ el.title, first_child_with_link ]
           end
           # ЭТА СТРАНИЦА: элемент текущей страницы в меню
           @page_in_menu = menus.find{ |m| m.path == @page.path }

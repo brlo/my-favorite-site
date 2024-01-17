@@ -36,7 +36,7 @@
   display: block;
   margin: 30px 0;
   border: 0;
-  border-bottom: 1px solid #aca08f;
+  border-bottom: 1px dashed #aca08f;
   height: 1px;
 }
 
