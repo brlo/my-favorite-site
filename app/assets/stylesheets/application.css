@@ -10,8 +10,8 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require_tree .
  */
 
 /* ШАПКО-ССЫЛКИ: Меню хэдера: Библия, Цитаты, Поиск */
@@ -181,10 +181,11 @@ header nav > a#settings-btn {
 .content .title {
   margin: 0;
   font-size: 32px;
+  font-family: 'Linux Libertine','Georgia','Times','Source Serif Pro',serif;
 }
 
 .breadcrumbs {
-  font-size: 0.7em;
+  font-size: 11px;
   position: relative;
   top: -15px;
   margin: 0;

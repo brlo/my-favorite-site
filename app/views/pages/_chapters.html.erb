@@ -1,8 +1,8 @@
 <div id='chapter-image'>
   <% if @breadcrumbs.present? && @parent_page.present? %>
-    <h2 class='breadcrumbs'><%= @breadcrumbs.join(' » ') %> »
+    <nav class='breadcrumbs'><%= @breadcrumbs.join(' » ') %> »
       <a href="<%= my_page_link_to("/#{@parent_page.path}") %>"><%= @parent_page.title %></a>
-    </h2>
+    </nav>
   <% end %>
 
   <h1

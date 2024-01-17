@@ -24,7 +24,12 @@ const editor = new Editor({
   content: props.content || '',
   // https://tiptap.dev/extensions
   extensions: [
-    StarterKit,
+    StarterKit.configure({
+      // Configure an included extension
+      heading: {
+        levels: [2, 3, 4],
+      },
+    }),
     Typography,
     Underline,
     Highlight,
@@ -103,14 +108,14 @@ function setLink() {
     <button @click="editor.chain().focus().setParagraph().run()" :class="{ 'is-active': editor.isActive('paragraph') }">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>paragraph</title><path d="M22.5.248H7.228a6.977,6.977,0,1,0,0,13.954H9.546a.25.25,0,0,1,.25.25V22.5a1.25,1.25,0,0,0,2.5,0V3a.25.25,0,0,1,.25-.25h3.682a.25.25,0,0,1,.25.25V22.5a1.25,1.25,0,0,0,2.5,0V3a.249.249,0,0,1,.25-.25H22.5a1.25,1.25,0,0,0,0-2.5ZM9.8,11.452a.25.25,0,0,1-.25.25H7.228a4.477,4.477,0,1,1,0-8.954H9.546A.25.25,0,0,1,9.8,3Z"/></svg>
     </button>
-    <button @click="editor.chain().focus().toggleHeading({ level: 1 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 1 }) }">
-      H1
-    </button>
     <button @click="editor.chain().focus().toggleHeading({ level: 2 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 2 }) }">
       H2
     </button>
     <button @click="editor.chain().focus().toggleHeading({ level: 3 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 3 }) }">
       H3
+    </button>
+    <button @click="editor.chain().focus().toggleHeading({ level: 4 }).run()" :class="{ 'is-active': editor.isActive('heading', { level: 4 }) }">
+      H4
     </button>
     <button @click="setLink" :class="{ 'is-active': editor.isActive('link') }">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>hyperlink-2</title><path d="M12.406,14.905a1,1,0,0,0-.543,1.307,1,1,0,0,1-.217,1.09L8.818,20.131a2,2,0,0,1-2.828,0L3.868,18.01a2,2,0,0,1,0-2.829L6.7,12.353a1.013,1.013,0,0,1,1.091-.217,1,1,0,0,0,.763-1.849,3.034,3.034,0,0,0-3.268.652L2.454,13.767a4.006,4.006,0,0,0,0,5.657l2.122,2.121a4,4,0,0,0,5.656,0l2.829-2.828a3.008,3.008,0,0,0,.651-3.27A1,1,0,0,0,12.406,14.905Z"/><path d="M7.757,16.241a1.011,1.011,0,0,0,1.414,0L16.95,8.463a1,1,0,0,0-1.414-1.414L7.757,14.827A1,1,0,0,0,7.757,16.241Z"/><path d="M21.546,4.574,19.425,2.453a4.006,4.006,0,0,0-5.657,0L10.939,5.281a3.006,3.006,0,0,0-.651,3.269,1,1,0,1,0,1.849-.764A1,1,0,0,1,12.354,6.7l2.828-2.828a2,2,0,0,1,2.829,0l2.121,2.121a2,2,0,0,1,0,2.829L17.3,11.645a1.015,1.015,0,0,1-1.091.217,1,1,0,0,0-.765,1.849,3.026,3.026,0,0,0,3.27-.651l2.828-2.828A4.007,4.007,0,0,0,21.546,4.574Z"/></svg>
@@ -155,7 +160,7 @@ function setLink() {
 </div>
 </template>
 
-<style lang="scss">
+<style scope>
 .tiptap-area {
   margin: 10px 0;
   padding: 0;
@@ -163,6 +168,7 @@ function setLink() {
   border: 1px solid #222;
   border-radius: 5px;
   line-height: 1.5;
+  color: rgb(51, 51, 51);
 }
 
 .tiptap-area button {
@@ -180,68 +186,106 @@ function setLink() {
 
 .tiptap {
   outline: none;
-  padding: 8px 8px 5px 8px;
+  padding: 8px 10px;
   min-height: 100px;
 }
 
-/* Basic editor styles */
-.tiptap {
-  > * + * {
-    margin-top: 0.75em;
-  }
+/* TEXT styles */
 
-  mark {
-    background-color: #FAF594;
-  }
+.tiptap hr {
+  display: block;
+  margin: 30px 0;
+  border: 0;
+  border-bottom: 1px solid #aca08f;
+  height: 1px;
+}
 
-  ul,
-  ol {
-    padding: 0 1rem;
-  }
+.tiptap mark {
+  background-color: #FAF594;
+}
 
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
-    line-height: 1.1;
-  }
+.tiptap ul,
+.tiptap ol {
+  padding: 0;
+  padding-inline-start: 32px;
+  quotes: "«" "»";
+  line-height: 1.5rem;
+}
 
-  code {
-    background-color: rgba(#616161, 0.1);
-    color: #616161;
-  }
+.tiptap li > ul,
+.tiptap li > ol {
+  margin-top: 10px;
+}
 
-  pre {
-    background: #0D0D0D;
-    color: #FFF;
-    font-family: 'JetBrainsMono', monospace;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
+.tiptap li+li {
+  margin: 12px 0 0;
+}
 
-    code {
-      color: inherit;
-      padding: 0;
-      background: none;
-      font-size: 0.8rem;
-    }
-  }
+.tiptap h1,
+.tiptap h2 {
+  font-family: 'Linux Libertine','Georgia','Times','Source Serif Pro',serif;
+}
 
-  img {
-    max-width: 100%;
-    height: auto;
-  }
+.tiptap h2 { border-bottom: 1px solid #999; padding-bottom: 3px; }
 
-  blockquote {
-    padding-left: 1rem;
-    border-left: 2px solid rgba(#0D0D0D, 0.1);
-  }
+.tiptap h1 { font-weight: 200; }
+.tiptap h2,
+.tiptap h3,
+.tiptap h4 {
+  font-weight: 500;
+}
 
-  hr {
-    border: none;
-    border-top: 2px solid rgba(#0D0D0D, 0.1);
-    margin: 2rem 0;
-  }
+.tiptap h1 { font-size: 1.8em; }
+.tiptap h2 { font-size: 1.5em; }
+.tiptap h3 { font-size: 1.2em; }
+.tiptap h4 { font-size: 1.0em; }
+
+.tiptap h1 { margin-top: 56px; }
+.tiptap h2 { margin-top: 56px; }
+.tiptap h3 { margin-top: 32px; }
+.tiptap h4 { margin-top: 20px; }
+
+.tiptap h2+p,
+.tiptap h3+p,
+.tiptap h4+p {
+  margin-top: 16px;
+}
+
+.tiptap p+p {
+  margin-top: 24px;
+  display: block;
+}
+
+.tiptap code {
+  background-color: rgba(#616161, 0.1);
+  color: #616161;
+}
+
+.tiptap pre {
+  background: #0D0D0D;
+  color: #FFF;
+  font-family: 'JetBrainsMono', monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+.tiptap pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+}
+
+.tiptap img {
+  max-width: 100%;
+  height: auto;
+}
+
+.tiptap blockquote {
+  border-left: 2px solid #d5cdb7;
+  background-color: #d5cdb724;
+  font-family: Arial,Helvetica,sans-serif;
+  font-style: italic;
+  margin: 20px 0;
+  padding: 5px 10px;
 }
 </style>

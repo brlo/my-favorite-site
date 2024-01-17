@@ -362,7 +362,7 @@ j {
 
 body.night-mode {
   background-color: rgb(40,44,52);
-  color: rgb(171,178,191);
+  color: #abb2bf;
 }
 
 .night-mode header, .night-mode footer {

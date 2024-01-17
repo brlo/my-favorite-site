@@ -2,17 +2,6 @@
   word-wrap: break-word;
 }
 
-#page-content .level {
-  margin-left: 15px;
-}
-
-#page-content .menu-subject.depth-0 {
-  font-weight: 500;
-}
-#page-content .menu-subject {
-  font-size: 1.1em;
-}
-
 #page-content h1#subject {
   font-weight: 500;
 }
@@ -22,24 +11,12 @@
 }
 
 #page-content h1.title {
+  font-size: 36px;
   text-align: center;
 }
 
 #page-content #title-sub {
   text-align: center;
-}
-
-#page-body h1 {
-  padding-bottom: 10px;
-  margin-bottom: 20px;
-}
-
-#page-content .items h2 {
-  font-size: 1.8em;
-}
-
-#page-content .items .items h2 {
-  font-size: 1.3em;
 }
 
 #page-content .pages {
@@ -49,18 +26,128 @@
   overflow-x: hidden;
 }
 
-#page-content #quotes {
-  margin: 20px 0;
-  font-size: 0.8em;
-  color: transparent;
-}
-
 #page-content #page-body {
   margin: 20px 0;
 }
 
+/* TEXT */
+
+#page-content hr {
+  display: block;
+  margin: 30px 0;
+  border: 0;
+  border-bottom: 1px solid #aca08f;
+  height: 1px;
+}
+
+#page-content mark {
+  background-color: #FAF594;
+}
+
+#page-content ul,
+#page-content ol {
+  padding: 0;
+  padding-inline-start: 32px;
+  line-height: 1.5rem;
+}
+
+#page-content li > ul,
+#page-content li > ol {
+  margin-top: 10px;
+}
+
+#page-content li+li {
+  margin: 12px 0 0;
+}
+
+#page-content h1,
+#page-content h2 {
+  font-family: 'Linux Libertine','Georgia','Times','Source Serif Pro',serif;
+}
+
+#page-content h2 { border-bottom: 1px solid #999; padding-bottom: 3px; }
+
+#page-content h1 { font-weight: 200; }
+#page-content h2,
+#page-content h3,
+#page-content h4 {
+  font-weight: 500;
+}
+
+#page-content h1 { font-size: 1.8em; }
+#page-content h2 { font-size: 1.5em; }
+#page-content h3 { font-size: 1.2em; }
+#page-content h4 { font-size: 1.0em; }
+
+#page-content h1 { margin-top: 56px; }
+#page-content h2 { margin-top: 56px; }
+#page-content h3 { margin-top: 32px; }
+#page-content h4 { margin-top: 20px; }
+
+#page-content h2+p,
+#page-content h3+p,
+#page-content h4+p {
+  margin-top: 12px;
+}
+
+#page-content p+p {
+  margin-top: 24px;
+  display: block;
+}
+
+#page-content code {
+  background-color: rgba(#616161, 0.1);
+  color: #616161;
+}
+
+#page-content pre {
+  background: #0D0D0D;
+  color: #FFF;
+  font-family: 'JetBrainsMono', monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+#page-content pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+}
+
+#page-content img {
+  max-width: 100%;
+  height: auto;
+}
+
+#page-content blockquote {
+  border-left: 2px solid #d5cdb7;
+  background-color: #d5cdb724;
+  font-family: Arial,Helvetica,sans-serif;
+  font-style: italic;
+  margin: 20px 0;
+  padding: 5px 10px;
+}
+
 .night-mode #page-content .subject {
   color: #b2bbc1;
+}
+
+/* Меню скрытое с книгами, открывается по клику на название статьи */
+
+.page-menu.menu-books {
+  top: 148px;
+}
+
+/* MENU */
+#page-content .level {
+  margin-left: 15px;
+}
+
+#page-content .menu-subject.depth-0 {
+  font-weight: 500;
+}
+#page-content .menu-subject {
+  font-size: 1.1em;
 }
 
 #page-content .menu-tree a {
@@ -81,29 +168,11 @@
   color:#367e45;
 }
 
-#page-references {
-  margin-top: 25px;
-}
-
 .menu-tree {
   padding: 15px 0 0 0;
-}
-
-blockquote {
-  border-left: 2px solid #d5cdb7;
-  background-color: #d5cdb724;
-  font-family: Arial,Helvetica,sans-serif;
-  font-style: italic;
-  margin: 20px 0;
-  padding: 5px 10px;
 }
 
 .night-mode blockquote {
   border-left: 2px solid #90b990;
   background-color: #90b99011;
 }
-
-mark {
-  background-color: rgba(255, 243, 73, 0.5);
-}
-

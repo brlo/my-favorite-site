@@ -135,35 +135,42 @@ class Page < ApplicationMongoRecord
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
     self.group_lang_id = self.group_lang_id || BSON::ObjectId.new
 
-    self.body = self.body.to_s.strip
-
-    # избавяемся от лишних в тэгов и пустых строк
-    self.body = sanitizer.sanitize(
-      self.body,
-      tags: ALLOW_TAGS
-    )&.gsub('<p></p>', '')
-
     # Заменяем неразрывные пробелы (&nbsp;) на обычные. Иначе строки не рвутся, выглядит очень странно
     # приходят эти пробелы, походу, через редактор Pell. В базе выглядит уже не как &nbsp;, а как обычный пробел,
     # поэтому сразу и не распознаешь, а вот в VSCode он выделяется жёлтым прямоугольником.
     self.body = self.body.to_s.gsub(' ', ' ')
     self.body = self.body.to_s.gsub('&nbsp;', ' ')
 
+    self.body = self.body.to_s.strip
+
     # Обработка страниц, где запрошена разбивка на стихи как в Библии.
     if self.is_page_verses?
+      # избавяемся от лишних в тэгов и пустых строк
+      self.body = sanitizer.sanitize(
+        self.body,
+        tags: %w(strong b i u s)
+      )&.gsub('<p></p>', '')
+
       if self.body.present?
         marker = '=%='
         # если есть =%= то действовать по одному алгоритму,
         # а если есть боди, но нет =%=, то действуем по-другому, как в первый раз.
         if self.body.include?(marker)
-          self.verses = self.body.gsub('<p>', '').gsub('</p>', '').split(marker)
+          self.verses = self.body.split(marker)
         else
           self.verses = split_to_verses(self.body)
         end
 
         self.body = self.verses.map { |v| "<p>#{v}</p>" }.join("<p>#{marker}</p>")
       end
+    else
+      # избавяемся от лишних в тэгов и пустых строк
+      self.body = sanitizer.sanitize(
+        self.body,
+        tags: ALLOW_TAGS
+      )&.gsub('<p></p>', '')
     end
+
 
     self.u_at = DateTime.now.utc.round
   end

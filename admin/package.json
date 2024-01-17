@@ -20,7 +20,6 @@
     "@vue-hero-icons/outline": "^1.7.2",
     "primeicons": "^6.0.1",
     "primevue": "^3.45.0",
-    "sass": "^1.69.4",
     "vue": "^3.3.4",
     "vue-router": "^4.2.5",
     "vue-underscore": "^0.1.4",

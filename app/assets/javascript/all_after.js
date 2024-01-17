@@ -224,7 +224,7 @@ menuABooks.show = function (needAddClass = null) {
     menuABooks.hide()
   } else {
     // оставляем только один постоянно нужный класс, а класс hidden стираем
-    menuABooks.el.className = 'menu-books book-clicked';
+    menuABooks.el.className = 'page-menu menu-books book-clicked';
     if (needAddClass !== null) menuABooks.el.classList.add(needAddClass);
     menuABooks.isShown = true;
 
@@ -238,7 +238,7 @@ menuABooks.show = function (needAddClass = null) {
 menuABooks.hide = function () {
   if (!window.menuABooks.el) return;
 
-  menuABooks.el.className = 'menu-books book-clicked';
+  menuABooks.el.className = 'page-menu menu-books book-clicked';
   menuABooks.el.classList.add('hidden');
   menuABooks.isShown = false;
   return false;
