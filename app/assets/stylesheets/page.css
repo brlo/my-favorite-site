@@ -11,7 +11,7 @@
 }
 
 #page-content h1.title {
-  font-size: 36px;
+  font-size: 30px;
   text-align: center;
 }
 
@@ -95,6 +95,8 @@
   display: block;
 }
 
+#page-content blockquote > p { margin: 0 }
+
 #page-content code {
   background-color: rgba(#616161, 0.1);
   color: #616161;
@@ -172,7 +174,7 @@
   padding: 15px 0 0 0;
 }
 
-.night-mode blockquote {
+.night-mode #page-content blockquote {
   border-left: 2px solid #90b990;
   background-color: #90b99011;
 }

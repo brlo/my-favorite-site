@@ -219,6 +219,11 @@ nav#menu-chapters a {
   /* font-weight: bold; */
 }
 
+/* Для pages нужны помельче главы */
+.page-content nav#menu-chapters a {
+  font-size: 0.7em;
+}
+
 /* Альтернативный вариант с рамочкой, тоже красиво, смложно остановиться на одном варианте */
 /* nav#menu-chapters a.selected {
   border: 1px solid rgba(205,151,101, 1);
