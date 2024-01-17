@@ -7,6 +7,10 @@ class ApplicationController < ActionController::Base
   before_action :set_is_night_mode
   before_action :set_locale
 
+  def not_found!
+    raise ActionController::RoutingError.new("Not Found")
+  end
+
   def set_is_night_mode
     @is_night_mode = cookies[:isNightMode] == '1'
   end

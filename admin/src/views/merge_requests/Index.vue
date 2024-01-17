@@ -91,7 +91,7 @@ watchEffect(
         <div class="descr">
           <span class="updated-at">{{ mr.updated_at_word  }}</span>,
           <span class="diff-scores">
-            <span class="plus">+{{ mr.plus_i }}</span> <span class="minus">-{{ mr.minus_i }}</span>
+            <span class="plus" v-if="mr.plus_i">+{{ mr.plus_i }}</span> <span class="minus" v-if="mr.minus_i">-{{ mr.minus_i }}</span>
           </span>
         </div>
       </div>
@@ -131,7 +131,7 @@ watchEffect(
           <span class="updated-at">{{ mr.updated_at_word  }}</span>,
           <span class="diff-author">{{ mr.author?.name  }}</span>,
           <span class="diff-scores">
-            <span class="plus">+{{ mr.plus_i }}</span> <span class="minus">-{{ mr.minus_i }}</span>
+            <span class="plus" v-if="mr.plus_i">+{{ mr.plus_i }}</span> <span class="minus" v-if="mr.minus_i">-{{ mr.minus_i }}</span>
           </span>
         </div>
       </div>

@@ -153,8 +153,7 @@ module Api
 
     # Use callbacks to share common setup or constraints between actions.
     def set_merge_request
-      @mr = ::MergeRequest.find(params[:id])
-      raise(::Mongoid::Errors::DocumentNotFound) if @mr.nil?
+      @mr = ::MergeRequest.find(params[:id]) || not_found!()
     end
 
     # Only allow a list of trusted parameters through.

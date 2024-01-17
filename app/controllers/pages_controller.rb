@@ -47,9 +47,7 @@ class PagesController < ApplicationController
     @content_lang = params[:content_lang]
 
     # документ скрыт
-    if @page.is_published != true
-      raise(::Mongoid::Errors::DocumentNotFound)
-    end
+    not_found!() if @page.is_published != true
 
     if @page.nil?
       # ########################################################################
@@ -63,7 +61,7 @@ class PagesController < ApplicationController
         redirect_to my_page_link_to("/#{@page.path}")
       else
         # Если страницу всё равно не нашли, то отдаём 404
-        raise(::Mongoid::Errors::DocumentNotFound)
+        not_found!()
       end
 
     elsif @page.lang == @content_lang

@@ -47,7 +47,7 @@ const pageFields = {
 function prettyTextDiffs() {
   const textAsArr = mergeRequest.value.page.body_as_arr
 
-  // Надо бы один раз собрать все группы, а потом один раз добавить в ref, чтобы лишний раз его не беспокоить
+  // Один раз собираем все группы, а потом один раз добавляем в ref, чтобы лишний раз его не беспокоить
   let groups = []
 
   if (textAsArr && textAsArr.length) {
@@ -220,7 +220,7 @@ let isRejectBtnSeen = computed(() => {
 
     <div v-if="mergeRequest.text_diffs">
       <div class="diff-title diff-summary">
-        Текст статьи: <span class="plus mono-font">+{{ mergeRequest.plus_i }}</span> <span class="minus mono-font">-{{ mergeRequest.minus_i }}</span>
+        Текст статьи: <span class="plus mono-font" v-if="mergeRequest.plus_i">+{{ mergeRequest.plus_i }}</span> <span class="minus mono-font" v-if="mergeRequest.minus_i">-{{ mergeRequest.minus_i }}</span>
       </div>
       <div class="diff" v-for="group in prettyTextDiffs()">
         <table class="diff-groups">

@@ -8,7 +8,7 @@
             <tr>
               <td class='verse-line' id='L<%= i %>' data-line="<%= "#{i}" %>"><%= i %></td>
               <td class='csl verse-text' id='T<%= i %>' data-line="<%= "#{i}" %>">
-                <%= sanitize(v, tags: %w(j e i b strong br)) %>
+                <%= sanitize(v, tags: %w(j e i b strong)) %>
               </td>
             </tr>
           <% end %>

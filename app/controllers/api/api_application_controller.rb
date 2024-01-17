@@ -16,7 +16,6 @@ module Api
     before_action :set_locale
 
     rescue_from ::ActiveRecord::RecordNotFound, with: :record_not_found
-    rescue_from ::Mongoid::Errors::DocumentNotFound, with: :record_not_found
     rescue_from ::NameError, with: :error_occurred
     rescue_from ::ActionController::RoutingError, with: :route_not_found
 

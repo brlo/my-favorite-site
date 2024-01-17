@@ -2,6 +2,8 @@ require 'nokogiri'
 # Page.create_indexes
 
 class Page < ApplicationMongoRecord
+  ALLOW_TAGS = %w(ul ol li h1 h2 h3 blockquote strong b i em strike s u hr p a mark img code)
+
   PAGE_TYPES = {
     'статья'        => 1,
     'книга'         => 2,
@@ -136,15 +138,16 @@ class Page < ApplicationMongoRecord
     self.body = self.body.to_s.strip
     self.references = self.references.to_s.strip if self.references.present?
 
-    # избавяемся от лишних в тэгов
+    # избавяемся от лишних в тэгов и пустых строк
     self.body = sanitizer.sanitize(
       self.body,
-      tags: %w(div ul ol li h1 h2 h3 blockquote strong b i em strike s u hr br p a mark img code)
-    )
+      tags: ALLOW_TAGS
+    )&.gsub('<p></p>', '')
+
     self.references = sanitizer.sanitize(
       self.references,
-      tags: %w(div ul ol li h1 h2 h3 blockquote strong b i em strike s u hr br p a mark img code)
-    )
+      tags: ALLOW_TAGS
+    )&.gsub('<p></p>', '')
 
     # Заменяем неразрывные пробелы (&nbsp;) на обычные. Иначе строки не рвутся, выглядит очень странно
     # приходят эти пробелы, походу, через редактор Pell. В базе выглядит уже не как &nbsp;, а как обычный пробел,

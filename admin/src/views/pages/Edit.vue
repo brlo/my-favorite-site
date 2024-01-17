@@ -9,6 +9,8 @@ import InputSwitch from 'primevue/inputswitch';
 import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
+import SplitButton from 'primevue/splitbutton';
+
 
 // <div v-if="false" class="field">
 //   <label>Тэги (через запятую)</label>
@@ -150,6 +152,16 @@ function destroy() {
     })
   }
 }
+
+const submitBtnItems = [
+  {
+    label: 'Сохранить',
+    icon: 'pi pi-check',
+    command: () => {
+      submit()
+    }
+  },
+];
 </script>
 
 <template>
@@ -163,13 +175,14 @@ function destroy() {
 <IndexMergeRequests v-if="page.id" :pageId="page.id" :isPartial="true"/>
 
 <div class="flex action-bar">
-  <!--
-  <button @click.prevent="submit" class="pretty btn">
-    Опубликовать {{ page.id ? 'правки' : 'статью' }}
-  </button>
-  -->
+  <SplitButton
+    v-if="page.id"
+    label="Предложить правки"
+    icon="pi pi-send"
+    @click="submitToReview"
+    :model="submitBtnItems"
+  />
 
-  <Button v-if="page.id" @click.prevent="submitToReview" label="Предложить правки" icon="pi pi-check" />
   <Button v-else @click.prevent="submit" label="Опубликовать статью" icon="pi pi-check" />
 
   <div class="field fields-published">

@@ -77,8 +77,7 @@ module Api
     end
 
     def set_dict_word
-      @dict_word = ::DictWord.find(params[:id])
-      raise(::Mongoid::Errors::DocumentNotFound) if @dict_word.nil?
+      @dict_word = ::DictWord.find(params[:id]) || not_found!()
     end
 
     def dict_word_params

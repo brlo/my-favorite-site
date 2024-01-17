@@ -75,13 +75,11 @@ module Api
     end
 
     def set_page
-      @page = ::Page.find(params[:id])
-      raise(::Mongoid::Errors::DocumentNotFound) if @page.nil?
+      @page = ::Page.find(params[:id]) || not_found!()
     end
 
     def set_menu_item
-      @menu_item = ::Menu.find(params[:menu_item_id])
-      raise(::Mongoid::Errors::DocumentNotFound) if @menu_item.nil?
+      @menu_item = ::Menu.find(params[:menu_item_id]) || not_found!()
     end
 
     def menu_item_params
