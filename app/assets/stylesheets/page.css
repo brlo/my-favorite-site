@@ -63,14 +63,14 @@
   color: #b2bbc1;
 }
 
-#page-content .pages a {
+#page-content .menu-tree a {
   display: inline-block;
   margin: 0 12px 5px 0;
   border-bottom: 1px solid;
   text-decoration: none;
   white-space: nowrap;
 }
-#page-content .pages a:hover {
+#page-content .menu-tree a:hover {
   border-bottom: 1px solid;
 }
 
