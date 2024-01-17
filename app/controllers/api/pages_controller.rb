@@ -112,7 +112,7 @@ module Api
         :path,
         :parent_id,
         :lang, :group_lang_id,
-        :body, :references, :tags_str, :priority,
+        :body, :tags_str, :priority,
       )
     end
 

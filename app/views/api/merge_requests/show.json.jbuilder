@@ -38,7 +38,6 @@ json.item do
     json.body_as_arr       mr.src_ver == pg.merge_ver ? pg.body_as_arr : []
 
     json.body              pg.body
-    json.references        pg.references
     json.tags_str          pg.tags&.join(', ')
     json.priority          pg.priority
     json.created_at        pg.c_at

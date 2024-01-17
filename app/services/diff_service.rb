@@ -33,7 +33,6 @@ class DiffService
       page_type title title_sub path parent_id lang group_lang_id
       meta_desc redirect_from audio priority is_published
     )
-    # references
 
     # итак, какие поля изменились?
     field_list.each do |f|

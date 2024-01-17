@@ -94,7 +94,6 @@ class MergeRequest < ApplicationMongoRecord
         group_lang_id: pg.group_lang_id.to_s,
         body: pg.body,
         body_as_arr: [],
-        references: pg.references,
         tags_str: pg.tags&.join(', '),
         priority: pg.priority,
         created_at: pg.c_at,

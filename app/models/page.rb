@@ -136,16 +136,10 @@ class Page < ApplicationMongoRecord
     self.group_lang_id = self.group_lang_id || BSON::ObjectId.new
 
     self.body = self.body.to_s.strip
-    self.references = self.references.to_s.strip if self.references.present?
 
     # избавяемся от лишних в тэгов и пустых строк
     self.body = sanitizer.sanitize(
       self.body,
-      tags: ALLOW_TAGS
-    )&.gsub('<p></p>', '')
-
-    self.references = sanitizer.sanitize(
-      self.references,
       tags: ALLOW_TAGS
     )&.gsub('<p></p>', '')
 
@@ -154,8 +148,6 @@ class Page < ApplicationMongoRecord
     # поэтому сразу и не распознаешь, а вот в VSCode он выделяется жёлтым прямоугольником.
     self.body = self.body.to_s.gsub(' ', ' ')
     self.body = self.body.to_s.gsub('&nbsp;', ' ')
-    self.references = self.references.gsub(' ', ' ') if self.references.present?
-    self.references = self.references.gsub('&nbsp;', ' ') if self.references.present?
 
     # Обработка страниц, где запрошена разбивка на стихи как в Библии.
     if self.is_page_verses?

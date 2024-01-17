@@ -31,13 +31,6 @@
 
   <% end %>
 
-  <% if @page.references.present? %>
-    <div id='page-references'>
-      <h2><%= ::I18n.t('page.references') %></h2>
-      <%= sanitize(@page.references, tags: ::Page::ALLOW_TAGS).html_safe %>
-    </div>
-  <% end %>
-
   <div id='bottom-page-bar'>
     <div id="visits">
       <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
