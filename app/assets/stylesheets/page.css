@@ -2,6 +2,11 @@
   word-wrap: break-word;
 }
 
+/* Для pages нужны помельче главы */
+#page-content nav#menu-chapters a {
+  font-size: 0.7em;
+}
+
 #page-content h1#subject {
   font-weight: 500;
 }
@@ -11,7 +16,7 @@
 }
 
 #page-content h1.title {
-  font-size: 30px;
+  font-size: 36px;
   text-align: center;
 }
 
@@ -79,8 +84,8 @@
 #page-content h3 { font-size: 1.2em; }
 #page-content h4 { font-size: 1.0em; }
 
-#page-content h1 { margin-top: 56px; }
-#page-content h2 { margin-top: 56px; }
+#page-content h1 { margin-top: 30px; }
+#page-content h2 { margin-top: 50px; }
 #page-content h3 { margin-top: 32px; }
 #page-content h4 { margin-top: 20px; }
 
@@ -177,4 +182,7 @@
 .night-mode #page-content blockquote {
   border-left: 2px solid #90b990;
   background-color: #90b99011;
+}
+.night-mode #page-content #title-sub {
+  color: #777;
 }
