@@ -97,39 +97,58 @@ class PagesController < ApplicationController
         if @parent_page.page_type.to_i == ::Page::PAGE_TYPES['список']
           # МЕНЮ: все элементы меню родителя
           menus = ::Menu.where(page_id: @parent_page.id).to_a
-          menus_by_id = menus.index_by(&:id)
-          # группировка всех элементов менюпо родителю
-          menus_by_parent_id = menus.group_by { |m| m.parent_id }
-          # родители, у которых есть дети со ссылками
-          parents_with_links = menus_by_parent_id.select { |p_id,group| group.find{ |el| el.path.presence } }
+          menus_by_id = {}
+          menus_by_path = {}
+          menus_by_parent_id = ::Hash.new([])
+          parent_ids_with_links = ::Hash.new([])
+
+          menus.each do |menu|
+            # индексация по ID
+            menus_by_id[menu.id] = menu
+            # индексация по PATH
+            menus_by_path[menu.path] = menu
+            # поиск всех parent_id, имеющих детей с path
+            if menu.path.present? && menu.parent_id.present?
+              parent_ids_with_links[menu.parent_id] += [menu]
+            end
+          end
+
+          # сортируем
+          parent_ids_with_links.each do |p_id, group|
+            parent_ids_with_links[p_id] =
+            parent_ids_with_links[p_id].sort_by { |m| m.priority.to_i }
+          end
 
           # ТРУДЫ АВТОРА: корневые элементы меню (будем считать, что это труды автора)
-          @parent_books = parents_with_links.map do |p_id,group|
-            el = menus_by_id[p_id]
-            next if el.nil?
+          @parent_books =
+          parent_ids_with_links.map do |p_id, children_with_links|
+            parent = menus_by_id[p_id]
+            # next if el.nil?
 
             # ссылка из первого вложенного элемента
-            first_child_with_link = group&.
-              select{ |_m| _m.path.present? }&.
-              sort_by { |_m| _m.priority }&.
-              first&.path
-            next if first_child_with_link.nil?
+            first_child_with_link = children_with_links.first.path
+            # next if first_child_with_link.nil?
 
-            [ el.title, first_child_with_link ]
+            # название от родителя, а ссылка от первого потомка
+            # Перейдя по такой ссылке, мы окажемся на странице потомка,
+            # а под его заголовком будут отрисованы все дочерние элементы родителя,
+            # при этом в меню, которое вызывается при клике на заголовок потомка,
+            # отрисовываются все родители, имеющие потомков, переходя к которым
+            # увидим возможность также переключаться между соседнимипотомками.
+            [ parent.title, first_child_with_link ]
           end
-          # ЭТА СТРАНИЦА: элемент текущей страницы в меню
-          @page_in_menu = menus.find{ |m| m.path == @page.path }
 
-          # ГЛАВЫ: все соседи данной страницы в меню (будем считать, что это главы)
+          # ЭТА СТРАНИЦА. элемент текущей страницы в меню
+          @page_in_menu = menus_by_path[@page.path]
+
+          # ГЛАВЫ. все соседи данной страницы в меню (будем считать, что это главы)
           if @page_in_menu
+            siblings_and_me = parent_ids_with_links[@page_in_menu.parent_id]
             # соседи из меню (одинаковый родитель)
-            @chapters = menus_by_parent_id[@page_in_menu.parent_id].
-              select { |m| m.path.present? }.
-              sort_by { |m| m.priority }.
-              map { |m| [m.title, m.path] }
+            @chapters = siblings_and_me.map { |m| [m.title, m.path] }
 
             # сохраняем индексы глав в массиве с главами
-            @chapter_current = @chapters.index([@page_in_menu.title, @page_in_menu.path])
+            @chapter_current = siblings_and_me.index(@page_in_menu)
             @chapter_prev = @chapter_current - 1
             @chapter_next = @chapter_current + 1
           end

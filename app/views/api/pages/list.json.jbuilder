@@ -6,6 +6,7 @@ json.items do
   json.array!(@pages) do |page|
     json.id              page.id.to_s
     json.title           page.title
+    json.path            page.path
     json.is_published    page.is_published
     json.page_type       page.page_type.to_s
     json.group_lang_id   page.group_lang_id.to_s

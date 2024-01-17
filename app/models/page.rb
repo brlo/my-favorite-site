@@ -152,11 +152,15 @@ class Page < ApplicationMongoRecord
       )&.gsub('<p></p>', '')
 
       if self.body.present?
-        marker = '=%='
-        # если есть =%= то действовать по одному алгоритму,
-        # а если есть боди, но нет =%=, то действуем по-другому, как в первый раз.
-        if self.body.include?(marker)
-          self.verses = self.body.split(marker)
+        chapter_marker = '=!='
+        verse_marker = '=%='
+        # если есть =%= то действовать по одному алгоритму (правим деление по стихам),
+        # а если есть боди, но нет =%=, то действуем по-другому, как в первый раз (образуем стихи).
+        if self.body.include?(verse_marker)
+          # делим по маркерку глав (даже если его нет в тексте, будет массив с одной главой)
+          chapters = self.body.split(chapter_marker)
+          # делим главы по маркерам стихов
+          self.verses = chapters.map{ |ch| ch.split(verse_marker) }
         else
           self.verses = split_to_verses(self.body)
         end

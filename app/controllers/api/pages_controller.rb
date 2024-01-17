@@ -10,7 +10,7 @@ module Api
       @pages = ::Page.
         includes(:user).
         only(
-          :id, :title, :is_published, :page_type,
+          :id, :title, :path, :is_published, :page_type,
           :lang, :group_lang_id, :user_id, :parent_id, :c_at, :u_at
         ).
         limit(20).

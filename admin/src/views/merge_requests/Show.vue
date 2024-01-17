@@ -70,7 +70,7 @@ function prettyTextDiffs() {
       prettyGroup.push(...group)
 
       // СЛЕДУЮЩИЕ СТРОКИ (==)
-      if (Number.isInteger(lastGroupLine) && lastGroupLine < textAsArr.length) {
+      if (Number.isInteger(lastGroupLine)) {
         const nextNum = lastGroupLine + 1;
         const nextString = textAsArr[nextNum];
         if (nextString) {
