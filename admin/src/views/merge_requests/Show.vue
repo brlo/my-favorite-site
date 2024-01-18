@@ -53,7 +53,13 @@ function prettyTextDiffs() {
   if (textAsArr && textAsArr.length) {
     mergeRequest.value.text_diffs.forEach(group => {
       const firstGroupLine = group[0][1]
-      const lastGroupLine = group[group.length-1][1]
+      // const lastGroupLine = group[group.length-1][1]
+
+      let lastMinus = group.findLast((action) => action[0] == '-')
+      lastMinus = lastMinus && lastMinus[1]
+      let firstPlus = group.find((action) => action[0] == '+')
+      firstPlus = firstPlus && firstPlus[1]
+      // const lastGroupLine = (lastMinus && lastMinus[1]) || (firstPlus && firstPlus[1])
 
       const prettyGroup = []
 
@@ -70,11 +76,18 @@ function prettyTextDiffs() {
       prettyGroup.push(...group)
 
       // СЛЕДУЮЩИЕ СТРОКИ (==)
-      if (Number.isInteger(lastGroupLine)) {
-        const nextNum = lastGroupLine + 1;
+      // НУЖНО НАЙТИ В ГРУППЕ ПОСЛЕДНИЙ МИНУС, ИЛИ ПЕРВЫЙ ПЛЮС, это и будет lastGroupLine
+      if (Number.isInteger(lastMinus)) {
+        const nextNum = lastMinus + 1;
         const nextString = textAsArr[nextNum];
         if (nextString) {
           prettyGroup.push(['', nextNum, nextString]);
+        }
+      } else if (Number.isInteger(firstPlus)) {
+        const num = firstPlus;
+        const str = textAsArr[num];
+        if (str) {
+          prettyGroup.push(['', num, str]);
         }
       }
 
@@ -200,7 +213,7 @@ let isRejectBtnSeen = computed(() => {
 
   <div class="errors">{{ errors }}</div>
 
-  <div class="merge-request">
+  <div class="merge-request looks-like-page">
 
     <div class="diff" v-for="(val,key) in mergeRequest.attrs_diff">
       <div class="diff-title">{{ pageFields[key] }}</div>
@@ -305,7 +318,7 @@ td.line-num {
   user-select: none;
   color: #ffffff;
   vertical-align: top;
-  padding: 4px 6px;
+  padding: 6px;
   text-align: right;
   font-size: 0.8em;
   font-weight: bold;
@@ -317,7 +330,7 @@ td.line-action {
   width: 30px;
   text-align: center;
   vertical-align: top;
-  padding: 4px 5px 0 5px;
+  padding: 6px 5px 0 5px;
   font-size: 0.8em;
   font-weight: bold;
 }

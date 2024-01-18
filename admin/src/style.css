@@ -414,3 +414,110 @@ i.green { background-color:#1dca8a; color: white;}
   display: block;
   margin: 15px 0;
 }
+
+
+
+/* ПРИМЕНЯЕТСЯ К ТЕКСТАМ ИЗ СТАТЕЙ */
+
+.looks-like-page hr {
+  display: block;
+  margin: 30px 0;
+  border: 0;
+  border-bottom: 1px dashed #aca08f;
+  height: 1px;
+}
+
+.looks-like-page mark {
+  background-color: #FAF594;
+}
+
+.looks-like-page ul,
+.looks-like-page ol {
+  padding: 0;
+  padding-inline-start: 32px;
+  line-height: 1.5rem;
+}
+
+.looks-like-page li > ul,
+.looks-like-page li > ol {
+  margin-top: 10px;
+}
+
+.looks-like-page li+li {
+  margin: 12px 0 0;
+}
+
+.looks-like-page h1,
+.looks-like-page h2 {
+  font-family: 'Linux Libertine','Georgia','Times','Source Serif Pro',serif;
+}
+
+.looks-like-page h2 { border-bottom: 1px solid #999; padding-bottom: 3px; }
+
+.looks-like-page h1 { font-weight: 200; }
+.looks-like-page h2,
+.looks-like-page h3,
+.looks-like-page h4 {
+  font-weight: 500;
+}
+
+.looks-like-page h1 { font-size: 1.8em; }
+.looks-like-page h2 { font-size: 1.5em; }
+.looks-like-page h3 { font-size: 1.2em; }
+.looks-like-page h4 { font-size: 1.0em; }
+
+.looks-like-page h1 { margin-top: 30px; }
+.looks-like-page h2 { margin-top: 50px; }
+.looks-like-page h3 { margin-top: 32px; }
+.looks-like-page h4 { margin-top: 20px; }
+
+.looks-like-page h2+p,
+.looks-like-page h3+p,
+.looks-like-page h4+p {
+  margin-top: 12px;
+}
+
+.looks-like-page p+p {
+  margin-top: 24px;
+  display: block;
+}
+/* в diff не нужно у p делать такие большие отступы */
+.diff td.line-content p {
+  margin: 2px 0px;
+}
+
+.looks-like-page blockquote > p { margin: 0 }
+
+.looks-like-page code {
+  background-color: rgba(#616161, 0.1);
+  color: #616161;
+}
+
+.looks-like-page pre {
+  background: #0D0D0D;
+  color: #FFF;
+  font-family: 'JetBrainsMono', monospace;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+}
+.looks-like-page pre code {
+  color: inherit;
+  padding: 0;
+  background: none;
+  font-size: 0.8rem;
+}
+
+.looks-like-page img {
+  max-width: 100%;
+  height: auto;
+}
+
+.looks-like-page blockquote {
+  border-left: 2px solid #d5cdb7;
+  background-color: #d5cdb724;
+  font-family: Arial,Helvetica,sans-serif;
+  font-style: italic;
+  margin: 20px 0;
+  padding: 5px 10px;
+}
+/* КОНЕЦ // ПРИМЕНЯЕТСЯ К ТЕКСТАМ ИЗ СТАТЕЙ */

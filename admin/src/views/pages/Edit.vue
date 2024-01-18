@@ -11,6 +11,7 @@ import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import SplitButton from 'primevue/splitbutton';
 
+const apiUrl = import.meta.env.VITE_API_URL
 
 // <div v-if="false" class="field">
 //   <label>Тэги (через запятую)</label>

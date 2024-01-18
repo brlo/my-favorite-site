@@ -6,7 +6,7 @@ json.items do
 
     json.id                mr.id.to_s
     json.page_id           mr.page_id.to_s
-    json.page_title        page.title
+    json.page_title        page&.title
     json.minus_i           mr.minus_i
     json.plus_i            mr.plus_i
     json.is_merged         mr.is_merged.to_i

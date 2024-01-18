@@ -2,7 +2,7 @@ require 'nokogiri'
 # Page.create_indexes
 
 class Page < ApplicationMongoRecord
-  ALLOW_TAGS = %w(ul ol li h1 h2 h3 blockquote strong b i em strike s u hr p a mark img code)
+  ALLOW_TAGS = %w(ul ol li h1 h2 h3 h4 blockquote strong b i em strike s u hr p a mark img code)
 
   PAGE_TYPES = {
     'статья'        => 1,
@@ -248,7 +248,7 @@ class Page < ApplicationMongoRecord
     # добавляем после каждого тэга, который приводит к переносу строки, символ "=%=",
     # чтобы по нему потом разделить на строки
     html_text = safe_body(html_text)
-    html_text = html_text.to_s.gsub(/<\/(p|h1|h2|h3|h4|blockquote|ol|ul|hr)>/, '\0=%=').split('=%=')
+    html_text = html_text.to_s.gsub(/<\/(p|h1|h2|h3|h4|hr)>/, '\0=%=').split('=%=')
     html_text
   end
 

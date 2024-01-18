@@ -152,41 +152,75 @@ class DiffService
       if next_mr.text_diffs.present?
         # новые номера строк
         max_lines_count = mr.lines_count
-        line_nums_arr = calc_new_line_nums(max_lines_count, next_mr.text_diffs)
+        # обращаясь по номеру элемента (индекса) получаем новый номер строки, куда вставлять +
+        # например: нам надо было вставить строку на позицию 3, а она теперь после:
+        # - вставки одной строки ДО, уехала на 4 место,
+        # - удаления одной строки ДО, уехала на 2 место
+        # - если меняли что-то ПОСЛЕ, то значения для этого действия не имеет.
+        #
+        # Поэтому мы ищем новое место для вставки строк в ту же (ОТНОСИТЕЛЬНО) позицию
+        new_line_nums_for_plus_arr = calc_new_line_nums(max_lines_count, next_mr.text_diffs)
+        # а тут просто переворачиваем массив для плюсов, так как нам уже надо
+        # искать наоборот: не по индексу, а по значению, то есть надо найти под
+        # каким номером теперь находится старая строка
+        new_line_nums_for_minus_hash = new_line_nums_for_plus_arr.map.with_index { |k,i| [k,i]  }.to_h
+
+        puts "==============================================================="
+        puts "==========================new_line_nums_for_plus_arr====================================="
+        puts "new_line_nums_for_plus_arr: #{new_line_nums_for_plus_arr.inspect}"
+        puts "==========================new_line_nums_for_minus_hash====================================="
+        puts "new_line_nums_for_minus_hash: #{new_line_nums_for_minus_hash.inspect}"
+        puts "==========================next_mr.text_diffs====================================="
+        puts "next_mr.text_diffs: #{next_mr.text_diffs.inspect}"
+        puts "==============================================================="
 
         # САМОЕ ГЛАВНОЕ МЕСТО!
         # апдейтим номера строк в нашем mr
         mr.text_diffs =
         mr.text_diffs.map do |group|
-
+puts "=================GROUP NEW======================="
           group.map do |action, line_num, val|
+puts "=================LINE NEW======================="
+puts "#{action}, #{line_num}, #{val}"
             # Так обозначаются потерявшиеся в процессе rebase строки.
             # Храним их, так как это текст какого-то автора. Вдруг он для него ценен.
+            puts "next if line_num == '?': #{line_num == '?'}"
             next if line_num == '?'
             # новая позиция старой строки
-            new_num = line_nums_arr[line_num]
+            new_num = new_line_nums_for_minus_hash[line_num]
+            puts "new_num: #{new_num}"
             # ЕСЛИ новое место старой строки не нашли, то:
-            # - действие "минус"
-            # - действие "плюс"
+            # - действие "минус" ...
+            # - действие "плюс" ...
+            puts "if new_num.nil?: #{new_num.nil?}"
+            puts "new_num == 'CANCEL-': #{new_num == 'CANCEL-'}"
             if new_num.nil?
-              # соответствующей строки нет — поэтому ничего не удаляем. Нельзя удалять что попало.
+              # соответствующей строки нет — значит её тоже удалили в этом коммите, как и мы в своём коммите
+              puts "if action == '-': #{action == '-'}"
+              puts "elsif action == '+': #{action == '+'}"
               if action == '-'
-                # но тогда удалённую линию нужно вернуть в массив с номерами строк,
-                # так как выходит, что мы её не удалили
-                line_nums_arr.insert(line_num, 'CANCEL-')
-                # возможно произошла замена неизвестной строки, а значит мы пропускаем и МИНУС и ПЛЮС (далее)
-                new_num = '?'
-              # соответствующей строки нет - поведение ветвится:
-              # - пропускаем, если эта строка уже удалялась в группе ранее;
-              # - добавляем в ближайшую известную строку, если это новая строка, а не замена.
+                # добавим пометку для этой строки, чтобы если будет попытка что-то сюда вставить
+                # то мы понимали, что это была попытка зменить одну строку на другую (исправить)
+                new_line_nums_for_minus_hash[line_num] = 'CANCEL-'
+                # делать ничего не надо с этой строкой, так как её уже удалили
+                next
+
+              # соответствующей строки нет - добавляем в ближайшую известную строку
               elsif action == '+'
-                line_num
-                # начинаем со следующего элемента, т.к. line_num уже проверили
-                first = line_num + 1
-                last = line_nums_arr.count - 1
-                neares_line_num = (first..last).find { |i| line_nums_arr[i].present? }
-                new_num = neares_line_num || last
+                neares_next_line_num = nil
+                new_line_nums_for_minus_hash.keys.each do |i|
+                  if i > line_num && (nl = new_line_nums_for_minus_hash[line_num]).is_a?(Integer)
+                    # номер строки больше того, который мы не смогли найти в этом хэше
+                    # и значение является номером строки (а не CANCEL-)
+                    neares_next_line_num = nl
+                    break
+                  end
+                end
+                new_num = neares_next_line_num || last
               end
+
+            # пропускаем, т.к. эта строка удалялась в группе ранее, а это мы сейчас в плюс попали.
+            # для этого мы и ставили эту метку, чтобы потом пропустить плюс
             elsif new_num == 'CANCEL-'
               line_nums_arr.delete_at(line_num)
               new_num = '?'
@@ -196,7 +230,10 @@ class DiffService
           end.compact
         end.select(&:presence)
       end
-
+puts '===================='
+puts mr.text_diffs.inspect
+puts
+puts
       # ок, мы поднялись на одну итерацию
       mr.src_ver = next_mr.dst_ver
 
@@ -221,10 +258,10 @@ class DiffService
   # И только потом мы применяем новую нумерацию и начинаем обрабатывать "плюсы",
   # то есть добавлять строки.
   def apply_diffs_patch init_text, diffs
-    # текущий текст статьи
-    return if init_text.blank?
     # диффсы, которые нужно применить
     return if diffs.blank?
+
+    init_text ||= []
 
     # сюда будем складывать номера строк для удаления и добавления
     minuses = []
@@ -281,7 +318,7 @@ class DiffService
     pluses = []
 
     # Ради следующих патчей отслеживаем смещение нумерации строк.
-    # для этого просто храним массив с нумерами строк и применяем к этому массиву
+    # для этого просто храним массив с номерами строк и применяем к этому массиву
     # все операции, которые применяем в тексту:
     # - если из текста удаляется строка — удаляем из массива строк этот же номер,
     # - если добавляется в текст — добавляем nil в ту же позицию в массиве строк

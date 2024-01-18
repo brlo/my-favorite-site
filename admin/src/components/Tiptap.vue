@@ -82,7 +82,7 @@ function setLink() {
 </script>
 
 <template>
-<div v-if="editor" class='tiptap-area'>
+<div v-if="editor" class='looks-like-page tiptap-area'>
   <div class='tiptap-toolbar'>
     <button @click="editor.chain().focus().toggleBold().run()" :disabled="!editor.can().chain().focus().toggleBold().run()" :class="{ 'is-active': editor.isActive('bold') }">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>text-bold</title><path d="M17.194,10.962A6.271,6.271,0,0,0,12.844.248H4.3a1.25,1.25,0,0,0,0,2.5H5.313a.25.25,0,0,1,.25.25V21a.25.25,0,0,1-.25.25H4.3a1.25,1.25,0,1,0,0,2.5h9.963a6.742,6.742,0,0,0,2.93-12.786Zm-4.35-8.214a3.762,3.762,0,0,1,0,7.523H8.313a.25.25,0,0,1-.25-.25V3a.25.25,0,0,1,.25-.25Zm1.42,18.5H8.313a.25.25,0,0,1-.25-.25V13.021a.25.25,0,0,1,.25-.25h4.531c.017,0,.033,0,.049,0l.013,0h1.358a4.239,4.239,0,0,1,0,8.477Z"/></svg>
@@ -101,6 +101,9 @@ function setLink() {
         <path stroke-linecap="round" stroke-linejoin="round" d="M15.362 5.214A8.252 8.252 0 0112 21 8.25 8.25 0 016.038 7.048 8.287 8.287 0 009 9.6a8.983 8.983 0 013.361-6.867 8.21 8.21 0 003 2.48z" />
         <path stroke-linecap="round" stroke-linejoin="round" d="M12 18a3.75 3.75 0 00.495-7.467 5.99 5.99 0 00-1.925 3.546 5.974 5.974 0 01-2.133-1A3.75 3.75 0 0012 18z" />
       </svg>
+    </button>
+    <button @click="editor.chain().focus().toggleBlockquote().run()" :class="{ 'is-active': editor.isActive('blockquote') }">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-quote</title><path d="M18.559,3.932a4.942,4.942,0,1,0,0,9.883,4.609,4.609,0,0,0,1.115-.141.25.25,0,0,1,.276.368,6.83,6.83,0,0,1-5.878,3.523,1.25,1.25,0,0,0,0,2.5,9.71,9.71,0,0,0,9.428-9.95V8.873A4.947,4.947,0,0,0,18.559,3.932Z"/><path d="M6.236,3.932a4.942,4.942,0,0,0,0,9.883,4.6,4.6,0,0,0,1.115-.141.25.25,0,0,1,.277.368A6.83,6.83,0,0,1,1.75,17.565a1.25,1.25,0,0,0,0,2.5,9.711,9.711,0,0,0,9.428-9.95V8.873A4.947,4.947,0,0,0,6.236,3.932Z"/></svg>
     </button>
     <button @click="editor.chain().focus().toggleCode().run()" :disabled="!editor.can().chain().focus().toggleCode().run()" :class="{ 'is-active': editor.isActive('code') }">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>angle-brackets</title><path d="M9.147,21.552a1.244,1.244,0,0,1-.895-.378L.84,13.561a2.257,2.257,0,0,1,0-3.125L8.252,2.823a1.25,1.25,0,0,1,1.791,1.744l-6.9,7.083a.5.5,0,0,0,0,.7l6.9,7.082a1.25,1.25,0,0,1-.9,2.122Z"/><path d="M14.854,21.552a1.25,1.25,0,0,1-.9-2.122l6.9-7.083a.5.5,0,0,0,0-.7l-6.9-7.082a1.25,1.25,0,0,1,1.791-1.744l7.411,7.612a2.257,2.257,0,0,1,0,3.125l-7.412,7.614A1.244,1.244,0,0,1,14.854,21.552Zm6.514-9.373h0Z"/></svg>
@@ -125,9 +128,6 @@ function setLink() {
     </button>
     <button @click="editor.chain().focus().toggleOrderedList().run()" :class="{ 'is-active': editor.isActive('orderedList') }">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>list-numbers</title><path d="M7.75,4.5h15a1,1,0,0,0,0-2h-15a1,1,0,0,0,0,2Z"/><path d="M22.75,11h-15a1,1,0,1,0,0,2h15a1,1,0,0,0,0-2Z"/><path d="M22.75,19.5h-15a1,1,0,0,0,0,2h15a1,1,0,0,0,0-2Z"/><path d="M2.212,17.248A2,2,0,0,0,.279,18.732a.75.75,0,1,0,1.45.386.5.5,0,1,1,.483.63.75.75,0,1,0,0,1.5.5.5,0,1,1-.482.635.75.75,0,1,0-1.445.4,2,2,0,1,0,3.589-1.648.251.251,0,0,1,0-.278,2,2,0,0,0-1.662-3.111Z"/><path d="M4.25,10.748a2,2,0,0,0-4,0,.75.75,0,0,0,1.5,0,.5.5,0,0,1,1,0,1.031,1.031,0,0,1-.227.645L.414,14.029A.75.75,0,0,0,1,15.248H3.5a.75.75,0,0,0,0-1.5H3.081a.249.249,0,0,1-.195-.406L3.7,12.33A2.544,2.544,0,0,0,4.25,10.748Z"/><path d="M4,5.248H3.75A.25.25,0,0,1,3.5,5V1.623A1.377,1.377,0,0,0,2.125.248H1.5a.75.75,0,0,0,0,1.5h.25A.25.25,0,0,1,2,2V5a.25.25,0,0,1-.25.25H1.5a.75.75,0,0,0,0,1.5H4a.75.75,0,0,0,0-1.5Z"/></svg>
-    </button>
-    <button @click="editor.chain().focus().toggleBlockquote().run()" :class="{ 'is-active': editor.isActive('blockquote') }">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-quote</title><path d="M18.559,3.932a4.942,4.942,0,1,0,0,9.883,4.609,4.609,0,0,0,1.115-.141.25.25,0,0,1,.276.368,6.83,6.83,0,0,1-5.878,3.523,1.25,1.25,0,0,0,0,2.5,9.71,9.71,0,0,0,9.428-9.95V8.873A4.947,4.947,0,0,0,18.559,3.932Z"/><path d="M6.236,3.932a4.942,4.942,0,0,0,0,9.883,4.6,4.6,0,0,0,1.115-.141.25.25,0,0,1,.277.368A6.83,6.83,0,0,1,1.75,17.565a1.25,1.25,0,0,0,0,2.5,9.711,9.711,0,0,0,9.428-9.95V8.873A4.947,4.947,0,0,0,6.236,3.932Z"/></svg>
     </button>
     <button @click="addImage">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>paginate-filter-picture-alternate</title><circle cx="9.75" cy="6.247" r="2.25"/><path d="M16.916,8.71A1.027,1.027,0,0,0,16,8.158a1.007,1.007,0,0,0-.892.586L13.55,12.178a.249.249,0,0,1-.422.053l-.82-1.024a1,1,0,0,0-.813-.376,1.007,1.007,0,0,0-.787.426L7.59,15.71A.5.5,0,0,0,8,16.5H20a.5.5,0,0,0,.425-.237.5.5,0,0,0,.022-.486Z"/><path d="M22,0H5.5a2,2,0,0,0-2,2V18.5a2,2,0,0,0,2,2H22a2,2,0,0,0,2-2V2A2,2,0,0,0,22,0Zm-.145,18.354a.5.5,0,0,1-.354.146H6a.5.5,0,0,1-.5-.5V2.5A.5.5,0,0,1,6,2H21.5a.5.5,0,0,1,.5.5V18A.5.5,0,0,1,21.855,18.351Z"/><path d="M19.5,22H2.5a.5.5,0,0,1-.5-.5V4.5a1,1,0,0,0-2,0V22a2,2,0,0,0,2,2H19.5a1,1,0,0,0,0-2Z"/></svg>
@@ -188,104 +188,5 @@ function setLink() {
   outline: none;
   padding: 8px 10px;
   min-height: 100px;
-}
-
-/* TEXT styles */
-
-.tiptap hr {
-  display: block;
-  margin: 30px 0;
-  border: 0;
-  border-bottom: 1px solid #aca08f;
-  height: 1px;
-}
-
-.tiptap mark {
-  background-color: #FAF594;
-}
-
-.tiptap ul,
-.tiptap ol {
-  padding: 0;
-  padding-inline-start: 32px;
-  quotes: "«" "»";
-  line-height: 1.5rem;
-}
-
-.tiptap li > ul,
-.tiptap li > ol {
-  margin-top: 10px;
-}
-
-.tiptap li+li {
-  margin: 12px 0 0;
-}
-
-.tiptap h1,
-.tiptap h2 {
-  font-family: 'Linux Libertine','Georgia','Times','Source Serif Pro',serif;
-}
-
-.tiptap h2 { border-bottom: 1px solid #999; padding-bottom: 3px; }
-
-.tiptap h1 { font-weight: 200; }
-.tiptap h2,
-.tiptap h3,
-.tiptap h4 {
-  font-weight: 500;
-}
-
-.tiptap h1 { font-size: 1.8em; }
-.tiptap h2 { font-size: 1.5em; }
-.tiptap h3 { font-size: 1.2em; }
-.tiptap h4 { font-size: 1.0em; }
-
-.tiptap h1 { margin-top: 56px; }
-.tiptap h2 { margin-top: 56px; }
-.tiptap h3 { margin-top: 32px; }
-.tiptap h4 { margin-top: 20px; }
-
-.tiptap h2+p,
-.tiptap h3+p,
-.tiptap h4+p {
-  margin-top: 16px;
-}
-
-.tiptap p+p {
-  margin-top: 24px;
-  display: block;
-}
-
-.tiptap code {
-  background-color: rgba(#616161, 0.1);
-  color: #616161;
-}
-
-.tiptap pre {
-  background: #0D0D0D;
-  color: #FFF;
-  font-family: 'JetBrainsMono', monospace;
-  padding: 0.75rem 1rem;
-  border-radius: 0.5rem;
-}
-.tiptap pre code {
-  color: inherit;
-  padding: 0;
-  background: none;
-  font-size: 0.8rem;
-}
-
-.tiptap img {
-  max-width: 100%;
-  height: auto;
-}
-
-.tiptap blockquote {
-  border-left: 2px solid #d5cdb7;
-  background-color: #d5cdb724;
-  font-family: Arial,Helvetica,sans-serif;
-  font-style: italic;
-  margin: 20px 0;
-  padding: 5px 10px;
 }
 </style>
