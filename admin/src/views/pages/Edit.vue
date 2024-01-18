@@ -31,9 +31,6 @@ import SplitButton from 'primevue/splitbutton';
 import { useToast } from "primevue/usetoast";
 import { api } from '@/libs/api.js';
 
-// задаётся в .env.local (local не уходит в git)
-const apiUrl = import.meta.env.VITE_API_URL
-
 const toast = useToast();
 const toastError = (t, msg) => { toast.add({ severity: 'error', summary: t, detail: msg, life: 5000 }) }
 const toastSuccess = (t, msg) => { toast.add({ severity: 'success', summary: t, detail: msg, life: 5000 }) }

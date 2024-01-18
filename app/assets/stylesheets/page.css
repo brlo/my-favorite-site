@@ -5,6 +5,7 @@
 /* Для pages нужны помельче главы */
 #page-content nav#menu-chapters a {
   font-size: 0.7em;
+  font-family: inherit;
 }
 
 #page-content h1#subject {
@@ -142,7 +143,7 @@
 /* Меню скрытое с книгами, открывается по клику на название статьи */
 
 .page-menu.menu-books {
-  top: 148px;
+  top: 130px;
 }
 
 /* MENU */

@@ -405,3 +405,12 @@ i.green { background-color:#1dca8a; color: white;}
   margin: 10px 0;
   color: #f00;
 }
+
+/* стили для описания слов в словаре, в scope не работает, т.к. тэги из базы и сразу не видны */
+.word .desc h { font-weight: 500; }
+/* сделать перед n перенос строки */
+.word .desc n:before {
+  content: ' ';
+  display: block;
+  margin: 15px 0;
+}

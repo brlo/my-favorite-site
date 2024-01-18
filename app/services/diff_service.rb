@@ -53,10 +53,9 @@ class DiffService
 
     # а body изменился? если да, то сохраняем только diffs
     if new_attrs['body'] != old_attrs['body']
-      body_old = old_attrs['body'].to_s.gsub('<p>', '').split('</p>')
-      body_new = new_attrs['body'].to_s.gsub('<p>', '').split('</p>')
+      body_old = ::Page.html_to_arr(old_attrs['body'])
+      body_new = ::Page.html_to_arr(new_attrs['body'])
       diffs = ::Diff::LCS.diff(body_old, body_new)
-
       # считаем сколько строк удалили и добавили
       _minus_i = 0
       _plus_i = 0
@@ -74,6 +73,7 @@ class DiffService
       # Мы их так группами и сохраняем, хотя можно было бы и отказаться.
       # Будем и показывать модератору группами. Так удобнее.
       mr.text_diffs = diffs.map { |diff_group| diff_group.map(&:to_a) }
+
       # кол-во строк в старом тексте
       # (чтобы смогли потом на это кол-во как бы наложить патч и посчитать новые строки)
       mr.lines_count = body_old.count
@@ -101,7 +101,7 @@ class DiffService
     # применяем diffs к тексту статьи
     patched_text = apply_diffs_patch(init_text_as_arr, mr.text_diffs)
     if patched_text
-      page.body = patched_text.map { |v| "<p>#{v}</p>" }.join
+      page.body = patched_text.join
     end
 
     page.merge_ver = ::DateTime.now.utc.round

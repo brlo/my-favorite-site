@@ -107,6 +107,9 @@ class User < ApplicationMongoRecord
   # pages_create
   # pages_update
   # pages_destroy
+  # pages_self_update - обновлять свои статьи
+  # pages_editor_update - обновлять статьи, где я редактор (принят хоть один MR)
+  # pages_self_destroy - удалять свои статьи
   #
   # mr_read
   # mr_create

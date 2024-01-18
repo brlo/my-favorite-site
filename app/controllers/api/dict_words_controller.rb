@@ -6,19 +6,29 @@ module Api
     before_action :reject_by_destroy_privs, only: [:destroy]
 
     def list
-      @dict_words = DictWord.order(w: 1).limit(20)
+      @dict_words = DictWord.limit(20)
+
       @dict_words = @dict_words.where(dict: params[:dict]) if params[:dict].present?
       @dict_words = @dict_words.limit([params[:limit].to_i, 100].min) if params[:limit].present?
 
       term = params[:term].to_s
       if term.present? && term.length > 2
+        # слова показывает с сортировкой по слову
         term = term.gsub(/[^[[:alnum:]]\s]/, '')
-        @dict_words = @dict_words.where(word_simple: /.*#{term}.*/i)
+        @dict_words = @dict_words.where(word_simple: /.*#{term}.*/i).order_by(w: 1)
+      else
+        # показываем недавно изменённые слова, если слово не ищут, а просто просят список
+        @dict_words = @dict_words.where(word_simple: /.*#{term}.*/i).order_by(updated_at: -1)
       end
 
       @dict_words.to_a
 
       render(json: {'success': 'ok', items: @dict_words.map(&:attrs_for_render)}, status: :ok)
+    end
+
+    def show
+      set_dict_word()
+      render(json: {'success': 'ok', item: @dict_word.attrs_for_render}, status: :ok)
     end
 
     # POST /menus
@@ -81,8 +91,8 @@ module Api
     end
 
     def dict_word_params
-      params.require(:dict_word).except(:id, :created_at, :updated_at).permit(
-        :dict, :src_lang, :dst_lang, :word, :transcription, :translation_short, :translation, :desc
+      params.require(:dict_word).except(:id, :created_at, :updated_at, :src_lang, :dst_lang).permit(
+        :dict, :word, :transcription, :translation_short, :translation, :desc
       )
     end
 

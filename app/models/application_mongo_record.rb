@@ -68,6 +68,10 @@ class ApplicationMongoRecord
   private
 
   def sanitizer
-    @sanitizer ||= ::Rails::Html::SafeListSanitizer.new
+    @sanitizer ||= self.class.sanitizer
+  end
+
+  def self.sanitizer
+    ::Rails::Html::SafeListSanitizer.new
   end
 end

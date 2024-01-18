@@ -118,7 +118,14 @@ module Api
 
     def reject_by_read_privs;    ability?('pages_read'); end
     def reject_by_create_privs;  ability?('pages_create'); end
-    def reject_by_update_privs;  ability?('pages_update'); end
-    def reject_by_destroy_privs; ability?('pages_destroy'); end
+    def reject_by_update_privs
+      ability?('pages_update') ||
+      (ability?('pages_self_update') && @page&.user_id == ::Current.user.id) ||
+      (ability?('pages_editor_update') && @page&.editors.to_a.includes?(::Current.user.id))
+    end
+    def reject_by_destroy_privs
+      ability?('pages_destroy') ||
+      (ability?('pages_self_destroy') && @page&.user_id == ::Current.user.id)
+    end
   end
 end

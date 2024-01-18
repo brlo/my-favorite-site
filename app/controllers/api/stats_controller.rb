@@ -1,7 +1,6 @@
 module Api
   class StatsController < ApiApplicationController
     before_action :reject_by_read_privs
-    # before_action :reject_by_update_privs, only: [:create, :update, :destroy]
 
     def visits
       @week_visits = ::PageVisits.week_visits()
@@ -15,17 +14,7 @@ module Api
       {'success': 'ok'}
     end
 
-    def reject_by_read_privs
-      if !::Current.user.ability?('pages_read')
-        render json: {success: 'fail', errors: 'access denied'}, status: 401
-      end
-    end
-
-    def reject_by_update_privs
-      if !::Current.user.ability?('pages_update')
-        render json: {success: 'fail', errors: 'access denied'}, status: 401
-      end
-    end
+    def reject_by_read_privs; ability?('pages_read'); end
 
     # def dump
     #   data = ''

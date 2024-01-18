@@ -21,7 +21,7 @@ class Page < ApplicationMongoRecord
   field :is_pub,     as: :is_published, type: Boolean, default: false
   # автор
   field :u_id,       as: :user_id, type: BSON::ObjectId
-  # редакторы
+  # ids редакторов
   field :editors, type: Array
   # основной заголовок
   field :title, type: String
@@ -44,7 +44,7 @@ class Page < ApplicationMongoRecord
   # текст статьи
   field :bd,         as: :body, type: String
   # текст статьи с разбивкой на стихи
-  field :vrs,        as: :verses, type: Array
+  field :vrs,        as: :verses, type: Hash
   # ссылки и заметки
   field :rfs,        as: :references, type: String
   # id темы
@@ -102,7 +102,7 @@ class Page < ApplicationMongoRecord
 
   # текст в виде строк в массиве
   def body_as_arr
-    self.body.to_s.gsub('<p>', '').split('</p>')
+    self.class.html_to_arr(self.body)
   end
 
   def generate_string(cnt = 8)
@@ -135,46 +135,42 @@ class Page < ApplicationMongoRecord
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
     self.group_lang_id = self.group_lang_id || BSON::ObjectId.new
 
-    # Заменяем неразрывные пробелы (&nbsp;) на обычные. Иначе строки не рвутся, выглядит очень странно
-    # приходят эти пробелы, походу, через редактор Pell. В базе выглядит уже не как &nbsp;, а как обычный пробел,
-    # поэтому сразу и не распознаешь, а вот в VSCode он выделяется жёлтым прямоугольником.
-    self.body = self.body.to_s.gsub(' ', ' ')
-    self.body = self.body.to_s.gsub('&nbsp;', ' ')
-
-    self.body = self.body.to_s.strip
+    self.body = self.class.safe_body(self.body).strip
 
     # Обработка страниц, где запрошена разбивка на стихи как в Библии.
     if self.is_page_verses?
       # избавяемся от лишних в тэгов и пустых строк
       self.body = sanitizer.sanitize(
         self.body,
-        tags: %w(strong b i u s)
-      )&.gsub('<p></p>', '')
+        tags: %w(b strong i em strike s u a mark j e h1 h2 h3 h4)
+      )
 
       if self.body.present?
-        chapter_marker = '=!='
         verse_marker = '=%='
         # если есть =%= то действовать по одному алгоритму (правим деление по стихам),
-        # а если есть боди, но нет =%=, то действуем по-другому, как в первый раз (образуем стихи).
         if self.body.include?(verse_marker)
+          # разница только в скобочках
+          chap_find_regex  = /<h[1-4]>\s*([[[:alnum:]]\s\-\.\+\—]+)\s*<\/h[1-4]>/i
+          chap_split_regex = /<h[1-4]>\s*[[[:alnum:]]\s\-\.\+\—]+\s*<\/h[1-4]>/i
           # делим по маркерку глав (даже если его нет в тексте, будет массив с одной главой)
-          chapters = self.body.split(chapter_marker)
+          titles = self.body.scan(chap_find_regex)
+          texts_arr = self.body.split(chap_split_regex)
           # делим главы по маркерам стихов
-          self.verses = chapters.map{ |ch| ch.split(verse_marker) }
+          chapter_verses = texts_arr.map { |ch| ch.split(verse_marker) }
+          chapter_verses.map{ |vs| [titles.shift, vs]}
         else
+        # а если есть боди, но нет =%=, то действуем по-другому, как в первый раз (образуем стихи).
           self.verses = split_to_verses(self.body)
         end
 
-        self.body = self.verses.map { |v| "<p>#{v}</p>" }.join("<p>#{marker}</p>")
+        self.body =
+        self.verses.map do |k,v|
+          t=titles.shift
+          t = (t ? "<h2>#{ t }</h2>" : '')
+          t + v.join("<p>#{verse_marker}</p>")
+        end
       end
-    else
-      # избавяемся от лишних в тэгов и пустых строк
-      self.body = sanitizer.sanitize(
-        self.body,
-        tags: ALLOW_TAGS
-      )&.gsub('<p></p>', '')
     end
-
 
     self.u_at = DateTime.now.utc.round
   end
@@ -187,17 +183,28 @@ class Page < ApplicationMongoRecord
 
     _text = sanitizer.sanitize(
       text.to_s,
-      tags: %w(b strong i em strike s u p a mark j e)
+      tags: %w(b strong i em strike s u a mark j e h1 h2 h3 h4)
     )
-    _verses = []
 
-    _text = _text.gsub('<p></p>', '')
-    _text = _text.gsub('<p>', '')
-    _text = _text.split('</p>').select(&:present?)
+    # разница только в скобочках
+    chap_find_regex  = /<h[1-4]>\s*([[[:alnum:]]\s\-\.\+\—]+)\s*<\/h[1-4]>/i
+    chap_split_regex = /<h[1-4]>\s*[[[:alnum:]]\s\-\.\+\—]+\s*<\/h[1-4]>/i
+    # достаём все заголовки в тэгах h1,h2,h3,h4
+    titles = _text.scan(chap_find_regex).map { |m| m.first.strip }
 
-    current_verse = ''
-    _text.each do |t|
-      t.split(' ').each do |word|
+    # делим текст по этим главам
+    chapters_texts = _text.split(chap_split_regex)
+
+    # делим тексты на строки
+    chapter__verses = chapters_texts.map do |_t|
+      _t = _t.gsub('<p></p>', '')
+      _t = _t.gsub('<p>', '')
+      _t = _t.gsub('</p>', ' ')
+
+      _verses = []
+
+      current_verse = ''
+      _t.split(' ').each do |word|
         current_verse += ' ' if current_verse.length > 0
         current_verse += word
 
@@ -221,13 +228,45 @@ class Page < ApplicationMongoRecord
           current_verse = ''
         end
       end
+
+      # закидываем остаточный стих в массив
+      if current_verse.present?
+        _verses.push(current_verse)
+      end
+
+      [
+        titles.shift,
+        _verses
+      ]
     end
 
-    # закидываем остаточный стих в массив
-    if current_verse.present?
-      _verses.push(current_verse)
-    end
+    chapter__verses&.to_h
+  end
 
-    _verses
+  # текст в виде строк в массиве
+  def self.html_to_arr html_text
+    # добавляем после каждого тэга, который приводит к переносу строки, символ "=%=",
+    # чтобы по нему потом разделить на строки
+    html_text = safe_body(html_text)
+    html_text = html_text.to_s.gsub(/<\/(p|h1|h2|h3|h4|blockquote|ol|ul|hr)>/, '\0=%=').split('=%=')
+    html_text
+  end
+
+  def self.safe_body html_text
+    # Заменяем неразрывные пробелы (&nbsp;) на обычные. Иначе строки не рвутся, выглядит очень странно
+    # приходят эти пробелы, походу, через редактор Pell. В базе выглядит уже не как &nbsp;, а как обычный пробел,
+    # поэтому сразу и не распознаешь, а вот в VSCode он выделяется жёлтым прямоугольником.
+
+    # tiptap в пустой строке внутрь <p></p> засовывает вот этот странный br:
+    html_text = html_text.to_s.gsub('<br class="ProseMirror-trailingBreak">', '')
+    html_text = html_text.to_s.gsub('<p></p>', '')
+    html_text = html_text.to_s.gsub(' ', ' ')
+    html_text = html_text.to_s.gsub('&nbsp;', ' ')
+
+    # избавяемся от лишних в тэгов, аттрибут и пустых строк
+    html_text = sanitizer.sanitize(
+      html_text,
+      tags: ALLOW_TAGS
+    ).gsub('<p></p>', '')
   end
 end

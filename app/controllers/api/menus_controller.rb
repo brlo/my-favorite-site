@@ -88,16 +88,10 @@ module Api
       )
     end
 
-    def reject_by_read_privs
-      if !::Current.user.ability?('pages_read')
-        render json: {success: 'fail', errors: 'access denied'}, status: 401
-      end
-    end
-
+    def reject_by_read_privs;    ability?('pages_read'); end
     def reject_by_update_privs
-      if !::Current.user.ability?('pages_update')
-        render json: {success: 'fail', errors: 'access denied'}, status: 401
-      end
+      ability?('pages_update') ||
+      (ability?('pages_self_update') && @page&.user_id == ::Current.user.id)
     end
   end
 end

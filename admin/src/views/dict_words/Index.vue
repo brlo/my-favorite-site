@@ -68,14 +68,14 @@ watchEffect(
 
 <div id="words" v-for="word in dictWords">
   <div class='word'>
-    {{ langs[word.src_lang] }}
-    <router-link :to="{ name: 'EditDictWord', params: { id: word.id }}">
-      {{ word.word }}
-    </router-link>
+    <div class="top">
+      {{ langs[word.src_lang] }}
+      <router-link :to="{ name: 'EditDictWord', params: { id: word.id }}">
+        {{ word.word }}
+      </router-link>
 
-    <div class="hint">
-      {{ word.transcription }},
-      {{ word.translation_short }}
+      {{ word.translation_short ? ' — ' + word.translation_short : '' }}
+      {{ word.transcription ? ', ' + word.transcription : ''  }}
     </div>
 
     <div class="desc" v-html="word.desc" />
@@ -85,16 +85,25 @@ watchEffect(
 </template>
 
 <style scoped>
-.word { margin: 15px 0;}
+#words {
+  margin: 30px 0 0 0;
+}
+.word {
+  margin: 0 0 40px 0;
+}
 .word a {
-  margin: 0 10px;
-  color:rgb(116, 108, 80);
+  color: white;
+  background-color: #af7777;
+  border-radius: 5px;
+  padding: 5px 10px;
+  text-decoration: none;
 }
 .word a:hover {
-  color:rgb(164, 155, 122);
+  background-color:#68b182;
 }
-.word .hint {
-  margin: 0 0 0 30px;
-  color: #999;
+.word .desc {
+  margin: 15px 0 0 30px;
+  color: #3a3a3a;
 }
+
 </style>

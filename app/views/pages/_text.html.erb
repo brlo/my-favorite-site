@@ -1,16 +1,25 @@
-<% if @verses.present? %>
+<% if @verses&.first.present? %>
   <div id='chapter-text'>
     <article itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
       <table>
         <tbody>
-          <% @verses.each.with_index do |v,i| %>
-            <% i+=1 %>
+          <% @verses.each.with_index do |(chapter_name, verses), chapter_num| %>
+            <% chapter_num += 1%>
             <tr>
-              <td class='verse-line' id='L<%= i %>' data-line="<%= "#{i}" %>"><%= i %></td>
-              <td class='csl verse-text' id='T<%= i %>' data-line="<%= "#{i}" %>">
-                <%= sanitize(v, tags: %w(b strong i em strike s u mark j e)) %>
+              <td class='verse-line' data-chapter="<%= "#{chupter_num}" %>"></td>
+              <td class='csl verse-text'>
+                <%= sanitize(chapter_name, tags: %w(b strong i em strike s u mark j e)) %>
               </td>
             </tr>
+            <% verses.each.with_index do |v,i| %>
+              <% i+=1 %>
+              <tr>
+                <td class='verse-line' id='L<%= i %>' data-line="<%= "#{i}" %>"><%= i %></td>
+                <td class='csl verse-text' id='T<%= i %>' data-line="<%= "#{i}" %>">
+                  <%= sanitize(v, tags: %w(b strong i em strike s u mark j e)) %>
+                </td>
+              </tr>
+            <% end %>
           <% end %>
         </tbody>
       </table>
@@ -23,7 +32,7 @@
         <% else %>
           <span class='invisible'>← <%= I18n.t('backward') %></span>
         <% end %>
-        <span id="end-tip"><%= I18n.t('end_chapter.the_end_of') %><br><%= @chapter_current + 1 %><%= ::I18n.t('end_chapter.suffix') %><br><%= ::I18n.t('end_chapter.chapter') %></span>
+        <span id="end-tip"><%= I18n.t('end_chapter.the_end_of') %><br><%= @chapter_current + 1 %><%= ::I18n.t('end_chapter.suffix') %></span>
         <% if @chapter_next < @chapters.count %>
           <a href="<%= my_page_link_to("/#{@chapters[@chapter_next].second}") %>"><%= I18n.t('forward') %> →</a>
         <% else %>
