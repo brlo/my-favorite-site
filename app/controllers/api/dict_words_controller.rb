@@ -6,7 +6,7 @@ module Api
     before_action :reject_by_destroy_privs, only: [:destroy]
 
     def list
-      @dict_words = DictWord.limit(20)
+      @dict_words = DictWord.limit(50)
 
       @dict_words = @dict_words.where(dict: params[:dict]) if params[:dict].present?
       @dict_words = @dict_words.limit([params[:limit].to_i, 100].min) if params[:limit].present?

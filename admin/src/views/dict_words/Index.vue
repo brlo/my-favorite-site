@@ -99,8 +99,8 @@ watchEffect(
   <div class='word'>Ничего не найдено</div>
 </div>
 
-<div id="words" v-for="word in dictWords">
-  <div class='word'>
+<div id="words">
+  <div class="word" v-for="word in dictWords">
     <div class="top">
       {{ langs[word.src_lang] }}
       <router-link :to="{ name: 'EditDictWord', params: { id: word.id }}">
@@ -112,7 +112,7 @@ watchEffect(
       {{ word.translation_short?.length ? ' — ' : '' }}
       <span class="translation-short">{{ word.translation_short }}</span>
     </div>
-    <div class="desc" v-html="word.desc" />
+    <div class="desc" v-if="word.desc" v-html="word.desc" />
   </div>
 </div>
 </template>
@@ -122,7 +122,7 @@ watchEffect(
   margin: 30px 0 0 0;
 }
 .word {
-  margin: 0 0 40px 0;
+  margin: 0 0 25px 0;
   color: #3a3a3a;
 }
 .word a {
@@ -139,6 +139,6 @@ watchEffect(
 .word .transcription { margin: 0 0 0 8px; }
 .word .desc {
   font-size: 0.8em;
-  margin: 15px 0 0 31px;
+  margin: 15px 0 30px 31px;
 }
 </style>
