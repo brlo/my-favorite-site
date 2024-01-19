@@ -24,15 +24,18 @@ const langs = {
 const searchTerm = ref('')
 
 const pages = ref({})
+const isLoading = ref(false)
 const errors = ref('')
 
 // _ через функцию debounce откладывает все попытки выполнить указанную функцию
 // на 300 сек, превращая все эти попытки в одну.
 const lazyAutoSearch = _.debounce(autoSearch, 300);
 function autoSearch() {
-  let params = { term: searchTerm.value }
+  isLoading.value = true;
+  let params = { term: searchTerm.value };
   if (props.limit) params.limit = props.limit;
   api.get('/pages/list', params).then(data => {
+    isLoading.value = false;
     console.log(data)
     if (data.success == 'ok') {
       pages.value = data.items;
@@ -61,7 +64,7 @@ watchEffect(
 
 <div v-if="!isListOnly" style="margin: 10px 0 20px 0">
   <span class="p-input-icon-left">
-    <i class="pi pi-search" />
+    <i :class="`pi ${ isLoading ? 'pi-spin pi-spinner' : 'pi-search' }`" />
     <InputText v-model="searchTerm" placeholder='Фильтр' autofocus autocomplete="off" id="search-field" />
   </span>
 </div>

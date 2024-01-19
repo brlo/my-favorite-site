@@ -15,10 +15,16 @@ module Api
       if term.present? && term.length > 2
         # слова показывает с сортировкой по слову
         term = term.gsub(/[^[[:alnum:]]\s]/, '')
-        @dict_words = @dict_words.where(word_simple: /.*#{term}.*/i).order_by(w: 1)
+        q = [
+          :word_simple, :tag, :transcription, :transcription_lat,
+          :translation_short, :translation, :desc
+        ].map do |n|
+          { n => /.*#{term}.*/i }
+        end
+        @dict_words = @dict_words.any_of(q).order_by(w: 1)
       else
         # показываем недавно изменённые слова, если слово не ищут, а просто просят список
-        @dict_words = @dict_words.where(word_simple: /.*#{term}.*/i).order_by(updated_at: -1)
+        @dict_words = @dict_words.order_by(updated_at: -1)
       end
 
       @dict_words.to_a
@@ -91,8 +97,13 @@ module Api
     end
 
     def dict_word_params
-      params.require(:dict_word).except(:id, :created_at, :updated_at, :src_lang, :dst_lang).permit(
-        :dict, :word, :transcription, :translation_short, :translation, :desc
+      params.require(
+        :dict_word
+      ).except(
+        :id, :created_at, :updated_at, :src_lang, :dst_lang
+      ).permit(
+        :dict, :word, :transcription, :transcription_lat,
+        :translation_short, :translation, :tag, :desc
       )
     end
 

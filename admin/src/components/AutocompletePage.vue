@@ -12,6 +12,7 @@ const props = defineProps({
 const pageId = ref(props.modelValue)
 const pages = ref([])
 const errors = ref('')
+const isLoading = ref()
 
 const emit = defineEmits(['update'])
 
@@ -20,11 +21,13 @@ const emit = defineEmits(['update'])
 // const lazyAutoSearch = _.debounce(autoSearch, 300);
 
 function autoSearch(event) {
+  isLoading.value = true;
   const searchTerm = event.query;
 
   if (searchTerm.length < 3) return;
 
   api.get('/pages/list', { term: searchTerm }).then(data => {
+    isLoading.value = false;
     console.log(data)
     if (data.success == 'ok') {
       const pagesList = [];
@@ -59,6 +62,7 @@ function onClear() {
   emptySearchMessage="Нет результатов"
   @clear="onClear"
   @item-select="onUpdate"
+  :loading="isLoading"
 />
 </template>
 

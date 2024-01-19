@@ -47,9 +47,9 @@ if (props.id) {
 // ]
 
 const dicts = [
+  { name: 'Test JP-RU', code: 't' },
   { name: 'Дворецкий GR-RU', code: 'd' },
   { name: 'Вейсман GR-RU', code: 'w' },
-  { name: 'Test JP-RU', code: 't' },
 ]
 
 let seen = computed(() => {
@@ -125,15 +125,25 @@ function destroy() {
     />
   </div>
 
+  <div class="field">
+    <label>Слово</label>
+    <InputText v-model="dictWord.word" placeholder="Слово" />
+  </div>
+
   <div class="group-fields">
-    <div class="field">
-      <label>Слово</label>
-      <InputText v-model="dictWord.word" placeholder="Слово" />
-    </div>
     <div class="field">
       <label>Транскрипция</label>
       <InputText v-model="dictWord.transcription" placeholder="Транскрипция" />
     </div>
+    <div class="field">
+      <label>Транскрипция (латиницей)</label>
+      <InputText v-model="dictWord.transcription_lat" placeholder="Транскрипция lat" />
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Главный признак</label>
+    <InputText v-model="dictWord.tag" placeholder="Главный признак" />
   </div>
 
   <div class="group-fields">

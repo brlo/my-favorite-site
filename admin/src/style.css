@@ -412,7 +412,7 @@ i.green { background-color:#1dca8a; color: white;}
 .word .desc n:before {
   content: ' ';
   display: block;
-  margin: 15px 0;
+  margin: 8px 0;
 }
 
 

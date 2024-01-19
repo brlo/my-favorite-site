@@ -31,7 +31,7 @@ module Api
       @pages = @pages.to_a
 
       # просмотры этих страниц из редиса
-      @page_visits = ::PageVisits.visits(@pages.map{|p| p.id.to_s })
+      @page_visits = ::PageVisits.visits(@pages.map{|p| p.id.to_s }) if @pages.any?
 
       render :list, status: :ok
     end

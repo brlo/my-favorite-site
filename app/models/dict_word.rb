@@ -21,15 +21,19 @@ class DictWord < ApplicationMongoRecord
   # Словарь (Дворецкого, Вайсмана)
   field :dict, type: String
   # Слово
-  field :w, as: :word, type: String
+  field :w,   as: :word, type: String
   # Слово, записанное без доп.знаков (для поиска)
-  field :ws, as: :word_simple, type: String
+  field :ws,  as: :word_simple, type: String
   # Чтение
-  field :t, as: :transcription, type: String
+  field :t,   as: :transcription, type: String
+  # Чтение латинскими буквами
+  field :tl,  as: :transcription_lat, type: String
   # Перевод короткий (может быть для подстрочника)
   field :trs, as: :translation_short, type: String
   # Перевод
-  field :tr, as: :translation, type: String
+  field :tr,  as: :translation, type: String
+  # Главный признак (сущ., гл., прил., вопрос, мест.)
+  field :tag, as: :tag, type: String
   # Описание слова
   field :desc, type: String
   # время создания можно получать из _id во так: id.generation_time
@@ -41,6 +45,7 @@ class DictWord < ApplicationMongoRecord
   # DictWord.remove_undefined_indexes
   index({dict: 1}, {background: true})
   index({ws: 1},   {background: true})
+  index({tag: 1},  {background: true})
 
   before_validation :normalize_attributes
 
@@ -55,8 +60,10 @@ class DictWord < ApplicationMongoRecord
       dst_lang:          DICTS[self.dict]['to'],
       word:              self.word,
       transcription:     self.transcription,
+      transcription_lat: self.transcription_lat,
       translation_short: self.translation_short,
       translation:       self.translation,
+      tag:               self.tag,
       desc:              self.desc,
       created_at:        self.c_at&.strftime("%Y-%m-%d %H:%M:%S"),
       updated_at:        self.u_at&.strftime("%Y-%m-%d %H:%M:%S"),
