@@ -69,12 +69,17 @@ function submit() {
   api[httpMethod](path, { dict_word: dictWord.value }).then(data => {
     console.log(data)
     if (data.success == 'ok') {
-      dictWord.value = data.item;
-      toastSuccess('Успех', 'Статья создана');
+      toastSuccess('Успех', 'Слово создано');
       errors.value = '';
-      router.push({ name: 'DictWords' });
+      if (dictWord.value.id) {
+        // а после обновления возвращаемся к общему списку слов
+        router.push({ name: 'DictWords' });
+      } else {
+        // после создания, даём возможность добавить новое слово в этот же словарь
+        dictWord.value = {dict: data.item.dict};
+      }
     } else {
-      toastError('Ошибка', 'Не удалось создать статью');
+      toastError('Ошибка', 'Не удалось создать слово');
       console.log('FAIL!', data);
       errors.value = data;
     }
@@ -82,15 +87,15 @@ function submit() {
 }
 
 function destroy() {
-  if(confirm("Удалить статью? \n" + dictWord.value.title)){
+  if(confirm("Удалить слово? \n" + dictWord.value.word)){
     api.delete(`/dict_words/${dictWord.value.id}`).then(data => {
       if (data.success == 'ok') {
-        toastSuccess('Успех', 'Статья удалена');
+        toastSuccess('Успех', 'Слово удалено');
         errors.value = '';
         router.push({ name: "DictWords" });
       } else {
         console.log('FAIL!', data);
-        toastError('Ошибка', 'Не удалось удалить статью');
+        toastError('Ошибка', 'Не удалось удалить слово');
         errors.value = data;
       }
     })
