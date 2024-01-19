@@ -4,17 +4,17 @@ import { ref } from "vue"
 import { api } from '@/libs/api.js'
 import AutoComplete from 'primevue/autocomplete';
 
+// https://vuejs.org/guide/components/v-model.html
+const model = defineModel()
+
 const props = defineProps({
-  modelValue: String,
   fetchKey: String,
 })
 
-const pageId = ref(props.modelValue)
+const selectedOption = ref()
 const pages = ref([])
 const errors = ref('')
 const isLoading = ref()
-
-const emit = defineEmits(['update'])
 
 // _ через функцию debounce откладывает все попытки выполнить указанную функцию
 // на 300 сек, превращая все эти попытки в одну.
@@ -30,9 +30,7 @@ function autoSearch(event) {
     isLoading.value = false;
     console.log(data)
     if (data.success == 'ok') {
-      const pagesList = [];
-      data.items.forEach(page => pagesList.push({name: page.title, obj: page}) );
-      pages.value = pagesList;
+      pages.value = data.items;
     } else {
       errors.value = data.errors;
     }
@@ -41,19 +39,18 @@ function autoSearch(event) {
 
 // СМОТРИ ВКЛАДКУ API / EMITS в https://primevue.org/autocomplete/
 function onUpdate(origEvent) {
-  // В origEvent.value лежит объект, который собирали выше, при получении списка статей:
-  // { name: 'имя статьи в выпадающем списке', obj: <Object целиком сам объект статьи> }
-  emit('update:modelValue', origEvent.value?.obj[props.fetchKey])
+  // В origEvent.value лежит выбранный объект из data.items
+  model.value = selectedOption.value?.[props.fetchKey];
 }
 function onClear() {
-  emit('update:modelValue', undefined)
+  model.value = selectedOption.value;
 }
 </script>
 
 <template>
 <AutoComplete
-  v-model="pageId"
-  optionLabel="name"
+  v-model="selectedOption"
+  optionLabel="title"
   :suggestions="pages"
   @complete="autoSearch"
   :delay="300"

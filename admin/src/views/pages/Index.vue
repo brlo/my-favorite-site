@@ -45,8 +45,6 @@ function autoSearch() {
   })
 }
 
-autoSearch()
-
 watchEffect(
   function() {
     if (searchTerm.value.length == 0 || searchTerm.value.length > 2) lazyAutoSearch();
