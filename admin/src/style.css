@@ -485,6 +485,15 @@ i.green { background-color:#1dca8a; color: white;}
 .diff td.line-content p {
   margin: 2px 0px;
 }
+/* для строк, которые не начинааются с ul или ol, а имеют сразу li, и съезжают */
+.diff td > li > p {
+  display: inline-block;
+  margin-left: -7px;
+}
+.diff td > li {
+  padding-inline-start: 19px;
+  margin: 16px 0px;
+}
 
 .looks-like-page blockquote > p { margin: 0 }
 
