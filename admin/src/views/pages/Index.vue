@@ -76,7 +76,9 @@ watchEffect(
     {{ langs[page.lang] }}
     <router-link :to="{ name: 'EditPage', params: { id: page.id }}">
       {{ page.title }}
-    </router-link><i class="badge grey" v-if="!page.is_published">скрыто</i>
+    </router-link>
+    <i class="badge black" v-if="page.is_deleted">удалено</i>
+    <i class="badge grey" v-else-if="!page.is_published">скрыто</i>
 
     <div class="hint">
       {{ page.updated_at_word  }},

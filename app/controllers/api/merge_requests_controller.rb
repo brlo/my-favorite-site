@@ -18,7 +18,7 @@ module Api
       @mrs = @mrs.to_a
 
       page_ids = @mrs.pluck(:p_id)
-      pages = ::Page.where(:id.in => page_ids).only(:id, :title).to_a
+      pages = ::Page.where(:id.in => page_ids).only(:id, :title, :is_published, :is_deleted).to_a
       @pages_by_id = pages.index_by(&:id)
       render :list, status: :ok
     end

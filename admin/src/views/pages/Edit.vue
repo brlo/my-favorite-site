@@ -10,6 +10,7 @@ import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import SplitButton from 'primevue/splitbutton';
+import { api } from '@/libs/api.js';
 
 const apiUrl = import.meta.env.VITE_API_URL
 
@@ -29,10 +30,14 @@ const apiUrl = import.meta.env.VITE_API_URL
 //   <tiptap :content="page.references" @change="(d) => { page.references = d; }"/>
 // </div>
 
-import { useToast } from "primevue/usetoast";
-import { api } from '@/libs/api.js';
 
+import ConfirmDialog from 'primevue/confirmdialog';
+import { useConfirm } from "primevue/useconfirm";
+const pconfirm = useConfirm();
+
+import { useToast } from "primevue/usetoast";
 const toast = useToast();
+
 const toastError = (t, msg) => { toast.add({ severity: 'error', summary: t, detail: msg, life: 5000 }) }
 const toastSuccess = (t, msg) => { toast.add({ severity: 'success', summary: t, detail: msg, life: 5000 }) }
 const toastInfo = (t, msg) => { toast.add({ severity: 'info', summary: t, detail: msg, life: 5000 }) }
@@ -119,36 +124,73 @@ function submit() {
 }
 
 function submitToReview() {
-  if(confirm("Правки будут отправлены на проверку. Продолжить?")) {
-    api.post('/merge_requests', { page: page.value }).then(data => {
-      console.log(data)
-      if (data.success == 'ok') {
-        toastSuccess('Успех', 'Статья отправлена на проверку');
-        errors.value = '';
-        router.push({ name: 'ShowMergeRequest', params: { id: data.item.id } });
-      } else {
-        toastError('Ошибка', 'Не удалось отправить изменения на проверку');
-        console.log('FAIL!', data);
-        errors.value = data;
-      }
-    })
-  }
+  pconfirm.require({
+    message: 'Правки будут отправлены на проверку. Продолжить?',
+    header: 'Отправка на проверку',
+    acceptLabel: 'Да', rejectLabel: 'Нет',
+    accept: () => {
+      api.post('/merge_requests', { page: page.value }).then(data => {
+        console.log(data)
+        if (data.success == 'ok') {
+          toastSuccess('Успех', 'Статья отправлена на проверку');
+          errors.value = '';
+          router.push({ name: 'ShowMergeRequest', params: { id: data.item.id } });
+        } else {
+          toastError('Ошибка', 'Не удалось отправить изменения на проверку');
+          console.log('FAIL!', data);
+          errors.value = data;
+        }
+      })
+    }
+  })
 }
 
 function destroy() {
-  if(confirm("Удалить статью? \n" + page.value.title)){
-    api.delete(`/pages/${page.value.id}`).then(data => {
-      if (data.success == 'ok') {
-        toastSuccess('Успех', 'Статья удалена');
-        errors.value = '';
-        router.push({ name: "Pages" });
-      } else {
-        console.log('FAIL!', data);
-        toastError('Ошибка', 'Не удалось удалить статью');
-        errors.value = data;
-      }
-    })
-  }
+  pconfirm.require({
+    message: 'Точно хотите удалить статью с названием: "' + page.value.title + '"?',
+    header: 'Удаление статьи',
+    acceptLabel: 'Да', rejectLabel: 'Нет',
+    rejectClass: 'p-button-text p-button-text',
+    acceptClass: 'p-button-danger p-button-text',
+    icon: 'pi pi-exclamation-triangle',
+    accept: () => {
+      api.delete(`/pages/${page.value.id}`).then(data => {
+        if (data.success == 'ok') {
+          toastSuccess('Успех', 'Статья удалена');
+          errors.value = '';
+          router.push({ name: "Pages" });
+        } else {
+          console.log('FAIL!', data);
+          toastError('Ошибка', 'Не удалось удалить статью');
+          errors.value = data;
+        }
+      })
+    }
+  })
+}
+
+function restore() {
+  pconfirm.require({
+    message: 'Точно хотите восстановить статью с названием: "' + page.value.title + '"?',
+    header: 'Восстановление статьи',
+    acceptLabel: 'Да', rejectLabel: 'Нет',
+    rejectClass: 'p-button-text p-button-text',
+    acceptClass: 'p-button-danger p-button-text',
+    icon: 'pi pi-exclamation-triangle',
+    accept: () => {
+      api.post(`/pages/${page.value.id}/restore`).then(data => {
+        if (data.success == 'ok') {
+          page.value = data.item;
+          toastSuccess('Успех', 'Статья восстановлена!');
+          errors.value = '';
+        } else {
+          console.log('FAIL!', data);
+          toastError('Ошибка', 'Не удалось восстановить статью');
+          errors.value = data;
+        }
+      })
+    }
+  })
 }
 
 const submitBtnItems = [
@@ -163,12 +205,15 @@ const submitBtnItems = [
 </script>
 
 <template>
+<ConfirmDialog/>
 <Toast />
 <router-link :to="{ name: 'Pages'}">← Назад</router-link>
 <a style='margin: 0 10px;' v-if="page.id" :href="`${apiUrl}/${page.lang}/${page.lang}/w/${page.path}`">Статья на сайте</a>
 
 <h1 v-if="page.id">Редактирование статьи</h1>
 <h1 v-else>Новая статья</h1>
+
+<h2 v-if="page.is_deleted" class="page-deleted-label">СТАТЬЯ УДАЛЕНА!</h2>
 
 <IndexMergeRequests v-if="page.id" :pageId="page.id" :isPartial="true"/>
 
@@ -179,6 +224,7 @@ const submitBtnItems = [
     icon="pi pi-send"
     @click="submitToReview"
     :model="submitBtnItems"
+    :disabled="page.is_deleted"
   />
 
   <Button v-else @click.prevent="submit" label="Опубликовать статью" icon="pi pi-check" />
@@ -187,10 +233,11 @@ const submitBtnItems = [
     <label for="page-published" id="label-is-page-published">
       {{ page.is_published ? 'Доступно для чтения' : 'Скрыто' }}
     </label>
-    <InputSwitch v-model="page.is_published" inputId="page-published"/>
+    <InputSwitch v-model="page.is_published" :disabled="page.is_deleted" inputId="page-published"/>
   </div>
 
-  <Button v-if="page.id" @click.prevent="destroy" label="Удалить" text severity="danger" style='margin-left: auto' icon="pi pi-trash" />
+  <Button v-if="page.id && !page.is_deleted" @click.prevent="destroy" label="Удалить" text severity="danger" style='margin-left: auto' icon="pi pi-trash" />
+  <Button v-if="page.id && page.is_deleted" @click.prevent="restore" label="Восстановить" text style='margin-left: auto' icon="pi pi-undo" />
 </div>
 
 <div class="errors">{{ errors }}</div>
@@ -204,6 +251,7 @@ const submitBtnItems = [
       optionLabel="name"
       optionValue="code"
       placeholder="Тип документа"
+      :disabled="page.is_deleted"
     />
   </div>
 
@@ -213,12 +261,12 @@ const submitBtnItems = [
 
   <div class="field">
     <label>Заголовок</label>
-    <InputText v-model="page.title" placeholder="Заголовок" class="page-field-title" />
+    <InputText v-model="page.title" placeholder="Заголовок" class="page-field-title" :disabled="page.is_deleted" />
   </div>
 
   <div class="field">
     <label>Подзаголовок (не обязательно)</label>
-    <InputText v-model="page.title_sub" placeholder="Подзаголовок" class="page-field-subtitle" />
+    <InputText v-model="page.title_sub" placeholder="Подзаголовок" class="page-field-subtitle" :disabled="page.is_deleted" />
   </div>
 
   <div class="group-fields">
@@ -230,38 +278,45 @@ const submitBtnItems = [
         optionLabel="name"
         optionValue="code"
         placeholder="Язык статьи"
+        :disabled="page.is_deleted"
       />
     </div>
 
     <div class="field">
       <label>ID для группировки переводов (не обязательно)</label>
-      <AutocompletePage v-model="page.group_lang_id" fetchKey="group_lang_id"/>
+      <AutocompletePage v-model="page.group_lang_id" fetchKey="group_lang_id" :disabled="page.is_deleted" />
     </div>
   </div>
 
   <div class="field">
     <label>Адрес (путь в URL)</label>
-    <InputText v-model="page.path" placeholder="Адрес" />
+    <InputText v-model="page.path" placeholder="Адрес" :disabled="page.is_deleted" />
   </div>
 
   <div class="group-fields">
     <div class="field">
       <label>ID родителя (не обязательно)</label>
-      <AutocompletePage v-model="page.parent_id" fetchKey="id" />
+      <AutocompletePage v-model="page.parent_id" fetchKey="id" :disabled="page.is_deleted" />
+    </div>
+  </div>
+
+  <div class="group-fields">
+    <div class="field">
+      <label>Описание для поискововой системы</label>
+      <InputText v-model="page.meta_desc" placeholder="Meta-описание" :disabled="page.is_deleted" />
     </div>
   </div>
 
   <div class="group-fields">
     <div class="field">
       <label>Аудио-файл (не обязательно)</label>
-
-    <InputText v-model="page.audio" placeholder="Аудио-файл" />
+      <InputText v-model="page.audio" placeholder="Аудио-файл" :disabled="page.is_deleted" />
     </div>
   </div>
 
   <div class="field">
     <label>Статья:</label>
-    <tiptap :content="page.body" @change="(d) => { page.body = d; }"/>
+    <tiptap :content="page.body" @change="(d) => { page.body = d; }" :disabled="page.is_deleted" />
   </div>
 
   <div v-if="seenMenu" class="tree-menu">
@@ -294,5 +349,13 @@ h1 {
 }
 .p-chips-input-token input[type='text'] {
   border-width: 0 !important;
+}
+
+.page-deleted-label {
+  background-color: #e1e1e1;
+  color: #555;
+  border-radius: 5px;
+  padding: 50px 10px;
+  text-align: center;
 }
 </style>

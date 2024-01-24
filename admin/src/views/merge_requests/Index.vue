@@ -121,9 +121,11 @@ watchEffect(
       <div class="merge-request" v-for="mr in mergeRequests">
         <div class="main-info">
           <router-link :to="{ name: 'ShowMergeRequest', params: { id: mr.id }}">
-            <span class="diff-title">{{ mr.page_title }}</span>
+            <span class="diff-title">{{ mr.page.title }}</span>
           </router-link> <span :class="`merge-status-${mr.is_merged}`">
             <i :class="`badge ${mergeStatusClass[mr.is_merged]}`">{{ mergeStatus[mr.is_merged]}}</i>
+            <i class="badge black" v-if="mr.page.is_deleted">стр. удалена</i>
+            <i class="badge grey" v-else-if="!mr.page.is_published">стр. скрыта</i>
           </span>
         </div>
 

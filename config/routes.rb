@@ -53,14 +53,18 @@ Rails.application.routes.draw do
 
     # API
     namespace 'api', defaults: {format: :json} do
+
       scope 'pages' do
         get    'list', to: 'pages#list'
         post   '/',    to: 'pages#create'
-        get    ':id',  to: 'pages#show'
-        put    ':id',  to: 'pages#update'
-        delete ':id',  to: 'pages#destroy'
-        # меню
+
         scope ':id' do
+          get    '/',  to: 'pages#show'
+          put    '/',  to: 'pages#update'
+          delete '/',  to: 'pages#destroy'
+          post   '/restore',  to: 'pages#restore'
+
+           # меню
           scope 'menus' do
             get    '/list', to: 'menus#list'
             post   '/',     to: 'menus#create'
@@ -73,6 +77,7 @@ Rails.application.routes.draw do
       scope 'merge_requests' do
         get    'list', to: 'merge_requests#list'
         post   '/',    to: 'merge_requests#create'
+
         scope ':id' do
           get    '/',        to: 'merge_requests#show'
           put    '/',        to: 'merge_requests#update'
@@ -86,6 +91,7 @@ Rails.application.routes.draw do
       scope 'dict_words' do
         get    'list', to: 'dict_words#list'
         post   '/',    to: 'dict_words#create'
+
         scope ':id' do
           get    '/',        to: 'dict_words#show'
           put    '/',        to: 'dict_words#update'
@@ -100,6 +106,7 @@ Rails.application.routes.draw do
       scope 'users' do
         get 'me', to: 'users#me'
       end
+
       post '/login/psw', to: 'users#psw_login'
       post '/login/telegram', to: 'users#telegram_login'
     end

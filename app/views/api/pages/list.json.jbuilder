@@ -8,6 +8,7 @@ json.items do
     json.title           page.title
     json.path            page.path
     json.is_published    page.is_published
+    json.is_deleted      page.is_deleted
     json.page_type       page.page_type.to_s
     json.group_lang_id   page.group_lang_id.to_s
     json.parent_id       page.parent_id.to_s

@@ -10,7 +10,7 @@ module Api
       @pages = ::Page.
         includes(:user).
         only(
-          :id, :title, :path, :is_published, :page_type,
+          :id, :title, :path, :is_published, :is_deleted, :page_type,
           :lang, :group_lang_id, :user_id, :parent_id, :c_at, :u_at
         ).
         limit(20).
@@ -65,7 +65,7 @@ module Api
       set_page()
 
       # добавим редактора статьи
-      @page.editors = @page.editors.to_a | [::Current.user.id]
+      @page.add_editor(::Current.user)
 
       # begin
         if @page.update(page_params)
@@ -84,12 +84,19 @@ module Api
 
     def destroy
       set_page()
+      if @page.update(is_deleted: true)
+        render :show, status: :ok
+      else
+        render json: @page.errors, status: :unprocessable_entity
+      end
+    end
 
-      begin
-        @page.destroy!
-        render json: success_response
-      rescue ActiveRecord::RecordNotDestroyed => error
-        render json: {errors: error.record.errors}, status: 422
+    def restore
+      set_page()
+      if @page.update(is_deleted: false)
+        render :show, status: :ok
+      else
+        render json: @page.errors, status: :unprocessable_entity
       end
     end
 
@@ -106,7 +113,9 @@ module Api
 
     # Only allow a list of trusted parameters through.
     def page_params
-      params.require(:page).except(:id, :created_at, :updated_at).permit(
+      params.require(:page).except(
+        :id, :created_at, :updated_at, :is_deleted,
+      ).permit(
         :is_published,
         :page_type, :title, :title_sub, :meta_desc,
         :path,

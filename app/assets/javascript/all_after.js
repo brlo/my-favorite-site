@@ -385,22 +385,31 @@ settingsArea.textSizeBar = {
   // нельзя заранее искать область с текстом, т.к. она меняется при переключении глав
   // textEl: document.querySelector('article'),
   btns: document.querySelectorAll('#text-menu > a'),
+  activeBtn: document.querySelector('#text-menu > a.active')
 }
 
 settingsArea.textSizeBar.someTextSizeBtnClicked = function (e) {
-  const btnClicked = e.target;
-  // имя класса для article
-  const fontSizeName = {
+  // id нажатой кнопки -> соответствующий ему класс article
+  const textClassNames = {
     'text-small-btn': 'text-small',
     'text-medium-btn': 'text-medium',
     'text-large-btn': 'text-large',
-  }[btnClicked.id]
-  // размер текста для кук
-  const fontSizeCookie = {
+  }
+  // id нажатой кнопки -> соответствующее ему значение в куках
+  const textCookieNames = {
     'text-small-btn': '1',
     'text-medium-btn': '2',
     'text-large-btn': '3',
-  }[btnClicked.id]
+  }
+
+  // нажата кнопка (элемент)
+  const btnClicked = e.target;
+  // старое имя класса для article
+  const oldTextSizeName = textClassNames[settingsArea.textSizeBar.activeBtn.id];
+  // новое имя класса для article
+  const TextSizeName = textClassNames[btnClicked.id];
+  // размер текста для кук
+  const fontSizeCookie = textCookieNames[btnClicked.id]
 
   // все кнопки "отжимаем"
   for (const barBtn of settingsArea.textSizeBar.btns) { barBtn.classList.remove('active') };
@@ -408,9 +417,13 @@ settingsArea.textSizeBar.someTextSizeBtnClicked = function (e) {
   btnClicked.classList.add('active');
   // размер текста выставляем
   const textEl = document.querySelector('article');
-  if (textEl) textEl.className = fontSizeName;
+  if (textEl) {
+    textEl.classList.replace(oldTextSizeName, TextSizeName);
+  }
   // в куки сохраняем
   setCookie('textSize', fontSizeCookie, 999);
+  // активную кнопку меняем
+  settingsArea.textSizeBar.activeBtn = btnClicked;
 };
 
 // СОБЫТИЯ НАСТРОЕК И ВНУТРЕННИХ ЭЛЕМЕНТОВ

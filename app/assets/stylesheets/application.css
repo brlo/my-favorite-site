@@ -276,6 +276,13 @@ td.zero-verse {
   padding-bottom: 10px;
 }
 
+th.verse-title {
+  display: table-cell;
+  border-left: 2px solid transparent;
+  padding: 30px 7px 15px 7px;
+  text-align: left;
+}
+
 td.verse-text {
   display: table-cell;
   border-left: 2px solid transparent;

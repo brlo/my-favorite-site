@@ -11,7 +11,7 @@ const props = defineProps({
   fetchKey: String,
 })
 
-const selectedOption = ref()
+const selectedOption = ref(model.value)
 const pages = ref([])
 const errors = ref('')
 const isLoading = ref()

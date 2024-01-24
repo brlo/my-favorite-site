@@ -120,9 +120,15 @@ selectBar.getSelectedAddress = function () {
   let bookName = bookInfo.bookShortName;
   // глава: 1
   let chapter = bookInfo.chapter;
+  // 1 / 0
+  let isDisableChapters = bookInfo.disableChapters;
 
   // итог: Быт. 1:16-17
-  let address = bookName + '. ' + chapter + ':' + lines;
+  let address = bookName + '. '
+  // пропускаем главу, если она равна 0 (актуально для статей,
+  // где много глав и все коротенькие, а стихи имеют сплошную нумерацию, игнорируя главы)
+  if (isDisableChapters != '1') { address += chapter + ':' }
+  address += lines;
 
   return address;
 }
@@ -340,30 +346,6 @@ const getLinesArrFromUrlFragment = function() {
   return linesNums;
 };
 
-// подсветка строк по переданному в url-fragment параметру L.
-// Пример: #L1,20-23
-const highlightLines = function() {
-  linesArr = getLinesArrFromUrlFragment();
-
-  // проверяем, что пришёл массив
-  if (Object.prototype.toString.call(linesArr) === '[object Array]' && linesArr.length > 0) {
-    for (const l of linesArr) {
-      // подсветить одну конкретную строку (verse)
-      let elText = document.getElementById('T' + l);
-      if (elText) elText.classList.add('highlighted');
-    };
-
-    // прокручиваем скрол к первому подсвеченному элементу.
-    // элемент окажется у верхнего края экрана
-    let elText = document.getElementById('T' + linesArr[0]);
-    elText.scrollIntoView();
-    // чтобы было красиво, приподнимемся ещё чуть-чуть выше (на 100px)
-    window.scrollBy(0,-100);
-  };
-}
-
-highlightLines();
-
 // ---------------------
 // сохраняем адрес выделенных строк в fragment
 // ---------------------
@@ -432,15 +414,16 @@ const lineNumberClicked = function(event, isTextClicked = false) {
     document.getSelection().removeAllRanges();
   }
 
-  let elNum = event.target;
-  let lineNumber = elNum.dataset.line;
-  let lightClass = 'highlighted';
-  let countOfHightlightedWas = document.getElementsByClassName(lightClass).length;
+  const elNum = event.target;
+  const chapterNumber = elNum.dataset.chapter;
+  const lineNumber = elNum.dataset.line;
+  const lightClass = 'highlighted';
+  const countOfHightlightedWas = document.getElementsByClassName(lightClass).length;
 
   // Ищем текст строки.
   // передают элемент с номером строки (на нём слушаем клики)
   // но подсвечиваем текст, а не номер.
-  let elText = document.getElementById('T' + lineNumber);
+  const elText = document.getElementById('T' + lineNumber);
   // или так:
   // let elText = elNum.nextElementSibling;
 
@@ -537,10 +520,10 @@ const lineNumberClicked = function(event, isTextClicked = false) {
   let countNow = document.getElementsByClassName(lightClass).length;
 
   if (countOfHightlightedWas < 2 && countNow > 0) {
-    // было много, стало 0 -> прячем селект-бар (он теперь не нужен).
+    // было мало, стало много -> показываем селект-бар
     window.selectBar.enable();
   } else if (countNow == 0 && countOfHightlightedWas > 0) {
-    // было 0, стало много -> прячем селект-бар (начали работать с тектом).
+    // было много, стало 0 -> прячем селект-бар
     window.selectBar.disable();
     lastLineSelected = null;
     lastShiftLineSelectedRange = null;
@@ -572,6 +555,36 @@ const addListenersForHighlightVerses = function(event) {
 };
 
 addListenersForHighlightVerses();
+
+
+// подсветка строк по переданному в url-fragment параметру L.
+// Пример: #L1,20-23
+const highlightLines = function() {
+  linesArr = getLinesArrFromUrlFragment();
+
+  // проверяем, что пришёл массив
+  if (Object.prototype.toString.call(linesArr) === '[object Array]' && linesArr.length > 0) {
+    for (const l of linesArr) {
+      // подсветить одну конкретную строку (verse)
+      let elText = document.getElementById('T' + l);
+      if (elText) elText.classList.add('highlighted');
+    };
+
+    // прокручиваем скрол к первому подсвеченному элементу.
+    // элемент окажется у верхнего края экрана
+    let elText = document.getElementById('T' + linesArr[0]);
+    elText.scrollIntoView();
+    // чтобы было красиво, приподнимемся ещё чуть-чуть выше (на 100px)
+    window.scrollBy(0,-100);
+    // имитируем действия пользователя: удто последней он выделял вот эту строку:
+    lastLineSelected = linesArr[0];
+    // активируем селект бар, чтобы можно было работать с выделенным текстом
+    window.selectBar.enable();
+  };
+}
+
+highlightLines();
+
 
 // =======================================================================
 // =======================================================================

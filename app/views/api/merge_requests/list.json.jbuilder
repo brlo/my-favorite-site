@@ -6,7 +6,6 @@ json.items do
 
     json.id                mr.id.to_s
     json.page_id           mr.page_id.to_s
-    json.page_title        page&.title
     json.minus_i           mr.minus_i
     json.plus_i            mr.plus_i
     json.is_merged         mr.is_merged.to_i
@@ -16,6 +15,11 @@ json.items do
     json.updated_at_word   mr.updated_at_word
     json.author do |json|
       json.name mr.user&.name
+    end
+    json.page do |json|
+      json.title        page&.title
+      json.is_published page&.is_published
+      json.is_deleted   page&.is_deleted
     end
   end
 end

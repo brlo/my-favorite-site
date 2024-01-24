@@ -47,7 +47,7 @@ class PagesController < ApplicationController
     @content_lang = params[:content_lang]
 
     # документ скрыт
-    not_found!() if @page.is_published != true
+    not_found!() if @page.is_deleted || (@page.is_published != true)
 
     if @page.nil?
       # ########################################################################
@@ -148,9 +148,9 @@ class PagesController < ApplicationController
             @chapters = siblings_and_me.map { |m| [m.title, m.path] }
 
             # сохраняем индексы глав в массиве с главами
-            @chapter_current = siblings_and_me.index(@page_in_menu)
-            @chapter_prev = @chapter_current - 1
-            @chapter_next = @chapter_current + 1
+            @chapter_current = siblings_and_me.index(@page_in_menu) + 1
+            # @chapter_prev = @chapter_current - 1
+            # @chapter_next = @chapter_current + 1
           end
         end
       end
@@ -168,6 +168,17 @@ class PagesController < ApplicationController
       @page_title = ::I18n.t('page.title', term: @page.title)
       @meta_description = @page.meta_desc
       @current_menu_item = 'articles'
+
+      @chapter_current ||= 1
+
+      # Если текст этой статьи разбит на несколько глав,
+      # то имеем такую ситуацию на странице:
+      # есть много маленьких глав со сплошной нумерацией (стихи пронумерованы подряд от первой до последней главы)
+      # и если выделить стихи из разных глав, то как при копировании указывать главу? Никак.
+      # вот и прячем тогда главу вообще. Указываем только номер стиха.
+      if @verses.present? && @verses.count > 1
+        @is_disable_chapters = true
+      end
     else
       # ########################################################################
       # СТРАНИЦА НЕ НАЙДЕНА но возможно получится найти подходящую к этому языку страницу
