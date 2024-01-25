@@ -83,6 +83,18 @@ const pageTypes = [
   { name: 'Книга с разбивкой на стихи', code: 5 },
 ]
 
+const editModes = [
+  { name: 'Админы', code: 1 },
+  { name: 'Модераторы', code: 2 },
+  { name: 'Автор и редакторы', code: 3 },
+]
+
+const editModesDesc = {
+  1: 'Редактировать могут только админы.',
+  2: 'Редактировать могут только админы и модераторы.',
+  3: 'Редактировать могут админы, модераторы, автор статьи и редакторы (те, от кого одобрена хотя бы одна правка к этой статье).',
+}
+
 const pageTypesDesc = {
   1: 'Просто какая-то статья. Обычно, статья — это разбор какого-то поняти или одной темы.',
   3: 'Библейский стих — это режим публикации апологетичиских разборов того или иного стиха Библии. В названии статьи надо указать только адрес библейского стиха: Быт. 1:5. Тогда он привяжется к стиху на сайте и каждый увидит, что к данному стиху есть комментарий.',
@@ -255,7 +267,7 @@ const submitBtnItems = [
     />
   </div>
 
-  <div style="font-size: 0.6em; margin: 0 0 30px 0; width: 400px;">
+  <div class="field-hint">
     {{ pageTypesDesc[page.page_type] }}
   </div>
 
@@ -267,6 +279,39 @@ const submitBtnItems = [
   <div class="field">
     <label>Подзаголовок (не обязательно)</label>
     <InputText v-model="page.title_sub" placeholder="Подзаголовок" class="page-field-subtitle" :disabled="page.is_deleted" />
+  </div>
+
+  <div class="field">
+    <label>Адрес (путь в URL)</label>
+    <InputText v-model="page.path" placeholder="Адрес" :disabled="page.is_deleted" />
+  </div>
+
+  <div class="group-fields">
+    <div class="field">
+      <label>ID родителя (не обязательно)</label>
+      <AutocompletePage v-model="page.parent_id" fetchKey="id" :disabled="page.is_deleted" />
+    </div>
+  </div>
+
+  <div class="field">
+    <label>Статья:</label>
+    <tiptap :content="page.body" @change="(d) => { page.body = d; }" :disabled="page.is_deleted" />
+  </div>
+
+  <div class="field">
+    <label>Кто может редактировать</label>
+    <Dropdown
+      v-model="page.edit_mode"
+      :options="editModes"
+      optionLabel="name"
+      optionValue="code"
+      placeholder="Кто редактирует"
+      :disabled="page.is_deleted"
+    />
+  </div>
+
+  <div class="field-hint">
+    {{ editModesDesc[page.edit_mode] }}
   </div>
 
   <div class="group-fields">
@@ -288,18 +333,6 @@ const submitBtnItems = [
     </div>
   </div>
 
-  <div class="field">
-    <label>Адрес (путь в URL)</label>
-    <InputText v-model="page.path" placeholder="Адрес" :disabled="page.is_deleted" />
-  </div>
-
-  <div class="group-fields">
-    <div class="field">
-      <label>ID родителя (не обязательно)</label>
-      <AutocompletePage v-model="page.parent_id" fetchKey="id" :disabled="page.is_deleted" />
-    </div>
-  </div>
-
   <div class="group-fields">
     <div class="field">
       <label>Описание для поискововой системы</label>
@@ -312,11 +345,6 @@ const submitBtnItems = [
       <label>Аудио-файл (не обязательно)</label>
       <InputText v-model="page.audio" placeholder="Аудио-файл" :disabled="page.is_deleted" />
     </div>
-  </div>
-
-  <div class="field">
-    <label>Статья:</label>
-    <tiptap :content="page.body" @change="(d) => { page.body = d; }" :disabled="page.is_deleted" />
   </div>
 
   <div v-if="seenMenu" class="tree-menu">
@@ -339,6 +367,13 @@ h1 {
   font-size: 0.75em;
   padding: 0;
   margin: 3px 0;
+}
+
+.field-hint {
+  font-size: 0.6em;
+  margin: 0 0 20px 0;
+  min-height: 20px;
+  max-width: 500px;
 }
 
 .page-field-title {

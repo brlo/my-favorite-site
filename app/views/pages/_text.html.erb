@@ -5,23 +5,21 @@
         <tbody>
           <% i_glob = 0 %>
           <% @verses.each.with_index do |chapter_data| %>
-            <% ch = chapter_data[:num] %>
-            <% if chapter_data[:title].present? %>
+            <% if chapter_data['title'].present? %>
               <tr>
                 <th></th>
                 <th class='csl verse-title'>
-                  <h3><%= sanitize(chapter_data[:title]) %></h3>
+                  <h3><%= sanitize(chapter_data['title'].to_s) %></h3>
                 </th>
               </tr>
             <% end %>
 
-            <% chapter_data[:lines].each do |l| %>
+            <% chapter_data['lines'].each do |l| %>
               <% i_glob += 1 %>
               <tr>
                 <td
                   class='verse-line'
                   id='L<%= i_glob %>'
-                  data-chapter="<%= ch %>"
                   data-line="<%= "#{i_glob}" %>"
                 >
                   <%= i_glob %>

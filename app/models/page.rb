@@ -12,6 +12,12 @@ class Page < ApplicationMongoRecord
     'книга стихами' => 5,
   }
 
+  EDIT_MODES = {
+    'admins'       => 1,
+    'moderators'   => 2,
+    'contributors' => 3,
+  }
+
   include Mongoid::Document
 
   attr_accessor :tags_str
@@ -20,6 +26,7 @@ class Page < ApplicationMongoRecord
   field :pt,         as: :page_type, type: String, default: 1
   field :is_pub,     as: :is_published, type: Boolean, default: false
   field :is_del,     as: :is_deleted, type: Boolean
+  field :e_md,       as: :edit_mode, type: Integer, default: 1
   # автор
   field :u_id,       as: :user_id, type: BSON::ObjectId
   # ids редакторов
@@ -131,8 +138,15 @@ class Page < ApplicationMongoRecord
     self.title = self.title.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')
     self.meta_desc = self.meta_desc.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')
     self.path = self.path.to_s.strip.gsub(/[\t\s\n\r]+/, '_').presence || generate_path()
+
     self.path_low = self.path.downcase
+    if self.path_low_changed?
+      self.redirect_from = self.path_low_was
+    end
+
     self.page_type = self.page_type.to_i
+
+    self.edit_mode = self.edit_mode.to_i
 
     # Доработки, если статья — комментарий на библейский стих
     if self.path.blank? && self.is_page_bib_comment?
@@ -154,6 +168,8 @@ class Page < ApplicationMongoRecord
       if self.is_page_verses?
 
         # избавяемся от лишних в тэгов и пустых строк
+        _text = _text.to_s.gsub('<p></p>', ' ')
+
         _text = sanitizer.sanitize(
           self.body,
           tags: %w(h1 h2 h3 h4)
@@ -166,17 +182,30 @@ class Page < ApplicationMongoRecord
           # если есть =%= то действовать по одному алгоритму (правим деление по стихам),
           if _text.include?(verse_marker)
             # ------------------ ЕСТЬ BODY с маркером строк, делаем VERSES -------------------------
-            # разница только в скобочках
+            # regexp для нахождения titles
             chap_find_regex  = /<h[1-4]>([^<]+)<\/h[1-4]>/i
+            # regexp для нахождения texts
             chap_split_regex = /<h[1-4]>[^<]+<\/h[1-4]>/i
             # делим по маркерку глав h2.. (даже если его нет в тексте, будет массив с одной главой)
 
-            # все заголовки (тексты с номерами). Массив строк. Строка - заголовок.
+            # все заголовки (тексты с номерами).
+            # тут: [["title1"], ["title2"], ...]
             titles = _text.scan(chap_find_regex)
-            # все тексты глав. Массив строк. Строка - весь текст главы.
+            # все тексты глав.
+            # тут: ["", "text1", "text2", ...]
             texts = _text.split(chap_split_regex)
+
+            # чуть приводим заголовки и тексты в порядок
+            # достаём заголовки и массивов
+            titles = titles.map(&:first)
+            # выбрасываем первый элемент — пустую строку ""
+            texts.shift if texts[0] == ''
+
             # Заголовки и тексты вместе. Массив: [[заголовок, текст], ...]
-            chapters = titles.zip(texts)
+            # соединяем:
+            # [["title1", "text1"], ...]
+            chapters = texts.map.with_index { |t,i| [titles[i], t] }
+
             # строим результат, по пути делим тексты глав на строки по маркерам
             self.verses =
             chapters.map do |title, text|
@@ -224,7 +253,7 @@ class Page < ApplicationMongoRecord
     chapters_texts = _text.split(chap_split_regex)
     # Если всё правильно, то первый элемент в этом массиве будет пустой строкой,
     # который надо просто выбросить, а дальше уже идут главы:
-    chapters_texts.shift
+    chapters_texts.shift if chapters_texts[0] == ''
 
     # делим тексты на строки
     chapter__verses =

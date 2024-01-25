@@ -13,8 +13,7 @@
 <% end %>
 
 <%= render(partial: 'pages/books') %>
-
-<article id='page-content' class="looks-like-page text-<%= text_size_from_cookies %>" itemscope itemtype="http://schema.org/Article">
+<section id="page-content" class="looks-like-page" itemscope="" itemtype="http://schema.org/Article">
   <%= render(partial: 'pages/chapters') %>
   <%= render(partial: 'pages/text_bar') %>
   <%= render(partial: 'verses/audio_player') %>

@@ -9,7 +9,8 @@ json.items do
     json.path            page.path
     json.is_published    page.is_published
     json.is_deleted      page.is_deleted
-    json.page_type       page.page_type.to_s
+    json.page_type       page.page_type.to_i
+    json.edit_mode       page.edit_mode.to_i
     json.group_lang_id   page.group_lang_id.to_s
     json.parent_id       page.parent_id.to_s
     json.author do |json|

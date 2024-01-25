@@ -11,7 +11,8 @@ module Api
         includes(:user).
         only(
           :id, :title, :path, :is_published, :is_deleted, :page_type,
-          :lang, :group_lang_id, :user_id, :parent_id, :c_at, :u_at
+          :edit_mode, :lang, :group_lang_id, :user_id, :parent_id,
+          :c_at, :u_at
         ).
         limit(20).
         order_by(updated_at: -1)
@@ -62,7 +63,7 @@ module Api
     end
 
     def update
-      set_page()
+      # set_page()
 
       # добавим редактора статьи
       @page.add_editor(::Current.user)
@@ -108,7 +109,7 @@ module Api
 
     # Use callbacks to share common setup or constraints between actions.
     def set_page
-      @page = ::Page.find(params[:id]) || not_found!()
+      @page ||= ::Page.find(params[:id]) || not_found!()
     end
 
     # Only allow a list of trusted parameters through.
@@ -117,7 +118,8 @@ module Api
         :id, :created_at, :updated_at, :is_deleted,
       ).permit(
         :is_published,
-        :page_type, :title, :title_sub, :meta_desc,
+        :page_type, :edit_mode,
+        :title, :title_sub, :meta_desc,
         :path,
         :parent_id,
         :lang, :group_lang_id,
@@ -127,12 +129,33 @@ module Api
 
     def reject_by_read_privs;    ability?('pages_read'); end
     def reject_by_create_privs;  ability?('pages_create'); end
+
     def reject_by_update_privs
-      ability?('pages_update') ||
-      (ability?('pages_self_update') && @page&.user_id == ::Current.user.id) ||
-      (ability?('pages_editor_update') && @page&.editors.to_a.includes?(::Current.user.id))
+      # подгружаем страницу
+      set_page()
+
+      case @page.edit_mode.to_i
+      when 1
+        # только админы
+        ::Current.user.is_admin == true
+      when 2
+        # только модераторы
+        ability?('pages_update')
+      when 3
+        # автор или редакторы (от кого уже принимали MR сюда)
+        # и которые не лишены привилегий редактировать свои статьи или статьи где они редакторы
+        (ability?('pages_self_update') && @page&.user_id == ::Current.user.id) ||
+        (ability?('pages_editor_update') && @page&.editors.to_a.includes?(::Current.user.id))
+      else
+        false
+      end
     end
+
     def reject_by_destroy_privs
+      # подгружаем страницу
+      set_page()
+
+      # удалять может человек с привелегией, или автор с привелегией удалять своё
       ability?('pages_destroy') ||
       (ability?('pages_self_destroy') && @page&.user_id == ::Current.user.id)
     end

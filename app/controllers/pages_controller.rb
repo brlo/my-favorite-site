@@ -41,13 +41,18 @@ class PagesController < ApplicationController
   def show
     # Название (path) страницы, который ищет клиент
     path = params[:page_path].to_s
+    path_downcased = path.downcase
     # Ищем в БД страницу. Клиент мог неправильно ввести регистр, поэтому ищем
     # в спец поле, где всё в нижнем регистре.
-    @page = ::Page.find_by(path_low: path.downcase)
+    @page = ::Page.find_by(path_low: path_downcased)
     @content_lang = params[:content_lang]
 
-    # документ скрыт
-    not_found!() if @page.is_deleted || (@page.is_published != true)
+    # 404 - документ скрыт или удалён
+    if @page
+      if @page.is_deleted || (@page.is_published != true)
+        not_found!()
+      end
+    end
 
     if @page.nil?
       # ########################################################################
@@ -56,7 +61,8 @@ class PagesController < ApplicationController
       #
       # Если страница не найдена, то попробовать найти страницу,
       # у которой указан наш адрес в качестве её старого адреса
-      @page = ::Page.find_by(redirect_from: path)
+      @page = ::Page.find_by(redirect_from: path_downcased)
+
       if @page
         redirect_to my_page_link_to("/#{@page.path}")
       else
