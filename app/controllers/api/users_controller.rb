@@ -1,6 +1,6 @@
 module Api
   class UsersController < ApiApplicationController
-    skip_before_action :reject_not_admins, only: [:psw_login, :telegram_login]
+    # skip_before_action :reject_not_admins, only: [:psw_login, :telegram_login]
 
     def me
       user = ::Current.user

@@ -572,4 +572,82 @@ window.BX.logout = function() {
 
 
 
+// ---------------- FILTER MENU ------------------
 
+// window.filterQueryPages = function(text) {
+//   const subjects = document.querySelectorAll(".menu-tree .menu-subject");
+//   const links = document.querySelectorAll(".menu-tree .menu-link");
+//   let filter = text.toLowerCase();
+//   if (filter === '') {
+//     subjects.forEach(el => el.classList.remove('hidden'));
+//     links.forEach(el => el.classList.remove('hidden'));
+//   } else {
+//     subjects.forEach(el => el.classList.add('hidden'));
+//     links.forEach(page => {
+//       const pageTitleEl = page.querySelectorAll('.q_title')[0];
+//       const pageTitle = (pageTitleEl.innerText || pageTitleEl.textContent).toLowerCase();
+//       pageTitle.includes(filter)
+//       ? page.classList.remove('hidden')
+//       : page.classList.add('hidden');
+//     });
+//   };
+// };
+
+window.filterQueryPages = function(text, isNeedTranslit) {
+  const root = document.querySelector(".menu-tree");
+  const els = document.querySelectorAll(".menu-tree .menu-link");
+  // все буквы маленькие
+  // оставляем только буквы и цифры
+  // убираем цифры, -, "," и пробелы в конце строки
+  let filterText = text.toLowerCase().replace(/[^a-zа-я0-9]/gi, '');
+  filterText = filterText.replace(/[\d\-,\s]+$/g, '');
+
+  if (isNeedTranslit) {
+    // в конце этой ф-ции мы снова обращаемся к ней, но просим предварительно
+    // исправить ползьовательский ввод в неправильной раскладке.
+    // мы делаем это только если ничего не удалось найти в первый раз.
+    filterText = window.en2ruTranslit(filterText);
+  };
+
+  if (filterText === '') {
+    // пользователь ничего не ввёл, надо всё почистить.
+    // subjects.forEach(el => el.classList.remove('hidden'));
+    // els.forEach(el => el.classList.remove('hidden'));
+    // удалить общую метку
+    root.classList.remove('hidden-children');
+    // удалить метку с подсвеченных элементов
+    const visibleEls = document.querySelectorAll(".menu-tree .visible");
+    visibleEls.forEach(el => el.classList.remove('visible'));
+  } else {
+    // ищем совпадения, если пользователь что-то ввёл
+    let isSomethingMatch = false;
+
+    // если есть совпадение по оригинальному тексту, или по транслиту, то подсвечиваем
+    userPattern = filterText.split('').join('{1}.*');
+    // получаем паттерн: б{1}.*ы{1}.*т{1}.*и{1}.*е
+    const regex = new RegExp(userPattern);
+
+    els.forEach(el => {
+      // подсвечиваем элементы
+      const elText = (el.innerText || el.textContent).toLowerCase();
+      const isThisMatch = regex.test(elText);
+      // if (elText.includes(filterText)) {
+      if (isThisMatch) {
+        el.classList.add('visible');
+        isSomethingMatch = true;
+      } else {
+        el.classList.remove('visible')
+      };
+    });
+
+    // если есть совпадения, то ставим общую метку на весь блок
+    if (isSomethingMatch) {
+      root.classList.add('hidden-children');
+    } else {
+      // если нет результатов и транслит ещё не пробовали, то надо попробовать транслит поискать
+      if (isNeedTranslit != true) {
+        filterQueryPages(text, true);
+      }
+    };
+  };
+};

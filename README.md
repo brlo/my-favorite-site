@@ -114,3 +114,49 @@ alias bib_cache_clear='sudo rm /projects/bibleox/db/cache_search/*/*/*.json'
 * СКРИПТЫ
 
 см. всё в ./scripts.rb
+
+* ПРИВЕЛЕГИИ
+
+# Для старта:
+
+```ruby
+u.can!('pages_read')
+```
+
+# Для начала редактирования через MR:
+
+Самая база: видеть страницы и MR
+
+```ruby
+u.can!('pages_read')
+u.can!('mrs_read')
+
+# может создавать MR
+u.can!('mrs_create')
+
+# может обновлять свои страницы
+# u.can!('pages_self_update')
+# может обновлять страницы, где принята хотя бы одна его правка
+# u.can!('pages_editor_update')
+# может удалять свои страницы
+# u.can!('pages_self_destroy')
+
+# может управлять менюшками (создавать, редактировать, удалять)
+u.can!('menus_update')
+# u.can!('menus_self_update')
+```
+
+# Модератор:
+
+
+```ruby
+u.can!('mrs_merge')
+```
+
+# Админ:
+
+
+```ruby
+u.can!('super')
+u.update!(is_admin: true)
+```

@@ -91,11 +91,17 @@ class User < ApplicationMongoRecord
     is_admin = _privs['super'] == true
 
     privs_names = %w(
-      pages_read pages_create pages_update pages_destroy
+      pages_read pages_create pages_update pages_destroy pages_self_update pages_editor_update pages_self_destroy
+                              menus_update               menus_self_update
       mr_read    mr_create    mr_update    mr_destroy
       dict_read  dict_create  dict_update  dict_destroy
+
+      super
     )
     if is_admin
+      # привилегия super открывает видимость некоторых админских полей в формах
+      # но она не позволяет делать всё, что можно админу.
+      # Для предоставления админских прав надо включить user.is_admin
       privs_names.map { |n| [n, true] }.to_h
     else
       can_names = privs_names.select { |n| _privs[n] == true }
@@ -111,10 +117,11 @@ class User < ApplicationMongoRecord
   # pages_editor_update - обновлять статьи, где я редактор (принят хоть один MR)
   # pages_self_destroy - удалять свои статьи
   #
-  # mr_read
-  # mr_create
-  # mr_update
-  # mr_destroy
+  # mrs_read
+  # mrs_create
+  # mrs_update
+  # mrs_destroy
+  # mrs_merge - даёт парво на merge, rebase, reject
   #
   # dict_read
   # dict_create
@@ -138,11 +145,13 @@ class User < ApplicationMongoRecord
   def can!(action)
     self.privs = {} if self.privs.blank?
     self.privs[action] = true
+    self.save!
   end
 
   def cant!(action)
     return if self.privs.blank?
     self.privs.delete(action)
+    self.save!
   end
 
   def max_merge_requests_count

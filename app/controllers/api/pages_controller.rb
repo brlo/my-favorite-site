@@ -135,6 +135,7 @@ module Api
       # подгружаем страницу
       set_page()
 
+      is_can =
       case @page.edit_mode.to_i
       when 1
         # только админы
@@ -143,12 +144,17 @@ module Api
         # только модераторы
         ability?('pages_update')
       when 3
+        false
         # автор или редакторы (от кого уже принимали MR сюда)
         # и которые не лишены привилегий редактировать свои статьи или статьи где они редакторы
-        (ability?('pages_self_update') && @page&.user_id == ::Current.user.id) ||
-        (ability?('pages_editor_update') && @page&.editors.to_a.includes?(::Current.user.id))
+        #(ability?('pages_self_update') { @page&.user_id == ::Current.user.id }) ||
+        #(ability?('pages_editor_update') { @page&.editors.to_a.includes?(::Current.user.id) })
       else
         false
+      end
+
+      if !is_can
+        render json: {success: 'fail', errors: 'У вас нет доступа к этому действию.'}, status: 401
       end
     end
 
@@ -158,7 +164,7 @@ module Api
 
       # удалять может человек с привелегией, или автор с привелегией удалять своё
       ability?('pages_destroy') ||
-      (ability?('pages_self_destroy') && @page&.user_id == ::Current.user.id)
+      (ability?('pages_self_destroy') { @page&.user_id == ::Current.user.id })
     end
   end
 end

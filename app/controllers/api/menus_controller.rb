@@ -18,6 +18,7 @@ module Api
 
       # begin
         if @menu_item.save
+          @page.touch
           render(json: {'success': 'ok', item: @menu_item.attrs_for_render}, status: :ok)
         else
           # puts '=======ERRORS======='
@@ -39,6 +40,7 @@ module Api
 
       # begin
         if @menu_item.update(menu_item_params)
+          @page.touch
           render(json: {'success': 'ok', item: @menu_item.attrs_for_render}, status: :ok)
         else
           # puts '=======ERRORS======='
@@ -61,6 +63,7 @@ module Api
       else
         begin
           @menu_item.destroy!
+          @page.touch
           render(json: {'success': 'ok', item: @menu_item.attrs_for_render}, status: :ok)
         rescue ActiveRecord::RecordNotDestroyed => error
           render json: {errors: error.record.errors}, status: 422
@@ -90,8 +93,8 @@ module Api
 
     def reject_by_read_privs;    ability?('pages_read'); end
     def reject_by_update_privs
-      ability?('pages_update') ||
-      (ability?('pages_self_update') && @page&.user_id == ::Current.user.id)
+      ability?('menus_update') #||
+      #(ability?('menus_self_update') { @page&.user_id == ::Current.user.id })
     end
   end
 end

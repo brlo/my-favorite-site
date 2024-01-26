@@ -107,7 +107,7 @@ function getItem() {
       mergeRequest.value = data.item;
       errors.value = '';
     } else {
-      errors.value = data;
+      errors.value = data.errors ? data.errors : data;
     }
   })
 }
@@ -127,7 +127,7 @@ function merge() {
       } else {
         toastError('Ошибка', 'Не удалось принять правки');
         console.log('FAIL!', data);
-        errors.value = data;
+        errors.value = data.errors ? data.errors : data;
       }
     })
   }
@@ -144,7 +144,7 @@ function rebase() {
       } else {
         toastError('Ошибка', 'Не удалось обновить правки')
         console.log('FAIL!', data)
-        errors.value = data;
+        errors.value = data.errors ? data.errors : data;
       }
     })
   }
@@ -161,7 +161,7 @@ function reject() {
       } else {
         toastError('Ошибка', 'Не удалось отклонить правки');
         console.log('FAIL!', data);
-        errors.value = data;
+        errors.value = data.errors ? data.errors : data;
       }
     })
   }

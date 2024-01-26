@@ -4,6 +4,9 @@ module Api
     before_action :reject_by_create_privs, only: [:create]
     before_action :reject_by_update_privs, only: [:update]
     before_action :reject_by_destroy_privs, only: [:destroy]
+    before_action :reject_by_merge_privs, only: [:merge]
+    before_action :reject_by_rebase_privs, only: [:rebase]
+    before_action :reject_by_reject_privs, only: [:reject]
 
     def list
       @mrs = ::MergeRequest.includes(:user).only(
@@ -168,6 +171,11 @@ module Api
     def reject_by_read_privs;    ability?('mrs_read'); end
     def reject_by_create_privs;  ability?('mrs_create'); end
     def reject_by_update_privs;  ability?('mrs_update'); end
+
+    def reject_by_merge_privs;   ability?('mrs_merge'); end
+    def reject_by_rebase_privs;  ability?('mrs_merge'); end
+    def reject_by_reject_privs;  ability?('mrs_merge'); end
+
     def reject_by_destroy_privs; ability?('mrs_destroy'); end
   end
 end

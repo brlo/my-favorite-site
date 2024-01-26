@@ -8,13 +8,14 @@ import "@/style.css"
 import App from '@/App.vue'
 import Login from '@/Login.vue'
 import { getCookie } from "@/libs/cookies"
+
 import router from "@/router/index"
 
 import ConfirmationService from 'primevue/confirmationservice';
 import ToastService from 'primevue/toastservice';
 import Toast from 'primevue/toast';
 
-// TODO: также сделать тестовый запрос для проверки авторизации и если что отправить в логин
+
 const mainComponent = getCookie('api_token') === '' ? Login : App;
 
 const app = createApp(mainComponent);

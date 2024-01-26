@@ -15,6 +15,7 @@ body {
   margin: 0;
   width: 100%;
   height: 100%;
+  font-size: 100%;
 }
 
 body {
@@ -127,7 +128,7 @@ button.pretty.is-active,
 }
 
 .flex-wrap .content {
-  max-width: 700px;
+  max-width: 1200px;
   width: 100%;
   padding: 30px 10px;
   position: relative;

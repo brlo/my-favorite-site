@@ -37,6 +37,20 @@
   margin: 20px 0;
 }
 
+#page-references-text {
+  font-size: 0.7em;
+}
+
+#page-references-title {
+  margin-bottom: 20px;
+}
+
+#page-references ol,
+#page-references ul {
+  line-height: 0.7em;
+}
+
+
 /* TEXT */
 
 /* ПРИМЕНЯЕТСЯ К ТЕКСТАМ ИЗ СТАТЕЙ */
@@ -163,17 +177,21 @@
 
 #page-content .menu-subject.depth-0 {
   font-weight: 500;
+  margin-top: 0.8em;
 }
 #page-content .menu-subject {
   font-size: 1.1em;
+  margin-top: 0.8em;
 }
 
 #page-content .menu-tree a {
-  display: inline-block;
+  display: inline;
+  padding: 0 0 3px 0;
   margin: 0 12px 5px 0;
   border-bottom: 1px solid;
   text-decoration: none;
-  white-space: nowrap;
+  /* white-space: nowrap; */
+  line-height: 1.8rem;
 }
 #page-content .menu-tree a:hover {
   border-bottom: 1px solid;
@@ -190,6 +208,14 @@
   padding: 15px 0 0 0;
 }
 
+.menu-tree.hidden-children .menu-link,
+.menu-tree.hidden-children .menu-subject {
+  display: none;
+}
+.menu-tree.hidden-children .visible {
+  display: inline;
+}
+
 .night-mode #page-content blockquote {
   border-left: 2px solid #90b990;
   background-color: #90b99011;
@@ -198,5 +224,8 @@
   color: #777;
 }
 
-
+.filter {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
 

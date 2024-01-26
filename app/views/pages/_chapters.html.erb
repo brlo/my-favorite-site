@@ -29,6 +29,15 @@
   <% end %>
 
   <div class='menu-tree'>
+    <% if @tree_menu.present? && @tree_menu.count > 1 %>
+    <input type='text'
+        class='filter pretty'
+        oninput='window.filterQueryPages(this.value, false);'
+        value=''
+        placeholder='Фильтр'
+        autofocus
+    />
+    <% end %>
     <div>
     <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0}) %>
     </div>

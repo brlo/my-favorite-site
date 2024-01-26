@@ -1,36 +1,24 @@
 <script setup>
-import { ref } from 'vue';
-import { api } from '@/libs/api.js';
+const apiUrl = import.meta.env.VITE_API_URL
 
-const privs = ref({});
-const errors = ref();
-
-function getPrivs() {
-  api.get('/users/me').then(data => {
-    console.log(data)
-    if (data.success == 'ok') {
-      privs.value = data.privs;
-    } else {
-      errors.value = data.errors;
-    }
-  })
-}
-getPrivs();
+const props = defineProps({
+  user: Object
+})
 </script>
 
 <template>
 <header>
   <div class="container">
     <div class="logo">
-      <a href="/">
+      <a :href="`${apiUrl}/`">
         <img src="@/assets/bibleox-ru.png">
       </a>
     </div>
     <nav>
-      <router-link v-if="privs.pages_read" to="/">Сводка</router-link>
-      <router-link v-if="privs.pages_read" to="/pages">Статьи</router-link>
-      <router-link v-if="privs.mr_read" to="/merge_requests">Правки</router-link>
-      <router-link v-if="privs.dict_read" to="/dict_words">Словарь</router-link>
+      <router-link v-if="user.privs.pages_read" to="/">Сводка</router-link>
+      <router-link v-if="user.privs.pages_read" to="/pages">Статьи</router-link>
+      <router-link v-if="user.privs.mr_read" to="/merge_requests">Правки</router-link>
+      <router-link v-if="user.privs.dict_read" to="/dict_words">Словарь</router-link>
     </nav>
   </div>
 </header>
@@ -43,7 +31,7 @@ header {
 
 header .container {
   position: relative;
-  max-width: 700px;
+  max-width: 1200px;
   width: 100%;
   padding: 12px 10px;
   margin: 0 auto;

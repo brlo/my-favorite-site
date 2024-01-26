@@ -25,11 +25,6 @@ const apiUrl = import.meta.env.VITE_API_URL
 //   <InputNumber v-model="page.priority" inputId="page-priority" placeholder="Приоритет" />
 // </div>
 
-// <div class="field">
-//   <label>Сноски:</label>
-//   <tiptap :content="page.references" @change="(d) => { page.references = d; }"/>
-// </div>
-
 
 import ConfirmDialog from 'primevue/confirmdialog';
 import { useConfirm } from "primevue/useconfirm";
@@ -48,6 +43,7 @@ const props = defineProps({
 
 const errors = ref('');
 const page = ref({page_type: 1, lang: 'ru', is_published: true})
+const user = ref();
 
 let pageMenu = null
 
@@ -63,6 +59,20 @@ function getPage() {
 if (props.id) {
   getPage();
 }
+
+const userClean = () => user.value = { privs: {} };
+function getUser() {
+  api.get('/users/me').then(data => {
+    console.log('GET User', data)
+    if (data.success == 'ok') {
+      user.value = data;
+    } else {
+      userClean();
+    }
+  })
+}
+userClean();
+getUser();
 
 // ЯЗЫКИ
 const langs = [
@@ -130,7 +140,7 @@ function submit() {
     } else {
       toastError('Ошибка', 'Не удалось создать статью');
       console.log('FAIL!', data);
-      errors.value = data;
+      errors.value = data.errors ? data.errors : data;
     }
   })
 }
@@ -150,7 +160,7 @@ function submitToReview() {
         } else {
           toastError('Ошибка', 'Не удалось отправить изменения на проверку');
           console.log('FAIL!', data);
-          errors.value = data;
+          errors.value = data.errors ? data.errors : data;
         }
       })
     }
@@ -174,7 +184,7 @@ function destroy() {
         } else {
           console.log('FAIL!', data);
           toastError('Ошибка', 'Не удалось удалить статью');
-          errors.value = data;
+          errors.value = data.errors ? data.errors : data;
         }
       })
     }
@@ -198,7 +208,7 @@ function restore() {
         } else {
           console.log('FAIL!', data);
           toastError('Ошибка', 'Не удалось восстановить статью');
-          errors.value = data;
+          errors.value = data.errors ? data.errors : data;
         }
       })
     }
@@ -255,20 +265,22 @@ const submitBtnItems = [
 <div class="errors">{{ errors }}</div>
 
 <div v-if="seen" class="form">
-  <div class="field">
-    <label>Тип документа</label>
-    <Dropdown
-      v-model="page.page_type"
-      :options="pageTypes"
-      optionLabel="name"
-      optionValue="code"
-      placeholder="Тип документа"
-      :disabled="page.is_deleted"
-    />
-  </div>
+  <div v-if="user.privs.super">
+    <div class="field">
+      <label>Тип документа</label>
+      <Dropdown
+        v-model="page.page_type"
+        :options="pageTypes"
+        optionLabel="name"
+        optionValue="code"
+        placeholder="Тип документа"
+        :disabled="page.is_deleted"
+      />
+    </div>
 
-  <div class="field-hint">
-    {{ pageTypesDesc[page.page_type] }}
+    <div class="field-hint">
+      {{ pageTypesDesc[page.page_type] }}
+    </div>
   </div>
 
   <div class="field">
@@ -281,16 +293,20 @@ const submitBtnItems = [
     <InputText v-model="page.title_sub" placeholder="Подзаголовок" class="page-field-subtitle" :disabled="page.is_deleted" />
   </div>
 
-  <div class="field">
+  <div v-if="user.privs.super" class="field">
     <label>Адрес (название статьи в URL)</label>
     <InputText v-model="page.path" placeholder="Адрес" :disabled="page.is_deleted" />
   </div>
 
-  <div class="group-fields">
+  <div v-if="user.privs.super" class="group-fields">
     <div class="field">
       <label>ID родителя (не обязательно)</label>
       <AutocompletePage v-model="page.parent_id" fetchKey="id" :disabled="page.is_deleted" />
     </div>
+  </div>
+
+  <div v-if="seenMenu" class="tree-menu">
+    <EditMenu :pageId="page.id" :pageMenu="pageMenu"/>
   </div>
 
   <div class="field">
@@ -303,23 +319,25 @@ const submitBtnItems = [
     <tiptap :content="page.references" @change="(d) => { page.references = d; }" :disabled="page.is_deleted" />
   </div>
 
-  <div class="field">
-    <label>Кто может редактировать</label>
-    <Dropdown
-      v-model="page.edit_mode"
-      :options="editModes"
-      optionLabel="name"
-      optionValue="code"
-      placeholder="Кто редактирует"
-      :disabled="page.is_deleted"
-    />
+  <div v-if="user.privs.super">
+    <div class="field">
+      <label>Кто может редактировать</label>
+      <Dropdown
+        v-model="page.edit_mode"
+        :options="editModes"
+        optionLabel="name"
+        optionValue="code"
+        placeholder="Кто редактирует"
+        :disabled="page.is_deleted"
+      />
+    </div>
+
+    <div class="field-hint">
+      {{ editModesDesc[page.edit_mode] }}
+    </div>
   </div>
 
-  <div class="field-hint">
-    {{ editModesDesc[page.edit_mode] }}
-  </div>
-
-  <div class="group-fields">
+  <div v-if="user.privs.super" class="group-fields">
     <div class="field">
       <label>Язык статьи</label>
       <Dropdown
@@ -338,22 +356,18 @@ const submitBtnItems = [
     </div>
   </div>
 
-  <div class="group-fields">
+  <div v-if="user.privs.super" class="group-fields">
     <div class="field">
       <label>Описание для поискововой системы</label>
       <InputText v-model="page.meta_desc" placeholder="Meta-описание" :disabled="page.is_deleted" />
     </div>
   </div>
 
-  <div class="group-fields">
+  <div v-if="user.privs.super" class="group-fields">
     <div class="field">
       <label>Аудио-файл (не обязательно)</label>
       <InputText v-model="page.audio" placeholder="Аудио-файл" :disabled="page.is_deleted" />
     </div>
-  </div>
-
-  <div v-if="seenMenu" class="tree-menu">
-    <EditMenu :pageId="page.id" :pageMenu="pageMenu"/>
   </div>
 </div>
 </template>

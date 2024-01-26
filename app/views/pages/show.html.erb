@@ -28,8 +28,10 @@
 
   <% if @page.references.present? %>
     <section id='page-references' class="looks-like-page">
-      <h2><%= ::I18n.t('page.references') %></h2>
-      <%= sanitize(@page.references.to_s, tags: ::Page::ALLOW_TAGS).html_safe %>
+      <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
+      <div id="page-references-text">
+        <%= sanitize(@page.references.to_s, tags: ::Page::ALLOW_TAGS).html_safe %>
+      </div>
     </section>
   <% end %>
 
@@ -44,17 +46,6 @@
   </div>
 
   <div class='notification'>
-    <div id="page-edit-telegram">
-      <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox'>https://t.me/bibleox</a>
-    </div>
-    <!--
-    <div id="page-edit">
-      <%= ::I18n.t('quote_page.or_edit_page_by_yourself') %>:
-      <a href="<%= "#{::SETTINGS['admin']['url'] }/pages/#{ @page.id.to_s }/" %>">
-        <%= I18n.t('quote_page.edit_link') %>
-      </a>
-    </div>
-    -->
     <% if @page.user_id %>
       <div id="page-author">
         <%= ::I18n.t('quote_page.author') %>: <%= @author_name %>
@@ -65,6 +56,16 @@
         </div>
       <% end %>
     <% end %>
+
+    <div id="page-edit-telegram">
+      <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox'>https://t.me/bibleox</a>
+    </div>
+    <div id="page-edit">
+      <%= ::I18n.t('quote_page.or_edit_page_by_yourself') %>:
+      <a href="<%= "#{::SETTINGS['admin']['url'] }/pages/#{ @page.id.to_s }/" %>">
+        <%= I18n.t('quote_page.edit_link') %>
+      </a>
+    </div>
   </div>
 </section>
 

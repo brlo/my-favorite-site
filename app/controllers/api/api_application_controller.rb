@@ -11,7 +11,7 @@ module Api
 
     # skip_before_action :verify_authenticity_token
     before_action :set_current_user
-    before_action :reject_not_admins
+    # before_action :reject_not_admins
     around_action :delete_current_user
     before_action :set_locale
 
@@ -31,7 +31,11 @@ module Api
 
     def error_occurred(error)
       log_error(error)
-      render json: {success: 'fail', error: error.message}, status: 500
+      if ::Rails.env.production?
+        render json: {success: 'fail', error: error.message}, status: 500
+      else
+        render json: {success: 'fail', error: 'Что-то пошло не так'}, status: 500
+      end
     end
 
     def set_locale
@@ -93,9 +97,14 @@ module Api
       logger.error(error.backtrace.join("\n"))
     end
 
-    def ability?(action)
+    def ability?(action, &block)
       if !::Current.user.ability?(action)
-        render json: {success: 'fail', errors: 'access to action is denied'}, status: 401
+        # в блоке можно передать доп. условия для проверки
+        is_can_by_block = block_given? ? yield : false
+
+        if !is_can_by_block
+          render json: {success: 'fail', errors: 'У вас нет доступа к этому действию.'}, status: 401
+        end
       end
     end
   end
