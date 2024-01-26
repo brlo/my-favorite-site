@@ -166,8 +166,12 @@ class Page < ApplicationMongoRecord
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
     self.group_lang_id = self.group_lang_id || BSON::ObjectId.new
 
+    if self.references_changed?
+      self.references = self.class.safe_html(self.references).strip
+    end
+
     if self.body_changed?
-      self.body = self.class.safe_body(self.body).strip
+      self.body = self.class.safe_html(self.body).strip
 
       # Обработка страниц, где запрошена разбивка на стихи как в Библии.
       if self.is_page_verses?
@@ -309,12 +313,12 @@ class Page < ApplicationMongoRecord
   def self.html_to_arr html_text
     # добавляем после каждого тэга, который приводит к переносу строки, символ "=%=",
     # чтобы по нему потом разделить на строки
-    html_text = safe_body(html_text)
+    html_text = safe_html(html_text)
     html_text = html_text.to_s.gsub(/<\/(p|h1|h2|h3|h4|hr)>/, '\0=%=').split('=%=')
     html_text
   end
 
-  def self.safe_body html_text
+  def self.safe_html html_text
     # Заменяем неразрывные пробелы (&nbsp;) на обычные. Иначе строки не рвутся, выглядит очень странно
     # приходят эти пробелы, походу, через редактор Pell. В базе выглядит уже не как &nbsp;, а как обычный пробел,
     # поэтому сразу и не распознаешь, а вот в VSCode он выделяется жёлтым прямоугольником.

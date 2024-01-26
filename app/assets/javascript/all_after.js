@@ -574,25 +574,6 @@ window.BX.logout = function() {
 
 // ---------------- FILTER MENU ------------------
 
-// window.filterQueryPages = function(text) {
-//   const subjects = document.querySelectorAll(".menu-tree .menu-subject");
-//   const links = document.querySelectorAll(".menu-tree .menu-link");
-//   let filter = text.toLowerCase();
-//   if (filter === '') {
-//     subjects.forEach(el => el.classList.remove('hidden'));
-//     links.forEach(el => el.classList.remove('hidden'));
-//   } else {
-//     subjects.forEach(el => el.classList.add('hidden'));
-//     links.forEach(page => {
-//       const pageTitleEl = page.querySelectorAll('.q_title')[0];
-//       const pageTitle = (pageTitleEl.innerText || pageTitleEl.textContent).toLowerCase();
-//       pageTitle.includes(filter)
-//       ? page.classList.remove('hidden')
-//       : page.classList.add('hidden');
-//     });
-//   };
-// };
-
 window.filterQueryPages = function(text, isNeedTranslit) {
   const root = document.querySelector(".menu-tree");
   const els = document.querySelectorAll(".menu-tree .menu-link");

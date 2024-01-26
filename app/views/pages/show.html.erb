@@ -21,9 +21,9 @@
   <% if @verses.present? %>
     <%= render(partial: 'pages/text') %>
   <% else %>
-    <div id='page-body' itemprop='articleBody'>
+    <article id='page-body' itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
       <%= sanitize(@page.body.to_s, tags: ::Page::ALLOW_TAGS).html_safe %>
-    </div>
+    </article>
   <% end %>
 
   <% if @page.references.present? %>
