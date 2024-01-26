@@ -77,6 +77,9 @@ class PagesController < ApplicationController
 
       @canonical_url = build_canonical_url("/w/#{@page.path}")
 
+      @author_name = @page.user&.name
+      @editors_names = ::User.where(:id.in => @page.editors).pluck(:name) if @page.editors&.any?
+
       # не индексировать, где текст UI не совпадает с текстом контента
       if params[:locale] != params[:content_lang]
         @no_index = true

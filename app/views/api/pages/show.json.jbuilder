@@ -16,6 +16,7 @@ json.item do
   json.lang              pg.lang
   json.group_lang_id     pg.group_lang_id.to_s
   json.body              pg.body
+  json.references        pg.references
   json.tags_str          pg.tags&.join(', ')
   json.priority          pg.priority
   json.created_at        pg.c_at

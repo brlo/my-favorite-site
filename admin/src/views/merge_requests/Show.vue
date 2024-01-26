@@ -31,6 +31,8 @@ const mergeStatusClass = {
 const pageFields = {
   title: 'Заголовок',
   title_sub: 'Подзаголовок',
+  body: 'Статья',
+  references: 'Примечания',
   is_published: 'Доступно для чтения',
   page_type: 'Тип статьи',
   meta_desc: 'META-описание',
@@ -44,14 +46,12 @@ const pageFields = {
 }
 
 // добавляем соседние строчки
-function prettyTextDiffs() {
-  const textAsArr = mergeRequest.value.page.body_as_arr
-
+function diffWithContext(textDiffs, fullTextAsArr) {
   // Один раз собираем все группы, а потом один раз добавляем в ref, чтобы лишний раз его не беспокоить
   let groups = []
 
-  if (textAsArr && textAsArr.length) {
-    mergeRequest.value.text_diffs.forEach(group => {
+  if (fullTextAsArr && fullTextAsArr.length) {
+    textDiffs.forEach(group => {
       const firstGroupLine = group[0][1]
       // const lastGroupLine = group[group.length-1][1]
 
@@ -66,7 +66,7 @@ function prettyTextDiffs() {
       // ПРЕДЫДУЩИЕ СТРОКИ (==)
       if (Number.isInteger(firstGroupLine) && firstGroupLine > 0) {
         const prevNum = firstGroupLine - 1;
-        const prevString = textAsArr[prevNum];
+        const prevString = fullTextAsArr[prevNum];
         if (prevString) {
           prettyGroup.push(['', prevNum, prevString]);
         }
@@ -79,13 +79,13 @@ function prettyTextDiffs() {
       // НУЖНО НАЙТИ В ГРУППЕ ПОСЛЕДНИЙ МИНУС, ИЛИ ПЕРВЫЙ ПЛЮС, это и будет lastGroupLine
       if (Number.isInteger(lastMinus)) {
         const nextNum = lastMinus + 1;
-        const nextString = textAsArr[nextNum];
+        const nextString = fullTextAsArr[nextNum];
         if (nextString) {
           prettyGroup.push(['', nextNum, nextString]);
         }
       } else if (Number.isInteger(firstPlus)) {
         const num = firstPlus;
-        const str = textAsArr[num];
+        const str = fullTextAsArr[num];
         if (str) {
           prettyGroup.push(['', num, str]);
         }
@@ -94,7 +94,7 @@ function prettyTextDiffs() {
       groups.push(prettyGroup);
     });
   } else {
-    groups = mergeRequest.value.text_diffs;
+    groups = textDiffs;
   }
 
   return groups;
@@ -185,20 +185,12 @@ let isRejectBtnSeen = computed(() => {
 <div v-if="mergeRequest.id">
   <label>Правки к статье:</label>
   <h1>
-    <router-link :to="{ name: 'EditPage', params: { id: mergeRequest.page_id }}">{{ mergeRequest.page.title }}</router-link>
+    <router-link :to="{ name: 'EditPage', params: { id: mergeRequest.page_id }}">{{ mergeRequest.page.title }}</router-link> <span class="plus mono-font" v-if="mergeRequest.plus_i">+{{ mergeRequest.plus_i }}</span><span class="minus mono-font" v-if="mergeRequest.minus_i">-{{ mergeRequest.minus_i }}</span>
     <i :class="`badge ${mergeStatusClass[mergeRequest.is_merged]}`">{{ mergeStatus[mergeRequest.is_merged]}}</i>
   </h1>
   <label>Предложил: {{ mergeRequest.user?.name }} ({{ mergeRequest.user?.username }})</label>
   <label>{{ mergeRequest.updated_at_word }}</label>
   <label>Оригинал текста от: {{ mergeRequest.src_ver }}</label>
-
-  <div class="help-info">
-    <div class="title">Подсказки:</div>
-    <div class="help-row">"-" — строка будет удалена (красная).</div>
-    <div class="help-row">"+" — строка будет добавлена (зелёная).</div>
-    <div class="help-row">" " — строка является лишь подсказкой (серая).</div>
-    <div class="help-row">"?" — строка не будет обработана, так как на её месте уже находятся чужие изменения, а поэтому нам непонятно как с ней поступить, поэтому просто игнорируем её.</div>
-  </div>
 
   <div class="flex action-bar">
     <Button v-if="mergeRequest.is_merged == 1" disabled :label="`Правки уже приняты: ${ mergeRequest.action_at }`" icon="pi pi-check-circle" />
@@ -231,11 +223,11 @@ let isRejectBtnSeen = computed(() => {
       </table>
     </div>
 
-    <div v-if="mergeRequest.text_diffs">
+    <div v-for="(diffsInfo, fieldName) in mergeRequest.diffs">
       <div class="diff-title diff-summary">
-        Текст статьи: <span class="plus mono-font" v-if="mergeRequest.plus_i">+{{ mergeRequest.plus_i }}</span> <span class="minus mono-font" v-if="mergeRequest.minus_i">-{{ mergeRequest.minus_i }}</span>
+        {{ pageFields[fieldName] }}: <span class="plus mono-font" v-if="diffsInfo.p_i">+{{ diffsInfo.p_i }}</span> <span class="minus mono-font" v-if="diffsInfo.m_i">-{{ diffsInfo.m_i }}</span>
       </div>
-      <div class="diff" v-for="group in prettyTextDiffs()">
+      <div class="diff" v-for="group in diffWithContext(diffsInfo.diffs, mergeRequest.page.text_arrs[fieldName])">
         <table class="diff-groups">
           <tr
             v-for="action in group"
@@ -252,7 +244,13 @@ let isRejectBtnSeen = computed(() => {
       </div>
     </div>
 
-    <div class="errors">{{ errors }}</div>
+    <div class="help-info">
+      <div class="title">Подсказки:</div>
+      <div class="help-row">"-" — строка будет удалена (красная).</div>
+      <div class="help-row">"+" — строка будет добавлена (зелёная).</div>
+      <div class="help-row">" " — строка является лишь подсказкой (серая).</div>
+      <div class="help-row">"?" — строка не будет обработана, так как на её месте уже находятся чужие изменения, а поэтому нам непонятно как с ней поступить, поэтому просто игнорируем её.</div>
+    </div>
   </div>
 </div>
 </template>
@@ -373,7 +371,7 @@ tr.remove {
   background-color: #f9d7dc;
 }
 
-.help-info { margin: 15px 0; }
+.help-info { margin: 25px 0;}
 .help-info .title { font-weight: bold; font-size: 0.8em; }
 .help-info .help-row { font-size: 0.7em; }
 </style>

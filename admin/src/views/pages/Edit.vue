@@ -282,7 +282,7 @@ const submitBtnItems = [
   </div>
 
   <div class="field">
-    <label>Адрес (путь в URL)</label>
+    <label>Адрес (название статьи в URL)</label>
     <InputText v-model="page.path" placeholder="Адрес" :disabled="page.is_deleted" />
   </div>
 
@@ -296,6 +296,11 @@ const submitBtnItems = [
   <div class="field">
     <label>Статья:</label>
     <tiptap :content="page.body" @change="(d) => { page.body = d; }" :disabled="page.is_deleted" />
+  </div>
+
+  <div class="field">
+    <label>Примечания:</label>
+    <tiptap :content="page.references" @change="(d) => { page.references = d; }" :disabled="page.is_deleted" />
   </div>
 
   <div class="field">

@@ -21,11 +21,16 @@
   <% if @verses.present? %>
     <%= render(partial: 'pages/text') %>
   <% else %>
-
     <div id='page-body' itemprop='articleBody'>
       <%= sanitize(@page.body.to_s, tags: ::Page::ALLOW_TAGS).html_safe %>
     </div>
+  <% end %>
 
+  <% if @page.references.present? %>
+    <section id='page-references' class="looks-like-page">
+      <h2><%= ::I18n.t('page.references') %></h2>
+      <%= sanitize(@page.references.to_s, tags: ::Page::ALLOW_TAGS).html_safe %>
+    </section>
   <% end %>
 
   <div id='bottom-page-bar'>
@@ -52,8 +57,13 @@
     -->
     <% if @page.user_id %>
       <div id="page-author">
-        <%= ::I18n.t('quote_page.author') %>: <%= @page&.user&.name %>
+        <%= ::I18n.t('quote_page.author') %>: <%= @author_name %>
       </div>
+      <% if @editors_names %>
+        <div id="page-editors">
+          <%= ::I18n.t('quote_page.editors') %>: <%= @editors_names.join(', ') %>
+        </div>
+      <% end %>
     <% end %>
   </div>
 </section>

@@ -7,7 +7,9 @@ module Api
 
     def list
       @mrs = ::MergeRequest.includes(:user).only(
-        :id, :user_id, :page_id, :minus_i, :plus_i, :is_merged, :c_at, :u_at,
+        :id, :user_id, :page_id, :is_merged,
+        :plus_i, :minus_i,
+        :c_at, :u_at,
         :is_merged, :action_at
       ).order_by(updated_at: -1).limit(20)
 
@@ -85,11 +87,9 @@ module Api
     # POST /merge_requests/:id/merge
     def merge
       set_merge_request()
-      # заполняем все необходимые параметры
-      @mr.merge!
 
       # begin
-        if @mr.save
+        if @mr.merge!
           render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
         else
           # puts '=======ERRORS======='
@@ -106,11 +106,9 @@ module Api
     # POST /merge_requests/:id/reject
     def reject
       set_merge_request()
-      # заполняем все необходимые параметры
-      @mr.reject!
 
       # begin
-        if @mr.save
+        if @mr.reject!
           render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
         else
           # puts '=======ERRORS======='
@@ -127,11 +125,9 @@ module Api
     # POST /merge_requests/:id/rebase
     def rebase
       set_merge_request()
-      # заполняем все необходимые параметры
-      @mr.rebase!
 
       # begin
-        if @mr.save
+        if @mr.rebase!
           render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
         else
           # puts '=======ERRORS======='
@@ -158,13 +154,14 @@ module Api
 
     # Only allow a list of trusted parameters through.
     def page_params
-      params.require(:page).except(:id, :created_at, :updated_at).permit(
-        :is_published,
+      params.require(:page).except(:id, :created_at, :updated_at, :is_deleted).permit(
+        :is_published, :edit_mode,
         :page_type, :title, :title_sub, :meta_desc,
         :path,
         :parent_id,
         :lang, :group_lang_id,
-        :body, :tags_str, :priority,
+        :body, :references,
+        :tags_str, :priority,
       )
     end
 

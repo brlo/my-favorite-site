@@ -31,7 +31,7 @@ class DiffService
     # названия полей, в которых желаем отслеживать изменения
     field_list = %w(
       page_type title title_sub path parent_id lang group_lang_id
-      meta_desc redirect_from audio priority is_published
+      meta_desc redirect_from audio priority is_published edit_mode
     )
 
     # итак, какие поля изменились?
@@ -51,33 +51,28 @@ class DiffService
       mr.attrs_diff = changed_attrs
     end
 
-    # а body изменился? если да, то сохраняем только diffs
-    if new_attrs['body'] != old_attrs['body']
-      body_old = ::Page.html_to_arr(old_attrs['body'])
-      body_new = ::Page.html_to_arr(new_attrs['body'])
-      diffs = ::Diff::LCS.diff(body_old, body_new)
-      # считаем сколько строк удалили и добавили
-      _minus_i = 0
-      _plus_i = 0
-      diffs.each do |group|
-        group.each do |action,_,_|
-          _minus_i += 1 if action == '-'
-          _plus_i += 1 if action == '+'
-        end
+    # здесь будем хранить diffs каких-либо больших текстовых полей
+    diffs = {}
+
+    # body или references изменились? если да, то сохраняем только diffs
+    %w(body references).each do |field_name|
+      val_old = old_attrs[field_name]
+      val_new = new_attrs[field_name]
+
+      if val_old != val_new
+        diffs[field_name] = build_diffs(
+          text_old: val_old,
+          text_new: val_new,
+        )
       end
-      mr.minus_i = _minus_i
-      mr.plus_i = _plus_i
-
-      # в diffs лежат группы с изменениями, которые совершены близко друг к другу
-      # [[группа-1], [гурппа-2], [гурппа-3]]
-      # Мы их так группами и сохраняем, хотя можно было бы и отказаться.
-      # Будем и показывать модератору группами. Так удобнее.
-      mr.text_diffs = diffs.map { |diff_group| diff_group.map(&:to_a) }
-
-      # кол-во строк в старом тексте
-      # (чтобы смогли потом на это кол-во как бы наложить патч и посчитать новые строки)
-      mr.lines_count = body_old.count
     end
+
+    mr.diffs = diffs.compact
+
+    mr.m_i = mr.diffs.sum { |f,data| data['m_i'].to_i }
+    mr.p_i = mr.diffs.sum { |f,data| data['p_i'].to_i }
+
+    mr
   end
 
   # =============================== MERGE =================================
@@ -95,13 +90,23 @@ class DiffService
       page.write_attribute(k, v['new'])
     end
 
-    # текст в виде массива для применения патча: ['line1', 'line2', ...]
-    init_text_as_arr = page.body_as_arr()
+    # --------- применяем diffs к тексту статьи -----------
 
-    # применяем diffs к тексту статьи
-    patched_text = apply_diffs_patch(init_text_as_arr, mr.text_diffs)
-    if patched_text
-      page.body = patched_text.join
+    mr.diffs&.each do |field_name, diff_info|
+      # патч
+      diffs = diff_info&.fetch('diffs', nil)
+      next if diffs.blank?
+
+      # текст до патча
+      init_text_as_arr = page.read_attribute(field_name)
+
+      # применяем патч
+      patched_text = apply_diffs_patch(init_text_as_arr, diffs)
+
+      # сохраняем текст в page
+      if patched_text
+        page.write_attribute(field_name, patched_text.join)
+      end
     end
 
     page.merge_ver = ::DateTime.now.utc.round
@@ -117,8 +122,8 @@ class DiffService
   end
 
   # =============================== REBASE =================================
-  # Задача: итеративно исправить текущий mr.text_diffs, поправив номера строк,
-  # последовательно опираясь на все промежуточные text_diffs между этим и актуальной статьёй.
+  # Задача: итеративно исправить текущий mr.diffs, поправив номера строк,
+  # последовательно опираясь на все промежуточные diffs между этим и актуальной статьёй.
   def rebase
     raise('MR is closed') if mr.is_merged.to_i != 2
     raise('no page for rebase') unless page
@@ -148,102 +153,34 @@ class DiffService
         raise('Нет следующей версии патча, а до текущей версии статьи так и не добрались')
       end
 
-      # применяем diffs, если есть, а attrs_diffs мы не храним (там просто записываем что отправил пользователь)
-      if next_mr.text_diffs.present?
-        # новые номера строк
-        max_lines_count = mr.lines_count
-        # обращаясь по номеру элемента (индекса) получаем новый номер строки, куда вставлять +
-        # например: нам надо было вставить строку на позицию 3, а она теперь после:
-        # - вставки одной строки ДО, уехала на 4 место,
-        # - удаления одной строки ДО, уехала на 2 место
-        # - если меняли что-то ПОСЛЕ, то значения для этого действия не имеет.
-        #
-        # Поэтому мы ищем новое место для вставки строк в ту же (ОТНОСИТЕЛЬНО) позицию
-        new_line_nums_for_plus_arr = calc_new_line_nums(max_lines_count, next_mr.text_diffs)
-        # а тут просто переворачиваем массив для плюсов, так как нам уже надо
-        # искать наоборот: не по индексу, а по значению, то есть надо найти под
-        # каким номером теперь находится старая строка
-        new_line_nums_for_minus_hash = new_line_nums_for_plus_arr.map.with_index { |k,i| [k,i]  }.to_h
+      # применяем diffs, если есть,
+      # а attrs_diffs мы не храним (там просто записываем что отправил пользователь)
+      %w(body references).each do |field_name|
+        old_diff_info = mr.diffs&.dig(field_name, 'diffs')
+        next_diff_info = next_mr.diffs&.dig(field_name, 'diffs')
+        lines_count_was = next_mr.diffs&.dig(field_name, 'lines_count_was')
 
-        puts "==============================================================="
-        puts "==========================new_line_nums_for_plus_arr====================================="
-        puts "new_line_nums_for_plus_arr: #{new_line_nums_for_plus_arr.inspect}"
-        puts "==========================new_line_nums_for_minus_hash====================================="
-        puts "new_line_nums_for_minus_hash: #{new_line_nums_for_minus_hash.inspect}"
-        puts "==========================next_mr.text_diffs====================================="
-        puts "next_mr.text_diffs: #{next_mr.text_diffs.inspect}"
-        puts "==============================================================="
+        diffs_rebased = apply_rebase(
+          diffs_old: old_diff_info,
+          diffs_next: next_diff_info,
+          lines_count_was: lines_count_was
+        )
 
-        # САМОЕ ГЛАВНОЕ МЕСТО!
-        # апдейтим номера строк в нашем mr
-        mr.text_diffs =
-        mr.text_diffs.map do |group|
-puts "=================GROUP NEW======================="
-          group.map do |action, line_num, val|
-puts "=================LINE NEW======================="
-puts "#{action}, #{line_num}, #{val}"
-            # Так обозначаются потерявшиеся в процессе rebase строки.
-            # Храним их, так как это текст какого-то автора. Вдруг он для него ценен.
-            puts "next if line_num == '?': #{line_num == '?'}"
-            next if line_num == '?'
-            # новая позиция старой строки
-            new_num = new_line_nums_for_minus_hash[line_num]
-            puts "new_num: #{new_num}"
-            # ЕСЛИ новое место старой строки не нашли, то:
-            # - действие "минус" ...
-            # - действие "плюс" ...
-            puts "if new_num.nil?: #{new_num.nil?}"
-            puts "new_num == 'CANCEL-': #{new_num == 'CANCEL-'}"
-            if new_num.nil?
-              # соответствующей строки нет — значит её тоже удалили в этом коммите, как и мы в своём коммите
-              puts "if action == '-': #{action == '-'}"
-              puts "elsif action == '+': #{action == '+'}"
-              if action == '-'
-                # добавим пометку для этой строки, чтобы если будет попытка что-то сюда вставить
-                # то мы понимали, что это была попытка зменить одну строку на другую (исправить)
-                new_line_nums_for_minus_hash[line_num] = 'CANCEL-'
-                # делать ничего не надо с этой строкой, так как её уже удалили
-                next
-
-              # соответствующей строки нет - добавляем в ближайшую известную строку
-              elsif action == '+'
-                neares_next_line_num = nil
-                new_line_nums_for_minus_hash.keys.each do |i|
-                  if i > line_num && (nl = new_line_nums_for_minus_hash[line_num]).is_a?(Integer)
-                    # номер строки больше того, который мы не смогли найти в этом хэше
-                    # и значение является номером строки (а не CANCEL-)
-                    neares_next_line_num = nl
-                    break
-                  end
-                end
-                new_num = neares_next_line_num || last
-              end
-
-            # пропускаем, т.к. эта строка удалялась в группе ранее, а это мы сейчас в плюс попали.
-            # для этого мы и ставили эту метку, чтобы потом пропустить плюс
-            elsif new_num == 'CANCEL-'
-              line_nums_arr.delete_at(line_num)
-              new_num = '?'
-            end
-
-            [action, new_num, val]
-          end.compact
-        end.select(&:presence)
+        if diffs_rebased.present?
+          mr.diffs[field_name] = diffs_rebased
+        end
       end
-puts '===================='
-puts mr.text_diffs.inspect
-puts
-puts
+
       # ок, мы поднялись на одну итерацию
       mr.src_ver = next_mr.dst_ver
 
-      # и так пока не придём к верси статьи
+      # и так пока не придём к версии статьи
       i += 1
       break if mr.src_ver == page.merge_ver
       raise('слишком много итераций (> 100) в процессе rebase') if i == 100
     end
 
-    # Ура, теперь мы обновили наш mr.text_diffs и получили такой diffs,
+    # Ура, теперь мы обновили наш mr.diffs и получили такой diffs,
     # который можно применить к текущему тексту статьи.
   end
 
@@ -261,7 +198,8 @@ puts
     # диффсы, которые нужно применить
     return if diffs.blank?
 
-    init_text ||= []
+    # текст в виде массива для применения патча: ['line1', 'line2', ...]
+    init_text = ::Page.html_to_arr(init_text) || []
 
     # сюда будем складывать номера строк для удаления и добавления
     minuses = []
@@ -350,5 +288,106 @@ puts
 
     # новые номера старых строк
     line_nums
+  end
+
+  def build_diffs(text_old:, text_new:)
+    result = {}
+
+    old_t = ::Page.html_to_arr(text_old)
+    new_t = ::Page.html_to_arr(text_new)
+    diffs = ::Diff::LCS.diff(old_t, new_t)
+
+    # считаем сколько строк удалили и добавили
+    m_i = 0
+    p_i = 0
+    diffs.each do |group|
+      group.each do |action,_,_|
+        m_i += 1 if action == '-'
+        p_i += 1 if action == '+'
+      end
+    end
+    result['m_i'] = m_i
+    result['p_i'] = p_i
+
+    # в diffs лежат группы с изменениями, которые совершены близко друг к другу
+    # [[группа-1], [гурппа-2], [гурппа-3]]
+    # Мы их так группами и сохраняем, хотя можно было бы и отказаться.
+    # Будем и показывать модератору группами. Так удобнее.
+    result['diffs'] = diffs.map { |diff_group| diff_group.map(&:to_a) }
+
+    # кол-во строк в старом тексте
+    # (чтобы смогли потом на это кол-во как бы наложить патч и посчитать новые строки)
+    result['lines_count_was'] = old_t.count
+
+    result
+  end
+
+  def apply_rebase diffs_old:, diffs_next:, lines_count_was:
+    return if diffs_old.blank?
+    return if diffs_next.blank?
+    return if lines_count_was.nil?
+    # lines_count_was - новые номера строк
+
+    # обращаясь по номеру элемента (индекса) получаем новый номер строки, куда вставлять +
+    # например: нам надо было вставить строку на позицию 3, а она теперь после:
+    # - вставки одной строки ДО, уехала на 4 место,
+    # - удаления одной строки ДО, уехала на 2 место
+    # - если меняли что-то ПОСЛЕ, то значения для этого действия не имеет.
+    #
+    # Поэтому мы ищем новое место для вставки строк в ту же (ОТНОСИТЕЛЬНО) позицию
+    new_line_nums_for_plus_arr = calc_new_line_nums(lines_count_was, diffs_next)
+    # а тут просто переворачиваем массив для плюсов, так как нам уже надо
+    # искать наоборот: не по индексу, а по значению, то есть надо найти под
+    # каким номером теперь находится старая строка
+    new_line_nums_for_minus_hash = new_line_nums_for_plus_arr.map.with_index { |k,i| [k,i]  }.to_h
+
+    # САМОЕ ГЛАВНОЕ МЕСТО!
+    # апдейтим номера строк в нашем mr
+    diffs_rebased =
+    diffs_old.map do |group|
+      group.map do |action, line_num, val|
+        # Так обозначаются потерявшиеся в процессе rebase строки.
+        # Храним их, так как это текст какого-то автора. Вдруг он для него ценен.
+        next if line_num == '?'
+        # новая позиция старой строки
+        new_num = new_line_nums_for_minus_hash[line_num]
+        # ЕСЛИ новое место старой строки не нашли, то:
+        # - действие "минус" ...
+        # - действие "плюс" ...
+        if new_num.nil?
+          # соответствующей строки нет — значит её тоже удалили в этом коммите, как и мы в своём коммите
+          if action == '-'
+            # добавим пометку для этой строки, чтобы если будет попытка что-то сюда вставить
+            # то мы понимали, что это была попытка зменить одну строку на другую (исправить)
+            new_line_nums_for_minus_hash[line_num] = 'CANCEL-'
+            # делать ничего не надо с этой строкой, так как её уже удалили
+            next
+
+          # соответствующей строки нет - добавляем в ближайшую известную строку
+          elsif action == '+'
+            neares_next_line_num = nil
+            new_line_nums_for_minus_hash.keys.each do |i|
+              if i > line_num && (nl = new_line_nums_for_minus_hash[line_num]).is_a?(Integer)
+                # номер строки больше того, который мы не смогли найти в этом хэше
+                # и значение является номером строки (а не CANCEL-)
+                neares_next_line_num = nl
+                break
+              end
+            end
+            new_num = neares_next_line_num || last
+          end
+
+        # пропускаем, т.к. эта строка удалялась в группе ранее, а это мы сейчас в плюс попали.
+        # для этого мы и ставили эту метку, чтобы потом пропустить плюс
+        elsif new_num == 'CANCEL-'
+          line_nums_arr.delete_at(line_num)
+          new_num = '?'
+        end
+
+        [action, new_num, val]
+      end.compact
+    end.select(&:presence)
+
+    diffs_rebased
   end
 end

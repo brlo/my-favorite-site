@@ -9,17 +9,26 @@ class MergeRequest < ApplicationMongoRecord
   field :u_id,       as: :user_id, type: BSON::ObjectId
   # Hash[column: {old: val, new: val]
   field :a_diff,     as: :attrs_diff, type: Hash
-  # Array[groups['+', line, str]]
-  field :t_diffs,     as: :text_diffs, type: Array
-  # Сколько строк добавили и удалили
-  field :p_i,        as: :plus_i, type: Integer
-  field :m_i,        as: :minus_i, type: Integer
+  # Информация по диффу больших текстовых полей:
+  #
+  # {
+  #   <field_name>: {
+  #     diffs: Array[groups['+', line, str]],
+  #     # Сколько было строк в исходном тексте,
+  #     # до применения патча (нужно для повторного рассчёта адресов новых строк)
+  #     lines_count_was: 98,
+  #     # Сколько строк добавили и удалили
+  #     m_i: 1,
+  #     p_i: 0,
+  #   }
+  # }
+  field :diffs, type: Hash
+  field :m_i,      as: :minus_i, type: Integer
+  field :p_i,      as: :plus_i, type: Integer
   # Старое время редактирования исходного текста, к которому применяем патч (page.merged_at)
   field :src_ver, type: DateTime
   # Новоя время редактирования статьи, то есть время применения нашего патча (page.merged_at)
   field :dst_ver, type: DateTime
-  # Сколько было строк в исходном тексте, до применения патча (нужно для повторного рассчёта адресов новых строк)
-  field :lns,        as: :lines_count, type: Integer
   # 1 - принято, 2 - ещё не обработано, 3 - отклонено.
   field :is_m,       as: :is_merged, type: Integer, default: 2
   # когда приняли или отклонили (вроде как дубль dst_ver, но пускай будет для верности)
@@ -68,7 +77,7 @@ class MergeRequest < ApplicationMongoRecord
       dst_ver: self.dst_ver&.strftime("%Y-%m-%d %H:%M:%S"),
       minus_i: self.minus_i,
       plus_i: self.plus_i,
-      text_diffs: self.text_diffs,
+      diffs: self.diffs,
       attrs_diff: self.attrs_diff,
       is_merged: self.is_merged.to_i,
       action_at: self.action_at&.strftime("%Y-%m-%d %H:%M:%S"),
@@ -93,7 +102,7 @@ class MergeRequest < ApplicationMongoRecord
         lang: pg.lang,
         group_lang_id: pg.group_lang_id.to_s,
         body: pg.body,
-        body_as_arr: [],
+        text_arrs: {body: [], references: []},
         tags_str: pg.tags&.join(', '),
         priority: pg.priority,
         created_at: pg.c_at,
@@ -104,7 +113,8 @@ class MergeRequest < ApplicationMongoRecord
     # когда rebase сделан, то изменения MR соответствуют тексту page, а поэтому
     # попробуем соседние строки в diff-е для удобства отрисовать во фронте
     if self.src_ver == pg.merge_ver
-      h[:page][:body_as_arr] = pg.body_as_arr
+      h[:page][:text_arrs][:body] = pg.body_as_arr
+      h[:page][:text_arrs][:references] = pg.references_as_arr
     end
 
     h
@@ -112,14 +122,26 @@ class MergeRequest < ApplicationMongoRecord
 
   def rebase!
     ::DiffService.new(self, self.page).rebase
+    self.save
   end
 
   def merge!
     ::DiffService.new(self, self.page).merge
+    is_saved = self.save
+
+    # MR принят, поэтому надо в статью добавить нового редактора
+    if is_saved
+      pg = self.page
+      pg.add_editor(self.user)
+      pg.save!
+    end
+
+    is_saved
   end
 
   def reject!
     self.update!(is_merged: 0, action_at: DateTime.now.utc.round)
+    self.save
   end
 
   def normalize_attributes
@@ -127,12 +149,8 @@ class MergeRequest < ApplicationMongoRecord
   end
 
   def text_or_attrs_diff_must_present
-    if self.attrs_diff.blank? && self.text_diffs.blank?
+    if self.attrs_diff.blank? && self.diffs.blank?
       self.errors.add(:id, 'Нельзя создать запрос правок, ничего не исправляя')
-
-      if self.text_diffs.present? && self.plus_i.blank? && self.minus_i.blank?
-        self.errors.add(:text_diffs, 'если есть текстовые правки, то должно быть указано их количество')
-      end
     end
   end
 end

@@ -124,6 +124,11 @@ class Page < ApplicationMongoRecord
     self.class.html_to_arr(self.body)
   end
 
+  # текст в виде строк в массиве
+  def references_as_arr
+    self.class.html_to_arr(self.references)
+  end
+
   def generate_string(cnt = 8)
     random_str = (('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a).sample(cnt).join
   end

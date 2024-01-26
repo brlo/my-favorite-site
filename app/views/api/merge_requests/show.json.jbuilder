@@ -8,9 +8,9 @@ json.item do
   json.page_id         mr.page_id.to_s
   json.src_ver         mr.src_ver&.strftime("%Y-%m-%d %H:%M:%S")
   json.dst_ver         mr.dst_ver&.strftime("%Y-%m-%d %H:%M:%S")
-  json.plus_i          mr.plus_i
   json.minus_i         mr.minus_i
-  json.text_diffs      mr.text_diffs
+  json.plus_i          mr.plus_i
+  json.diffs           mr.diffs
   json.attrs_diff      mr.attrs_diff
   json.is_merged       mr.is_merged.to_i
   json.action_at       mr.action_at&.strftime("%Y-%m-%d %H:%M:%S")
@@ -35,7 +35,11 @@ json.item do
     json.lang              pg.lang
     json.group_lang_id     pg.group_lang_id.to_s
 
-    json.body_as_arr       mr.src_ver == pg.merge_ver ? pg.body_as_arr : []
+
+    json.text_arrs do |json|
+      json.body         mr.src_ver == pg.merge_ver ? pg.body_as_arr : []
+      json.references   mr.src_ver == pg.merge_ver ? pg.references_as_arr : []
+    end
 
     json.body              pg.body
     json.tags_str          pg.tags&.join(', ')
