@@ -85,6 +85,13 @@ class PagesController < ApplicationController
         @no_index = true
       end
 
+      # AUDIO: /public/s/audio/pages/ru/fathers/01_ign_ant/ef
+      # В статье указать только это: fathers/01_ign_ant/ef
+      audio_file = "/s/audio/pages/#{@content_lang}/#{@page.audio}.mp3"
+      if ::File.exists?("#{Rails.root}/public#{ audio_file }")
+        @audio_link = audio_file
+      end
+
       # В адресе указывается язык UI и отдельно язык контента /:ui/:content/...
       # если язык контента не совпадает с языком статьи, то надо сделать редирект
       # на правильную статью, если она есть, или отдать 404
