@@ -502,8 +502,14 @@ window.BX.player.update = function() {
   const bookCode = path_arr[path_arr.length-2];
   const chapter = path_arr[path_arr.length-1];
 
+  let newAudioLink = '';
+  const audio_src = window.BX.player.containerEl.dataset.audioSrc;
   const audio_prefix = window.BX.player.containerEl.dataset.audioPrefix;
-  const newAudioLink = audio_prefix + bookCode + '/' + bookCode + chapter + '.mp3';
+  if (audio_src) {
+    newAudioLink = audio_src + '.mp3';
+  } else {
+    newAudioLink = audio_prefix + bookCode + '/' + bookCode + chapter + '.mp3';
+  }
   console.log(newAudioLink);
   window.BX.player.el.src = newAudioLink;
 };
@@ -513,7 +519,11 @@ window.BX.player.showAndPlay = function() {
   if (window.BX.player.el) return;
 
   // создали элемент
-  window.BX.player.containerEl.innerHTML = "<audio controls>test</audio><a class='copy' href='https://jesus-portal.ru/life/video/audiobibliya/'>© материал православного портала \"Иисус\"</a>";
+  if (window.BX.player.containerEl.dataset.audioPrefix) {
+    window.BX.player.containerEl.innerHTML = "<audio controls>test</audio><a class='copy' href='https://jesus-portal.ru/life/video/audiobibliya/'>© материал православного портала \"Иисус\"</a>";
+  } else {
+    window.BX.player.containerEl.innerHTML = "<audio controls>test</audio>";
+  }
   // запомнили html-элемент плеера
   window.BX.player.el = window.BX.player.containerEl.querySelector('audio');
   // показали

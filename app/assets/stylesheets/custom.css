@@ -119,6 +119,7 @@ header .container {
 #text-bar .bar-el.btn {
   padding: 0 10px;
   font-size: 14px;
+  line-height: 29px;
   color: #222;
   border: 1px solid #66666633;
   border-top: none;
