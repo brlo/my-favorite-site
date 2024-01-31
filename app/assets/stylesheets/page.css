@@ -4,7 +4,7 @@
 
 /* Для pages нужны помельче главы */
 #page-content nav#menu-chapters a {
-  font-size: 0.7em;
+  font-size: 0.9em;
   font-family: inherit;
 }
 
