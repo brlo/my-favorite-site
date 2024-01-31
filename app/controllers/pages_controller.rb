@@ -88,7 +88,7 @@ class PagesController < ApplicationController
       # AUDIO: /public/s/audio/pages/ru/fathers/01_ign_ant/ef
       # В статье указать только это: fathers/01_ign_ant/ef
       audio_file = "/s/audio/pages/#{@content_lang}/#{@page.audio}"
-      if ::File.exists?("#{Rails.root}/public#{ audio_file }")
+      if ::File.exists?("#{Rails.root}/public#{ audio_file }.mp3")
         @audio_link = audio_file
       end
 

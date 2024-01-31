@@ -4,6 +4,13 @@ const apiUrl = import.meta.env.VITE_API_URL
 const props = defineProps({
   user: Object
 })
+
+function logout() {
+  if (window.confirm("Вы точно хотите выйти из своего профиля?")) {
+    document.cookie = 'api_token=; Max-Age=-99999999;';
+    location.reload();
+  }
+}
 </script>
 
 <template>
@@ -19,6 +26,7 @@ const props = defineProps({
       <router-link v-if="user.privs.pages_read" to="/pages">Статьи</router-link>
       <router-link v-if="user.privs.mr_read" to="/merge_requests">Правки</router-link>
       <router-link v-if="user.privs.dict_read" to="/dict_words">Словарь</router-link>
+      <span id="you" v-if="user">Вы: <a @click.prevent="logout" id="you">{{ user.name }}</a></span>
     </nav>
   </div>
 </header>
@@ -68,5 +76,9 @@ header nav > a#settings-btn {
 }
 .logo img:active {
   background-color: #a2b997;
+}
+
+#you {
+  margin-left: auto;
 }
 </style>
