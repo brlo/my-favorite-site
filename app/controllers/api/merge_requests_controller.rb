@@ -164,7 +164,7 @@ module Api
         :parent_id,
         :lang, :group_lang_id,
         :body, :references,
-        :tags_str, :priority,
+        :tags_str, :priority, :audio,
       )
     end
 

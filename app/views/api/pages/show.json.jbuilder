@@ -19,6 +19,7 @@ json.item do
   json.references        pg.references
   json.tags_str          pg.tags&.join(', ')
   json.priority          pg.priority
+  json.audio             pg.audio
   json.created_at        pg.c_at
   json.updated_at        pg.u_at
 end
