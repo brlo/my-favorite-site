@@ -27,7 +27,7 @@ getUser();
 
 <div class='flex-wrap'>
   <div class='content'>
-    <router-view v-if="user.privs.pages_read" :user="user"></router-view>
+    <router-view v-if="user.privs.pages_read" :currentUser="user"></router-view>
     <div v-else-if="user == false">
       <h2>Ура! Вы зарегистрировались!</h2>
 

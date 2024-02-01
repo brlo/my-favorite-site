@@ -5,7 +5,6 @@
 // Keep in mind that this.$router is exactly the same as directly
 // using the router instance created through createRouter.
 import { createRouter, createWebHistory } from "vue-router"
-import { getCookie } from "@/libs/cookies"
 
 // 2. Define some routes
 // Each route should map to a component.

@@ -5,6 +5,7 @@ import AutocompletePage from "@/components/AutocompletePage.vue";
 import Dropdown from 'primevue/dropdown';
 
 const props = defineProps({
+  currentUser: Object,
   pageId: String,
   limit: Number,
   isPartial: Boolean,

@@ -38,7 +38,8 @@ const toastSuccess = (t, msg) => { toast.add({ severity: 'success', summary: t, 
 const toastInfo = (t, msg) => { toast.add({ severity: 'info', summary: t, detail: msg, life: 5000 }) }
 
 const props = defineProps({
-  id: String
+  id: String,
+  currentUser: Object,
 })
 
 const errors = ref('');
@@ -61,6 +62,7 @@ if (props.id) {
 }
 
 const userClean = () => user.value = { privs: {} };
+
 function getUser() {
   api.get('/users/me').then(data => {
     console.log('GET User', data)
@@ -71,8 +73,13 @@ function getUser() {
     }
   })
 }
-userClean();
-getUser();
+
+if (props.currentUser) {
+  user.value = props.currentUser;
+} else {
+  userClean();
+  getUser();
+}
 
 // ЯЗЫКИ
 const langs = [

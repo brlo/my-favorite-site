@@ -3,6 +3,9 @@ import IndexStats from "@/views/stats/Index.vue";
 import IndexMergeRequests from "@/views/merge_requests/Index.vue";
 import IndexPages from "@/views/pages/Index.vue";
 
+const props = defineProps({
+  currentUser: Object,
+})
 </script>
 
 <template>

@@ -7,6 +7,7 @@ import InputText from 'primevue/inputtext';
 
 const props = defineProps({
   limit: Number,
+  currentUser: Object,
 })
 
 // ЯЗЫКИ

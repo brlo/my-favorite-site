@@ -11,7 +11,6 @@ const props = defineProps({
   fetchKey: String,
 })
 
-const selectedOption = ref(model.value)
 const pages = ref([])
 const errors = ref('')
 const isLoading = ref()
@@ -37,19 +36,27 @@ function autoSearch(event) {
   })
 }
 
+// когда что-то выбрали из выпадающего списка
 // СМОТРИ ВКЛАДКУ API / EMITS в https://primevue.org/autocomplete/
 function onUpdate(origEvent) {
+  // Из выбранного в выпадающем списке объекта (page), достаём значение по указанному в props.fetchKey ключу
+  // это может быть id, или parent_id, или lang_group_id...
   // В origEvent.value лежит выбранный объект из data.items
-  model.value = selectedOption.value?.[props.fetchKey];
+  const newVal = origEvent.value ? origEvent.value[props.fetchKey] : '';
+
+  // ТО, ЧТО УЙДЁТ В РОДИТЕЛЬСКИЙ КОМПОНЕНТ
+  model.value = newVal;
 }
-function onClear() {
-  model.value = selectedOption.value;
-}
+
+// // когда весь текст стёрли
+// function onClear() {
+//   model.value = '';
+// }
 </script>
 
 <template>
 <AutoComplete
-  v-model="selectedOption"
+  v-model="model"
   optionLabel="title"
   :suggestions="pages"
   @complete="autoSearch"
@@ -57,7 +64,6 @@ function onClear() {
   :minLength="3"
   :placeholder="`Выбор статьи (${fetchKey})`"
   emptySearchMessage="Нет результатов"
-  @clear="onClear"
   @item-select="onUpdate"
   :loading="isLoading"
 />

@@ -6,6 +6,7 @@ import { useToast } from "primevue/usetoast";
 import Button from 'primevue/button';
 
 const props = defineProps({
+  currentUser: Object,
   id: String
 })
 

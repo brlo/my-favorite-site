@@ -15,7 +15,8 @@ const toastSuccess = (t, msg) => { toast.add({ severity: 'success', summary: t, 
 const toastInfo = (t, msg) => { toast.add({ severity: 'info', summary: t, detail: msg, life: 5000 }) }
 
 const props = defineProps({
-  id: String
+  id: String,
+  currentUser: Object,
 })
 
 const errors = ref('');
