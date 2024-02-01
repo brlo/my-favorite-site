@@ -208,6 +208,8 @@
   padding: 15px 0 0 0;
 }
 
+.menu-link { display: inline-block; }
+
 .menu-tree.hidden-children .menu-link,
 .menu-tree.hidden-children .menu-subject {
   display: none;
