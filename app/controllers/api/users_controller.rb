@@ -35,7 +35,10 @@ module Api
     # Вход через Телеграм
     def telegram_login
       # хэш, с которым мы сравниваем наши рассчёты
-      auth_service = ::AuthTelegram.new(params[:tg_data])
+      attrs = params.require(:tg_data).permit!
+
+      # верификация параметров
+      auth_service = ::AuthTelegram.new(attrs)
 
       if auth_service.valid?
         user = auth_service.find_or_create_user!

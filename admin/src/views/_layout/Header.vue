@@ -1,4 +1,5 @@
 <script setup>
+import { deleteCookie } from '@/libs/cookies'
 const apiUrl = import.meta.env.VITE_API_URL
 
 const props = defineProps({
@@ -7,7 +8,7 @@ const props = defineProps({
 
 function logout() {
   if (window.confirm("Вы точно хотите выйти из своего профиля?")) {
-    document.cookie = 'api_token=; Max-Age=-99999999;';
+    deleteCookie('api_token', '/', 'edit.bibleox.com');
     location.reload();
   }
 }
