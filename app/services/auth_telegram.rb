@@ -66,8 +66,8 @@ class AuthTelegram
   def find_or_create_user!
     @user = ::User.by_telegram.where(uid: attrs[:id]).first
 
-    new_username = attrs[:username]
-    new_name = "#{attrs[:first_name]} #{attrs[:last_name]}"
+    new_username = attrs[:username] || attrs[:id]
+    new_name = "#{attrs[:first_name]} #{attrs[:last_name]}".strip
 
     if @user.nil?
       # random password
