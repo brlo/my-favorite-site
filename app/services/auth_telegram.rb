@@ -11,7 +11,20 @@ class AuthTelegram
     # last_name: "V"
     # photo_url: "https://t.me/i/userpic/320/MeYHzgfl6o-NvFoLNOJpwJJO82E7vYQJSZ1x0x2BWPY.jpg"
     # username: "rodion_orthodox"
-    @attrs = attrs
+    #
+    # ИЛИ
+    #
+    # attrs = {
+    #   "id"=>1048849729,
+    #   "first_name"=>"Иерей Евгений",
+    #   "photo_url"=>"https://t.me/i/userpic/320/zSZNgJyTbjEz1_8Rg0pnfnrWk4te81mFYOywVIiQraQ.jpg",
+    #   "auth_date"=>1706881777,
+    #   "hash"=>"00684d850faac9ced931f82fde84f0d2bbdff825125458682591841880fe5ee5",
+    #
+    #   "locale"=>"ru",
+    #   "user"=>{}
+    # }.symbolize_keys
+    @attrs = attrs || {}
   end
 
   def valid?
@@ -19,17 +32,12 @@ class AuthTelegram
   end
 
   def verified_user_data
-    verification_hash = attrs[:hash]
+    return if attrs.blank?
 
-    # данные, из которых собираем собственный хэш
-    auth_data = {
-      'auth_date' => attrs[:auth_date],
-      'first_name' => attrs[:first_name],
-      'id' => attrs[:id],
-      'last_name' => attrs[:last_name],
-      'photo_url' => attrs[:photo_url],
-      'username' => attrs[:username],
-    }
+    verification_hash = attrs.delete(:hash)
+
+    # данные, из которых собираем собственный хэш (должны быть отсортированы по ключам)
+    auth_data = attrs.sort_by { |k,v| k }.to_h
 
     # секретный токен нашего бота
     bot_token = '5733463537:AAEYqRofXdtZTXOdeuNfwixcS2db8OP_ctQ'

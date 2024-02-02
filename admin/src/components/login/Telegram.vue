@@ -17,22 +17,14 @@ function telegramLoadedCallbackFunc () {
   isLoaded.value = true
 }
 
-function yourCallbackFunction (user) {
+function yourCallbackFunction (data) {
   // gets user as an input
   // id, first_name, last_name, username,
   // photo_url, auth_date and hash
   // console.log(user)
 
   //alert('Logged in as ' + user.first_name + ' ' + user.last_name + ' (' + user.id + (user.username ? ', @' + user.username : '') + ')');
-  const params = {
-    id: user.id,
-    first_name: user.first_name,
-    last_name: user.last_name,
-    username: user.username,
-    photo_url: user.photo_url,
-    auth_date: user.auth_date,
-    hash: user.hash,
-  };
+  const params = { tg_data: data };
 
   api.post('/login/telegram/', params).then(data => {
     if (data.success == 'ok') {

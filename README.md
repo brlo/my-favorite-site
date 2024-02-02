@@ -170,6 +170,5 @@ u.can!('mrs_merge')
 
 
 ```ruby
-u.can!('super')
-u.update!(is_admin: true)
+u.can!('super'); u.update!(is_admin: true)
 ```

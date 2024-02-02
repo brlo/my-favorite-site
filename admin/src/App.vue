@@ -5,6 +5,7 @@ import Header from "@/views/_layout/Header.vue";
 import Footer from "@/views/_layout/Footer.vue";
 
 const user = ref();
+const isLoaded = ref(false)
 
 const userClean = () => user.value = { privs: {} };
 
@@ -14,8 +15,9 @@ function getUser() {
     if (data.success == 'ok') {
       user.value = data;
     } else {
-      user.value = false;
+      userClean();
     }
+    isLoaded.value = true;
   })
 }
 userClean();
@@ -27,7 +29,10 @@ getUser();
 
 <div class='flex-wrap'>
   <div class='content'>
-    <div v-if="user == false || user.privs.pages_read !== true">
+
+    <router-view v-if="isLoaded && user.privs.pages_read == true" :currentUser="user" />
+
+    <div v-else-if="isLoaded && user.privs.pages_read != true">
       <h2>Ура! Вы зарегистрировались!</h2>
 
       <p>Но это ещё не всё, так как Ваша учётная запись ещё не подтверждена.</p>
@@ -35,7 +40,11 @@ getUser();
 
       <p>Пожалуйста, свяжитесь с нами для подтверждения записи: <a href='https://t.me/bibleox_live'>https://t.me/bibleox_live</a></p>
     </div>
-    <router-view v-else-if="user.privs.pages_read" :currentUser="user"></router-view>
+
+    <div v-else>
+      <i class="pi pi-spin pi-cog" style="font-size: 2rem"></i>
+    </div>
+
   </div>
 </div>
 
