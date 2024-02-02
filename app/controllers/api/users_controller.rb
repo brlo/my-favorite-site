@@ -5,7 +5,12 @@ module Api
     def me
       user = ::Current.user
       if ::Current.user
-        render json: {id: user.id, name: user.name, privs: user.privs_list}.merge(success_response)
+        render json: {
+          id: user.id,
+          username: user.username,
+          name: user.name,
+          privs: user.privs_list
+        }.merge(success_response)
       else
         render json: {errors: 'access denied'}.merge(fail_response), status: 401
       end

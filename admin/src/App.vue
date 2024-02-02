@@ -27,15 +27,15 @@ getUser();
 
 <div class='flex-wrap'>
   <div class='content'>
-    <router-view v-if="user.privs.pages_read" :currentUser="user"></router-view>
-    <div v-else-if="user == false">
+    <div v-if="user == false || user.privs.pages_read !== true">
       <h2>Ура! Вы зарегистрировались!</h2>
 
       <p>Но это ещё не всё, так как Ваша учётная запись ещё не подтверждена.</p>
-      <p>Мы допускаем к редактированию статей только неанонимных авторов.</p>
+      <p>Мы допускаем к редактированию статей только проверенных и не анонимных авторов.</p>
 
-      <p>Пожалуйста, свяжитесь с нами для подтверждения записи: <a href='https://t.me/bibleox'>https://t.me/bibleox</a></p>
+      <p>Пожалуйста, свяжитесь с нами для подтверждения записи: <a href='https://t.me/bibleox_live'>https://t.me/bibleox_live</a></p>
     </div>
+    <router-view v-else-if="user.privs.pages_read" :currentUser="user"></router-view>
   </div>
 </div>
 

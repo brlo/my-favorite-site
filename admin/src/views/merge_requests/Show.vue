@@ -4,6 +4,7 @@ import router from "@/router/index";
 import { api } from '@/libs/api.js';
 import { useToast } from "primevue/usetoast";
 import Button from 'primevue/button';
+import Checkbox from 'primevue/checkbox';
 
 const props = defineProps({
   currentUser: Object,
@@ -12,6 +13,7 @@ const props = defineProps({
 
 const mergeRequest = ref({});
 const errors = ref('');
+const isHTML = ref(false);
 
 const toast = useToast();
 const toastError = (t, msg) => { toast.add({ severity: 'error', summary: t, detail: msg, life: 5000 }) }
@@ -186,12 +188,19 @@ let isRejectBtnSeen = computed(() => {
 <div v-if="mergeRequest.id">
   <label>Правки к статье:</label>
   <h1>
-    <router-link :to="{ name: 'EditPage', params: { id: mergeRequest.page_id }}">{{ mergeRequest.page.title }}</router-link> <span class="plus mono-font" v-if="mergeRequest.plus_i">+{{ mergeRequest.plus_i }}</span><span class="minus mono-font" v-if="mergeRequest.minus_i">-{{ mergeRequest.minus_i }}</span>
+    <router-link :to="{ name: 'EditPage', params: { id: mergeRequest.page_id }}">{{ mergeRequest.page.title }}</router-link>
     <i :class="`badge ${mergeStatusClass[mergeRequest.is_merged]}`">{{ mergeStatus[mergeRequest.is_merged]}}</i>
+    <div>
+      <span class="plus mono-font" v-if="mergeRequest.plus_i">+{{ mergeRequest.plus_i }}</span><span class="minus mono-font" v-if="mergeRequest.minus_i">-{{ mergeRequest.minus_i }}</span>
+    </div>
   </h1>
   <label>Предложил: {{ mergeRequest.user?.name }} ({{ mergeRequest.user?.username }})</label>
   <label>{{ mergeRequest.updated_at_word }}</label>
   <label>Оригинал текста от: {{ mergeRequest.src_ver }}</label>
+  <div id="is-html">
+    <Checkbox v-model="isHTML" :binary="true"/>
+    Показывать HTML в правках
+  </div>
 
   <div class="flex action-bar">
     <Button v-if="mergeRequest.is_merged == 1" disabled :label="`Правки уже приняты: ${ mergeRequest.action_at }`" icon="pi pi-check-circle" />
@@ -239,7 +248,8 @@ let isRejectBtnSeen = computed(() => {
           >
             <td class="line-num mono-font">{{ action[1] }}</td>
             <td class="line-action mono-font">{{ action[0] }}</td>
-            <td class="line-content" v-html="action[2]"/>
+            <td class="line-content" v-if="isHTML">{{ action[2] }}</td>
+            <td class="line-content" v-else v-html="action[2]"></td>
           </tr>
         </table>
       </div>
@@ -266,6 +276,10 @@ i.badge {
 label {
   font-size: 0.8em;
   color: #666;
+}
+
+#is-html {
+  margin: 15px 0 10px 0;
 }
 
 button.green {
@@ -308,6 +322,7 @@ button.green:active {
 }
 
 table.diff-groups {
+  table-layout: fixed;
   border-collapse: collapse;
   border-spacing: 0px;
   margin: 20px 0;
@@ -336,6 +351,7 @@ td.line-action {
 
 td.line-content {
   width: 100%;
+  word-break: break-all;
 }
 
 tr.line.eq td.line-content {

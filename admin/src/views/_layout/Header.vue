@@ -26,7 +26,13 @@ function logout() {
       <router-link v-if="user.privs.pages_read" to="/pages">Статьи</router-link>
       <router-link v-if="user.privs.mr_read" to="/merge_requests">Правки</router-link>
       <router-link v-if="user.privs.dict_read" to="/dict_words">Словарь</router-link>
-      <span id="you" v-if="user">Вы: <a @click.prevent="logout" id="you">{{ user.name }}</a></span>
+      <span id="my-info" v-if="user">
+        Вы:
+        <a @click.prevent="logout" id="my-link">
+          <div id="my-name">{{ user.name }}</div>
+          <div id="my-username">{{ user.username }}</div>
+        </a>
+      </span>
     </nav>
   </div>
 </header>
@@ -78,7 +84,19 @@ header nav > a#settings-btn {
   background-color: #a2b997;
 }
 
-#you {
+#my-info {
   margin-left: auto;
+}
+
+#my-link {
+  display: inline-block;
+}
+
+#my-username {
+  font-size: 1rem;
+}
+
+#my-name {
+  font-size: 0.5rem;
 }
 </style>

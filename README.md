@@ -117,6 +117,19 @@ alias bib_cache_clear='sudo rm /projects/bibleox/db/cache_search/*/*/*.json'
 
 * ПРИВЕЛЕГИИ
 
+# Стандартный набор для проверенного участника (создание страниц нужно доработать, ограничив доступ к особым полям):
+```ruby
+u.can!('pages_read')
+u.can!('pages_create')
+u.can!('mrs_read')
+u.can!('mrs_create')
+```
+
+# Сброс всех привелегий:
+```ruby
+u.update!(privs: {}, is_admin: false)
+```
+
 # Для старта:
 
 ```ruby
