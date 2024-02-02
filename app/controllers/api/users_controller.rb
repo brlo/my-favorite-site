@@ -38,7 +38,7 @@ module Api
       attrs = params.require(:tg_data).permit!
 
       # верификация параметров
-      auth_service = ::AuthTelegram.new(attrs)
+      auth_service = ::AuthTelegram.new(attrs.to_h)
 
       if auth_service.valid?
         user = auth_service.find_or_create_user!
