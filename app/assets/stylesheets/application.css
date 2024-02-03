@@ -82,7 +82,7 @@ header nav > a#settings-btn {
   content: '';
   position: absolute;
   left: 20px;
-  top: -20px;
+  top: -19px;
   border: 10px solid transparent;
   border-bottom: 10px solid #d0d7be;
 }

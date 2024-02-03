@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   end
 
   def list
-    @current_menu_item = 'articles'
+    @current_menu_item = 'links'
     @content_lang = params[:content_lang]
 
     path = params[:page_path].to_s
@@ -183,7 +183,7 @@ class PagesController < ApplicationController
 
       @page_title = ::I18n.t('page.title', term: @page.title)
       @meta_description = @page.meta_desc
-      @current_menu_item = 'articles'
+      @current_menu_item = 'links'
 
       @chapter_current ||= 1
 
