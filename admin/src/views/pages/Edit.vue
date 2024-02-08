@@ -10,6 +10,7 @@ import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import SplitButton from 'primevue/splitbutton';
+import Textarea from 'primevue/textarea';
 import { api } from '@/libs/api.js';
 
 const apiUrl = import.meta.env.VITE_API_URL
@@ -292,12 +293,12 @@ const submitBtnItems = [
 
   <div class="field">
     <label>Заголовок</label>
-    <InputText v-model="page.title" placeholder="Заголовок" class="page-field-title" :disabled="page.is_deleted" />
+    <Textarea v-model="page.title" placeholder="Заголовок" class="page-field-title" :disabled="page.is_deleted" autoResize rows="1" cols="30" />
   </div>
 
   <div class="field">
     <label>Подзаголовок (не обязательно)</label>
-    <InputText v-model="page.title_sub" placeholder="Подзаголовок" class="page-field-subtitle" :disabled="page.is_deleted" />
+    <Textarea v-model="page.title_sub" placeholder="Подзаголовок" class="page-field-subtitle" :disabled="page.is_deleted" autoResize rows="1" cols="30" />
   </div>
 
   <div v-if="user.privs.super" class="field">
@@ -366,7 +367,7 @@ const submitBtnItems = [
   <div v-if="user.privs.super" class="group-fields">
     <div class="field">
       <label>Описание для поискововой системы</label>
-      <InputText v-model="page.meta_desc" placeholder="Meta-описание" :disabled="page.is_deleted" />
+      <Textarea v-model="page.meta_desc" placeholder="Meta-описание" :disabled="page.is_deleted" autoResize rows="1" cols="30" />
     </div>
   </div>
 

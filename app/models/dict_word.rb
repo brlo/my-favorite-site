@@ -24,6 +24,10 @@ class DictWord < ApplicationMongoRecord
   field :w,   as: :word, type: String
   # Слово, записанное без доп.знаков (для поиска)
   field :ws,  as: :word_simple, type: String
+  # Синоним
+  field :sin, as: :sinonim, type: String
+  # Лексема
+  field :lx,  as: :lexema, type: String
   # Чтение
   field :t,   as: :transcription, type: String
   # Чтение латинскими буквами
@@ -59,6 +63,8 @@ class DictWord < ApplicationMongoRecord
       src_lang:          DICTS[self.dict]['from'],
       dst_lang:          DICTS[self.dict]['to'],
       word:              self.word,
+      sinonim:           self.sinonim,
+      lexema:            self.lexema,
       transcription:     self.transcription,
       transcription_lat: self.transcription_lat,
       translation_short: self.translation_short,
@@ -76,7 +82,9 @@ class DictWord < ApplicationMongoRecord
     self.dict = nil if !DICTS.has_key?(self.dict)
 
     self.word = self.word.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
-    self.word_simple = self.word_simple.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
+    self.sinonim = self.sinonim.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
+    self.lexema = self.lexema.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
+    self.word_simple = self.word_simple.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').gsub('-', '').presence
     self.transcription = self.transcription.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
     self.translation_short = self.translation_short.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').downcase.presence
     self.translation = self.translation.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence

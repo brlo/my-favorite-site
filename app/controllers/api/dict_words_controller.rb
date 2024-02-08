@@ -16,8 +16,8 @@ module Api
         # слова показывает с сортировкой по слову
         term = term.gsub(/[^[[:alnum:]]\s]/, '')
         q = [
-          :word_simple, :tag, :transcription, :transcription_lat,
-          :translation_short, :translation, :desc
+          :word_simple, :sinonim, :lexema, :tag, :transcription, :transcription_lat,
+          :translation_short, :translation,
         ].map do |n|
           { n => /.*#{term}.*/i }
         end
@@ -102,7 +102,7 @@ module Api
       ).except(
         :id, :created_at, :updated_at, :src_lang, :dst_lang
       ).permit(
-        :dict, :word, :transcription, :transcription_lat,
+        :dict, :sinonim, :lexema, :word, :transcription, :transcription_lat,
         :translation_short, :translation, :tag, :desc
       )
     end

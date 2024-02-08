@@ -49,12 +49,16 @@ class Page < ApplicationMongoRecord
   field :lg,         as: :lang, type: String
   # языковой идентификатор страницы для поиска таких же страниц на другом языке
   field :gli,        as: :group_lang_id, type: BSON::ObjectId
-  # текст статьи
+  # текст статьи (для редактирования)
   field :bd,         as: :body, type: String
+  # текст статьи (для показа ползьователю)
+  field :bdr,        as: :body_for_render, type: String
   # текст статьи с разбивкой на стихи
   field :vrs,        as: :verses, type: Array
   # ссылки и заметки
   field :rfs,        as: :references, type: String
+  # меню, построенное из распарсенных заголовков body (h2, h3, h4)
+  field :bd_menu,    as: :body_menu, type: Array
   # id темы
   field :tags, type: Array
   # приоритетность статьи
@@ -334,5 +338,12 @@ class Page < ApplicationMongoRecord
       html_text,
       tags: ALLOW_TAGS
     ).gsub('<p></p>', '')
+  end
+
+  def render_body text
+    text = text.to_s
+
+    # ищем сноски, делаем якоря
+    # text = text.gsub(/[[:alnum:]][\d]+/, '[\1]')
   end
 end

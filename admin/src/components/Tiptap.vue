@@ -162,6 +162,7 @@ function setLink() {
 
 <style scope>
 .tiptap-area {
+  overflow: hidden;
   margin: 10px 0;
   padding: 0;
   background-color: white;
@@ -188,5 +189,7 @@ function setLink() {
   outline: none;
   padding: 8px 10px;
   min-height: 100px;
+  max-height: 580px;
+  overflow-y: scroll;
 }
 </style>

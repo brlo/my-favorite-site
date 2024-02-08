@@ -172,3 +172,28 @@ u.can!('mrs_merge')
 ```ruby
 u.can!('super'); u.update!(is_admin: true)
 ```
+
+
+
+# Греческий — библиотеки
+
+https://github.com/skroutz/greeklish/tree/master
+https://github.com/agorf/greeklish_iso843
+
+# Поиск леммы (докер-контейнер)
+
+https://github.com/perseids-tools/morpheus (консоль, не очень удобно)
+https://github.com/perseids-tools/morpheus-perseids (консоль, удобнее)
+https://github.com/perseids-tools/morpheus-perseids-api (api, норм)
+
+онлайн api
+https://morph.perseids.org/analysis/word?lang=grc&engine=morpheusgrc&word=ἐξήνεγκεν
+api похуже
+https://epidoc.stoa.org/gl/latest/idx-wordslemmata.html?search=κἀκ&go=search
+словарь дворецкого
+http://gurin.tomsknet.ru/alphaonline.html
+(слово ἐκφέρω находит, в отличие от моего словаря Дворецкого)
+
+распознавание текста в России:
+https://contentai.ru/store
+

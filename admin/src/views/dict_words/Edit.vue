@@ -5,6 +5,7 @@ import router from "@/router/index";
 import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
+import Textarea from 'primevue/textarea';
 
 import { useToast } from "primevue/usetoast";
 import { api } from '@/libs/api.js';
@@ -21,6 +22,7 @@ const props = defineProps({
 
 const errors = ref('');
 const dictWord = ref({})
+// const descEditor = ref()
 
 
 // СТАТЬЯ
@@ -78,6 +80,7 @@ function submit() {
       } else {
         // после создания, даём возможность добавить новое слово в этот же словарь
         dictWord.value = {dict: data.item.dict};
+        // this.$refs.descEditor.editor.clearContent();
       }
     } else {
       toastError('Ошибка', 'Не удалось создать слово');
@@ -152,20 +155,30 @@ function destroy() {
     <InputText v-model="dictWord.tag" placeholder="Главный признак" />
   </div>
 
-  <div class="group-fields">
-    <div class="field">
-      <label>Перевод одним словом</label>
-      <InputText v-model="dictWord.translation_short" placeholder="Перевод" />
-    </div>
-    <div class="field">
-      <label>Другие переводы</label>
-      <InputText v-model="dictWord.translation" placeholder="Другие переводы" />
-    </div>
+  <div class="field">
+    <label>Перевод одним словом</label>
+    <InputText v-model="dictWord.translation_short" placeholder="Перевод" />
+  </div>
+
+  <div class="field">
+    <label>Другие переводы</label>
+    <Textarea v-model="dictWord.translation" autoResize rows="1" cols="30"  placeholder="Другие переводы" />
   </div>
 
   <div class="field">
     <label>Описание:</label>
-    <tiptap :content="dictWord.desc" @change="(d) => { dictWord.desc = d; }"/>
+    <tiptap ref="descEditor" :content="dictWord.desc" @change="(d) => { dictWord.desc = d; }"/>
+  </div>
+
+  <div class="group-fields">
+    <div class="field">
+      <label>Синоним</label>
+      <InputText v-model="dictWord.sinonim" placeholder="Синоним" />
+    </div>
+    <div class="field">
+      <label>Лексема</label>
+      <InputText v-model="dictWord.lexema" placeholder="Лексема" />
+    </div>
   </div>
 </div>
 </template>
