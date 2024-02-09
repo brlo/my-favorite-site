@@ -12,14 +12,14 @@ module Api
       @dict_words = @dict_words.limit([params[:limit].to_i, 100].min) if params[:limit].present?
 
       term = params[:term].to_s
-      if term.present? && term.length > 2
+      if term.present? && term.length > 0
         # слова показывает с сортировкой по слову
         term = term.gsub(/[^[[:alnum:]]\s]/, '')
         q = [
           :word_simple, :sinonim, :lexema, :tag, :transcription, :transcription_lat,
           :translation_short, :translation,
         ].map do |n|
-          { n => /.*#{term}.*/i }
+          { n => /#{term}.*/i }
         end
         @dict_words = @dict_words.any_of(q).order_by(w: 1)
       else

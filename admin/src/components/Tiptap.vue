@@ -1,4 +1,5 @@
 <script setup>
+import { watchEffect } from 'vue'
 import { Editor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import Typography from '@tiptap/extension-typography'
@@ -7,21 +8,14 @@ import Link from '@tiptap/extension-link'
 import Highlight from '@tiptap/extension-highlight'
 import Image from '@tiptap/extension-image'
 
-const props = defineProps({
-  content: String
-})
+// https://vuejs.org/guide/components/v-model.html
+const model = defineModel()
 
 const emit = defineEmits(['change'])
-  // likes: Number,
-  // isPublished: Boolean,
-  // commentIds: Array,
-  // author: Object,
-  // callback: Function,
-  // contactsPromise: Promise // или любой другой конструктор
 
 // icons: https://github.com/neverbot/vue-tiptap/tree/master/src/assets/icons
 const editor = new Editor({
-  content: props.content || '',
+  content: '',
   // https://tiptap.dev/extensions
   extensions: [
     StarterKit.configure({
@@ -52,6 +46,18 @@ const editor = new Editor({
     emit('change', editor.getHTML())
   },
 });
+
+
+watchEffect(
+  function() {
+    // model.value служит только для установки текста, поэтому мы каждый раз считываем и сбрасываем его
+    // следим за model.value, если изменится, подгрузим новое значение в редактор
+    if (model.value !== null) {
+      editor.commands.setContent(model.value || '<p></p>', false);
+      model.value = null;
+    }
+  }
+)
 
 function addImage() {
   const url = window.prompt('URL')
@@ -105,9 +111,11 @@ function setLink() {
     <button @click="editor.chain().focus().toggleBlockquote().run()" :class="{ 'is-active': editor.isActive('blockquote') }">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>close-quote</title><path d="M18.559,3.932a4.942,4.942,0,1,0,0,9.883,4.609,4.609,0,0,0,1.115-.141.25.25,0,0,1,.276.368,6.83,6.83,0,0,1-5.878,3.523,1.25,1.25,0,0,0,0,2.5,9.71,9.71,0,0,0,9.428-9.95V8.873A4.947,4.947,0,0,0,18.559,3.932Z"/><path d="M6.236,3.932a4.942,4.942,0,0,0,0,9.883,4.6,4.6,0,0,0,1.115-.141.25.25,0,0,1,.277.368A6.83,6.83,0,0,1,1.75,17.565a1.25,1.25,0,0,0,0,2.5,9.711,9.711,0,0,0,9.428-9.95V8.873A4.947,4.947,0,0,0,6.236,3.932Z"/></svg>
     </button>
+    <!-- code
     <button @click="editor.chain().focus().toggleCode().run()" :disabled="!editor.can().chain().focus().toggleCode().run()" :class="{ 'is-active': editor.isActive('code') }">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>angle-brackets</title><path d="M9.147,21.552a1.244,1.244,0,0,1-.895-.378L.84,13.561a2.257,2.257,0,0,1,0-3.125L8.252,2.823a1.25,1.25,0,0,1,1.791,1.744l-6.9,7.083a.5.5,0,0,0,0,.7l6.9,7.082a1.25,1.25,0,0,1-.9,2.122Z"/><path d="M14.854,21.552a1.25,1.25,0,0,1-.9-2.122l6.9-7.083a.5.5,0,0,0,0-.7l-6.9-7.082a1.25,1.25,0,0,1,1.791-1.744l7.411,7.612a2.257,2.257,0,0,1,0,3.125l-7.412,7.614A1.244,1.244,0,0,1,14.854,21.552Zm6.514-9.373h0Z"/></svg>
     </button>
+    -->
     <button @click="editor.chain().focus().setParagraph().run()" :class="{ 'is-active': editor.isActive('paragraph') }">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><title>paragraph</title><path d="M22.5.248H7.228a6.977,6.977,0,1,0,0,13.954H9.546a.25.25,0,0,1,.25.25V22.5a1.25,1.25,0,0,0,2.5,0V3a.25.25,0,0,1,.25-.25h3.682a.25.25,0,0,1,.25.25V22.5a1.25,1.25,0,0,0,2.5,0V3a.249.249,0,0,1,.25-.25H22.5a1.25,1.25,0,0,0,0-2.5ZM9.8,11.452a.25.25,0,0,1-.25.25H7.228a4.477,4.477,0,1,1,0-8.954H9.546A.25.25,0,0,1,9.8,3Z"/></svg>
     </button>

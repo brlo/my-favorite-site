@@ -18,7 +18,7 @@ const filterPageId = ref('')
 const errors = ref('')
 
 // если выбор состояния MR скрыт, то показываем только не принятые MR
-if (!isListOnly.value) filterStatus.value = '2';
+if (!props.isListOnly) filterStatus.value = '2';
 
 const mergeStatus = {
   0: 'Отклонено',

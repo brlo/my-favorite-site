@@ -47,13 +47,20 @@ const errors = ref('');
 const page = ref({page_type: 1, lang: 'ru', is_published: true})
 const user = ref();
 
+// переменная для установки текста в редакторе
+// редактор подгрузит данные в себя и затрёт эту перменную.
+// Если опять надо изменить текст в редакторе, то опять задай текст в эту перменную
+const sendTextToBody = ref('')
+const sendTextToReferences = ref('')
+
 let pageMenu = null
 
 // СТАТЬЯ
 function getPage() {
   api.get(`/pages/${props.id}`).then(data => {
-    console.log(data)
-    page.value = data.item
+    page.value = data.item;
+    sendTextToBody.value = data.item.body;
+    sendTextToReferences.value = data.item.references;
     pageMenu = data.menu
   })
 }
@@ -142,6 +149,8 @@ function submit() {
     console.log(data)
     if (data.success == 'ok') {
       page.value = data.item;
+      sendTextToBody.value = data.item.body;
+      sendTextToReferences.value = data.item.references;
       toastSuccess('Успех', 'Статья создана');
       errors.value = '';
       router.push({ name: 'Pages' });
@@ -319,12 +328,12 @@ const submitBtnItems = [
 
   <div class="field">
     <label>Статья:</label>
-    <tiptap :content="page.body" @change="(d) => { page.body = d; }" :disabled="page.is_deleted" />
+    <tiptap v-model="sendTextToBody" @change="(d) => { page.body = d; }" :disabled="page.is_deleted" />
   </div>
 
   <div class="field">
     <label>Примечания:</label>
-    <tiptap :content="page.references" @change="(d) => { page.references = d; }" :disabled="page.is_deleted" />
+    <tiptap v-model="sendTextToReferences" @change="(d) => { page.references = d; }" :disabled="page.is_deleted" />
   </div>
 
   <div v-if="user.privs.super">

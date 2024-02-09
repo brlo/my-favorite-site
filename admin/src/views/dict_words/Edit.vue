@@ -6,6 +6,7 @@ import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import Textarea from 'primevue/textarea';
+import AutocompleteDictWord from "@/components/AutocompleteDictWord.vue";
 
 import { useToast } from "primevue/usetoast";
 import { api } from '@/libs/api.js';
@@ -22,14 +23,19 @@ const props = defineProps({
 
 const errors = ref('');
 const dictWord = ref({})
-// const descEditor = ref()
+
+// переменная для установки текста в редакторе
+// редактор подгрузит данные в себя и затрёт эту перменную.
+// Если опять надо изменить текст в редакторе, то опять задай текст в эту перменную
+const sendTextToEditor = ref('')
 
 
-// СТАТЬЯ
+// ПОЛУЧАЕМ СЛОВО
 function getDictWord() {
   api.get(`/dict_words/${props.id}`).then(data => {
-    console.log(data)
-    dictWord.value = data.item
+    console.log(data);
+    dictWord.value = data.item;
+    sendTextToEditor.value = data.item.desc;
   })
 }
 
@@ -80,7 +86,7 @@ function submit() {
       } else {
         // после создания, даём возможность добавить новое слово в этот же словарь
         dictWord.value = {dict: data.item.dict};
-        // this.$refs.descEditor.editor.clearContent();
+        sendTextToEditor.value = '';
       }
     } else {
       toastError('Ошибка', 'Не удалось создать слово');
@@ -136,7 +142,7 @@ function destroy() {
 
   <div class="field">
     <label>Слово</label>
-    <InputText v-model="dictWord.word" placeholder="Слово" />
+    <AutocompleteDictWord v-model="dictWord.word" fetchKey="word" placeholder="Слово" />
   </div>
 
   <div class="group-fields">
@@ -167,7 +173,7 @@ function destroy() {
 
   <div class="field">
     <label>Описание:</label>
-    <tiptap ref="descEditor" :content="dictWord.desc" @change="(d) => { dictWord.desc = d; }"/>
+    <tiptap v-model="sendTextToEditor" @change="(d) => { dictWord.desc = d; }" />
   </div>
 
   <div class="group-fields">

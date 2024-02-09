@@ -23,7 +23,7 @@ function autoSearch(event) {
   isLoading.value = true;
   const searchTerm = event.query;
 
-  if (searchTerm.length < 3) return;
+  if (searchTerm.length < 1) return;
 
   api.get('/dict_words/list', { term: searchTerm }).then(data => {
     isLoading.value = false;
@@ -58,10 +58,10 @@ function onUpdate(origEvent) {
 <AutoComplete
   v-model="model"
   optionLabel="word"
-  :suggestions="items"
+  :suggestions="dictWords"
   @complete="autoSearch"
   :delay="300"
-  :minLength="3"
+  :minLength="1"
   :placeholder="`Слово (${fetchKey})`"
   emptySearchMessage="Нет результатов"
   @item-select="onUpdate"

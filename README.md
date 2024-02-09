@@ -157,6 +157,12 @@ u.can!('mrs_create')
 # может управлять менюшками (создавать, редактировать, удалять)
 u.can!('menus_update')
 # u.can!('menus_self_update')
+
+# может работать со словарём
+u.can!('dict_read')
+u.can!('dict_create')
+u.can!('dict_update')
+u.can!('dict_destroy')
 ```
 
 # Модератор:
