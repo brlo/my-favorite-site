@@ -334,7 +334,8 @@ j {
   color: #c54a4a;
 }
 
-.night-mode b {
+.night-mode b,
+.night-mode strong {
   color: #ddd;
 }
 
