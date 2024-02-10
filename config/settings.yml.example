@@ -7,9 +7,15 @@ development:
     url: "http://localhost:5173"
   redis:
     url: "redis://:psw@bibredis:6379/0"
+  telegram_bot:
+    token: 'test'
+    chat_id: '-123'
 
 production:
   admin:
     url: "https://edit.bibleox.com"
   redis:
     url:
+  telegram_bot:
+    token: 'test'
+    chat_id: '-123'

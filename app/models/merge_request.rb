@@ -134,6 +134,11 @@ class MergeRequest < ApplicationMongoRecord
       pg = self.page
       pg.add_editor(self.user)
       pg.save!
+
+      # уведомить чат о принятии MR:
+      msg  = "✅ Приняты <b><a href=\"https://edit.bibleox.com/merge_requests/#{self.id.to_s}\">правки</a></b>"
+      msg += " к статье: <b><a href=\"https://bibleox.com/ru/#{pg.lang}/w/#{pg.path}\">#{pg.title}</a></b>"
+      ::TelegramBot.say(msg)
     end
 
     is_saved

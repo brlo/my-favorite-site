@@ -30,6 +30,9 @@ gem "jbuilder"
 gem 'terser'
 gem 'mini_racer'
 
+gem 'addressable'
+gem 'httparty'
+
 # https://github.com/halostatue/diff-lcs
 gem 'diff-lcs'
 
