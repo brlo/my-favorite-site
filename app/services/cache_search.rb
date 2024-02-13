@@ -12,7 +12,11 @@ class CacheSearch
     term = safe_term(term)
     filename = safe_filename(term)
 
-    return unless term.present? && term.length > 2
+    min_len = 3
+    # японские иероглифы разрешаем искать в кол-ве 2 шт. (если будешь править, ищи ещё одно такое же место)
+    min_len = 2 if lang == 'jp-ni' || lang == 'cn-ccbs'
+    return unless term.present? && term.length >= min_len
+
     return unless filename.present?
     return unless SEARCH_LANGS.include?(lang)
 

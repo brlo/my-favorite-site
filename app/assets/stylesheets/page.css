@@ -62,10 +62,6 @@
   height: 1px;
 }
 
-.looks-like-page mark {
-  background-color: #FAF594;
-}
-
 .looks-like-page ul,
 .looks-like-page ol {
   padding: 0;
@@ -205,7 +201,7 @@
 }
 
 .menu-tree {
-  padding: 15px 0 0 0;
+  padding: 15px 0 20px 0;
 }
 
 .menu-link { display: inline-block; }

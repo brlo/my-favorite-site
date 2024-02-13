@@ -1,12 +1,7 @@
 #chapter-image {
   position: relative;
-  border-bottom: 1px solid #aca08f;
   padding-bottom: 30px;
   margin-bottom: 0;
-}
-
-.night-mode #chapter-image {
-  border-bottom: 1px solid #555;
 }
 
 #text-menu { display: flex; justify-content: flex-end; }

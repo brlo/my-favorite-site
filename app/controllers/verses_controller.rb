@@ -136,7 +136,15 @@ class VersesController < ApplicationController
         lang: @search_lang
       }
 
+      if @search_accuracy == 'similar'
+        @search_regexp = @search_text.split(' ').select{|w| w.length > 2}
+      else
+        @search_regexp = @search_text
+      end
+
+      # Запрашиваем результаты из БД
       @verses_json = ::VerseSearch.new(search_params).fetch_objects(5_000)
+
       @matches_count = @verses_json.count
     else
       @search_text = params[:t]

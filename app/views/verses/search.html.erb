@@ -63,7 +63,8 @@
 
   <% @verses_json.each do |v| %>
     <div class='line'>
-      "<%= verse_alone_clean(v['t'].html_safe) %>"
+      <% line_text = highlight(v['t'].to_s, @search_regexp) %>
+      "<%= verse_alone_clean(line_text.html_safe) %>"
       (<a href="<%= my_bib_link_to("/#{ v['bc'] }/#{ v['ch'] }#L#{ v['l'] }") %>"><%= ::I18n.t("books.short.#{ v['bc'] }") %>. <%= v['ch'] %>:<%= v['l'] %></a>)
     </div>
     <br>

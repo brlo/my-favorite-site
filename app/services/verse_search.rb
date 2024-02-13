@@ -47,8 +47,12 @@ class VerseSearch
     # фильтрация
     text = cache_search_service.safe_term(text)
 
+    min_len = 3
+    # японские иероглифы разрешаем искать в кол-ве 2 шт.  (если будешь править, ищи ещё одно такое же место)
+    min_len = 2 if lang == 'jp-ni' || lang == 'cn-ccbs'
+
     # не ищем меньше 3 символов и больше 100
-    return [] unless text.present? && text.length > 2
+    return [] unless text.present? && text.length >= min_len
 
     # подготовка запроса с предварительной проверкой результата в кэше
     verses_json =
