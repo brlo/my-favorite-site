@@ -137,7 +137,8 @@ class VersesController < ApplicationController
       }
 
       if @search_accuracy == 'similar'
-        @search_regexp = @search_text.split(' ').select{|w| w.length > 2}
+        min_len = ::VerseSearch.min_len(@search_lang)
+        @search_regexp = @search_text.split(' ').select{|w| w.length >= min_len}
       else
         @search_regexp = @search_text
       end

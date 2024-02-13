@@ -2,6 +2,12 @@ class VerseSearch
   RU_WORD_ENDS_REGEXP = /(ими|ыми|ами|ями|ому|ему|ого|его|ешь|ишь|ете|ите|их|ых|ий|ый|ая|яя|ое|ую|юю|ее|ие|ые|ой|ей|им|ым|ом|ос|ем|ик|ек|ок|ть|ет|ут|ют|ит|ат|ят|о|а|у|и|е|ы|ю|я|ь)$/i
   EN_WORD_ENDS_REGEXP = /(ing|er|ed|es|s)$/i
 
+  # возвращает минимальную длинную слова для поиска, с учётом языка
+  def self.min_len(lang)
+    # японские иероглифы разрешаем искать в кол-ве 2 шт.
+    (lang == 'jp-ni' || lang == 'cn-ccbs') ? 2 : 3
+  end
+
   attr_reader :params
   # params: {
   #   text: @search_text,
@@ -47,11 +53,8 @@ class VerseSearch
     # фильтрация
     text = cache_search_service.safe_term(text)
 
-    min_len = 3
-    # японские иероглифы разрешаем искать в кол-ве 2 шт.  (если будешь править, ищи ещё одно такое же место)
-    min_len = 2 if lang == 'jp-ni' || lang == 'cn-ccbs'
-
     # не ищем меньше 3 символов и больше 100
+    min_len = ::VerseSearch.min_len(lang)
     return [] unless text.present? && text.length >= min_len
 
     # подготовка запроса с предварительной проверкой результата в кэше
