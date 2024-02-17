@@ -16,7 +16,6 @@ class DiffService
     # запись новая должна быть, то есть в БД ещё не сохранена
     raise('MergeRequest is already persist') if mr.persisted?
 
-    # исходная версия страницы
     mr.page_id = page.id
     # исходная версия страницы
     mr.src_ver = page.merge_ver
@@ -94,6 +93,7 @@ class DiffService
 
     mr.diffs&.each do |field_name, diff_info|
       # патч
+      # next if !diff_info.is_a?(Hash)
       diffs = diff_info&.fetch('diffs', nil)
       next if diffs.blank?
 
@@ -167,7 +167,11 @@ class DiffService
         )
 
         if diffs_rebased.present?
-          mr.diffs[field_name] = diffs_rebased
+          mr.diffs[field_name]['diffs'] = diffs_rebased
+          # А эти параметры рядом с diffs, надо ли поправить?
+          # lines_count_was
+          # m_i
+          # p_i
         end
       end
 
@@ -380,7 +384,7 @@ class DiffService
         # пропускаем, т.к. эта строка удалялась в группе ранее, а это мы сейчас в плюс попали.
         # для этого мы и ставили эту метку, чтобы потом пропустить плюс
         elsif new_num == 'CANCEL-'
-          line_nums_arr.delete_at(line_num)
+          new_line_nums_for_minus_hash.delete(line_num)
           new_num = '?'
         end
 

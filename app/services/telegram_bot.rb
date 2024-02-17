@@ -13,9 +13,11 @@ class TelegramBot
       # PATH
       ::Addressable::URI.escape(path),
       # PARAMS
+      # https://core.telegram.org/bots/api#sendmessage
       body: params.to_h.merge(
         parse_mode: 'HTML',
         chat_id: TG_CHAT_ID,
+        disable_notification: true,
       ).to_json,
       # HEADERS
       headers: headers.merge(
@@ -27,6 +29,12 @@ class TelegramBot
   end
 
   def self.say html_text
-    new.create_post('/sendMessage', {text: html_text})
+    if ::Rails.env.production?
+      new.create_post('/sendMessage', {text: html_text})
+    else
+      puts '=========== Telegram stub msg ==========='
+      puts html_text
+      puts '========================================='
+    end
   end
 end

@@ -144,7 +144,7 @@ class VersesController < ApplicationController
       end
 
       # Запрашиваем результаты из БД
-      @verses_json = ::VerseSearch.new(search_params).fetch_objects(5_000)
+      @verses_json = ::VerseSearch.new(search_params).fetch_objects(3_000)
 
       @matches_count = @verses_json.count
     else

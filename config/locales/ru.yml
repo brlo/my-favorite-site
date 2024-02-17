@@ -374,6 +374,8 @@ ru:
           attributes:
             path:
               blank: 'пусто'
+            merge_requests:
+              invalid: 'Что-то не так с валидациями'
         menu:
           attributes:
             page_id:

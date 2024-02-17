@@ -1,4 +1,7 @@
 User-agent: *
 
+Disallow: /*/search?
+Disallow: /*/search/?
+
 Host: https://bibleox.com
 Sitemap: https://bibleox.com/sitemap.xml.gz

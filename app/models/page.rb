@@ -88,7 +88,10 @@ class Page < ApplicationMongoRecord
   scope :deleted, -> { where(is_deleted: true) }
 
   before_validation :normalize_attributes
+
   validates :page_type, :title, :lang, :path, presence: true
+
+  after_create :chat_notify_create
 
   # у статьи есть автор и редакторы
   # тут добавляем редактора
@@ -345,5 +348,16 @@ class Page < ApplicationMongoRecord
 
     # ищем сноски, делаем якоря
     # text = text.gsub(/[[:alnum:]][\d]+/, '[\1]')
+  end
+
+  private
+
+  # уведомить чат:
+  def chat_notify_create
+    pg = self
+    u = self.user
+    msg  = "🚀 #{u.name} (#{u.username}) создал(а)"
+    msg += " статью: <b><a href=\"https://bibleox.com/ru/#{pg.lang}/w/#{pg.path}\">#{pg.title}</a></b>"
+    ::TelegramBot.say(msg)
   end
 end

@@ -36,15 +36,9 @@ module Api
 
     # POST /merge_requests
     def create
-      page = ::Page.find_by!(id: params[:page][:id])
-      @mr = ::MergeRequest.new()
-      # автор
-      @mr.user_id = ::Current.user.id
-      # заполняем в @mr все необходимые параметры
-      ::DiffService.new(@mr, page).fill_fields_on_new_merge_request(page_params)
-
+      @mr = ::MergeRequest.create_mr!(::Current.user, params[:page][:id], page_params)
       # begin
-        if @mr.save
+        if @mr
           render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
         else
           # puts '=======ERRORS======='
