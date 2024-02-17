@@ -354,10 +354,6 @@ class Page < ApplicationMongoRecord
 
   # уведомить чат:
   def chat_notify_create
-    pg = self
-    u = self.user
-    msg  = "🚀 #{u.name} (#{u.username}) создал(а)"
-    msg += " статью: <b><a href=\"https://bibleox.com/ru/#{pg.lang}/w/#{pg.path}\">#{pg.title}</a></b>"
-    ::TelegramBot.say(msg)
+    ::TelegramBot::Notifiers.page_create(u: self.user, pg: self)
   end
 end

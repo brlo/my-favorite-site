@@ -21,20 +21,20 @@ module Api
 
     def route_not_found(error)
       log_error(error)
-      render json: {success: 'fail', error: 'route not found'}, status: 404
+      render json: {success: 'fail', errors: 'route not found'}, status: 404
     end
 
     def record_not_found(error)
       log_error(error)
-      render json: {success: 'fail', error: 'record not found'}, status: 404
+      render json: {success: 'fail', errors: 'record not found'}, status: 404
     end
 
     def error_occurred(error)
       log_error(error)
       if ::Rails.env.production?
-        render json: {success: 'fail', error: error.message}, status: 500
+        render json: {success: 'fail', errors: error.message}, status: 500
       else
-        render json: {success: 'fail', error: 'Что-то пошло не так'}, status: 500
+        render json: {success: 'fail', errors: 'Что-то пошло не так'}, status: 500
       end
     end
 

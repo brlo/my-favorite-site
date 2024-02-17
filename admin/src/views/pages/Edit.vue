@@ -31,6 +31,9 @@ import ConfirmDialog from 'primevue/confirmdialog';
 import { useConfirm } from "primevue/useconfirm";
 const pconfirm = useConfirm();
 
+import Dialog from 'primevue/dialog';
+
+
 import { useToast } from "primevue/usetoast";
 const toast = useToast();
 
@@ -44,8 +47,10 @@ const props = defineProps({
 })
 
 const errors = ref('');
-const page = ref({page_type: 1, lang: 'ru', is_published: true})
+const page = ref({page_type: 1, lang: 'ru', is_published: true});
+const mr = ref({});
 const user = ref();
+const isCreateMRVisible = ref()
 
 // переменная для установки текста в редакторе
 // редактор подгрузит данные в себя и затрёт эту перменную.
@@ -163,23 +168,20 @@ function submit() {
 }
 
 function submitToReview() {
-  pconfirm.require({
-    message: 'Правки будут отправлены на проверку. Продолжить?',
-    header: 'Отправка на проверку',
-    acceptLabel: 'Да', rejectLabel: 'Нет',
-    accept: () => {
-      api.post('/merge_requests', { page: page.value }).then(data => {
-        console.log(data)
-        if (data.success == 'ok') {
-          toastSuccess('Успех', 'Статья отправлена на проверку');
-          errors.value = '';
-          router.push({ name: 'ShowMergeRequest', params: { id: data.item.id } });
-        } else {
-          toastError('Ошибка', 'Не удалось отправить изменения на проверку');
-          console.log('FAIL!', data);
-          errors.value = data.errors ? data.errors : data;
-        }
-      })
+  // прячем окошко с вопросом
+  isCreateMRVisible.value = false;
+
+  const params = { mr: { comment: mr.value.comment }, page: page.value }
+  api.post('/merge_requests', params).then(data => {
+    console.log(data)
+    if (data.success == 'ok') {
+      toastSuccess('Успех', 'Статья отправлена на проверку');
+      errors.value = '';
+      router.push({ name: 'ShowMergeRequest', params: { id: data.item.id } });
+    } else {
+      toastError('Ошибка', 'Не удалось отправить изменения на проверку');
+      console.log('FAIL!', data);
+      errors.value = data.errors ? data.errors : data;
     }
   })
 }
@@ -246,6 +248,19 @@ const submitBtnItems = [
 <template>
 <ConfirmDialog/>
 <Toast />
+
+<Dialog v-model:visible="isCreateMRVisible" modal header="Отправка на проверку" :style="{ width: '25rem' }">
+    <div class="field">
+      <label for="mr-comment">Пояснительный комментарий:</label>
+      <Textarea v-model="mr.comment" id="mr-comment" autoResize rows="1" cols="30" autocomplete="off" />
+    </div>
+    <div class="field">
+      <label>Правки будут отправлены на проверку. Продолжить?</label>
+      <Button type="button" label="Отмена" severity="secondary" @click="isCreateMRVisible = false" style="margin-right: 10px;"/>
+      <Button type="button" label="Отправить!" @click="submitToReview" />
+    </div>
+</Dialog>
+
 <router-link :to="{ name: 'Pages'}">← Назад</router-link>
 <a style='margin: 0 10px;' v-if="page.id" :href="`${apiUrl}/${page.lang}/${page.lang}/w/${page.path}`">Статья на сайте</a>
 
@@ -257,16 +272,17 @@ const submitBtnItems = [
 <IndexMergeRequests v-if="page.id" :pageId="page.id" :isPartial="true"/>
 
 <div class="flex action-bar">
+  <Button v-if="!page.id" @click.prevent="submit" label="Опубликовать статью" icon="pi pi-check" />
   <SplitButton
-    v-if="page.id"
+    v-else-if="currentUser?.privs?.pages_create"
     label="Предложить правки"
     icon="pi pi-send"
-    @click="submitToReview"
+    @click="isCreateMRVisible = true"
     :model="submitBtnItems"
     :disabled="page.is_deleted"
   />
+  <Button v-else @click.prevent="isCreateMRVisible = true" label="Предложить правки" icon="pi pi-check" />
 
-  <Button v-else @click.prevent="submit" label="Опубликовать статью" icon="pi pi-check" />
 
   <div class="field fields-published">
     <label for="page-published" id="label-is-page-published">

@@ -5,6 +5,7 @@ import { api } from '@/libs/api.js';
 import { useToast } from "primevue/usetoast";
 import Button from 'primevue/button';
 import Checkbox from 'primevue/checkbox';
+import Textarea from 'primevue/textarea';
 
 const props = defineProps({
   currentUser: Object,
@@ -120,7 +121,8 @@ getItem()
 
 function merge() {
   if(confirm("Правки будут применены к статье. Продолжить?")) {
-    api.post(`/merge_requests/${props.id}/merge`).then(data => {
+    const params = { mr: { comment: mergeRequest.value.comment } }
+    api.post(`/merge_requests/${props.id}/merge`, params).then(data => {
       console.log(data)
       if (data.success == 'ok') {
         toastSuccess('Принято', 'Правки успешно применены к статье');
@@ -155,7 +157,8 @@ function rebase() {
 
 function reject() {
   if(confirm("Правки будут отклонены. Продолжить?")) {
-    api.post(`/merge_requests/${props.id}/reject`).then(data => {
+    const params = { mr: { comment: mergeRequest.value.comment } }
+    api.post(`/merge_requests/${props.id}/reject`, params).then(data => {
       console.log(data)
       if (data.success == 'ok') {
         toastInfo('Отклонено', 'Правки отклонены');
@@ -197,6 +200,12 @@ let isRejectBtnSeen = computed(() => {
   <label>Предложил: {{ mergeRequest.user?.name }} ({{ mergeRequest.user?.username }})</label>
   <label>{{ mergeRequest.updated_at_word }}</label>
   <label>Оригинал текста от: {{ mergeRequest.src_ver }}</label>
+
+  <div class="field">
+    <label>Пояснение к правкам:</label>
+    <Textarea v-model="mergeRequest.comment" autoResize rows="1" cols="30" :disabled="mergeRequest.is_merged != 2" />
+  </div>
+
   <div id="is-html">
     <Checkbox v-model="isHTML" :binary="true"/>
     Показывать HTML в правках
@@ -267,6 +276,10 @@ let isRejectBtnSeen = computed(() => {
 </template>
 
 <style scoped>
+.field {
+  margin: 15px 0;
+}
+
 i.badge {
   top: -13px;
   margin: 0 0 0 5px;

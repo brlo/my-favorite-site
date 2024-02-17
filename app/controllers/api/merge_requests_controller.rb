@@ -36,14 +36,20 @@ module Api
 
     # POST /merge_requests
     def create
-      @mr = ::MergeRequest.create_mr!(::Current.user, params[:page][:id], page_params)
+      @mr = ::MergeRequest.create_mr(
+        user: ::Current.user,
+        page_id: params[:page][:id],
+        page_params: page_params,
+        mr_params: mr_params,
+      )
+
       # begin
-        if @mr
+        if @mr.save
           render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
         else
           # puts '=======ERRORS======='
           # puts @mr.errors.messages.inspect
-          render json: @mr.errors, status: :unprocessable_entity
+          render json: @mr&.errors, status: :unprocessable_entity
         end
       # rescue => e
       #   logger.error e.message
@@ -84,6 +90,8 @@ module Api
     # POST /merge_requests/:id/merge
     def merge
       set_merge_request()
+
+      @mr.comment = mr_params[:comment]
 
       # begin
         if @mr.merge!
@@ -150,6 +158,12 @@ module Api
     end
 
     # Only allow a list of trusted parameters through.
+    def mr_params
+      # permit docs: https://apidock.com/rails/ActionController/Parameters/permit
+      _p = params.permit(mr: [:comment])
+      _p[:mr] || {}
+    end
+
     def page_params
       params.require(:page).except(:id, :created_at, :updated_at, :is_deleted).permit(
         :is_published, :edit_mode,

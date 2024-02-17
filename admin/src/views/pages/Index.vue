@@ -57,7 +57,7 @@ watchEffect(
 <h2 v-if="isListOnly">Недавно изменённые статьи</h2>
 <h2 v-else="isListOnly">Статьи</h2>
 
-<router-link v-if="currentUser?.privs?.pages_create && !isListOnly" :to="{ name: 'NewPage'}">
+<router-link v-if="currentUser?.privs?.pages_create && !isListOnly" :to="{ name: 'NewPage' }">
   ＋ Новая страница
 </router-link>
 

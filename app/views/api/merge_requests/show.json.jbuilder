@@ -6,6 +6,7 @@ json.success 'ok'
 json.item do
   json.id              mr.id.to_s
   json.page_id         mr.page_id.to_s
+  json.comment         mr.comment
   json.src_ver         mr.src_ver&.strftime("%Y-%m-%d %H:%M:%S")
   json.dst_ver         mr.dst_ver&.strftime("%Y-%m-%d %H:%M:%S")
   json.minus_i         mr.minus_i

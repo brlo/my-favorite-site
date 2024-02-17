@@ -7,6 +7,8 @@ class MergeRequest < ApplicationMongoRecord
   field :p_id,       as: :page_id, type: BSON::ObjectId
   # автор
   field :u_id,       as: :user_id, type: BSON::ObjectId
+  # пояснительный комментарий
+  field :com,        as: :comment, type: String
   # Hash[column: {old: val, new: val]
   field :a_diff,     as: :attrs_diff, type: Hash
   # Информация по диффу больших текстовых полей:
@@ -76,6 +78,7 @@ class MergeRequest < ApplicationMongoRecord
       id: self.id.to_s,
       page_id: self.page_id.to_s,
       user_id: self.user_id.to_s,
+      comment: self.comment,
       src_ver: self.src_ver&.strftime("%Y-%m-%d %H:%M:%S"),
       dst_ver: self.dst_ver&.strftime("%Y-%m-%d %H:%M:%S"),
       minus_i: self.minus_i,
@@ -123,18 +126,17 @@ class MergeRequest < ApplicationMongoRecord
     h
   end
 
-  def self.create_mr!(user, page_id, page_params)
+  def self.create_mr(user:, page_id:, page_params:, mr_params:)
     page = ::Page.find_by!(id: page_id)
 
-    mr = self.new()
+    mr = self.new(comment: mr_params[:comment])
     # автор
     mr.user_id = user.id
 
     # заполняем в mr все необходимые параметры
     ::DiffService.new(mr, page).fill_fields_on_new_merge_request(page_params)
 
-    is_saved = mr.save
-    is_saved ? mr : nil
+    mr
   end
 
   def rebase!
@@ -181,27 +183,13 @@ class MergeRequest < ApplicationMongoRecord
 
   private
 
-  # уведомить чат о сздании MR:
+  # уведомить чат о создании MR:
   def chat_notify_create
-    mr = self
-    pg = self.page
-    u = self.user
-
-    msg  = "🚀 <b>#{u.name} (#{u.username})</b> предложил(а) <b><a href=\"https://edit.bibleox.com/merge_requests/#{mr.id.to_s}\">правки</a></b>"
-    msg += " к статье: <b><a href=\"https://bibleox.com/ru/#{pg.lang}/w/#{pg.path}\">#{pg.title}</a></b>"
-    ::TelegramBot.say(msg)
+    ::TelegramBot::Notifiers.mr_create(mr: self, u: self.user, pg: self.page)
   end
 
-  # уведомить чат о сздании MR:
+  # уведомить чат о принятии MR:
   def chat_notify_merge
-    mr = self
-    pg = self.page
-    u = self.user
-
-    # уведомить чат о принятии MR:
-    msg  = "✅ Приняты <b><a href=\"https://edit.bibleox.com/merge_requests/#{mr.id.to_s}\">правки</a></b>"
-    msg += " к статье: <b><a href=\"https://bibleox.com/ru/#{pg.lang}/w/#{pg.path}\">#{pg.title}</a></b>."
-    msg += " Модератор: #{u.name} (#{u.username})"
-    ::TelegramBot.say(msg)
+    ::TelegramBot::Notifiers.mr_merge(mr: self, u: self.user, pg: self.page)
   end
 end
