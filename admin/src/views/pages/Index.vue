@@ -4,6 +4,8 @@ import {_} from 'vue-underscore';
 import { api } from '@/libs/api.js';
 import InputText from 'primevue/inputtext';
 
+const apiUrl = import.meta.env.VITE_API_URL
+
 const props = defineProps({
   isListOnly: Boolean,
   limit: Number,
@@ -80,6 +82,9 @@ watchEffect(
     </router-link>
     <i class="badge black" v-if="page.is_deleted">удалено</i>
     <i class="badge grey" v-else-if="!page.is_published">скрыто</i>
+    <a style='margin: 0;' v-if="page.id" :href="`${apiUrl}/${page.lang}/${page.lang}/w/${page.path}`">
+      <i class="pi pi-external-link" style="font-size: 0.8rem"></i>
+    </a>
 
     <div class="hint">
       {{ page.updated_at_word  }},
