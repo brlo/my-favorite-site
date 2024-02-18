@@ -27,7 +27,7 @@
       <% end %>
 
       <% if @page.body_rendered.present? %>
-        <%= sanitize(@page.body_rendered, tags: ::Page::ALLOW_TAGS, attributes: %w(id)).html_safe %>
+        <%= sanitize(@page.body_rendered, tags: ::Page::ALLOW_TAGS, attributes: %w(id href)).html_safe %>
       <% else %>
         <%= sanitize(@page.body.to_s, tags: ::Page::ALLOW_TAGS).html_safe %>
       <% end %>
