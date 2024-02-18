@@ -44,14 +44,14 @@ class TelegramBot
   class Notifiers
     # Страница создана
     def self.page_create(u:, pg:)
-      msg  = "🪨 #{u.name} (#{u.username}) создал(а)"
+      msg  = "🪨 #{u.name} (@#{u.username}) создал(а)"
       msg += " статью: <b><a href=\"https://bibleox.com/ru/#{pg.lang}/w/#{pg.path}\">#{pg.title}</a></b>"
       ::TelegramBot.say(msg)
     end
 
     # Правки созданы
     def self.mr_create(mr:, u:, pg:)
-      msg  = "🚀 <b>#{u.name} (#{u.username})</b> предложил(а) <b><a href=\"https://edit.bibleox.com/merge_requests/#{mr.id.to_s}\">правки</a></b>"
+      msg  = "🚀 <b>#{u.name} (@#{u.username})</b> предложил(а) <b><a href=\"https://edit.bibleox.com/merge_requests/#{mr.id.to_s}\">правки</a></b>"
       msg += " к статье: <b><a href=\"https://bibleox.com/ru/#{pg.lang}/w/#{pg.path}\">#{pg.title}</a></b>"
       if mr.comment.present?
         msg += "\n\nПояснение:\n<b>#{mr.comment}</b>."
@@ -63,7 +63,7 @@ class TelegramBot
     def self.mr_merge(mr:, u:, pg:)
       msg  = "✅ Приняты <b><a href=\"https://edit.bibleox.com/merge_requests/#{mr.id.to_s}\">правки</a></b>"
       msg += " к статье: <b><a href=\"https://bibleox.com/ru/#{pg.lang}/w/#{pg.path}\">#{pg.title}</a></b>."
-      msg += "\n\nМодератор:\n#{u.name} (#{u.username})."
+      msg += "\n\nМодератор:\n#{u.name} (@#{u.username})."
       if mr.comment.present?
         msg += "\n\nПояснение:\n<b>#{mr.comment}</b>."
       end
