@@ -66,6 +66,7 @@ de:
     main_meta_desc: "Artikel zu biblischen, christlichen und religiösen Themen"
     references: 'Verweise'
     no_books_links_yet: 'Es gibt noch keine Links.'
+    menu_name: 'Inhaltsverzeichnis'
 
   quotes_page:
     title: Bibelzitate

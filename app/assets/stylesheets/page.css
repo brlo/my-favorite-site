@@ -227,3 +227,30 @@
   margin-bottom: 10px;
 }
 
+/* article menu */
+
+#article-menu {
+  margin: 10px auto;
+  min-width: 200px;
+  max-width: 900px;
+  padding: 10px 15px;
+  border: 1px solid #777;
+  border-radius: 3px;
+  font-size: 1.3em;
+  background-color: #90888111;
+}
+
+#article-menu .menu-name {
+  text-align: center;
+}
+
+#article-menu .nav-h2,
+#article-menu .nav-h3,
+#article-menu .nav-h4 {
+  margin: 10px 0;
+}
+
+#article-menu .nav-h2 { margin-left: 0; }
+#article-menu .nav-h3 { margin-left: 20px; font-size: 0.8em; }
+#article-menu .nav-h4 { margin-left: 40px; font-size: 0.6em; }
+

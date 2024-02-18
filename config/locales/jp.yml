@@ -66,6 +66,7 @@ jp:
     main_meta_desc: "聖書、キリスト教、宗教的なトピックに関する記事"
     references: '参考文献'
     no_books_links_yet: 'まだリンクはありません。'
+    menu_name: '目次'
 
   quotes_page:
     title: 聖書の引用

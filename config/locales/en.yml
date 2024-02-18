@@ -66,6 +66,7 @@ en:
     main_meta_desc: "Articles on biblical, Christian and religious topics"
     references: 'References'
     no_books_links_yet: 'There is no links yet.'
+    menu_name: 'Contents'
 
   quotes_page:
     title: Bible quotes

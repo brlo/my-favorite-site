@@ -52,7 +52,7 @@ class Page < ApplicationMongoRecord
   # текст статьи (для редактирования)
   field :bd,         as: :body, type: String
   # текст статьи (для показа ползьователю)
-  field :bdr,        as: :body_for_render, type: String
+  field :bdr,        as: :body_rendered, type: String
   # текст статьи с разбивкой на стихи
   field :vrs,        as: :verses, type: Array
   # ссылки и заметки
@@ -179,6 +179,12 @@ class Page < ApplicationMongoRecord
 
     if self.body_changed?
       self.body = self.class.safe_html(self.body).strip
+
+      # построение оглавления и необходимых ссылок
+      rendered_data = render_body_and_menu(self.body)
+      self.body_rendered = rendered_data[:text]
+      self.body_menu = rendered_data[:menu]
+
 
       # Обработка страниц, где запрошена разбивка на стихи как в Библии.
       if self.is_page_verses?
@@ -343,11 +349,28 @@ class Page < ApplicationMongoRecord
     ).gsub('<p></p>', '')
   end
 
-  def render_body text
+  def render_body_and_menu text
     text = text.to_s
+
+    doc = ::Nokogiri.HTML(text)
+
+    _menu = []
+    doc.css('h2, h3, h4').each do |el|
+      # из текста удаляем всё, кроме букв, цифр, пробела и "-". Меняем " " на "-"
+      anchor = 'HH-' + el.text.gsub(/[^[[:alnum:]]\s\-]/, '').gsub(' ', '-')
+      el['id'] = anchor
+
+      _menu.push([el.name, anchor, el.text])
+    end
 
     # ищем сноски, делаем якоря
     # text = text.gsub(/[[:alnum:]][\d]+/, '[\1]')
+
+    {
+      # nokogiri добавляем html, body, которые нам не нужны
+      text: doc.at_css('body').inner_html.gsub("\n", ""),
+      menu: _menu,
+    }
   end
 
   private

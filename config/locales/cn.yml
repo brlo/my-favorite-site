@@ -66,6 +66,7 @@ cn:
     main_meta_desc: "有关圣经、基督教和宗教主题的文章"
     references: '参考'
     no_books_links_yet: '还没有链接。'
+    menu_name: '目录'
 
   quotes_page:
     title: 圣经名言

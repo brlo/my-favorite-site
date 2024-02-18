@@ -22,7 +22,15 @@
     <%= render(partial: 'pages/text') %>
   <% else %>
     <article id='page-body' itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
-      <%= sanitize(@page.body.to_s, tags: ::Page::ALLOW_TAGS).html_safe %>
+      <% if @page.body_menu.present? %>
+        <%= render(partial: 'pages/body_menu') %>
+      <% end %>
+
+      <% if @page.body_rendered.present? %>
+        <%= sanitize(@page.body_rendered, tags: ::Page::ALLOW_TAGS, attributes: %w(id)).html_safe %>
+      <% else %>
+        <%= sanitize(@page.body.to_s, tags: ::Page::ALLOW_TAGS).html_safe %>
+      <% end %>
     </article>
   <% end %>
 

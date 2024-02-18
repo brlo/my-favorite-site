@@ -66,6 +66,7 @@ ar:
     main_meta_desc: "مقالات عن المواضيع الكتابية والمسيحية والدينية"
     references: 'مراجع'
     no_books_links_yet: 'لا توجد روابط حتى الآن.'
+    menu_name: 'المحتويات'
 
   quotes_page:
     title: اقتباسات الكتاب المقدس

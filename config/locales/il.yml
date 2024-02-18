@@ -66,6 +66,7 @@ il:
     main_meta_desc: 'מאמרים בנושאים תנ"כיים, נוצריים ודתיים'
     references: 'הפניות'
     no_books_links_yet: 'עדיין אין קישורים.'
+    menu_name: 'תוכן עניינים'
 
   quotes_page:
     title: ציטוטים של התנ"ך
