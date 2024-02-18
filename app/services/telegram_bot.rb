@@ -18,6 +18,7 @@ class TelegramBot
         parse_mode: 'HTML',
         chat_id: TG_CHAT_ID,
         disable_notification: true,
+        link_preview_options: {is_disabled: true},
       ).to_json,
       # HEADERS
       headers: headers.merge(
