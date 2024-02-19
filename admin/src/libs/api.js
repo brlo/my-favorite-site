@@ -27,7 +27,7 @@ function httpRequest(method, path, queryParams, body, options) {
 
   console.log(method + ': ' + url, bodyJSON, options)
 
-  const timeout = setTimeout(() => controller.abort(), 3000);
+  const timeout = setTimeout(() => controller.abort(), 10000);
 
   const promise = fetch(url, {
     method: method,
