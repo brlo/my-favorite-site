@@ -112,6 +112,8 @@ module Api
     def reject
       set_merge_request()
 
+      @mr.comment = mr_params[:comment]
+
       # begin
         if @mr.reject!
           render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)

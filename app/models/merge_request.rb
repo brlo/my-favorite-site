@@ -168,7 +168,18 @@ class MergeRequest < ApplicationMongoRecord
 
   def reject!
     self.update!(is_merged: 0, action_at: DateTime.now.utc.round)
-    self.save
+
+    is_saved = self.save
+
+    if is_saved
+      self.chat_notify_reject
+    else
+      puts '---------- ERROR on MergeRequest.reject! ------------'
+      puts pg.errors.inspect
+      puts '---------------------------------------'
+    end
+
+    is_saved
   end
 
   def normalize_attributes
@@ -191,5 +202,10 @@ class MergeRequest < ApplicationMongoRecord
   # уведомить чат о принятии MR:
   def chat_notify_merge
     ::TelegramBot::Notifiers.mr_merge(mr: self, u: self.user, pg: self.page)
+  end
+
+  # уведомить чат об отклонении MR:
+  def chat_notify_reject
+    ::TelegramBot::Notifiers.mr_reject(mr: self, u: self.user, pg: self.page)
   end
 end

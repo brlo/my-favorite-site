@@ -69,6 +69,17 @@ class TelegramBot
       end
       ::TelegramBot.say(msg)
     end
+
+    # Правки отклонены
+    def self.mr_reject(mr:, u:, pg:)
+      msg  = "🔴 Отклонены <b><a href=\"https://edit.bibleox.com/merge_requests/#{mr.id.to_s}\">правки</a></b>"
+      msg += " к статье: <b><a href=\"https://bibleox.com/ru/#{pg.lang}/w/#{pg.path}\">#{pg.title}</a></b>."
+      msg += "\n\nМодератор:\n#{u.name} (@#{u.username})."
+      if mr.comment.present?
+        msg += "\n\nПояснение:\n<b>#{mr.comment}</b>."
+      end
+      ::TelegramBot.say(msg)
+    end
   end
 
 end
