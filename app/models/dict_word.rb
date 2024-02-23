@@ -81,19 +81,22 @@ class DictWord < ApplicationMongoRecord
     # если словарь неизвестен, то обнуляем его, при сохранении споткнётся об валидацию наличия
     self.dict = nil if !DICTS.has_key?(self.dict)
 
-    self.word = self.word.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
-    self.sinonim = self.sinonim.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
-    self.lexema = self.lexema.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
-    self.word_simple = self.word_simple.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').gsub('-', '').presence
+    self.word = self.word.to_s.strip.delete("\u0302-\u036F").presence.gsub(/[\t\s\n\r]+/, ' ').unicode_normalize(:nfd).downcase.delete("\u0302-\u036F").presence
+    self.sinonim = self.sinonim.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').unicode_normalize(:nfd).downcase.delete("\u0302-\u036F").presence
+    self.lexema = self.lexema.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').unicode_normalize(:nfd).downcase.delete("\u0302-\u036F").presence
+    # word уже в нижнем регистре и без диакрит. знаков, но тут мы убираем даже ударения.
+    # Это важно, потому что Люба добавляет слова без ударений
+    self.word_simple = self.word.delete('-').delete("\u0300-\u036F").presence
     self.transcription = self.transcription.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
     self.translation_short = self.translation_short.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').downcase.presence
     self.translation = self.translation.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
 
-    if self.word.present? && self.word_simple.blank?
-      a="άέήίϊϋόύώἀἁἂἃἄἅἆἐἑἓἔἕἠἡἢἣἤἥἦἧἰἱἳἴἵἶἷὀὁὂὃὄὅὐὑὒὓὔὕὖὗὠὡὢὤὥὦὧὰάὲέὴήὶίὸόὺύὼώᾀᾄᾅᾆᾐᾑᾔᾖᾗᾠᾤᾧᾳᾴᾶᾷῃῄῆῇῒΐῖῢΰῥῦῳῴῶῷ"; a=a+a.upcase
-      b="αεηιιυουωαααααααεεεεεηηηηηηηηιιιιιιιοοοοοουυυυυυυυωωωωωωωααεεηηιιοουυωωααααηηηηηωωωααααηηηηιιιυυρυωωωω"; b=b+b.upcase
-      self.word_simple = self.word.tr(a, b)
-    end
+    # if self.word.present? && self.word_simple.blank?
+    #   # a="άέήίϊϋόύώἀἁἂἃἄἅἆἐἑἓἔἕἠἡἢἣἤἥἦἧἰἱἳἴἵἶἷὀὁὂὃὄὅὐὑὒὓὔὕὖὗὠὡὢὤὥὦὧὰάὲέὴήὶίὸόὺύὼώᾀᾄᾅᾆᾐᾑᾔᾖᾗᾠᾤᾧᾳᾴᾶᾷῃῄῆῇῒΐῖῢΰῥῦῳῴῶῷ"; a=a+a.upcase
+    #   # b="αεηιιυουωαααααααεεεεεηηηηηηηηιιιιιιιοοοοοουυυυυυυυωωωωωωωααεεηηιιοουυωωααααηηηηηωωωααααηηηηιιιυυρυωωωω"; b=b+b.upcase
+    #   # self.word_simple = self.word.tr(a, b)
+    #   self.word_simple = self.word.unicode_normalize(:nfd).downcase.delete("\u0300\u0302-\u036F")
+    # end
 
     self.desc = sanitizer.sanitize(
       self.desc.to_s,

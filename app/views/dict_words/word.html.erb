@@ -1,0 +1,45 @@
+<h1>Слово: <b><%= params[:word] %></b></h1>
+<div class="lexemas">
+    <% @lexemas.each do |l| %>
+        <div class="lexema" style="margin: 10px 0;">
+            <div>
+                <b><%= l.word %></b> 
+                <% if l.transcription.present? %>
+                  [<%= l.transcription %>]
+                <% end %>
+            </div>
+            <div>Повторения: <%= l.counts %></div>
+            <% if l.present? %>
+              <div>Лексема: <%= l.lexema %></div>
+            <% end %>
+        </div>
+    <% end %>
+</div>
+
+<div class="dict-words">
+    <% @dict_words.each do |w| %>
+        <div class="dict-word" style="margin: 10px 0;">
+            <div>
+                <b><%= w.word %></b> 
+                <% if w.transcription.present? %>
+                  [<%= w.transcription %>]
+                <% end %>
+            </div>
+            <% if w.tag.present? %>
+              <div>Признак: <%= w.tag %></div>
+            <% end %>
+            <div>
+                Переводы:
+                <% if w.translation_short.present? %>
+                  <%= w.translation_short %>
+                <% end %>
+            </div>
+            <% if w.translation.present? %>
+              <div><%= w.translation %></div>
+            <% end %>
+            <% if w.desc.present? %>
+              <div><%= w.desc %></div>
+            <% end %>
+        </div>
+    <% end %>
+</div>

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   # default locale добавлено ради сложных ссылок link_to для админки
   scope '/:locale', :locale => /ru|gr|en|il|ar|jp|cn|de/, defaults: {locale: :ru} do
-    scope '/:content_lang', :content_lang => /ru|csl-pnm|csl-ru|gr-lxx-byz|eng-nkjv|heb-osm|arab-avd|jp-ni|cn-ccbs|ge-sch/ do
+    scope '/:content_lang', :content_lang => /ru|csl-pnm|csl-ru|gr-lxx-byz|gr-ru|eng-nkjv|heb-osm|arab-avd|jp-ni|cn-ccbs|ge-sch/ do
       get '/:book_code/:chapter', to: 'verses#index', :constraints =>
         lambda { |req|
           book_code = req.params[:book_code]
@@ -36,6 +36,8 @@ Rails.application.routes.draw do
       }
     get '/q', to: 'verses#q_redirect'
     get '/q/:page_path', to: 'verses#q_redirect'
+
+    get '/words/:word', to: 'dict_words#word'
 
     get '/about', to: 'pages#about'
     get '/search', to: 'verses#search'
@@ -90,6 +92,7 @@ Rails.application.routes.draw do
 
       scope 'dict_words' do
         get    'list', to: 'dict_words#list'
+        get    'list_waitings', to: 'dict_words#list_top_waitings'
         post   '/',    to: 'dict_words#create'
 
         scope ':id' do

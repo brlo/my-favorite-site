@@ -24,6 +24,7 @@ class VersesController < ApplicationController
       redirect_to "/#{I18n.locale}/#{current_bib_lang()}/gen/1/"
     else
       @content_lang = current_bib_lang()
+
       # не индексировать, где текст UI не совпадает с текстом контента
       if locale_for_content_lang(@content_lang) != ::I18n.locale.to_s
         @no_index = true
@@ -44,6 +45,10 @@ class VersesController < ApplicationController
 
       @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
       # TODO: найти также все статьи для этой главы и встроить ссылки рядом со стихами
+
+      if @content_lang == 'gr-ru' # gr-lxx-byz
+        @dict = preload_dict_for_verses(@verses)
+      end
 
       @current_menu_item = 'biblia'
       @text_direction = ['heb-osm', 'arab-avd'].include?(@content_lang) ? 'rtl' : 'ltr'
@@ -180,5 +185,69 @@ class VersesController < ApplicationController
     end
 
     redirect_to(path)
+  end
+
+  private
+
+  # Построение словаря для подстановки перевода в текст на лету
+  # {lexema => translation}
+  def preload_dict_for_verses verses
+    words = verses.map { |v| v.data['w'] }.flatten.compact.sort.uniq
+    return {} if words.blank?
+
+    words_clean = words.map { |w| clean(w) }.uniq.sort
+
+    # ЛЕКСЕМЫ И ТРАНСЛИТ для страницы
+
+    lexemas = ::Lexema.where(:word.in => words_clean).pluck(:word, :lexema_clean, :transcription)
+    # {word => lexema}
+    w_lexemas = lexemas.map {|(w,l,t)| [w, l] }.to_h
+    # {word => transcription}
+    w_transcriptions = lexemas.map {|(w,l,t)| [w, t] }.to_h
+
+    # ПЕРЕВОД ЛЕКСЕМ и СЛОВ со страницы
+
+    words_and_lexemas = (w_lexemas.values + words_clean).compact.uniq
+    dicts = ::DictWord.where(:word_simple.in => words_and_lexemas).pluck(:word_simple, :translation_short, :dict)
+
+    # Вайсман
+    w_dicts = {}
+    # Дворецкий
+    d_dicts = {}
+    # Другие словари
+    all_dicts = {}
+
+    # в этих словарях перевод для слов и лексем
+    dicts.each do |(word,trans,dict)|
+      if dict == 'w'
+        w_dicts[word] = trans
+      elsif dict == 'd'
+        d_dicts[word] = trans
+      else
+        rest_dicts[word] = trans
+      end
+    end
+
+    result = {dict: {}, transcription: {}}
+    words.each do |w|
+      _w = clean(w)
+      # лексема слова
+      l = w_lexemas[_w]
+      # перевод слова или лексемы (приоритет: Вейсман, Дворецкий, прочие словари)
+      trans = w_dicts[_w] || d_dicts[_w] || all_dicts[_w] || w_dicts[l] || d_dicts[l] || all_dicts[l]
+      # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
+      result[:dict][w] = trans
+      # транскрипция. Будет использована при отсутствии перевода
+      result[:transcription][w] = w_transcriptions[_w]
+    end
+
+    result
+  end
+
+  # очищает слово от всех спец. знаков и греческих диакритических символов
+  def clean(word)
+    # require 'unicode_utils'
+    # UnicodeUtils.nfkd("ἅπερ")
+    word&.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F")
   end
 end

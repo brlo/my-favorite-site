@@ -131,4 +131,24 @@ module ApplicationHelper
   def page_visit(id)
     @page_visit ||= ::PageVisits.visit(id, browser: browser)
   end
+
+  def interliner_helper(words, dict)
+    translate = dict[:dict]
+    transcript = dict[:transcription]
+
+    words.map do |w|
+      # перевод
+      trns = translate[w]
+      trsc = transcript[w]
+
+      s  = "<ruby>#{ w }"
+      if trns
+        w_link = w.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F")
+        s += "<rt><a href='/#{I18n.locale}/words/#{ w_link }'>#{ trns }</a></rt>"
+      elsif trsc
+        s += "<rt>#{ trsc }</rt>"
+      end
+      s += "</ruby>"
+    end.join
+  end
 end
