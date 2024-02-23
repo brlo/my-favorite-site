@@ -35,6 +35,17 @@ article.text-small { font-size: 1em; }
 article.text-medium { font-size: 1.2em; }
 article.text-large { font-size: 1.4em; }
 
+/* для подстрочника покрупнее делаем текст */
+article.interliner.text-small { font-size: 1.5em; }
+article.interliner.text-medium { font-size: 1.8em; }
+article.interliner.text-large { font-size: 2em; }
+
+.interliner .verse-text {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
 hr {
   display: block;
   margin: 30px 0;

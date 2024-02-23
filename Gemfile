@@ -10,6 +10,12 @@ gem 'mongoid'
 gem 'redis'
 gem 'connection_pool'
 
+# https://github.com/skroutz/greeklish/tree/master
+# https://github.com/agorf/greeklish_iso843
+# GreeklishIso843::GreekText.to_greeklish("Ευάγγελος") # => "Evangelos"
+gem 'greeklish_iso843'
+# gem 'greeklish'
+
 # для определения браузера, отсеивания ботов
 gem 'browser'
 
@@ -85,4 +91,3 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
-

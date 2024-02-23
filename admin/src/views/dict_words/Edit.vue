@@ -22,7 +22,9 @@ const props = defineProps({
 })
 
 const errors = ref('');
-const dictWord = ref({})
+const dictWord = ref({});
+const wordsWaitings = ref();
+const lexemasWaitings = ref();
 
 // переменная для установки текста в редакторе
 // редактор подгрузит данные в себя и затрёт эту перменную.
@@ -42,6 +44,16 @@ function getDictWord() {
 if (props.id) {
   getDictWord();
 }
+
+// ПОЛУЧАЕМ СПИСОК ОЖИДАЮЩИХ ОПРЕДЕЛЕНИЯ СЛОВ
+function getWordsWaitings() {
+  api.get(`/dict_words/list_waitings`).then(data => {
+    console.log(data);
+    wordsWaitings.value = data.items.words;
+    lexemasWaitings.value = data.items.lexemas;
+  })
+}
+getWordsWaitings();
 
 // ЯЗЫКИ
 // const langs = [
@@ -88,6 +100,8 @@ function submit() {
         dictWord.value = {dict: data.item.dict};
         sendTextToEditor.value = '';
       }
+      // обновляем список слов ожидающих опредения
+      getWordsWaitings();
     } else {
       toastError('Ошибка', 'Не удалось создать слово');
       console.log('FAIL!', data);
@@ -186,8 +200,53 @@ function destroy() {
       <InputText v-model="dictWord.lexema" placeholder="Лексема" />
     </div>
   </div>
+
+  <div v-if="!dictWord.id">
+    <hr/>
+    <Button @click.prevent="getWordsWaitings" label="Обновить список ожиданий"/>
+
+    <div class="words-hints">
+      <div class="words-waitings">
+        <div class="word-waiting">Слова:</div>
+        <div v-for="word in wordsWaitings" class="word-waiting">
+          <a @click.prevent="dictWord = {dict: 'w', word: word.word}">{{ word.word }}</a>
+          <i>{{ word.counts }}</i>
+        </div>
+      </div>
+
+      <div class="words-waitings">
+        <div class="word-waiting">Лексемы:</div>
+        <div v-for="word in lexemasWaitings" class="word-waiting">
+          <a @click.prevent="dictWord = {dict: 'w', word: word.word}">{{ word.word }}</a>
+          <i>{{ word.counts }}</i>
+        </div>
+      </div>
+    </div>
+  
+  </div>
 </div>
 </template>
 
 <style scoped>
+.words-waitings {
+  display: inline-block;
+  vertical-align: top;
+  max-width: 300px;
+  margin: 10px 0;
+}
+
+.word-waiting {
+  font-size: 2.3rem;
+  margin: 5px 0;
+}
+
+.word-waiting a {
+  cursor: pointer;
+}
+
+.word-waiting i {
+  margin: 0 10px;
+  font-size: 1rem;
+  color: #aaa;
+}
 </style>

@@ -32,6 +32,47 @@ module Api
       render(json: {'success': 'ok', items: @dict_words.map(&:attrs_for_render)}, status: :ok)
     end
 
+    def list_top_waitings
+      lexemas = []
+      ls = []
+      ws = []
+      skip = 0
+      pack = 500
+
+      10.times do
+        # TODO: лексемы надо запросить отдельно
+        lexemas += ::Lexema.only(:id, :word, :lexema_clean, :counts).skip(skip).order(counts: -1).first(pack)
+
+        ws += lexemas.pluck(:word)
+        ls += lexemas.pluck(:lexema_clean)
+        ws = ws.uniq
+        ls = ls.uniq
+
+        # в словарь заглядываем только для того, чтобы убрать уже описаные слова
+        dicts = ::DictWord.where(dict: 'w', :word.in => (ws+ls).uniq).pluck(:word)
+
+        dicts.each { |w| ws = (ws - [w]); ls = (ls - [w]) }
+
+        if ls.count > 79 || ws.count > 79
+          break
+        else
+          skip += pack
+        end
+      end
+
+      # добавляем к словам количество повторений
+      lexemas_l = lexemas.map { |l| [l.lexema_clean, l.counts] }.to_h
+      lexemas_w = lexemas.map { |l| [l.word, l.counts] }.to_h
+      # render
+      ls = ls.map { |w| { word: w, counts: lexemas_l[w] } }
+      ws = ws.map { |w| { word: w, counts: lexemas_w[w] } }
+
+      # лексемы нуждаются в сортирокве по кол-ву повторений
+      ls = ls.sort_by { _1[:counts] }.reverse
+
+      render(json: {'success': 'ok', items: { words: ws, lexemas: ls} }, status: :ok)
+    end
+
     def show
       set_dict_word()
       render(json: {'success': 'ok', item: @dict_word.attrs_for_render}, status: :ok)

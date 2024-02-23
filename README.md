@@ -54,11 +54,18 @@ db.grantRolesToUser('superadmin',[{ role: "root", db: "admin" }])
 db.adminCommand( { getParameter : 1, "saslHostName" : 1 } )
 
 # переключаемся на нужную БД чтобы в ней создать пользователя
-use biblia_prod
+use biblia_production
 
 # создаём пользователя с доступом к нужной БД и правами на чтение и запись
-db.createUser({ user: 'bibl_explorer', pwd: '123', roles: [ { role: "readWrite", db: "biblia_prod" } ] });
+db.createUser({ user: 'bibl_explorer', pwd: '123', roles: [ { role: "readWrite", db: "biblia_production" } ] });
 db.auth('bibl_explorer', '123');
+
+# ТОЛЬКО ДЛЯ ДАЛЬНЕЙШЕГО ИЗМЕНЕНИЯ ПАРОЛЯ (например после загрузки бэкапа с прода)
+sudo docker exec -it mongo mongo admin
+use biblia_production
+db.createUser({ user: 'bibl_explorer', pwd: '123', roles: [ { role: "readWrite", db: "biblia_production" } ] });
+db.changeUserPassword("bibl_explorer", "123")
+
 ```
 ```ruby
 # в руби-консоли создаём индексы
@@ -203,3 +210,53 @@ http://gurin.tomsknet.ru/alphaonline.html
 распознавание текста в России:
 https://contentai.ru/store
 
+
+
+
+<entry uri="">
+<dict>
+<hdwd xml:lang="grc">ἄνθρωπος</hdwd>
+<pofs order="3">noun</pofs>
+<decl>2nd</decl>
+<gend>masculine</gend>
+</dict>
+<infl>
+<term xml:lang="grc">
+<stem>ἀνθρωπ</stem>
+<suff>ος</suff>
+</term>
+<pofs order="3">noun</pofs>
+<decl>2nd</decl>
+<case order="7">nominative</case>
+<gend>masculine</gend>
+<num>singular</num>
+<stemtype>os_ou</stemtype>
+</infl>
+</entry>
+
+
+<entry>: обозначает начало и конец записи о слове.
+
+•  <dict>: содержит основную информацию о слове, такую как его написание, часть речи, склонение и род.
+
+•  <hdwd>: означает заголовочное слово, то есть его лемму или словарную форму.
+
+•  <pofs>: означает часть речи, в данном случае существительное.
+
+•  <decl>: означает склонение, в данном случае второе.
+
+•  <gend>: означает род, в данном случае мужской.
+
+•  <infl>: содержит информацию об одной из форм слова, в которой оно может употребляться в предложении.
+
+•  <term>: означает термин, то есть конкретное написание формы слова.
+
+•  <stem>: означает основу слова, то есть его часть без окончания.
+
+•  <suff>: означает суффикс, то есть окончание слова.
+
+•  <case>: означает падеж, в данном случае именительный.
+
+•  <num>: означает число, в данном случае единственное.
+
+•  <stemtype>: означает тип основы, который определяет правила склонения слова.

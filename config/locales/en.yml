@@ -100,6 +100,7 @@ en:
     cn: Chinese
     ge: German
     arab: Arab
+    gr-ru: Greek-Rus
 
   tips:
     click_on_verse: Highlight a verse by clicking on its number.

@@ -3,8 +3,10 @@
   <% now_chapter = @chapter %>
   <% next_chapter = @chapter + 1 %>
 
+  <% is_interliner = @verses.first.data&.fetch('w', nil).present? %>
+
   <div id='chapter-text'>
-    <article itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
+    <article itemprop="articleBody" class="verses <%= is_interliner ? 'interliner' : '' %> text-<%= text_size_from_cookies %>">
       <table>
         <tbody>
           <% @verses.each do |v| %>
@@ -14,7 +16,11 @@
               <tr>
                 <td class='verse-line' id='L<%= v.line %>' data-line="<%= "#{v.line}" %>"><%= v.line %></td>
                 <td class='csl verse-text' id='T<%= v.line %>' data-line="<%= "#{v.line}" %>">
-                  <%= sanitize(v.text, tags: %w(j e i br)) %>
+                  <% if is_interliner %>
+                    <%= interliner_helper(v.data['w'], @dict).html_safe %>
+                  <% else %>
+                    <%= sanitize(v.text, tags: %w(j e i br)) %>
+                  <% end %>
                 </td>
               </tr>
             <% end %>
