@@ -13,7 +13,9 @@ Verse.where(lang: 'gr-lxx-byz').each { v=_1.dup;v.lang='gr-ru';v.save }
 Verse.where(lang: 'gr-ru').each do |v|
   # строим из строки массив:
   # ["Εἰς", "τὸ", "τέλος", ",", "ὑπὲρ", "τῶν", "κρυφίων", "τοῦ", "υἱοῦ", "·", "ψαλμὸς", "τῷ", "Δαυιδ", "."]
-  v.data['w'] = v.text.split(/(\p{Greek}+)/).map{|w| w.unicode_normalize(:nfd).delete("\u0302-\u036F").strip.split("\s").map(&:strip) }.flatten.reject(&:blank?)
+  #
+  # тут в delete пропускаем прямое и обратное ударение u0300-u0301, а также волнистое (долгое) ударение u0342
+  v.data['w'] = v.text.split(/(\p{Greek}+)/).map{|w| w.unicode_normalize(:nfd).delete("\u0302-\u0341\u0343-\u036F").strip.split("\s").map(&:strip) }.flatten.reject(&:blank?)
   v.save
 end
 

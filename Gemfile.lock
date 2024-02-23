@@ -98,7 +98,6 @@ GEM
     execjs (2.8.1)
     globalid (1.0.0)
       activesupport (>= 5.0)
-    greeklish (0.0.2)
     greeklish_iso843 (0.4.3)
     httparty (0.21.0)
       mini_mime (>= 1.0.0)
@@ -251,7 +250,6 @@ DEPENDENCIES
   connection_pool
   debug
   diff-lcs
-  greeklish
   greeklish_iso843
   httparty
   jbuilder
