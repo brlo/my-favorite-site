@@ -37,6 +37,9 @@ ru:
     no_books_links_yet: 'Здесь пока что нет других ссылок. Загляните позже.'
     menu_name: 'Содержание'
 
+  dict_words:
+    title: "Слово из Библии – \"%{word}\""
+
   quotes_page:
     title: Цитаты из Библии
 

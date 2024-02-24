@@ -1,7 +1,9 @@
 # ПАРСЕР СЛОВАРЯ ДВОРЕЦКОГО
 
+# load 'res/ruby/parser_dvor.rb'
+#
 # DOC https://www.rubyguides.com/2012/01/parsing-html-in-ruby/
-# load 'parser_dict.rb'
+#
 require 'open-uri'
 require 'nokogiri'
 

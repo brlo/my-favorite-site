@@ -68,6 +68,9 @@ jp:
     no_books_links_yet: 'まだリンクはありません。'
     menu_name: '目次'
 
+  dict_words:
+    title: "Word from Bible – \"%{word}\""
+
   quotes_page:
     title: 聖書の引用
 

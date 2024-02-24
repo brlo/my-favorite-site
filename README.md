@@ -122,6 +122,12 @@ alias bib_cache_clear='sudo rm /projects/bibleox/db/cache_search/*/*/*.json'
 
 см. всё в ./scripts.rb
 
+# рестарт web-сервера
+touch tmp/restart.txt
+
+# очистка поискового кэша
+rm ./db/cache_search/*/*/*.json
+
 * ПРИВЕЛЕГИИ
 
 # Стандартный набор для проверенного участника (создание страниц нужно доработать, ограничив доступ к особым полям):

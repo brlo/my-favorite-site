@@ -68,6 +68,9 @@ gr:
     no_books_links_yet: 'Δεν υπάρχουν σύνδεσμοι ακόμα.'
     menu_name: 'Περιεχόμενα'
 
+  dict_words:
+    title: "Word from Bible – \"%{word}\""
+
   quotes_page:
     title: Αποσπάσματα της Βίβλου
 

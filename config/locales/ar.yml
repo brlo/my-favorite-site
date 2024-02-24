@@ -68,6 +68,9 @@ ar:
     no_books_links_yet: 'لا توجد روابط حتى الآن.'
     menu_name: 'المحتويات'
 
+  dict_words:
+    title: "Word from Bible – \"%{word}\""
+
   quotes_page:
     title: اقتباسات الكتاب المقدس
 

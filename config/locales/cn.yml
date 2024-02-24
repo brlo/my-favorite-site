@@ -68,6 +68,9 @@ cn:
     no_books_links_yet: '还没有链接。'
     menu_name: '目录'
 
+  dict_words:
+    title: "Word from Bible – \"%{word}\""
+
   quotes_page:
     title: 圣经名言
 

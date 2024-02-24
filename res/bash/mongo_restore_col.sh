@@ -1,18 +1,14 @@
 #!/bin/bash
 
-# mongo_dump.sh mongo biblia_production lexemas
-CONTAINER=$1
-BD=$2
-COLLECTION=$3
+# mongo_restore_col.sh mongo biblia_production lexemas
+CONTAINER=$1 # mongo
+DB=$2 # biblia_production
+COLLECTION=$3 # lexemas
+
 TODAY=`date +%Y-%d-%m`
 
-# backup
-# локально работает и без юзера-пароля
-#docker exec ${CONTAINER} mongodump --db=${BD} --collection=${COLLECTION} --archive > ./bib-${COLLECTION}.dump
-
-
 # restore
-docker exec -i ${CONTAINER} mongorestore --db=${BD} --collection=${COLLECTION} --archive < ./bib-${COLLECTION}.dump
+docker exec -i ${CONTAINER} mongorestore --db=${DB} --collection=${COLLECTION} --archive < ./bib-${COLLECTION}.dump
 
 # FAIL!
 # Не получилось указать базу и коллекцию. Он просто развернул туда же, откуда взяли. В такие же имена.

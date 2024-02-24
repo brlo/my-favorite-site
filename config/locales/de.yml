@@ -68,6 +68,9 @@ de:
     no_books_links_yet: 'Es gibt noch keine Links.'
     menu_name: 'Inhaltsverzeichnis'
 
+  dict_words:
+    title: "Word from Bible – \"%{word}\""
+
   quotes_page:
     title: Bibelzitate
 

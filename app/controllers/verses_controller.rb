@@ -90,6 +90,10 @@ class VersesController < ApplicationController
 
     @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
 
+    if @content_lang == 'gr-ru' # gr-lxx-byz
+      @dict = preload_dict_for_verses(@verses)
+    end
+
     @current_menu_item = 'biblia'
     @text_direction = ['heb-osm', 'arab-avd'].include?(@content_lang) ? 'rtl' : 'ltr'
     @page_title =
