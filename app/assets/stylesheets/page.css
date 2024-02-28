@@ -262,14 +262,14 @@
 } */
 
 /* подсветка параграфа, к которому перешли по нажатию на якорь сноску */
-#page-references-text :target {
+#page-references-text p:target {
   color: #000000;
   background-color: #cd97652e;
   border: 1px solid #cd97655e;
   border-radius: 3px;
   padding: 3px 8px;
 }
-.night-mode #page-references-text :target {
+.night-mode #page-references-text p:target {
   color: #EEEEEE;
   background-color: #90b9901c;
   border: 1px solid #90b9905e;
