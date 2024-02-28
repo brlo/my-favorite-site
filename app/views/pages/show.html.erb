@@ -27,9 +27,9 @@
       <% end %>
 
       <% if @page.body_rendered.present? %>
-        <%= sanitize(@page.body_rendered, tags: ::Page::ALLOW_TAGS, attributes: %w(id href)).html_safe %>
+        <%= @page.body_rendered.html_safe %>
       <% else %>
-        <%= sanitize(@page.body.to_s, tags: ::Page::ALLOW_TAGS).html_safe %>
+        <%= @page.body.to_s.html_safe %>
       <% end %>
     </article>
   <% end %>
@@ -38,7 +38,11 @@
     <section id='page-references' class="looks-like-page">
       <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
       <div id="page-references-text">
-        <%= sanitize(@page.references.to_s, tags: ::Page::ALLOW_TAGS).html_safe %>
+        <% if @page.body_rendered.present? %>
+          <%= @page.references_rendered.to_s.html_safe %>
+        <% else %>
+          <%= @page.references.to_s.html_safe %>
+        <% end %>
       </div>
     </section>
   <% end %>

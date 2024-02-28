@@ -9,7 +9,7 @@
               <tr>
                 <th></th>
                 <th class='csl verse-title'>
-                  <h3><%= sanitize(chapter_data['title'].to_s) %></h3>
+                  <h3><%= chapter_data['title'].to_s.html_safe %></h3>
                 </th>
               </tr>
             <% end %>
@@ -29,7 +29,7 @@
                   id='T<%= i_glob %>'
                   data-line="<%= "#{i_glob}" %>"
                 >
-                  <%= sanitize(l) %>
+                  <%= l.html_safe %>
                 </td>
               </tr>
             <% end %>

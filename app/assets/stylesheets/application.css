@@ -315,6 +315,8 @@ tr:hover td.verse-line:before {
 
 .night-mode td.highlighted {
   color: #d4dded;
+  background: #90b99025;
+  border-left: 2px solid #90b990c9;
 }
 
 /* .night-mode tr:hover td.verse-line {

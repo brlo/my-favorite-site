@@ -3,7 +3,7 @@
     <% @lexemas.each do |l| %>
         <div class="lexema" style="margin: 10px 0;">
             <div>
-                <b><%= l.word %></b> 
+                <b><%= l.word %></b>
                 <% if l.transcription.present? %>
                   [<%= l.transcription %>]
                 <% end %>
@@ -20,7 +20,7 @@
     <% @dict_words.each do |w| %>
         <div class="dict-word" style="margin: 10px 0;">
             <div>
-                <b><%= w.word %></b> 
+                <b><%= w.word %></b>
                 <% if w.transcription.present? %>
                   [<%= w.transcription %>]
                 <% end %>
@@ -38,7 +38,7 @@
               <div><%= w.translation %></div>
             <% end %>
             <% if w.desc.present? %>
-              <div><%= w.desc %></div>
+              <div><%= sanitize(w.desc.to_s, tags: ::Page::ALLOW_TAGS).html_safe %></div>
             <% end %>
         </div>
     <% end %>

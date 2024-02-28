@@ -2,7 +2,7 @@ require 'nokogiri'
 # Page.create_indexes
 
 class Page < ApplicationMongoRecord
-  ALLOW_TAGS = %w(ul ol li h1 h2 h3 h4 blockquote strong b i em strike s u hr p a mark img code)
+  ALLOW_TAGS = %w(ul ol li h1 h2 h3 h4 blockquote strong b i em strike sup s u hr p a mark img code)
 
   PAGE_TYPES = {
     'статья'        => 1,
@@ -55,8 +55,10 @@ class Page < ApplicationMongoRecord
   field :bdr,        as: :body_rendered, type: String
   # текст статьи с разбивкой на стихи
   field :vrs,        as: :verses, type: Array
-  # ссылки и заметки
+  # ссылки и заметки (для релактирования)
   field :rfs,        as: :references, type: String
+  # ссылки и заметки (для показа пользователю)
+  field :rfsr,       as: :references_rendered, type: String
   # меню, построенное из распарсенных заголовков body (h2, h3, h4)
   field :bd_menu,    as: :body_menu, type: Array
   # id темы
@@ -175,68 +177,87 @@ class Page < ApplicationMongoRecord
 
     if self.references_changed?
       self.references = self.class.safe_html(self.references).strip
+      self.references_rendered = render_references_footnotes(self.references)
     end
 
     if self.body_changed?
+      # приводим в порядок body
       self.body = self.class.safe_html(self.body).strip
+      # body мы будем редактировать в админке, а отображать для клиента body_rendered,
+      # поэтому чтоб в админке не мешать админку, мы сноски не будем ему показыват как ссылки,
+      # сделаем их обычным текстом:
+      self.body = remove_footnote_links(self.body)
+
+      # построение перекрестных ссылок на сноски
+      self.body_rendered = render_body_footnotes(self.body)
 
       # построение оглавления и необходимых ссылок
-      rendered_data = render_body_and_menu(self.body)
+      rendered_data = render_body_and_menu(self.body_rendered)
       self.body_rendered = rendered_data[:text]
       self.body_menu = rendered_data[:menu]
-
 
       # Обработка страниц, где запрошена разбивка на стихи как в Библии.
       if self.is_page_verses?
 
-        # избавяемся от лишних в тэгов и пустых строк
-        _text = _text.to_s.gsub('<p></p>', ' ')
-
+        # избавяемся от лишних тэгов и пустых строк
+        _text = self.body_rendered.to_s.gsub('<p></p>', ' ')
         _text = sanitizer.sanitize(
-          self.body,
-          tags: %w(h1 h2 h3 h4)
+          _text,
+          tags: %w(h2 a sup),
+          attributes: %w(id href class)
         )
 
         if _text.present?
 
           verse_marker = '=%='
 
-          # если есть =%= то действовать по одному алгоритму (правим деление по стихам),
+          # если есть =%=, значит стихи в отдельном поле уже построены и нам опять прислали новый сплошной текст
+          # в котором уже есть деление с помощью =%=, и теперь надо тольк по этому маркеру заново собрать verses
           if _text.include?(verse_marker)
             # ------------------ ЕСТЬ BODY с маркером строк, делаем VERSES -------------------------
-            # regexp для нахождения titles
-            chap_find_regex  = /<h[1-4]>([^<]+)<\/h[1-4]>/i
-            # regexp для нахождения texts
-            chap_split_regex = /<h[1-4]>[^<]+<\/h[1-4]>/i
-            # делим по маркерку глав h2.. (даже если его нет в тексте, будет массив с одной главой)
 
-            # все заголовки (тексты с номерами).
-            # тут: [["title1"], ["title2"], ...]
-            titles = _text.scan(chap_find_regex)
-            # все тексты глав.
-            # тут: ["", "text1", "text2", ...]
-            texts = _text.split(chap_split_regex)
+            # главы
+            # [ [ЗАГОЛОВОК, ТЕКСТ], ...]
+            chapters = []
 
-            # чуть приводим заголовки и тексты в порядок
-            # достаём заголовки и массивов
-            titles = titles.map(&:first)
-            # выбрасываем первый элемент — пустую строку ""
-            texts.shift if texts[0] == ''
+            doc = ::Nokogiri.HTML(_text)
+            current_title = ''
+            current_chapter_text = ''
+            doc.at_css('body').children.each do |el|
+              if el.name == 'h2'
+                # встретился заголовок главы
+                # значит старая глава закончилась
+                if current_chapter_text.present?
+                  chapters << [
+                    current_title,
+                    current_chapter_text.gsub('\n', '')
+                  ]
+                end
 
-            # Заголовки и тексты вместе. Массив: [[заголовок, текст], ...]
-            # соединяем:
-            # [["title1", "text1"], ...]
-            chapters = texts.map.with_index { |t,i| [titles[i], t] }
+                # начинаем новый набор главы
+                current_title = el.inner_html
+                current_chapter_text = ''
+              else
+                current_chapter_text += el.to_s
+              end
+            end
+            # Забираем остатки
+            if current_chapter_text.present?
+              chapters << [
+                current_title,
+                current_chapter_text.gsub('\n', '')
+              ]
+            end
 
-            # строим результат, по пути делим тексты глав на строки по маркерам
+            # строим результат, по пути делим тексты глав на строки по маркерам_chapter_title, _chapter_text
             self.verses =
-            chapters.map do |title, text|
-              { title: title, lines: text.split(verse_marker)}
+            chapters.map do |(_chapter_title, _chapter_text)|
+              { title: _chapter_title, lines: _chapter_text.split(verse_marker)}
             end
           else
             # --------------------- НЕТ BODY с маркером строк, делаем VERSES из простого body, и из verses -- BODY с маркерами строк ---------
             # а если есть боди, но нет =%=, то действуем по-другому, как в первый раз (образуем стихи).
-            self.verses = split_to_verses(self.body)
+            self.verses = split_to_verses(_text)
 
             self.body =
             self.verses.map do |data|
@@ -253,7 +274,7 @@ class Page < ApplicationMongoRecord
     self.u_at = DateTime.now.utc.round
   end
 
-  # Разбивка сплошного текста на стихи с нумерацией, как в Библии.
+  # ПЕРВИЧНАЯ Разбивка сплошного текста на стихи с нумерацией, когда =%= ещё нет
   def split_to_verses text
     min_len = 85
     mid_len = 250
@@ -261,29 +282,52 @@ class Page < ApplicationMongoRecord
 
     _text = sanitizer.sanitize(
       text.to_s,
-      tags: %w(h1 h2 h3 h4)
+      tags: %w(h2 a sup),
+      attributes: %w(id href class)
     )
     _text = _text.gsub("\n", '')
 
-    # делим на главы, по заголовкам с тэгами h1,h2,h3,h4.
-    chap_find_regex  = /<h[1-4]>([^<]+)<\/h[1-4]>/i
-    chap_split_regex = /<h[1-4]>[^<]+<\/h[1-4]>/i
-    # достаём все тексты заголовков в тэгах h1,h2,h3,h4
-    titles = _text.scan(chap_find_regex).map { |m| m.first&.strip }
+    # главы
+    # [ [ЗАГОЛОВОК, ТЕКСТ], ...]
+    chapters = []
 
-    # делим текст по этим главам
-    chapters_texts = _text.split(chap_split_regex)
-    # Если всё правильно, то первый элемент в этом массиве будет пустой строкой,
-    # который надо просто выбросить, а дальше уже идут главы:
-    chapters_texts.shift if chapters_texts[0] == ''
+    doc = ::Nokogiri.HTML(text)
+    current_title = ''
+    current_chapter_text = ''
+    doc.at_css('body').children.each do |el|
+      if el.name == 'h2'
+        # встретился заголовок главы
+        # значит старая глава закончилась
+        if current_chapter_text.present?
+          chapters << [
+            current_title,
+            current_chapter_text.gsub('\n', '')
+          ]
+        end
+
+        # начинаем новый набор главы
+        current_title = el.inner_html
+        current_chapter_text = ''
+      else
+        current_chapter_text += el.to_s
+      end
+    end
+    # Забираем остатки
+    if current_chapter_text.present?
+      chapters << [
+        current_title,
+        current_chapter_text.gsub('\n', '')
+      ]
+    end
 
     # делим тексты на строки
     chapter__verses =
-    chapters_texts.map.with_index do |_t, i|
+    chapters.map.with_index do |(_chapter_title, _chapter_text), i|
       _verses = []
 
       current_verse = ''
-      _t.split(' ').each do |word|
+      # разделяем строку по пробелам, которые не находятся внутри тегов
+      _chapter_text.split(/\s(?![^<]*>)/).each do |word|
         current_verse += ' ' if current_verse.length > 0
         current_verse += word
 
@@ -314,7 +358,7 @@ class Page < ApplicationMongoRecord
       end
 
       {
-        title: titles.shift,
+        title: _chapter_title,
         lines: _verses,
       }
     end
@@ -342,13 +386,15 @@ class Page < ApplicationMongoRecord
     html_text = html_text.to_s.gsub(' ', ' ')
     html_text = html_text.to_s.gsub('&nbsp;', ' ')
 
-    # избавяемся от лишних в тэгов, аттрибут и пустых строк
+    # избавяемся от лишних тэгов, аттрибут и пустых строк
     html_text = sanitizer.sanitize(
       html_text,
-      tags: ALLOW_TAGS
+      tags: ALLOW_TAGS,
+      attributes: %w(id href class)
     ).gsub('<p></p>', '')
   end
 
+  # Строим из body меню, заголовки текста body делаем якорями
   def render_body_and_menu text
     text = text.to_s
 
@@ -363,14 +409,85 @@ class Page < ApplicationMongoRecord
       _menu.push([el.name, anchor, el.text])
     end
 
-    # ищем сноски, делаем якоря
-    # text = text.gsub(/[[:alnum:]][\d]+/, '[\1]')
-
     {
       # nokogiri добавляем html, body, которые нам не нужны
       text: doc.at_css('body').inner_html.gsub("\n", ""),
       menu: _menu,
     }
+  end
+
+  # ищем сноски в body, делаем якоря
+  def render_body_footnotes text
+    # мы будем считать ссылкой только ту цифру после слова и какого-то одного любого символа,
+    # которая соответствует порядку, начиная с 1:
+    i = 1
+    # НЕ_ЦИФРА? СКОЛЬКО-ТО-ЦИФР НЕ_ЦИФРА?
+    text =
+    text.to_s.gsub(/(<a\s[^>]+>)?(\[)?(\d+)(\])?(<\/a>)?/i) do |match|
+      # $1 - ссылка, если естЬ: <a href=\"#cite_note-35\">
+      # $2 - квадратная скобка [
+      # $3 - номер сноски
+      # $4 - закрывающая скобка ]
+      # $5 - закрывающий тэг </a>
+      if $3.to_i == i
+        # если встреченная цифра соответствует порядку, то делаем ссылку
+        s = "<sup>#{$2}<a id='cite_ref-#{i}' class='foot-ref' href='#cite_note-#{i}'>#{i}</a>#{$4}</sup>"
+        i+=1
+        s
+      else
+        # иначе ничего не меняем
+        match
+      end
+    end
+
+    text
+  end
+
+  # продолжение render_body_footnotes
+  # теперь делаем обратные ссылки из references к прежнему месту в тексте
+  def render_references_footnotes text
+    text = text.to_s
+
+    return '' if text.blank?
+
+    doc = ::Nokogiri.HTML(text)
+
+    ol = doc.css('ol').first
+    if ol
+      i = 1
+      ol.css('li').each do |li|
+        par = li.css('p').first
+        if par
+          # в начале каждого элемента ставим символ-ссылку для возвращения назад
+          par['id'] = "cite_note-#{i}"
+          back_link = "<a class='foot-note' href='#cite_ref-#{i}'>↑</a>"
+          par.inner_html = back_link + ' ' + par.inner_html
+        end
+        i+=1
+      end
+    end
+
+    # nokogiri добавляем html, body, которые нам не нужны
+    doc.at_css('body').inner_html.gsub("\n", "")
+  end
+
+  def remove_footnote_links text
+    text = text.to_s
+
+    return '' if text.blank?
+
+    doc = ::Nokogiri.HTML(text)
+
+    # Находим все ссылки, у которых href начинается с "cite_note"
+    links_footnote = doc.css("a[href^='#cite_note']")
+    # links_back = doc.css("a[href^='#cite_ref']")
+
+    # Удаляем их из документа ссылки
+    links_footnote.each { |l| l.replace(l.content) }
+    # links_back.each { |l| l.replace(l.content) }
+
+    # nokogiri добавляем html, body, которые нам не нужны
+    doc.at_css('body').inner_html.gsub("\n", "")
   end
 
   private

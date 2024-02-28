@@ -47,7 +47,7 @@
 
 #page-references ol,
 #page-references ul {
-  line-height: 0.7em;
+  line-height: 1rem;
 }
 
 
@@ -254,3 +254,28 @@
 #article-menu .nav-h3 { margin-left: 20px; font-size: 0.8em; }
 #article-menu .nav-h4 { margin-left: 40px; font-size: 0.6em; }
 
+/* маркер перед старшими пунктами меню */
+/* #article-menu .nav-h2::before {
+  content: "・";
+  margin-left: 0px;
+  margin-right: 0px;
+} */
+
+/* подсветка параграфа, к которому перешли по нажатию на якорь сноску */
+#page-references-text :target {
+  color: #000000;
+  background-color: #cd97652e;
+  border: 1px solid #cd97655e;
+  border-radius: 3px;
+  padding: 3px 8px;
+}
+.night-mode #page-references-text :target {
+  color: #EEEEEE;
+  background-color: #90b9901c;
+  border: 1px solid #90b9905e;
+}
+
+a.foot-ref,
+a.foot-note {
+  text-decoration: none;
+}
