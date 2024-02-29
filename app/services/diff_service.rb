@@ -359,6 +359,7 @@ class DiffService
         next if line_num == '?'
         # новая позиция старой строки
         new_num = new_line_nums_for_minus_hash[line_num]
+
         # ЕСЛИ новое место старой строки не нашли, то:
         # - действие "минус": игнор с небольшой пометкой
         # - действие "плюс": попытка засунуть в ближайшую после line_num строку
@@ -376,6 +377,8 @@ class DiffService
           elsif action == '+'
             neares_next_line_num = nil
             new_line_nums_for_minus_hash.keys.each do |i|
+              # TODO: ТУТ ЕЩЁ СТОИТ КОНКРЕТНО ВСЮ ЛОГИКУ ПРОВЕРИТЬ, ВСЁ ПРОДУМАТЬ. Ещё иногда возникают проблемы: падения при обновлении.
+              #
               # i встречаются иногда nil, это значит что этой строки пока нет в оригинальном документе,
               # мы её собираемся добавить. Такие строки будут здесь видны как nil, их просто пропускаем.
               next if i.nil?
@@ -387,7 +390,7 @@ class DiffService
                 break
               end
             end
-            new_num = neares_next_line_num || last
+            new_num = neares_next_line_num || new_line_nums_for_plus_arr.last
           end
 
         # пропускаем, т.к. эта строка удалялась в группе ранее, а это мы сейчас в плюс попали.
