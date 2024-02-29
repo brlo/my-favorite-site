@@ -43,7 +43,7 @@
     </div>
   </div>
 
-<% if @chapters.present? %>
+<% if @tree_menu.blank? && @chapters.present? %>
   <nav id='menu-chapters'>
     <% @chapters.each.with_index do |(title, path), i| %>
       <% classes = "chapter-num" %>
