@@ -343,7 +343,7 @@ class DiffService
     # а тут просто переворачиваем массив для плюсов, так как нам уже надо
     # искать наоборот: не по индексу, а по значению, то есть надо найти под
     # каким номером теперь находится старая строка
-    new_line_nums_for_minus_hash = new_line_nums_for_plus_arr.map.with_index { |k,i| [k,i]  }.to_h
+    new_line_nums_for_minus_hash = new_line_nums_for_plus_arr.map.with_index { |k,i| [k,i] }.to_h
 
     # САМОЕ ГЛАВНОЕ МЕСТО!
     # апдейтим номера строк в нашем mr
@@ -376,15 +376,13 @@ class DiffService
           elsif action == '+'
             neares_next_line_num = nil
             new_line_nums_for_minus_hash.keys.each do |i|
-              # пока не понял почему, но иногда при rebase line_num оказывается пустым и всё падает.
-              # Чтобы не падало, просто вставляю эту непонятную строку в самый конец, в поледнюю известную строку
-              if line_num.nil?
-                neares_next_line_num = new_line_nums_for_minus_hash.values.last
-                break
+              # i встречаются иногда nil, это значит что этой строки пока нет в оригинальном документе,
+              # мы её собираемся добавить. Такие строки будут здесь видны как nil, их просто пропускаем.
+              next if i.nil?
 
               # номер строки (i) больше того, который мы не смогли найти в этом хэше (line_num)
               # и значение является номером строки (а не CANCEL-)
-              elsif i > line_num && (nl = new_line_nums_for_minus_hash[i]).is_a?(Integer)
+              if i > line_num && (nl = new_line_nums_for_minus_hash[i]).is_a?(Integer)
                 neares_next_line_num = nl
                 break
               end
