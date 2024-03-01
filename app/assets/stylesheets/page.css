@@ -275,7 +275,13 @@
   border: 1px solid #90b9905e;
 }
 
-a.foot-ref,
+.foot-ref a,
 a.foot-note {
   text-decoration: none;
+}
+
+/* сноски не нужно выделять и копировать */
+.foot-ref,
+a.foot-note {
+  user-select: none;
 }

@@ -418,24 +418,17 @@ class Page < ApplicationMongoRecord
 
   # ищем сноски в body, делаем якоря
   def render_body_footnotes text
-    # мы будем считать ссылкой только ту цифру после слова и какого-то одного любого символа,
-    # которая соответствует порядку, начиная с 1:
-    i = 1
-    # НЕ_ЦИФРА? СКОЛЬКО-ТО-ЦИФР НЕ_ЦИФРА?
+    # более точное нахождение сносок:
+    # (?<=[[[:alpha:]]»\)\]\"])(\[)(\d+)(\])(?=[^>])
+    #
+    # Сейчас используем простой способ:
+    # Цифра в квадратных скобках: [1]
     text =
-    text.to_s.gsub(/(?<=[^\s])(\[)?(\d+)(\])?(?=[^>])/i) do |match|
+    text.to_s.gsub(/(\[)(\d+)(\])/i) do |match|
       # $1 - квадратная скобка [
       # $2 - номер сноски
       # $3 - закрывающая скобка ]
-      if $2.to_i == i
-        # если встреченная цифра соответствует порядку, то делаем ссылку
-        s = "<sup>#{$1}<a id='cite_ref-#{i}' class='foot-ref' href='#cite_note-#{i}'>#{i}</a>#{$3}</sup>"
-        i+=1
-        s
-      else
-        # иначе ничего не меняем
-        match
-      end
+      "<sup class='foot-ref'><a id='cite_ref-#{$2}' href='#cite_note-#{$2}'>#{$1}#{$2}#{$3}</a></sup>"
     end
 
     text
@@ -458,8 +451,8 @@ class Page < ApplicationMongoRecord
         if par
           # в начале каждого элемента ставим символ-ссылку для возвращения назад
           par['id'] = "cite_note-#{i}"
-          back_link = "<a class='foot-note' href='#cite_ref-#{i}'>↑</a>"
-          par.inner_html = back_link + ' ' + par.inner_html
+          back_link = "<a class='foot-note' href='#cite_ref-#{i}'>↑ </a>"
+          par.inner_html = back_link + par.inner_html
         end
         i+=1
       end
