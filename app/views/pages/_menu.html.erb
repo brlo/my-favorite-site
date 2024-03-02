@@ -3,7 +3,9 @@
 
     <% items.sort_by{ |i| i[:childs].present? ? 1:0 }.each do |item| %>
 
-      <div class='<%= item[:childs].present? ? 'menu-subject' : 'menu-link' %> depth-<%= depth %>'>
+      <% _class = item[:childs].present? ? 'menu-subject' : nil %>
+      <% _class ||= item[:path].present? ? 'menu-unit menu-link' : 'menu-unit menu-not-link' %>
+      <div class='<%= _class %> depth-<%= depth %>'>
         <% if item[:path].presence %>
           <a href="<%= my_page_link_to("/#{item[:path]}") %>"><%= item[:title] %></a>
         <% else %>
