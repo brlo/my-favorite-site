@@ -36,13 +36,13 @@ class TreeBuilder
       # Сейчас пока три уровня вглубину сортируем.
       array.each do |item|
         next if item[:childs].nil?
-        item[:childs] = item[:childs].sort { |c| c[:priority].to_i }
+        item[:childs] = item[:childs].sort_by { |c| c[:priority].to_i }
         item[:childs].each do |i2|
           next if i2[:childs].nil?
-          i2[:childs] = i2[:childs].sort { |c| c[:priority].to_i }
+          i2[:childs] = i2[:childs].sort_by { |c| c[:priority].to_i }
           i2[:childs].each do |i3|
             next if i3[:childs].nil?
-            i3[:childs] = i3[:childs].sort { |c| c[:priority].to_i }
+            i3[:childs] = i3[:childs].sort_by { |c| c[:priority].to_i }
             i3[:childs]
           end
         end
@@ -157,6 +157,3 @@ class TreeBuilder
     end
   end
 end
-
-
-

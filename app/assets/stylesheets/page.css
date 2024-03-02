@@ -177,41 +177,50 @@
 }
 #page-content .menu-subject {
   font-size: 1.1em;
-  margin-top: 0.8em;
+  font-weight: bold;
+  margin-top: 0.9em;
+  margin-bottom: 0.5em;
 }
 
 #page-content .menu-tree a {
-  display: inline;
-  padding: 0 0 3px 0;
-  margin: 0 12px 5px 0;
-  border-bottom: 1px solid;
+  display: inline-block;
+  padding: 4px 12px;
   text-decoration: none;
-  /* white-space: nowrap; */
-  line-height: 1.8rem;
+  height: 100%;
+  background-color: #AAAAAA20;
 }
 #page-content .menu-tree a:hover {
-  border-bottom: 1px solid;
+  background-color: #AAAAAA33;
+  -webkit-transition: background-color 80ms ease;
+  -ms-transition: background-color 80ms ease;
+  transition: background-color 80ms ease;
 }
 
 #page-content .depth-0 a {
   color:#3fa353;
 }
 #page-content .depth-0 a:hover {
-  color:#367e45;
+  color:#367e45;4px 9px
 }
 
 .menu-tree {
   padding: 15px 0 20px 0;
 }
 
-.menu-link { display: inline-block; }
+.menu-link { 
+  display: inline-block; 
+  overflow: hidden;
+  border-radius: 3px;
+  padding: 0;
+  margin: 1px 2px;
+}
 
 .menu-tree.hidden-children .menu-link,
 .menu-tree.hidden-children .menu-subject {
   display: none;
 }
 .menu-tree.hidden-children .visible {
-  display: inline;
+  display: inline-block;
 }
 
 .night-mode #page-content blockquote {
@@ -224,7 +233,7 @@
 
 .filter {
   font-size: 24px;
-  margin-bottom: 10px;
+  margin: 0 0 10px 0;
 }
 
 /* article menu */
