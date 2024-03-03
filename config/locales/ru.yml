@@ -99,6 +99,8 @@ ru:
     nov_zavet: Новый Завет
     profile: Профиль
     login: Войти
+    another_categories: Другие разделы
+    same_subject: "Похожие материалы:"
 
   settings:
     color_scheme: Цвета

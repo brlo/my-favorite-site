@@ -45,6 +45,7 @@
 
 <% if @tree_menu.blank? && @chapters.present? %>
   <nav id='menu-chapters'>
+    <div id='title-sub' class='small hint'><%= ::I18n.t('menu.same_subject') %></div>
     <% @chapters.each.with_index do |(title, path), i| %>
       <% classes = "chapter-num" %>
       <% i == (@chapter_current-1) ? classes = ' selected' : nil %>

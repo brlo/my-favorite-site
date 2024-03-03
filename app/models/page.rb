@@ -104,10 +104,15 @@ class Page < ApplicationMongoRecord
     self.editors = (self.editors.to_a | [_user.id]) - [self.user_id]
   end
 
+  # просто текст
   def is_page_simple?; self.page_type.to_i == 1; end
+  # книга
   def is_page_book?; self.page_type.to_i == 2; end
+  # комментарий на библейский стих
   def is_page_bib_comment?; self.page_type.to_i == 3; end
+  # страница с меню
   def is_page_menu?; self.page_type.to_i == 4; end
+  # страница с разбивкой на стихи
   def is_page_verses?; self.page_type.to_i == 5; end
 
   def menu

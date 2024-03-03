@@ -130,6 +130,8 @@ jp:
     nov_zavet: 新約聖書
     profile: プロフィール
     login: サインイン
+    another_categories: その他のカテゴリー
+    same_subject: 類似のページ
 
   settings:
     color_scheme: 色

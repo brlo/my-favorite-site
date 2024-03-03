@@ -130,6 +130,8 @@ en:
     nov_zavet: New Testament
     profile: Profile
     login: Sign in
+    another_categories: Other categories
+    same_subject: "Similar pages:"
 
   settings:
     color_scheme: Colors

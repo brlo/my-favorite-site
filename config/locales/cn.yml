@@ -130,6 +130,8 @@ cn:
     nov_zavet: 新约
     profile: P档案
     login: 登入
+    another_categories: 其他类别
+    same_subject: 类似页面
 
   settings:
     color_scheme: 颜色
