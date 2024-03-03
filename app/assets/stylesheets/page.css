@@ -24,6 +24,7 @@
 
 #page-content #title-sub {
   text-align: center;
+  font-size: 16px;
 }
 
 #page-content .pages {
@@ -195,7 +196,7 @@
   color: #AAAAAA;
   background-color: #80808015;
 }
-#page-content .menu-tree a {
+#page-content .menu-tree .menu-link a {
   display: inline-block;
   padding: 5px 10px;
   text-decoration: none;
@@ -203,12 +204,23 @@
   background-color: #80866715;
   cursor: default;
 }
-#page-content .menu-tree a:hover {
+#page-content .menu-tree .menu-link a:hover {
   background-color: #896d5520;
   -webkit-transition: background-color 80ms ease;
   -ms-transition: background-color 80ms ease;
   transition: background-color 80ms ease;
 }
+#page-content .menu-tree .menu-link.selected a,
+#page-content .menu-tree .menu-link.selected a:hover {
+  background-color: #8c6964;
+  color: #fdfcf1;
+}
+.night-mode #page-content .menu-tree .menu-link.selected a,
+.night-mode #page-content .menu-tree .menu-link.selected a:hover {
+  background-color: rgba(205,151,101, 1);
+  color: #282c34;
+}
+
 
 .night-mode #page-content .menu-tree a {
   background-color: #61afef10;

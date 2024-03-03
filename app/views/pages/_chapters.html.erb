@@ -25,8 +25,10 @@
   </h1>
 
   <% if @page.title_sub.present? %>
-    <div id='title-sub' class='small hint'><%= @page.title_sub %></div>
+    <div id='title-sub'><%= @page.title_sub %></div>
   <% end %>
+
+<% if @tree_menu.present? %>
 
   <div class='menu-tree'>
     <% if @tree_menu.present? && @tree_menu.count > 4 %>
@@ -43,14 +45,20 @@
     </div>
   </div>
 
-<% if @tree_menu.blank? && @chapters.present? %>
-  <nav id='menu-chapters'>
-    <div id='title-sub' class='small hint'><%= ::I18n.t('menu.same_subject') %></div>
-    <% @chapters.each.with_index do |(title, path), i| %>
-      <% classes = "chapter-num" %>
-      <% i == (@chapter_current-1) ? classes = ' selected' : nil %>
-      <a id="ch-<%= i %>" class="<%= classes %>" href="<%= my_page_link_to("/#{path}") %>"><%= title %></a>
-    <% end %>
-  </nav>
+<% elsif @chapters.present? %>
+
+  <div class='menu-tree'>
+    <div class='small hint' style="margin-left: 12px;"><%= ::I18n.t('menu.same_subject') %></div>
+    <div class='items'>
+      <% @chapters.each.with_index do |(title, path), i| %>
+        <% classes = "menu-unit menu-link" %>
+        <% i == (@chapter_current-1) ? (classes += ' selected') : nil %>
+        <div class="<%= classes %>">
+          <a href="<%= my_page_link_to("/#{path}") %>"><%= title %></a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
 <% end %>
 </div>
