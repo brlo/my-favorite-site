@@ -456,7 +456,7 @@ class Page < ApplicationMongoRecord
     doc.css('blockquote + p').each do |par|
       is_ch1_ok = par.children[0]&.text? && par.children[0].text.strip == '('
       is_ch2_ok = par.children[1]&.name == 'a'
-      is_ch3_ok = par.children[2]&.text? && par.children[2].text.strip == ')'
+      is_ch3_ok = par.children[2]&.text? && par.children[2].text.strip[0] == ')'
 
       # Если в найенном параграфе есть только тэги a, то добавить параграфу класс source-link
       if is_ch1_ok && is_ch2_ok && is_ch3_ok
