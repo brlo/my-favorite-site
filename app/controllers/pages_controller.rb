@@ -42,10 +42,11 @@ class PagesController < ApplicationController
     # Название (path) страницы, который ищет клиент
     path = params[:page_path].to_s
     path_downcased = path.downcase
+    @content_lang = params[:content_lang]
+
     # Ищем в БД страницу. Клиент мог неправильно ввести регистр, поэтому ищем
     # в спец поле, где всё в нижнем регистре.
     @page = ::Page.find_by(path_low: path_downcased)
-    @content_lang = params[:content_lang]
 
     # 404 - документ скрыт или удалён
     if @page
@@ -105,7 +106,7 @@ class PagesController < ApplicationController
 
       # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
       if @page.parent_id
-        @parent_page = ::Page.only(:id, :title, :path, :page_type).
+        @parent_page = ::Page.only(:id, :p_id, :title, :path, :page_type).
           find_by!(id: @page.parent_id)
       end
 
@@ -176,7 +177,26 @@ class PagesController < ApplicationController
       end
 
       # ХЛЕБНЫЕ КРОШКИ
-      @breadcrumbs = [::I18n.t('tags.articles')]
+      @breadcrumbs = []
+      if @parent_page
+        # родитель родителя статьи
+        if @parent_page.parent_id
+          @pg1 = ::Page.only(:id, :p_id, :title, :path).find_by!(id: @parent_page.parent_id)
+
+          # родитель родителя родителя статьи
+          if @pg1.parent_id
+            @pg2 = ::Page.only(:id, :p_id, :title, :path).find_by!(id: @pg1.parent_id)
+            @breadcrumbs << [@pg2.title, @pg2.path]
+          end
+
+          @breadcrumbs << [@pg1.title, @pg1.path]
+        end
+
+        # родитель статьи
+        @breadcrumbs << [@parent_page.title, @parent_page.path]
+      end
+
+      @breadcrumbs << [@page.title, nil]
 
       # Стихи страницы (как в Библии), если есть
       @verses = @page.verses

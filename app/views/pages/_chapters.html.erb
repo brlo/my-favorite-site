@@ -1,7 +1,14 @@
 <div id='chapter-image'>
-  <% if @breadcrumbs.present? && @parent_page.present? %>
-    <nav class='breadcrumbs'><%= @breadcrumbs.join(' » ') %> »
-      <a href="<%= my_page_link_to("/#{@parent_page.path}") %>"><%= @parent_page.title %></a>
+  <% if @breadcrumbs.present? %>
+    <nav class='breadcrumbs'>
+    <% @breadcrumbs.each.with_index do |(title, path), i| %>
+      <% if path.present? %>
+        <a href="<%= my_page_link_to("/#{path}") %>"><%= title %></a>
+      <% else %>
+        <%= title %>
+      <% end %>
+      <%= (i+1) == @breadcrumbs.size ? '' : ' » ' %>
+    <% end %>
     </nav>
   <% end %>
 

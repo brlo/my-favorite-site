@@ -449,6 +449,11 @@ class Page < ApplicationMongoRecord
     text
   end
 
+  # находим источники под цитатами:
+  # ищем под blockquote параграфы, в которых на первом месте стоит три элемента:
+  # - (
+  # - ссылка
+  # - )
   def render_body_quotes_sources(text)
     text = text.to_s
     doc = ::Nokogiri.HTML(text)
