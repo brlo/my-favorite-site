@@ -157,10 +157,9 @@
 }
 
 .source-link {
-  /* text-align: right; */
   margin: -20px 0 25px 0;
-  font-size: 0.7em;
-  padding: 4px 6px;
+  font-size: .9em;
+  padding: 4px 12px;
 }
 /* КОНЕЦ // ПРИМЕНЯЕТСЯ К ТЕКСТАМ ИЗ СТАТЕЙ */
 
