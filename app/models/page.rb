@@ -201,6 +201,9 @@ class Page < ApplicationMongoRecord
       self.body_rendered = rendered_data[:text]
       self.body_menu = rendered_data[:menu]
 
+      # найти источники под цитатами
+      self.body_rendered = render_body_quotes_sources(self.body_rendered)
+
       # Обработка страниц, где запрошена разбивка на стихи как в Библии.
       if self.is_page_verses?
 
@@ -402,7 +405,6 @@ class Page < ApplicationMongoRecord
   # Строим из body меню, заголовки текста body делаем якорями
   def render_body_and_menu text
     text = text.to_s
-
     doc = ::Nokogiri.HTML(text)
 
     _menu = []
@@ -445,6 +447,24 @@ class Page < ApplicationMongoRecord
     end
 
     text
+  end
+
+  def render_body_quotes_sources(text)
+    text = text.to_s
+    doc = ::Nokogiri.HTML(text)
+
+    doc.css('blockquote + p').each do |par|
+      is_ch1_ok = par.children[0]&.text? && par.children[0].text.strip == '('
+      is_ch2_ok = par.children[1]&.name == 'a'
+      is_ch3_ok = par.children[2]&.text? && par.children[2].text.strip == ')'
+
+      # Если в найенном параграфе есть только тэги a, то добавить параграфу класс source-link
+      if is_ch1_ok && is_ch2_ok && is_ch3_ok
+        par['class'] = 'source-link'
+      end
+    end
+
+    doc.at_css('body').inner_html.gsub("\n", "")
   end
 
   # продолжение render_body_footnotes
