@@ -1,6 +1,6 @@
 <nav id="article-menu">
   <div class='menu-name'><%= I18n.t('page.menu_name') %></div>
   <% @page.body_menu.each do |(el_name, el_anchor, el_text)| %>
-    <div class="nav-<%= el_name %>"><a href="#<%= el_anchor %>"><%= el_text %></a></div>
+    <div class="nav-<%= el_name %> <%= el_text.length <= 3 ? 'short' : '' %>"><a href="#<%= el_anchor %>"><%= el_text %></a></div>
   <% end %>
 </nav>

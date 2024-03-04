@@ -289,6 +289,8 @@
 #article-menu .nav-h3 { margin-left: 20px; font-size: 0.8em; }
 #article-menu .nav-h4 { margin-left: 40px; font-size: 0.6em; }
 
+#article-menu .short { display: inline-block; margin-right: 10px; }
+
 /* маркер перед старшими пунктами меню */
 /* #article-menu .nav-h2::before {
   content: "・";
