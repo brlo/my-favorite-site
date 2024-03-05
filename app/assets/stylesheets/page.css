@@ -167,12 +167,6 @@
   color: #b2bbc1;
 }
 
-/* Меню скрытое с книгами, открывается по клику на название статьи */
-
-.page-menu.menu-books {
-  top: 130px;
-}
-
 /* MENU */
 #page-content .level {
   margin-left: 15px;

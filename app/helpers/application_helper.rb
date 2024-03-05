@@ -48,12 +48,12 @@ module ApplicationHelper
   # Первое определяем с помощью I18n.locale, а второе с помощью current_lang()
   #
 
-  # Определить язык контента Библии по названию локали
-  def locale_for_content_lang content_lang
-    LANG_CONTENT_TO_LANG_UI[params[:content_lang]]
+  # Подобрать ЯЗЫК UI подходящий к текущему преводу Библии
+  def locale_for_content_lang content_lang = nil
+    LANG_CONTENT_TO_LANG_UI[content_lang || params[:content_lang]]
   end
 
-  # Язык библейского контента (язык интерфейса определяй просто по I18n.locale)
+  # НАЗВАНИЕ ПЕРЕВОДА БИБЛИИ (язык интерфейса определяй просто по I18n.locale)
   def current_bib_lang
     @current_bib_lang ||= begin
       if params[:content_lang].present?
@@ -64,7 +64,7 @@ module ApplicationHelper
     end
   end
 
-  # Язык контента (язык интерфейса определяй просто по I18n.locale)
+  # Язык контента для Page (язык интерфейса определяй просто по I18n.locale)
   def current_lang
     # Если явно указан язык контента — берём его — params[:content_lang],
     # а иначе берём одноимённое название локали (языка интерфейса).
