@@ -49,7 +49,7 @@ module Api
         ls = ls.uniq
 
         # в словарь заглядываем только для того, чтобы убрать уже описаные слова
-        dicts = ::DictWord.where(dict: 'w', :word.in => (ws+ls).uniq).pluck(:word)
+        dicts = ::DictWord.where(dict: 'w', :word_simple.in => (ws+ls).uniq).pluck(:word)
 
         dicts.each { |w| ws = (ws - [w]); ls = (ls - [w]) }
 
