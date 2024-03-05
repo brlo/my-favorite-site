@@ -24,7 +24,8 @@
     data-chapter='<%= @chapter_current %>'
     itemprop="headline"
   >
-    <% if @parent_page %>
+    <%# if @parent_page %>
+    <% if false %>
       <a href="<%= my_page_link_to("/#{@page.path}") %>" id='current-author-book'><%= @page.title %></a>
     <% else %>
       <%= @page.title %>
