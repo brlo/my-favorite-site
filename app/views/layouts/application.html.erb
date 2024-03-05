@@ -38,7 +38,7 @@
       .csl {font-family: "Ponomar", Verdana, Tahoma;font-size: 1.4em;line-height: 1.5em;}
     <% end %>
     <% if @text_direction %>
-      .verse-text {direction: <%= @text_direction %>;}
+      .tdir {direction: <%= @text_direction %>;}
     <% end %>
     </style>
     <%= javascript_include_tag "application", media: "all" %>
@@ -94,7 +94,7 @@
     </div>
 
     <footer>
-      <dd class='tip'><%= I18n.t('tips.click_on_verse') %> <%= I18n.t('tips.click_on_verse__working') %> <div class='key'>Shift</div> <%= I18n.t('tips.click_on_verse__and') %> <div class='key'>Ctrl</div></dd>
+      <dd class='tip tdir'><%= I18n.t('tips.click_on_verse') %> <%= I18n.t('tips.click_on_verse__working') %> <div class='key'>Shift</div> <%= I18n.t('tips.click_on_verse__and') %> <div class='key'>Ctrl</div></dd>
       <dd id='change-ui-lang-area'>
         <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
         <select id="ui-lang-select" onchange="selectUILang(this);return false;">

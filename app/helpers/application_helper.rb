@@ -7,6 +7,17 @@ module ApplicationHelper
     nil => 'small'
   }
 
+  PAGES_LANGS = {
+    'ru' => true,
+    'en' => true,
+    'gr' => true,
+    'il' => true,
+    'ar' => true,
+    'jp' => true,
+    'cn' => true,
+    'de' => true,
+  }
+
   # Название перевода Библии переводим в I18n.locale
   LANG_CONTENT_TO_LANG_UI = {
     'ru'         => 'ru',
@@ -66,9 +77,14 @@ module ApplicationHelper
 
   # Язык контента для Page (язык интерфейса определяй просто по I18n.locale)
   def current_lang
-    # Если явно указан язык контента — берём его — params[:content_lang],
+    # Если явно указан язык контента и он валиден — берём его — params[:content_lang],
     # а иначе берём одноимённое название локали (языка интерфейса).
-    @current_lang ||= params[:content_lang].presence || params[:locale].presence
+    @current_lang ||=
+    if PAGES_LANGS[params[:content_lang]]
+      params[:content_lang]
+    else
+      params[:locale]
+    end
   end
 
   # Очистка одного стиха от спец. символов в конце (для поисковой страницы)
