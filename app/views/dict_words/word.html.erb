@@ -20,6 +20,9 @@
     <% @dict_words.each do |w| %>
         <div class="dict-word" style="margin: 10px 0;">
             <div>
+                Словарь: <%= ::DictWord::DICTS.dig(w.dict, :name) %>
+            </div>
+            <div>
                 <b><%= w.word %></b>
                 <% if w.transcription.present? %>
                   [<%= w.transcription %>]

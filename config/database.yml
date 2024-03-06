@@ -20,7 +20,8 @@ default: &default
 development:
   <<: *default
   # database: db/bib-arab-avd.SQLite3
-  database: db/bib-ch-ccbs.SQLite3
+  database: db/Dvor.dictionary.SQLite3
+  # database: db/bib-ch-ccbs.SQLite3
   # database: db/bib-ge-sch51.SQLite3
   # database: db/bib-jap-new-interconf.SQLite3
   # database: db/GR-LXX-KOINE-Barach.SQLite3

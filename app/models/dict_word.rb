@@ -4,8 +4,9 @@
 class DictWord < ApplicationMongoRecord
 
   DICTS = {
-    'd' => {'name' => 'Дворецкий', 'from' => 'gr', 'to' => 'ru'},
-    'w' => {'name' => 'Вайсмен', 'from' => 'gr', 'to' => 'ru'},
+    'd' => {'name' => 'Дворецкий И.Х.', 'from' => 'gr', 'to' => 'ru'},
+    'w' => {'name' => 'Вейсман А.Д.', 'from' => 'gr', 'to' => 'ru'},
+    'dmt' => {'name' => 'Дьячок М.Т.', 'from' => 'gr', 'to' => 'ru'},
     't' => {'name' => 'Тестовый', 'from' => 'jp', 'to' => 'ru'},
   }
 
