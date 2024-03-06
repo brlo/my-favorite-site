@@ -33,7 +33,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authorized
-    redirect to login_path unless logged_in?()
+    redirect_to login_path unless logged_in?()
   end
 
   def set_current_user

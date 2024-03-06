@@ -1,48 +1,100 @@
-<h1>Слово: <b><%= params[:word] %></b></h1>
-<div class="lexemas">
-    <% @lexemas.each do |l| %>
-        <div class="lexema" style="margin: 10px 0;">
-            <div>
-                <b><%= l.word %></b>
+<h1>Библейское слово "<b><%= params[:word] %></b>" в греческих словарях</h1>
+
+<% if @lexemas.any? || @dict_words.any? %>
+  <div class="lexemas">
+      <% @lexemas.each do |l| %>
+          <div class="lexema">
+              <div class='word'>
+                <%= l.word %>
                 <% if l.transcription.present? %>
                   [<%= l.transcription %>]
                 <% end %>
-            </div>
-            <div>Повторения: <%= l.counts %></div>
-            <% if l.present? %>
-              <div>Лексема: <%= l.lexema %></div>
-            <% end %>
-        </div>
-    <% end %>
-</div>
+              </div>
+              <% if l.present? %>
+                <div>Лексема: <%= l.lexema %></div>
+              <% end %>
+              <div>Кол-во: <%= l.counts %></div>
+          </div>
+      <% end %>
+  </div>
 
-<div class="dict-words">
-    <% @dict_words.each do |w| %>
-        <div class="dict-word" style="margin: 10px 0;">
-            <div>
-                Словарь: <%= ::DictWord::DICTS.dig(w.dict, 'name') %>
+  <div class="dict-words">
+      <% @dict_words.each do |w| %>
+          <div class="dict-word">
+            <div class='dict-name'>
+              <%= ::DictWord::DICTS.dig(w.dict, 'name') %>
+              [<a href="<%= "#{::SETTINGS['admin']['url'] }/dict_words/#{ w.id.to_s }/" %>">e</a>]
             </div>
-            <div>
-                <b><%= w.word %></b>
-                <% if w.transcription.present? %>
-                  [<%= w.transcription %>]
-                <% end %>
+            <h2>
+              <%= w.word %> —
+              <%= w.translation_short %>
+            </h2>
+            <div class='transcription'>
+              <% if w.transcription.present? %>
+                [<%= w.transcription %>]
+              <% end %>
             </div>
             <% if w.tag.present? %>
-              <div>Признак: <%= w.tag %></div>
+              <div class='tag'>Признак: <%= w.tag %></div>
             <% end %>
-            <div>
-                Переводы:
+            <div class='translation'>
                 <% if w.translation_short.present? %>
-                  <%= w.translation_short %>
+                  <div class='single'>
+                    <%= w.translation_short %>
+                  </div>
+                <% end %>
+                <% if w.translation.present? %>
+                  <div class='multiple'><%= w.translation %></div>
+                <% end %>
+                <% if w.desc.present? %>
+                  <div class='desc'><%= sanitize(w.desc.to_s, tags: ::Page::ALLOW_TAGS).html_safe %></div>
                 <% end %>
             </div>
-            <% if w.translation.present? %>
-              <div><%= w.translation %></div>
-            <% end %>
-            <% if w.desc.present? %>
-              <div><%= sanitize(w.desc.to_s, tags: ::Page::ALLOW_TAGS).html_safe %></div>
-            <% end %>
-        </div>
-    <% end %>
+          </div>
+      <% end %>
+  </div>
+
+<% else %>
+<div class='error-not-found'>
+  <div class='error-msg'>Ошибка 404 — Такое слово не найдено.</div>
+  <div class='propose'>
+    Хотите
+    <a href="<%= "#{::SETTINGS['admin']['url'] }/dict_words/new?word=#{@word_clean}" %>">создать?</a>
+  </div>
 </div>
+<% end %>
+
+<style>
+  h1 {
+    text-align: center;
+  }
+
+  h2 {
+    margin: 10px 0;
+    padding: 5px 0;
+    font-size: 2em;
+    border-bottom: 1px solid #999;
+  }
+
+  .dict-word {
+    margin: 20px 0 10px 0;
+  }
+
+  .lexema {
+    margin: 10px 0;
+  }
+  .lexema .word {
+    font-weight: bold;
+  }
+
+  .dict-word .dict-name {
+    margin-bottom: -20px;
+    font-size: 1em;
+    opacity: .5;
+  }
+
+  .error-not-found {
+    margin: 50px 0;
+    text-align: center;
+  }
+</style>

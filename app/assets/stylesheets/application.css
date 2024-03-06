@@ -376,3 +376,16 @@ footer dd.tip {
   width: 10px;
   height: 10px;
 }
+
+.error-not-found {
+  margin: 50px 10px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.error-not-found .error-msg {
+  font-weight: bold;
+}
+.error-not-found .propose {
+  margin: 20px 0;
+}

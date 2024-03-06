@@ -106,4 +106,15 @@ class DictWord < ApplicationMongoRecord
 
     self.u_at = DateTime.now.utc.round
   end
+
+  def self.word_clean_gr w
+    # удаляем все диакритические знаки и все три ударения: оксия, вария, периспоменон
+    w.to_s.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F").gsub(/[^\p{L}]/, '')
+  end
+
+  def self.word_clean_diacritic_only_gr w
+    # чистим слово от диакритических знаков, но оставляем три ударения: оксия, вария, периспоменон.
+    # тут в delete пропускаем прямое и обратное ударение u0300-u0301, а также волнистое (долгое) ударение u0342
+    w.to_s.unicode_normalize(:nfd).downcase.delete("\u0302-\u0341\u0343-\u036F").gsub(/[^\p{L}]/, '')
+  end
 end

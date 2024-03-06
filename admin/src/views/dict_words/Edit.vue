@@ -21,8 +21,12 @@ const props = defineProps({
   currentUser: Object,
 })
 
+// Параметры из URL query
+const urlParams = new URLSearchParams(window.location.search);
+const wordFromParam = urlParams.get('word')
+
 const errors = ref('');
-const dictWord = ref({});
+const dictWord = ref({word: wordFromParam});
 const wordsWaitings = ref();
 const lexemasWaitings = ref();
 
@@ -222,7 +226,7 @@ function destroy() {
         </div>
       </div>
     </div>
-  
+
   </div>
 </div>
 </template>

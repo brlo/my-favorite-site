@@ -67,8 +67,9 @@ class PagesController < ApplicationController
       if @page
         redirect_to my_page_link_to("/#{@page.path}")
       else
-        # Если страницу всё равно не нашли, то отдаём 404
-        not_found!()
+        # Если страницу всё равно не нашли, то отдаём 404 с предложением создать страницу
+        # not_found!()
+        render status: 404
       end
 
     elsif @page.lang == @content_lang

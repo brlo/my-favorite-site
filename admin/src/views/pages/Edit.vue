@@ -46,8 +46,13 @@ const props = defineProps({
   currentUser: Object,
 })
 
+// Параметры из URL query
+const urlParams = new URLSearchParams(window.location.search);
+const pathFromParam = urlParams.get('page_path')
+const langFromParam = urlParams.get('lang')
+
 const errors = ref('');
-const page = ref({page_type: 1, lang: 'ru', is_published: true});
+const page = ref({page_type: 1, path: pathFromParam, lang: langFromParam || 'ru', is_published: true});
 const mr = ref({});
 const user = ref();
 const isCreateMRVisible = ref()

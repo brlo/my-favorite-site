@@ -15,6 +15,7 @@ module Api
       if term.present? && term.length > 0
         # слова показывает с сортировкой по слову
         term = term.gsub(/[^[[:alnum:]]\s]/, '')
+        term = ::DictWord.word_clean_gr(term)
         q = [
           :word_simple, :sinonim, :lexema, :tag, :transcription, :transcription_lat,
           :translation_short, :translation,
