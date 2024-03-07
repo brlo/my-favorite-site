@@ -221,6 +221,14 @@
   background-color: #8c6964;
   color: #fdfcf1;
 }
+
+.night-mode #page-content .menu-tree .menu-link.selected a {
+  color: #61afef;
+}
+.night-mode #page-content .menu-tree .menu-link.selected a:hover {
+  color: #7dc3ff;
+}
+
 .night-mode #page-content .menu-tree .menu-link.selected a,
 .night-mode #page-content .menu-tree .menu-link.selected a:hover {
   background-color: rgba(205,151,101, 1);
