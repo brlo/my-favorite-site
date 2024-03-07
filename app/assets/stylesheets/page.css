@@ -205,11 +205,12 @@
   padding: 5px 10px;
   text-decoration: none;
   height: 100%;
-  background-color: #80866715;
+  color: #4c5428;
+  background-color: #204f0324;
   cursor: default;
 }
 #page-content .menu-tree .menu-link a:hover {
-  background-color: #896d5520;
+  background-color: #896d5530;
   -webkit-transition: background-color 80ms ease;
   -ms-transition: background-color 80ms ease;
   transition: background-color 80ms ease;
