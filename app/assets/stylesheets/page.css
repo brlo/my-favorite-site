@@ -210,7 +210,8 @@
   cursor: default;
 }
 #page-content .menu-tree .menu-link a:hover {
-  background-color: #896d5530;
+  color: #646e37;
+  background-color: #2c640a1c;
   -webkit-transition: background-color 80ms ease;
   -ms-transition: background-color 80ms ease;
   transition: background-color 80ms ease;
