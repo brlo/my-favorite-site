@@ -1,6 +1,6 @@
 class PagesController < ApplicationController
   def main
-    redirect_to "/#{I18n.locale}/#{current_bib_lang()}/gen/1/"
+    redirect_to "/#{I18n.locale}/#{current_bib_lang()}/lk/1/"
   end
 
   def list

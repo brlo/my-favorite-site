@@ -49,12 +49,12 @@
     <header>
       <div class='container'>
         <div class="logo">
-          <a href="<%= my_bib_link_to("/gen/1/") %>">
+          <a href="<%= my_bib_link_to("/lk/1/") %>">
             <img src="<%= my_res_link_to("/logo/bibleox-#{ ['ru', 'cs', 'gr', 'en'].include?(::I18n.locale.to_s) ? ::I18n.locale.to_s : 'en' }.png") %>">
           </a>
         </div>
         <nav>
-          <a href="<%= my_bib_link_to("/gen/1/") %>" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
+          <a href="<%= my_bib_link_to("/lk/1/") %>" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
           <a href="<%= my_page_link_to("/links_#{current_lang()}/") %>" id='quotes-link' class="<%= @current_menu_item == 'links' ? ' selected' : nil %>"><%= I18n.t('menu.links') %></a>
           <a href="<%= my_link_to( I18n.locale == :ru ? '/search/?acc=similar&l=ru&t=Христос%20Бог' : "/search/?acc=similar&l=#{current_bib_lang()}") %>" class="<%= @current_menu_item == 'search' ? ' selected' : nil %>"><%= I18n.t('menu.search') %></a>
 
