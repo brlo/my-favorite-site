@@ -129,13 +129,13 @@ class DictWord < ApplicationMongoRecord
   def self.remove_greek_ending w
     return w if w.to_s.length < 3
 
-    _w = w.to_s.gsub(/(ματος|ματων|ματα|ιους|ιου|ιων|ιας|ιες|ιων|ιοι|ους|οι|ου|ον|μα|ων|ης|ος|ας|ες|ια|ι|α|η|ο|ε)$/i, '~').strip
+    _w = w.to_s.gsub(/(ματος|ματων|ματα|ιους|ιου|ιων|ιας|ιες|ιων|ιοι|ους|οι|ου|ον|μα|ων|ης|ος|ας|ες|ια|ι|α|η|ο|ε|υ)$/i, '~').strip
     _w.length > 3 ? _w.presence : w
   end
 
   def self.find_simple(word)
     w1 = word_clean_gr(word)
-    w2 = remove_greek_ending(w)
+    w2 = remove_greek_ending(w1)
 
     self.or(word_simple: w1, word_simple_no_endings: w2).to_a
   end
