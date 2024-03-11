@@ -127,10 +127,12 @@ class DictWord < ApplicationMongoRecord
   # убирает все возможные греческие окончания
   # TODO: возможно, этот же приём стоит применить в Lexema
   def self.remove_greek_ending w
+    # 1-2 символа не трогаем, итак уже почти ничего не осталось, куда ещё окончание удалять
     return w if w.to_s.length < 3
 
     _w = w.to_s.gsub(/(ματος|ματων|ματα|ιους|ιου|ιων|ιας|ιες|ιων|ιοι|ους|οι|ου|ον|μα|ων|ης|ος|ας|ες|ια|ι|α|η|ο|ε|υ)$/i, '~').strip
-    _w.length > 3 ? _w.presence : w
+    # отдаём слово без окончания только если остаток от слова: 3 и более символов
+    _w.length >= 3 ? _w.presence : w
   end
 
   def self.find_simple(word)
