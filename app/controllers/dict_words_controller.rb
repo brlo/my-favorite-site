@@ -7,23 +7,21 @@ class DictWordsController < ApplicationController
 
     if @word_clean.blank?
       head 404
-    end
-
-    if word != @word_clean
+    elsif word != @word_clean
       redirect_to "/#{I18n.locale}/words/#{::CGI.escape(@word_clean)}"
-    end
+    else
+      @page_title = ::I18n.t('dict_words.title', word: word)
+      @meta_description = @page_title
 
-    @page_title = ::I18n.t('dict_words.title', word: word)
-    @meta_description = @page_title
+      @lexemas = ::Lexema.where(word: word).to_a
+      lex_words = @lexemas.pluck(:lexema_clean).compact.uniq
+      all_words = [word] + lex_words
+      all_words.map! { |w| ::DictWord.word_clean_gr(w) }
+      @dict_words = ::DictWord.where(:word_simple.in => all_words).to_a
 
-    @lexemas = ::Lexema.where(word: word).to_a
-    lex_words = @lexemas.pluck(:lexema_clean).compact.uniq
-    all_words = [word] + lex_words
-    all_words.map! { |w| ::DictWord.word_clean_gr(w) }
-    @dict_words = ::DictWord.where(:word_simple.in => all_words).to_a
-
-    if @dict_words.blank?
-      render status: 404
+      if @dict_words.blank?
+        render status: 404
+      end
     end
   end
 end
