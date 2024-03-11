@@ -210,10 +210,24 @@ class VersesController < ApplicationController
     w_transcriptions = lexemas.map {|(w,l,t)| [w, t] }.to_h
 
     # ПЕРЕВОД ЛЕКСЕМ и СЛОВ со страницы
+    # -------------------------------
 
     words_and_lexemas = (w_lexemas.values + words_clean).compact.uniq
     dicts = ::DictWord.where(:word_simple.in => words_and_lexemas).pluck(:word_simple, :translation_short, :dict)
 
+    # -------------------------------
+    # подготовим также запасной словарик для подбора соответствия без учёта окончаний
+    # убираем кокончания у искомых слов
+    words_simple_no_endings = words_and_lexemas.map do |w|
+      _w = ::DictWord.word_clean_gr(w)
+      _w = ::DictWord.remove_greek_ending(_w)
+      _w
+    end
+    # ищем в словаре без окончаний
+    dicts_simple_no_endings =
+    ::DictWord.where(:word_simple_no_endings.in => words_simple_no_endings).pluck(:word_simple, :word_simple_no_endings, :translation_short, :dict)
+
+    # -------------------------------
     # Вайсман
     w_dicts = {}
     # Дворецкий
@@ -222,28 +236,55 @@ class VersesController < ApplicationController
     all_dicts = {}
 
     # в этих словарях перевод для слов и лексем
-    dicts.each do |(word,trans,dict)|
+    dicts.each do |(word,transl,dict)|
       if dict == 'w'
-        w_dicts[word] = trans
+        w_dicts[word] = transl
       elsif dict == 'd'
-        d_dicts[word] = trans
+        d_dicts[word] = transl
       else
-        rest_dicts[word] = trans
+        all_dicts[word] = transl
       end
     end
+    # -------------------------------
+    # Вайсман
+    w_simple_dicts = {}
+    # Дворецкий
+    d_simple_dicts = {}
+    # Другие словари
+    all_simple_dicts = {}
 
-    result = {dict: {}, transcription: {}}
+    # в этих словарях перевод для слов и лексем
+    dicts_simple_no_endings.each do |(word,word_simple_no_endings,transl,dict)|
+      if dict == 'w'
+        w_simple_dicts[word_simple_no_endings] = [transl,word]
+      elsif dict == 'd'
+        d_simple_dicts[word_simple_no_endings] = [transl,word]
+      else
+        all_simple_dicts[word_simple_no_endings] = [transl,word]
+      end
+    end
+    # -------------------------------
+
+    result = {dict: {}, dict_simple_no_endings: {}, transcription: {}}
     words.each do |w|
       _w = clean(w)
       # лексема слова
       l = w_lexemas[_w]
       # перевод слова или лексемы (приоритет: Вейсман, Дворецкий, прочие словари)
-      trans = w_dicts[_w] || d_dicts[_w] || all_dicts[_w] || w_dicts[l] || d_dicts[l] || all_dicts[l]
+      transl = w_dicts[_w] || d_dicts[_w] || all_dicts[_w] || w_dicts[l] || d_dicts[l] || all_dicts[l]
       # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
-      result[:dict][w] = trans
+      result[:dict][w] = transl
       # транскрипция. Будет использована при отсутствии перевода
       result[:transcription][w] = w_transcriptions[_w]
     end
+    # -------------------------------
+    words_simple_no_endings.each do |w|
+      # перевод слова без окончания (приоритет: Вейсман, Дворецкий, прочие словари)
+      transl = w_simple_dicts[w] || d_simple_dicts[w] || all_simple_dicts[w]
+      # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
+      result[:dict_simple_no_endings][w] = transl
+    end
+    # -------------------------------
 
     result
   end
