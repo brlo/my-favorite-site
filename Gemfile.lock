@@ -151,6 +151,8 @@ GEM
       racc (~> 1.4)
     nokogiri (1.13.8-x86_64-linux)
       racc (~> 1.4)
+    observer (0.1.2)
+    pkg-config (1.5.6)
     public_suffix (5.0.0)
     puma (5.6.5)
       nio4r (~> 2.0)
@@ -195,6 +197,9 @@ GEM
     reline (0.3.1)
       io-console (~> 0.5)
     rexml (3.2.5)
+    rmagick (5.4.4)
+      observer (~> 0.1)
+      pkg-config (~> 1.4)
     ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
     selenium-webdriver (4.4.0)
@@ -260,6 +265,7 @@ DEPENDENCIES
   rack-cors
   rails (~> 7.0.3, >= 7.0.3.1)
   redis
+  rmagick
   selenium-webdriver
   sitemap_generator
   sprockets-rails

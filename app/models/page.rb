@@ -163,6 +163,12 @@ class Page < ApplicationMongoRecord
       self.redirect_from = self.path_low_was
     end
 
+    # раз изменился title, значит изменилась превьюшка
+    # а если изменился путь, значит изменилось имя картинки
+    if self.title_changed?
+      self.generate_img()
+    end
+
     self.page_type = self.page_type.to_i
 
     self.edit_mode = self.edit_mode.to_i
@@ -517,6 +523,53 @@ class Page < ApplicationMongoRecord
 
     # nokogiri добавляем html, body, которые нам не нужны
     doc.at_css('body').inner_html.gsub("\n", "")
+  end
+
+  # Перед удалением обязательно
+  def img_preview_file_path
+    page_img_path = "/s/page_previews/#{self.id.to_s}.jpeg"
+    if ::File.exists?("public/#{page_img_path}")
+      page_img_path
+    else
+      "/favicons/bibleox-for-social-#{ ::I18n.locale == :ru ? 'ru' : 'en' }.png"
+    end
+  end
+
+  def generate_img
+    img_text = self.title.to_s
+    file_name = "public/s/page_previews/#{self.id.to_s}.jpeg"
+
+    # # Создаем пустую картинку с заданными размерами, цветом фона и форматом
+    background_image = Magick::Image.new(1200, 630) do |img|
+      img.format = 'jpeg'
+      img.background_color = '#a4d091'
+    end
+
+    # Сделал по этой доке:
+    # https://livefiredev.com/in-depth-guide-rmagick-add-text-to-an-image-with-word-wrap/
+
+    font_size = 75
+    font_path = '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf'
+    width_of_bounding_box = 1100
+    text_to_print = img_text
+
+    # Create a new instance of the text wrap helper and give it all the
+    # info the class needs..
+    helper = ::ImgTextWrap.new(text_to_print, font_size, width_of_bounding_box, font_path)
+
+    text = ::Magick::Draw.new
+    text.pointsize = font_size
+    text.gravity = ::Magick::CenterGravity
+    text.fill = "#006239"
+    text.font = font_path
+
+    # Call the "get_text_with_line_breaks" to get text
+    # with line breaks where needed
+    text_wit_line_breaks = helper.get_text_with_line_breaks
+
+    text.annotate(background_image, 1200, 600, 0, 0, text_wit_line_breaks)
+
+    background_image.write(file_name)
   end
 
   private
