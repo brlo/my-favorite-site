@@ -20,7 +20,7 @@ Verse.where(lang: 'gr-ru').each do |v|
 end
 
 # Массив, где собраны все греч слова из Библии, без повторений
-words = Verse.where(lang: 'gr-ru').map { |v| v.data['w'].map { |w| w.unicode_normalize(:nfd) } }.flatten.sort.compact.uniq { _1.downcase.delete("\u0300-\u036F") }
+words = Verse.where(lang: 'gr-ru').map { |v| v.data['w'].map { |w| w.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F") } }.flatten.sort.compact.uniq
 
 # Не все слова есть в словарях, поэтому для всех слов мы стараемся найти лексемы - превоначальные формы,
 # которые и будем искать в словарях, если не найдём слово.

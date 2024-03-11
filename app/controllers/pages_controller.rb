@@ -65,7 +65,7 @@ class PagesController < ApplicationController
       @page = ::Page.find_by(redirect_from: path_downcased)
 
       if @page
-        redirect_to my_page_link_to("/#{@page.path}")
+        redirect_to my_page_link_to("/#{::CGI.escape(@page.path)}")
       else
         # Если страницу всё равно не нашли, то отдаём 404 с предложением создать страницу
         # not_found!()
@@ -77,7 +77,7 @@ class PagesController < ApplicationController
       # СТРАНИЦА НАЙДЕНА и язык совпадает - РЕНДЕРИМ
       # ########################################################################
 
-      @canonical_url = build_canonical_url("/w/#{@page.path}")
+      @canonical_url = build_canonical_url("/w/#{::CGI.escape(@page.path)}")
 
       @author_name = @page.user&.name
       @editors_names = ::User.where(:id.in => @page.editors).pluck(:name) if @page.editors&.any?
@@ -228,7 +228,7 @@ class PagesController < ApplicationController
       # Страницу нашли, но язык не тот, поэтому пытаемся отправить
       # пользователя на параллельную страницу с тем языком, который он искал
       @page = ::Page.find_by!(group_lang_id: @page.group_lang_id, lang: @content_lang)
-      redirect_to my_page_link_to("/#{@page.path}")
+      redirect_to my_page_link_to("/#{::CGI.escape(@page.path)}")
     end
   end
 

@@ -82,7 +82,7 @@ class DictWord < ApplicationMongoRecord
     # если словарь неизвестен, то обнуляем его, при сохранении споткнётся об валидацию наличия
     self.dict = nil if !DICTS.has_key?(self.dict)
 
-    self.word = self.word.to_s.strip.delete("\u0302-\u036F").presence.gsub(/[\t\s\n\r]+/, ' ').unicode_normalize(:nfd).downcase.delete("\u0302-\u036F").presence
+    self.word = self.word.to_s.gsub(/[\t\s\n\r]+/, ' ').unicode_normalize(:nfd).downcase.delete("\u0302-\u036F").strip.presence
     self.sinonim = self.sinonim.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').unicode_normalize(:nfd).downcase.delete("\u0302-\u036F").presence
     self.lexema = self.lexema.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').unicode_normalize(:nfd).downcase.delete("\u0302-\u036F").presence
     # word уже в нижнем регистре и без диакрит. знаков, но тут мы убираем даже ударения.

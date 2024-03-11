@@ -13,6 +13,8 @@ desc = ''
 
 # Слова, которые стоит игнорировать. (Пока что обходимся без этого)
 # ignore_ru = ['анат.', 'арам.', 'арх.', 'архит.', 'астр.', 'астрол.', 'атт.', 'беот.', 'бот.', 'бран.', 'вводн.', 'вм.', 'воен.', 'вост.', 'г.', 'грам.', 'греч.', 'дельф.', 'дор.', 'досл.', 'евр.', 'егип.', 'зап.', 'зоол.', 'ион.', 'ирон.', 'кирен.', 'кулин.', 'культ.', 'л.', 'лак.', 'лат.', 'лог.', 'макед.', 'мат.', 'мед.', 'миф.', 'мор.', 'муз.', 'новоатт.', 'о-в', 'оз.', 'охотн.', 'п-в', 'перс.', 'перен.', 'погов.', 'по друг.', 'поэт.', 'предполож.', 'презр.', 'р.', 'римск.', 'рит.', 'сев.', 'см.', 'сицил.', 'собир.', 'среднеатт. ', 'староатт. ', 'стих.', 'стяж.', 'с.-х.', 'т. е.', 'тж.', 'физиол.', 'филос.', 'шутл.', 'зол.', 'эп.', 'эп.-дор.', 'эп.-ион.', 'энкл.', 'южн.', 'юр.']
+
+words_miss=[]
 i=0
 dict = 'd'
 sanitizer = ::Rails::Html::SafeListSanitizer.new
@@ -24,13 +26,15 @@ ImportDict.all.each do |imp_dict_word|
   # ищем самое первое слово (или слова) похожие на коротких перевод
   word_ru = _desc.scan(/\p{Cyrillic}[\(\)\p{Cyrillic}\s]+(?=[,\s\A$])/i).first
   if word_gr.present? && word_ru.present?
-    word_gr = word_gr.to_s.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F").presence
+    word_gr = word_gr.to_s.gsub(/[\t\s\n\r]+/, ' ').unicode_normalize(:nfd).downcase.delete('-').delete("\u0300-\u036F").strip.presence
     # В Библии есть такое слово?
-    if Lexema.find_by(lexema_clean: word_gr)
+    if Lexema.find_by(w: word_gr) || Lexema.find_by(lexema_clean: word_gr)
       # Это слово уже сохранено в словаре?
-      d = ::DictWord.find_by(dict: dict, word_clean: word_gr, translation_short: word_ru)
-      if d.nil?
-        puts "============= #{imp_dict_word.topic} -- #{word_gr} -- #{word_ru} ===\n #{_desc}"
+      d = ::DictWord.find_by(dict: dict, word_simple: word_gr, translation_short: word_ru)
+      d_desc = DictWord.find_by(dict: dict, desc: _desc)
+      if d.nil? || d_desc.nil?
+        words_miss << [word_gr, word_ru]
+        puts "============= id:#{imp_dict_word.id} #{imp_dict_word.topic} -- #{word_gr} -- #{word_ru} ==="
         ::DictWord.create!(
           dict: dict,
           word: word_gr,
@@ -43,6 +47,12 @@ ImportDict.all.each do |imp_dict_word|
     end
   end
 end; i # 2755 слов есть в словаре для Библии
+
+# Удалить дубли (если что-то пошло не так)
+# ds = DictWord.all.map { |d| DictWord.find_by(:id.ne => d.id, dict: d.dict, word: d.word, translation_short: d.translation_short) }.compact.map(&:destroy)
+
+
+
 
 # File.readlines('db/dict_greek_russian_dvoretsky.ads').each do |line|
 #   puts("--------------------------------")

@@ -10,7 +10,7 @@ class DictWordsController < ApplicationController
     end
 
     if word != @word_clean
-      redirect_to "/#{I18n.locale}/words/#{@word_clean}"
+      redirect_to "/#{I18n.locale}/words/#{::CGI.escape(@word_clean)}"
     end
 
     @page_title = ::I18n.t('dict_words.title', word: word)
