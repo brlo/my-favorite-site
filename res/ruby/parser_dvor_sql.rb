@@ -23,7 +23,7 @@ ImportDict.all.each do |imp_dict_word|
   # По-идее, в этом поле всегда должно быть только греческое слово. Вначале только идут определяния русских аббревиатур типа "атт."
   word_gr = imp_dict_word.topic.scan(/^\p{Greek}+/).first
   _desc = sanitizer.sanitize(imp_dict_word.definition.to_s, tags: [])
-  # ищем самое первое слово (или слова) похожие на коротких перевод
+  # ищем самое первое слово (или слова) похожие на короткий перевод
   word_ru = _desc.scan(/\p{Cyrillic}[\(\)\p{Cyrillic}\s]+(?=[,\s\A$])/i).first
   if word_gr.present? && word_ru.present?
     word_gr = word_gr.to_s.gsub(/[\t\s\n\r]+/, ' ').unicode_normalize(:nfd).downcase.delete('-').delete("\u0300-\u036F").strip.presence
