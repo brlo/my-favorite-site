@@ -95,7 +95,7 @@ class DictWord < ApplicationMongoRecord
     self.word_simple = self.class.word_clean_gr(self.word)
     self.word_simple_no_endings = self.class.remove_greek_ending(self.word_simple)
     self.transcription = self.transcription.to_s.gsub(/[\t\s\n\r]+/, ' ').strip.presence
-    self.translation_short = self.translation_short.to_s.gsub(/[\t\s\n\r]+/, ' ').downcase.strip.presence
+    self.translation_short = self.translation_short.to_s.gsub(/[\t\s\n\r]+/, ' ').strip.presence
     self.translation = self.translation.to_s.gsub(/[\t\s\n\r]+/, ' ').strip.presence
 
     # if self.word.present? && self.word_simple.blank?
