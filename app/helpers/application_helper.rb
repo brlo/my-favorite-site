@@ -174,10 +174,10 @@ module ApplicationHelper
       # перевод
       _w = w.unicode_normalize(:nfd).downcase.strip
       trnsl = translate[_w]
-      trsc = transcript[_w]
 
       # перевод при поиске упрощённого слова
       ws = ::DictWord.word_clean_gr(_w)
+      trsc = transcript[ws]
       trnsl_simple = translate_simple[ws]
 
       # перевод при поиске упрощённого слова без окончаний
