@@ -166,27 +166,36 @@ module ApplicationHelper
 
   def interliner_helper(words, dict)
     translate = dict[:dict]
+    translate_simple = dict[:dict_simple]
     translate_simple_no_endings = dict[:dict_simple_no_endings]
-    transcript = dict[:transcription]
+    transcript = dict[:dict_transcriptions]
 
     words.map do |w|
       # перевод
-      trnsl = translate[w]
-      trsc = transcript[w]
-      # перевод при поиске без окончаний
-      wse = ::DictWord.word_clean_gr(w)
-      wse = ::DictWord.remove_greek_ending(wse)
+      _w = w.unicode_normalize(:nfd).downcase.strip
+      trnsl = translate[_w]
+      trsc = transcript[_w]
+
+      # перевод при поиске упрощённого слова
+      ws = ::DictWord.word_clean_gr(w)
+      trnsl_simple = translate_simple[ws]
+
+      # перевод при поиске упрощённого слова без окончаний
+      wse = ::DictWord.remove_greek_ending(ws)
       data_simple_no_endings = translate_simple_no_endings[wse]
 
       s  = "<ruby>#{ w }"
       if trnsl
         w_link = w.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F")
         s += "<rt><a href='/#{I18n.locale}/words/#{ w_link }'>#{ trnsl }</a></rt>"
+      elsif trnsl_simple
+        w_link = w.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F")
+        s += "<rt><a href='/#{I18n.locale}/words/#{ w_link }'>#{ trnsl_simple }</a></rt>"
       elsif data_simple_no_endings
-        word_simple_no_endings = data_simple_no_endings[0]
+        trnsl_simple_no_endings = data_simple_no_endings[0]
         word_full = data_simple_no_endings[1]
         w_link = word_full.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F")
-        s += "<rt><a href='/#{I18n.locale}/words/#{ w_link }'>[#{ word_simple_no_endings }]</a></rt>"
+        s += "<rt><a href='/#{I18n.locale}/words/#{ w_link }'>[#{ trnsl_simple_no_endings }]</a></rt>"
       elsif trsc
         s += "<rt>#{ trsc }</rt>"
       end
