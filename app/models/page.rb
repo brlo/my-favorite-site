@@ -570,6 +570,8 @@ class Page < ApplicationMongoRecord
     text.annotate(background_image, 1200, 600, 0, 0, text_wit_line_breaks)
 
     background_image.write(file_name)
+    background_image = nil
+    GC.start
   end
 
   private

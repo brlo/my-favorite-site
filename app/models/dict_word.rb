@@ -86,9 +86,9 @@ class DictWord < ApplicationMongoRecord
 
     # замена каких-либо пустот на пробелы
     # .gsub(/[\t\s\n\r]+/, ' ')
-    self.word = self.class.word_clean_diacritic_only_gr(self.word)
-    self.sinonim = self.class.word_clean_diacritic_only_gr(self.sinonim)
-    self.lexema = self.class.word_clean_diacritic_only_gr(self.lexema)
+    self.word = self.word.to_s.unicode_normalize(:nfd).strip
+    self.sinonim = self.class.word_clean_gr(self.sinonim)
+    self.lexema = self.class.word_clean_gr(self.lexema)
 
     # word уже в нижнем регистре и без диакрит. знаков, но тут мы убираем даже ударения.
     # Это важно, потому что Люба добавляет слова без ударений

@@ -170,7 +170,10 @@ class PagesController < ApplicationController
             @chapters = siblings_and_me.map { |m| [m.title, m.path] }
 
             # сохраняем индексы глав в массиве с главами
-            @chapter_current = siblings_and_me.index(@page_in_menu) + 1
+            my_ix_in_menu = siblings_and_me.index(@page_in_menu)
+            if my_ix_in_menu
+              @chapter_current = i_am_in_menu + 1
+            end
             # @chapter_prev = @chapter_current - 1
             # @chapter_next = @chapter_current + 1
           end
