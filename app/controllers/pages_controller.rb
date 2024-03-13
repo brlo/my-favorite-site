@@ -172,7 +172,7 @@ class PagesController < ApplicationController
             # сохраняем индексы глав в массиве с главами
             my_ix_in_menu = siblings_and_me.index(@page_in_menu)
             if my_ix_in_menu
-              @chapter_current = i_am_in_menu + 1
+              @chapter_current = my_ix_in_menu + 1
             end
             # @chapter_prev = @chapter_current - 1
             # @chapter_next = @chapter_current + 1

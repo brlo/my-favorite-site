@@ -200,7 +200,7 @@ class VersesController < ApplicationController
     words = words.map { |w| w.unicode_normalize(:nfd).downcase.strip }
     return {} if words.blank?
 
-    words_clean = words.map { |w| clean(w) }.uniq.sort
+    words_clean = words.map { |w| ::DictWord.word_clean_gr(w).to_s }.uniq.sort
 
     # ЛЕКСЕМЫ И ТРАНСЛИТ для страницы
 
@@ -214,16 +214,18 @@ class VersesController < ApplicationController
     # -------------------------------
     words_and_lexemas = (w_lexemas.values + words_clean).compact.uniq
 
-    {
-      dict: build_dict(words, words_and_lexemas, w_lexemas),
+    r={
+      dict: build_dict(words),
       dict_simple: build_dict_simple(words, words_and_lexemas, w_lexemas),
       dict_simple_no_endings: build_dict_simple_no_endings(words_and_lexemas),
       dict_transcriptions: dict_transcriptions,
     }
+    # r.each { |k,v| puts(k); puts(v); puts }
+    r
   end
 
-  def build_dict words, words_and_lexemas, w_lexemas
-    dicts = ::DictWord.where(:word_simple.in => words_and_lexemas).pluck(
+  def build_dict words
+    dicts = ::DictWord.where(:word.in => words).pluck(
       :word, :translation_short, :dict
     )
 
@@ -236,6 +238,8 @@ class VersesController < ApplicationController
 
     # в этих словарях перевод для слов и лексем
     dicts.each do |(word,transl,dict)|
+      next unless transl.present?
+
       if dict == 'w'
         w_dicts[word] = transl
       elsif dict == 'd'
@@ -247,13 +251,10 @@ class VersesController < ApplicationController
 
     result = {}
     words.each do |w|
-      _w = clean(w)
-      # лексема слова
-      l = w_lexemas[_w]
       # перевод слова или лексемы (приоритет: Вейсман, Дворецкий, прочие словари)
-      transl = w_dicts[_w] || d_dicts[_w] || all_dicts[_w] || w_dicts[l] || d_dicts[l] || all_dicts[l]
+      transl = w_dicts[w] || d_dicts[w] || all_dicts[w]
       # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
-      result[w] = transl
+      result[w] = transl if transl
     end
     result
   end
@@ -269,6 +270,7 @@ class VersesController < ApplicationController
     ::DictWord.where(:word_simple.in => words_simple).pluck(
       :word_simple, :translation_short, :dict
     )
+
     # Вейсман
     w_dicts = {}
     # Дворецкий
@@ -278,6 +280,8 @@ class VersesController < ApplicationController
 
     # в этих словарях перевод для слов и лексем
     dicts_simple.each do |(word_simple,transl,dict)|
+      next unless transl.present?
+
       if dict == 'w'
         w_dicts[word_simple] = transl
       elsif dict == 'd'
@@ -289,13 +293,13 @@ class VersesController < ApplicationController
 
     result = {}
     words.each do |w|
-      _w = clean(w)
+      _w = ::DictWord.word_clean_gr(w)
       # лексема слова
       l = w_lexemas[_w]
       # перевод слова или лексемы (приоритет: Вейсман, Дворецкий, прочие словари)
       transl = w_dicts[_w] || d_dicts[_w] || all_dicts[_w] || w_dicts[l] || d_dicts[l] || all_dicts[l]
       # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
-      result[w] = transl
+      result[_w] = transl if transl
     end
     result
   end
@@ -323,6 +327,8 @@ class VersesController < ApplicationController
 
     # в этих словарях перевод для слов и лексем
     dicts_simple_no_endings.each do |(word,word_simple_no_endings,transl,dict)|
+      next unless transl.present?
+
       if dict == 'w'
         w_dicts[word_simple_no_endings] = [transl,word]
       elsif dict == 'd'
@@ -337,15 +343,8 @@ class VersesController < ApplicationController
       # перевод слова без окончания (приоритет: Вейсман, Дворецкий, прочие словари)
       transl = w_dicts[w] || d_dicts[w] || all_dicts[w]
       # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
-      result[w] = transl
+      result[w] = transl if transl && transl[0]
     end
     result
-  end
-
-  # очищает слово от всех спец. знаков и греческих диакритических символов
-  def clean(word)
-    # require 'unicode_utils'
-    # UnicodeUtils.nfkd("ἅπερ")
-    word&.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F")
   end
 end

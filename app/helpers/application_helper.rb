@@ -177,7 +177,7 @@ module ApplicationHelper
       trsc = transcript[_w]
 
       # перевод при поиске упрощённого слова
-      ws = ::DictWord.word_clean_gr(w)
+      ws = ::DictWord.word_clean_gr(_w)
       trnsl_simple = translate_simple[ws]
 
       # перевод при поиске упрощённого слова без окончаний
@@ -187,7 +187,7 @@ module ApplicationHelper
       s  = "<ruby>#{ w }"
       if trnsl
         w_link = w.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F")
-        s += "<rt><a href='/#{I18n.locale}/words/#{ w_link }'>#{ trnsl }</a></rt>"
+        s += "<rt><a href='/#{I18n.locale}/words/#{ w_link }'>#{ trnsl }!</a></rt>"
       elsif trnsl_simple
         w_link = w.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F")
         s += "<rt><a href='/#{I18n.locale}/words/#{ w_link }'>#{ trnsl_simple }</a></rt>"
@@ -195,7 +195,7 @@ module ApplicationHelper
         trnsl_simple_no_endings = data_simple_no_endings[0]
         word_full = data_simple_no_endings[1]
         w_link = word_full.unicode_normalize(:nfd).downcase.delete("\u0300-\u036F")
-        s += "<rt><a href='/#{I18n.locale}/words/#{ w_link }'>[#{ trnsl_simple_no_endings }]</a></rt>"
+        s += "<rt><a href='/#{I18n.locale}/words/#{ w_link }'>#{ trnsl_simple_no_endings }~</a></rt>"
       elsif trsc
         s += "<rt>#{ trsc }</rt>"
       end
