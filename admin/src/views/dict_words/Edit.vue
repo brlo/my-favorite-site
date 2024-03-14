@@ -29,6 +29,7 @@ const errors = ref('');
 const dictWord = ref({word: wordFromParam});
 const wordsWaitings = ref();
 const lexemasWaitings = ref();
+const listDict = ref();
 
 // переменная для установки текста в редакторе
 // редактор подгрузит данные в себя и затрёт эту перменную.
@@ -51,7 +52,8 @@ if (props.id) {
 
 // ПОЛУЧАЕМ СПИСОК ОЖИДАЮЩИХ ОПРЕДЕЛЕНИЯ СЛОВ
 function getWordsWaitings() {
-  api.get(`/dict_words/list_waitings`).then(data => {
+  const dict = listDict.value;
+  api.get(`/dict_words/list_waitings`, { dict }).then(data => {
     console.log(data);
     wordsWaitings.value = data.items.words;
     lexemasWaitings.value = data.items.lexemas;
@@ -72,6 +74,7 @@ getWordsWaitings();
 // ]
 
 const dicts = [
+  { name: '', code: '' },
   { name: 'Test JP-RU', code: 't' },
   { name: 'Дворецкий GR-RU', code: 'd' },
   { name: 'Вейсман GR-RU', code: 'w' },
@@ -208,6 +211,16 @@ function destroy() {
   <div v-if="!dictWord.id">
     <hr/>
     <Button @click.prevent="getWordsWaitings" label="Обновить список ожиданий"/>
+    <div class="field">
+      <label>Недостающие слова из словаря:</label>
+      <Dropdown
+        v-model="listDict"
+        :options="dicts"
+        optionLabel="name"
+        optionValue="code"
+        placeholder="Словарь"
+      />
+    </div>
 
     <div class="words-hints">
       <div class="words-waitings">

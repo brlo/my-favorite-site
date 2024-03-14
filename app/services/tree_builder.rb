@@ -34,6 +34,7 @@ class TreeBuilder
       #
       # Такая вот пока что кривая сортировка. Потом напишу нормально
       # Сейчас пока три уровня вглубину сортируем.
+      array = array.sort_by { |c| c[:priority].to_i }
       array.each do |item|
         next if item[:childs].nil?
         item[:childs] = item[:childs].sort_by { |c| c[:priority].to_i }
