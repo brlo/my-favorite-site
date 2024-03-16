@@ -141,7 +141,7 @@ header nav > a#settings-btn {
 }
 
 .menu-books.book-clicked {
-  top: 89px;
+  top: 100px;
 }
 
 .menu-books.book-clicked::after {
@@ -184,10 +184,15 @@ header nav > a#settings-btn {
   font-family: 'Linux Libertine','Georgia','Times','Source Serif Pro',serif;
 }
 
+.breadcrumbs-wrap { background-color: #f6f4e4; }
+.night-mode .breadcrumbs-wrap { background-color: #2f3541; }
+
+.breadcrumbs-wrap .content {
+  padding: 0px 10px 13px 10px !important;
+}
 .breadcrumbs {
   font-size: 11px;
   position: relative;
-  top: -15px;
   margin: 0;
 }
 
@@ -329,8 +334,26 @@ tr:hover td.verse-line:before {
   margin: 10px -10px 10px -10px;
 }
 
+.img-header-wrap {
+  position: relative;
+  overflow: hidden;
+  margin-left: -20px;
+  margin-right: -20px;
+}
+
+.img-header-wrap img.blured {
+  filter: blur(15px);
+  position: absolute;
+  top: -15px;
+  width: 100%;
+}
+.img-header-wrap .content {
+  padding: 0 !important;
+  margin: 0;
+}
+
 .img-header img {
-  margin-top: 0;
+  margin: 0; display: block;
 }
 
 @media (min-width: 700px){

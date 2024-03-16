@@ -1,22 +1,36 @@
 <div id='chapter-header'>
-  <% if @breadcrumbs.present? %>
-    <nav class='breadcrumbs'>
-    <% @breadcrumbs.each.with_index do |(title, path), i| %>
-      <% if path.present? %>
-        <a href="<%= my_page_link_to("/#{path}") %>"><%= title %></a>
-      <% else %>
-        <%= title %>
-      <% end %>
-      <%= (i+1) == @breadcrumbs.size ? '' : ' » ' %>
-    <% end %>
-    </nav>
-  <% end %>
 
-  <% if @page.cover? %>
-    <div class='img-header img-full-width'>
-      <img src="<%= @page.cover.large.url %>" draggable='false' />
+<% if @breadcrumbs.present? %>
+  <% content_for(:breadcrumbs) do %>
+  <div class='flex-wrap breadcrumbs-wrap'>
+    <div class='content'>
+      <nav class='breadcrumbs'>
+      <% @breadcrumbs.each.with_index do |(title, path), i| %>
+        <% if path.present? %>
+          <a href="<%= my_page_link_to("/#{path}") %>"><%= title %></a>
+        <% else %>
+          <%= title %>
+        <% end %>
+        <%= (i+1) == @breadcrumbs.size ? '' : ' » ' %>
+      <% end %>
+      </nav>
     </div>
+  </div>
   <% end %>
+<% end %>
+
+<% if @page.cover? %>
+  <% content_for(:img_header) do %>
+  <div class='flex-wrap img-header-wrap'>
+    <img class='blured' src="<%= @page.cover.large.url %>" draggable='false'/>
+    <div class="content">
+      <div class='img-header img-full-width'>
+        <img src="<%= @page.cover.large.url %>" draggable='false'/>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>
 
   <h1
     class="title"
