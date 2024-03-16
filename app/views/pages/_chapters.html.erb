@@ -14,7 +14,7 @@
 
   <% if @page.cover? %>
     <div class='img-header img-full-width'>
-      <img src="<%= my_res_link_to(@page.cover.large.url) %>" draggable='false' />
+      <img src="<%= @page.cover.large.url %>" draggable='false' />
     </div>
   <% end %>
 
