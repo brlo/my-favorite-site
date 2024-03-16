@@ -6,7 +6,9 @@
   <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
 <% end %>
 
-<%= image_tag('bogoroditsa.webp', id: 'Bogoroditsa') %>
+<div class='img-header img-full-width' style='margin-top: -30px;'>
+  <%= image_tag('bogoroditsa.webp') %>
+</div>
 <p><%= I18n.t('about_text') %>
 <p><%= I18n.t('about_news') %>: <a href="https://t.me/bibleox">https://t.me/bibleox</a>
 <p><%= I18n.t('about_contact') %>: <a href="https://t.me/rodion_orthodox">https://t.me/rodion_orthodox</a>

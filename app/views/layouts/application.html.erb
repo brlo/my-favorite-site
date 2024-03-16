@@ -37,9 +37,8 @@
       @font-face {font-family: "Ponomar";src: url('<%= my_res_link_to('/fonts/PonomarUnicode.otf') %>') format("opentype");}
       .csl {font-family: "Ponomar", Verdana, Tahoma;font-size: 1.4em;line-height: 1.5em;}
     <% end %>
-    <% if @text_direction %>
-      .tdir {direction: <%= @text_direction %>;}
-    <% end %>
+      .t-c-dir {direction: <%= text_content_direction() %>;}
+      .t-ui-dir {direction: <%= text_ui_direction() %>;}
     </style>
     <%= javascript_include_tag "application", media: "all" %>
   </head>
@@ -94,7 +93,6 @@
     </div>
 
     <footer>
-      <dd class='tip tdir'><%= I18n.t('tips.click_on_verse') %> <%= I18n.t('tips.click_on_verse__working') %> <div class='key'>Shift</div> <%= I18n.t('tips.click_on_verse__and') %> <div class='key'>Ctrl</div></dd>
       <dd id='change-ui-lang-area'>
         <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
         <select id="ui-lang-select" onchange="selectUILang(this);return false;">

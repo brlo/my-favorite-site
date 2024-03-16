@@ -2,7 +2,7 @@ module Api
   class PagesController < ApiApplicationController
     before_action :reject_by_read_privs
     before_action :reject_by_create_privs, only: [:create]
-    before_action :reject_by_update_privs, only: [:update]
+    before_action :reject_by_update_privs, only: [:update, :cover]
     before_action :reject_by_destroy_privs, only: [:destroy]
 
     def list
@@ -88,6 +88,19 @@ module Api
       #   logger.error e.backtrace.join("\n")
       #   raise(e)
       # end
+    end
+
+    def cover
+      set_page()
+      @page.cover = params[:file]
+      # u.cover.url # => '/url/to/file.png'
+      # u.cover.current_path # => 'path/to/file.png'
+      # u.cover_identifier # => 'file.png'
+      if @page.save
+        render(json: {'success': 'ok', cover: @page.cover.urls}, status: :ok)
+      else
+        render(json: @page.errors, status: :unprocessable_entity)
+      end
     end
 
     def destroy

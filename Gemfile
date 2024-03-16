@@ -47,6 +47,9 @@ gem 'diff-lcs'
 # html parser for prettify links in articles
 gem 'nokogiri'
 
+gem 'carrierwave'
+gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 

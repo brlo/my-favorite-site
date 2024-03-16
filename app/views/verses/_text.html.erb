@@ -15,7 +15,7 @@
             <% else %>
               <tr>
                 <td class='verse-line' id='L<%= v.line %>' data-line="<%= "#{v.line}" %>"><%= v.line %></td>
-                <td class='csl verse-text tdir' id='T<%= v.line %>' data-line="<%= "#{v.line}" %>">
+                <td class='csl verse-text t-c-dir' id='T<%= v.line %>' data-line="<%= "#{v.line}" %>">
                   <% if is_interliner %>
                     <%= interliner_helper(v.data['w'], @dict).html_safe %>
                   <% else %>
@@ -43,4 +43,6 @@
       <% end %>
     </div>
   </div>
+
+  <div class='tip-hkeys t-ui-dir'><%= I18n.t('tips.click_on_verse') %> <%= I18n.t('tips.click_on_verse__working') %> <div class='key'>Shift</div> <%= I18n.t('tips.click_on_verse__and') %> <div class='key'>Ctrl</div></dd>
 <% end %>

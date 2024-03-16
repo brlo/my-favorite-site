@@ -323,15 +323,21 @@ tr:hover td.verse-line:before {
   color: #828e88;
 } */
 
-#Bogoroditsa {
+/* растягивается а всю ширину экрана для моб. экранов */
+.img-full-width img {
   width: calc(100% + 20px);
-  margin: -30px -10px 10px -10px;
+  margin: 10px -10px 10px -10px;
+}
+
+.img-header img {
+  margin-top: 0;
 }
 
 @media (min-width: 700px){
-  #Bogoroditsa {
+  .img-full-width img {
     width: 100%;
-    margin: -30px 0 10px 0;
+    margin-left: 0;
+    margin-right: 0;
   }
 }
 
@@ -388,4 +394,10 @@ footer dd.tip {
 }
 .error-not-found .propose {
   margin: 20px 0;
+}
+
+.tip-hkeys {
+  margin: 30px 0 0 0;
+  text-align: center;
+  font-size: .7em;
 }

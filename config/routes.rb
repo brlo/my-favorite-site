@@ -65,6 +65,7 @@ Rails.application.routes.draw do
           put    '/',  to: 'pages#update'
           delete '/',  to: 'pages#destroy'
           post   '/restore',  to: 'pages#restore'
+          post   '/cover', to: 'pages#cover'
 
            # меню
           scope 'menus' do

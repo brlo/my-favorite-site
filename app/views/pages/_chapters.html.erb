@@ -1,4 +1,4 @@
-<div id='chapter-image'>
+<div id='chapter-header'>
   <% if @breadcrumbs.present? %>
     <nav class='breadcrumbs'>
     <% @breadcrumbs.each.with_index do |(title, path), i| %>
@@ -10,6 +10,12 @@
       <%= (i+1) == @breadcrumbs.size ? '' : ' » ' %>
     <% end %>
     </nav>
+  <% end %>
+
+  <% if @page.cover? %>
+    <div class='img-header img-full-width'>
+      <img src="<%= my_res_link_to(@page.cover.large.url) %>" draggable='false' />
+    </div>
   <% end %>
 
   <h1

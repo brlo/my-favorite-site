@@ -20,6 +20,8 @@ class Page < ApplicationMongoRecord
 
   include Mongoid::Document
 
+  mount_uploader :cover, CoverUploader
+
   attr_accessor :tags_str
 
   # Тип страницы (для писания и тд)

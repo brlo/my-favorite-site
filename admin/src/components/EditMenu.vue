@@ -8,6 +8,9 @@ import InputText from 'primevue/inputtext';
 import InputNumber from 'primevue/inputnumber';
 import Dropdown from 'primevue/dropdown';
 import Button from 'primevue/button';
+import IconField from 'primevue/iconfield';
+import InputIcon from 'primevue/inputicon';
+
 import { useToast } from "primevue/usetoast";
 
 const toast = useToast();
@@ -141,17 +144,17 @@ function destroy(obj) {
     <div class="group-fields">
       <div class="field">
         <label>Название</label>
-        <span class="p-input-icon-left">
-          <i class="pi pi-search" />
+        <IconField iconPosition="left">
+          <InputIcon class="pi pi-search" />
           <InputText v-model="currentMenuItem.title" placeholder="Название" />
-        </span>
+        </IconField>
       </div>
       <div class="field">
         <label>Ссылка</label>
-        <span class="p-input-icon-left">
-          <i class="pi pi-search" />
+        <IconField iconPosition="left">
+          <InputIcon class="pi pi-search" />
           <AutocompletePage v-model="currentMenuItem.path" fetchKey="path" />
-        </span>
+        </IconField>
       </div>
     </div>
 

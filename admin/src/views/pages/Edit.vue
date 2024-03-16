@@ -11,6 +11,9 @@ import InputText from 'primevue/inputtext';
 import Button from 'primevue/button';
 import SplitButton from 'primevue/splitbutton';
 import Textarea from 'primevue/textarea';
+import FileUpload from 'primevue/fileupload';
+import { getCookie } from '@/libs/cookies'
+
 import { api } from '@/libs/api.js';
 
 const apiUrl = import.meta.env.VITE_API_URL
@@ -239,6 +242,51 @@ function restore() {
   })
 }
 
+function onBeforeCoverSend(event) {
+  // плагин prime сам загружает картинку на сервер, показывает процесс загрузки.
+  // но мы должны задать в шапке токен для авторизации на сервере.
+  // поэтому понадобился этот хук в колбэке перед запросом:
+  return event.xhr.setRequestHeader('X-API-TOKEN', getCookie('api_token'));
+}
+
+// Ответ после загрузки картинки для шапки
+function onCoverUpload(event) {
+  if (event.xhr.status === 200) {
+    let responseJson = JSON.parse(event.xhr.responseText);
+    if (responseJson.success == 'ok') {
+      page.value.cover = responseJson.cover;
+    }
+  } else {
+    console.log('Error in onCoverUpload, event.xhr:', event.xhr)
+  }
+  return true;
+}
+
+// удаление картинки для шапки
+function clickRemoveCover() {
+  pconfirm.require({
+    message: '',
+    header: 'Удалить изображение для шапки?',
+    acceptLabel: 'Да', rejectLabel: 'Нет',
+    rejectClass: 'p-button-text p-button-text',
+    acceptClass: 'p-button-danger p-button-text',
+    accept: () => {
+      api.post(`/pages/${page.value.id}/cover`, {file: null}).then(data => {
+        if (data.success == 'ok') {
+          page.value.cover = data.cover;
+          toastSuccess('Удалено', 'Изображение для шапки удалено!');
+          errors.value = '';
+        } else {
+          console.log('FAIL!', data);
+          toastError('Ошибка', 'Не удалось удалить изображение для шапки');
+          errors.value = data.errors ? data.errors : data;
+        }
+      })
+    }
+  })
+  return true;
+}
+
 const submitBtnItems = [
   {
     label: 'Сохранить',
@@ -407,12 +455,45 @@ const submitBtnItems = [
       <InputText v-model="page.audio" placeholder="Аудио-файл" :disabled="page.is_deleted" />
     </div>
   </div>
+
+  <div v-if="user.privs.super" class="group-fields">
+    <h2>Изображение для шапки</h2>
+    <div v-if="page.cover" class="cover">
+      <img :src="page.cover?.large"/>
+      <div class="cover-btn-rm">
+        <Button v-if="page.cover?.large"
+          @click.prevent="clickRemoveCover"
+          label="Удалить изображение для шапки"
+          text
+          severity="danger"
+          icon="pi pi-trash" />
+      </div>
+    </div>
+
+    <div class="field">
+      <FileUpload name="file" :url="`${apiUrl}/ru/api/pages/${id}/cover`" @upload="onCoverUpload($event)" :onBeforeSend="onBeforeCoverSend" :multiple="false" accept="image/*" :maxFileSize="9000000">
+        <template #empty>
+          <p>Перенесите сюда файл для загрузки.</p>
+        </template>
+      </FileUpload>
+    </div>
+  </div>
 </div>
 </template>
 
 <style scoped>
+.cover {
+  margin: 10px 0;
+}
+
 h1 {
   margin: 15px 0;
+}
+
+h2 {
+  width: 100%;
+  margin: 15px 0 5px 0;
+  border-bottom: 1px solid grey;
 }
 
 .fields-published {

@@ -51,7 +51,6 @@ class VersesController < ApplicationController
       end
 
       @current_menu_item = 'biblia'
-      @text_direction = ['heb-osm', 'arab-avd'].include?(@content_lang) ? 'rtl' : 'ltr'
       @page_title =
         ::I18n.t("books.mid.#{@book_code}") +
         ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
@@ -95,7 +94,6 @@ class VersesController < ApplicationController
     end
 
     @current_menu_item = 'biblia'
-    @text_direction = ['heb-osm', 'arab-avd'].include?(@content_lang) ? 'rtl' : 'ltr'
     @page_title =
       ::I18n.t("books.mid.#{@book_code}") +
       ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +

@@ -3,6 +3,8 @@ import { ref, watchEffect } from 'vue';
 import {_} from 'vue-underscore';
 import { api } from '@/libs/api.js';
 import InputText from 'primevue/inputtext';
+import IconField from 'primevue/iconfield';
+import InputIcon from 'primevue/inputicon';
 
 const apiUrl = import.meta.env.VITE_API_URL
 
@@ -64,10 +66,10 @@ watchEffect(
 </router-link>
 
 <div v-if="!isListOnly" style="margin: 10px 0 20px 0">
-  <span class="p-input-icon-left">
-    <i :class="`pi ${ isLoading ? 'pi-spin pi-spinner' : 'pi-search' }`" />
+  <IconField iconPosition="left">
+    <InputIcon :class="`pi ${ isLoading ? 'pi-spin pi-spinner' : 'pi-search' }`" />
     <InputText v-model="searchTerm" placeholder='Фильтр' autofocus autocomplete="off" id="search-field" />
-  </span>
+  </IconField>
 </div>
 
 <div v-if="pages.length == 0">
