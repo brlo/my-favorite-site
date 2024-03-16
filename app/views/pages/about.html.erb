@@ -6,9 +6,18 @@
   <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
 <% end %>
 
-<div class='img-header img-full-width' style='margin-top: -30px;'>
-  <%= image_tag('bogoroditsa.webp') %>
+
+<% content_for(:img_header) do %>
+<div class='flex-wrap img-header-wrap'>
+  <%= image_tag('bogoroditsa.webp', class: 'blured', draggable: 'false') %>
+  <div class="content">
+    <div class='img-header'>
+      <%= image_tag('bogoroditsa.webp', draggable: 'false') %>
+    </div>
+  </div>
 </div>
+<% end %>
+
 <p><%= I18n.t('about_text') %>
 <p><%= I18n.t('about_news') %>: <a href="https://t.me/bibleox">https://t.me/bibleox</a>
 <p><%= I18n.t('about_contact') %>: <a href="https://t.me/rodion_orthodox">https://t.me/rodion_orthodox</a>

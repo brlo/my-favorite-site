@@ -486,6 +486,10 @@ const submitBtnItems = [
   margin: 10px 0;
 }
 
+.cover img {
+  max-width: 100%;
+}
+
 h1 {
   margin: 15px 0;
 }

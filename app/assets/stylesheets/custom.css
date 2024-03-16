@@ -272,8 +272,11 @@ footer dd {
 .flex-wrap .content {
   max-width: 1200px;
   width: 100%;
-  padding: 30px 10px;
   position: relative;
+}
+
+.flex-wrap .content.main {
+  padding: 30px 10px;
 }
 
 a {
