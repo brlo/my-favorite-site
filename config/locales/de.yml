@@ -34,6 +34,7 @@ de:
   bible: Bibel
   about_site: 'Um'
   about_site_description: 'Website zum Bibelstudium. Kontakte mit Entwickler.'
+  about_site_short: 'Website über die Heilige Schrift (Bibel) und die Apostolische Tradition der Orthodoxen Kirche'
   about_text: Die Stätte wurde 2022 in der Stadt Sewastopol mit dem Segen eines orthodoxen Priesters gegründet.
   about_news: Bibleox-Neuigkeiten
   about_contact: Kontakt mit Entwickler
@@ -111,8 +112,8 @@ de:
     click_on_verse__and: Und
     search_was_return_zero_results: Nichts gefunden. Prüfen Sie, ob die falsche Textsprache ausgewählt ist?
 
-  tags:
-    bible: Bibel
+  breadcrumbs:
+    bible: Schrift
     VZ: Altes Testament
     NZ: Neues Testament
     articles: Artikel

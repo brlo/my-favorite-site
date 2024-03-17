@@ -60,11 +60,11 @@ class VersesController < ApplicationController
       @canonical_url = build_canonical_url("/#{@book_code}/#{@chapter}/")
 
       # ХЛЕБНЫЕ КРОШКИ
-      @breadcrumbs = [::I18n.t('tags.bible')]
+      @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
       if ::BOOKS[@book_code][:zavet] == 1
-        @breadcrumbs.push(::I18n.t('tags.VZ'))
+        @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
       else
-        @breadcrumbs.push(::I18n.t('tags.NZ'))
+        @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
       end
 
       # META-description
@@ -98,11 +98,11 @@ class VersesController < ApplicationController
       ::I18n.t("books.mid.#{@book_code}") +
       ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
       " #{@chapter}"
-    @breadcrumbs = [::I18n.t('tags.bible')]
+    @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
     if @verses.first.z == 1
-      @breadcrumbs.push(::I18n.t('tags.VZ'))
+      @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
     else
-      @breadcrumbs.push(::I18n.t('tags.NZ'))
+      @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
     end
 
     render 'chapter_ajax', layout: false

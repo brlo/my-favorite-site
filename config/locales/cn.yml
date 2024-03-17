@@ -34,6 +34,7 @@ cn:
   bible: 圣经
   about_site: '关于'
   about_site_description: '圣经学习网站。 与开发商联系。'
+  about_site_short: '有关《圣经》和东正教使徒传统的网站'
   about_text: 该遗址于 2022 年在东正教牧师的祝福下在塞瓦斯托波尔市创建。
   about_news: 圣经乐克斯新闻
   about_contact: 联系开发商
@@ -111,7 +112,7 @@ cn:
     click_on_verse__and: 和
     search_was_return_zero_results: 什么都没找到。 检查是否选择了错误的文本语言？
 
-  tags:
+  breadcrumbs:
     bible: 圣经
     VZ: 旧约
     NZ: 新约

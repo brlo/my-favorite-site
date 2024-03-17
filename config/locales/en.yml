@@ -34,6 +34,7 @@ en:
   bible: Bible
   about_site: 'About'
   about_site_description: 'Website for Bible study. Contacts with developer.'
+  about_site_short: 'Website about the Holy Scripture (Bible) and the Apostolic Tradition of the Orthodox Church'
   about_text: The site was created in 2022 in the city of Sevastopol with blessing of an orthodox priest.
   about_news: Bibleox news
   about_contact: Contact with developer
@@ -111,8 +112,8 @@ en:
     click_on_verse__and: and
     search_was_return_zero_results: Nothing found. Check if the wrong text language is selected?
 
-  tags:
-    bible: Bible
+  breadcrumbs:
+    bible: Scripture
     VZ: Old Testament
     NZ: New Testament
     articles: Articles

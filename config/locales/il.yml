@@ -34,6 +34,7 @@ il:
   bible: כִּתבֵי הַקוֹדֶשׁ
   about_site: 'על אודות'
   about_site_description: 'אתר ללימוד תנ"ך. אנשי קשר עם מפתח.'
+  about_site_short: 'אתר אינטרנט על כתבי הקודש (התנ"ך) והמסורת השליחים של הכנסייה האורתודוקסית'
   about_text: האתר נוצר בשנת 2022 בעיר סבסטופול בברכת כומר אורתודוקסי.
   about_news: חדשות ביבלוקס
   about_contact: יצירת קשר עם היזם
@@ -111,7 +112,7 @@ il:
     click_on_verse__and: ו
     search_was_return_zero_results: שום דבר לא נמצא. בדוק אם נבחרה שפת טקסט שגויה?
 
-  tags:
+  breadcrumbs:
     bible: כִּתבֵי הַקוֹדֶשׁ
     VZ: הברית הישנה
     NZ: עדות חדשה

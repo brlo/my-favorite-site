@@ -142,6 +142,7 @@
         </select>
       </dd>
       <dd>2022-<%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>
+      <dd><%= ::I18n.t('about_site_short') %></dd>
       <dd><a title='<%= day_visit() %>' href='<%= my_link_to('/about/') %>'><%= I18n.t('about_site') %></a></dd>
     </footer>
 

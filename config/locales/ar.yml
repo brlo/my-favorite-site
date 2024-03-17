@@ -34,6 +34,7 @@ ar:
   bible: الكتاب المقدس
   about_site: 'عن'
   about_site_description: 'موقع لدراسة الكتاب المقدس. اتصالات مع المطور.'
+  about_site_short: 'موقع عن الكتاب المقدس (الكتاب المقدس) والتقليد الرسولي للكنيسة الأرثوذكسية'
   about_text: تم إنشاء الموقع عام 2022 في مدينة سيفاستوبول بمباركة كاهن أرثوذكسي.
   about_news: Bibleox أخبار
   about_contact: الاتصال مع المطور
@@ -111,7 +112,7 @@ ar:
     click_on_verse__and: و
     search_was_return_zero_results: لم يتم العثور على شيء. تحقق مما إذا تم تحديد لغة النص الخاطئة؟
 
-  tags:
+  breadcrumbs:
     bible: الكتاب المقدس
     VZ: العهد القديم
     NZ: العهد الجديد
