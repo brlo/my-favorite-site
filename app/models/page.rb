@@ -530,9 +530,14 @@ class Page < ApplicationMongoRecord
   # Перед удалением обязательно
   def img_preview_file_path
     page_img_path = "/s/page_previews/#{self.id.to_s}.jpeg"
-    if ::File.exists?("public/#{page_img_path}")
+    if self.cover?
+      # Превьюшка статьи
+      self.cover.large.url
+    elsif ::File.exists?("public/#{page_img_path}")
+      # Или автоматически сгенерированная картинка (название статьи на зелёном фоне)
       page_img_path
     else
+      # Или логотип сайта
       "/favicons/bibleox-for-social-#{ ::I18n.locale == :ru ? 'ru' : 'en' }.png"
     end
   end
