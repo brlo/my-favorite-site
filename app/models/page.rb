@@ -527,13 +527,10 @@ class Page < ApplicationMongoRecord
     doc.at_css('body').inner_html.gsub("\n", "")
   end
 
-  # Перед удалением обязательно
+  # TODO: Перед удалением обязательно удали и картинку
   def img_preview_file_path
     page_img_path = "/s/page_previews/#{self.id.to_s}.jpeg"
-    if self.cover?
-      # Превьюшка статьи
-      self.cover.large.url
-    elsif ::File.exists?("public/#{page_img_path}")
+    if ::File.exists?("public/#{page_img_path}")
       # Или автоматически сгенерированная картинка (название статьи на зелёном фоне)
       page_img_path
     else
