@@ -95,10 +95,6 @@ header nav > a#settings-btn {
   border-bottom: 10px solid #c0cda1;
 }
 
-.menu-books.bible-clicked {
-  top: 6px;
-}
-
 .menu-books #filter-books,
 .menu-books #filter-author-books {
   display: block;
@@ -331,6 +327,7 @@ tr:hover td.verse-line:before {
 .img-header-wrap {
   position: relative;
   overflow: hidden;
+  height: 400px;
 }
 
 .img-header-wrap .blured {
