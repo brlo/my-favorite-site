@@ -336,8 +336,10 @@ tr:hover td.verse-line:before {
 .img-header-wrap .blured {
   position: absolute;
   width: 102%;
-  background-color: #222;
+  background-color: #333;
 }
+.night-mode .img-header-wrap .blured { background-color: #222; }
+
 .img-header-wrap .blured img {
   filter: blur(15px);
   width: 100%;
