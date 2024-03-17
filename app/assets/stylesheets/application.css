@@ -333,12 +333,17 @@ tr:hover td.verse-line:before {
   overflow: hidden;
 }
 
-.img-header-wrap img.blured {
-  filter: blur(15px);
+.img-header-wrap .blured {
   position: absolute;
   top: -15px;
   width: 100%;
+  margin: 0 -20px;
 }
+.img-header-wrap .blured img {
+  filter: blur(15px);
+  width: 100%;
+}
+
 .img-header-wrap .content {
   padding: 0 10px;
   margin: 0;

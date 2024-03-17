@@ -22,7 +22,9 @@
 <% if @page.cover? %>
   <% content_for(:img_header) do %>
   <div class='flex-wrap img-header-wrap'>
-    <img class='blured' src="<%= @page.cover.large.url %>" draggable='false'/>
+    <div class='blured'>
+      <img src="<%= @page.cover.large.url %>" draggable='false'/>
+    </div>
     <div class="content">
       <div class='img-header'>
         <img src="<%= @page.cover.large.url %>" draggable='false'/>
