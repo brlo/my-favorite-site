@@ -327,7 +327,6 @@ tr:hover td.verse-line:before {
 .img-header-wrap {
   position: relative;
   overflow: hidden;
-  height: 400px;
 }
 
 .img-header-wrap .blured {
