@@ -1,20 +1,21 @@
 <% if @page.present? %>
-  <% content_for(:head) do %>
-      <% og_image = @page.cover? ? @page.cover.large.url : my_res_link_to(@page.img_preview_file_path) %>
-      <meta property="og:image" content="<%= og_image %>"/>
-      <meta property="og:image:width" content="1200"/>
-      <meta property="og:image:height" content="630"/>
-      <meta property="og:type" content="book"/>
-      <% @meta_book_tags&.each do |tag| %>
-      <meta property="og:book:tag" content="<%= tag %>"/>
-      <% end %>
-      <meta name="keywords" content="<%= @meta_book_tags&.join(', ') %>" />
-      <meta property="og:url" content= "<%= @canonical_url %>" />
-      <meta property="og:locale" content= "<%= current_lang() %>" />
-      <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
-  <% end %>
 
   <% cache @page do %>
+    <% content_for(:head) do %>
+        <% og_image = @page.cover? ? @page.cover.large.url : my_res_link_to(@page.img_preview_file_path) %>
+        <meta property="og:image" content="<%= og_image %>"/>
+        <meta property="og:image:width" content="1200"/>
+        <meta property="og:image:height" content="630"/>
+        <meta property="og:type" content="book"/>
+        <% @meta_book_tags&.each do |tag| %>
+        <meta property="og:book:tag" content="<%= tag %>"/>
+        <% end %>
+        <meta name="keywords" content="<%= @meta_book_tags&.join(', ') %>" />
+        <meta property="og:url" content= "<%= @canonical_url %>" />
+        <meta property="og:locale" content= "<%= current_lang() %>" />
+        <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
+    <% end %>
+
     <section id="page-content" class="looks-like-page" itemscope="" itemtype="http://schema.org/Article">
       <%= render(partial: 'pages/chapters') %>
       <%= render(partial: 'pages/text_bar') %>
@@ -82,11 +83,11 @@
         </div>
       </div>
     </section>
-  <% end %>
 
-  <% content_for(:end_of_page) do %>
-    <%= render(partial: 'verses/select_bar') %>
-    <%= javascript_include_tag "index", media: "all" %>
+    <% content_for(:end_of_page) do %>
+      <%= render(partial: 'verses/select_bar') %>
+      <%= javascript_include_tag "index", media: "all" %>
+    <% end %>
   <% end %>
 
 <% else %>
