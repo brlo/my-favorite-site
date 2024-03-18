@@ -33,8 +33,8 @@ class VersesController < ApplicationController
       @book_code ||= params[:book_code] || 'gen'
       @chapter = (params[:chapter] || 1).to_i
 
-      # ключ для кэширования
-      @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
+      # # ключ для кэширования
+      # @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
 
       @is_psalm = @book_code == 'ps'
 
@@ -92,8 +92,8 @@ class VersesController < ApplicationController
     @book_code ||= params[:book_code] || 'gen'
     @chapter = (params[:chapter] || 1).to_i
 
-    # ключ для кэширования
-    @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
+    # # ключ для кэширования
+    # @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
 
     @is_psalm = @book_code == 'ps'
 

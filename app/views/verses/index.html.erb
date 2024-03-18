@@ -12,16 +12,14 @@
     <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
 <% end %>
 
-<% cache @bible_path do %>
-  <section id='chapter-content' itemscope itemtype="http://schema.org/Article">
-    <%= render(partial: 'verses/chapters') %>
-    <%= render(partial: 'verses/text_bar') %>
-    <%= render(partial: 'verses/audio_player') %>
-    <div id='bib-text-area'>
-      <%= render(partial: 'verses/text') %>
-    </div>
-  </section>
-<% end %>
+<section id='chapter-content' itemscope itemtype="http://schema.org/Article">
+  <%= render(partial: 'verses/chapters') %>
+  <%= render(partial: 'verses/text_bar') %>
+  <%= render(partial: 'verses/audio_player') %>
+  <div id='bib-text-area'>
+    <%= render(partial: 'verses/text') %>
+  </div>
+</section>
 
 <% content_for(:end_of_page) do %>
   <%= render(partial: 'verses/select_bar') %>
