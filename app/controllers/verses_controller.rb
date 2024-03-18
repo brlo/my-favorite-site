@@ -34,54 +34,56 @@ class VersesController < ApplicationController
       @chapter = (params[:chapter] || 1).to_i
 
       # # ключ для кэширования
-      # @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
+      @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
 
-      @is_psalm = @book_code == 'ps'
+      if stale?(last_modified: ::Time.now.beginning_of_week.utc, etag: @bible_path)
+        @is_psalm = @book_code == 'ps'
 
-      # AUDIO
-      audio_prefix = "/s/audio/bib/#{@content_lang}/"
-      audio_file = "#{audio_prefix}#{@book_code}/#{@book_code}#{ @chapter }.mp3"
-      if ::File.exists?("#{Rails.root}/public#{ audio_file }")
-        # во view сохраним только префикс, а ссылку будем собирать при запуске аудио
-        @prefix_for_audio_link = audio_prefix
-      end
+        # AUDIO
+        audio_prefix = "/s/audio/bib/#{@content_lang}/"
+        audio_file = "#{audio_prefix}#{@book_code}/#{@book_code}#{ @chapter }.mp3"
+        if ::File.exists?("#{Rails.root}/public#{ audio_file }")
+          # во view сохраним только префикс, а ссылку будем собирать при запуске аудио
+          @prefix_for_audio_link = audio_prefix
+        end
 
-      # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
-      @verses =
-      ::Mongo::QueryCache.cache do
-        ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
-      end
-      # TODO: найти также все статьи для этой главы и встроить ссылки рядом со стихами
+        # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
+        @verses =
+        ::Mongo::QueryCache.cache do
+          ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+        end
+        # TODO: найти также все статьи для этой главы и встроить ссылки рядом со стихами
 
-      if @content_lang == 'gr-ru' # gr-lxx-byz
-        @dict = preload_dict_for_verses(@verses)
-      end
+        if @content_lang == 'gr-ru' # gr-lxx-byz
+          @dict = preload_dict_for_verses(@verses)
+        end
 
-      @current_menu_item = 'biblia'
-      @page_title =
-        ::I18n.t("books.mid.#{@book_code}") +
-        ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
-        " #{@chapter} / " +
-        ::I18n.t('bible')
-      @meta_description = ::I18n.t("books.full.#{@book_code}")
-      @canonical_url = build_canonical_url("/#{@book_code}/#{@chapter}/")
+        @current_menu_item = 'biblia'
+        @page_title =
+          ::I18n.t("books.mid.#{@book_code}") +
+          ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
+          " #{@chapter} / " +
+          ::I18n.t('bible')
+        @meta_description = ::I18n.t("books.full.#{@book_code}")
+        @canonical_url = build_canonical_url("/#{@book_code}/#{@chapter}/")
 
-      # ХЛЕБНЫЕ КРОШКИ
-      @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
-      if ::BOOKS[@book_code][:zavet] == 1
-        @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
-      else
-        @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
-      end
+        # ХЛЕБНЫЕ КРОШКИ
+        @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
+        if ::BOOKS[@book_code][:zavet] == 1
+          @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
+        else
+          @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
+        end
 
-      # META-description
-      if @verses.any?
-        @meta_description += ': ' + @verses.first(4).pluck(:text).join(' ')[0..200]
-      end
-      @meta_book_tags = [*@breadcrumbs, ::I18n.t("books.mid.#{@book_code}")]
+        # META-description
+        if @verses.any?
+          @meta_description += ': ' + @verses.first(4).pluck(:text).join(' ')[0..200]
+        end
+        @meta_book_tags = [*@breadcrumbs, ::I18n.t("books.mid.#{@book_code}")]
 
-      respond_to do |format|
-        format.html { render 'index' }
+        respond_to do |format|
+          format.html { render 'index' }
+        end
       end
     end
   end
@@ -93,33 +95,35 @@ class VersesController < ApplicationController
     @chapter = (params[:chapter] || 1).to_i
 
     # # ключ для кэширования
-    # @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
+    @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
 
-    @is_psalm = @book_code == 'ps'
+    if stale?(last_modified: ::Time.now.beginning_of_week.utc, etag: @bible_path)
+      @is_psalm = @book_code == 'ps'
 
-    # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
-    @verses =
-    ::Mongo::QueryCache.cache do
-      ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+      # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
+      @verses =
+      ::Mongo::QueryCache.cache do
+        ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+      end
+
+      if @content_lang == 'gr-ru' # gr-lxx-byz
+        @dict = preload_dict_for_verses(@verses)
+      end
+
+      @current_menu_item = 'biblia'
+      @page_title =
+        ::I18n.t("books.mid.#{@book_code}") +
+        ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
+        " #{@chapter}"
+      @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
+      if @verses.first.z == 1
+        @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
+      else
+        @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
+      end
+
+      render 'chapter_ajax', layout: false
     end
-
-    if @content_lang == 'gr-ru' # gr-lxx-byz
-      @dict = preload_dict_for_verses(@verses)
-    end
-
-    @current_menu_item = 'biblia'
-    @page_title =
-      ::I18n.t("books.mid.#{@book_code}") +
-      ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
-      " #{@chapter}"
-    @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
-    if @verses.first.z == 1
-      @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
-    else
-      @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
-    end
-
-    render 'chapter_ajax', layout: false
   end
 
   def quotes
