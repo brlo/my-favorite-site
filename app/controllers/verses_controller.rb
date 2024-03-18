@@ -33,6 +33,9 @@ class VersesController < ApplicationController
       @book_code ||= params[:book_code] || 'gen'
       @chapter = (params[:chapter] || 1).to_i
 
+      # ключ для кэширования
+      @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
+
       @is_psalm = @book_code == 'ps'
 
       # AUDIO
@@ -43,7 +46,11 @@ class VersesController < ApplicationController
         @prefix_for_audio_link = audio_prefix
       end
 
-      @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+      # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
+      @verses =
+      ::Mongo::QueryCache.cache do
+        ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+      end
       # TODO: найти также все статьи для этой главы и встроить ссылки рядом со стихами
 
       if @content_lang == 'gr-ru' # gr-lxx-byz
@@ -85,9 +92,16 @@ class VersesController < ApplicationController
     @book_code ||= params[:book_code] || 'gen'
     @chapter = (params[:chapter] || 1).to_i
 
+    # ключ для кэширования
+    @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
+
     @is_psalm = @book_code == 'ps'
 
-    @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+    # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
+    @verses =
+    ::Mongo::QueryCache.cache do
+      ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+    end
 
     if @content_lang == 'gr-ru' # gr-lxx-byz
       @dict = preload_dict_for_verses(@verses)

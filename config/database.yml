@@ -19,8 +19,10 @@ default: &default
 
 development:
   <<: *default
+  database: db/bib-il-dhnt85.SQLite3
+  # database: db/Dvor.dictionary.SQLite3 -- словарь Дворецкого (но в итоге использовали не его, а от Гурина .abs)
+  # database: db/bib-il-dhnt85.SQLite3
   # database: db/bib-arab-avd.SQLite3
-  database: db/Dvor.dictionary.SQLite3
   # database: db/bib-ch-ccbs.SQLite3
   # database: db/bib-ge-sch51.SQLite3
   # database: db/bib-jap-new-interconf.SQLite3
@@ -36,7 +38,8 @@ development:
 # ge-sch51 - женевское биб общество SCH 1951 Schlachter Genfer Bibelgesellschaft
 # cn-ccbs - так до конца не разобрался чьё это, но Царство Божие хотя бы внутри, а не среди
 # arab-avd - проверил ключевые места в этом и других переводах (jp, ge, cn, arab), они наиболее приемлемы по сравнению с остальными
-
+# il - используется Ленингрдский кодекс OSB для ветхого завета и
+#      лютеранский перевод нового завета bib-il-dhnt85
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.

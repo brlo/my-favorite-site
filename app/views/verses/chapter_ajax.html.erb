@@ -1,2 +1,3 @@
-<%= render(partial: 'verses/text', formats: [:html]) %>
-
+<% cache @bible_path do %>
+  <%= render(partial: 'verses/text', formats: [:html]) %>
+<% end %>

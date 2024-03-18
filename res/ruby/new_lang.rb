@@ -7,10 +7,10 @@
 
 sanitizer = Rails::Html::SafeListSanitizer.new
 books_id_code = ::BOOKS.map { |code, data| [data[:id], code] }.to_h
-lang = 'cn-ccbs' # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ПОПРАВИТЬ ТОЛЬКО ТУТ
+lang = 'heb-osm' # <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ПОПРАВИТЬ ТОЛЬКО ТУТ
 ::ImportVerse.all.order('verses.id').find_each do |s|
   # только для иврита пропускаем. Там вконце несколько строк пустых.
-  s.text = '.' if s.text.blank?
+  # s.text = '.' if s.text.blank?
 
   book = books_id_code[s.book_number.to_i]
   book_info = ::BOOKS[book]

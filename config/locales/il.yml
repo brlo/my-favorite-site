@@ -218,156 +218,74 @@ il:
       prs: pSolom
       prsir: pSir
 
-      mf: Mt
-      mk: Mr
-      lk: Lu
-      in: Joh
-      act: Ac
-      rim: Ro
-      1kor: 1Co
-      2kor: 2Co
-      gal: Ga
-      ef: Eph
-      fil: Php
-      kol: Col
-      1sol: 1Th
-      2sol: 2Th
-      1tim: 1Ti
-      2tim: 2Ti
-      tit: Tit
-      fm: Phm
-      evr: Heb
-      iak: Jas
-      1pet: 1Pe
-      2pet: 2Pe
-      1in: 1Jo
-      2in: 2Jn
-      3in: 3Jo
-      iud: Jude
-      otkr: Rev
+      mf: מתי
+      mk: מרק
+      lk: לוק
+      in: יוח
+      act: מעש
+      rim: הרמ
+      1kor: א"קר
+      2kor: ב"קר
+      gal: גלט
+      ef: אפס
+      fil: ילפ
+      kol: קול
+      1sol: א"תס
+      2sol: ב"תס
+      1tim: א"טמ
+      2tim: ב"טמ
+      tit: טיט
+      fm: פלמ
+      evr: עבר
+      iak: יעק
+      1pet: א"פט
+      2pet: ב"פט
+      1in: א"יוח
+      2in: ב"יוח
+      3in: ג"יוח
+      iud: יהד
+      otkr: חזן
 
     mid:
-      gen: בראשית
-      ish: שמות
-      lev: ויקרא
-      chis: במדבר
-      vtor: דברים
-      nav: יהושע
-      sud: שופטים
-      ruf: רות
-      1ts: שמואל א
-      2ts: שמואל ב
-      3ts: מלכים א
-      4ts: מלכים ב
-      1par: דברי הימים א
-      2par: דברי הימים ב
-      ezd: עזרא
-      neem: נחמיה
-      esf: אסתר
-      iov: איוב
-      ps: תהלים
-      pr: משלי
-      ekl: קהלת
-      pp: שיר השירים
-      is: ישעיהו
-      ier: ירמיהו
-      pier: איכה
-      iez: יחזקאל
-      dan: דניאל
-      os: הושע
-      iol: יואל
-      am: עמוס
-      av: עבדיה
-      ion: יונה
-      mih: מיכה
-      naum: נחום
-      avm: חבקוק
-      sof: צפניה
-      ag: חגי
-      zah: זכריה
-      mal: מלאכי
-
-      # книги которых обычно нет в MyBible
-      1mak: 1 Maccabees
-      2mak: 2 Maccabees
-      3mak: 3 Maccabees
-      3ezd: 3 Esdras
-      pos: Letter of Jeremiah
-      var: Baruch
-      2ezd: II Esdras
-      tov: Tobit
-      iudf: Judith
-      prs: Wisdom
-      prsir: Sirah
-
-      mf: Matthew
-      mk: Mark
-      lk: Luke
-      in: John
-      act: Acts
-      rim: Romans
-      1kor: I Corinthians
-      2kor: II Corinthians
-      gal: Galatians
-      ef: Ephesians
-      fil: Philippians
-      kol: Сolossians
-      1sol: I Thessalonians
-      2sol: II Thessalonians
-      1tim: I Timothy
-      2tim: II Timothy
-      tit: Titus
-      fm: Philemon
-      evr: Hebrews
-      iak: James
-      1pet: I Peter
-      2pet: II Peter
-      1in: I John
-      2in: II John
-      3in: III John
-      iud: Jude
-      otkr: Revelation
-
-    full:
-      gen: בראשית
-      ish: שמות
-      lev: ויקרא
-      chis: במדבר
-      vtor: דברים
-      nav: יהושע
-      sud: שופטים
-      ruf: רות
-      1ts: שמואל א
-      2ts: שמואל ב
-      3ts: מלכים א
-      4ts: מלכים ב
-      1par: דברי הימים א
-      2par: דברי הימים ב
-      ezd: עזרא
-      neem: נחמיה
-      esf: אסתר
-      iov: איוב
-      ps: תהלים
-      pr: משלי
-      ekl: קהלת
-      pp: שיר השירים
-      is: ישעיהו
-      ier: ירמיהו
-      pier: איכה
-      iez: יחזקאל
-      dan: דניאל
-      os: הושע
-      iol: יואל
-      am: עמוס
-      av: עבדיה
-      ion: יונה
-      mih: מיכה
-      naum: נחום
-      avm: חבקוק
-      sof: צפניה
-      ag: חגי
-      zah: זכריה
-      mal: מלאכי
+      gen: בְּרֵאשִׁית
+      ish: שְׁמוֹת
+      lev: וַיִּקְרָא
+      chis: בְּמִדְבַּר
+      vtor: דְּבָרִים
+      nav: יְהוֹשֻׁע
+      sud: שׁוֹפְטִים
+      ruf: רוּת
+      1ts: שְׁמוּאֵל א
+      2ts: שְׁמוּאֵל ב
+      3ts: מְלָכִים א
+      4ts: מְלָכִים ב
+      1par: דִּבְרֵי הַיָּמִים א
+      2par: דִּבְרֵי הַיָּמִים ב
+      ezd: עֶזְרָא
+      neem: נְחֶמְיָה
+      esf: אֶסְתֵּר
+      iov: אִיּוֹב
+      ps: תְּהִלִים
+      pr: מִשְׁלֵי
+      ekl: קֹהֶלֶת
+      pp: שִׁיר הַשִּׁירִים
+      is: יְשַׁעְיָהוּ
+      ier: יִרְמְיָהוּ
+      pier: אֵיכָה
+      iez: יְחֶזְקֵאל
+      dan: דָּנִיֵּאל
+      os: הוֹשֵׁע
+      iol: יוֹאֵל
+      am: עָמוֹס
+      av: עֹבַדְיָה
+      ion: יוֹנָה
+      mih: מִיכָה
+      naum: נַחוּם
+      avm: חֲבַקּוּק
+      sof: צְפַנְיָה
+      ag: חַגַּי
+      zah: זְכַרְיָה
+      mal: מַלְאָכִי
 
       # книги которых обычно нет в MyBible
       1mak: '1Mac'
@@ -382,33 +300,115 @@ il:
       prs: 'P. Solom'
       prsir: 'P. Sir'
 
-      mf: The Gospel According to MATTHEW
-      mk: The Gospel According to MARK
-      lk: The Gospel According to LUKE
-      in: The Gospel According to JOHN
-      act: THE ACTS of the Apostles
-      rim: The Epistle of Paul the Apostle to the ROMANS
-      1kor: The First Epistle of Paul the Apostle to the CORINTHIANS
-      2kor: The Second Epistle of Paul the Apostle to the CORINTHIANS
-      gal: The Epistle of Paul the Apostle to the GALATIANS
-      ef: The Epistle of Paul the Apostle to the EPHESIANS
-      fil: The Epistle of Paul the Apostle to the PHILIPPIANS
-      kol: The Epistle of Paul the Apostle to the COLOSSIANS
-      1sol: The First Epistle of Paul the Apostle to the THESSALONIANS
-      2sol: The Second Epistle of Paul the Apostle to the THESSALONIANS
-      1tim: The First Epistle of Paul the Apostle to TIMOTHY
-      2tim: The Second Epistle of Paul the Apostle to TIMOTHY
-      tit: The Epistle of Paul the Apostle to TITUS
-      fm: The Epistle of Paul the Apostle to PHILEMON
-      evr: The Epistle to the HEBREWS
-      iak: The Epistle of JAMES
-      1pet: The First Epistle of PETER
-      2pet: The Second Epistle of PETER
-      1in: The First Epistle of JOHN
-      2in: The Second Epistle of JOHN
-      3in: The Third Epistle of JOHN
-      iud: The Epistle of JUDE
-      otkr: THE REVELATION of Jesus Christ
+      mf: הבשורה על-פי מתי
+      mk: הבשורה על-פי מרקוס
+      lk: הבשורה על-פי לוקס
+      in: הבשורה על-פי יוחנן
+      act: מעשי השליחים
+      rim: אל-הרומיים
+      1kor: הראשונה אל-הקורנתיים
+      2kor: השנית אל-הקורנתיים
+      gal: אל-הגלטיים
+      ef: אל-האפסיים
+      fil: אל-הפילפיים
+      kol: אל-הקולסים
+      1sol: הראשונה אל-התסלוניקים
+      2sol: השנית אל-התסלוניקים
+      1tim: הראשונה אל-טימותיוס
+      2tim: השנית אל-טימותיוס
+      tit: אל-טיטוס
+      fm: אל-פילימון
+      evr: אגרת אל-העברים
+      iak: אגרת יעקוב
+      1pet: האגרת הראשונה לפטרוס השליח
+      2pet: האגרת השנית לפטרוס השליח
+      1in: האגרת הראשונה ליוחנן השליח
+      2in: האגרת השנית ליוחנן השליח
+      3in: האגרת השלישית ליוחנן השליח
+      iud: אגרת יהודה
+      otkr: חזון יוחנן
+
+    full:
+      gen: בְּרֵאשִׁית
+      ish: שְׁמוֹת
+      lev: וַיִּקְרָא
+      chis: בְּמִדְבַּר
+      vtor: דְּבָרִים
+      nav: יְהוֹשֻׁע
+      sud: שׁוֹפְטִים
+      ruf: רוּת
+      1ts: שְׁמוּאֵל א
+      2ts: שְׁמוּאֵל ב
+      3ts: מְלָכִים א
+      4ts: מְלָכִים ב
+      1par: דִּבְרֵי הַיָּמִים א
+      2par: דִּבְרֵי הַיָּמִים ב
+      ezd: עֶזְרָא
+      neem: נְחֶמְיָה
+      esf: אֶסְתֵּר
+      iov: אִיּוֹב
+      ps: תְּהִלִים
+      pr: מִשְׁלֵי
+      ekl: קֹהֶלֶת
+      pp: שִׁיר הַשִּׁירִים
+      is: יְשַׁעְיָהוּ
+      ier: יִרְמְיָהוּ
+      pier: אֵיכָה
+      iez: יְחֶזְקֵאל
+      dan: דָּנִיֵּאל
+      os: הוֹשֵׁע
+      iol: יוֹאֵל
+      am: עָמוֹס
+      av: עֹבַדְיָה
+      ion: יוֹנָה
+      mih: מִיכָה
+      naum: נַחוּם
+      avm: חֲבַקּוּק
+      sof: צְפַנְיָה
+      ag: חַגַּי
+      zah: זְכַרְיָה
+      mal: מַלְאָכִי
+
+      # книги которых обычно нет в MyBible
+      1mak: '1Mac'
+      2mak: '2Mac'
+      3mak: '3Mac'
+      3ezd: 'The Third Book of EZRA'
+      pos: Letter of JEREMIAH
+      var: The Book of BARUCH
+      2ezd: 'The Second Book of EZRA'
+      tov: 'Tov'
+      iudf: 'Judf'
+      prs: 'P. Solom'
+      prsir: 'P. Sir'
+
+      mf: הבשורה על-פי מתי
+      mk: הבשורה על-פי מרקוס
+      lk: הבשורה על-פי לוקס
+      in: הבשורה על-פי יוחנן
+      act: מעשי השליחים
+      rim: אל-הרומיים
+      1kor: הראשונה אל-הקורנתיים
+      2kor: השנית אל-הקורנתיים
+      gal: אל-הגלטיים
+      ef: אל-האפסיים
+      fil: אל-הפילפיים
+      kol: אל-הקולסים
+      1sol: הראשונה אל-התסלוניקים
+      2sol: השנית אל-התסלוניקים
+      1tim: הראשונה אל-טימותיוס
+      2tim: השנית אל-טימותיוס
+      tit: אל-טיטוס
+      fm: אל-פילימון
+      evr: אגרת אל-העברים
+      iak: אגרת יעקוב
+      1pet: האגרת הראשונה לפטרוס השליח
+      2pet: האגרת השנית לפטרוס השליח
+      1in: האגרת הראשונה ליוחנן השליח
+      2in: האגרת השנית ליוחנן השליח
+      3in: האגרת השלישית ליוחנן השליח
+      iud: אגרת יהודה
+      otkr: חזון יוחנן
 
   errors:
     no_translation_for_this_book: 'אין תרגום כזה לספר הזה'

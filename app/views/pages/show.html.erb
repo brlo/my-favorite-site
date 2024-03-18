@@ -14,73 +14,75 @@
       <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
   <% end %>
 
-  <section id="page-content" class="looks-like-page" itemscope="" itemtype="http://schema.org/Article">
-    <%= render(partial: 'pages/chapters') %>
-    <%= render(partial: 'pages/text_bar') %>
-    <%= render(partial: 'pages/audio_player') %>
+  <% cache @page do %>
+    <section id="page-content" class="looks-like-page" itemscope="" itemtype="http://schema.org/Article">
+      <%= render(partial: 'pages/chapters') %>
+      <%= render(partial: 'pages/text_bar') %>
+      <%= render(partial: 'pages/audio_player') %>
 
-    <% if @page.is_page_verses? && @verses.present? %>
-      <%= render(partial: 'pages/text') %>
-    <% else %>
-      <article id='page-body' itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
-        <% if @page.body_menu.present? %>
-          <%= render(partial: 'pages/body_menu') %>
-        <% end %>
-
-        <% if @page.body_rendered.present? %>
-          <%= @page.body_rendered.html_safe %>
-        <% else %>
-          <%= @page.body.to_s.html_safe %>
-        <% end %>
-      </article>
-    <% end %>
-
-    <% if @page.references.present? %>
-      <section id='page-references' class="looks-like-page">
-        <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
-        <div id="page-references-text">
-          <% if @page.body_rendered.present? %>
-            <%= @page.references_rendered.to_s.html_safe %>
-          <% else %>
-            <%= @page.references.to_s.html_safe %>
+      <% if @page.is_page_verses? && @verses.present? %>
+        <%= render(partial: 'pages/text') %>
+      <% else %>
+        <article id='page-body' itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
+          <% if @page.body_menu.present? %>
+            <%= render(partial: 'pages/body_menu') %>
           <% end %>
-        </div>
-      </section>
-    <% end %>
 
-    <div id='bottom-page-bar'>
-      <div id="visits">
-        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
-          <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-        <%= page_visit(@page) %>
-      </div>
-    </div>
-
-    <div class='notification'>
-      <% if @page.user_id %>
-        <div id="page-author">
-          <%= ::I18n.t('quote_page.author') %>: <%= @author_name %>
-        </div>
-        <% if @editors_names %>
-          <div id="page-editors">
-            <%= ::I18n.t('quote_page.editors') %>: <%= @editors_names.join(', ') %>
-          </div>
-        <% end %>
+          <% if @page.body_rendered.present? %>
+            <%= @page.body_rendered.html_safe %>
+          <% else %>
+            <%= @page.body.to_s.html_safe %>
+          <% end %>
+        </article>
       <% end %>
 
-      <div id="page-edit-telegram">
-        <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox_live'>https://t.me/bibleox_live</a>
+      <% if @page.references.present? %>
+        <section id='page-references' class="looks-like-page">
+          <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
+          <div id="page-references-text">
+            <% if @page.body_rendered.present? %>
+              <%= @page.references_rendered.to_s.html_safe %>
+            <% else %>
+              <%= @page.references.to_s.html_safe %>
+            <% end %>
+          </div>
+        </section>
+      <% end %>
+
+      <div id='bottom-page-bar'>
+        <div id="visits">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M2.036 12.322a1.012 1.012 0 010-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178z" />
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          </svg>
+          <%= page_visit(@page) %>
+        </div>
       </div>
-      <div id="page-edit">
-        <%= ::I18n.t('quote_page.or_edit_page_by_yourself') %>:
-        <a href="<%= "#{::SETTINGS['admin']['url'] }/pages/#{ @page.id.to_s }/" %>">
-          <%= I18n.t('quote_page.edit_link') %>
-        </a>
+
+      <div class='notification'>
+        <% if @page.user_id %>
+          <div id="page-author">
+            <%= ::I18n.t('quote_page.author') %>: <%= @author_name %>
+          </div>
+          <% if @editors_names %>
+            <div id="page-editors">
+              <%= ::I18n.t('quote_page.editors') %>: <%= @editors_names.join(', ') %>
+            </div>
+          <% end %>
+        <% end %>
+
+        <div id="page-edit-telegram">
+          <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox_live'>https://t.me/bibleox_live</a>
+        </div>
+        <div id="page-edit">
+          <%= ::I18n.t('quote_page.or_edit_page_by_yourself') %>:
+          <a href="<%= "#{::SETTINGS['admin']['url'] }/pages/#{ @page.id.to_s }/" %>">
+            <%= I18n.t('quote_page.edit_link') %>
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  <% end %>
 
   <% content_for(:end_of_page) do %>
     <%= render(partial: 'verses/select_bar') %>
