@@ -1,4 +1,6 @@
 class PagesController < ApplicationController
+  caches_page :show, :about
+
   def main
     redirect_to "/#{I18n.locale}/#{current_bib_lang()}/lk/1/"
   end
@@ -80,7 +82,7 @@ class PagesController < ApplicationController
       # СТРАНИЦА НАЙДЕНА и язык совпадает - РЕНДЕРИМ
       # ########################################################################
 
-      if stale?(last_modified: @page.u_at.utc, etag: @page)
+      # if stale?(last_modified: @page.u_at.utc, etag: @page)
         @canonical_url = build_canonical_url("/w/#{::CGI.escape(@page.path)}")
 
         @author_name = @page.user&.name
@@ -246,7 +248,7 @@ class PagesController < ApplicationController
         if @verses.present? && @verses.count > 1
           @is_disable_chapters = true
         end
-      end
+      # end
     else
       # ########################################################################
       # СТРАНИЦА НЕ НАЙДЕНА но возможно получится найти подходящую к этому языку страницу

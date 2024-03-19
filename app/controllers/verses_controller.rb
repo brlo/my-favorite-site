@@ -1,4 +1,6 @@
 class VersesController < ApplicationController
+  caches_page :index, :chapter_ajax
+
   def index_redirect
     path  = "/#{I18n.locale}/#{current_bib_lang()}"
     path += "/#{params[:book_code]}/#{params[:chapter]}/"
@@ -36,7 +38,7 @@ class VersesController < ApplicationController
       # # ключ для кэширования
       @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
 
-      if stale?(last_modified: ::Time.now.beginning_of_week.utc, etag: @bible_path)
+      # if stale?(last_modified: ::Time.now.beginning_of_week.utc, etag: @bible_path)
         @is_psalm = @book_code == 'ps'
 
         # AUDIO
@@ -84,7 +86,7 @@ class VersesController < ApplicationController
         respond_to do |format|
           format.html { render 'index' }
         end
-      end
+      # end
     end
   end
 
@@ -97,7 +99,7 @@ class VersesController < ApplicationController
     # # ключ для кэширования
     @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
 
-    if stale?(last_modified: ::Time.now.beginning_of_week.utc, etag: @bible_path)
+    # if stale?(last_modified: ::Time.now.beginning_of_week.utc, etag: @bible_path)
       @is_psalm = @book_code == 'ps'
 
       # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
@@ -123,7 +125,7 @@ class VersesController < ApplicationController
       end
 
       render 'chapter_ajax', layout: false
-    end
+    # end
   end
 
   def quotes

@@ -71,6 +71,7 @@ module Api
 
     def update
       # set_page()
+      clear_page_cache()
 
       # добавим редактора статьи
       @page.add_editor(::Current.user)
@@ -92,6 +93,7 @@ module Api
 
     def cover
       set_page()
+      clear_page_cache()
       @page.cover = params[:file]
       # u.cover.url # => '/url/to/file.png'
       # u.cover.current_path # => 'path/to/file.png'
@@ -105,6 +107,8 @@ module Api
 
     def destroy
       set_page()
+      clear_page_cache()
+
       if @page.update(is_deleted: true)
         render :show, status: :ok
       else
@@ -114,6 +118,8 @@ module Api
 
     def restore
       set_page()
+      clear_page_cache()
+
       if @page.update(is_deleted: false)
         render :show, status: :ok
       else
@@ -185,6 +191,12 @@ module Api
       # удалять может человек с привелегией, или автор с привелегией удалять своё
       ability?('pages_destroy') ||
       (ability?('pages_self_destroy') { @page&.user_id == ::Current.user.id })
+    end
+
+    def clear_page_cache
+      I18n.available_locales.each { |l|
+        expire_page("/#{l}/#{@page.lang}/w/#{@page.path}")
+      }
     end
   end
 end

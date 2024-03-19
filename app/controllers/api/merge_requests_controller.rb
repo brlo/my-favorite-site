@@ -90,6 +90,7 @@ module Api
     # POST /merge_requests/:id/merge
     def merge
       set_merge_request()
+      clear_page_cache()
 
       @mr.comment = mr_params[:comment]
 
@@ -187,5 +188,12 @@ module Api
     def reject_by_reject_privs;  ability?('mrs_merge'); end
 
     def reject_by_destroy_privs; ability?('mrs_destroy'); end
+
+    def clear_page_cache
+      @page = @mr.page
+      I18n.available_locales.each { |l|
+        expire_page("/#{l}/#{@page.lang}/w/#{@page.path}")
+      }
+    end
   end
 end

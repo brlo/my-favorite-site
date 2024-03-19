@@ -19,6 +19,8 @@ gem 'greeklish_iso843'
 # для определения браузера, отсеивания ботов
 gem 'browser'
 
+gem 'actionpack-page_caching'
+
 gem 'rack-cors', :require => 'rack/cors'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]

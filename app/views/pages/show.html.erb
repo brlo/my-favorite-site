@@ -22,7 +22,7 @@
     <% if @page.is_page_verses? && @verses.present? %>
       <%= render(partial: 'pages/text') %>
     <% else %>
-      <article id='page-body' itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
+      <article id='page-body' itemprop="articleBody" class="verses">
         <% if @page.body_menu.present? %>
           <%= render(partial: 'pages/body_menu') %>
         <% end %>
@@ -34,6 +34,11 @@
         <% end %>
       </article>
     <% end %>
+    <script>
+      if (document.cookie.includes('textSize=1')) { document.querySelector('article').classList.add('text-small');
+      } else if (document.cookie.includes('textSize=2')) { document.querySelector('article').classList.add('text-medium');
+      } else if (document.cookie.includes('textSize=3')) { document.querySelector('article').classList.add('text-large');}
+    </script>
 
     <% if @page.references.present? %>
       <section id='page-references' class="looks-like-page">

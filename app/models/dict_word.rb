@@ -107,7 +107,8 @@ class DictWord < ApplicationMongoRecord
 
     self.desc = sanitizer.sanitize(
       self.desc.to_s,
-      tags: ::Page::ALLOW_TAGS
+      tags: ::Page::ALLOW_TAGS,
+      attributes: ::Page::ALLOW_ATTRS,
     )
 
     self.u_at = DateTime.now.utc.round

@@ -3,6 +3,7 @@ require 'nokogiri'
 
 class Page < ApplicationMongoRecord
   ALLOW_TAGS = %w(ul ol li h1 h2 h3 h4 blockquote strong b i em strike sup s u hr p a mark img code)
+  ALLOW_ATTRS = %w(id href class start)
 
   PAGE_TYPES = {
     'статья'        => 1,
@@ -406,7 +407,7 @@ class Page < ApplicationMongoRecord
     html_text = sanitizer.sanitize(
       html_text,
       tags: ALLOW_TAGS,
-      attributes: %w(id href class)
+      attributes: ALLOW_ATTRS,
     ).gsub('<p></p>', '')
   end
 

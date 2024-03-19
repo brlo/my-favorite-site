@@ -49,6 +49,8 @@ module Bibleox
 
     config.i18n.default_locale = :ru
 
+    config.action_controller.page_cache_directory = Rails.root.join("public", "cached_pages")
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

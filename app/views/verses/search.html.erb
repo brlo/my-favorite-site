@@ -58,7 +58,12 @@
 <div class='hint'><%= t('search_page.matches') %>: <%= @matches_count %></div>
 <hr>
 
-<article class="text-<%= text_size_from_cookies %>">
+<article>
+  <script>
+    if (document.cookie.includes('textSize=1')) { document.querySelector('article').classList.add('text-small');
+    } else if (document.cookie.includes('textSize=2')) { document.querySelector('article').classList.add('text-medium');
+    } else if (document.cookie.includes('textSize=3')) { document.querySelector('article').classList.add('text-large');}
+  </script>
 <% if @matches_count > 0 %>
 
   <% @verses_json.each do |v| %>

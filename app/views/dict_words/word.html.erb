@@ -47,7 +47,7 @@
                   <div class='multiple'><%= w.translation %></div>
                 <% end %>
                 <% if w.desc.present? %>
-                  <div class='desc'><%= sanitize(w.desc.to_s, tags: ::Page::ALLOW_TAGS).html_safe %></div>
+                  <div class='desc'><%= sanitize(w.desc.to_s, tags: ::Page::ALLOW_TAGS, attributes: ::Page::ALLOW_ATTRS).html_safe %></div>
                 <% end %>
             </div>
           </div>
