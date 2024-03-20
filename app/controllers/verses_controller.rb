@@ -50,10 +50,7 @@ class VersesController < ApplicationController
         end
 
         # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
-        @verses =
-        ::Mongo::QueryCache.cache do
-          ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
-        end
+        @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
         # TODO: найти также все статьи для этой главы и встроить ссылки рядом со стихами
 
         if @content_lang == 'gr-ru' # gr-lxx-byz
@@ -103,10 +100,7 @@ class VersesController < ApplicationController
       @is_psalm = @book_code == 'ps'
 
       # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
-      @verses =
-      ::Mongo::QueryCache.cache do
-        ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
-      end
+      @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
 
       if @content_lang == 'gr-ru' # gr-lxx-byz
         @dict = preload_dict_for_verses(@verses)

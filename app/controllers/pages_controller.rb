@@ -48,10 +48,7 @@ class PagesController < ApplicationController
 
     # Ищем в БД страницу. Клиент мог неправильно ввести регистр, поэтому ищем
     # в спец поле, где всё в нижнем регистре.
-    @page =
-    ::Mongo::QueryCache.cache do
-      ::Page.find_by(path_low: path_downcased)
-    end
+    @page = ::Page.find_by(path_low: path_downcased)
 
     # 404 - документ скрыт или удалён
     if @page
@@ -87,10 +84,7 @@ class PagesController < ApplicationController
 
         @author_name = @page.user&.name
         if @page.editors&.any?
-          @editors_names =
-          ::Mongo::QueryCache.cache do
-            ::User.where(:id.in => @page.editors).pluck(:name)
-          end
+          @editors_names = ::User.where(:id.in => @page.editors).pluck(:name)
         end
 
         # не индексировать, где текст UI не совпадает с текстом контента
@@ -114,26 +108,17 @@ class PagesController < ApplicationController
         end
 
         # Доступные языки статьи
-        @page_langs =
-        ::Mongo::QueryCache.cache do
-          ::Page.where(group_lang_id: @page.group_lang_id).pluck(:lang, :path)
-        end
+        @page_langs = ::Page.where(group_lang_id: @page.group_lang_id).pluck(:lang, :path)
 
         # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
         if @page.parent_id
-          @parent_page =
-          ::Mongo::QueryCache.cache do
-            ::Page.only(:id, :p_id, :title, :path, :page_type).find_by!(id: @page.parent_id)
-          end
+          @parent_page = ::Page.only(:id, :p_id, :title, :path, :page_type).find_by!(id: @page.parent_id)
         end
 
         if @parent_page
           if @parent_page.page_type.to_i == ::Page::PAGE_TYPES['список']
             # МЕНЮ: все элементы меню родителя
-            menus =
-            ::Mongo::QueryCache.cache do
-              ::Menu.where(page_id: @parent_page.id).to_a
-            end
+            menus = ::Menu.where(page_id: @parent_page.id).to_a
             menus_by_id = {}
             menus_by_path = {}
             menus_by_parent_id = ::Hash.new([])
@@ -208,17 +193,11 @@ class PagesController < ApplicationController
         if @parent_page
           # родитель родителя статьи
           if @parent_page.parent_id
-            @pg1 =
-            ::Mongo::QueryCache.cache do
-              ::Page.only(:id, :p_id, :title, :path).find_by!(id: @parent_page.parent_id)
-            end
+            @pg1 = ::Page.only(:id, :p_id, :title, :path).find_by!(id: @parent_page.parent_id)
 
             # родитель родителя родителя статьи
             if @pg1.parent_id
-              @pg2 =
-              ::Mongo::QueryCache.cache do
-                ::Page.only(:id, :p_id, :title, :path).find_by!(id: @pg1.parent_id)
-              end
+              @pg2 = ::Page.only(:id, :p_id, :title, :path).find_by!(id: @pg1.parent_id)
               @breadcrumbs << [@pg2.title, @pg2.path]
             end
 
@@ -256,10 +235,7 @@ class PagesController < ApplicationController
       #
       # Страницу нашли, но язык не тот, поэтому пытаемся отправить
       # пользователя на параллельную страницу с тем языком, который он искал
-      @page =
-      ::Mongo::QueryCache.cache do
-        ::Page.find_by!(group_lang_id: @page.group_lang_id, lang: @content_lang)
-      end
+      @page = ::Page.find_by!(group_lang_id: @page.group_lang_id, lang: @content_lang)
       redirect_to my_page_link_to("/#{::CGI.escape(@page.path)}")
     end
   end
