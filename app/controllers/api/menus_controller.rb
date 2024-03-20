@@ -15,6 +15,7 @@ module Api
       set_page()
       @menu_item = ::Menu.new(menu_item_params)
       @menu_item.page_id = @page.id
+      clear_page_cache()
 
       # begin
         if @menu_item.save
@@ -37,6 +38,7 @@ module Api
       set_page()
       set_menu_item()
       @menu_item.page_id = @page.id
+      clear_page_cache()
 
       # begin
         if @menu_item.update(menu_item_params)
@@ -57,6 +59,7 @@ module Api
     def destroy
       set_page()
       set_menu_item()
+      clear_page_cache()
 
       if @menu_item.childs.exists?
         render json: {errors: ['Нельзя удалить пункт меню, у которого есть подпункты. Сначала нужно удалить подпункты']}, status: 422
@@ -98,12 +101,14 @@ module Api
     end
 
     def clear_page_cache
+      # чистим меню на основной странице (где находится всё меню)
       I18n.available_locales.each { |l|
         expire_page("/#{l}/#{@page.lang}/w/#{@page.path}")
       }
 
+      # чистим соседей по уровню меню, если они есть
       if @menu_item.parent_id.present?
-        ::Menu.where(parent_id: @menu_item.parent_id).each do |menu|
+        ::Menu.where(page_id: @page.id, parent_id: @menu_item.parent_id).each do |menu|
           I18n.available_locales.each { |l|
             expire_page("/#{l}/#{@page.lang}/w/#{menu.path}")
           }
