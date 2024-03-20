@@ -492,7 +492,8 @@ class Page < ApplicationMongoRecord
 
     ol = doc.css('ol').first
     if ol
-      i = 1
+      # указано начальная цифра списка?
+      i = ol['start'].presence || 1
       ol.css('li').each do |li|
         par = li.css('p').first
         if par

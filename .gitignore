@@ -51,6 +51,7 @@ res/docker-data/config/*/*.conf
 /public/assets
 /public/sitemaps
 /public/s
+/public/cached_pages/
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
