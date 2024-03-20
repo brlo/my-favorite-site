@@ -4,16 +4,16 @@ require 'nokogiri'
 class Menu < ApplicationMongoRecord
   include Mongoid::Document
 
-  # родительский пункт меню
+  # родительский элемент меню
   field :parent_id, type: BSON::ObjectId
-  # На какой странице отрисовывается этот список
+  # На какой странице отрисовывается этот список (страница-владелец меню)
   field :page_id, type: BSON::ObjectId
   # основной заголовок
   field :title, type: String
   # path (без него элемент меню будет обычным заголовком, без ссылки)
   field :path, type: String
 
-  # приоритетность статьи
+  # приоритетность ссылки
   field :priority, type: Integer
   # время создания можно получать из _id во так: id.generation_time
   field :c_at, as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }

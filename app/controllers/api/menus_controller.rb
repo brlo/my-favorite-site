@@ -96,5 +96,19 @@ module Api
       ability?('menus_update') #||
       #(ability?('menus_self_update') { @page&.user_id == ::Current.user.id })
     end
+
+    def clear_page_cache
+      I18n.available_locales.each { |l|
+        expire_page("/#{l}/#{@page.lang}/w/#{@page.path}")
+      }
+
+      if @menu_item.parent_id.present?
+        ::Menu.where(parent_id: @menu_item.parent_id).each do |menu|
+          I18n.available_locales.each { |l|
+            expire_page("/#{l}/#{@page.lang}/w/#{menu.path}")
+          }
+        end
+      end
+    end
   end
 end
