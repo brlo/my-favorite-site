@@ -10,6 +10,9 @@ gem 'mongoid'
 gem 'redis'
 gem 'connection_pool'
 
+# для генерации pdf из html
+gem 'pdfkit'
+
 # https://github.com/skroutz/greeklish/tree/master
 # https://github.com/agorf/greeklish_iso843
 # GreeklishIso843::GreekText.to_greeklish("Ευάγγελος") # => "Evangelos"

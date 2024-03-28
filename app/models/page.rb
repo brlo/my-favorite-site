@@ -580,6 +580,41 @@ class Page < ApplicationMongoRecord
     GC.start
   end
 
+  def as_pdf
+    html  = "<h1>#{self.title}</h1>"
+    html += "<h2>#{self.title_sub}</h2>"
+
+    #   <article id='page-body' itemprop="articleBody" class="verses">
+    #     <% if @page.body_menu.present? %>
+    #       <%= render(partial: 'pages/body_menu') %>
+    #     <% end %>
+
+    #     <% if @page.body_rendered.present? %>
+    #       <%= @page.body_rendered.html_safe %>
+    #     <% else %>
+    #       <%= @page.body.to_s.html_safe %>
+    #     <% end %>
+    #   </article>
+
+    #   <% if @page.references.present? %>
+    #   <section id='page-references' class="looks-like-page">
+    #     <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
+    #     <div id="page-references-text">
+    #       <% if @page.body_rendered.present? %>
+    #         <%= @page.references_rendered.to_s.html_safe %>
+    #       <% else %>
+    #         <%= @page.references.to_s.html_safe %>
+    #       <% end %>
+    #     </div>
+    #   </section>
+    # <% end %>
+
+    kit = ::PDFKit.new(html, :page_size => 'Letter')
+    kit.stylesheets << 'assets/stylesheets/page.css'
+    # Get an inline PDF
+    pdf = kit.to_pdf
+  end
+
   private
 
   # уведомить чат:

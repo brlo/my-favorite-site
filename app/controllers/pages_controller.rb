@@ -240,6 +240,20 @@ class PagesController < ApplicationController
     end
   end
 
+  def page_as_pdf
+    # Название (path) страницы, который ищет клиент
+    path = params[:page_path].to_s
+    path_downcased = path.downcase
+    @page = ::Page.find_by(path_low: path_downcased)
+    if @page.nil?
+      render status: 404
+    else
+      pdf_data = @page.as_pdf()
+      pdf_filename = [@page.title, @page.title_sub].compact.join(' – ')
+      send_data(pdf_data, filename: "#{pdf_filename}.pdf", type: :pdf)
+    end
+  end
+
   def about
     @page_title = I18n.t('about_site')
     @meta_description = I18n.t('about_site_description')

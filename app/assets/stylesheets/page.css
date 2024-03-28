@@ -27,6 +27,17 @@
   font-size: 16px;
 }
 
+#page-content p {
+  hyphens: auto;
+  hyphenate-limit-chars: 5 3 3;
+}
+
+@media (min-width: 1180px) {
+  #page-content p {
+    text-align: justify;
+  }
+}
+
 #page-content .pages {
   margin: 0 0 20px 0;
   display: flex;
