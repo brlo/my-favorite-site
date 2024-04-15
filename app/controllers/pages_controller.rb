@@ -1,5 +1,7 @@
 class PagesController < ApplicationController
-  caches_page :show, :about
+  # Чтобы начать создавать html-файды для работы от кэша, просто раскоментируй:
+  # А nginx уже настроен так, чтобы отдавать эти файлы, если они есть.
+  # caches_page :show, :about
 
   def main
     redirect_to "/#{I18n.locale}/#{current_bib_lang()}/lk/1/"

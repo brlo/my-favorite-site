@@ -6,7 +6,7 @@ class CoverUploader < BaseUploader
     # https://github.com/carrierwaveuploader/carrierwave?tab=readme-ov-file#list-of-available-processing-methods
 
     # вписать в область, ничего не отрезая, сохраняя соотношения сторон
-    process resize_to_fit: [1200, 400]
+    process resize_to_fit: [1200, 800]
     # # вписать в область, отрезав выступ, сохраняя соотношения сторон
     # process resize_to_fill: [1200, 400]
 
