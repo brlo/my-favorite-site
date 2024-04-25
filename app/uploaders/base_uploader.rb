@@ -7,9 +7,9 @@ class BaseUploader < CarrierWave::Uploader::Base
   # before :retrieve_from_cache, :log_retrieve_from_cache
   # before :store, :log_store
 
-  SAVING_FORMAT             = "png".freeze
-  # VERSIONS_COMPRESS_QUALITY = "70".freeze
-  # ORIGINAL_COMPRESS_QUALITY = "80".freeze
+  SAVING_FORMAT             = "jpg".freeze
+  VERSIONS_COMPRESS_QUALITY = "70".freeze
+  ORIGINAL_COMPRESS_QUALITY = "80".freeze
 
   # на stage и в prod в имени файла используем префикс и специальный хост для ссылок
   # PROD
@@ -31,9 +31,9 @@ class BaseUploader < CarrierWave::Uploader::Base
   #   %w(jpg jpeg gif png)
   # end
 
-  # # Оригинал подлежит лишь конвертированию в jpg
-  # # остальные версии конвертируются в jpg в процессе создания подходящего размера
-  # process :convert_to_jpg, :if => :original?
+  # Оригинал подлежит лишь конвертированию в jpg
+  # остальные версии конвертируются в jpg в процессе создания подходящего размера
+  process :convert_to_jpg, :if => :original?
 
   def filename
     "#{PREFIX}#{ secure_token(length: 16) }.#{ saving_format }" if original_filename.present?
@@ -106,63 +106,63 @@ class BaseUploader < CarrierWave::Uploader::Base
     SAVING_FORMAT
   end
 
-  # def resize_to_limit_with_fill(width, height, gravity = 'Center', combine_options: {})
-  #   manipulate! do |img|
-  #     cols, rows = img[:dimensions]
-  #     img.format(saving_format) do |cmd|
-  #       cmd.auto_orient
-  #       cmd.quality(VERSIONS_COMPRESS_QUALITY)
-  #       cmd.gravity gravity
-  #       cmd.background "rgba(255,255,255,0.0)"
-  #       cmd.depth "8" # Set the depth to 8 bits
-  #       # progressive jpeg: http://stackoverflow.com/questions/9855637/how-do-you-generate-retina-ipad-friendly-progressive-or-interlaced-jpeg-imag
-  #       cmd.interlace "plane"
+  def resize_to_limit_with_fill(width, height, gravity = 'Center', combine_options: {})
+    manipulate! do |img|
+      cols, rows = img[:dimensions]
+      img.format(saving_format) do |cmd|
+        cmd.auto_orient
+        cmd.quality(VERSIONS_COMPRESS_QUALITY)
+        cmd.gravity gravity
+        cmd.background "rgba(255,255,255,0.0)"
+        cmd.depth "8" # Set the depth to 8 bits
+        # progressive jpeg: http://stackoverflow.com/questions/9855637/how-do-you-generate-retina-ipad-friendly-progressive-or-interlaced-jpeg-imag
+        cmd.interlace "plane"
 
-  #       if cols > width or rows > height
-  #         # Calculating which side is bigger
-  #         # then reduce scale to match smaller
-  #         if width != cols || height != rows
-  #           scale_x = width/cols.to_f
-  #           scale_y = height/rows.to_f
-  #           if scale_x >= scale_y
-  #             cols = (scale_x * (cols + 0.5)).round
-  #             rows = (scale_x * (rows + 0.5)).round
-  #             cmd.resize "#{cols}"
-  #           else
-  #             cols = (scale_y * (cols + 0.5)).round
-  #             rows = (scale_y * (rows + 0.5)).round
-  #             cmd.resize "x#{rows}"
-  #           end
-  #         end
+        if cols > width or rows > height
+          # Calculating which side is bigger
+          # then reduce scale to match smaller
+          if width != cols || height != rows
+            scale_x = width/cols.to_f
+            scale_y = height/rows.to_f
+            if scale_x >= scale_y
+              cols = (scale_x * (cols + 0.5)).round
+              rows = (scale_x * (rows + 0.5)).round
+              cmd.resize "#{cols}"
+            else
+              cols = (scale_y * (cols + 0.5)).round
+              rows = (scale_y * (rows + 0.5)).round
+              cmd.resize "x#{rows}"
+            end
+          end
 
-  #         # Crop
-  #         cmd.extent "#{width}x#{height}" if cols >= width || rows >= height
-  #       end
+          # Crop
+          cmd.extent "#{width}x#{height}" if cols >= width || rows >= height
+        end
 
-  #       append_combine_options cmd, combine_options
-  #     end
-  #     img.strip
-  #     img = yield(img) if block_given?
-  #     img
-  #   end
-  # end
+        append_combine_options cmd, combine_options
+      end
+      img.strip
+      img = yield(img) if block_given?
+      img
+    end
+  end
 
-  # def convert_to_jpg
-  #   manipulate! do |img|
-  #     img.format("jpg") do |cmd|
-  #       cmd.auto_orient
-  #       cmd.quality(ORIGINAL_COMPRESS_QUALITY)
-  #       cmd.gravity 'Center'
-  #       cmd.background "rgba(255,255,255,0.0)"
-  #       cmd.depth "8" # Set the depth to 8 bits
-  #       # progressive jpeg: http://stackoverflow.com/questions/9855637/how-do-you-generate-retina-ipad-friendly-progressive-or-interlaced-jpeg-imag
-  #       cmd.interlace "plane"
-  #     end
-  #     ## Erase meta-information for original images
-  #     # img.strip
-  #     img
-  #   end
-  # end
+  def convert_to_jpg
+    manipulate! do |img|
+      img.format("jpg") do |cmd|
+        cmd.auto_orient
+        cmd.quality(ORIGINAL_COMPRESS_QUALITY)
+        cmd.gravity 'Center'
+        cmd.background "rgba(255,255,255,0.0)"
+        cmd.depth "8" # Set the depth to 8 bits
+        # progressive jpeg: http://stackoverflow.com/questions/9855637/how-do-you-generate-retina-ipad-friendly-progressive-or-interlaced-jpeg-imag
+        cmd.interlace "plane"
+      end
+      ## Erase meta-information for original images
+      # img.strip
+      img
+    end
+  end
 
   ## НЕ РЕКОМЕНДУЕТСЯ ИСПОЛЬЗОВАТЬ ЭТУ ПРОВЕРКУ. ВОЗМОЖНЫ FALSE POSITIVE
   ## Ранее, всем версиям было выставлено условие, что они создаются только если if: :image?
