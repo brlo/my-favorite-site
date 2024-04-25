@@ -8,8 +8,8 @@ class BaseUploader < CarrierWave::Uploader::Base
   # before :store, :log_store
 
   SAVING_FORMAT             = "jpg".freeze
-  VERSIONS_COMPRESS_QUALITY = "85".freeze
-  ORIGINAL_COMPRESS_QUALITY = "90".freeze
+  VERSIONS_COMPRESS_QUALITY = "70".freeze
+  ORIGINAL_COMPRESS_QUALITY = "80".freeze
 
   # на stage и в prod в имени файла используем префикс и специальный хост для ссылок
   # PROD
