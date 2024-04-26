@@ -416,10 +416,18 @@ class Page < ApplicationMongoRecord
     text = text.to_s
     doc = ::Nokogiri.HTML(text)
 
+    # счётчик индексов для повторяющихся заголовков
+    counters = Hash.new(0)
+
     _menu = []
     doc.css('h2, h3, h4').each do |el|
       # из текста удаляем всё, кроме букв, цифр, пробела и "-". Меняем " " на "-"
-      anchor = 'HH-' + el.text.gsub(/[^[[:alnum:]]\s\-]/, '').gsub(' ', '-')
+      title = el.text.gsub(/[^[[:alnum:]]\s\-]/, '').gsub(' ', '-')
+      # добываем порядковый номер повторяющегося заголовка
+      idx = (counters[title] += 1)
+      # если такой заголовок встречается первый раз - номер не указываем
+      idx = nil if idx == 1
+      anchor = "HH#{idx}-#{title}"
       el['id'] = anchor
 
       _menu.push([el.name, anchor, el.text])
