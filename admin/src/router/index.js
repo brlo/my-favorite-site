@@ -14,6 +14,7 @@ const routes = [
   { path: "/pages", name: "Pages", component: ()=>import("@/views/pages/Index.vue")},
   { path: "/pages/new", name: "NewPage", component: ()=>import("@/views/pages/Edit.vue")},
   { path: "/pages/:id([a-f0-9]+)", name: "EditPage", component: ()=>import("@/views/pages/Edit.vue"), props: true},
+  { path: "/images", name: "Images", component: ()=>import("@/views/images/Index.vue")},
   { path: "/dict_words", name: "DictWords", component: ()=>import("@/views/dict_words/Index.vue")},
   { path: "/dict_words/new", name: "NewDictWord", component: ()=>import("@/views/dict_words/Edit.vue")},
   { path: "/dict_words/:id([a-f0-9]+)", name: "EditDictWord", component: ()=>import("@/views/dict_words/Edit.vue"), props: true},

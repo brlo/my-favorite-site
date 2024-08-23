@@ -57,6 +57,12 @@ Rails.application.routes.draw do
     # API
     namespace 'api', defaults: {format: :json} do
 
+      scope 'images' do
+        get  'list', to: 'images#list'
+        post '/', to: 'images#create'
+        delete '/:id', to: 'images#destroy'
+      end
+
       scope 'pages' do
         get    'list', to: 'pages#list'
         post   '/',    to: 'pages#create'

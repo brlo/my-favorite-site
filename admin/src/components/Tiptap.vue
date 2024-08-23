@@ -8,6 +8,11 @@ import Link from '@tiptap/extension-link'
 import Highlight from '@tiptap/extension-highlight'
 import Image from '@tiptap/extension-image'
 
+import Table from '@tiptap/extension-table'
+import TableRow from '@tiptap/extension-table-row'
+import TableHeader from '@tiptap/extension-table-header'
+import TableCell from '@tiptap/extension-table-cell'
+
 // https://vuejs.org/guide/components/v-model.html
 const model = defineModel()
 
@@ -38,6 +43,10 @@ const editor = new Editor({
         target: null
       },
     }),
+    Table,
+    TableRow,
+    TableHeader,
+    TableCell,
   ],
 
   // https://tiptap.dev/api/events#update

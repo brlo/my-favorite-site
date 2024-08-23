@@ -2,6 +2,38 @@
   word-wrap: break-word;
 }
 
+#page-content table {
+    border-collapse: collapse;
+    margin: 0;
+    overflow: hidden;
+    table-layout: fixed;
+    width: 100%;
+}
+
+#page-content table th {
+    border: 1px solid #777777;
+    box-sizing: border-box;
+    min-width: 1em;
+    padding: 6px 8px;
+    position: relative;
+    vertical-align: top;
+}
+#page-content table th {
+    background-color: #AAAAAA;
+    font-weight: 700;
+    text-align: left;
+}
+
+#page-content table td, #page-content table th {
+    border: 1px solid #777777;
+    box-sizing: border-box;
+    min-width: 1em;
+    padding: 6px 8px;
+    position: relative;
+    vertical-align: top;
+}
+
+
 /* Для pages нужны помельче главы */
 #page-content nav#menu-chapters a {
   font-size: 0.9em;

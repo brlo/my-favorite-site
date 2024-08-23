@@ -2,8 +2,11 @@ require 'nokogiri'
 # Page.create_indexes
 
 class Page < ApplicationMongoRecord
-  ALLOW_TAGS = %w(ul ol li h1 h2 h3 h4 blockquote strong b i em strike sup s u hr p a mark img code)
-  ALLOW_ATTRS = %w(id href class start)
+  ALLOW_TAGS = %w(
+    ul ol li h1 h2 h3 h4 blockquote strong b i em strike sup s u hr p a mark
+    img code table tbody colgroup tr td th
+  )
+  ALLOW_ATTRS = %w(id href class start src)
 
   PAGE_TYPES = {
     'статья'        => 1,

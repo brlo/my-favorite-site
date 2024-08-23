@@ -483,6 +483,40 @@ i.green { background-color:#1dca8a; color: white;}
   margin-top: 24px;
   display: block;
 }
+
+
+.looks-like-page table {
+    border-collapse: collapse;
+    margin: 0;
+    overflow: hidden;
+    table-layout: fixed;
+    width: 100%;
+}
+
+.looks-like-page table th {
+    border: 1px solid #777777;
+    box-sizing: border-box;
+    min-width: 1em;
+    padding: 6px 8px;
+    position: relative;
+    vertical-align: top;
+}
+.looks-like-page table th {
+    background-color: #AAAAAA;
+    font-weight: 700;
+    text-align: left;
+}
+
+.looks-like-page table td, .looks-like-page table th {
+    border: 1px solid #777777;
+    box-sizing: border-box;
+    min-width: 1em;
+    padding: 6px 8px;
+    position: relative;
+    vertical-align: top;
+}
+
+
 /* в diff не нужно у p делать такие большие отступы */
 .diff td.line-content p {
   margin: 2px 0px;
