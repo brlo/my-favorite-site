@@ -484,6 +484,7 @@ i.green { background-color:#1dca8a; color: white;}
   display: block;
 }
 
+.looks-like-page img { max-width: 100%;}
 
 .looks-like-page table {
     border-collapse: collapse;
