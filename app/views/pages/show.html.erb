@@ -40,6 +40,26 @@
       } else if (document.cookie.includes('textSize=3')) { document.querySelector('article').classList.add('text-large');}
     </script>
 
+    <% if @chapters.present? && @chapters.size > 1 %>
+      <div class='prev-next-bar'>
+        <% if @chapter_current > 1 %>
+          <% @chapter_prev = @chapters[@chapter_current-2] %>
+          <% title, path = @chapter_prev %>
+          <div class="prev">
+            <a href="<%= my_page_link_to("/#{path}") %>">← <%= title %></a>
+          </div>
+        <% end %>
+
+        <% if @chapter_current < @chapters.size %>
+          <% @chapter_prev = @chapters[@chapter_current] %>
+          <% title, path = @chapter_prev %>
+          <div class="next">
+            <a href="<%= my_page_link_to("/#{path}") %>"><%= title %> →</a>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+
     <% if @page.references.present? %>
       <section id='page-references' class="looks-like-page">
         <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
@@ -104,3 +124,6 @@
 </div>
 
 <% end %>
+
+
+<div class="scroll-to-top" id="scrollToTopBtn">↑</div>

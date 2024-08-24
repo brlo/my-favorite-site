@@ -491,3 +491,23 @@ window.filterQueryPages = function(text, isNeedTranslit) {
     };
   };
 };
+
+// кнопка "вернуться вверх страницы"
+const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+
+if (scrollToTopBtn) {
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 2000) { // Появляется при прокрутке вниз на 1000px
+      scrollToTopBtn.style.display = 'block';
+    } else {
+      scrollToTopBtn.style.display = 'none';
+    }
+  });
+
+  scrollToTopBtn.addEventListener('click', () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  });
+};

@@ -430,3 +430,23 @@ footer dd.tip {
   text-align: center;
   font-size: .7em;
 }
+
+.scroll-to-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background-color: #d0d7be;
+  color: #808667;
+  font-weight: bold;
+  text-align: center;
+  line-height: 50px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: none; /* Скрываем кнопку по умолчанию */
+}
+.night-mode .scroll-to-top {
+  color: #abb2bf;
+  background-color: #333;
+}
