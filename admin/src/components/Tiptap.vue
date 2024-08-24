@@ -43,7 +43,11 @@ const editor = new Editor({
         target: null
       },
     }),
-    Table,
+    Table.configure({
+      HTMLAttributes: {
+        class: 'custom-table',
+      },
+    }),
     TableRow,
     TableHeader,
     TableCell,

@@ -20,7 +20,7 @@
 
 #page-content img { max-width: 100%;}
 
-#page-content table {
+#page-content .custom-table table {
     border-collapse: collapse;
     margin: 0;
     overflow: hidden;
@@ -28,7 +28,7 @@
     width: 100%;
 }
 
-#page-content table th {
+#page-content .custom-table table th {
     border: 1px solid #777777;
     box-sizing: border-box;
     min-width: 1em;
@@ -36,13 +36,13 @@
     position: relative;
     vertical-align: top;
 }
-#page-content table th {
+#page-content .custom-table table th {
     background-color: #AAAAAA;
     font-weight: 700;
     text-align: left;
 }
 
-#page-content table td, #page-content table th {
+#page-content .custom-table table td, #page-content table th {
     border: 1px solid #777777;
     box-sizing: border-box;
     min-width: 1em;
