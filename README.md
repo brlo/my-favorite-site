@@ -133,7 +133,7 @@ rm ./db/cache_search/*/*/*.json
 # Стандартный набор для проверенного участника (создание страниц нужно доработать, ограничив доступ к особым полям):
 ```ruby
 u.can!('pages_read')
-u.can!('pages_create')
+# u.can!('pages_create')
 u.can!('mrs_read')
 u.can!('mrs_create')
 ```

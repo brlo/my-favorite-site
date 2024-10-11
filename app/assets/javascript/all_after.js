@@ -308,6 +308,7 @@ window.BX.player = {
   btnEnableEl: document.getElementById('btn-play-text'),
   isShown: false,
   isPlaing: false,
+  isAutoplay: false,
 }
 
 // play
@@ -361,6 +362,13 @@ window.BX.player.update = function() {
   }
   console.log(newAudioLink);
   window.BX.player.el.src = newAudioLink;
+
+  // если в nextChapter устанавливали автозапуск после переключения главы,
+  // то сразу запускать воспроизведение, так как апереключение автоматически произошло после окочания трэка
+  if (window.BX.player.isAutoplay == true) {
+    window.BX.player.play();
+    window.BX.player.isAutoplay == false;
+  };
 };
 
 window.BX.player.showAndPlay = function() {
@@ -394,12 +402,28 @@ window.BX.player.hide = function() {
   window.BX.player.isShown = false;
 };
 
+// Переключить видимость audio-тэга
+window.BX.player.nextChapter = function() {
+  if (window.BX.player.isShown == true) {
+    // AJAX переключаем номер активной главы
+    const currChapter = document.getElementById('current-address').dataset.chapter;
+    const nextChapter = parseInt(currChapter, 10) + 1;
+    const nextChapterEl = document.querySelector('#menu-chapters #ch-' + nextChapter);
+    if (nextChapterEl) {
+      window.BX.player.isAutoplay = true;
+      nextChapterEl.click();
+    } else {
+      window.BX.player.hide();
+    };
+  };
+};
+
 // СОБЫТИЯ НАСТРОЕК И ВНУТРЕННИХ ЭЛЕМЕНТОВ
 window.BX.player.enableListeners = function() {
   if (!window.BX.player.el) return;
 
-  // когда аудио кончилось
-  window.BX.player.el.onended = window.BX.player.hide;
+  // КОГДА АУДИО КОНЧИЛОСЬ - ЧТО ДЕЛАТЬ:
+  window.BX.player.el.onended = window.BX.player.nextChapter;
 }
 
 // Переключить видимость audio-тэга
@@ -428,8 +452,6 @@ window.BX.logout = function() {
     console.log(error);
   });
 };
-
-
 
 // ---------------- FILTER MENU ------------------
 
