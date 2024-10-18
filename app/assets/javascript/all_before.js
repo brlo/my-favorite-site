@@ -159,7 +159,7 @@ const params = new Proxy(new URLSearchParams(window.location.search), {
 //   }
 // });
 
-// NIGHT MODE SWITCHER
+// NIGHT MODE SWITCHER (переключение туда-сюда)
 window.switchNightMode = function() {
   const modeSwitcher = document.getElementById("night-mode-switcher");
   const body = document.body;
