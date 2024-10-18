@@ -607,7 +607,9 @@ function loadChapter(linkEl) {
         addListenersForHighlightVerses();
         // переключаем адрес стрианцы
         window.history.pushState({}, '', path);
-        // прям меню работы с текстом
+        // устанавливаем размер текста в соответствии с куками
+        settingsArea.preInitText();
+        // прячем меню работы с текстом
         selectBar.disable();
         // переключаем номер активной главы
         const chapters = document.getElementById('menu-chapters');
