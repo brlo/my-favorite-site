@@ -211,14 +211,21 @@ window.settingsArea = {
 // Предвариетнльная установка начального состояния кнопок и текста статьи в соответствии с куками:
 // - размер текста
 settingsArea.preInitText = function () {
+  const articleEl = document.querySelector('article');
+  // убираем все классы, чтобы далее поставить правильный
+  articleEl.classList.remove('text-large', 'text-medium', 'text-small');
+
+  // теперь ставим класс, соответствующий кукам
   if (document.cookie.includes('textSize=3')) {
-    document.querySelector('article').classList.add('text-large');
+    // размер текста статьи
+    articleEl.classList.add('text-large');
+    // включаем правильную пнопку в настройках
     document.getElementById('text-large-btn').classList.toggle('active', true);
   } else if (document.cookie.includes('textSize=2')) {
-    document.querySelector('article').classList.add('text-medium');
+    articleEl.classList.add('text-medium');
     document.getElementById('text-medium-btn').classList.toggle('active', true);
   } else {
-    document.querySelector('article').classList.add('text-small')
+    articleEl.classList.add('text-small');
     document.getElementById('text-small-btn').classList.toggle('active', true);
   };
 };
