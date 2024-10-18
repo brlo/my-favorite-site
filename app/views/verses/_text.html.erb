@@ -6,19 +6,7 @@
   <% is_interliner = @verses.first.data&.fetch('w', nil).present? %>
 
   <div id='chapter-text'>
-    <article itemprop="articleBody" class="verses <%= is_interliner ? 'interliner' : '' %>">
-      <script>
-        if (document.cookie.includes('textSize=3')) {
-          document.querySelector('article').classList.add('text-large');
-          document.getElementById('text-large-btn').classList.toggle('active', true);
-        } else if (document.cookie.includes('textSize=2')) {
-          document.querySelector('article').classList.add('text-medium');
-          document.getElementById('text-medium-btn').classList.toggle('active', true);
-        } else {
-          document.querySelector('article').classList.add('text-small')
-          document.getElementById('text-small-btn').classList.toggle('active', true);
-        };
-      </script>
+    <article itemprop="articleBody" class="verses text-<%= text_size_from_cookies %><%= is_interliner ? ' interliner' : '' %>">
       <table>
         <tbody>
           <% @verses.each do |v| %>

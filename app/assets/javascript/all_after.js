@@ -199,6 +199,24 @@ menuBooks.enableListeners();
 // =================== SETTINGS AREA =====================================
 // =======================================================================
 
+// Предвариетнльная установка начального состояния кнопок и текста статьи в соответствии с куками:
+// - размер текста
+if (document.cookie.includes('textSize=3')) {
+  document.querySelector('article').classList.add('text-large');
+  document.getElementById('text-large-btn').classList.toggle('active', true);
+} else if (document.cookie.includes('textSize=2')) {
+  document.querySelector('article').classList.add('text-medium');
+  document.getElementById('text-medium-btn').classList.toggle('active', true);
+} else {
+  document.querySelector('article').classList.add('text-small')
+  document.getElementById('text-small-btn').classList.toggle('active', true);
+};
+// - цветовая схема
+if (document.cookie.includes('isNightMode=1')) {
+  document.body.classList.toggle('night-mode', true);
+  document.getElementById('night-mode-switcher').innerHTML = window.BX.localization.night;
+}
+
 // Настройки в шапке
 window.settingsArea = {
   // меню
@@ -299,6 +317,7 @@ settingsArea.enableListeners = function () {
   });
 };
 
+// Инициализация
 settingsArea.enableListeners();
 
 // Аудио-плеер
