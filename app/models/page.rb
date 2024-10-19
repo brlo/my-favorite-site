@@ -57,7 +57,7 @@ class Page < ApplicationMongoRecord
   field :gli,        as: :group_lang_id, type: BSON::ObjectId
   # текст статьи (для редактирования)
   field :bd,         as: :body, type: String
-  # текст статьи (для показа ползьователю)
+  # текст статьи (для показа пользователю)
   field :bdr,        as: :body_rendered, type: String
   # текст статьи с разбивкой на стихи
   field :vrs,        as: :verses, type: Array

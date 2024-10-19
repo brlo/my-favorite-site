@@ -180,7 +180,8 @@ header nav > a#settings-btn {
   font-family: 'Linux Libertine','Georgia','Times','Source Serif Pro',serif;
 }
 
-.breadcrumbs-wrap { background-color: #f6f4e4; }
+.menu-wrap { flex: 0 1 auto !important; }
+.breadcrumbs-wrap { background-color: #f6f4e4; flex: 0 1 auto !important; }
 .night-mode .breadcrumbs-wrap { background-color: #2f3541; }
 
 .breadcrumbs-wrap .content {
