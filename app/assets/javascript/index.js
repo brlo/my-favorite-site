@@ -79,9 +79,20 @@ selectBar.getSelectedText = function () {
   if (selectedLines < 1) return '';
 
   let chunks = [];
+  let prevLineNumb = 0;
   for (const line of selectedLines) {
+    // предыдущий номер строки на 1 меньше номера текущей строки?
+    // То есть мы просто работаем со следующей строкой (без пропусков)
+    let currentLineNumb = parseInt(line.dataset.line);
+    console.log(prevLineNumb, currentLineNumb);
+    if (prevLineNumb != (currentLineNumb - 1)) {
+      if (chunks.length != 0) {
+        chunks.push('<...>');
+      }
+    }
     // убираем пробелы по краям
     chunks.push( BX.tools.strip(line.textContent) );
+    prevLineNumb = currentLineNumb;
   };
 
   // лучше попробовать слить через \n, но сходу не получилось
