@@ -152,14 +152,14 @@ jp:
   psalms: 詩篇
 
   end_chapter:
-    the_end_of: の終わり
+    the_end_of: 第
     suffix: ''
     suffix_psalm: ''
-    chapter: 章
-    psalm: 詩篇
+    chapter: 章の終わり
+    psalm: 詩篇の終わり
 
-  forward: フォワード
-  backward: 後方へ
+  forward: 次へ
+  backward: 前へ
 
   years_from: イエス・キリストの誕生から
 
