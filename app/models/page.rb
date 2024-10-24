@@ -296,9 +296,9 @@ class Page < ApplicationMongoRecord
     # Заполняем поле для поиска по тексту статьи (там должден остаться только текст, без тэгов)
     if self.body_rendered_changed?
       # заменяем тэги <p> и <h1,2,3> на пробел (иначе слова сливаются на этих тэгах, если тэги убрать)
-      simple_text = self.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, ' ')
+      simple_text = self.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, '.')
       # разбиваем по предложениям и храним в массиве (чтобы легче было искать в рамках предложения)
-      self.body_search = sanitizer.sanitize(simple_text).split(/\s?\.\s?/)
+      self.body_search = sanitizer.sanitize(simple_text).split(/\s?\.+\s?/)
     end
 
     self.u_at = DateTime.now.utc.round
