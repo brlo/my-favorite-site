@@ -57,11 +57,13 @@ class Page < ApplicationMongoRecord
   field :gli,        as: :group_lang_id, type: BSON::ObjectId
   # текст статьи (для редактирования)
   field :bd,         as: :body, type: String
+  # текст статьи (для поиска)
+  field :bds,        as: :body_search, type: Array
   # текст статьи (для показа пользователю)
   field :bdr,        as: :body_rendered, type: String
   # текст статьи с разбивкой на стихи
   field :vrs,        as: :verses, type: Array
-  # ссылки и заметки (для релактирования)
+  # ссылки и заметки (для редактирования)
   field :rfs,        as: :references, type: String
   # ссылки и заметки (для показа пользователю)
   field :rfsr,       as: :references_rendered, type: String
@@ -289,6 +291,14 @@ class Page < ApplicationMongoRecord
           end
         end
       end
+    end
+
+    # Заполняем поле для поиска по тексту статьи (там должден остаться только текст, без тэгов)
+    if self.body_rendered_changed?
+      # заменяем тэги <p> и <h1,2,3> на пробел (иначе слова сливаются на этих тэгах, если тэги убрать)
+      simple_text = self.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, ' ')
+      # разбиваем по предложениям и храним в массиве (чтобы легче было искать в рамках предложения)
+      self.body_search = sanitizer.sanitize(simple_text).split(/\s?\.\s?/)
     end
 
     self.u_at = DateTime.now.utc.round

@@ -42,6 +42,49 @@ class PagesController < ApplicationController
     # end
   end
 
+  def search
+    # не индексировать
+    @no_index = true
+
+    # search page
+    # Название (path) страницы, который ищет клиент
+    path = params[:page_path].to_s
+    path_downcased = path.downcase
+    @content_lang = params[:content_lang]
+
+    # Ищем в БД страницу. Клиент мог неправильно ввести регистр, поэтому ищем
+    # в спец поле, где всё в нижнем регистре.
+    @page = ::Page.find_by(path_low: path_downcased, lang: @content_lang)
+
+    # https://www.mongodb.com/docs/manual/core/link-text-indexes/
+    if params[:t].present?
+      # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9
+      @search_text = params[:t].gsub(/[^[[:alpha:]]0-9]/i, ' ')
+
+      search_params = {
+        page: @page,
+        text: @search_text
+      }
+
+      # Запрашиваем результаты из БД
+      @matches, @search_regexp = ::PageSearch.new(search_params).fetch_objects(300)
+
+      @matches_count = @matches.count
+    else
+      @search_text = params[:t]
+
+      @matches_count = 0
+    end
+
+    @current_menu_item = 'links'
+    @page_title = ::I18n.t('search_page.title')
+    @page_title += ": #{@page.title.to_s[0..20]}" if params[:t].present?
+    @meta_description = ::I18n.t('search_page.meta_description', search: @search_text, matches: @matches_count)
+
+    @meta_book_tags = [params[:t]] if params[:t].present?
+    @canonical_url = build_canonical_url("/w/#{::CGI.escape(@page.path)}/search?t=#{@search_text}")
+  end
+
   def show
     # Название (path) страницы, который ищет клиент
     path = params[:page_path].to_s
@@ -123,7 +166,6 @@ class PagesController < ApplicationController
             menus = ::Menu.where(page_id: @parent_page.id).to_a
             menus_by_id = {}
             menus_by_path = {}
-            menus_by_parent_id = ::Hash.new([])
             parent_ids_with_links = ::Hash.new([])
 
             menus.each do |menu|
@@ -173,7 +215,7 @@ class PagesController < ApplicationController
             if @page_in_menu
               siblings_and_me = parent_ids_with_links[@page_in_menu.parent_id]
               # соседи из меню (одинаковый родитель)
-              @chapters = siblings_and_me.map { |m| [m.title, m.path] }
+              @chapters = siblings_and_me.map { |m| [m.title, m.path, m.is_gold] }
 
               # сохраняем индексы глав в массиве с главами
               my_ix_in_menu = siblings_and_me.index(@page_in_menu)

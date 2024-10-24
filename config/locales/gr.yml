@@ -54,6 +54,9 @@ gr:
     meta_description: "Αναζήτηση \"%{search}\". Αγώνες: %{matches}."
     meta_description_first_verse: " Στίχος: %{verse}"
 
+  page_search:
+    title: Αναζήτηση
+
   login_page:
     title: 'Συνδεθείτε'
 
@@ -68,6 +71,7 @@ gr:
     references: 'βιβλιογραφικές αναφορές'
     no_books_links_yet: 'Δεν υπάρχουν σύνδεσμοι ακόμα.'
     menu_name: 'Περιεχόμενα'
+    search_placeholder: 'Αναζήτηση σε παιδικές σελίδες'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""
@@ -111,6 +115,7 @@ gr:
     click_on_verse__working: Εργα
     click_on_verse__and: και
     search_was_return_zero_results: Δεν βρέθηκε τίποτα. Ελέγξτε αν έχει επιλεγεί λάθος γλώσσα κειμένου;
+    page_search_was_return_zero_results: Δεν βρέθηκε τίποτα.
 
   breadcrumbs:
     bible: Αγια ΓΡΑΦΗ

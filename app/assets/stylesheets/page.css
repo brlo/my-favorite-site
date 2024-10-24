@@ -272,10 +272,27 @@
   -ms-transition: background-color 80ms ease;
   transition: background-color 80ms ease;
 }
+
+#page-content .menu-tree .menu-link.gold a {
+  color: #5f572b !important;
+  background: #ffd7008a;
+}
+#page-content .menu-tree .menu-link.gold a:hover {
+  background: #ffd700b0;
+}
+
 #page-content .menu-tree .menu-link.selected a,
 #page-content .menu-tree .menu-link.selected a:hover {
   background-color: #8c6964;
-  color: #fdfcf1;
+  color: #fdfcf1 !important;
+}
+
+.night-mode #page-content .menu-tree .menu-link.gold a {
+  color: gold !important;
+  background: #ffd70014;
+}
+.night-mode #page-content .menu-tree .menu-link.gold a:hover {
+  background: #ffd70020;
 }
 
 .night-mode #page-content .menu-tree .menu-link a {
@@ -288,7 +305,7 @@
 .night-mode #page-content .menu-tree .menu-link.selected a,
 .night-mode #page-content .menu-tree .menu-link.selected a:hover {
   background-color: rgba(205,151,101, 1);
-  color: #282c34;
+  color: #282c34 !important;
 }
 
 

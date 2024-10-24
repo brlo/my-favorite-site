@@ -175,7 +175,7 @@ class VersesController < ApplicationController
       @matches_count = 0
     end
 
-    @current_menu_item = 'search'
+    @current_menu_item = 'biblia'
     @page_title = ::I18n.t('search_page.title')
     @page_title += ": #{params[:t].to_s[0..20]}" if params[:t].present?
     @meta_description = ::I18n.t('search_page.meta_description', search: @search_text, matches: @matches_count)

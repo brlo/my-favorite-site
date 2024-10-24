@@ -54,6 +54,9 @@ cn:
     meta_description: "搜索 \"%{search}\". 火柴: %{matches}."
     meta_description_first_verse: " 诗: %{verse}"
 
+  page_search:
+    title: 搜索
+
   login_page:
     title: '登入'
 
@@ -68,6 +71,7 @@ cn:
     references: '参考'
     no_books_links_yet: '还没有链接。'
     menu_name: '目录'
+    search_placeholder: '在子页面中搜索'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""
@@ -111,6 +115,7 @@ cn:
     click_on_verse__working: 作品
     click_on_verse__and: 和
     search_was_return_zero_results: 什么都没找到。 检查是否选择了错误的文本语言？
+    page_search_was_return_zero_results: 什么都没找到。
 
   breadcrumbs:
     bible: 圣经

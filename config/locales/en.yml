@@ -54,6 +54,9 @@ en:
     meta_description: "Search \"%{search}\". Matches: %{matches}."
     meta_description_first_verse: " Verse: %{verse}"
 
+  page_search:
+    title: Search inside
+
   login_page:
     title: 'Sign in'
 
@@ -68,6 +71,7 @@ en:
     references: 'References'
     no_books_links_yet: 'There is no links yet.'
     menu_name: 'Contents'
+    search_placeholder: 'Search in child pages'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""
@@ -111,6 +115,7 @@ en:
     click_on_verse__working: Works
     click_on_verse__and: and
     search_was_return_zero_results: Nothing found. Check if the wrong text language is selected?
+    page_search_was_return_zero_results: Nothing found.
 
   breadcrumbs:
     bible: Scripture

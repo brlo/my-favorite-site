@@ -23,6 +23,9 @@ ru:
     meta_description: "Поиск \"%{search}\". Найдено результатов: %{matches}."
     meta_description_first_verse: " Стих: %{verse}"
 
+  page_search:
+    title: Поиск в
+
   login_page:
     title: 'Вход'
 
@@ -37,6 +40,7 @@ ru:
     references: 'Примечания'
     no_books_links_yet: 'Здесь пока что нет других ссылок. Загляните позже.'
     menu_name: 'Содержание'
+    search_placeholder: 'Поиск по вложенным страницам'
 
   dict_words:
     title: "Слово из Библии – \"%{word}\""
@@ -80,6 +84,7 @@ ru:
     click_on_verse__working: Работает
     click_on_verse__and: и
     search_was_return_zero_results: Ничего не найдено. Проверьте, может быть выбран не тот язык текста?
+    page_search_was_return_zero_results: Ничего не найдено.
 
   breadcrumbs:
     bible: Писание

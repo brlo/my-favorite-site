@@ -10,6 +10,7 @@ import Dropdown from 'primevue/dropdown';
 import Button from 'primevue/button';
 import IconField from 'primevue/iconfield';
 import InputIcon from 'primevue/inputicon';
+import Checkbox from 'primevue/checkbox';
 
 import { useToast } from "primevue/usetoast";
 
@@ -176,6 +177,11 @@ function destroy(obj) {
           placeholder="Родитель"
         />
       </div>
+
+      <field>
+        <label for="isgold">Особенный</label>
+        <Checkbox v-model="currentMenuItem.is_gold" inputId="isgold" :binary="true" />
+      </field>
     </div>
 
     <div class="btn-bar">

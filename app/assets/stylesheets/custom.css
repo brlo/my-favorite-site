@@ -350,6 +350,24 @@ input.btn:active, input.btn:focus {
   background-color: #317441;
 }
 
+.tree-search {
+  max-width: 400px;
+  margin: 15px auto 0 auto
+}
+
+#search-tree-input {
+  width: 100%;
+}
+#search-tree-input-area {
+  position: relative;
+}
+
+#search-tree-input-area a {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  cursor: pointer;
+}
 /* TEXT TAGS  */
 
 j {

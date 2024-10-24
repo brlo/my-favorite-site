@@ -54,6 +54,9 @@ de:
     meta_description: "Suchen \"%{search}\". Streichhölzer: %{matches}."
     meta_description_first_verse: " Vers: %{verse}"
 
+  page_search:
+    title: Suchen
+
   login_page:
     title: anmelden
 
@@ -68,6 +71,7 @@ de:
     references: 'Verweise'
     no_books_links_yet: 'Es gibt noch keine Links.'
     menu_name: 'Inhaltsverzeichnis'
+    search_placeholder: 'Suchen Sie auf untergeordneten Seiten'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""
@@ -111,6 +115,7 @@ de:
     click_on_verse__working: Funktioniert
     click_on_verse__and: Und
     search_was_return_zero_results: Nichts gefunden. Prüfen Sie, ob die falsche Textsprache ausgewählt ist?
+    page_search_was_return_zero_results: Nichts gefunden.
 
   breadcrumbs:
     bible: Schrift

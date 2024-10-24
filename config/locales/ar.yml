@@ -54,6 +54,9 @@ ar:
     meta_description: "يبحث \"%{search}\". اعواد الكبريت: %{matches}."
     meta_description_first_verse: " بيت شعر: %{verse}"
 
+  page_search:
+    title: يبحث
+
   login_page:
     title: 'تسجيل الدخول'
 
@@ -68,6 +71,7 @@ ar:
     references: 'مراجع'
     no_books_links_yet: 'لا توجد روابط حتى الآن.'
     menu_name: 'المحتويات'
+    search_placeholder: 'البحث في الصفحات الفرعية'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""
@@ -111,6 +115,7 @@ ar:
     click_on_verse__working: يعمل
     click_on_verse__and: و
     search_was_return_zero_results: لم يتم العثور على شيء. تحقق مما إذا تم تحديد لغة النص الخاطئة؟
+    page_search_was_return_zero_results: لم يتم العثور على شيء.
 
   breadcrumbs:
     bible: الكتاب المقدس

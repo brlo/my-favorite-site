@@ -54,6 +54,9 @@ jp:
     meta_description: "検索 \"%{search}\". 一致: %{matches}."
     meta_description_first_verse: " 詩: %{verse}"
 
+  page_search:
+    title: 検索
+
   login_page:
     title: 'サインイン'
 
@@ -68,6 +71,7 @@ jp:
     references: '参考文献'
     no_books_links_yet: 'まだリンクはありません。'
     menu_name: '目次'
+    search_placeholder: 子ページ内を検索する
 
   dict_words:
     title: "Word from Bible – \"%{word}\""
@@ -111,6 +115,7 @@ jp:
     click_on_verse__working: 作品
     click_on_verse__and: そして
     search_was_return_zero_results: 何も見つかりません。 間違ったテキスト言語が選択されていないか確認してください?
+    page_search_was_return_zero_results: 何も見つかりません。
 
   breadcrumbs:
     bible: 聖書

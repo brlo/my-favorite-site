@@ -54,6 +54,9 @@ il:
     meta_description: "לחפש \"%{search}\". התאמות: %{matches}."
     meta_description_first_verse: " פָּסוּק: %{verse}"
 
+  page_search:
+    title: לחפש
+
   login_page:
     title: 'להתחבר'
 
@@ -68,6 +71,7 @@ il:
     references: 'הפניות'
     no_books_links_yet: 'עדיין אין קישורים.'
     menu_name: 'תוכן עניינים'
+    search_placeholder: 'חפש בדפי ילדים'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""
@@ -111,6 +115,7 @@ il:
     click_on_verse__working: עובד
     click_on_verse__and: ו
     search_was_return_zero_results: שום דבר לא נמצא. בדוק אם נבחרה שפת טקסט שגויה?
+    page_search_was_return_zero_results: שום דבר לא נמצא.
 
   breadcrumbs:
     bible: כִּתבֵי הַקוֹדֶשׁ

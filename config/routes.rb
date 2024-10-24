@@ -25,6 +25,8 @@ Rails.application.routes.draw do
     scope '/:content_lang', :content_lang => /ru|gr|en|il|ar|jp|cn|de/ do
       get '/w', to: 'pages#list', as: 'pages'
       get '/w/:page_path', to: 'pages#show', as: 'page'
+      get '/w/:page_path/search', to: 'pages#search', as: 'page_search'
+      post '/w/:page_path/search', to: 'pages#search'
       get '/w/:page_path/as_pdf', to: 'pages#page_as_pdf'
     end
 

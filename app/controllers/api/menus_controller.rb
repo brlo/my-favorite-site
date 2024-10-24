@@ -90,7 +90,7 @@ module Api
 
     def menu_item_params
       params.require(:menu_item).except(:id, :created_at, :updated_at, :page_id).permit(
-        :title, :path, :parent_id, :priority,
+        :title, :path, :parent_id, :priority, :is_gold,
       )
     end
 
