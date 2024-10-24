@@ -294,6 +294,9 @@ class Page < ApplicationMongoRecord
     end
 
     # Заполняем поле для поиска по тексту статьи (там должден остаться только текст, без тэгов)
+    #
+    # вручную запустить так:
+    # # sanitizer=::Rails::Html::SafeListSanitizer.new; Page.each {|p| p.body_search = sanitizer.sanitize(p.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, '.'), tags: []).split(/\s?\.+\s?/); p.save }
     if self.body_rendered_changed?
       # заменяем тэги <p> и <h1,2,3> на пробел (иначе слова сливаются на этих тэгах, если тэги убрать)
       simple_text = self.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, '.')

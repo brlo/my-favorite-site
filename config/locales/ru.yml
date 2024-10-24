@@ -40,7 +40,7 @@ ru:
     references: 'Примечания'
     no_books_links_yet: 'Здесь пока что нет других ссылок. Загляните позже.'
     menu_name: 'Содержание'
-    search_placeholder: 'Поиск по вложенным страницам'
+    search_placeholder: 'Поиск по всему разделу'
 
   dict_words:
     title: "Слово из Библии – \"%{word}\""
