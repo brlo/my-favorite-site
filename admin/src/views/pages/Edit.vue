@@ -8,6 +8,7 @@ import IndexMergeRequests from "@/views/merge_requests/Index.vue";
 import InputSwitch from 'primevue/inputswitch';
 import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
+import Checkbox from 'primevue/checkbox';
 import Button from 'primevue/button';
 import SplitButton from 'primevue/splitbutton';
 import Textarea from 'primevue/textarea';
@@ -453,6 +454,13 @@ const submitBtnItems = [
     <div class="field">
       <label>Аудио-файл (не обязательно)</label>
       <InputText v-model="page.audio" placeholder="Аудио-файл" :disabled="page.is_deleted" />
+    </div>
+  </div>
+
+  <div v-if="user.privs.super" class="group-fields">
+    <div class="field">
+      <label for="issearch">Поисковое поле</label>
+      <Checkbox v-model="page.is_search" inputId="issearch" :binary="true" />
     </div>
   </div>
 

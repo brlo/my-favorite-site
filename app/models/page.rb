@@ -32,6 +32,7 @@ class Page < ApplicationMongoRecord
   field :pt,         as: :page_type, type: String, default: 1
   field :is_pub,     as: :is_published, type: Boolean, default: false
   field :is_del,     as: :is_deleted, type: Boolean
+  field :is_srch,    as: :is_search, type: Boolean, default: true
   field :e_md,       as: :edit_mode, type: Integer, default: 1
   # автор
   field :u_id,       as: :user_id, type: BSON::ObjectId

@@ -150,7 +150,7 @@ module Api
         :parent_id,
         :lang, :group_lang_id,
         :body, :references,
-        :tags_str, :priority, :audio,
+        :tags_str, :priority, :audio, :is_search
       )
     end
 
