@@ -71,7 +71,7 @@ jp:
     references: '参考文献'
     no_books_links_yet: 'まだリンクはありません。'
     menu_name: '目次'
-    search_placeholder: 子ページ内を検索する
+    search_placeholder: セクション全体を検索
 
   dict_words:
     title: "Word from Bible – \"%{word}\""

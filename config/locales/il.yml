@@ -71,7 +71,7 @@ il:
     references: 'הפניות'
     no_books_links_yet: 'עדיין אין קישורים.'
     menu_name: 'תוכן עניינים'
-    search_placeholder: 'חפש בדפי ילדים'
+    search_placeholder: 'חפש בכל הקטע'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""

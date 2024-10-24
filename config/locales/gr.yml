@@ -71,7 +71,7 @@ gr:
     references: 'βιβλιογραφικές αναφορές'
     no_books_links_yet: 'Δεν υπάρχουν σύνδεσμοι ακόμα.'
     menu_name: 'Περιεχόμενα'
-    search_placeholder: 'Αναζήτηση σε παιδικές σελίδες'
+    search_placeholder: 'Αναζήτηση ολόκληρης της ενότητας'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""

@@ -71,7 +71,7 @@ en:
     references: 'References'
     no_books_links_yet: 'There is no links yet.'
     menu_name: 'Contents'
-    search_placeholder: 'Search in child pages'
+    search_placeholder: 'Search the entire section'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""

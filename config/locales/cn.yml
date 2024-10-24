@@ -71,7 +71,7 @@ cn:
     references: '参考'
     no_books_links_yet: '还没有链接。'
     menu_name: '目录'
-    search_placeholder: '在子页面中搜索'
+    search_placeholder: '搜索整个部分'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""

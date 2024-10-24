@@ -71,7 +71,7 @@ de:
     references: 'Verweise'
     no_books_links_yet: 'Es gibt noch keine Links.'
     menu_name: 'Inhaltsverzeichnis'
-    search_placeholder: 'Suchen Sie auf untergeordneten Seiten'
+    search_placeholder: 'Durchsuchen Sie den gesamten Abschnitt'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""

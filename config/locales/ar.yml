@@ -71,7 +71,7 @@ ar:
     references: 'مراجع'
     no_books_links_yet: 'لا توجد روابط حتى الآن.'
     menu_name: 'المحتويات'
-    search_placeholder: 'البحث في الصفحات الفرعية'
+    search_placeholder: 'ابحث في القسم بأكمله'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""
