@@ -16,6 +16,7 @@ json.item do
   json.parent_id         pg.parent_id.to_s
   json.lang              pg.lang
   json.group_lang_id     pg.group_lang_id.to_s
+  json.links             pg.links.to_a
   json.body              pg.body
   json.references        pg.references
   json.tags_str          pg.tags&.join(', ')

@@ -54,6 +54,9 @@ module Api
       # автор статьи
       @page.user_id = ::Current.user.id
 
+      # параметры не получилось разрешить с массивом массивов внутри links, поэтому так делаю отдельно для links:
+      @page.links = params[:page][:links]
+
       # begin
         if @page.save
           render :show, status: :ok
@@ -75,6 +78,9 @@ module Api
 
       # добавим редактора статьи
       @page.add_editor(::Current.user)
+
+      # параметры не получилось разрешить с массивом массивов внутри links, поэтому так делаю отдельно для links:
+      @page.links = params[:page][:links]
 
       # begin
         if @page.update(page_params)
@@ -141,7 +147,7 @@ module Api
     # Only allow a list of trusted parameters through.
     def page_params
       params.require(:page).except(
-        :id, :created_at, :updated_at, :is_deleted,
+        :id, :created_at, :updated_at, :is_deleted, :cover, :links,
       ).permit(
         :is_published,
         :page_type, :edit_mode,

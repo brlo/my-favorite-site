@@ -67,7 +67,10 @@ class PagesController < ApplicationController
       }
 
       # Запрашиваем результаты из БД
-      @matches, @search_regexp = ::PageSearch.new(search_params).fetch_objects(300)
+      @matches, @search_regexp = ::PageSearch.new(search_params).fetch_objects(2_000)
+
+      # пока нет нормальной пагинации, берём для показа только первые 500 совпадений
+      @matches = @matches.first(500)
 
       @matches_count = @matches.count
     else

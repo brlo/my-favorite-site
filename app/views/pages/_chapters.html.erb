@@ -53,6 +53,20 @@
     <div id='title-sub'><%= @page.title_sub %></div>
   <% end %>
 
+  <% if @page.links.present? %>
+    <div id='links-sub'>
+      <div class='btn-group'>
+        <% @page.links.each do |k,v| %>
+          <% if v.present? %>
+            <a class='btn' href='<%= v %>'><%= k %></a>
+          <% else %>
+            <div class='btn pressed'><%= k %></div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+
 <% if @tree_menu.present? %>
 
   <% if @page.is_search %>

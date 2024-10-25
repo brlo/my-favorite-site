@@ -297,6 +297,13 @@ const submitBtnItems = [
     }
   },
 ];
+
+function addLink() {
+  page.value.links.push(['', '']);
+};
+function removeLink(index) {
+  page.value.links.splice(index, 1);
+};
 </script>
 
 <template>
@@ -486,10 +493,25 @@ const submitBtnItems = [
       </FileUpload>
     </div>
   </div>
+
+  <div class="field">
+    <h2>Ссылки (сразу под названием)</h2>
+    <div v-for="(link, index) in page.links" :key="index">
+      <InputText v-model="link[0]" placeholder="Название ссылки" class="link-name"/>
+      <AutocompletePage v-model="link[1]" fetchKey="path" placeholder="Ссылка" :disabled="page.is_deleted" class="link-path"/>
+      <Button @click.prevent="removeLink(index)" label="Удалить" text severity="danger" class="link-btn-rm"/>
+    </div>
+    <Button @click.prevent="addLink" label="Добавить ссылку" />
+  </div>
+
 </div>
 </template>
 
 <style scoped>
+.link-name, .link-path, .link-btn-rm {
+  margin: 0 5px 5px 0;
+}
+
 .cover {
   margin: 10px 0;
 }

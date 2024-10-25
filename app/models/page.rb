@@ -38,6 +38,7 @@ class Page < ApplicationMongoRecord
   field :u_id,       as: :user_id, type: BSON::ObjectId
   # ids редакторов
   field :editors, type: Array
+  field :links,   type: Array
   # основной заголовок
   field :title, type: String
   # Название части книги (Том 1, или просто "1") или годы жизни автора

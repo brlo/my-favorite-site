@@ -34,9 +34,9 @@ class PageSearch
     regexes_arr = prepare_search_regexp(text, lang)
 
     # начальная страница
-    sub_pages = [@page]
+    # sub_pages = [@page]
     # плюс все дочерние
-    sub_pages += ::Menu.subpages_of_page(@page, limit: count)
+    sub_pages = ::Menu.subpages_of_page(@page, limit: count)
 
     # ПОИСК
     matches = []

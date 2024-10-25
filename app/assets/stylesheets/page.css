@@ -76,6 +76,62 @@
   text-align: center;
   font-size: 16px;
 }
+#page-content #links-sub {
+  margin: 10px 0 0 0;
+  font-size: 12px;
+}
+
+.btn-group {
+  display: flex;
+  justify-content: center; /* Горизонтальное выравнивание по центру */
+  align-items: center; /* Вертикальное выравнивание по центру */
+}
+
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  text-decoration: none;
+}
+
+.btn:first-child {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.btn:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.btn:not(:first-child) {
+  border-left: none;
+}
+
+.btn:hover {
+  background-color: #e9e9e9;
+}
+
+.btn.pressed {
+  cursor: default;
+  color: #6e6e6e;
+  background-color: #f6f4e3;
+}
+
+.night-mode .btn {
+  border: 1px solid #666;
+}
+.night-mode .btn:hover {
+  background-color: #425369;
+}
+
+.night-mode .btn.pressed {
+  cursor: default;
+  color: #eee;
+  background-color: #666;
+}
+
+
 
 #page-content p {
   hyphens: auto;
