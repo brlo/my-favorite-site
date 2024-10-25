@@ -32,7 +32,7 @@
     <% @matches.each do |m| %>
       <div class='line'>
         <% line_text = highlight(m[:text].to_s, @search_regexp) %>
-        "<%= verse_alone_clean(line_text.html_safe) %>"
+        "<%= verse_alone_clean(line_text.html_safe) %>"<br/>
         (<a href="<%= my_page_link_to("/#{m[:path]}") %>"><%= m[:title] %></a>)
       </div>
       <br>
