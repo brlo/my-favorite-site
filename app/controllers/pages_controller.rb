@@ -7,87 +7,6 @@ class PagesController < ApplicationController
     redirect_to "/#{I18n.locale}/#{current_bib_lang()}/lk/1/"
   end
 
-  def list
-    @current_menu_item = 'links'
-    @content_lang = params[:content_lang]
-
-    path = params[:page_path].to_s
-    @page = ::Page.find_by!(path_low: 'main', lang: @content_lang, page_type: 4, is_published: true)
-    @canonical_url = build_canonical_url("/w/")
-
-    @page_title = ::I18n.t('page.main_title')
-    @meta_description = ::I18n.t('page.main_meta_desc')
-
-    render :index
-
-    # МИГРАЦИЯ ОТ ЦИТАТ К СТРАНИЦАМ
-    #
-    # ::QuotesPage.each do |qpage|
-    #   page = Page.new()
-    #   page.lang = 'ru'
-    #   page.title = qpage.title
-    #   page.meta_desc = qpage.meta_desc
-    #   page.body = qpage.body
-    #   page.priority = qpage.position
-    #   page.path = qpage.path
-    #   page.page_type = 1
-    #   page.is_published = true
-    #   page.save
-    # end
-
-    # ::QuotesPage.each do |qpage|
-    #   page = Page.find_by(title: qpage.title, priority: qpage.position)
-    #   page.is_published = true
-    #   page.save
-    # end
-  end
-
-  def search
-    # не индексировать
-    @no_index = true
-
-    # search page
-    # Название (path) страницы, который ищет клиент
-    path = params[:page_path].to_s
-    path_downcased = path.downcase
-    @content_lang = params[:content_lang]
-
-    # Ищем в БД страницу. Клиент мог неправильно ввести регистр, поэтому ищем
-    # в спец поле, где всё в нижнем регистре.
-    @page = ::Page.find_by(path_low: path_downcased, lang: @content_lang)
-
-    # https://www.mongodb.com/docs/manual/core/link-text-indexes/
-    if params[:t].present?
-      # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9
-      @search_text = params[:t].gsub(/[^[[:alpha:]]0-9]/i, ' ')
-
-      search_params = {
-        page: @page,
-        text: @search_text
-      }
-
-      # Запрашиваем результаты из БД
-      @matches, @search_regexp = ::PageSearch.new(search_params).fetch_objects(2_000)
-
-      # пока нет нормальной пагинации, берём для показа только первые 500 совпадений
-      @matches = @matches.first(500)
-
-      @matches_count = @matches.count
-    else
-      @search_text = params[:t]
-
-      @matches_count = 0
-    end
-
-    @current_menu_item = 'links'
-    @page_title = ::I18n.t('search_page.title')
-    @page_title += ": #{@page.title.to_s[0..20]}" if params[:t].present?
-    @meta_description = ::I18n.t('search_page.meta_description', search: @search_text, matches: @matches_count)
-
-    @meta_book_tags = [params[:t]] if params[:t].present?
-    @canonical_url = build_canonical_url("/w/#{::CGI.escape(@page.path)}/search?t=#{@search_text}")
-  end
-
   def show
     # Название (path) страницы, который ищет клиент
     path = params[:page_path].to_s
@@ -261,6 +180,21 @@ class PagesController < ApplicationController
         @verses = @page.verses
 
         @page_title = ::I18n.t('page.title', term: @page.title)
+        if (@page_title.length < 30) && @parent_page.present?
+          # добавить в заголовок несколько слов из заголовка родителя, сколько поместится в 25 символов
+          # если слово уже не помещается, то ставим три точки и выходим из цикла
+          p_title = ''
+          @parent_page.title.split(' ').each do |word|
+            if (p_title.length + word.length) < 25
+              p_title += " #{word}"
+            else
+              p_title += '...'
+              break
+            end
+          end
+          @page_title += " / #{p_title}"
+        end
+
         @meta_description = @page.meta_desc
         @current_menu_item = 'links'
 
@@ -285,6 +219,52 @@ class PagesController < ApplicationController
       @page = ::Page.find_by!(group_lang_id: @page.group_lang_id, lang: @content_lang)
       redirect_to my_page_link_to("/#{::CGI.escape(@page.path)}")
     end
+  end
+
+  def search
+    # не индексировать
+    @no_index = true
+
+    # search page
+    # Название (path) страницы, которые ищет клиент
+    path = params[:page_path].to_s
+    path_downcased = path.downcase
+    @content_lang = params[:content_lang]
+
+    # Ищем в БД страницу. Клиент мог неправильно ввести регистр, поэтому ищем
+    # в спец поле, где всё в нижнем регистре.
+    @page = ::Page.find_by(path_low: path_downcased, lang: @content_lang)
+
+    # https://www.mongodb.com/docs/manual/core/link-text-indexes/
+    if params[:t].present?
+      # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9
+      @search_text = params[:t].gsub(/[^[[:alpha:]]0-9]/i, ' ')
+
+      search_params = {
+        page: @page,
+        text: @search_text
+      }
+
+      # Запрашиваем результаты из БД
+      @matches, @search_regexp = ::PageSearch.new(search_params).fetch_objects(2_000)
+
+      # пока нет нормальной пагинации, берём для показа только первые 500 совпадений
+      @matches = @matches.first(500)
+
+      @matches_count = @matches.count
+    else
+      @search_text = params[:t]
+
+      @matches_count = 0
+    end
+
+    @current_menu_item = 'links'
+    @page_title = ::I18n.t('search_page.title')
+    @page_title += ": #{@page.title.to_s[0..20]}" if params[:t].present?
+    @meta_description = ::I18n.t('search_page.meta_description', search: @search_text, matches: @matches_count)
+
+    @meta_book_tags = [params[:t]] if params[:t].present?
+    @canonical_url = build_canonical_url("/w/#{::CGI.escape(@page.path)}/search?t=#{@search_text}")
   end
 
   def page_as_pdf

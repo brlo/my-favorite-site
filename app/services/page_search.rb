@@ -78,7 +78,7 @@ class PageSearch
           _w = _w.length > 3 ? _w : w
           '\b' + _w + '[\p{Alnum}]{0,4}\b'
         end
-      when 'eng-nkjv'
+      when 'en-nrsv', 'eng-nkjv'
         arr.map do |w|
           # убираем окончание если оно есть И от слова остаётся больше 3-х букв
           _w = w.sub(EN_WORD_ENDS_REGEXP, '')
@@ -107,6 +107,9 @@ class PageSearch
   private
 
   def find_in_page(page, regexes_arr)
+    # пропускаем страницы, которые являются лишь накопителями других
+    # страниц (например, страница с биографией святого отца)
+    return [] if page.page_type.to_i == ::Page::PAGE_TYPES['список']
     return [] if page.body_search.blank?
 
     matches = []

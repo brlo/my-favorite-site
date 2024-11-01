@@ -115,7 +115,7 @@ class VerseSearch
           _w = w.sub(RU_WORD_ENDS_REGEXP, '')
           _w.length > 3 ? _w : w
         end.join('[А-ЯЁ\,\.\-\s\!\?\:\;]+')
-      when 'eng-nkjv'
+      when 'en-nrsv', 'eng-nkjv'
         arr.map do |w|
           # убираем окончание если оно есть И от слова остаётся больше 3-х букв
           _w = w.sub(EN_WORD_ENDS_REGEXP, '')

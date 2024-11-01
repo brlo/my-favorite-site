@@ -170,44 +170,44 @@ en:
 
   books:
     short:
-      gen: Ge
+      gen: Gen
       ish: Ex
-      lev: Le
-      chis: Nu
-      vtor: De
-      nav: Jos
-      sud: Jud
-      ruf: Ru
-      1ts: 1Sa
-      2ts: 2Sa
-      3ts: 1Ki
-      4ts: 2Ki
-      1par: 1Ch
-      2par: 2Ch
-      ezd: Ezr
-      neem: Ne
-      esf: Es
+      lev: Lev
+      chis: Num
+      vtor: Deut
+      nav: Josh
+      sud: Judg
+      ruf: Ruth
+      1ts: 1 Sam
+      2ts: 2 Sam
+      3ts: 1 Kin
+      4ts: 2 Kin
+      1par: 1 Chr
+      2par: 2 Chr
+      ezd: Ezra
+      neem: Neh
+      esf: Esth
       iov: Job
       ps: Ps
-      pr: Pr
-      ekl: Ec
-      pp: So
-      is: Isa
+      pr: Prov
+      ekl: Eccl
+      pp: Song
+      is: Is
       ier: Jer
-      pier: La
-      iez: Eze
-      dan: Da
-      os: Ho
-      iol: Joe
-      am: Am
-      av: Ob
+      pier: Lam
+      iez: Ezek
+      dan: Dan
+      os: Hos
+      iol: Joel
+      am: Amos
+      av: Obad
       ion: Jon
       mih: Mic
-      naum: Na
+      naum: Nah
       avm: Hab
-      sof: Zep
+      sof: Zeph
       ag: Hag
-      zah: Zec
+      zah: Zech
       mal: Mal
 
       # Книги, которыйх обычно нет в MyBible
@@ -223,31 +223,31 @@ en:
       prs: pSolom
       prsir: pSir
 
-      mf: Mt
-      mk: Mr
-      lk: Lu
-      in: Joh
-      act: Ac
-      rim: Ro
-      1kor: 1Co
-      2kor: 2Co
-      gal: Ga
+      mf: Matt
+      mk: Mark
+      lk: Luke
+      in: John
+      act: Act
+      rim: Rom
+      1kor: 1 Cor
+      2kor: 2 Cor
+      gal: Gal
       ef: Eph
-      fil: Php
+      fil: Phil
       kol: Col
-      1sol: 1Th
-      2sol: 2Th
-      1tim: 1Ti
-      2tim: 2Ti
-      tit: Tit
-      fm: Phm
+      1sol: 1 Thess
+      2sol: 2 Thess
+      1tim: 1 Tim
+      2tim: 2 Tim
+      tit: Titus
+      fm: Philem
       evr: Heb
-      iak: Jas
-      1pet: 1Pe
-      2pet: 2Pe
-      1in: 1Jo
-      2in: 2Jn
-      3in: 3Jo
+      iak: James
+      1pet: 1 Pet
+      2pet: 2 Pet
+      1in: 1 John
+      2in: 2 John
+      3in: 3 John
       iud: Jude
       otkr: Rev
 
@@ -289,7 +289,7 @@ en:
       avm: Habakkuk
       sof: Zephaniah
       ag: Haggai
-      zah: Zachariah
+      zah: Zechariah
       mal: Malachi
 
       # книги которых обычно нет в MyBible

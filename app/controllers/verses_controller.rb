@@ -31,6 +31,10 @@ class VersesController < ApplicationController
       if locale_for_content_lang(@content_lang) != ::I18n.locale.to_s
         @no_index = true
       end
+      # не индексировать переводы: csl-pnm, en-nrsv
+      if ['csl-pnm', 'en-nrsv'].include?(@content_lang)
+        @no_index = true
+      end
 
       @book_code ||= params[:book_code] || 'gen'
       @chapter = (params[:chapter] || 1).to_i
@@ -63,6 +67,10 @@ class VersesController < ApplicationController
           ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
           " #{@chapter} / " +
           ::I18n.t('bible')
+
+        # чтобы поисковики не жаловались на одинаковые заголовки в разных русских языках
+        @page_title += " / ЦСЯ" if ['csl-ru', 'csl-pnm'].include?(@content_lang)
+
         @meta_description = ::I18n.t("books.full.#{@book_code}")
         @canonical_url = build_canonical_url("/#{@book_code}/#{@chapter}/")
 

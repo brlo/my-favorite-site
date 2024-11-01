@@ -21,6 +21,7 @@ module ApplicationHelper
   # Название перевода Библии переводим в I18n.locale
   LANG_CONTENT_TO_LANG_UI = {
     'ru'         => 'ru',
+    'en-nrsv'    => 'en',
     'eng-nkjv'   => 'en',
     'csl-ru'     => 'ru',
     'csl-pnm'    => 'ru',
