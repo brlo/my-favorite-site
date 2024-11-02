@@ -56,7 +56,14 @@ const pathFromParam = urlParams.get('page_path')
 const langFromParam = urlParams.get('lang')
 
 const errors = ref('');
-const page = ref({page_type: 1, path: pathFromParam, lang: langFromParam || 'ru', is_published: true});
+const page = ref({
+  page_type: 1,
+  path: pathFromParam,
+  lang: langFromParam || 'ru',
+  is_published: true,
+  is_search: true,
+  is_show_parent: true,
+});
 const mr = ref({});
 const user = ref();
 const isCreateMRVisible = ref()
