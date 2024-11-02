@@ -41,6 +41,10 @@ gr:
   fast_search: Γρήγορη αναζήτηση
   voice: φωνή
 
+  bible_page:
+    comment_title: 'Σχολιασμός των Αγίων Γραφών'
+    comment: 'Σχόλιο'
+
   search_page:
     title: Αναζήτηση
     search_placeholder: Φράση

@@ -55,7 +55,10 @@ class VersesController < ApplicationController
 
         # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
         @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
-        # TODO: найти также все статьи для этой главы и встроить ссылки рядом со стихами
+        # Статьи-комментарии к стихам
+        page_comments = ::Page.comments_for_verses(@verses)
+        # индексируем по номерам стихов для быстрого доступа
+        @comments = page_comments.map { [_1.path_low.split(':').last.to_i, _1] }.to_h
 
         if @content_lang == 'gr-ru' # gr-lxx-byz
           @dict = preload_dict_for_verses(@verses)

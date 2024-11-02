@@ -39,6 +39,7 @@
       <a href='<%= my_page_link_to("/#{@parent_page.path}") %>'><%= @parent_page.title %></a>
     </h2>
   <% end %>
+
   <h1
     class="title"
     id='current-address'
@@ -51,7 +52,12 @@
     data-chapter='<%= @chapter_current %>'
     itemprop="headline"
   >
-    <%= @page.title %>
+    <% if @page.is_page_bib_comment? %>
+      <a href='<%= my_bib_link_to("/#{@page.link_to_bible_verse}") %>'><%= @page.title %></a>  |
+      <%= t('bible_page.comment_title') %>
+    <% else %>
+      <%= @page.title %>
+    <% end %>
   </h1>
 
   <% if @page.title_sub.present? %>

@@ -198,6 +198,26 @@ class PagesController < ApplicationController
         @meta_description = @page.meta_desc
         @current_menu_item = 'links'
 
+        # Если это коммент к библейскому стиху, то надо переделать хлеб. крошки и родителя и активное меню
+        if @page.is_page_bib_comment?
+          # активное меню
+          @current_menu_item = 'biblia'
+
+          # ХЛЕБНЫЕ КРОШКИ
+          book_code, chapter, line = @page.path_low.split(':')
+          lang, book_code = book_code.split('-')
+          @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
+          if ::BOOKS[book_code][:zavet] == 1
+            @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
+          else
+            @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
+          end
+          @breadcrumbs.push(@page.title)
+
+          # TITLE
+          @page_title = "#{@page.title} / #{::I18n.t('bible_page.comment_title')}"
+        end
+
         @chapter_current ||= 1
 
         # Если текст этой статьи разбит на несколько глав,

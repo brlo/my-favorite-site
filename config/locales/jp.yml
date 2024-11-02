@@ -41,6 +41,10 @@ jp:
   fast_search: 高速検索
   voice: 声
 
+  bible_page:
+    comment_title: '聖書の解説'
+    comment: '解説'
+
   search_page:
     title: 検索
     search_placeholder: フレーズ

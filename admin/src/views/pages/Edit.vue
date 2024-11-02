@@ -125,7 +125,7 @@ const langs = [
 const pageTypes = [
   { name: 'Статья', code: 1 },
   { name: 'Список', code: 4 },
-  // { name: 'Комментарий на библ. стих', code: 3 },
+  { name: 'Комментарий к библ. стиху', code: 3 },
   { name: 'Книга с разбивкой на стихи', code: 5 },
 ]
 

@@ -41,6 +41,10 @@ il:
   fast_search: חיפוש מהיר
   voice: קוֹל
 
+  bible_page:
+    comment_title: 'פירוש התנ"ך'
+    comment: 'הֶעָרָה'
+
   search_page:
     title: לחפש
     search_placeholder: מִשׁפָּט

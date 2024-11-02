@@ -20,6 +20,9 @@
                     <%= interliner_helper(v.data['w'], @dict).html_safe %>
                   <% else %>
                     <%= sanitize(v.text, tags: %w(j e i br)) %>
+                    <% if @comments[v.line] %>
+                      <a class='bib-comment' href='<%= my_page_link_to("/#{@comments[v.line].path}") %>'><%= t('bible_page.comment') %></a>
+                    <% end %>
                   <% end %>
                 </td>
               </tr>

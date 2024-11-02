@@ -41,6 +41,10 @@ de:
   fast_search: Schnelle Suche
   voice: Stimme
 
+  bible_page:
+    comment_title: 'Bibelkommentar'
+    comment: 'Kommentar'
+
   search_page:
     title: Suchen
     search_placeholder: Phrase

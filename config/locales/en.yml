@@ -41,6 +41,10 @@ en:
   fast_search: Fast search
   voice: Voice
 
+  bible_page:
+    comment_title: 'Commentary on the Bible'
+    comment: 'Comment'
+
   search_page:
     title: Search
     search_placeholder: Phrase

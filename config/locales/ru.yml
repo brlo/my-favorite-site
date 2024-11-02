@@ -10,6 +10,10 @@ ru:
   fast_search: 'Поиск фразы или Иак 2 16'
   voice: Озвучить
 
+  bible_page:
+    comment_title: 'Комментарий к Библии'
+    comment: 'Комментарий'
+
   search_page:
     title: Поиск
     search_placeholder: Фраза

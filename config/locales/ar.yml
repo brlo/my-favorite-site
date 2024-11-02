@@ -41,6 +41,10 @@ ar:
   fast_search: بحث سريع
   voice: صوت
 
+  bible_page:
+    comment_title: 'تعليق الكتاب المقدس'
+    comment: 'تعليق'
+
   search_page:
     title: يبحث
     search_placeholder: عبارة

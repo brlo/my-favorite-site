@@ -451,3 +451,29 @@ footer dd.tip {
   color: #abb2bf;
   background-color: #333;
 }
+
+a.bib-comment {
+  display: inline-block;
+  margin: 0;
+  padding: 0px 5px;
+  position: relative;
+  font-size: 0.6em;
+  color: #7f5e32;
+  background-color: #ffffff;
+  border: 1px solid #f5ebd8;
+  border-radius: 5px;
+  text-decoration: none;
+  line-height: 1.8em;
+  bottom: 3px;
+}
+
+a.bib-comment:hover {
+  background-color: #fbf2e0;
+}
+.night-mode a.bib-comment {
+  background-color: transparent;
+  border: 1px solid #454a53;
+}
+.night-mode a.bib-comment:hover {
+  background-color: #d4e4ff11;
+}

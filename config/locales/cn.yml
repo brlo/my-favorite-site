@@ -41,6 +41,10 @@ cn:
   fast_search: 快速搜索
   voice: 嗓音
 
+  bible_page:
+    comment_title: '圣经注释'
+    comment: '评论'
+
   search_page:
     title: 搜索
     search_placeholder: 短语

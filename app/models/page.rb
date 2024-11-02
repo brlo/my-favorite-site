@@ -106,6 +106,23 @@ class Page < ApplicationMongoRecord
 
   after_create :chat_notify_create
 
+  # Получить комментарии к библейским стихам
+  def self.comments_for_verses(verses)
+    lang = ::ApplicationHelper::LANG_CONTENT_TO_LANG_UI[verses.first&.lang]
+    paths = verses.map { |v| "#{lang}-#{v.a}" }
+    self.where(:path_low.in => paths)
+  end
+
+  # Если это статья-комментарий на библейский стих, то надо собрать ссылку на стих
+  def link_to_bible_verse
+    # "ru-vtor:1:2" -> ["ru", "vtor:1:2"]
+    lang, addr = self.path_low.split('-')
+    # "vtor:1:2" -> ["vtor", "1", "2"]
+    book_code, chapter, line = addr.split(':')
+    # -> "mf/1/#L2"
+    "#{book_code}/#{chapter}/#L#{line}"
+  end
+
   # у статьи есть автор и редакторы
   # тут добавляем редактора
   def add_editor _user
@@ -159,7 +176,7 @@ class Page < ApplicationMongoRecord
   end
 
   def generate_path
-    random_str = generate_string(8)
+    random_str = generate_string(4)
     clean_path = self.title.to_s.gsub(/\s+/, '_').gsub(/[^[[:alnum:]]_]/, '')
     "#{random_str}_#{clean_path}"
   end
@@ -167,7 +184,19 @@ class Page < ApplicationMongoRecord
   def normalize_attributes
     self.title = self.title.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')
     self.meta_desc = self.meta_desc.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')
-    self.path = self.path.to_s.strip.gsub(/[\t\s\n\r]+/, '_').presence || generate_path()
+
+    # Доработки, если статья — комментарий на библейский стих
+    if self.path.blank? && self.is_page_bib_comment?
+      # 'Быт. 1:14' -> '/zah/1/#L6'
+      self.path = ::AddressConverter.human_to_link(self.title).to_s
+      # '/zah/1/#L1,2-3,8' -> 'zah:1:6'
+      self.path = self.path.gsub('/#L', ':').gsub('/', ':')[1..-1]
+      # 'zah:1:6' -> 'ru-zah:1:6'
+      self.path = "#{self.lang}-#{self.path}"
+      # ещё title надо обязательно валидировать, генерировать ошибку, если локализация стиха не совпадает с I18n.t
+    else
+      self.path = self.path.to_s.strip.gsub(/[\t\s\n\r]+/, '_').presence || generate_path()
+    end
 
     self.path_low = self.path.downcase
     if self.path_low_changed?
@@ -183,15 +212,6 @@ class Page < ApplicationMongoRecord
     self.page_type = self.page_type.to_i
 
     self.edit_mode = self.edit_mode.to_i
-
-    # Доработки, если статья — комментарий на библейский стих
-    if self.path.blank? && self.is_page_bib_comment?
-      # 'Быт. 1:14' -> '/zah/1/#L6'
-      self.path = ::AddressConverter.human_to_link(self.title).to_s
-      # '/zah/1/#L1,2-3,8' -> 'zah:1:6'
-      self.path = self.path.gsub('/#L', ':').gsub('/', ':')[1..-1]
-      # ещё title надо обязательно валидировать, генерировать ошибку, если локализация стиха не совпадает с I18n.t
-    end
 
     self.tags = self.tags_str.to_s.split(',').map(&:strip) if self.tags_str.present?
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
