@@ -19,7 +19,8 @@ default: &default
 
 development:
   <<: *default
-  database: db/bib-il-dhnt85.SQLite3
+  database: db/bib-en-nrsv.SQLite3
+  # database: db/bib-il-dhnt85.SQLite3
   # database: db/Dvor.dictionary.SQLite3 -- словарь Дворецкого (но в итоге использовали не его, а от Гурина .abs)
   # database: db/bib-il-dhnt85.SQLite3
   # database: db/bib-arab-avd.SQLite3
