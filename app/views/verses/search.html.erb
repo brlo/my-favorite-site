@@ -64,6 +64,7 @@
     if (document.cookie.includes('textSize=1')) { document.querySelector('article').classList.add('text-small');
     } else if (document.cookie.includes('textSize=2')) { document.querySelector('article').classList.add('text-medium');
     } else if (document.cookie.includes('textSize=3')) { document.querySelector('article').classList.add('text-large');}
+    if (document.cookie.includes('isNightMode=1')) { document.body.classList.toggle('night-mode', true); }
   </script>
 <% if @matches_count > 0 %>
 
