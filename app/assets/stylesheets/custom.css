@@ -31,9 +31,9 @@ body {
   display: none !important;
 }
 
-article.text-small { font-size: 1em; }
-article.text-medium { font-size: 1.2em; }
-article.text-large { font-size: 1.4em; }
+article.text-small { font-size: 1.1em; }
+article.text-medium { font-size: 1.4em; }
+article.text-large { font-size: 1.7em; }
 
 /* для подстрочника покрупнее делаем текст */
 article.interliner.text-small { font-size: 1.5em; }
