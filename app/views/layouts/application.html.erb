@@ -45,6 +45,9 @@
 
   <%# classes = @is_night_mode ? "night-mode" : "" %>
   <body>
+    <script>
+      if (document.cookie.includes('isNightMode=1')) { document.body.classList.toggle('night-mode', true); }
+    </script>
     <header>
       <div class='container'>
         <div class="logo">
