@@ -458,3 +458,15 @@ a.foot-note {
 a.foot-note {
   user-select: none;
 }
+
+h2.parent-title {
+  border-bottom: none;
+  text-align: center;
+  font-size: 1em;
+  margin: 0 0 -10px 0;
+  padding: 0;
+}
+
+.parent-title a {
+  text-decoration: none;
+}

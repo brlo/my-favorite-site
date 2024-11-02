@@ -7,6 +7,7 @@ json.item do
   json.is_published      pg.is_published
   json.is_deleted        pg.is_deleted
   json.is_search         pg.is_search
+  json.is_show_parent    pg.is_show_parent
   json.page_type         pg.page_type.to_i
   json.edit_mode         pg.edit_mode.to_i
   json.title             pg.title

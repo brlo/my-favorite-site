@@ -472,6 +472,13 @@ function removeLink(index) {
   </div>
 
   <div v-if="user.privs.super" class="group-fields">
+    <div class="field">
+      <label for="isshowparent">Показывать родителя над заголовком?</label>
+      <Checkbox v-model="page.is_show_parent" inputId="isshowparent" :binary="true" />
+    </div>
+  </div>
+
+  <div v-if="user.privs.super" class="group-fields">
     <h2>Изображение для шапки</h2>
     <div v-if="page.cover" class="cover">
       <img :src="page.cover?.large"/>
