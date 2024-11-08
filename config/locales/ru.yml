@@ -10,6 +10,11 @@ ru:
   fast_search: 'Поиск фразы или Иак 2 16'
   voice: Озвучить
 
+  root_page:
+    headers:
+      bible: 'Библия — Священное Писание'
+      tradition: 'Священное Предание'
+
   bible_page:
     comment_title: 'Комментарий к Библии'
     comment: 'Комментарий'

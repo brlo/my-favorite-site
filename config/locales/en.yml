@@ -41,6 +41,11 @@ en:
   fast_search: Fast search
   voice: Voice
 
+  root_page:
+    headers:
+      bible: 'Bible — Holy Scripture'
+      tradition: 'Holy Tradition'
+
   bible_page:
     comment_title: 'Commentary on the Bible'
     comment: 'Comment'

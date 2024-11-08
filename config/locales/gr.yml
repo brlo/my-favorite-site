@@ -41,6 +41,11 @@ gr:
   fast_search: Γρήγορη αναζήτηση
   voice: φωνή
 
+  root_page:
+    headers:
+      bible: 'Αγία Γραφή'
+      tradition: 'Ιερή Παράδοση'
+
   bible_page:
     comment_title: 'Σχολιασμός των Αγίων Γραφών'
     comment: 'Σχόλιο'

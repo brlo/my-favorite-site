@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   # caches_page :show, :about
 
   def main
-    redirect_to "/#{I18n.locale}/#{current_bib_lang()}/"
+    redirect_to "/#{I18n.locale}/#{current_lang}/"
   end
 
   def show

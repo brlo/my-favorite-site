@@ -41,6 +41,11 @@ de:
   fast_search: Schnelle Suche
   voice: Stimme
 
+  root_page:
+    headers:
+      bible: 'Bibel — Heilige Schrift'
+      tradition: 'Heilige Tradition'
+
   bible_page:
     comment_title: 'Bibelkommentar'
     comment: 'Kommentar'

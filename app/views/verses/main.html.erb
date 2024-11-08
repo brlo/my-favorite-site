@@ -1,7 +1,7 @@
 
 <article id="page-content" class='mainp'>
   <h2 class="title" id="current-address" itemprop="headline">
-    <a id="current-book">Священное Писание — Библия</a>
+    <a id="current-book"><%= t('root_page.headers.bible') %></a>
   </h2>
 
   <div class="bible-list">
@@ -36,7 +36,7 @@
 
   <% if @page.present? %>
     <h2 class="title">
-      <a href="<%= my_page_link_to("/links_#{current_lang()}/") %>">Священное Предание</a>
+      <a href="<%= my_page_link_to("/links_#{current_lang()}/") %>"><%= t('root_page.headers.tradition') %></a>
     </h2>
 
     <div class='menu-tree'>

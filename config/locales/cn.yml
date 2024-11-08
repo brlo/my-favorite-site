@@ -41,6 +41,11 @@ cn:
   fast_search: 快速搜索
   voice: 嗓音
 
+  root_page:
+    headers:
+      bible: '圣经'
+      tradition: '神圣传统'
+
   bible_page:
     comment_title: '圣经注释'
     comment: '评论'

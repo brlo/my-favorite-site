@@ -41,6 +41,11 @@ ar:
   fast_search: بحث سريع
   voice: صوت
 
+  root_page:
+    headers:
+      bible: 'الكتاب المقدس'
+      tradition: 'التقليد المقدس'
+
   bible_page:
     comment_title: 'تعليق الكتاب المقدس'
     comment: 'تعليق'

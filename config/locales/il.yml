@@ -41,6 +41,11 @@ il:
   fast_search: חיפוש מהיר
   voice: קוֹל
 
+  root_page:
+    headers:
+      bible: 'כתבי הקודש — תנ"ך'
+      tradition: 'מסורת קדושה'
+
   bible_page:
     comment_title: 'פירוש התנ"ך'
     comment: 'הֶעָרָה'
