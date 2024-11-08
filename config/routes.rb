@@ -20,6 +20,8 @@ Rails.application.routes.draw do
           book && req.params[:chapter].to_i.between?(1, book[:chapters])
           # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
         }
+
+      get '/', to: 'verses#index'
     end
 
     scope '/:content_lang', :content_lang => /ru|gr|en|il|ar|jp|cn|de/ do
@@ -28,6 +30,8 @@ Rails.application.routes.draw do
       get '/w/:page_path/search', to: 'pages#search', as: 'page_search'
       post '/w/:page_path/search', to: 'pages#search'
       get '/w/:page_path/as_pdf', to: 'pages#page_as_pdf'
+
+      get '/', to: 'verses#index'
     end
 
     # СТАРАЯ АДРЕСАЦИЯ, БЕЗ УКАЗАНИЯ ЯЗЫКА КОНТЕНТА. Сейчас ловим для переадресации

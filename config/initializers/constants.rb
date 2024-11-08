@@ -614,7 +614,7 @@ BOOK_TO_CODE = {
   'hebr' => 'evr',
   'hebrews' => 'evr',
 
-  'ои' => 'otkr',
+  'от' => 'otkr',
   'откр' => 'otkr',
   'апок' => 'otkr',
   'откровение' => 'otkr',

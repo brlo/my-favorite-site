@@ -455,3 +455,33 @@ body.night-mode {
 .night-mode input.btn:active, .night-mode input.btn:focus {
   background-color: #317441;
 }
+
+
+.bible-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.bible-column {
+  flex: 1;
+  min-width: 300px; /* Минимальная ширина колонки */
+  box-sizing: border-box;
+  padding: 10px;
+}
+
+@media (max-width: 800px) {
+  .bible-column {
+    flex: 100%; /* Колонки занимают всю ширину контейнера */
+  }
+}
+
+.mainp h2 {
+  text-align: center !important;
+  margin-top: 20px !important;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #999;
+}
+
+a#current-book {
+  cursor: default;
+}

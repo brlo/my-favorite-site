@@ -23,7 +23,12 @@ class VersesController < ApplicationController
 
   def index
     if params[:book_code].blank? || params[:chapter].blank?
-      redirect_to "/#{I18n.locale}/#{current_bib_lang()}/gen/1/"
+      # redirect_to "/#{I18n.locale}/#{current_bib_lang()}/gen/1/"
+      @page = ::Page.find_by(path_low: "links_#{::I18n.locale}")
+      if @page.page_type.to_i == ::Page::PAGE_TYPES['список']
+        @tree_menu = @page.tree_menu
+      end
+      render 'main'
     else
       @content_lang = current_bib_lang()
 

@@ -51,12 +51,12 @@
     <header>
       <div class='container'>
         <div class="logo">
-          <a href="<%= my_bib_link_to("/lk/1/") %>">
+          <a href="<%= my_bib_link_to("/") %>">
             <img src="<%= my_res_link_to("/logo/bibleox-#{ ['ru', 'cs', 'gr', 'en'].include?(::I18n.locale.to_s) ? ::I18n.locale.to_s : 'en' }.png") %>">
           </a>
         </div>
         <nav>
-          <a href="<%= my_bib_link_to("/lk/1/") %>" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
+          <a href="<%= my_bib_link_to("/") %>" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
           <a href="<%= my_page_link_to("/links_#{current_lang()}/") %>" id='quotes-link' class="<%= @current_menu_item == 'links' ? ' selected' : nil %>"><%= I18n.t('menu.links') %></a>
 
           <a href="javascript:" id="settings-btn" class="local"><%= ::I18n.t('menu.settings') %></a>

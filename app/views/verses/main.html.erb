@@ -1,0 +1,48 @@
+
+<article id="page-content" class='mainp'>
+  <h2 class="title" id="current-address" itemprop="headline">
+    <a id="current-book">Священное Писание — Библия</a>
+  </h2>
+
+  <div class="bible-list">
+    <div class="bible-column menu-tree">
+      <div class='small hint'><%= I18n.t('menu.nov_zavet') %></div>
+      <% ::BOOKS.each do |book_code, data| %>
+        <% next if data[:zavet] == 1 %>
+        <% classes = []; m_classes = [] %>
+        <% data[:desc] == 'Евангелие' ? m_classes.push('gold') : nil %>
+        <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
+        <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
+          <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}") %></a>
+        </div>
+      <% end %>
+    </div>
+
+
+    <div class="bible-column menu-tree">
+      <div class='small hint'><%= I18n.t('menu.veth_zavet') %></div>
+      <% ::BOOKS.each do |book_code, data| %>
+        <% next if data[:zavet] == 2 %>
+        <% classes = []; m_classes = [] %>
+        <% data[:desc] == 'Евангелие' ? m_classes.push('gold') : nil %>
+        <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
+        <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
+          <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}") %></a>
+        </div>
+      <% end %>
+    </div>
+  </div>
+
+
+  <% if @page.present? %>
+    <h2 class="title">
+      <a href="<%= my_page_link_to("/links_#{current_lang()}/") %>">Священное Предание</a>
+    </h2>
+
+    <div class='menu-tree'>
+      <div>
+      <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0}) %>
+      </div>
+    </div>
+  <% end %>
+</article>
