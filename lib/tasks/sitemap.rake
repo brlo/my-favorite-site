@@ -35,6 +35,9 @@ namespace :g do
       end
 
       ::ApplicationHelper::LANG_CONTENT_TO_LANG_UI.each do |lang_content, lang_ui|
+        # некоторые языки не индексируем
+        next if ::ApplicationHelper::NOT_INDEXED_LANGS.include?(lang_content)
+
         ::BOOKS.each do |book_code, params|
           (1..params[:chapters]).each do |chapter|
             add "/#{lang_ui}/#{lang_content}/#{book_code}/#{chapter}/", :changefreq => changefreq, :priority => 0.9
@@ -43,6 +46,12 @@ namespace :g do
       end
 
       ::Page.each do |p|
+        # ПРОПУСКАЕМ, если:
+        # - не опубликована?
+        next if p.is_pub == false
+        # - удалена?
+        next if p.is_del == true
+
         add "/#{p.lang}/#{p.lang}/w/#{p.path}/", :changefreq => changefreq, :priority => 0.9
       end
     end

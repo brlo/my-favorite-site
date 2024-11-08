@@ -34,6 +34,12 @@ module ApplicationHelper
     'arab-avd'   => 'ar',
   }
 
+  # поисковик не должен это индексировать
+  NOT_INDEXED_LANGS = [
+    'csl-pnm',
+    'en-nrsv',
+  ]
+
   # I18n.locale переводим в название перевода Библии
   LANG_UI_TO_LANG_CONTENT = {
     # 'cs' => 'csl-ru',

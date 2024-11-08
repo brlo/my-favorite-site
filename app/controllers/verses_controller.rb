@@ -32,7 +32,7 @@ class VersesController < ApplicationController
         @no_index = true
       end
       # не индексировать переводы: csl-pnm, en-nrsv
-      if ['csl-pnm', 'en-nrsv'].include?(@content_lang)
+      if ::ApplicationHelper::NOT_INDEXED_LANGS.include?(@content_lang)
         @no_index = true
       end
 
