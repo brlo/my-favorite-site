@@ -408,9 +408,11 @@
   padding: 10px 15px;
   border: 1px solid #7777772E;
   border-radius: 3px;
-  font-size: 1.3em;
   background-color: #90888111;
 }
+.text-small #article-menu { font-size: 1.3em; }
+.text-medium #article-menu { font-size: 1.1em; }
+.text-large #article-menu { font-size: 0.95em; }
 
 #article-menu .menu-name {
   text-align: center;

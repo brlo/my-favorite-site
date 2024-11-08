@@ -1,5 +1,5 @@
 namespace :g do
-  # cd /app/backend && HOME=/app/backend RACK_ENV=production bundle exec rake g:sitemap FOR_PLACE_SIZE=big
+  # RACK_ENV=production bundle exec rake g:sitemap
   desc "Generate sitemap"
   task :sitemap => :environment do
     require 'sitemap_generator'
