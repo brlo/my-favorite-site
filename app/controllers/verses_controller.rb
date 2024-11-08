@@ -28,6 +28,11 @@ class VersesController < ApplicationController
       if @page.page_type.to_i == ::Page::PAGE_TYPES['список']
         @tree_menu = @page.tree_menu
       end
+
+      @page_title = ::I18n.t('root_page.title')
+      @meta_description = ::I18n.t('about_site_short')
+      @canonical_url = "https://bibleox.com/#{I18n.locale}/"
+
       render 'main'
     else
       @content_lang = current_bib_lang()

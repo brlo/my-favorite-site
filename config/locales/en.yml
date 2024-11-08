@@ -42,6 +42,7 @@ en:
   voice: Voice
 
   root_page:
+    title: 'The Bible and Holy Tradition'
     headers:
       bible: 'Bible — Holy Scripture'
       tradition: 'Holy Tradition'

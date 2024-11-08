@@ -42,6 +42,7 @@ de:
   voice: Stimme
 
   root_page:
+    title: 'Bibel und heilige Tradition'
     headers:
       bible: 'Bibel — Heilige Schrift'
       tradition: 'Heilige Tradition'

@@ -42,6 +42,7 @@ ar:
   voice: صوت
 
   root_page:
+    title: 'الكتاب المقدس والتقليد المقدس'
     headers:
       bible: 'الكتاب المقدس'
       tradition: 'التقليد المقدس'

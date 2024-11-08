@@ -42,6 +42,7 @@ gr:
   voice: φωνή
 
   root_page:
+    title: 'Αγία Γραφή και Ιερή Παράδοση'
     headers:
       bible: 'Αγία Γραφή'
       tradition: 'Ιερή Παράδοση'

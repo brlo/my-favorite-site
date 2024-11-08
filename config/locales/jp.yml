@@ -42,6 +42,7 @@ jp:
   voice: 声
 
   root_page:
+    title: '聖書と神聖な伝統'
     headers:
       bible: '聖書'
       tradition: '神聖な伝統'

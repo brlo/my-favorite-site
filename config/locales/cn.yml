@@ -42,6 +42,7 @@ cn:
   voice: 嗓音
 
   root_page:
+    title: '圣经和神圣传统'
     headers:
       bible: '圣经'
       tradition: '神圣传统'
