@@ -185,7 +185,7 @@
 .looks-like-page ol {
   padding: 0;
   padding-inline-start: 32px;
-  line-height: 1.5rem;
+  /* line-height: 1.5rem; */
 }
 
 .looks-like-page li > ul,
