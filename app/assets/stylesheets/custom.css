@@ -227,10 +227,10 @@ dd#change-ui-lang-area .choices__inner {
 }
 
 .logo img {
-  width: 120px;
-  background-color: #d0d7be;
+  width: 200px;
+  /* background-color: #d0d7be; */
   /* background-color: #406c59; */
-  padding: 8px 10px;
+  padding: 0;
   border-radius: 4px;
   -webkit-transition: background-color 124ms linear;
   -ms-transition: background-color 124ms linear;
@@ -238,16 +238,16 @@ dd#change-ui-lang-area .choices__inner {
 }
 
 .night-mode .logo img {
-  background-color: #c0cda1;
+  /* background-color: #c0cda1; */
   /* background-color: #406c59; */
 }
 
 .logo img:hover {
-  background-color: #a4d091;
+  /* background-color: #a4d091; */
   /* background-color: #a4d091; */
 }
 .logo img:active {
-  background-color: #a2b997;
+  /* background-color: #a2b997; */
   /* background-color: #a2b997; */
 }
 
