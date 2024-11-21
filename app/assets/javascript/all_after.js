@@ -150,11 +150,23 @@ menuBooks.eraseSearch = function () {
   menuBooks.searchInput.value = '';
 }
 
-menuBooks.goToSearch = function() {
-  const text = menuBooks.searchInput.value;
+menuBooks.goToSearch = function(form) {
+  let text = undefined;
+  let lang = undefined;
+  // если форму с input внутри передали, то она приоритетнее! Берём значение от туда.
+  // Так делаем ради примитивного поля для поиска на главной странице
+  if (form) {
+    text = form.querySelector('#search-tree-input').value;
+    lang = document.getElementById('lang-select').value;
+  } else {
+    text = menuBooks.searchInput.value;
+  };
+
   let params = [];
 
+  if (lang && lang.length > 0) { params.push('l=' + lang) };
   if (text && text.length > 0) { params.push('t=' + text) };
+
   const url = '/' + window.BX.locale + '/search?' + params.join('&');
   document.location.href = url;
 }
@@ -488,7 +500,7 @@ window.BX.logout = function() {
 // ---------------- FILTER MENU ------------------
 
 window.filterQueryPages = function(text, isNeedTranslit) {
-  const root = document.querySelector(".menu-tree");
+  const root = document.querySelectorAll(".menu-tree");
   const els = document.querySelectorAll(".menu-tree .menu-link");
   // все буквы маленькие
   // оставляем только буквы и цифры
@@ -508,7 +520,7 @@ window.filterQueryPages = function(text, isNeedTranslit) {
     // subjects.forEach(el => el.classList.remove('hidden'));
     // els.forEach(el => el.classList.remove('hidden'));
     // удалить общую метку
-    root.classList.remove('hidden-children');
+    root.forEach(el => { el.classList.remove('hidden-children') });
     // удалить метку с подсвеченных элементов
     const visibleEls = document.querySelectorAll(".menu-tree .visible");
     visibleEls.forEach(el => el.classList.remove('visible'));
@@ -536,7 +548,7 @@ window.filterQueryPages = function(text, isNeedTranslit) {
 
     // если есть совпадения, то ставим общую метку на весь блок
     if (isSomethingMatch) {
-      root.classList.add('hidden-children');
+      root.forEach(el => { el.classList.add('hidden-children') });
     } else {
       // если нет результатов и транслит ещё не пробовали, то надо попробовать транслит поискать
       if (isNeedTranslit != true) {

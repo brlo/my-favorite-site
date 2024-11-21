@@ -23,11 +23,22 @@ class VersesController < ApplicationController
 
   def index
     if params[:book_code].blank? || params[:chapter].blank?
+      # ГЛАВНАЯ СТРАНИЦА
+
       # redirect_to "/#{I18n.locale}/#{current_bib_lang()}/gen/1/"
-      @page = ::Page.find_by(path_low: "links_#{::I18n.locale}")
+
+      # для работы переключателя языка
+      @current_bib_lang = current_bib_lang()
+      @locale_by_bib = locale_for_content_lang(@current_bib_lang)
+
+      @page = ::Page.find_by(path_low: "links_#{@locale_by_bib}")
+      # @page = ::Page.find_by(path_low: "links_#{::I18n.locale}")
       if @page.page_type.to_i == ::Page::PAGE_TYPES['список']
         @tree_menu = @page.tree_menu
       end
+
+      # Первые три стиха из 1ИН, для главной страницы
+      @main_verses = ::Verse.where(lang: @current_bib_lang, book: '1in', chapter: 1, :l.in => [1,2,3]).sort(line: 1).to_a
 
       @page_title = ::I18n.t('root_page.title')
       @meta_description = ::I18n.t('about_site_short')
@@ -155,7 +166,7 @@ class VersesController < ApplicationController
   def search
     # default
     @search_accuracy = params[:acc] || 'similar'
-    @search_lang = params[:l] || (::I18n.locale == :ru ? 'ru' : 'eng-nkjv')
+    @search_lang = params[:l] || ::ApplicationHelper::LANG_UI_TO_LANG_CONTENT[::I18n.locale.to_s]
     @search_books = params[:book]
     # не индексировать
     @no_index = true

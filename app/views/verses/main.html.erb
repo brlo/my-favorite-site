@@ -1,35 +1,67 @@
 
-<article id="page-content" class='mainp'>
+<section id="page-content" class='mainp'>
   <h2
     class="title"
-    id='current-address'>
+    id='current-address'
+    data-book-short-name='lk'
+    data-lang-ui='<%= I18n.locale %>'
+    data-lang-content='<%= @content_lang %>'
+    data-book-code=''
+    data-chapter=''
+    style='border-bottom: none;'
+    itemprop="headline">
     <a id="current-book"><%= t('root_page.headers.bible') %></a>
   </h2>
 
+  <form action="/" class='tree-search' id='search-form' onsubmit="menuBooks.goToSearch(this);return false;" style='margin: -10px auto 20px auto;'>
+    <div id='search-tree-input-area'>
+      <input
+        class='pretty'
+        name="t"
+        type="text"
+        id="search-tree-input"
+        oninput='window.filterQueryPages(this.value, false);'
+        placeholder="<%= t('fast_search') %>"
+        value=''
+        autocomplete="off"
+      />
+      <a onclick="document.getElementById('search-form').submit();"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+    </div>
+  </form>
+
+  <%= render(partial: 'verses/text_bar') %>
+
+  <div class='pre-bible-text csl t-c-dir'>
+    "<%= sanitize(@main_verses.map(&:t).join(' '), tags: []) %>"
+    <% v = @main_verses.first %>
+    <% v_last = @main_verses.last %>
+    (<a href="<%= "/#{locale}/#{current_bib_lang}/#{ v['bc'] }/#{ v['ch'] }#L#{ v['l'] }-#{v_last['l']}" %>"><%= ::I18n.t("books.short.#{ v['bc'] }", locale: ::ApplicationHelper::LANG_CONTENT_TO_LANG_UI[v.lang]) %>. <%= v['ch'] %>:<%= v['l'] %>-<%= v_last['l'] %></a>)
+  </div>
+
   <div class="bible-list">
     <div class="bible-column menu-tree">
-      <div class='small hint'><%= I18n.t('menu.nov_zavet') %></div>
+      <div class='small hint'><%= I18n.t('menu.nov_zavet', locale: @locale_by_bib) %></div>
       <% ::BOOKS.each do |book_code, data| %>
         <% next if data[:zavet] == 1 %>
         <% classes = []; m_classes = [] %>
         <% data[:desc] == 'Евангелие' ? m_classes.push('gold') : nil %>
         <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
         <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
-          <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}") %></a>
+          <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></a>
         </div>
       <% end %>
     </div>
 
 
     <div class="bible-column menu-tree">
-      <div class='small hint'><%= I18n.t('menu.veth_zavet') %></div>
+      <div class='small hint'><%= I18n.t('menu.veth_zavet', locale: @locale_by_bib) %></div>
       <% ::BOOKS.each do |book_code, data| %>
         <% next if data[:zavet] == 2 %>
         <% classes = []; m_classes = [] %>
         <% data[:desc] == 'Евангелие' ? m_classes.push('gold') : nil %>
         <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
         <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
-          <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}") %></a>
+          <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></a>
         </div>
       <% end %>
     </div>

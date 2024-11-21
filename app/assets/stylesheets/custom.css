@@ -482,6 +482,10 @@ body.night-mode {
   border-bottom: 1px solid #999;
 }
 
+.pre-bible-text {
+  font-size: 0.9em !important;
+}
+
 a#current-book {
   cursor: default;
 }

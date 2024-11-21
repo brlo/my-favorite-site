@@ -186,13 +186,17 @@ function selectLang() {
   // Элемент в котором хранятся все идентификаторы адреса
   const bookInfo = document.getElementById('current-address').dataset;
 
-  const path = '/' +
+  let path = '/' +
     bookInfo.langUi + '/' +
-    contentLang + '/' +
-    bookInfo.bookCode + '/' +
-    bookInfo.chapter + '/' +
-    window.location.search +
-    window.location.hash;
+    contentLang + '/'
+
+  if (bookInfo.bookCode.length) {
+    path = path +
+      bookInfo.bookCode + '/' +
+      bookInfo.chapter + '/' +
+      window.location.search +
+      window.location.hash;
+  }
 
   window.location.href = path;
 };
