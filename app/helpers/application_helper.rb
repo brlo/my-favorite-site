@@ -139,8 +139,8 @@ module ApplicationHelper
   end
 
   # Делает ссылку с указанной локалью (текущей)
-  def my_page_link_to(path)
-    "/#{I18n.locale}/#{current_lang()}/w#{path}"
+  def my_page_link_to(path, page_lang: nil)
+    "/#{I18n.locale}/#{ page_lang ? page_lang : current_lang()}/w#{path}"
   end
 
   # ссылка на ресурс

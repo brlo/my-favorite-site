@@ -66,9 +66,7 @@ header nav > a#settings-btn {
 }
 
 .logo img {
-  width: 120px;
-  background-color: #d0d7be;
-  padding: 8px 10px;
+  width: 200px;
   border-radius: 4px;
   -webkit-transition: background-color 124ms linear;
   -ms-transition: background-color 124ms linear;

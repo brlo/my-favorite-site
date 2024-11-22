@@ -12,7 +12,7 @@
       <% item[:is_gold] ? _class.push('gold') : nil %>
       <div class='depth-<%= depth %> <%= _class.join(' ') %>'>
         <% if item[:path].presence %>
-          <a href="<%= my_page_link_to("/#{item[:path]}") %>"><%= item[:title] %></a>
+          <a href="<%= my_page_link_to("/#{item[:path]}", page_lang: page_lang) %>"><%= item[:title] %></a>
         <% else %>
           <%= item[:title] %>
         <% end %>
@@ -20,7 +20,7 @@
 
       <% if item[:childs].present? %>
         <div class='level'>
-          <%= render(partial: 'pages/menu', locals: {items: item[:childs], depth: depth+1}) %>
+          <%= render(partial: 'pages/menu', locals: {items: item[:childs], depth: depth+1, page_lang: page_lang}) %>
         </div>
       <% end %>
 

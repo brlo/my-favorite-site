@@ -35,7 +35,7 @@
     "<%= sanitize(@main_verses.map(&:t).join(' '), tags: []) %>"
     <% v = @main_verses.first %>
     <% v_last = @main_verses.last %>
-    (<a href="<%= "/#{locale}/#{current_bib_lang}/#{ v['bc'] }/#{ v['ch'] }#L#{ v['l'] }-#{v_last['l']}" %>"><%= ::I18n.t("books.short.#{ v['bc'] }", locale: ::ApplicationHelper::LANG_CONTENT_TO_LANG_UI[v.lang]) %>. <%= v['ch'] %>:<%= v['l'] %>-<%= v_last['l'] %></a>)
+    (<a href="<%= "/#{locale}/#{current_bib_lang}/#{ v['bc'] }/#{ v['ch'] }#L#{ v['l'] }-#{v_last['l']}" %>"><%= ::I18n.t("books.short.#{ v['bc'] }", locale: @locale_by_bib) %>. <%= v['ch'] %>:<%= v['l'] %>-<%= v_last['l'] %></a>)
   </div>
 
   <div class="bible-list">
@@ -70,13 +70,13 @@
 
   <% if @tree_menu.present? %>
     <h2 class="title">
-      <a href="<%= my_page_link_to("/links_#{current_lang()}/") %>"><%= t('root_page.headers.tradition') %></a>
+      <a href="<%= my_page_link_to("/links_#{@locale_by_bib}/", page_lang: @locale_by_bib) %>"><%= t('root_page.headers.tradition') %></a>
     </h2>
 
     <div class='menu-tree'>
       <div>
-      <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0}) %>
+      <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0, page_lang: @locale_by_bib}) %>
       </div>
     </div>
   <% end %>
-</article>
+</section>
