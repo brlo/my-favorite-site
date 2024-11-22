@@ -15,11 +15,12 @@
 <%= content_for?(:head) ? yield(:head) : '' %>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
+
     <link rel="apple-touch-icon" sizes="180x180" href="<%= my_res_link_to('/favicons/apple-touch-icon.png') %>">
+    <link rel="icon" type="image/png" sizes="96x96" href="<%= my_res_link_to('/favicons/favicon-96x96.png') %>" />
     <link rel="icon" type="image/svg+xml" href="<%= my_res_link_to('/favicons/favicon.svg') %>">
-    <link rel="icon" type="image/png" sizes="32x32" href="<%= my_res_link_to('/favicons/favicon-32x32.png') %>">
-    <link rel="icon" type="image/png" sizes="16x16" href="<%= my_res_link_to('/favicons/favicon-16x16.png') %>">
     <link rel="shortcut icon" href="<%= my_res_link_to('/favicons/favicon.ico') %>">
+
     <link rel="manifest" href="<%= my_res_link_to('/favicons/site.webmanifest') %>">
     <link rel="mask-icon" href="<%= my_res_link_to('/favicons/safari-pinned-tab.svg') %>" color="#75a361">
     <meta name="apple-mobile-web-app-title" content="Bibleox">
