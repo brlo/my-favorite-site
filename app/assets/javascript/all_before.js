@@ -4,41 +4,49 @@ const localization = {
     copyTitle: 'نسخ',
     day: 'يوم',
     night: 'ليلة',
+    linkIsCopied: 'تم نسخ الرابط',
   },
   cn: {
     copyTitle: '复制的',
     day: '天',
     night: '夜晚',
+    linkIsCopied: '链接已复制',
   },
   de: {
     copyTitle: 'kopiert',
     day: 'Tag',
     night: 'Nacht',
+    linkIsCopied: 'Der Link wurde kopiert',
   },
   en: {
     copyTitle: 'Copied',
     day: 'Day',
     night: 'Night',
+    linkIsCopied: 'The link is copied',
   },
   gr: {
     copyTitle: 'αντιγράφηκε',
     day: 'Ημέρα',
     night: 'Νύχτα',
+    linkIsCopied: 'Ο σύνδεσμος αντιγράφεται',
   },
   il: {
     copyTitle: 'מוּעֲתָק',
     day: 'יְוֹם',
     night: 'לַיְלָה',
+    linkIsCopied: 'הקישור מועתק',
   },
   jp: {
     copyTitle: 'コピーされました',
     day: '昼',
     night: '夜',
+    linkIsCopied: 'リンクがコピーされました',
   },
   ru: {
     copyTitle: 'Скопировано',
     day: 'День',
     night: 'Ночь',
+    linkIsCopied: 'Ссылка скопирована',
   },
 };
 

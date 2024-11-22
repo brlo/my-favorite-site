@@ -577,3 +577,9 @@ if (scrollToTopBtn) {
     });
   });
 };
+
+window.BX.shareLink = function() {
+  const url = decodeURIComponent(window.location.href);
+  BX.tools.copyText(url)
+  BX.notifications.addNotification('<t>' + BX.localization.linkIsCopied + ':</t>' + url);
+}

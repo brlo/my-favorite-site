@@ -471,3 +471,8 @@ a.bib-comment:hover {
 .night-mode a.bib-comment:hover {
   background-color: #d4e4ff11;
 }
+
+
+.share-btn {
+  display: inline-block;
+}
