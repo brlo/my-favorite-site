@@ -296,10 +296,6 @@ a:hover { color: #8c6964; }
 a.selected { color: #8c6964; }
 a.selected:hover { color: #a67f7f; }
 
-/* активная ссылка в появляющемся меню с книгами */
-.menu-books a.selected { color: #ca6739; }
-.menu-books a.selected:hover { color: #dd7b4d; }
-
 .highlight {
   color: rgba(255,151,101, 1)
 }
@@ -420,10 +416,6 @@ body.night-mode {
 /* активная ссылка в header */
 .night-mode a.selected { color: #cd9765; }
 .night-mode a.selected:hover { color: #e4b487; }
-
-/* активная ссылка в появляющемся меню с книгами */
-.night-mode .menu-books a.selected { color: #ca6739; }
-.night-mode .menu-books a.selected:hover { color: #dd7b4d; }
 
 .hint {
   font-size: 14px;

@@ -72,10 +72,11 @@ header nav > a#settings-btn {
   width: calc(100% - 20px);
   padding: 15px;
   margin: 0;
-  background-color: #d0d7be;
-  border-radius: 5px;
+  background-color: #f6f4e4;
+  border-radius: 0 0 5px 5px;
   position: absolute;
   z-index: 1;
+  box-shadow: rgb(222, 221, 209) 0px 1px 1px;
 }
 
 .menu-books::after {
@@ -84,15 +85,16 @@ header nav > a#settings-btn {
   left: 20px;
   top: -19px;
   border: 10px solid transparent;
-  border-bottom: 10px solid #d0d7be;
+  border-bottom: 10px solid #f6f4e4;
 }
 
 .night-mode .menu-books {
-  background-color:#c0cda1;
+  background-color:#2f3541;
+  box-shadow: none;
 }
 
 .night-mode .menu-books::after {
-  border-bottom: 10px solid #c0cda1;
+  border-bottom: 10px solid #2f3541;
 }
 
 .menu-books #filter-books,
@@ -100,8 +102,8 @@ header nav > a#settings-btn {
   display: block;
   margin: 0 auto 10px auto;
   font-size: 1.2em;
-  background-color: #e0e6d5;
-  border: 2px solid #b0be8f;
+  background-color: #e0e6d500;
+  border: 1px solid #d8d1c0;
   color: #565656;
   border-radius: 4px;
   outline: none;
@@ -111,9 +113,18 @@ header nav > a#settings-btn {
 
 .menu-books #filter-books:focus,
 .menu-books #filter-author-books:focus {
-  background-color: #f1f4ed;
-  color: black;
+  border-color: #9c9073;
 }
+.night-mode .menu-books #filter-books,
+.night-mode .menu-books #filter-author-books {
+  border-color: #4d4c49;
+  color: #898781;
+}
+.night-mode .menu-books #filter-books:focus,
+.night-mode .menu-books #filter-author-books:focus {
+  border-color: #898781;
+}
+
 
 .menu-books form {
   display: block;
@@ -137,7 +148,8 @@ header nav > a#settings-btn {
 }
 
 .menu-books.book-clicked {
-  top: 100px;
+  top: 98px;
+  border-radius: 5px;
 }
 
 .menu-books.book-clicked::after {
@@ -145,32 +157,14 @@ header nav > a#settings-btn {
   margin-left: -10px;
 }
 
-.menu-books a {
+.menu-books a.search-icon {
   display: inline-block;
-  padding: 5px 5px 5px 0;
+  padding: 4px 5px 5px 0;
 }
 
-.menu-books a.kanon {
-  color: #00613b;
+.menu-books .menu-tree {
+  padding: 0 0 50px 0;
 }
-.menu-books a.kanon:hover {
-  color: #277757;
-}
-.menu-books a.non-kanon {
-  color: #4a4139;
-}
-
-.menu-books a.non-kanon:hover {
-  color: #6d6156;
-}
-
-/* .night-mode .menu-books a.non-kanon {
-  color:#888;
-}
-
-.night-mode .menu-books a.non-kanon:hover {
-  color:#999;
-} */
 
 
 /* BOOK NAME */
