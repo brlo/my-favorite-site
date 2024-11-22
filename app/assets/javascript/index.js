@@ -24,14 +24,14 @@ window.BX.notifications.show = function () {
   body.appendChild(el);
 
   // через 2 сек - затухаем
-  setTimeout(() => document.getElementById('popup-notif').style.opacity = '0', 2000);
+  setTimeout(() => document.getElementById('popup-notif').style.opacity = '0', 200000);
   // через 2.5 сек - исчезаем и рисуем следующее уведомлене
   setTimeout(function() {
     el = document.getElementById('popup-notif');
     body = document.getElementsByTagName('body')[0];
     body.removeChild(el);
     BX.notifications.show();
-  }, 2500);
+  }, 250000);
 }
 
 // Добавление уведомления в очередь на показ

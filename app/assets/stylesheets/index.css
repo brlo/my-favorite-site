@@ -269,20 +269,22 @@ dict .desc {
 
 #popup-notif {
   position: fixed;
-  padding: 6px 10px;;
+  padding: 6px 10px;
   bottom: 130px;
   left: 50%;
-  margin-left: -125px;
+  transform: translateX(-50%);
   min-width: 250px;
+  max-width: 500px;
   border-radius: 4px;
   text-align: center;
-  justify-content: center;
   font-size: 0.9em;
   color: #51504c;
   background-color: #d4e2ce;
   opacity: 1;
   -webkit-transition: opacity 500ms linear;
   transition: opacity 500ms linear;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  word-wrap: break-word;
 }
 
 .night-mode #popup-notif {
