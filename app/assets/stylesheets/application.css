@@ -102,7 +102,7 @@ header nav > a#settings-btn {
   display: block;
   margin: 0 auto 10px auto;
   font-size: 1.2em;
-  background-color: #e0e6d500;
+  background-color: #ffffffb5;
   border: 1px solid #d8d1c0;
   color: #565656;
   border-radius: 4px;
@@ -119,10 +119,11 @@ header nav > a#settings-btn {
 .night-mode .menu-books #filter-author-books {
   border-color: #4d4c49;
   color: #898781;
+  background-color: #363534b5;
 }
 .night-mode .menu-books #filter-books:focus,
 .night-mode .menu-books #filter-author-books:focus {
-  border-color: #898781;
+  border-color: #666560;
 }
 
 
