@@ -88,6 +88,12 @@ header nav > a#settings-btn {
   border-bottom: 10px solid #f6f4e4;
 }
 
+.menu-books.bible-clicked {
+  width: calc(100% - -5px);
+  padding: 10px 10px 15px 15px;
+  margin: 0 -15px;
+}
+
 .night-mode .menu-books {
   background-color:#2f3541;
   box-shadow: none;
@@ -164,7 +170,7 @@ header nav > a#settings-btn {
 }
 
 .menu-books .menu-tree {
-  padding: 0 0 50px 0;
+  padding: 0 0 20px 0;
 }
 
 
