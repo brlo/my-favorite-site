@@ -12,6 +12,9 @@
     itemprop="headline">
     <a id="current-book"><%= t('root_page.headers.bible') %></a>
   </h2>
+  <% if ::I18n.locale == :ru %>
+    <div id='title-sub' style='margin-top: -15px'>Библия</div>
+  <% end %>
 
   <form action="/" class='tree-search' id='search-form' onsubmit="menuBooks.goToSearch(this);return false;" style='margin: -10px auto 20px auto;'>
     <div id='search-tree-input-area'>
