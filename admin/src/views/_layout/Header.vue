@@ -73,17 +73,6 @@ header nav > a#settings-btn {
   transition: background-color 124ms linear;
 }
 
-.night-mode .logo img {
-  background-color: #c0cda1;
-}
-
-.logo img:hover {
-  background-color: #a4d091;
-}
-.logo img:active {
-  background-color: #a2b997;
-}
-
 #my-info {
   margin-left: auto;
 }
