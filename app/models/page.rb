@@ -595,7 +595,7 @@ class Page < ApplicationMongoRecord
     # # Создаем пустую картинку с заданными размерами, цветом фона и форматом
     background_image = Magick::Image.new(1200, 630) do |img|
       img.format = 'jpeg'
-      img.background_color = '#a4d091'
+      img.background_color = '#f6f4e3'
     end
 
     # Сделал по этой доке:
@@ -613,7 +613,7 @@ class Page < ApplicationMongoRecord
     text = ::Magick::Draw.new
     text.pointsize = font_size
     text.gravity = ::Magick::CenterGravity
-    text.fill = "#006239"
+    text.fill = "#847e70"
     text.font = font_path
 
     # Call the "get_text_with_line_breaks" to get text
