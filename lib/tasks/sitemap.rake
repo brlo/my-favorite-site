@@ -30,6 +30,16 @@ namespace :g do
       # add '/q', :changefreq => 'weekly', :priority => 0.8
       locales = ::I18n.available_locales.map(&:to_s)
 
+      ::Page.each do |p|
+        # ПРОПУСКАЕМ, если:
+        # - не опубликована?
+        next if p.is_pub == false
+        # - удалена?
+        next if p.is_del == true
+
+        add "/#{p.lang}/#{p.lang}/w/#{p.path}/", :changefreq => changefreq, :priority => 0.9
+      end
+
       locales.each do |lang|
         add "/#{lang}/about/", :changefreq => changefreq, :priority => 0.7
       end
@@ -43,16 +53,6 @@ namespace :g do
             add "/#{lang_ui}/#{lang_content}/#{book_code}/#{chapter}/", :changefreq => changefreq, :priority => 0.9
           end
         end
-      end
-
-      ::Page.each do |p|
-        # ПРОПУСКАЕМ, если:
-        # - не опубликована?
-        next if p.is_pub == false
-        # - удалена?
-        next if p.is_del == true
-
-        add "/#{p.lang}/#{p.lang}/w/#{p.path}/", :changefreq => changefreq, :priority => 0.9
       end
     end
 
