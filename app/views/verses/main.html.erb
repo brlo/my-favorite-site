@@ -61,7 +61,7 @@
       <% ::BOOKS.each do |book_code, data| %>
         <% next if data[:zavet] == 2 %>
         <% classes = []; m_classes = [] %>
-        <% data[:desc] == 'Евангелие' ? m_classes.push('gold') : nil %>
+        <% book_code == 'ps' ? m_classes.push('gold') : nil %>
         <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
         <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
           <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></a>
