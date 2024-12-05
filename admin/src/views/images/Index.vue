@@ -122,6 +122,24 @@ function onDestroy(imgId) {
   return true;
 }
 
+// Обновить
+// function onUpdate(imgId) {
+//   console.log(imgId);
+
+//   api.put(`/images/${imgId}`, {name: name}).then(data => {
+//     if (data.success == 'ok') {
+//       toastSuccess('Успех', 'Картинка обновлена');
+//       errors.value = '';
+//     } else {
+//       console.log('FAIL!', data);
+//       toastError('Ошибка', 'Не удалось обновить картинку');
+//       errors.value = data.errors ? data.errors : data;
+//     }
+//   })
+
+//   return true;
+// }
+
 watchEffect(
   function() {
     if (searchTerm.value.length == 0 || searchTerm.value.length > 2) lazyAutoSearch();
@@ -164,24 +182,41 @@ watchEffect(
   <div class='image'>Ничего не найдено</div>
 </div>
 
-<div id="images" v-for="image in images">
-  <div class='image'>
-    <img :src="image.urls?.s" @click="onDestroy(image.id)" />
-    <InputText placeholder="Название" autocomplete="off" :value="image.title" /><br>
-    <InputText placeholder="Ссылка на средний размер" autocomplete="off" :value="image.urls.m" /><br>
-    <InputText placeholder="Ссылка на превью" autocomplete="off" :value="image.urls.s" />
+<div id="images">
+  <div class="image" v-for="image in images">
+    <a :href="image.urls.m"><img :src="image.urls?.s" /></a>
+    <a :href="image.urls.m">[крупнее]</a>
+    <br>
+    <br>
+    <InputText placeholder="Название" autocomplete="off" :value="image.title" />
+    <br>
+    <a>Обновить</a> |
+    <a @click="onDestroy(image.id)">Удалить</a>
   </div>
 </div>
 <div v-if="errors.length">{{ errors }}</div>
 </template>
 
 <style scoped>
-.image { margin: 15px 0;}
+#images {
+  display: flex;
+  flex-wrap: wrap;
+}
+.image {
+  display: inline-block;
+  max-width: 200px;
+  background-color: #f0f0f0;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+}
+
 .image img {
+  width: 100%;
   display: block;
-  width: 100px;
 }
 .image input {
   margin: 5px 0;
+  max-width: 180px;
 }
 </style>

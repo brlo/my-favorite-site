@@ -4,7 +4,7 @@ module Api
     before_action :reject_by_update_privs, only: [:create, :update, :destroy]
 
     def list
-      @imgs = Image.last(250)
+      @imgs = Image.order_by(c_at: :desc).last(250)
 
       render(
         json: {
@@ -43,6 +43,10 @@ module Api
         render json: @img.errors, status: :unprocessable_entity
       end
     end
+
+    # TODO:
+    # def update
+    # end
 
     private
 
