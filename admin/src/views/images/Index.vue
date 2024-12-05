@@ -185,7 +185,7 @@ watchEffect(
 <div id="images">
   <div class="image" v-for="image in images">
     <a :href="image.urls.m"><img :src="image.urls?.s" /></a>
-    <a :href="image.urls.m">[крупнее]</a>
+    [<a :href="image.urls.m">крупнее</a>]
     <br>
     <br>
     <InputText placeholder="Название" autocomplete="off" :value="image.title" />
