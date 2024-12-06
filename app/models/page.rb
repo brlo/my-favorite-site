@@ -6,7 +6,7 @@ class Page < ApplicationMongoRecord
     ul ol li h1 h2 h3 h4 blockquote strong b i em strike sup s u hr p a mark
     img code table tbody colgroup tr td th
   )
-  ALLOW_ATTRS = %w(id href class start src)
+  ALLOW_ATTRS = %w(id href class start src loading)
 
   PAGE_TYPES = {
     'статья'        => 1,
@@ -240,6 +240,9 @@ class Page < ApplicationMongoRecord
 
       # найти источники под цитатами
       self.body_rendered = render_body_quotes_sources(self.body_rendered)
+
+      # добавляем картинкам параметр отложенной загрузки: loading='lazy'
+      self.body_rendered = add_lazy_to_img_tags(self.body_rendered)
 
       # Обработка страниц, где запрошена разбивка на стихи как в Библии.
       if self.is_page_verses?
@@ -553,7 +556,7 @@ class Page < ApplicationMongoRecord
       end
     end
 
-    # nokogiri добавляем html, body, которые нам не нужны
+    # nokogiri убираем html, body, которые нам не нужны
     doc.at_css('body').inner_html.gsub("\n", "")
   end
 
@@ -572,7 +575,23 @@ class Page < ApplicationMongoRecord
     links_footnote.each { |l| l.replace(l.content) }
     # links_back.each { |l| l.replace(l.content) }
 
-    # nokogiri добавляем html, body, которые нам не нужны
+    # nokogiri убираем html, body, которые нам не нужны
+    doc.at_css('body').inner_html.gsub("\n", "")
+  end
+
+  # IN:
+  # "<img src='a'>"
+  # OUT:
+  # "<img src='a' loading='lazy'>
+  def add_lazy_to_img_tags html_content
+    doc = Nokogiri::HTML(html_content)
+    doc.css('img').each do |img|
+      unless img['loading']
+        img['loading'] = 'lazy'
+      end
+    end
+
+    # nokogiri убираем html, body, которые нам не нужны
     doc.at_css('body').inner_html.gsub("\n", "")
   end
 
