@@ -136,6 +136,7 @@ header .container {
   margin-left: auto;
 }
 
+#text-bar .bar-el.btn a { color: #222 }
 #text-bar .bar-el.btn {
   padding: 0 10px;
   font-size: 14px;
@@ -149,6 +150,7 @@ header .container {
 }
 #text-bar .bar-el.btn:hover { background-color: #ebeae0; }
 
+.night-mode #text-bar .bar-el.btn a { color: #ccc; }
 .night-mode #text-bar .bar-el.btn {
   background-color: #4d41375e;
   border: 1px solid #5d47345e;

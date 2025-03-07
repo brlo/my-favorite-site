@@ -15,46 +15,49 @@
 <% end %>
 
 <div class='hint' style='margin-top: 0;'><%= t('search_page.title') %>: </div>
-<form action="/" class='search-form'>
+<form class='uniq-search-form'>
   <div id='search-input-area'>
-    <input class='pretty search-tree-input' name="text" type="text" required autofocus placeholder='<%= I18n.t("search_page.search_placeholder") %>' value='<%= @search_text %>'>
+    <input class='pretty search-tree-input' name="text" type="text" required autocomplete='off' autofocus placeholder='<%= I18n.t("search_page.search_placeholder") %>' value='<%= @search_text %>'>
     <a class='search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
   </div>
+
+  <br>
+
+  <div class='search-options'>
+    <select id="search-books" name="books">
+      <option value='' <% if @search_books.blank? %>selected<% end %>><%= I18n.t('search_page.any_book') %></option>
+      <option value='z1' <% if @search_books == 'z1' %>selected<% end %>><%= I18n.t('search_page.old_testament') %></option>
+      <option value='z2' <% if @search_books == 'z2' %>selected<% end %>><%= I18n.t('search_page.new_testament') %></option>
+      <option value='e4' <% if @search_books == 'e4' %>selected<% end %>><%= I18n.t('search_page.gospel') %></option>
+      <% BOOKS.each do |book, params| %>
+        <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= I18n.t("books.mid.#{book}") %></option>
+      <% end %>
+    </select>
+
+    <select id="search-accuracy" name="accuracy">
+      <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>><%= I18n.t('search_page.similar_phrase') %></option>
+      <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>><%= I18n.t('search_page.exact_phrase') %></option>
+    </select>
+
+    <select id="search-lang" name="lang-select">
+      <option value='ru' <% if @search_lang == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
+      <option value='csl-pnm' <% if @search_lang == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
+      <option value='csl-ru' <% if @search_lang == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>
+      <option value='gr-lxx-byz' <% if @search_lang == 'gr-lxx-byz' %>selected<% end %>><%= I18n.t('bib_translations.gr') %> (LXX+Byz)</option>
+      <option value='eng-nkjv' <% if @search_lang == 'eng-nkjv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NKJV)</option>
+      <option value='en-nrsv' <% if @search_lang == 'en-nrsv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NRSV)</option>
+      <option value='heb-osm' <% if @search_lang == 'heb-osm' %>selected<% end %>><%= I18n.t('bib_translations.heb') %> (OSM+DHNT)</option>
+      <option value='arab-avd' <% if @search_lang == 'arab-avd' %>selected<% end %>><%= I18n.t('bib_translations.arab') %> (AVD)</option>
+      <option value='jp-ni' <% if @search_lang == 'jp-ni' %>selected<% end %>><%= I18n.t('bib_translations.jp') %> (N.Interc)</option>
+      <option value='cn-ccbs' <% if @search_lang == 'cn-ccbs' %>selected<% end %>><%= I18n.t('bib_translations.cn') %> (CCBS)</option>
+      <option value='ge-sch' <% if @search_lang == 'ge-sch' %>selected<% end %>><%= I18n.t('bib_translations.ge') %> (SCH)</option>
+
+    </select>
+
+    <button type='submit' style='display: none;'>Submit</button>
+  </div>
+
 </form>
-
-<br>
-
-<div class='search-options'>
-  <select id="search-books" name="books">
-    <option value='' <% if @search_books.blank? %>selected<% end %>><%= I18n.t('search_page.any_book') %></option>
-    <option value='z1' <% if @search_books == 'z1' %>selected<% end %>><%= I18n.t('search_page.old_testament') %></option>
-    <option value='z2' <% if @search_books == 'z2' %>selected<% end %>><%= I18n.t('search_page.new_testament') %></option>
-    <option value='e4' <% if @search_books == 'e4' %>selected<% end %>><%= I18n.t('search_page.gospel') %></option>
-    <% BOOKS.each do |book, params| %>
-      <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= I18n.t("books.mid.#{book}") %></option>
-    <% end %>
-  </select>
-
-  <select id="search-accuracy" name="accuracy">
-    <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>><%= I18n.t('search_page.similar_phrase') %></option>
-    <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>><%= I18n.t('search_page.exact_phrase') %></option>
-  </select>
-
-  <select id="search-lang" name="lang-select">
-    <option value='ru' <% if @search_lang == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
-    <option value='csl-pnm' <% if @search_lang == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
-    <option value='csl-ru' <% if @search_lang == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>
-    <option value='gr-lxx-byz' <% if @search_lang == 'gr-lxx-byz' %>selected<% end %>><%= I18n.t('bib_translations.gr') %> (LXX+Byz)</option>
-    <option value='eng-nkjv' <% if @search_lang == 'eng-nkjv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NKJV)</option>
-    <option value='en-nrsv' <% if @search_lang == 'en-nrsv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NRSV)</option>
-    <option value='heb-osm' <% if @search_lang == 'heb-osm' %>selected<% end %>><%= I18n.t('bib_translations.heb') %> (OSM+DHNT)</option>
-    <option value='arab-avd' <% if @search_lang == 'arab-avd' %>selected<% end %>><%= I18n.t('bib_translations.arab') %> (AVD)</option>
-    <option value='jp-ni' <% if @search_lang == 'jp-ni' %>selected<% end %>><%= I18n.t('bib_translations.jp') %> (N.Interc)</option>
-    <option value='cn-ccbs' <% if @search_lang == 'cn-ccbs' %>selected<% end %>><%= I18n.t('bib_translations.cn') %> (CCBS)</option>
-    <option value='ge-sch' <% if @search_lang == 'ge-sch' %>selected<% end %>><%= I18n.t('bib_translations.ge') %> (SCH)</option>
-
-  </select>
-</div>
 
 <div class='hint'><%= t('search_page.matches') %>: <%= @matches_count %></div>
 <hr>

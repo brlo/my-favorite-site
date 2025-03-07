@@ -1,7 +1,17 @@
 // Кнопка: искать
-function goToSearch() {
-  searchInput = document.getElementById('search-input');
-  text = searchInput.value; //. /[^\sA-Za-zА-Яа-я0-9-]*/, ''
+function goToSearch(form) {
+  let text = undefined;
+  let lang = undefined;
+
+  // если форму с input внутри передали, то она приоритетнее! Берём значение от туда.
+  // Так делаем ради примитивного поля для поиска на главной странице
+  if (form) {
+    text = form.querySelector('.search-tree-input').value;
+  } else {
+    text = document.querySelector('search-tree-input').value;
+  };
+
+  // text = searchInput.value; //. /[^\sA-Za-zА-Яа-я0-9-]*/, ''
   book = document.getElementById('search-books').value;
   acc = document.getElementById('search-accuracy').value;
   lang = document.getElementById('search-lang').value;
@@ -107,3 +117,43 @@ new Choices(element, {
 //     el.innerHTML = text;
 //   };
 // };
+
+enableSearchListeners = function () {
+  const forms = document.querySelectorAll('.uniq-search-form');
+  const searchIcons = document.querySelectorAll('.search-icon');
+
+  // ОТПРАВКА ФОРМЫ ПОИСКА БИБЛЕЙСКОГО СТИХА
+  if (forms.length > 0) {
+    // Перебираем все элементы и добавляем обработчик
+    forms.forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Отменить стандартное поведение формы
+        goToSearch(e.target);
+      });
+    });
+  };
+
+  // КЛИК НА ЛУПУ (ТО ЖЕ, ЧТО ОТПРАВКА ФОРМЫ)
+  if (searchIcons.length > 0) {
+    // Перебираем все элементы и добавляем обработчик
+    searchIcons.forEach(function(searchIcon) {
+      searchIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Находим ближайший родительский элемент <form>
+        const form = e.target.closest('form');
+        goToSearch(form)
+      });
+    });
+  };
+
+  // ИЗМЕНЕНИЕ ПАРАМЕТРОВ ПОИСКА ПРИВОДИТ К ОТПРАВКЕ ФОРМЫ (ПОИСКУ)
+  booksFilter = document.getElementById('search-books');
+  accurFilter = document.getElementById('search-accuracy');
+  langFilter = document.getElementById('search-lang');
+
+  if (booksFilter) { booksFilter.addEventListener('change', function(e) { const form = e.target.closest('form'); goToSearch(form) }) }
+  if (booksFilter) { accurFilter.addEventListener('change', function(e) { const form = e.target.closest('form'); goToSearch(form) }) }
+  if (booksFilter) {  langFilter.addEventListener('change', function(e) { const form = e.target.closest('form'); goToSearch(form) }) }
+};
+
+enableSearchListeners();
