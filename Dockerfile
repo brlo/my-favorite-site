@@ -7,7 +7,8 @@ FROM ruby:3.4.1
 
 RUN apt-get update -qq
 
-RUN groupadd -g 1001 app && useradd -r -g app -m -d /home/app app
+# создать группу "app" с id 1001 и пользователя "app" в этой группе с id 1000
+RUN groupadd -g 1001 app && useradd -r -u 1000 -g app -m -d /home/app app
 
 # Extend shell by custom moiprofi bash-config
 RUN echo                                               >> /home/app/.bashrc && \
