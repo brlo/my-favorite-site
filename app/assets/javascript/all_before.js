@@ -209,6 +209,7 @@ function selectLang() {
   window.location.href = path;
 };
 
+
 // выбор языка контента (в выпыдающем списке языков возле текста)
 function selectPageLang(el) {
   const langInput = el;

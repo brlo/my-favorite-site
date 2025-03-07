@@ -38,7 +38,7 @@
     <% (1..::BOOKS[@book_code][:chapters]).each do |i| %>
       <% classes = "chapter-num" %>
       <% i == now_chapter ? classes = ' selected' : nil %>
-      <a id="ch-<%= i %>" data-chapter="<%= i %>" class="<%= classes %>" href="<%= my_bib_link_to("/#{@book_code}/#{i}/") %>" onclick="loadChapter(this); return false;"><%= i %></a>
+      <a id="ch-<%= i %>" data-chapter="<%= i %>" class="<%= classes %>" href="<%= my_bib_link_to("/#{@book_code}/#{i}/") %>"><%= i %></a>
     <% end %>
   </nav>
 </div>

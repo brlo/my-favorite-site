@@ -1,6 +1,6 @@
 <div id='text-bar'>
   <div class='bar-el'>
-    <select id="lang-select" name="lang-select" onchange="selectLang();return false;">
+    <select id="lang-select" name="lang-select">
       <option value='ru' <% if @current_bib_lang == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
       <option value='csl-pnm' <% if @current_bib_lang == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
       <option value='csl-ru' <% if @current_bib_lang == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>

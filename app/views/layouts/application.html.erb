@@ -46,9 +46,7 @@
 
   <%# classes = @is_night_mode ? "night-mode" : "" %>
   <body>
-    <script>
-      if (document.cookie.includes('isNightMode=1')) { document.body.classList.toggle('night-mode', true); }
-    </script>
+    <%= javascript_include_tag "first_needs", media: "all" %>
     <header>
       <div class='container'>
         <div class="logo">
@@ -60,7 +58,7 @@
           <a href="<%= my_bib_link_to("/") %>" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
           <a href="<%= my_page_link_to("/links_#{current_lang()}/") %>" id='quotes-link' class="<%= @current_menu_item == 'links' ? ' selected' : nil %>"><%= I18n.t('menu.links') %></a>
 
-          <a href="javascript:" id="settings-btn" class="local"><%= ::I18n.t('menu.settings') %></a>
+          <a id="settings-btn" class="local"><%= ::I18n.t('menu.settings') %></a>
 
           <div id='settings-area' class='hidden'>
             <el>
@@ -68,7 +66,7 @@
                 <%= ::I18n.t('settings.color_scheme') %>:
               </label>
               <div class='switcher'>
-                <a href="javascript:" id="night-mode-switcher" class="local" onclick="switchNightMode()"><%= @is_night_mode ? ::I18n.t('menu.night') : ::I18n.t('menu.day') %></a>
+                <a id="night-mode-switcher" class="local"><%= @is_night_mode ? ::I18n.t('menu.night') : ::I18n.t('menu.day') %></a>
               </div>
             </el>
             <el>
@@ -93,9 +91,9 @@
         <% locale = I18n.locale %>
         <nav id="menu-books" class="menu-books hidden">
 
-          <form action="/" id="form" onsubmit="menuBooks.goToSearch();return false;">
-            <input type="text" id="filter-books" oninput="menuBooks.filterBooks(this.value);" value="" placeholder="<%= t('fast_search') %>" autocomplete="off">
-            <a class='search-icon' onclick="menuBooks.goToSearch();return false;"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          <form action="/" class="search-form">
+            <input class="search-tree-input" type="text" id="filter-books" value="" placeholder="<%= t('fast_search') %>" autocomplete="off">
+            <a class='search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
           </form>
 
           <div class="bible-list">
@@ -145,7 +143,7 @@
     <footer>
       <dd id='change-ui-lang-area'>
         <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
-        <select id="ui-lang-select" onchange="selectUILang(this);return false;">
+        <select id="ui-lang-select">
           <option value='ru' <% if ::I18n.locale == :ru %>selected<% end %>>🇷🇺 Русский</option>
           <option value='en' <% if ::I18n.locale == :en %>selected<% end %>>🇬🇧 English</option>
           <option value='gr' <% if ::I18n.locale == :gr %>selected<% end %>>🇬🇷 Greek</option>
@@ -164,30 +162,10 @@
 <%= content_for?(:end_of_page) ? yield(:end_of_page) : '' %>
     <%= javascript_include_tag "all_after", media: "all" %>
     <% if @no_index != true %>
-    <!-- Yandex.Metrika counter -->
-    <script type="text/javascript" >
-      var isMFired = false;
-      window.addEventListener('scroll', () => {
-        if (isMFired === false) {
-          isMFired = true;
-          setTimeout(() => {
-            (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-            m[i].l=1*new Date();
-            for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-            k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
-            (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
-
-            ym(90555809, "init", {
-              clickmap:true,
-              trackLinks:true,
-              accurateTrackBounce:true
-            });
-          }, 1000)
-        }
-      });
-    </script>
-    <noscript><div><img src="https://mc.yandex.ru/watch/90555809" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <!-- /Yandex.Metrika counter -->
+      <%= javascript_include_tag "metrics", media: "all" %>
+      <!-- Yandex.Metrika counter -->
+      <noscript><div><img src="https://mc.yandex.ru/watch/90555809" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+      <!-- /Yandex.Metrika counter -->
     <% end %>
   </body>
 </html>

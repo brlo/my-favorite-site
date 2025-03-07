@@ -283,6 +283,7 @@ footer dd {
 
 a {
   color: #808667;
+  cursor: pointer;
 }
 
 .invisible {
@@ -353,14 +354,14 @@ input.btn:active, input.btn:focus {
   margin: 15px auto 0 auto
 }
 
-#search-tree-input {
+.search-tree-input {
   width: 100%;
 }
-#search-tree-input-area {
+.search-tree-input-area {
   position: relative;
 }
 
-#search-tree-input-area a {
+.search-tree-input-area a {
   position: absolute;
   right: 12px;
   top: 12px;

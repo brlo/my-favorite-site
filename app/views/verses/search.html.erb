@@ -15,17 +15,17 @@
 <% end %>
 
 <div class='hint' style='margin-top: 0;'><%= t('search_page.title') %>: </div>
-<form action="/" onsubmit="goToSearch();return false;">
+<form action="/" class='search-form'>
   <div id='search-input-area'>
-    <input class='pretty' name="text" type="text" id='search-input' required autofocus onFocus="this.select()" placeholder='<%= I18n.t("search_page.search_placeholder") %>' value='<%= @search_text %>'>
-    <a onclick="goToSearch();return false;"><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+    <input class='pretty search-tree-input' name="text" type="text" required autofocus placeholder='<%= I18n.t("search_page.search_placeholder") %>' value='<%= @search_text %>'>
+    <a class='search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
   </div>
 </form>
 
 <br>
 
 <div class='search-options'>
-  <select id="search-books" name="books" onchange="goToSearch();return false;">
+  <select id="search-books" name="books">
     <option value='' <% if @search_books.blank? %>selected<% end %>><%= I18n.t('search_page.any_book') %></option>
     <option value='z1' <% if @search_books == 'z1' %>selected<% end %>><%= I18n.t('search_page.old_testament') %></option>
     <option value='z2' <% if @search_books == 'z2' %>selected<% end %>><%= I18n.t('search_page.new_testament') %></option>
@@ -35,12 +35,12 @@
     <% end %>
   </select>
 
-  <select id="search-accuracy" name="accuracy" onchange="goToSearch();return false;">
+  <select id="search-accuracy" name="accuracy">
     <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>><%= I18n.t('search_page.similar_phrase') %></option>
     <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>><%= I18n.t('search_page.exact_phrase') %></option>
   </select>
 
-  <select id="search-lang" name="lang-select" onchange="goToSearch();return false;">
+  <select id="search-lang" name="lang-select">
     <option value='ru' <% if @search_lang == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
     <option value='csl-pnm' <% if @search_lang == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
     <option value='csl-ru' <% if @search_lang == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>
@@ -60,11 +60,7 @@
 <hr>
 
 <article>
-  <script>
-    if (document.cookie.includes('textSize=1')) { document.querySelector('article').classList.add('text-small');
-    } else if (document.cookie.includes('textSize=2')) { document.querySelector('article').classList.add('text-medium');
-    } else if (document.cookie.includes('textSize=3')) { document.querySelector('article').classList.add('text-large');}
-  </script>
+  <%= javascript_include_tag "first_needs", media: "all" %>
 <% if @matches_count > 0 %>
 
   <% @verses_json.each do |v| %>

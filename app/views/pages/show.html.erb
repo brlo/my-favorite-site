@@ -35,11 +35,7 @@
         <% end %>
       </article>
     <% end %>
-    <script>
-      if (document.cookie.includes('textSize=1')) { document.querySelector('article').classList.add('text-small');
-      } else if (document.cookie.includes('textSize=2')) { document.querySelector('article').classList.add('text-medium');
-      } else if (document.cookie.includes('textSize=3')) { document.querySelector('article').classList.add('text-large');}
-    </script>
+    <%= javascript_include_tag "first_needs", media: "all" %>
 
     <% if @chapters.present? && @chapters.size > 1 %>
       <div class='prev-next-bar'>

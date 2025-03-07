@@ -48,6 +48,67 @@ window.en2ruTranslit = function(text) {
 // LISTENERS
 // ================================================
 
+// КЛИК НА НОМЕР ГЛАВЫ, ПЕРЕХОД К ДРУГОЙ ГЛАВЕ ПИСАНИЯ
+function chapterBtnListeners() {
+  // Находим все элементы с атрибутом data-chapter
+  const chapterLinks = document.querySelectorAll('#menu-chapters a');
+
+  // Добавляем обработчик для каждой ссылки
+  chapterLinks.forEach(function(link) {
+    link.addEventListener('click', function(event) {
+      event.preventDefault(); // Отменить стандартное поведение ссылки
+      loadChapter(link); // Вызов вашей функции
+    });
+  });
+};
+chapterBtnListeners();
+
+// КЛИК НА КОПИРОВАНИЕ ССЫЛКИ СТРАНИЦЫ
+function shareBtnListeners() {
+  const shareBtn = document.querySelector('.share-btn');
+
+  if (shareBtn) {
+    shareBtn.addEventListener('click', function(event) {
+      event.preventDefault();
+      BX.shareLink();
+    });
+  }
+};
+shareBtnListeners();
+
+// СЛУШАЕМ КЛИК НА ВЫБОР ЯЗЫКА ТЕКСТА
+function selectLangListeners() {
+  const langSelect = document.getElementById('lang-select');
+
+  if (langSelect) {
+    langSelect.addEventListener('change', function(event) {
+      // какой язык выбрал пользователь
+      const selectedValue = event.target.value;
+
+      // Это был селектор переключения языка Писания, или языка статьи?
+      if (langSelect.getAttribute('data-page') === 'true') {
+        selectPageLang(event.target);
+      } else {
+        selectLang(selectedValue);
+      }
+    });
+  }
+};
+selectLangListeners();
+
+
+// СЛУШАЕМ КЛИК НА ВЫБОР ЯЗЫКА ИНТЕРФЕЙСА В ФУТЕРЕ
+function selectUILangListeners() {
+  const uiLangSelect = document.getElementById('ui-lang-select');
+
+  if (uiLangSelect) {
+    uiLangSelect.addEventListener('change', function(event) {
+      selectUILang(event.target);
+    });
+  }
+};
+selectUILangListeners();
+
 // Меню для выбора книг
 window.menuBooks = {
   isShown: false,
@@ -156,7 +217,7 @@ menuBooks.goToSearch = function(form) {
   // если форму с input внутри передали, то она приоритетнее! Берём значение от туда.
   // Так делаем ради примитивного поля для поиска на главной странице
   if (form) {
-    text = form.querySelector('#search-tree-input').value;
+    text = form.querySelector('.search-tree-input').value;
     lang = document.getElementById('lang-select').value;
   } else {
     text = menuBooks.searchInput.value;
@@ -172,37 +233,76 @@ menuBooks.goToSearch = function(form) {
 }
 
 menuBooks.enableListeners = function () {
-  if (!menuBooks.el) return;
+  const forms = document.querySelectorAll('.search-form');
+  const filterInput = document.getElementById('filter-books');
+  const searchIcons = document.querySelectorAll('.search-icon');
 
-  // Клик на элементы, вызвающие меню
-  const currBookLink = document.getElementById('current-book');
-  if (currBookLink) {
-    currBookLink.addEventListener('click', function(e){
-      e.preventDefault(); e.stopPropagation();
-      menuBooks.show('book-clicked');
-  })};
+  // ОТПРАВКА ФОРМЫ ПОИСКА БИБЛЕЙСКОГО СТИХА
+  if (forms.length > 0) {
+    // Перебираем все элементы и добавляем обработчик
+    forms.forEach(function(form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault(); // Отменить стандартное поведение формы
+        menuBooks.goToSearch(e.target);
+      });
+    });
+  };
 
-  const bibLink = document.getElementById('bible-link');
-  if (bibLink) {
-    bibLink.addEventListener('click', function(e){
-      e.preventDefault(); e.stopPropagation();
-      menuBooks.show('bible-clicked');
-  })};
+  if (filterInput) {
+    // ВВОД СИМВОЛА В ПОЛЕ ПОИСКА БИБЛЕЙСКОГО СТИХА, ПРИВОДИТ К ФИЛЬТРАЦИИ СПИСКА КНИГ
+    filterInput.addEventListener('input', function(e) {
+      menuBooks.filterBooks(e.target.value);
+    });
+  }
 
-  // Клик за границами меню прячет меню
-  document.addEventListener('click', event => {
-    const el = event.target;
+  // КЛИК НА ЛУПУ (ТО ЖЕ, ЧТО ОТПРАВКА ФОРМЫ)
+  if (searchIcons.length > 0) {
+    // Перебираем все элементы и добавляем обработчик
+    searchIcons.forEach(function(searchIcon) {
+      searchIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Находим ближайший родительский элемент <form>
+        const form = e.target.closest('form');
+        menuBooks.goToSearch(form)
+      });
+    });
+  };
 
-    // Прячем. Так как нажали не на открывающие меню ссылки, а само меню при этом показано
-    if (el.id != 'current-book' && el.id != 'bible-link' && menuBooks.isShown) {
-      const isClickInside = menuBooks.el.contains(event.target);
-      if (!isClickInside) {
-        menuBooks.hide();
-        // отменить поиск книги и стереть значение в поле для поиска
-        menuBooks.eraseSearch();
-      }
-    };
-  });
+
+  // МЕНЮ С КНИГАМИ
+  if (menuBooks.el) {
+
+    // Клик на элементы, вызвающие меню
+    const currBookLink = document.getElementById('current-book');
+    if (currBookLink) {
+      currBookLink.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        menuBooks.show('book-clicked');
+    })};
+
+    const bibLink = document.getElementById('bible-link');
+    if (bibLink) {
+      bibLink.addEventListener('click', function(e){
+        e.preventDefault(); e.stopPropagation();
+        menuBooks.show('bible-clicked');
+    })};
+
+    // Клик за границами меню прячет меню
+    document.addEventListener('click', event => {
+      const el = event.target;
+
+      // Прячем. Так как нажали не на открывающие меню ссылки, а само меню при этом показано
+      if (el.id != 'current-book' && el.id != 'bible-link' && menuBooks.isShown) {
+        const isClickInside = menuBooks.el.contains(event.target);
+        if (!isClickInside) {
+          menuBooks.hide();
+          // отменить поиск книги и стереть значение в поле для поиска
+          menuBooks.eraseSearch();
+        }
+      };
+    });
+
+  };
 };
 
 menuBooks.enableListeners();
@@ -320,26 +420,40 @@ settingsArea.textSizeBar.someTextSizeBtnClicked = function (e) {
 
 // СОБЫТИЯ НАСТРОЕК И ВНУТРЕННИХ ЭЛЕМЕНТОВ
 settingsArea.enableListeners = function () {
-  if (!settingsArea.el) return;
+  // Если есть в шапке кнопка "настройки"
+  if (settingsArea.el) {
 
-  settingsArea.btn.addEventListener('click', settingsArea.settingsBtnClicked, false);
+    // КЛИК НА "НАСТРОЙКИ"
+    settingsArea.btn.addEventListener('click', function(e) { e.preventDefault(); settingsArea.settingsBtnClicked() }, false);
 
-  for (const barBtn of settingsArea.textSizeBar.btns) {
-    barBtn.addEventListener('click', settingsArea.textSizeBar.someTextSizeBtnClicked, false);
-  };
+    // КЛИК НА "ДЕНЬ/НОЧЬ"
+    const nightModeSwitcher = document.getElementById('night-mode-switcher');
+    if (nightModeSwitcher) {
+      nightModeSwitcher.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.switchNightMode();
+      });
+    }
 
-  // Клик за границами меню прячет меню
-  document.addEventListener('click', event => {
-    if (settingsArea.isShown) {
-      const el = event.target;
-
-      const isBtnClicked = settingsArea.btn === el;
-      const isClickInsideMenu = settingsArea.el.contains(el);
-      // прячем меню
-      // нажали не на иконку показа, не на элементы меню
-      if (!isBtnClicked && !isClickInsideMenu) settingsArea.hide();
+    // КЛИК НА РАЗМЕР ТЕКСТА
+    for (const barBtn of settingsArea.textSizeBar.btns) {
+      barBtn.addEventListener('click', function(e) { e.preventDefault(); settingsArea.textSizeBar.someTextSizeBtnClicked(e) }, false);
     };
-  });
+
+    // Клик за границами меню прячет меню
+    document.addEventListener('click', e => {
+      if (settingsArea.isShown) {
+        const el = e.target;
+
+        const isBtnClicked = settingsArea.btn === el;
+        const isClickInsideMenu = settingsArea.el.contains(el);
+        // прячем меню
+        // нажали не на иконку показа, не на элементы меню
+        if (!isBtnClicked && !isClickInsideMenu) settingsArea.hide();
+      };
+    });
+
+  };
 };
 
 // Инициализация
