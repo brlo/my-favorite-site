@@ -62,7 +62,7 @@ class PagesController < ApplicationController
         # AUDIO: /public/s/audio/pages/ru/fathers/01_ign_ant/ef
         # В статье указать только это: fathers/01_ign_ant/ef
         audio_file = "/s/audio/pages/#{@content_lang}/#{@page.audio}"
-        if ::File.exists?("#{Rails.root}/public#{ audio_file }.mp3")
+        if ::File.exist?("#{Rails.root}/public#{ audio_file }.mp3")
           @audio_link = audio_file
         end
 
@@ -291,13 +291,15 @@ class PagesController < ApplicationController
     # Название (path) страницы, который ищет клиент
     path = params[:page_path].to_s
     path_downcased = path.downcase
+
     @page = ::Page.find_by(path_low: path_downcased)
+
     if @page.nil?
       render status: 404
     else
-      pdf_data = @page.as_pdf()
-      pdf_filename = [@page.title, @page.title_sub].compact.join(' – ')
-      send_data(pdf_data, filename: "#{pdf_filename}.pdf", type: :pdf)
+      path_to_pdf = ::PdfGenerator.path_to_page_pdf(@page)
+      # Перенаправление пользователя на скачивание файла
+      redirect_to my_res_link_to(path_to_pdf), status: :found
     end
   end
 

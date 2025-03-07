@@ -222,6 +222,11 @@ class Page < ApplicationMongoRecord
       self.references_rendered = render_references_footnotes(self.references)
     end
 
+    # Удаляем пдф-версию страницы, если изменился заголовок или текст страницы
+    if self.title_changed? || self.body_changed?
+      ::PdfGenerator.page_pdf_remove(self)
+    end
+
     if self.body_changed?
       # приводим в порядок body
       self.body = self.class.safe_html(self.body).strip
@@ -324,10 +329,12 @@ class Page < ApplicationMongoRecord
     # вручную запустить так:
     # # sanitizer=::Rails::Html::SafeListSanitizer.new; Page.each {|p| p.body_search = sanitizer.sanitize(p.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, '.'), tags: []).split(/\s?\.+\s?/); p.save }
     if self.body_rendered_changed?
-      # заменяем тэги <p> и <h1,2,3> на пробел (иначе слова сливаются на этих тэгах, если тэги убрать)
-      simple_text = self.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, '.')
+      # заменяем тэги <p> и <h1,2,3> <blockquote> на пробел (иначе слова сливаются на этих тэгах, если тэги убрать)
+      simple_text = self.body_rendered.to_s.gsub(/<\/(h|p|blockquote)[0-9]?>/, '.')
+      # убираем из получившихся строк все html-тэги
+      simple_text = sanitizer.sanitize(simple_text.to_s, tags: [])
       # разбиваем по предложениям и храним в массиве (чтобы легче было искать в рамках предложения)
-      self.body_search = sanitizer.sanitize(simple_text).split(/\s?\.+\s?/)
+      self.body_search = sanitizer.sanitize(simple_text).split(/\s?\.+\s?/).reject(&:blank?)
     end
 
     self.u_at = DateTime.now.utc.round
@@ -471,6 +478,7 @@ class Page < ApplicationMongoRecord
       idx = nil if idx == 1
       anchor = "HH#{idx}-#{title}"
       el['id'] = anchor
+      el['name'] = anchor
 
       _menu.push([el.name, anchor, el.text])
     end
@@ -595,10 +603,11 @@ class Page < ApplicationMongoRecord
     doc.at_css('body').inner_html.gsub("\n", "")
   end
 
-  # TODO: Перед удалением обязательно удали и картинку
+  # Ссылка на превьюшку страницы, для использования в html-meta
+  # TODO: Перед удалением page, обязательно удали и картинку
   def img_preview_file_path
     page_img_path = "/s/page_previews/#{self.id.to_s}.jpeg"
-    if ::File.exists?("public/#{page_img_path}")
+    if ::File.exist?("public/#{page_img_path}")
       # Или автоматически сгенерированная картинка (название статьи на зелёном фоне)
       page_img_path
     else
@@ -608,77 +617,7 @@ class Page < ApplicationMongoRecord
   end
 
   def generate_img
-    img_text = self.title.to_s
-    file_name = "public/s/page_previews/#{self.id.to_s}.jpeg"
-
-    # # Создаем пустую картинку с заданными размерами, цветом фона и форматом
-    background_image = Magick::Image.new(1200, 630) do |img|
-      img.format = 'jpeg'
-      img.background_color = '#f6f4e3'
-    end
-
-    # Сделал по этой доке:
-    # https://livefiredev.com/in-depth-guide-rmagick-add-text-to-an-image-with-word-wrap/
-
-    font_size = 75
-    font_path = '/usr/share/fonts/truetype/dejavu/DejaVuSerif.ttf'
-    width_of_bounding_box = 1100
-    text_to_print = img_text
-
-    # Create a new instance of the text wrap helper and give it all the
-    # info the class needs..
-    helper = ::ImgTextWrap.new(text_to_print, font_size, width_of_bounding_box, font_path)
-
-    text = ::Magick::Draw.new
-    text.pointsize = font_size
-    text.gravity = ::Magick::CenterGravity
-    text.fill = "#847e70"
-    text.font = font_path
-
-    # Call the "get_text_with_line_breaks" to get text
-    # with line breaks where needed
-    text_wit_line_breaks = helper.get_text_with_line_breaks
-
-    text.annotate(background_image, 1200, 600, 0, 0, text_wit_line_breaks)
-
-    background_image.write(file_name)
-    background_image = nil
-    GC.start
-  end
-
-  def as_pdf
-    html  = "<h1>#{self.title}</h1>"
-    html += "<h2>#{self.title_sub}</h2>"
-
-    #   <article id='page-body' itemprop="articleBody" class="verses">
-    #     <% if @page.body_menu.present? %>
-    #       <%= render(partial: 'pages/body_menu') %>
-    #     <% end %>
-
-    #     <% if @page.body_rendered.present? %>
-    #       <%= @page.body_rendered.html_safe %>
-    #     <% else %>
-    #       <%= @page.body.to_s.html_safe %>
-    #     <% end %>
-    #   </article>
-
-    #   <% if @page.references.present? %>
-    #   <section id='page-references' class="looks-like-page">
-    #     <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
-    #     <div id="page-references-text">
-    #       <% if @page.body_rendered.present? %>
-    #         <%= @page.references_rendered.to_s.html_safe %>
-    #       <% else %>
-    #         <%= @page.references.to_s.html_safe %>
-    #       <% end %>
-    #     </div>
-    #   </section>
-    # <% end %>
-
-    kit = ::PDFKit.new(html, :page_size => 'Letter')
-    kit.stylesheets << 'assets/stylesheets/page.css'
-    # Get an inline PDF
-    pdf = kit.to_pdf
+    ::ImgTextWrap.page_generate_img(self)
   end
 
   private

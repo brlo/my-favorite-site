@@ -8,6 +8,7 @@
 *.log
 *.log.*
 
+node_modules
 
 /sys_config
 /docker-compose.yml

@@ -273,6 +273,15 @@
   padding: 5px 10px;
 }
 
+.title-bar-icons {
+  text-align: center;
+}
+
+.title-bar-icons a.icon {
+  display: inline-block;
+  width: 20px;
+}
+
 .source-link {
   margin: -20px 0 25px 0;
   font-size: .9em;

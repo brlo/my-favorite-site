@@ -130,7 +130,9 @@ header .container {
   margin: 0;
 }
 
-#text-bar .bar-el.right {
+#text-bar .right-group {
+  display: flex;
+  gap: 20px;
   margin-left: auto;
 }
 

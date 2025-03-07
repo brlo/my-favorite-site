@@ -37,10 +37,10 @@ Bundler.require(*Rails.groups)
 
 module Bibleox
   class Application < Rails::Application
-    config.active_record.legacy_connection_handling = false
-
     # Initialize configuration defaults for originally generated Rails version.
-    config.load_defaults 7.0
+    config.load_defaults 8.0
+
+    config.active_record.encryption.hash_digest_class = OpenSSL::Digest::SHA256
 
     # bibleox.com
     # res.bibleox.com
@@ -57,6 +57,10 @@ module Bibleox
     # in config/environments, which are processed later.
     #
     config.time_zone = "Europe/Moscow"
+
     # config.eager_load_paths << Rails.root.join("extras")
+
+    # Autoload lib, but do not eager load it (maybe overlooked).
+    config.autoload_paths << config.root.join("lib")
   end
 end
