@@ -7,7 +7,7 @@ FROM ruby:3.4.1
 
 RUN apt-get update -qq
 
-RUN groupadd -r app && useradd -r -g app -m -d /home/app app
+RUN groupadd -g 1001 app && useradd -r -g app -m -d /home/app app
 
 # Extend shell by custom moiprofi bash-config
 RUN echo                                               >> /home/app/.bashrc && \

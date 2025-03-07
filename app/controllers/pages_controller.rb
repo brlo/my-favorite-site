@@ -299,7 +299,7 @@ class PagesController < ApplicationController
     else
       path_to_pdf = ::PdfGenerator.path_to_page_pdf(@page)
       # Перенаправление пользователя на скачивание файла
-      redirect_to my_res_link_to(path_to_pdf), status: :found
+      redirect_to my_res_link_to(path_to_pdf), allow_other_host: true, status: :found
     end
   end
 
