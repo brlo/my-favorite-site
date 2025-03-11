@@ -1,5 +1,7 @@
 class TreeBuilder
   class << self
+    # ЗДЕСЬ СТРОИТСЯ И СОРТИРУЕТСЯ МЕНЮ СТРАНИЦ
+    #
     # Вернёт полноценное дерево из объектов, в таком виде:
     #
     # TreeBuilder.build_tree_from_objects(array)
@@ -34,16 +36,21 @@ class TreeBuilder
       #
       # Такая вот пока что кривая сортировка. Потом напишу нормально
       # Сейчас пока три уровня вглубину сортируем.
-      tree = tree.sort_by { |c| c[:priority].to_i }
+      #
+      # Здесь сделана двойная сортировка: сначала по наличию вложенных эелментов
+      # (без детей идут на первом месте), а потом сортируются по приоритету
+      tree = tree.sort_by { |c| [  c[:childs].present? ? 1 : 0,   c[:priority].to_i  ] }
+      # первый элемент пустой и единственный?
       tree.each do |item|
+        # Первый уровень вложенности, это и есть корневые элементы? Похоже, что так.
         next if item[:childs].nil?
-        item[:childs] = item[:childs].sort_by { |c| c[:priority].to_i }
+        item[:childs] = item[:childs].sort_by { |c| [  c[:childs].present? ? 1 : 0,   c[:priority].to_i  ] }
         item[:childs].each do |i2|
           next if i2[:childs].nil?
-          i2[:childs] = i2[:childs].sort_by { |c| c[:priority].to_i }
+          i2[:childs] = i2[:childs].sort_by { |c| [  c[:childs].present? ? 1 : 0,   c[:priority].to_i  ] }
           i2[:childs].each do |i3|
             next if i3[:childs].nil?
-            i3[:childs] = i3[:childs].sort_by { |c| c[:priority].to_i }
+            i3[:childs] = i3[:childs].sort_by { |c| [  c[:childs].present? ? 1 : 0,   c[:priority].to_i  ] }
             i3[:childs]
           end
         end
@@ -51,7 +58,6 @@ class TreeBuilder
 
       # Возвращаем хеш дерева
       tree
-
 
 
       # # [id, parent_id]

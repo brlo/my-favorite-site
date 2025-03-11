@@ -56,8 +56,8 @@ function chapterBtnListeners() {
   // Добавляем обработчик для каждой ссылки
   chapterLinks.forEach(function(link) {
     link.addEventListener('click', function(event) {
-      event.preventDefault(); // Отменить стандартное поведение ссылки
-      loadChapter(link); // Вызов вашей функции
+      event.preventDefault();
+      loadChapter(link);
     });
   });
 };
@@ -306,6 +306,26 @@ menuBooks.enableListeners = function () {
 };
 
 menuBooks.enableListeners();
+
+
+// ТАКЖЕ ЗДЕСЬ ОБРАБОТАЕМ ОТПРАВКУ ФОРМЫ ДЛЯ ПОИСКА ПО СТРАНИЦАМ (PAGES)
+enablePageSearchListeners = function () {
+  const searchIcons = document.querySelectorAll('.page-search-icon');
+
+  // КЛИК НА ЛУПУ (ТО ЖЕ, ЧТО ОТПРАВКА ФОРМЫ)
+  if (searchIcons.length > 0) {
+    // Перебираем все элементы и добавляем обработчик
+    searchIcons.forEach(function(searchIcon) {
+      searchIcon.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Находим ближайший родительский элемент <form>
+        const form = e.target.closest('form');
+        form.submit();
+      });
+    });
+  };
+};
+enablePageSearchListeners();
 
 // =======================================================================
 // =================== SETTINGS AREA =====================================

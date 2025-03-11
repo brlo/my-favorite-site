@@ -16,7 +16,7 @@
 
   <h2><%= t('page_search.title') %> "<a href="<%= my_page_link_to("/#{@page.path}") %>"><%= @page.title %></a>"</h2>
 
-  <form class='search-form' action="<%= my_page_link_to("/#{@page.path}/search") %>">
+  <form class='page-search-form' action="<%= my_page_link_to("/#{@page.path}/search") %>">
     <div class='search-tree-input-area'>
       <input
         class='pretty search-tree-input'
@@ -27,7 +27,7 @@
         value='<%= @search_text %>'
         autocomplete="off"
       />
-      <a class='search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <a class='page-search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
     </div>
   </form>
 

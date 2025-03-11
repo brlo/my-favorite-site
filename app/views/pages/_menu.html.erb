@@ -1,7 +1,7 @@
 <% if items.present? %>
   <div class='items'>
 
-    <% items.sort_by{ |i| i[:childs].present? ? 1:0 }.each do |item| %>
+    <% items.each do |item| %>
 
       <% _class = [] %>
       <% if item[:childs].present? %>
