@@ -433,10 +433,10 @@ footer dd.tip {
   font-size: .7em;
 }
 
-.scroll-to-top {
+.fixed-side-btn {
+  z-index: 999;
   position: fixed;
-  bottom: 20px;
-  right: 20px;
+  right: 40px;
   width: 50px;
   height: 50px;
   background-color: #d0d7be;
@@ -446,9 +446,28 @@ footer dd.tip {
   line-height: 50px;
   border-radius: 5px;
   cursor: pointer;
-  display: none; /* Скрываем кнопку по умолчанию */
 }
-.night-mode .scroll-to-top {
+
+#scroll-to-top-btn {
+  bottom: 20px;
+}
+
+#call-minimap-btn {
+  bottom: 80px;
+  display: none;
+}
+
+/* Стрелка вверх (по умолчанию) */
+.fixed-side-btn svg {
+  transition: transform 0.3s;
+}
+
+/* Стрелка вниз (перевернутая) */
+.fixed-side-btn.scroll-down svg {
+  transform: rotate(180deg);
+}
+
+.night-mode .fixed-side-btn {
   color: #abb2bf;
   background-color: #333;
 }

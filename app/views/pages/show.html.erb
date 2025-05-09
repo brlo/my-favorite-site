@@ -116,11 +116,26 @@
   <div class='error-msg'>Ошибка 404 — Такой страницы пока что нет.</div>
   <div class='propose'>
     Хотите
-    <a href="<%= "#{::SETTINGS['admin']['url'] }/pages/new?page_path=#{ ::CGI.escape(params[:page_path].to_s.gsub(/[^\p{L}0-9_\-\s]/, '')) }&lang=#{@content_lang}" %>">создать?</a>
+
+    <a rel='noindex nofollow' href="<%= @link_to_create %>">создать?</a>
   </div>
 </div>
 
 <% end %>
 
+<div id="minimap-container">
+    <div class="minimap">
+        <div class="minimap-items" id="minimapItems"></div>
+    </div>
+</div>
 
-<div class="scroll-to-top" id="scrollToTopBtn">↑</div>
+<div class='fixed-side-btn' id="scroll-to-top-btn">
+  <svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
+  </svg>
+</div>
+<div class='fixed-side-btn' id="call-minimap-btn">
+  <svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+  </svg>
+</div>

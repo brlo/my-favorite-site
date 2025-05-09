@@ -48,6 +48,78 @@ const localization = {
     night: 'Ночь',
     linkIsCopied: 'Ссылка скопирована',
   },
+  "es": { // испанский
+    "copyTitle": "Copiado",
+    "day": "Día",
+    "night": "Noche",
+    "linkIsCopied": "Enlace copiado"
+  },
+  "fr": { // французский
+    "copyTitle": "Copié",
+    "day": "Jour",
+    "night": "Nuit",
+    "linkIsCopied": "Lien copié"
+  },
+  "in": { // хинди
+    "copyTitle": "कॉपी किया गया",
+    "day": "दिन",
+    "night": "रात",
+    "linkIsCopied": "लिंक कॉपी किया गया"
+  },
+  "ir": { // персидский
+    "copyTitle": "کپی شد",
+    "day": "روز",
+    "night": "شب",
+    "linkIsCopied": "لینک کپی شد"
+  },
+  "it": { // итальянский
+    "copyTitle": "Copiato",
+    "day": "Giorno",
+    "night": "Notte",
+    "linkIsCopied": "Link copiato"
+  },
+  "ke": { // суахили
+    "copyTitle": "Imenakiliwa",
+    "day": "Mchana",
+    "night": "Usiku",
+    "linkIsCopied": "Kiunga kimenakiliwa"
+  },
+  "kr": { // корейский
+    "copyTitle": "복사됨",
+    "day": "낮",
+    "night": "밤",
+    "linkIsCopied": "링크가 복사되었습니다"
+  },
+  "rs": { // сербский
+    "copyTitle": "Копирано",
+    "day": "Дан",
+    "night": "Ноћ",
+    "linkIsCopied": "Линк је копиран"
+  },
+  "tm": { // туркменский
+    "copyTitle": "Kopyalandy",
+    "day": "Gün",
+    "night": "Gije",
+    "linkIsCopied": "Link kopyalandy"
+  },
+  "tr": { // турецкий
+    "copyTitle": "Kopyalandı",
+    "day": "Gün",
+    "night": "Gece",
+    "linkIsCopied": "Bağlantı kopyalandı"
+  },
+  "uz": { // узбекский
+    "copyTitle": "Nusxa olindi",
+    "day": "Kun",
+    "night": "Tun",
+    "linkIsCopied": "Havola nusxa olindi"
+  },
+  "vn": { // вьетнамский
+    "copyTitle": "Đã sao chép",
+    "day": "Ngày",
+    "night": "Đêm",
+    "linkIsCopied": "Đã sao chép liên kết"
+  }
 };
 
 window.BX = {

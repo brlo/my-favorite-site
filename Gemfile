@@ -24,6 +24,7 @@ gem 'greeklish_iso843'
 # для определения браузера, отсеивания ботов
 gem 'browser'
 
+# https://github.com/rails/actionpack-page_caching
 gem 'actionpack-page_caching'
 
 gem 'rack-cors', :require => 'rack/cors'
@@ -78,7 +79,7 @@ gem "bootsnap", require: false
 # Use Active Storage variants [https://guides.rubyonrails.org/active_storage_overview.html#transforming-images]
 # gem "image_processing", "~> 1.2"
 
-gem 'amazing_print', require: false
+# gem 'amazing_print', require: false
 gem 'sitemap_generator', require: false
 
 group :development, :test do

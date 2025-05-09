@@ -99,14 +99,27 @@ il:
     editors: עורכים
 
   page_translations:
-    ru: רוּסִי
-    en: אנגלית
-    gr: יווני
-    de: גֶרמָנִיָת
-    ar: ערבי
-    jp: יַפָּנִית
-    cn: סִינִית
-    il: עִברִית
+    ar: '🇦🇪 ערבית'
+    cn: '🇨🇳 סינית'
+    de: '🇩🇪 גרמנית'
+    cp: '🇪🇬 קופטית'
+    en: '🇬🇧 אנגלית'
+    es: '🇪🇸 ספרדית'
+    fr: '🇫🇷 צרפתית'
+    gr: '🇬🇷 יוונית'
+    il: '🇮🇱 עברית'
+    in: '🇮🇳 הינדי'
+    ir: '🇮🇷 פרסית'
+    it: '🇮🇹 איטלקית'
+    jp: '🇯🇵 יפנית'
+    ke: '🇰🇪 סוואהילי'
+    kr: '🇰🇷 קוריאנית'
+    rs: '🇷🇸 סרבית'
+    ru: '🇷🇺 רוסית'
+    tm: '🇹🇲 טורקמנית'
+    tr: '🇹🇷 טורקית'
+    uz: '🇺🇿 אוזבקית'
+    vn: '🇻🇳 וייטנאמית'
 
   bib_translations:
     ru: רוּסִי

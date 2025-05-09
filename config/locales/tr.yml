@@ -1,0 +1,254 @@
+tr:
+  title: Bibleox
+  bible: Kutsal Kitap
+  about_site: 'Site Hakkında'
+  about_site_description: 'Kutsal Kitap çalışmaları için site. Geliştirici ile iletişim.'
+  about_site_short: 'Kutsal Kitap (İncil) ve Ortodoks Kilisesi apostolik Geleneği hakkında site'
+  about_text: Bu site 2022 yılında Sivastopol şehrinde bir Ortodoks rahibin takdisiyle oluşturulmuştur.
+  about_news: Biblox gelişmeleri hakkında haberler
+  about_contact: Geliştirici ile iletişim
+  fast_search: 'İfade ara ya da Yak 2 16'
+  voice: Seslendir
+
+  root_page:
+    title: 'Kutsal Kitap ve Kutsal Gelenek'
+    headers:
+      bible: 'Kutsal Yazılar'
+      tradition: 'Kutsal Gelenek'
+
+  bible_page:
+    comment_title: 'Kutsal Kitap Yorumu'
+    comment: 'Yorum'
+
+  search_page:
+    title: Arama
+    search_placeholder: İfade
+    matches: Eşleşme
+    any_book: Herhangi Bir Kitap
+    old_testament: Eski Ahit
+    new_testament: Yeni Ahit
+    gospel: İncil
+    similar_phrase: Benzer ifade
+    exact_phrase: Tam ifade
+    meta_description: "\"%{search}\" araması. Bulunan sonuç: %{matches}."
+    meta_description_first_verse: " Ayet: %{verse}"
+
+  page_search:
+    title: İçinde ara
+
+  login_page:
+    title: 'Giriş'
+
+  profile_page:
+    title: 'Profilim'
+    logout: Çıkış
+
+  page:
+    title: "%{term}"
+    main_title: "Makale listesi"
+    main_meta_desc: "Kutsal Kitap, Hristiyanlık ve dini konular hakkında makaleler"
+    references: 'Notlar'
+    no_books_links_yet: 'Henüz başka bağlantı yok. Daha sonra tekrar bakın.'
+    menu_name: 'İçindekiler'
+    search_placeholder: 'Tüm bölümde ara'
+
+  dict_words:
+    title: "Kutsal Kitap'tan bir kelime – \"%{word}\""
+
+  quotes_page:
+    title: Kutsal Kitap'tan alıntılar
+
+  quote_page:
+    title: "%{term} / alıntılar / Kutsal Kitap"
+    addresses_list_title: 'Sadece referanslar:'
+    whant_to_fix: 'Düzeltmek veya eklemek mi istiyorsunuz? Bize yazın'
+    or_edit_page_by_yourself: Veya sayfayı kendiniz düzenleyin
+    edit_link: Düzenle
+    author: Kullanıcı tarafından yayınlandı
+    editors: Editörler
+
+  page_translations:
+    ar: '🇦🇪 Arapça'
+    cn: '🇨🇳 Çince'
+    de: '🇩🇪 Almanca'
+    cp: '🇪🇬 Kıptîce'
+    en: '🇬🇧 İngilizce'
+    es: '🇪🇸 İspanyolca'
+    fr: '🇫🇷 Fransızca'
+    gr: '🇬🇷 Yunanca'
+    il: '🇮🇱 İbranice'
+    in: '🇮🇳 Hintçe'
+    ir: '🇮🇷 Farsça'
+    it: '🇮🇹 İtalyanca'
+    jp: '🇯🇵 Japonca'
+    ke: '🇰🇪 Svahili'
+    kr: '🇰🇷 Korece'
+    rs: '🇷🇸 Sırpça'
+    ru: '🇷🇺 Rusça'
+    tm: '🇹🇲 Türkmence'
+    tr: '🇹🇷 Türkçe'
+    uz: '🇺🇿 Özbekçe'
+    vn: '🇻🇳 Vietnamca'
+
+  bib_translations:
+    translates: Çeviriler
+    ru: Rusça
+    csl: Kilise Slavcası
+    en: İngilizce
+    heb: İbranice
+    gr: Yunanca
+    jp: Japonca
+    cn: Çince
+    ge: Almanca
+    arab: Arapça
+    interliners: Satır altı çeviriler
+    gr-ru: Rusça
+    gr-en: İngilizce
+    gr-jp: Japonca
+
+  bib_word_info:
+    translation: çeviri
+    lexema: lx
+    morphology: morfoloji
+    transcription: transkripsiyon
+    more: detaylar
+    morph:
+      # Kelime türü:
+      "ch-r": 'kelime türü'
+      "сущ.": isim
+      "гл.": fiil
+      "прил.": sıfat
+      "нареч.": zarf
+      "мест.": zamir
+      "числ.": sayı
+      "предл.": edat
+      "союз": bağlaç
+      "част.": parçacık
+      "межд.": ünlem
+      # Durum:
+      "p": 'durum'
+      "им. п.": yalın hal
+      "р. п.": tamlayan durumu
+      "род. п.": tamlayan durumu
+      "дат. п.": yönelme durumu
+      "вин. п.": belirtme durumu
+      "тв. п.": araç durumu
+      "пред. п.": bulunma durumu
+      "зват. п.": hitap durumu
+      "несов. вр.": "bitmemiş zaman"
+      # Cinsiyet:
+      "r": 'cinsiyet'
+      "м.": eril
+      "ж.": dişil
+      "ср.": nötr
+      # Sayı:
+      "ch": sayı
+      "ед. ч.": tekil
+      "мн. ч.": çoğul
+      "-":
+      # Zaman
+      "t": zaman
+      "п.": geçmiş zaman
+      "перф.": perfect
+      "наст.": şimdiki zaman
+      "аор. инф.": aorist inf.
+      "наст. инф.": şimdiki zaman inf.
+      "буд.": gelecek zaman
+      "аор.": aorist
+      "аор. повел.": aorist emir
+      "аор. сосл.": aorist dilek
+      "наст. повел.": şimdiki zaman emir
+      "наст. деепр.": şimdiki zaman ulaç
+
+  tips:
+    click_on_verse: Ayet numarasına tıklayarak ayeti seçebilirsiniz.
+    click_on_verse__working: Çalışıyor
+    click_on_verse__and: ve
+    search_was_return_zero_results: Hiçbir şey bulunamadı. Metin dilinin doğru seçilip seçilmediğini kontrol edin.
+    page_search_was_return_zero_results: Hiçbir şey bulunamadı.
+
+  breadcrumbs:
+    bible: Kutsal Yazılar
+    VZ: Eski Ahit
+    NZ: Yeni Ahit
+    articles: Makaleler
+    bib_langs:
+      vz:
+        ru: 'Sinodal çeviri (RST)'
+        en-nrsv: 'modern İngilizce çeviri (NRSV)'
+        eng-nkjv: 'Kral James İngilizce çevirisi (NKJV, 1982)'
+        csl-ru: 'Kilise Slavcası çevirisi Rus harfleriyle (CSL-RU, 1751)'
+        csl-pnm: 'Kilise Slavcası çevirisi (CSL, 1751)'
+        heb-osm: 'İbranice çeviri (DHNT, 1885)'
+        gr-lxx-byz: 'Yunanca çeviri (LXX, Septuaginta, M.Ö. 3-2. yy)'
+
+        gr-ru: 'Rusça satır altı çeviri (bibleox, 2025)'
+        gr-en: 'İngilizce satır altı çeviri (bibleox, 2025)'
+        gr-jp: 'Japonca satır altı çeviri (bibleox, 2025)'
+
+        jp-ni: 'Japonca çeviri (JP-NI)'
+        cn-ccbs: 'Çince çeviri (CCBS)'
+        ge-sch: 'Almanca çeviri (SCH)'
+        arab-avd: 'Arapça çeviri (AVD)'
+      nz:
+        ru: 'Sinodal çeviri (RST)'
+        en-nrsv: 'modern İngilizce çeviri (NRSV)'
+        eng-nkjv: 'Kral James İngilizce çevirisi (NKJV, 1982)'
+        csl-ru: 'Kilise Slavcası çevirisi Rus harfleriyle (CSL-RU, 1751)'
+        csl-pnm: 'Kilise Slavcası çevirisi (CSL, 1751)'
+        heb-osm: 'İbranice çeviri (DHNT, 1885)'
+        gr-lxx-byz: 'orijinal apostolik metin'
+
+        gr-ru: 'Rusça satır altı çeviri (bibleox, 2025)'
+        gr-en: 'İngilizce satır altı çeviri (bibleox, 2025)'
+        gr-jp: 'Japonca satır altı çeviri (bibleox, 2025)'
+
+        jp-ni: 'Japonca çeviri (JP-NI, 1987)'
+        cn-ccbs: 'Çince çeviri (CCBS, 2012)'
+        ge-sch: 'Almanca çeviri (SCH, 1951)'
+        arab-avd: 'Arapça çeviri (AVD, 1999)'
+
+  menu:
+    bible: Kutsal Yazılar
+    links: Gelenek
+    articles: Makaleler
+    search: Ara
+    settings: Ayarlar
+    locale: Site dil ayarı
+    day: Gündüz
+    night: Gece
+    veth_zavet: Eski Ahit
+    nov_zavet: Yeni Ahit
+    profile: Profil
+    login: Giriş
+    another_categories: Diğer bölümler
+    same_subject: "Benzer içerik:"
+
+  settings:
+    color_scheme: Renkler
+    font_size: Metin
+
+  select_bar:
+    select_mode_btn: Seç
+    copy_btn: Kopyala
+    copy_menu_title: Kopyala
+    copy_text_btn: Metin
+    copy_address_btn: Adres
+    copy_link_btn: Bağlantı
+
+  chapter: bölüm
+  chapters: Bölümler
+  psalm: mezmur
+  psalms: Mezmurlar
+
+  end_chapter:
+    the_end_of: Son
+    suffix: ''
+    suffix_psalm: ''
+    chapter: bölüm
+    psalm: mezmur
+
+  forward: İleri
+  backward: Geri
+
+  years_from: Mesih'ten sonra

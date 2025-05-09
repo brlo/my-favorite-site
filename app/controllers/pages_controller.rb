@@ -15,7 +15,7 @@ class PagesController < ApplicationController
 
     # Ищем в БД страницу. Клиент мог неправильно ввести регистр, поэтому ищем
     # в спец поле, где всё в нижнем регистре.
-    @page = ::Page.find_by(path_low: path_downcased)
+    @page = ::Page.where(path_low: path_downcased).first
 
     # 404 - документ скрыт или удалён
     if @page
@@ -31,13 +31,27 @@ class PagesController < ApplicationController
       #
       # Если страница не найдена, то попробовать найти страницу,
       # у которой указан наш адрес в качестве её старого адреса
-      @page = ::Page.find_by(redirect_from: path_downcased)
+      @page = ::Page.where(redirect_from: path_downcased).first
 
       if @page
         redirect_to my_page_link_to("/#{::CGI.escape(@page.path)}")
       else
         # Если страницу всё равно не нашли, то отдаём 404 с предложением создать страницу
         # not_found!()
+
+        # Собираем ссылка на админку, для быстрого заполнения полей при создании страницы.
+        # Пояснение: когда мы хотим создавать страницы, мы сначала добавляем в меню родительской страницы
+        # элемент без path. Потом из меню переходим по этой ссылке и попадаем на 404, где предлагается создать страницу.
+        # В этот момент у нас в path есть необходимые параметры для предзаполнения полей, которые мы сейчас вот тут и обрабываем.
+        page_t = CGI.escape(params[:page_path].to_s.gsub(/[^\p{L}0-9_\-\s\(\)\,]/, ''))
+        params_link = {
+          page_title: page_t,
+          lang: @content_lang,
+          menu_id: params[:menu_id],
+          parent_id: params[:parent_id]
+        }.compact
+
+        @link_to_create = "#{::SETTINGS['admin']['url'] }/pages/new?" + params_link.map{ |k,v| "#{k}=#{v}" }.join('&').to_s
         render status: 404
       end
 

@@ -111,7 +111,6 @@
               <% end %>
             </div>
 
-
             <div class="bible-column menu-tree">
               <div class='small hint'><%= I18n.t('menu.veth_zavet') %></div>
               <% ::BOOKS.each do |book_code, data| %>
@@ -144,14 +143,10 @@
       <dd id='change-ui-lang-area'>
         <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
         <select id="ui-lang-select">
-          <option value='ru' <% if ::I18n.locale == :ru %>selected<% end %>>🇷🇺 Русский</option>
-          <option value='en' <% if ::I18n.locale == :en %>selected<% end %>>🇬🇧 English</option>
-          <option value='gr' <% if ::I18n.locale == :gr %>selected<% end %>>🇬🇷 Greek</option>
-          <option value='de' <% if ::I18n.locale == :de %>selected<% end %>>🇩🇪 Deutsch</option>
-          <option value='ar' <% if ::I18n.locale == :ar %>selected<% end %>>🇪🇬 عرب</option>
-          <option value='il' <% if ::I18n.locale == :il %>selected<% end %>>🇮🇱 עִברִית</option>
-          <option value='cn' <% if ::I18n.locale == :cn %>selected<% end %>>🇨🇳 中国語</option>
-          <option value='jp' <% if ::I18n.locale == :jp %>selected<% end %>>🇯🇵 日本語</option>
+          <% I18n.t('page_translations').sort.each do |ln_code, ln_name| %>
+            <% next if ln_code == :cp %>
+            <option value='<%= ln_code %>' <%= ::I18n.locale == ln_code ? 'selected' : '' %>><%= "#{ln_name}" %></option>
+          <% end %>
         </select>
       </dd>
       <dd>2022-<%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>

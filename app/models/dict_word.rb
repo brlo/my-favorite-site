@@ -6,12 +6,12 @@ class DictWord < ApplicationMongoRecord
   DICTS = {
     'd' => {'name' => 'Дворецкий И.Х.', 'from' => 'gr', 'to' => 'ru'},
     'w' => {'name' => 'Вейсман А.Д.', 'from' => 'gr', 'to' => 'ru'},
-    'dmt' => {'name' => 'Дьячок М.Т.', 'from' => 'gr', 'to' => 'ru'},
+    'bbx' => {'name' => 'Bibleox', 'from' => 'gr', 'to' => 'ru'},
     't' => {'name' => 'Тестовый', 'from' => 'jp', 'to' => 'ru'},
   }
 
   include Mongoid::Document
-  # dict       - d (d - Дворецкий, w - Вайсман, c - custom)
+  # dict       - d (d - Дворецкий, w - Вайсман, bbx - словарь для собственных определений (результат исследований))
   # word       - εὐθεώρητος
   # desc       -
   #   <h>εὐ-θεώρητος 2</h>

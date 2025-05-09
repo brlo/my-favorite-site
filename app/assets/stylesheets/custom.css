@@ -36,14 +36,12 @@ article.text-medium { font-size: 1.4em; }
 article.text-large { font-size: 1.7em; }
 
 /* для подстрочника покрупнее делаем текст */
-article.interliner.text-small { font-size: 1.5em; }
-article.interliner.text-medium { font-size: 1.8em; }
-article.interliner.text-large { font-size: 2em; }
-
-.interliner .verse-text {
+.interliner {
+  font-size: 1.5em;
   display: flex;
   flex-wrap: wrap;
-  gap: 15px;
+  gap: 10px;
+  margin: 10px 0 35px 0;
 }
 
 hr {

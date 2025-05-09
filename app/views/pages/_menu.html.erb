@@ -7,14 +7,22 @@
       <% if item[:childs].present? %>
         <% _class.push('menu-subject') %>
       <% else %>
-        <% item[:path].present? ? _class.push('menu-unit menu-link') : _class.push('menu-unit menu-not-link') %>
+        <% _class.push('menu-unit', 'menu-link') %>
+        <% item[:path].blank? ? _class.push('not-exist') : nil %>
       <% end %>
       <% item[:is_gold] ? _class.push('gold') : nil %>
       <div class='depth-<%= depth %> <%= _class.join(' ') %>'>
-        <% if item[:path].presence %>
+        <% if item[:childs].present? && item[:path].blank? %>
+          <%= item[:title] %>
+        <% elsif item[:path].presence %>
           <a href="<%= my_page_link_to("/#{item[:path]}", page_lang: page_lang) %>"><%= item[:title] %></a>
         <% else %>
-          <%= item[:title] %>
+          <% link_params = {menu_id: item[:id], parent_id: item[:page_id]} %>
+          <a
+            rel='noindex nofollow'
+            href="<%= my_page_link_to("/#{ item[:title].to_s.gsub(/[^\p{L}0-9_\-\s\(\)\,]/, '') }", page_lang: page_lang) %>?<%= link_params.map{ |k,v| "#{k}=#{v}" }.join('&') %>">
+            <%= item[:title] %>
+          </a>
         <% end %>
       </div>
 

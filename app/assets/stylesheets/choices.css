@@ -318,7 +318,8 @@
   font-size: 12px;
   padding: 10px;
   border-bottom: 1px solid #f7f7f7;
-  color: gray;
+  color: #000000;
+
 }
 
 .choices__button {
@@ -407,6 +408,7 @@
 .night-mode .choices__heading {
   border-bottom: 1px solid #4d4137;
   color: #59b682;
+  background-color: transparent;
 }
 .night-mode .choices__input {
   background-color: #4d4137;

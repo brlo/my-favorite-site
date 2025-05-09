@@ -38,6 +38,26 @@ if (element) {
   });
 };
 
+var element = document.querySelector('#page-lang-select');
+if (element) {
+  new Choices(element, {
+    allowHTML: true,
+    shouldSort: false,
+    shouldSortItems: false,
+    placeholder: true,
+    placeholderValue: 'Язык статьи',
+    searchEnabled: false,
+    prependValue: null,
+    appendValue: null,
+    renderSelectedChoices: 'auto',
+    itemSelectText: '',
+    position: 'down',
+    classNames: {
+      containerOuter: 'choices lang-select'
+    },
+  });
+};
+
 // TRANSLIT TABLE
 window.en2ruTranslit = function(text) {
   const tr_en_ru_dict = {"q":"й","w":"ц","e":"у","r":"к","t":"е","y":"н","u":"г","i":"ш","o":"щ","p":"з","[":"х","]":"ъ","a":"ф","s":"ы","d":"в","f":"а","g":"п","h":"р","j":"о","k":"л","l":"д",";":"ж","'":"Э"," z":" я","x":"ч","c":"с","v":"м","b":"и","n":"т","m":"ь",",":"б",".":"ю","/":".","Q":"Й","W":"Ц","E":"У","R":"К","T":"Е","Y":"Н","U":"Г","I":"Ш","O":"Щ","P":"З","{":"Х","}":"Ъ","A":"Ф","S":"Ы","D":"В","F":"А","G":"П","H":"Р","J":"О","K":"Л","L":"Д",":":"Ж","|":"/","Z":"Я","X":"Ч","C":"С","V":"М","B":"И","N":"Т","M":"Ь","<":"Б",">":"Ю","?":",","@":"'","#":"№","$":";","^":":","&":"?"};
@@ -217,16 +237,16 @@ menuBooks.goToSearch = function(form) {
   // если форму с input внутри передали, то она приоритетнее! Берём значение от туда.
   // Так делаем ради примитивного поля для поиска на главной странице
   if (form) {
-    text = form.querySelector('.search-tree-input').value;
-    lang = document.getElementById('lang-select').value;
+    text = form.querySelector('.search-tree-input');
+    lang = document.getElementById('lang-select');
   } else {
     text = menuBooks.searchInput.value;
   };
 
   let params = [];
 
-  if (lang && lang.length > 0) { params.push('l=' + lang) };
-  if (text && text.length > 0) { params.push('t=' + text) };
+  if (lang && lang.value.length > 0) { params.push('l=' + lang.value) };
+  if (text && text.value.length > 0) { params.push('t=' + text.value) };
 
   const url = '/' + window.BX.locale + '/search?' + params.join('&');
   document.location.href = url;
@@ -310,6 +330,7 @@ menuBooks.enableListeners();
 
 // ТАКЖЕ ЗДЕСЬ ОБРАБОТАЕМ ОТПРАВКУ ФОРМЫ ДЛЯ ПОИСКА ПО СТРАНИЦАМ (PAGES)
 enablePageSearchListeners = function () {
+  const forms = document.querySelectorAll('.page-search-form');
   const searchIcons = document.querySelectorAll('.page-search-icon');
 
   // КЛИК НА ЛУПУ (ТО ЖЕ, ЧТО ОТПРАВКА ФОРМЫ)
@@ -324,6 +345,14 @@ enablePageSearchListeners = function () {
       });
     });
   };
+
+  // фильтрация меню после ввода в поле для поиска по страницам
+  forms.forEach(function(form) {
+    const input = form.querySelector('.search-tree-input');
+    input.addEventListener('input', function(e) {
+      window.filterQueryPages(e.target.value);
+    });
+  });
 };
 enablePageSearchListeners();
 
@@ -692,28 +721,262 @@ window.filterQueryPages = function(text, isNeedTranslit) {
   };
 };
 
-// кнопка "вернуться вверх страницы"
-const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+// ================================================================
+// =============== кнопка "вернуться вверх страницы" ==============
+// ================================================================
+const scrollToTopBtn = document.getElementById('scroll-to-top-btn');
 
 if (scrollToTopBtn) {
+  // Добавляем класс по умолчанию
+  scrollToTopBtn.classList.add('scroll-down');
+
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 2000) { // Появляется при прокрутке вниз на 1000px
-      scrollToTopBtn.style.display = 'block';
+    if (window.scrollY > 2000) {
+      // Прокрутка ниже 2000px - показываем стрелку вверх
+      scrollToTopBtn.classList.remove('scroll-down');
+      scrollToTopBtn.classList.add('scroll-up');
     } else {
-      scrollToTopBtn.style.display = 'none';
+      // Прокрутка выше 2000px - показываем стрелку вниз
+      scrollToTopBtn.classList.remove('scroll-up');
+      scrollToTopBtn.classList.add('scroll-down');
     }
   });
 
   scrollToTopBtn.addEventListener('click', () => {
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+    if (window.scrollY > 2000) {
+      // Если ниже 2000px - прокрутка наверх
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    } else {
+      // Если выше 2000px - прокрутка вниз
+      window.scrollTo({
+        top: document.body.scrollHeight,
+        behavior: 'smooth'
+      });
+    }
   });
-};
+}
 
 window.BX.shareLink = function() {
   const url = decodeURIComponent(window.location.href);
   BX.tools.copyText(url)
   BX.notifications.addNotification('<t>' + BX.localization.linkIsCopied + ':</t>' + url);
 }
+
+
+// ================================================================
+// ==================== ПОДСТРОЧНИК INTERLINER ====================
+// ================================================================
+window.enableInterlinerListeners = function() {
+  document.querySelectorAll('.word-link').forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      // Скрываем все открытые блоки с информацией
+      document.querySelectorAll('.word-info').forEach(info => {
+        info.style.display = 'none';
+      });
+
+      // Показываем/скрываем информацию для текущего слова
+      const wordInfo = this.nextElementSibling;
+      if (wordInfo && wordInfo.classList.contains('word-info')) {
+        wordInfo.style.display = wordInfo.style.display === 'block' ? 'none' : 'block';
+      }
+    });
+  });
+
+  // Скрываем информацию при клике вне слова или информации
+  document.addEventListener('click', function(e) {
+    if (!e.target.closest('.word-link') && !e.target.closest('.word-info')) {
+      document.querySelectorAll('.word-info').forEach(info => {
+        info.style.display = 'none';
+      });
+    }
+  });
+};
+window.enableInterlinerListeners();
+
+
+// ================================================================
+// ============================== minimap =========================
+// ================================================================
+window.BX.minimap = {
+  el: document.getElementById('minimap-container'),
+  openBtn: document.getElementById('call-minimap-btn'),
+  isShown: false,
+}
+
+// ВКЛ
+window.BX.minimap.show = function () {
+  if (window.BX.minimap.el) {
+    window.BX.minimap.el.classList.remove('hidden');
+    window.BX.minimap.isShown = true;
+  };
+};
+
+// ВЫКЛ
+window.BX.minimap.hide = function () {
+  if (window.BX.minimap.el) {
+    window.BX.minimap.el.classList.add('hidden');
+    window.BX.minimap.isShown = false;
+  };
+};
+
+// Переключить видимость minimap
+window.BX.minimap.toggleVision = function() {
+  if (window.BX.minimap.isShown == true) {
+    window.BX.minimap.hide();
+  } else {
+    window.BX.minimap.show();
+  };
+};
+
+window.BX.minimap.init = function() {
+  if (!document.getElementById('page-content')) { return };
+  if (document.body.scrollHeight < 3000) { return };
+
+  // Находим только h2 с ID
+  const headings = Array.from(document.querySelectorAll('#page-body h2[id]'));
+  const minimapItems = document.getElementById('minimapItems');
+  const pageHeight = document.documentElement.scrollHeight;
+  const minimapHeight = window.BX.minimap.el.offsetHeight - 40;
+
+  // Если заголовков слишком много, то будем скрывать их подписи, иначе они наезжают друг на друга,
+  // Показываться будут только активные и наведенные (реализовано в css)
+  if (headings.length > 10) {
+    window.BX.minimap.el.classList.add('too-many');
+  }
+
+  // Создаем элементы мини-карты
+  headings.forEach((heading, index) => {
+      const rect = heading.getBoundingClientRect();
+      const scrollPosition = window.scrollY;
+      const headingTop = rect.top + scrollPosition;
+      const positionPercent = (headingTop / pageHeight) * 100;
+
+      const item = document.createElement('div');
+      item.className = 'minimap-item';
+      item.dataset.id = heading.id;
+      item.style.top = `${(positionPercent / 100) * minimapHeight}px`;
+
+      const label = document.createElement('a');
+      label.className = 'minimap-label';
+      label.href = `#${heading.id}`
+      label.textContent = heading.textContent;
+
+      // Невидимая область для наведения
+      const hitArea = document.createElement('div');
+      hitArea.className = 'minimap-hit-area';
+
+      item.appendChild(label);
+      item.appendChild(hitArea);
+      minimapItems.appendChild(item);
+
+      // наведение на невидимую область рядом с точкой, показывает label
+      hitArea.addEventListener('mouseenter', () => {
+          if (!label.classList.contains('active')) {
+            label.classList.add('visible');
+          };
+      });
+
+      hitArea.addEventListener('mouseleave', () => {
+          if (!label.classList.contains('active')) {
+            label.classList.remove('visible');
+          };
+      });
+  });
+
+  // Функция для определения активного раздела
+  function updateActiveSection() {
+      const scrollPosition = window.scrollY; // - (window.innerHeight * 0.2);
+      let activeSection = null;
+
+      // Находим последний h2, который ещё не прокрутили
+      for (let i = 0; i < headings.length; i++) {
+          const heading = headings[i];
+          const headingTop = heading.offsetTop;
+
+          if (scrollPosition >= headingTop) {
+              activeSection = heading.id;
+          } else {
+              break;
+          }
+      }
+
+      // Если не нашли, выбираем первый раздел
+      if (!activeSection && headings.length > 0) {
+          activeSection = headings[0].id;
+      }
+
+      // Обновляем активные элементы
+      document.querySelectorAll('.minimap-item').forEach(item => {
+          item.classList.toggle('active', item.dataset.id === activeSection);
+      });
+  }
+
+  // Обновляем при скроле
+  // Оптимизация производительности
+  let isScrolling;
+  window.addEventListener('scroll', function() {
+      window.clearTimeout(isScrolling);
+      isScrolling = setTimeout(function() {
+          updateActiveSection();
+      }, 50);
+  });
+  // Обновляем при ресайзе
+  window.addEventListener('resize', function() {
+      const newPageHeight = document.documentElement.scrollHeight;
+      const newMinimapHeight = window.BX.minimap.el.offsetHeight - 40;
+
+      headings.forEach(heading => {
+          const headingTop = heading.offsetTop;
+          const positionPercent = (headingTop / newPageHeight) * 100;
+
+          const item = document.querySelector(`.minimap-item[data-id="${heading.id}"]`);
+          if (item) {
+              item.style.top = `${(positionPercent / 100) * newMinimapHeight}px`;
+          }
+      });
+
+      updateActiveSection();
+  });
+
+  // // показ кнопки открытия меню
+  // window.BX.minimap.openBtn.style.display = 'block';
+
+  // // клик по кнопке для открытия меню — открывает его
+  // window.BX.minimap.openBtn.addEventListener('click', () => {
+  //     // если в window.BX.minimap.el.classList есть класс opened
+  //     if (window.BX.minimap.el.classList.contains('opened')) {
+  //         if (window.innerWidth <= 1250) {
+  //           // на маленьких экранах надо спрятать и полоску миникарты (а на больших она остаётся видна)
+  //           window.BX.minimap.hide();
+  //         };
+  //         window.BX.minimap.el.classList.remove('opened'); // убрать класс opened
+  //     } else {
+  //         window.BX.minimap.show();
+  //         window.BX.minimap.el.classList.add('opened'); // добавить класс opened
+  //     }
+  // });
+
+  updateActiveSection();
+}
+// инициализация миникарты
+window.BX.minimap.init();
+window.BX.minimap.hide();
+
+
+// авто-появление миникарты после прокрутки пониже от верха страницы
+if (window.BX.minimap.el) {
+  window.addEventListener('scroll', () => {
+    // Появляется на широких экранах при прокрутке вниз на 2000px
+    if (window.innerWidth >= 1250 && document.body.scrollHeight > 3000 && window.scrollY > 500) {
+      window.BX.minimap.show();
+    } else {
+      window.BX.minimap.hide();
+    }
+  });
+};
+

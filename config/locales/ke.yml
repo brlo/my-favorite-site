@@ -1,0 +1,254 @@
+ke:
+  title: Bibleox
+  bible: Biblia
+  about_site: 'Kuhusu tovuti'
+  about_site_description: 'Tovuti ya kusoma Biblia. Mawasiliano na mtaalamu wa maendeleo.'
+  about_site_short: 'Tovuti kuhusu Maandiko Matakatifu (Biblia) na Mapokeo ya Mitume ya Kanisa la Kiorthodoksi'
+  about_text: Tovuti hii ilianzishwa mwaka 2022 jijini Sevastopol kwa baraka ya kuhani wa Kiorthodoksi.
+  about_news: Habari kuhusu maendeleo ya Biblia
+  about_contact: Mawasiliano na mtaalamu wa maendeleo
+  fast_search: 'Tafuta maneno au Yak 2 16'
+  voice: Sauti
+
+  root_page:
+    title: 'Biblia na Mapokeo Matakatifu'
+    headers:
+      bible: 'Maandiko Matakatifu'
+      tradition: 'Mapokeo Matakatifu'
+
+  bible_page:
+    comment_title: 'Maoni kuhusu Biblia'
+    comment: 'Maoni'
+
+  search_page:
+    title: Tafuta
+    search_placeholder: Maneno
+    matches: Matokeo
+    any_book: Kitabu chochote
+    old_testament: Agano la Kale
+    new_testament: Agano Jipya
+    gospel: Injili
+    similar_phrase: Maneno yanayofanana
+    exact_phrase: Maneno halisi
+    meta_description: "Matokeo ya kutafuta \"%{search}\". Matokeo yaliyopatikana: %{matches}."
+    meta_description_first_verse: " Mstari: %{verse}"
+
+  page_search:
+    title: Tafuta katika
+
+  login_page:
+    title: 'Ingia'
+
+  profile_page:
+    title: 'Wasifu wangu'
+    logout: Ondoka
+
+  page:
+    title: "%{term}"
+    main_title: "Orodha ya makala"
+    main_meta_desc: "Makala kuhusu mada za kibiblia, Kikristo na kidini"
+    references: 'Vidokezo'
+    no_books_links_yet: 'Hakuna viungo vingine bado. Rudi baadaye.'
+    menu_name: 'Yaliyomo'
+    search_placeholder: 'Tafuta kwenye sehemu hii'
+
+  dict_words:
+    title: "Neno kutoka Biblia – \"%{word}\""
+
+  quotes_page:
+    title: Nukuu kutoka Biblia
+
+  quote_page:
+    title: "%{term} / nukuu / Biblia"
+    addresses_list_title: 'Viungo pekee:'
+    whant_to_fix: 'Unataka kurekebisha au kuongeza? Tuandikie'
+    or_edit_page_by_yourself: Au hariri ukurasa mwenyewe
+    edit_link: Hariri
+    author: Ilichapishwa na mtumiaji
+    editors: Wahariri
+
+  page_translations:
+    ar: '🇦🇪 Kiarabu'
+    cn: '🇨🇳 Kichina'
+    de: '🇩🇪 Kijerumani'
+    cp: '🇪🇬 Kikopti'
+    en: '🇬🇧 Kiingereza'
+    es: '🇪🇸 Kihispania'
+    fr: '🇫🇷 Kifaransa'
+    gr: '🇬🇷 Kigiriki'
+    il: '🇮🇱 Kiebrania'
+    in: '🇮🇳 Kihindi'
+    ir: '🇮🇷 Kiajemi'
+    it: '🇮🇹 Kiitaliano'
+    jp: '🇯🇵 Kijapani'
+    ke: '🇰🇪 Kiswahili'
+    kr: '🇰🇷 Kikorea'
+    rs: '🇷🇸 Kiserbia'
+    ru: '🇷🇺 Kirusi'
+    tm: '🇹🇲 Kiturukimeni'
+    tr: '🇹🇷 Kituruki'
+    uz: '🇺🇿 Kiuzbeki'
+    vn: '🇻🇳 Kivietinamu'
+
+  bib_translations:
+    translates: Tafsiri
+    ru: Kirusi
+    csl: Kislavoni cha Kanisa
+    en: Kiingereza
+    heb: Kiebrania
+    gr: Kigiriki
+    jp: Kijapani
+    cn: Kichina
+    ge: Kijerumani
+    arab: Kiarabu
+    interliners: Tafsiri za mstari
+    gr-ru: Kirusi
+    gr-en: Kiingereza
+    gr-jp: Kijapani
+
+  bib_word_info:
+    translation: tafsiri
+    lexema: lx
+    morphology: mofolojia
+    transcription: uandishi wa sauti
+    more: zaidi
+    morph:
+      # Aina ya neno:
+      "ch-r": 'aina ya neno'
+      "сущ.": nomino
+      "гл.": kitenzi
+      "прил.": kivumishi
+      "нареч.": kielezi
+      "мест.": kiwakilishi
+      "числ.": kionyeshi idadi
+      "предл.": kihusishi
+      "союз": kiunganishi
+      "част.": kielezi cha mwisho
+      "межд.": kiingizi
+      # Kihusishi:
+      "p": 'kihusishi'
+      "им. п.": nominatiivi
+      "р. п.": genetiivi
+      "род. п.": genetiivi
+      "дат. п.": datiivi
+      "вин. п.": akkusatiivi
+      "тв. п.": instrumentaali
+      "пред. п.": prepositionaali
+      "зват. п.": vokatiivi
+      "несов. вр.": "несов. вр."
+      # Jinsia:
+      "r": 'jinsia'
+      "м.": jinsia ya kiume
+      "ж.": jinsia ya kike
+      "ср.": jinsia ya wastani
+      # Nambari:
+      "ch": nambari
+      "ед. ч.": umoja
+      "мн. ч.": wingi
+      "-":
+      # Wakati
+      "t": wakati
+      "п.": wakati uliopita
+      "перф.": perfekti
+      "наст.": wakati uliopo
+      "аор. инф.": aoristi infinitiivi
+      "наст. инф.": infinitiivi ya sasa
+      "буд.": wakati ujao
+      "аор.": aoristi
+      "аор. повел.": aoristi ya amri
+      "аор. сосл.": aoristi ya masharti
+      "наст. повел.": amri ya sasa
+      "наст. деепр.": kutendeka kwa sasa
+
+  tips:
+    click_on_verse: Unaweza kuchagua mstari kwa kubonyeza nambari yake.
+    click_on_verse__working: Inafanya kazi
+    click_on_verse__and: na
+    search_was_return_zero_results: Hakuna kilichopatikana. Angalia ikiwa lugha ya maandishi haikuchaguliwa sawa?
+    page_search_was_return_zero_results: Hakuna kilichopatikana.
+
+  breadcrumbs:
+    bible: Maandiko
+    VZ: Agano la Kale
+    NZ: Agano Jipya
+    articles: Makala
+    bib_langs:
+      vz:
+        ru: 'tafsiri ya sinodi (RST)'
+        en-nrsv: 'tafsiri ya Kiingereza ya kisasa (NRSV)'
+        eng-nkjv: tafsiri ya Mfalme Yakobo ya Kiingereza (NKJV, 1982)
+        csl-ru: 'tafsiri ya Kislavoni kwa herufi za Kirusi (CSL-RU, 1751)'
+        csl-pnm: 'tafsiri ya Kislavoni (CSL, 1751)'
+        heb-osm: 'tafsiri ya Kiebrania (DHNT, 1885)'
+        gr-lxx-byz: 'tafsiri ya Kigiriki (LXX, septuaginta, karne ya 3-2 KK)'
+
+        gr-ru: 'tafsiri ya Kirusi ya mstari (bibleox, 2025)'
+        gr-en: 'tafsiri ya Kiingereza ya mstari (bibleox, 2025)'
+        gr-jp: 'tafsiri ya Kijapani ya mstari (bibleox, 2025)'
+
+        jp-ni: 'tafsiri ya Kijapani (JP-NI)'
+        cn-ccbs: 'tafsiri ya Kichina (CCBS)'
+        ge-sch: 'tafsiri ya Kijerumani (SCH)'
+        arab-avd: 'tafsiri ya Kiarabu (AVD)'
+      nz:
+        ru: 'tafsiri ya sinodi (RST)'
+        en-nrsv: 'tafsiri ya Kiingereza ya kisasa (NRSV)'
+        eng-nkjv: tafsiri ya Mfalme Yakobo ya Kiingereza (NKJV, 1982)
+        csl-ru: 'tafsiri ya Kislavoni kwa herufi za Kirusi (CSL-RU, 1751)'
+        csl-pnm: 'tafsiri ya Kislavoni (CSL, 1751)'
+        heb-osm: 'tafsiri ya Kiebrania (DHNT, 1885)'
+        gr-lxx-byz: 'maandishi asili ya mitume'
+
+        gr-ru: 'tafsiri ya Kirusi ya mstari (bibleox, 2025)'
+        gr-en: 'tafsiri ya Kiingereza ya mstari (bibleox, 2025)'
+        gr-jp: 'tafsiri ya Kijapani ya mstari (bibleox, 2025)'
+
+        jp-ni: 'tafsiri ya Kijapani (JP-NI, 1987)'
+        cn-ccbs: 'tafsiri ya Kichina (CCBS, 2012)'
+        ge-sch: 'tafsiri ya Kijerumani (SCH, 1951)'
+        arab-avd: 'tafsiri ya Kiarabu (AVD, 1999)'
+
+  menu:
+    bible: Maandiko
+    links: Mapokeo
+    articles: Makala
+    search: Tafuta
+    settings: Mipangilio
+    locale: Lugha ya tovuti
+    day: Mchana
+    night: Usiku
+    veth_zavet: Agano la Kale
+    nov_zavet: Agano Jipya
+    profile: Wasifu
+    login: Ingia
+    another_categories: Sehemu zingine
+    same_subject: "Nyenzo zinazofanana:"
+
+  settings:
+    color_scheme: Rangi
+    font_size: Maandishi
+
+  select_bar:
+    select_mode_btn: Chagua
+    copy_btn: Nakili
+    copy_menu_title: Nakili
+    copy_text_btn: Maandishi
+    copy_address_btn: Anwani
+    copy_link_btn: Kiungo
+
+  chapter: sura
+  chapters: Sura
+  psalm: zaburi
+  psalms: Zaburi
+
+  end_chapter:
+    the_end_of: Mwisho wa
+    suffix: ''
+    suffix_psalm: ''
+    chapter: sura
+    psalm: zaburi
+
+  forward: Mbele
+  backward: Nyuma
+
+  years_from: mwaka tangu kuzaliwa kwa Kristo

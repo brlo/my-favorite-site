@@ -1,0 +1,254 @@
+vn:
+  title: Bibleox
+  bible: Kinh Thánh
+  about_site: 'Về trang web'
+  about_site_description: 'Trang web nghiên cứu Kinh Thánh. Liên hệ với nhà phát triển.'
+  about_site_short: 'Trang web về Thánh Kinh (Kinh Thánh) và Truyền thống Tông đồ của Giáo hội Chính thống'
+  about_text: Trang web được tạo vào năm 2022 tại thành phố Sevastopol với sự chúc phúc của một giáo sĩ Chính thống.
+  about_news: Tin tức về sự phát triển của Bibleox
+  about_contact: Liên hệ với nhà phát triển
+  fast_search: 'Tìm cụm từ hoặc Gc 2 16'
+  voice: Đọc thành tiếng
+
+  root_page:
+    title: 'Kinh Thánh và Truyền thống Thánh'
+    headers:
+      bible: 'Thánh Kinh'
+      tradition: 'Truyền thống Thánh'
+
+  bible_page:
+    comment_title: 'Bình luận về Kinh Thánh'
+    comment: 'Bình luận'
+
+  search_page:
+    title: Tìm kiếm
+    search_placeholder: Cụm từ
+    matches: Kết quả
+    any_book: Bất kỳ Sách nào
+    old_testament: Cựu Ước
+    new_testament: Tân Ước
+    gospel: Phúc Âm
+    similar_phrase: Cụm từ tương tự
+    exact_phrase: Cụm từ chính xác
+    meta_description: 'Tìm kiếm "%{search}". Số kết quả tìm thấy: %{matches}.'
+    meta_description_first_verse: ' Câu: %{verse}'
+
+  page_search:
+    title: 'Tìm kiếm trong'
+
+  login_page:
+    title: 'Đăng nhập'
+
+  profile_page:
+    title: 'Hồ sơ của tôi'
+    logout: Đăng xuất
+
+  page:
+    title: "%{term}"
+    main_title: "Danh sách bài viết"
+    main_meta_desc: "Các bài viết về chủ đề Kinh Thánh, Kitô giáo và tôn giáo"
+    references: 'Ghi chú'
+    no_books_links_yet: 'Hiện chưa có liên kết nào khác. Vui lòng quay lại sau.'
+    menu_name: 'Nội dung'
+    search_placeholder: 'Tìm kiếm trong toàn bộ phần'
+
+  dict_words:
+    title: 'Từ trong Kinh Thánh – "%{word}"'
+
+  quotes_page:
+    title: 'Trích dẫn từ Kinh Thánh'
+
+  quote_page:
+    title: '%{term} / trích dẫn / Kinh Thánh'
+    addresses_list_title: 'Chỉ liên kết:'
+    whant_to_fix: 'Muốn sửa hoặc bổ sung? Hãy viết cho chúng tôi'
+    or_edit_page_by_yourself: Hoặc tự chỉnh sửa bài viết
+    edit_link: Chỉnh sửa
+    author: Được đăng bởi người dùng
+    editors: Biên tập viên
+
+  page_translations:
+    ar: '🇦🇪 Tiếng Ả Rập'
+    cn: '🇨🇳 Tiếng Trung'
+    de: '🇩🇪 Tiếng Đức'
+    cp: '🇪🇬 Tiếng Copt'
+    en: '🇬🇧 Tiếng Anh'
+    es: '🇪🇸 Tiếng Tây Ban Nha'
+    fr: '🇫🇷 Tiếng Pháp'
+    gr: '🇬🇷 Tiếng Hy Lạp'
+    il: '🇮🇱 Tiếng Hebrew'
+    in: '🇮🇳 Tiếng Hindi'
+    ir: '🇮🇷 Tiếng Ba Tư'
+    it: '🇮🇹 Tiếng Ý'
+    jp: '🇯🇵 Tiếng Nhật'
+    ke: '🇰🇪 Tiếng Swahili'
+    kr: '🇰🇷 Tiếng Hàn'
+    rs: '🇷🇸 Tiếng Serbia'
+    ru: '🇷🇺 Tiếng Nga'
+    tm: '🇹🇲 Tiếng Turkmen'
+    tr: '🇹🇷 Tiếng Thổ Nhĩ Kỳ'
+    uz: '🇺🇿 Tiếng Uzbek'
+    vn: '🇻🇳 Tiếng Việt'
+
+  bib_translations:
+    translates: 'Bản dịch'
+    ru: 'Tiếng Nga'
+    csl: 'Tiếng Slavơ Giáo hội'
+    en: 'Tiếng Anh'
+    heb: 'Tiếng Hebrew'
+    gr: 'Tiếng Hy Lạp'
+    jp: 'Tiếng Nhật'
+    cn: 'Tiếng Trung'
+    ge: 'Tiếng Đức'
+    arab: 'Tiếng Ả Rập'
+    interliners: 'Bản dịch sát nghĩa'
+    gr-ru: 'Tiếng Nga'
+    gr-en: 'Tiếng Anh'
+    gr-jp: 'Tiếng Nhật'
+
+  bib_word_info:
+    translation: 'dịch'
+    lexema: 'lx'
+    morphology: 'hình thái học'
+    transcription: 'phiên âm'
+    more: 'chi tiết'
+    morph:
+      # Loại từ:
+      "ch-r": 'loại từ'
+      "сущ.": 'danh từ'
+      "гл.": 'động từ'
+      "прил.": 'tính từ'
+      "нареч.": 'trạng từ'
+      "мест.": 'đại từ'
+      "числ.": 'số từ'
+      "предл.": 'giới từ'
+      "союз": 'liên từ'
+      "част.": 'phụ từ'
+      "межд.": 'thán từ'
+      # Cách:
+      "p": 'cách'
+      "им. п.": 'danh cách'
+      "р. п.": 'sinh cách'
+      "род. п.": 'sinh cách'
+      "дат. п.": 'dữ cách'
+      "вин. п.": 'đối cách'
+      "тв. п.": 'tạo cách'
+      "пред. п.": 'giới cách'
+      "зват. п.": 'hô cách'
+      "несов. вр.": "chưa hoàn thành"
+      # Giống:
+      "r": 'giống'
+      "м.": 'giống đực'
+      "ж.": 'giống cái'
+      "ср.": 'giống trung'
+      # Số:
+      "ch": 'số'
+      "ед. ч.": 'số ít'
+      "мн. ч.": 'số nhiều'
+      "-":
+      # Thời
+      "t": 'thời'
+      "п.": 'quá khứ'
+      "перф.": 'hoàn thành'
+      "наст.": 'hiện tại'
+      "аор. инф.": 'vô định aorist'
+      "наст. инф.": 'vô định hiện tại'
+      "буд.": 'tương lai'
+      "аор.": 'aorist'
+      "аор. повел.": 'mệnh lệnh aorist'
+      "аор. сосл.": 'điều kiện aorist'
+      "наст. повел.": 'mệnh lệnh hiện tại'
+      "наст. деепр.": 'phó từ hiện tại'
+
+  tips:
+    click_on_verse: 'Có thể chọn câu bằng cách nhấn vào số của nó.'
+    click_on_verse__working: 'Hoạt động'
+    click_on_verse__and: 'và'
+    search_was_return_zero_results: 'Không tìm thấy kết quả nào. Kiểm tra xem có phải đã chọn sai ngôn ngữ văn bản không?'
+    page_search_was_return_zero_results: 'Không tìm thấy kết quả nào.'
+
+  breadcrumbs:
+    bible: 'Kinh Thánh'
+    VZ: 'Cựu Ước'
+    NZ: 'Tân Ước'
+    articles: 'Bài viết'
+    bib_langs:
+      vz:
+        ru: 'bản dịch Synod (RST)'
+        en-nrsv: 'bản dịch tiếng Anh hiện đại (NRSV)'
+        eng-nkjv: 'bản dịch tiếng Anh King James (NKJV, 1982)'
+        csl-ru: 'bản dịch Slavơ Giáo hội bằng chữ Nga (CSL-RU, 1751)'
+        csl-pnm: 'bản dịch Slavơ Giáo hội (CSL, 1751)'
+        heb-osm: 'bản dịch tiếng Hebrew (DHNT, 1885)'
+        gr-lxx-byz: 'bản dịch tiếng Hy Lạp (LXX, Bảy Mươi, thế kỷ 3-2 TCN)'
+
+        gr-ru: 'bản dịch sát nghĩa tiếng Nga (bibleox, 2025)'
+        gr-en: 'bản dịch sát nghĩa tiếng Anh (bibleox, 2025)'
+        gr-jp: 'bản dịch sát nghĩa tiếng Nhật (bibleox, 2025)'
+
+        jp-ni: 'bản dịch tiếng Nhật (JP-NI)'
+        cn-ccbs: 'bản dịch tiếng Trung (CCBS)'
+        ge-sch: 'bản dịch tiếng Đức (SCH)'
+        arab-avd: 'bản dịch tiếng Ả Rập (AVD)'
+      nz:
+        ru: 'bản dịch Synod (RST)'
+        en-nrsv: 'bản dịch tiếng Anh hiện đại (NRSV)'
+        eng-nkjv: 'bản dịch tiếng Anh King James (NKJV, 1982)'
+        csl-ru: 'bản dịch Slavơ Giáo hội bằng chữ Nga (CSL-RU, 1751)'
+        csl-pnm: 'bản dịch Slavơ Giáo hội (CSL, 1751)'
+        heb-osm: 'bản dịch tiếng Hebrew (DHNT, 1885)'
+        gr-lxx-byz: 'nguyên bản Tông đồ'
+
+        gr-ru: 'bản dịch sát nghĩa tiếng Nga (bibleox, 2025)'
+        gr-en: 'bản dịch sát nghĩa tiếng Anh (bibleox, 2025)'
+        gr-jp: 'bản dịch sát nghĩa tiếng Nhật (bibleox, 2025)'
+
+        jp-ni: 'bản dịch tiếng Nhật (JP-NI, 1987)'
+        cn-ccbs: 'bản dịch tiếng Trung (CCBS, 2012)'
+        ge-sch: 'bản dịch tiếng Đức (SCH, 1951)'
+        arab-avd: 'bản dịch tiếng Ả Rập (AVD, 1999)'
+
+  menu:
+    bible: 'Kinh Thánh'
+    links: 'Truyền thống'
+    articles: 'Bài viết'
+    search: 'Tìm kiếm'
+    settings: 'Cài đặt'
+    locale: 'Ngôn ngữ giao diện'
+    day: 'Ngày'
+    night: 'Đêm'
+    veth_zavet: 'Cựu Ước'
+    nov_zavet: 'Tân Ước'
+    profile: 'Hồ sơ'
+    login: 'Đăng nhập'
+    another_categories: 'Các mục khác'
+    same_subject: 'Các tài liệu tương tự:'
+
+  settings:
+    color_scheme: 'Màu sắc'
+    font_size: 'Văn bản'
+
+  select_bar:
+    select_mode_btn: 'Chọn'
+    copy_btn: 'Sao chép'
+    copy_menu_title: 'Sao chép'
+    copy_text_btn: 'Văn bản'
+    copy_address_btn: 'Địa chỉ'
+    copy_link_btn: 'Liên kết'
+
+  chapter: 'chương'
+  chapters: 'Các chương'
+  psalm: 'thánh thi'
+  psalms: 'Các thánh thi'
+
+  end_chapter:
+    the_end_of: 'Kết thúc'
+    suffix: ''
+    suffix_psalm: ''
+    chapter: 'chương'
+    psalm: 'thánh thi'
+
+  forward: 'Tiến'
+  backward: 'Lùi'
+
+  years_from: 'năm sau Công Nguyên'

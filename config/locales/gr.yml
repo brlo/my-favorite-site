@@ -99,14 +99,27 @@ gr:
     editors: συντάκτες
 
   page_translations:
-    ru: Ρωσική
-    en: Αγγλικά
-    gr: Ελληνικά
-    de: Γερμανός
-    ar: Άραβας
-    jp: Ιαπωνικά
-    cn: κινέζικα
-    il: Εβραϊκά
+    ar: '🇦🇪 Αραβικά'
+    cn: '🇨🇳 Κινέζικα'
+    de: '🇩🇪 Γερμανικά'
+    cp: '🇪🇬 Κοπτικά'
+    en: '🇬🇧 Αγγλικά'
+    es: '🇪🇸 Ισπανικά'
+    fr: '🇫🇷 Γαλλικά'
+    gr: '🇬🇷 Ελληνικά'
+    il: '🇮🇱 Εβραϊκά'
+    in: '🇮🇳 Χίντι'
+    ir: '🇮🇷 Περσικά'
+    it: '🇮🇹 Ιταλικά'
+    jp: '🇯🇵 Ιαπωνικά'
+    ke: '🇰🇪 Σουαχίλι'
+    kr: '🇰🇷 Κορεατικά'
+    rs: '🇷🇸 Σερβικά'
+    ru: '🇷🇺 Ρωσικά'
+    tm: '🇹🇲 Τουρκμενικά'
+    tr: '🇹🇷 Τουρκικά'
+    uz: '🇺🇿 Ουζμπεκικά'
+    vn: '🇻🇳 Βιετναμικά'
 
   bib_translations:
     ru: Ρωσική
@@ -220,18 +233,18 @@ gr:
       zah: Ζαχ
       mal: Μαλ
 
-      # Книги, которыйх обычно нет в MyBible
-      1mak: 1Mac
-      2mak: 2Mac
-      3mak: 3Mac
-      3ezd: 3Ezr
-      pos: lJer
-      var: Bar
-      2ezd: 2Ezr
-      tov: Tov
-      iudf: Judf
-      prs: pSolom
-      prsir: pSir
+      # Книги, которых обычно нет в MyBible
+      1mak: I Μακ
+      2mak: II Μακ
+      3mak: III Μακ
+      3ezd: III Εσδρ
+      pos: Επ.Ιερ
+      var: Βαρ
+      2ezd: II Εσδρ
+      tov: Τωβ
+      iudf: Ιουδιθ
+      prs: Σ.Σολ
+      prsir: Σ.Σειρ
 
       mf: Μτ
       mk: Μκ
@@ -303,17 +316,17 @@ gr:
       mal: Μαλαχίας
 
       # книги которых обычно нет в MyBible
-      1mak: I Maccabees
-      2mak: II Maccabees
-      3mak: III Maccabees
-      3ezd: III Esdras
-      pos: Letter of Jeremiah
-      var: Baruch
-      2ezd: II Esdras
-      tov: Tobit
-      iudf: Judith
-      prs: Wisdom
-      prsir: Sirah
+      1mak: I Μακαβαιων
+      2mak: II Μακαβαιων
+      3mak: III Μακαβαιων
+      3ezd: III Εσδρασ
+      pos: Επιστολη Ιερεμιου
+      var: Βαρουχ
+      2ezd: II Εσδρασ
+      tov: Τωβιτ
+      iudf: Ιουδιθ
+      prs: Σοφια Σολομωντοσ
+      prsir: Σοφια Σειραχ
 
       mf: Ευαγγέλιο κατά Ματθαίον
       mk: Κατά Μάρκον
@@ -385,17 +398,17 @@ gr:
       mal: Μαλαχίας
 
       # книги которых обычно нет в MyBible
-      1mak: '1Mac'
-      2mak: '2Mac'
-      3mak: '3Mac'
-      3ezd: 'The Third Book of EZRA'
-      pos: Letter of JEREMIAH
-      var: The Book of BARUCH
-      2ezd: 'The Second Book of EZRA'
-      tov: 'Tov'
-      iudf: 'Judf'
-      prs: 'pSolom'
-      prsir: 'pSir'
+      1mak: I Μακαβαιων
+      2mak: II Μακαβαιων
+      3mak: III Μακαβαιων
+      3ezd: III Εσδρασ
+      pos: Επιστολη Ιερεμιου
+      var: Βαρουχ
+      2ezd: II Εσδρασ
+      tov: Τωβιτ
+      iudf: Ιουδιθ
+      prs: Σοφια Σολομωντοσ
+      prsir: Σοφια Σειραχ
 
       mf: Ευαγγέλιο κατά Ματθαίον
       mk: Ευαγγέλιο κατά Μάρκον

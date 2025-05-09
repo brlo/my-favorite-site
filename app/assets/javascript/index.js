@@ -59,6 +59,9 @@ window.selectBar = {
 selectBar.enable = function () {
   selectBar.el.classList.remove('hidden');
   selectBar.isEnabled = true;
+
+  // для прочих модулей помечаем в body, что бар включен
+  document.body.classList.add('select-bar-enabled');
 };
 
 selectBar.disable = function () {
@@ -70,6 +73,8 @@ selectBar.disable = function () {
   if (window.BX.options.isSelectMode === true) selectBar.selectModeClicked();
   // выключаем сам селект-бар
   selectBar.isEnabled = false;
+  // для прочих модулей помечаем в body, что бар выключен
+  document.body.classList.remove('select-bar-enabled');
 };
 
 selectBar.getSelectedText = function () {
@@ -614,20 +619,33 @@ function loadChapter(linkEl) {
       if (xmlhttp.status == 200) {
         // рендерим новый контент
         document.getElementById('bib-text-area').innerHTML = xmlhttp.responseText;
+
         // вешаем события
         addListenersForHighlightVerses();
+
         // переключаем адрес стрианцы
         window.history.pushState({}, '', path);
+
         // устанавливаем размер текста в соответствии с куками
         settingsArea.preInitText();
+
         // прячем меню работы с текстом
         selectBar.disable();
+
         // переключаем номер активной главы
         const chapters = document.getElementById('menu-chapters');
         chapters.querySelector('.selected').classList.remove('selected');
         chapters.querySelector('#ch-' + clickedChapter).classList.add('selected');
+
         // также надо обновить главу в элементе, который хранит всю инфу по текущему адресу
         document.getElementById('current-address').dataset.chapter = clickedChapter;
+
+        // также надо обновить title страницы
+        document.title = document.getElementById('chapter-title').dataset.title;
+
+        // также надо установить события для клика на слова в подстрочнике
+        window.enableInterlinerListeners();
+
         // сбрасываем player — аудио текста (вдруг он был запущен)
         window.BX.player.update();
       }

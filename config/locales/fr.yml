@@ -1,0 +1,254 @@
+fr:
+  title: Bibleox
+  bible: Bible
+  about_site: 'À propos'
+  about_site_description: "Site pour l'étude de la Bible. Contacts avec le développeur."
+  about_site_short: "Site sur les Saintes Écritures (Bible) et la Tradition apostolique de l'Église Orthodoxe"
+  about_text: Le site a été créé en 2022 dans la ville de Sébastopol avec la bénédiction d'un clergé orthodoxe.
+  about_news: Actualités sur le développement de Bibléox
+  about_contact: Contact avec le développeur
+  fast_search: 'Rechercher une phrase ou Jac 2 16'
+  voice: Écouter
+
+  root_page:
+    title: 'Bible et Sainte Tradition'
+    headers:
+      bible: 'Sainte Écriture'
+      tradition: 'Sainte Tradition'
+
+  bible_page:
+    comment_title: 'Commentaire biblique'
+    comment: 'Commentaire'
+
+  search_page:
+    title: Recherche
+    search_placeholder: Phrase
+    matches: Correspondances
+    any_book: Tous les livres
+    old_testament: Ancien Testament
+    new_testament: Nouveau Testament
+    gospel: Évangile
+    similar_phrase: Phrase similaire
+    exact_phrase: Phrase exacte
+    meta_description: 'Recherche "%{search}". Résultats trouvés : %{matches}.'
+    meta_description_first_verse: ' Verset : %{verse}'
+
+  page_search:
+    title: Recherche dans
+
+  login_page:
+    title: 'Connexion'
+
+  profile_page:
+    title: 'Mon profil'
+    logout: Déconnexion
+
+  page:
+    title: "%{term}"
+    main_title: "Liste d'articles"
+    main_meta_desc: "Articles sur des thèmes bibliques, chrétiens et religieux"
+    references: 'Notes'
+    no_books_links_yet: "Il n'y a pas encore d'autres liens ici. Revenez plus tard."
+    menu_name: 'Sommaire'
+    search_placeholder: 'Recherche dans toute la section'
+
+  dict_words:
+    title: 'Mot biblique – "%{word}"'
+
+  quotes_page:
+    title: Citations bibliques
+
+  quote_page:
+    title: '%{term} / citations / Bible'
+    addresses_list_title: 'Références uniquement :'
+    whant_to_fix: 'Vous souhaitez corriger ou compléter ? Contactez-nous'
+    or_edit_page_by_yourself: Ou éditez l\'article vous-même
+    edit_link: Éditer
+    author: Publié par
+    editors: Éditeurs
+
+  page_translations:
+    ar: '🇦🇪 Arabe'
+    cn: '🇨🇳 Chinois'
+    de: '🇩🇪 Allemand'
+    cp: '🇪🇬 Copte'
+    en: '🇬🇧 Anglais'
+    es: '🇪🇸 Espagnol'
+    fr: '🇫🇷 Français'
+    gr: '🇬🇷 Grec'
+    il: '🇮🇱 Hébreu'
+    in: '🇮🇳 Hindi'
+    ir: '🇮🇷 Persan'
+    it: '🇮🇹 Italien'
+    jp: '🇯🇵 Japonais'
+    ke: '🇰🇪 Swahili'
+    kr: '🇰🇷 Coréen'
+    rs: '🇷🇸 Serbe'
+    ru: '🇷🇺 Russe'
+    tm: '🇹🇲 Turkmène'
+    tr: '🇹🇷 Turc'
+    uz: '🇺🇿 Ouzbek'
+    vn: '🇻🇳 Vietnamien'
+
+  bib_translations:
+    translates: Traductions
+    ru: Russe
+    csl: Slavon d'église
+    en: Anglais
+    heb: Hébreu
+    gr: Grec
+    jp: Japonais
+    cn: Chinois
+    ge: Allemand
+    arab: Arabe
+    interliners: Interlinéaires
+    gr-ru: Russe
+    gr-en: Anglais
+    gr-jp: Japonais
+
+  bib_word_info:
+    translation: traduction
+    lexema: lx
+    morphology: morphologie
+    transcription: transcription
+    more: détails
+    morph:
+      # Partie du discours :
+      "ch-r": 'partie du discours'
+      "сущ.": nom
+      "гл.": verbe
+      "прил.": adjectif
+      "нареч.": adverbe
+      "мест.": pronom
+      "числ.": numéral
+      "предл.": préposition
+      "союз": conjonction
+      "част.": particule
+      "межд.": interjection
+      # Cas :
+      "p": 'cas'
+      "им. п.": nominatif
+      "р. п.": génitif
+      "род. п.": génitif
+      "дат. п.": datif
+      "вин. п.": accusatif
+      "тв. п.": instrumental
+      "пред. п.": prépositionnel
+      "зват. п.": vocatif
+      "несов. вр.": "imperf."
+      # Genre :
+      "r": 'genre'
+      "м.": masculin
+      "ж.": féminin
+      "ср.": neutre
+      # Nombre :
+      "ch": nombre
+      "ед. ч.": singulier
+      "мн. ч.": pluriel
+      "-":
+      # Temps
+      "t": temps
+      "п.": passé
+      "перф.": parfait
+      "наст.": présent
+      "аор. инф.": aor. inf.
+      "наст. инф.": prés. inf.
+      "буд.": futur
+      "аор.": aoriste
+      "аор. повел.": aor. impér.
+      "аор. сосл.": aor. cond.
+      "наст. повел.": prés. impér.
+      "наст. деепр.": prés. gér.
+
+  tips:
+    click_on_verse: 'Vous pouvez sélectionner un verset en cliquant sur son numéro.'
+    click_on_verse__working: 'Fonctionne'
+    click_on_verse__and: 'et'
+    search_was_return_zero_results: 'Aucun résultat trouvé. Vérifiez si la langue du texte est correcte.'
+    page_search_was_return_zero_results: 'Aucun résultat trouvé.'
+
+  breadcrumbs:
+    bible: Écriture
+    VZ: Ancien Testament
+    NZ: Nouveau Testament
+    articles: Articles
+    bib_langs:
+      vz:
+        ru: 'traduction synodale (RST)'
+        en-nrsv: 'traduction anglaise moderne (NRSV)'
+        eng-nkjv: 'traduction anglaise du roi Jacques (NKJV, 1982)'
+        csl-ru: 'traduction slavonne en lettres russes (CSL-RU, 1751)'
+        csl-pnm: 'traduction slavonne (CSL, 1751)'
+        heb-osm: 'traduction en hébreu (DHNT, 1885)'
+        gr-lxx-byz: 'traduction grecque (LXX, Septante, 3-2 s. av. J.-C.)'
+
+        gr-ru: 'traduction interlinéaire russe (bibleox, 2025)'
+        gr-en: 'traduction interlinéaire anglaise (bibleox, 2025)'
+        gr-jp: 'traduction interlinéaire japonaise (bibleox, 2025)'
+
+        jp-ni: 'traduction japonaise (JP-NI)'
+        cn-ccbs: 'traduction chinoise (CCBS)'
+        ge-sch: 'traduction allemande (SCH)'
+        arab-avd: 'traduction arabe (AVD)'
+      nz:
+        ru: 'traduction synodale (RST)'
+        en-nrsv: 'traduction anglaise moderne (NRSV)'
+        eng-nkjv: 'traduction anglaise du roi Jacques (NKJV, 1982)'
+        csl-ru: 'traduction slavonne en lettres russes (CSL-RU, 1751)'
+        csl-pnm: 'traduction slavonne (CSL, 1751)'
+        heb-osm: 'traduction en hébreu (DHNT, 1885)'
+        gr-lxx-byz: 'texte apostolique original'
+
+        gr-ru: 'traduction interlinéaire russe (bibleox, 2025)'
+        gr-en: 'traduction interlinéaire anglaise (bibleox, 2025)'
+        gr-jp: 'traduction interlinéaire japonaise (bibleox, 2025)'
+
+        jp-ni: 'traduction japonaise (JP-NI, 1987)'
+        cn-ccbs: 'traduction chinoise (CCBS, 2012)'
+        ge-sch: 'traduction allemande (SCH, 1951)'
+        arab-avd: 'traduction arabe (AVD, 1999)'
+
+  menu:
+    bible: Écriture
+    links: Tradition
+    articles: Articles
+    search: Recherche
+    settings: Paramètres
+    locale: Langue du site
+    day: Jour
+    night: Nuit
+    veth_zavet: Ancien Testament
+    nov_zavet: Nouveau Testament
+    profile: Profil
+    login: Connexion
+    another_categories: Autres sections
+    same_subject: "Sujets similaires :"
+
+  settings:
+    color_scheme: Thème
+    font_size: Texte
+
+  select_bar:
+    select_mode_btn: Sélectionner
+    copy_btn: Copier
+    copy_menu_title: Copier
+    copy_text_btn: Texte
+    copy_address_btn: Adresse
+    copy_link_btn: Lien
+
+  chapter: chapitre
+  chapters: Chapitres
+  psalm: psaume
+  psalms: Psaumes
+
+  end_chapter:
+    the_end_of: Fin
+    suffix: '-ème'
+    suffix_psalm: '-ème'
+    chapter: chapitre
+    psalm: psaume
+
+  forward: Suivant
+  backward: Précédent
+
+  years_from: an après la Nativité du Christ

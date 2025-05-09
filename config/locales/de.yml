@@ -99,14 +99,27 @@ de:
     editors: Herausgeber
 
   page_translations:
-    ru: Russisch
-    en: Englisch
-    gr: Griechisch
-    de: Deutsch
-    ar: Araber
-    jp: Japanisch
-    cn: Chinesisch
-    il: hebräisch
+    ar: '🇦🇪 Arabisch'
+    cn: '🇨🇳 Chinesisch'
+    de: '🇩🇪 Deutsch'
+    cp: '🇪🇬 Koptisch'
+    en: '🇬🇧 Englisch'
+    es: '🇪🇸 Spanisch'
+    fr: '🇫🇷 Französisch'
+    gr: '🇬🇷 Griechisch'
+    il: '🇮🇱 Hebräisch'
+    in: '🇮🇳 Hindi'
+    ir: '🇮🇷 Persisch'
+    it: '🇮🇹 Italienisch'
+    jp: '🇯🇵 Japanisch'
+    ke: '🇰🇪 Swahili'
+    kr: '🇰🇷 Koreanisch'
+    rs: '🇷🇸 Serbisch'
+    ru: '🇷🇺 Russisch'
+    tm: '🇹🇲 Turkmenisch'
+    tr: '🇹🇷 Türkisch'
+    uz: '🇺🇿 Usbekisch'
+    vn: '🇻🇳 Vietnamesisch'
 
   bib_translations:
     ru: Russisch

@@ -1,4 +1,5 @@
 class VersesController < ApplicationController
+  # https://github.com/rails/actionpack-page_caching
   caches_page :index, :chapter_ajax
 
   def index_redirect
@@ -48,6 +49,19 @@ class VersesController < ApplicationController
     else
       @content_lang = current_bib_lang()
 
+      # Запрошен подстрочник
+      @is_interliner = ['gr-ru', 'gr-en', 'gr-jp'].include?(@content_lang)
+      if @is_interliner
+        @int_content_lang =
+        if @content_lang == 'gr-ru'
+          'ru'
+        elsif @content_lang == 'gr-en'
+          'eng-nkjv'
+        elsif @content_lang == 'gr-jp'
+          'jp-ni'
+        end
+      end
+
       # не индексировать, где текст UI не совпадает с текстом контента
       if locale_for_content_lang(@content_lang) != ::I18n.locale.to_s
         @no_index = true
@@ -75,14 +89,21 @@ class VersesController < ApplicationController
         end
 
         # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
-        @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+        @verses = ::Verse.where(lang: @int_content_lang || @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
         # Статьи-комментарии к стихам
         page_comments = ::Page.comments_for_verses(@verses)
         # индексируем по номерам стихов для быстрого доступа
         @comments = page_comments.map { [_1.path_low.split(':').last.to_i, _1] }.to_h
 
-        if @content_lang == 'gr-ru' # gr-lxx-byz
-          @dict = preload_dict_for_verses(@verses)
+        # Запрошен подстрочник
+        if @is_interliner
+          # Раньше было так:
+          # @dict = preload_dict_for_verses(@verses)
+
+          # Теперь переделал полностью всё
+          # 1. Надо отобразить сначалу строчку из нормального перевода.
+          # 2. Потом греческие слова с подстрочным переводом.
+          @verses_gr = ::Verse.where(lang: 'gr-ru', book: @book_code, chapter: @chapter).sort(line: 1).to_a
         end
 
         @current_menu_item = 'biblia'
@@ -102,8 +123,10 @@ class VersesController < ApplicationController
         @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
         if ::BOOKS[@book_code][:zavet] == 1
           @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
+          @breadcrumbs.push(::I18n.t("breadcrumbs.bib_langs.vz.#{@content_lang}"))
         else
           @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
+          @breadcrumbs.push(::I18n.t("breadcrumbs.bib_langs.nz.#{@content_lang}"))
         end
 
         # META-description
@@ -122,6 +145,20 @@ class VersesController < ApplicationController
   def chapter_ajax
     # TODO: в процессе апдейта надо ещё тэг title у страницы поменять
     @content_lang = current_bib_lang()
+
+    # Запрошен подстрочник
+    @is_interliner = ['gr-ru', 'gr-en', 'gr-jp'].include?(@content_lang)
+    if @is_interliner
+      @int_content_lang =
+      if @content_lang == 'gr-ru'
+        'ru'
+      elsif @content_lang == 'gr-en'
+        'eng-nkjv'
+      elsif @content_lang == 'gr-jp'
+        'jp-ni'
+      end
+    end
+
     @book_code ||= params[:book_code] || 'gen'
     @chapter = (params[:chapter] || 1).to_i
 
@@ -132,21 +169,35 @@ class VersesController < ApplicationController
       @is_psalm = @book_code == 'ps'
 
       # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
-      @verses = ::Verse.where(lang: @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+      @verses = ::Verse.where(lang: @int_content_lang || @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
       # Статьи-комментарии к стихам
       page_comments = ::Page.comments_for_verses(@verses)
       # индексируем по номерам стихов для быстрого доступа
       @comments = page_comments.map { [_1.path_low.split(':').last.to_i, _1] }.to_h
 
-      if @content_lang == 'gr-ru' # gr-lxx-byz
-        @dict = preload_dict_for_verses(@verses)
+
+      # Запрошен подстрочник
+      if @is_interliner
+        # Раньше было так:
+        # @dict = preload_dict_for_verses(@verses)
+
+        # Теперь переделал полностью всё
+        # 1. Надо отобразить сначалу строчку из нормального перевода.
+        # 2. Потом греческие слова с подстрочным переводом.
+        @verses_gr = ::Verse.where(lang: 'gr-ru', book: @book_code, chapter: @chapter).sort(line: 1).to_a
       end
+
 
       @current_menu_item = 'biblia'
       @page_title =
         ::I18n.t("books.mid.#{@book_code}") +
         ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
-        " #{@chapter}"
+        " #{@chapter} / " +
+        ::I18n.t('bible')
+
+      # чтобы поисковики не жаловались на одинаковые заголовки в разных русских языках
+      @page_title += " / ЦСЯ" if ['csl-ru', 'csl-pnm'].include?(@content_lang)
+
       @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
       if @verses.first.z == 1
         @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
@@ -173,7 +224,7 @@ class VersesController < ApplicationController
 
     posibleAddr = params[:t].to_s
     # Сначала пробуем перевести: быт 1 1 -> быт 1:1
-    # этот алгоритм нужен только тут, а метод human_to_link универсальный, исползьуется везде
+    # этот алгоритм нужен только тут, а метод human_to_link универсальный, используется везде
     if posibleAddr =~ /[\d]+\s[\d\-,]+$/
       posibleAddr = posibleAddr.sub(/([\d]+)\s([\d\-,]+)$/, '\1:\2')
     end
@@ -241,158 +292,158 @@ class VersesController < ApplicationController
 
   private
 
-  # Построение словаря для подстановки перевода в текст на лету
-  # {lexema => translation}
-  def preload_dict_for_verses verses
-    words = verses.map { |v| v.data['w'] }.flatten.compact.sort.uniq
-    words = words.map { |w| w.unicode_normalize(:nfd).downcase.strip }
-    return {} if words.blank?
+  # # Построение словаря для подстановки перевода в текст на лету
+  # # {lexema => translation}
+  # def preload_dict_for_verses verses
+  #   words = verses.map { |v| v.data['w'] }.flatten.compact.sort.uniq
+  #   words = words.map { |w| w.unicode_normalize(:nfd).downcase.strip }
+  #   return {} if words.blank?
 
-    words_clean = words.map { |w| ::DictWord.word_clean_gr(w).to_s }.uniq.sort
+  #   words_clean = words.map { |w| ::DictWord.word_clean_gr(w).to_s }.uniq.sort
 
-    # ЛЕКСЕМЫ И ТРАНСЛИТ для страницы
+  #   # ЛЕКСЕМЫ И ТРАНСЛИТ для страницы
 
-    lexemas = ::Lexema.where(:word.in => words_clean).pluck(:word, :lexema_clean, :transcription)
-    # {word => lexema}
-    w_lexemas = lexemas.map {|(w,l,t)| [w, l] }.to_h
-    # {word => transcription}
-    dict_transcriptions = lexemas.map {|(w,l,t)| [w, t] }.to_h
+  #   lexemas = ::Lexema.where(:word.in => words_clean).pluck(:word, :lexema_clean, :transcription)
+  #   # {word => lexema}
+  #   w_lexemas = lexemas.map {|(w,l,t)| [w, l] }.to_h
+  #   # {word => transcription}
+  #   dict_transcriptions = lexemas.map {|(w,l,t)| [w, t] }.to_h
 
-    # ПЕРЕВОД ЛЕКСЕМ и СЛОВ со страницы
-    # -------------------------------
-    words_and_lexemas = (w_lexemas.values + words_clean).compact.uniq
+  #   # ПЕРЕВОД ЛЕКСЕМ и СЛОВ со страницы
+  #   # -------------------------------
+  #   words_and_lexemas = (w_lexemas.values + words_clean).compact.uniq
 
-    r={
-      dict: build_dict(words),
-      dict_simple: build_dict_simple(words, words_and_lexemas, w_lexemas),
-      dict_simple_no_endings: build_dict_simple_no_endings(words_and_lexemas),
-      dict_transcriptions: dict_transcriptions,
-    }
-    # r.each { |k,v| puts(k); puts(v); puts }
-    r
-  end
+  #   r={
+  #     dict: build_dict(words),
+  #     dict_simple: build_dict_simple(words, words_and_lexemas, w_lexemas),
+  #     dict_simple_no_endings: build_dict_simple_no_endings(words_and_lexemas),
+  #     dict_transcriptions: dict_transcriptions,
+  #   }
+  #   # r.each { |k,v| puts(k); puts(v); puts }
+  #   r
+  # end
 
-  def build_dict words
-    dicts = ::DictWord.where(:word.in => words).pluck(
-      :word, :translation_short, :dict
-    )
+  # def build_dict words
+  #   dicts = ::DictWord.where(:word.in => words).pluck(
+  #     :word, :translation_short, :dict
+  #   )
 
-    # Вейсман
-    w_dicts = {}
-    # Дворецкий
-    d_dicts = {}
-    # Другие словари
-    all_dicts = {}
+  #   # Вейсман
+  #   w_dicts = {}
+  #   # Дворецкий
+  #   d_dicts = {}
+  #   # Другие словари
+  #   all_dicts = {}
 
-    # в этих словарях перевод для слов и лексем
-    dicts.each do |(word,transl,dict)|
-      next unless transl.present?
+  #   # в этих словарях перевод для слов и лексем
+  #   dicts.each do |(word,transl,dict)|
+  #     next unless transl.present?
 
-      if dict == 'w'
-        w_dicts[word] = transl
-      elsif dict == 'd'
-        d_dicts[word] = transl
-      else
-        all_dicts[word] = transl
-      end
-    end
+  #     if dict == 'w'
+  #       w_dicts[word] = transl
+  #     elsif dict == 'd'
+  #       d_dicts[word] = transl
+  #     else
+  #       all_dicts[word] = transl
+  #     end
+  #   end
 
-    result = {}
-    words.each do |w|
-      # перевод слова или лексемы (приоритет: Вейсман, Дворецкий, прочие словари)
-      transl = w_dicts[w] || d_dicts[w] || all_dicts[w]
-      # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
-      result[w] = transl if transl
-    end
-    result
-  end
+  #   result = {}
+  #   words.each do |w|
+  #     # перевод слова или лексемы (приоритет: Вейсман, Дворецкий, прочие словари)
+  #     transl = w_dicts[w] || d_dicts[w] || all_dicts[w]
+  #     # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
+  #     result[w] = transl if transl
+  #   end
+  #   result
+  # end
 
-  def build_dict_simple words, words_and_lexemas, w_lexemas
-    # подготовим также запасной словарик для поиска по упрощённому слову
-    words_simple = words_and_lexemas.map do |w|
-      ::DictWord.word_clean_gr(w)
-    end
+  # def build_dict_simple words, words_and_lexemas, w_lexemas
+  #   # подготовим также запасной словарик для поиска по упрощённому слову
+  #   words_simple = words_and_lexemas.map do |w|
+  #     ::DictWord.word_clean_gr(w)
+  #   end
 
-    # ищем в словаре по simple-полю
-    dicts_simple =
-    ::DictWord.where(:word_simple.in => words_simple).pluck(
-      :word_simple, :translation_short, :dict
-    )
+  #   # ищем в словаре по simple-полю
+  #   dicts_simple =
+  #   ::DictWord.where(:word_simple.in => words_simple).pluck(
+  #     :word_simple, :translation_short, :dict
+  #   )
 
-    # Вейсман
-    w_dicts = {}
-    # Дворецкий
-    d_dicts = {}
-    # Другие словари
-    all_dicts = {}
+  #   # Вейсман
+  #   w_dicts = {}
+  #   # Дворецкий
+  #   d_dicts = {}
+  #   # Другие словари
+  #   all_dicts = {}
 
-    # в этих словарях перевод для слов и лексем
-    dicts_simple.each do |(word_simple,transl,dict)|
-      next unless transl.present?
+  #   # в этих словарях перевод для слов и лексем
+  #   dicts_simple.each do |(word_simple,transl,dict)|
+  #     next unless transl.present?
 
-      if dict == 'w'
-        w_dicts[word_simple] = transl
-      elsif dict == 'd'
-        d_dicts[word_simple] = transl
-      else
-        all_dicts[word_simple] = transl
-      end
-    end
+  #     if dict == 'w'
+  #       w_dicts[word_simple] = transl
+  #     elsif dict == 'd'
+  #       d_dicts[word_simple] = transl
+  #     else
+  #       all_dicts[word_simple] = transl
+  #     end
+  #   end
 
-    result = {}
-    words.each do |w|
-      _w = ::DictWord.word_clean_gr(w)
-      # лексема слова
-      l = w_lexemas[_w]
-      # перевод слова или лексемы (приоритет: Вейсман, Дворецкий, прочие словари)
-      transl = w_dicts[_w] || d_dicts[_w] || all_dicts[_w] || w_dicts[l] || d_dicts[l] || all_dicts[l]
-      # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
-      result[_w] = transl if transl
-    end
-    result
-  end
+  #   result = {}
+  #   words.each do |w|
+  #     _w = ::DictWord.word_clean_gr(w)
+  #     # лексема слова
+  #     l = w_lexemas[_w]
+  #     # перевод слова или лексемы (приоритет: Вейсман, Дворецкий, прочие словари)
+  #     transl = w_dicts[_w] || d_dicts[_w] || all_dicts[_w] || w_dicts[l] || d_dicts[l] || all_dicts[l]
+  #     # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
+  #     result[_w] = transl if transl
+  #   end
+  #   result
+  # end
 
-  def build_dict_simple_no_endings words_and_lexemas
-    # подготовим также запасной словарик для подбора соответствия без учёта окончаний
-    # убираем кокончания у искомых слов
-    words_simple_no_endings = words_and_lexemas.map do |w|
-      _w = ::DictWord.word_clean_gr(w)
-      _w = ::DictWord.remove_greek_ending(_w)
-      _w
-    end
+  # def build_dict_simple_no_endings words_and_lexemas
+  #   # подготовим также запасной словарик для подбора соответствия без учёта окончаний
+  #   # убираем кокончания у искомых слов
+  #   words_simple_no_endings = words_and_lexemas.map do |w|
+  #     _w = ::DictWord.word_clean_gr(w)
+  #     _w = ::DictWord.remove_greek_ending(_w)
+  #     _w
+  #   end
 
-    # ищем в словаре без окончаний
-    dicts_simple_no_endings =
-    ::DictWord.where(:word_simple_no_endings.in => words_simple_no_endings).pluck(
-      :word_simple, :word_simple_no_endings, :translation_short, :dict
-    )
-    # Вайсман
-    w_dicts = {}
-    # Дворецкий
-    d_dicts = {}
-    # Другие словари
-    all_dicts = {}
+  #   # ищем в словаре без окончаний
+  #   dicts_simple_no_endings =
+  #   ::DictWord.where(:word_simple_no_endings.in => words_simple_no_endings).pluck(
+  #     :word_simple, :word_simple_no_endings, :translation_short, :dict
+  #   )
+  #   # Вайсман
+  #   w_dicts = {}
+  #   # Дворецкий
+  #   d_dicts = {}
+  #   # Другие словари
+  #   all_dicts = {}
 
-    # в этих словарях перевод для слов и лексем
-    dicts_simple_no_endings.each do |(word,word_simple_no_endings,transl,dict)|
-      next unless transl.present?
+  #   # в этих словарях перевод для слов и лексем
+  #   dicts_simple_no_endings.each do |(word,word_simple_no_endings,transl,dict)|
+  #     next unless transl.present?
 
-      if dict == 'w'
-        w_dicts[word_simple_no_endings] = [transl,word]
-      elsif dict == 'd'
-        d_dicts[word_simple_no_endings] = [transl,word]
-      else
-        all_dicts[word_simple_no_endings] = [transl,word]
-      end
-    end
+  #     if dict == 'w'
+  #       w_dicts[word_simple_no_endings] = [transl,word]
+  #     elsif dict == 'd'
+  #       d_dicts[word_simple_no_endings] = [transl,word]
+  #     else
+  #       all_dicts[word_simple_no_endings] = [transl,word]
+  #     end
+  #   end
 
-    result = {}
-    words_simple_no_endings.each do |w|
-      # перевод слова без окончания (приоритет: Вейсман, Дворецкий, прочие словари)
-      transl = w_dicts[w] || d_dicts[w] || all_dicts[w]
-      # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
-      result[w] = transl if transl && transl[0]
-    end
-    result
-  end
+  #   result = {}
+  #   words_simple_no_endings.each do |w|
+  #     # перевод слова без окончания (приоритет: Вейсман, Дворецкий, прочие словари)
+  #     transl = w_dicts[w] || d_dicts[w] || all_dicts[w]
+  #     # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
+  #     result[w] = transl if transl && transl[0]
+  #   end
+  #   result
+  # end
 end

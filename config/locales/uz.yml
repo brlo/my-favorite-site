@@ -1,0 +1,254 @@
+uz:
+  title: Bibleox
+  bible: Muqaddas Kitob (Bibliya)
+  about_site: 'Sayt haqida'
+  about_site_description: 'Muqaddas Kitobni o‘rganish uchun sayt. Dasturchi bilan aloqa.'
+  about_site_short: 'Muqaddas Kitob (Bibliya) va Pravoslav Cherkovining apostollik an’analari haqida sayt'
+  about_text: Sayt 2022-yilda Sevastopol shahrida pravoslav ruhoniyning barakoti bilan yaratilgan.
+  about_news: Biblеoks rivoji haqida yangiliklar
+  about_contact: Dasturchi bilan aloqa
+  fast_search: 'Ibora yoki Yoqub 2:16 qidirish'
+  voice: Ovozli o‘qish
+
+  root_page:
+    title: 'Muqaddas Kitob va Muqaddas An’ana'
+    headers:
+      bible: 'Muqaddas Kitob'
+      tradition: 'Muqaddas An’ana'
+
+  bible_page:
+    comment_title: 'Muqaddas Kitobga izoh'
+    comment: 'Izoh'
+
+  search_page:
+    title: Qidiruv
+    search_placeholder: Ibora
+    matches: Mosliklar
+    any_book: Har qanday kitob
+    old_testament: Ahdi Atik (Eski Ahd)
+    new_testament: Ahdi Jadid (Yangi Ahd)
+    gospel: Injil
+    similar_phrase: O‘xshash ibora
+    exact_phrase: Aniq ibora
+    meta_description: "\"%{search}\" qidiruvi. Topilgan natijalar: %{matches}."
+    meta_description_first_verse: " Oyat: %{verse}"
+
+  page_search:
+    title: Qidiruv
+
+  login_page:
+    title: 'Kirish'
+
+  profile_page:
+    title: 'Mening profilim'
+    logout: Chiqish
+
+  page:
+    title: "%{term}"
+    main_title: "Maqolalar ro‘yxati"
+    main_meta_desc: "Muqaddas Kitob, xristianlik va diniy mavzularga oid maqolalar"
+    references: 'Eslatmalar'
+    no_books_links_yet: 'Hozircha boshqa havolalar yo‘q. Keyinroq keling.'
+    menu_name: 'Mundarija'
+    search_placeholder: 'Bo‘lim bo‘yicha qidiruv'
+
+  dict_words:
+    title: "Muqaddas Kitobdagi so‘z – \"%{word}\""
+
+  quotes_page:
+    title: Muqaddas Kitobdan iqtiboslar
+
+  quote_page:
+    title: "%{term} / iqtiboslar / Muqaddas Kitob"
+    addresses_list_title: 'Faqat manzillar:'
+    whant_to_fix: 'Tuzatish yoki qo‘shishni xohlaysizmi? Bizga yozing'
+    or_edit_page_by_yourself: Yoki maqolani o‘zingiz tahrirlang
+    edit_link: Tahrirlash
+    author: Foydalanuvchi tomonidan joylashtirilgan
+    editors: Tahrirlovchilar
+
+  page_translations:
+    ar: '🇦🇪 Arabcha'
+    cn: '🇨🇳 Xitoycha'
+    de: '🇩🇪 Nemischa'
+    cp: '🇪🇬 Qibtiycha'
+    en: '🇬🇧 Inglizcha'
+    es: '🇪🇸 Ispancha'
+    fr: '🇫🇷 Frantsuzcha'
+    gr: '🇬🇷 Yunoncha'
+    il: '🇮🇱 Ibroniy'
+    in: '🇮🇳 Hindcha'
+    ir: '🇮🇷 Forscha'
+    it: '🇮🇹 Italyancha'
+    jp: '🇯🇵 Yaponcha'
+    ke: '🇰🇪 Suaxilicha'
+    kr: '🇰🇷 Koreyscha'
+    rs: '🇷🇸 Serbcha'
+    ru: '🇷🇺 Ruscha'
+    tm: '🇹🇲 Turkmancha'
+    tr: '🇹🇷 Turkcha'
+    uz: '🇺🇿 Oʻzbekcha'
+    vn: '🇻🇳 Vetnamcha'
+
+  bib_translations:
+    translates: Tarjimalar
+    ru: Ruscha
+    csl: Cherkov slavyan (CSL)
+    en: Inglizcha
+    heb: Ibroniy
+    gr: Yunoncha
+    jp: Yaponcha
+    cn: Xitoycha
+    ge: Nemischa
+    arab: Arabcha
+    interliners: Satrma-satr tarjimalar
+    gr-ru: Ruscha
+    gr-en: Inglizcha
+    gr-jp: Yaponcha
+
+  bib_word_info:
+    translation: tarjima
+    lexema: lx
+    morphology: morfologiya
+    transcription: transkripsiya
+    more: batafsil
+    morph:
+      # So‘z turi:
+      "ch-r": 'so‘z turi'
+      "сущ.": ot
+      "гл.": fe’l
+      "прил.": sifat
+      "нареч.": ravish
+      "мест.": olmosh
+      "числ.": son
+      "предл.": old qo‘shimcha
+      "союз": bog‘lovchi
+      "част.": yordamchi so‘z
+      "межд.": undov
+      # Kelishik:
+      "p": 'kelishik'
+      "им. п.": bosh kelishik
+      "р. п.": qaratqich kelishik
+      "род. п.": qaratqich kelishik
+      "дат. п.": yo‘nalish kelishigi
+      "вин. п.": tushum kelishigi
+      "тв. п.": chorak kelishigi
+      "пред. п.": o‘rin-payt kelishigi
+      "зват. п.": chaqirish kelishigi
+      "несов. вр.": "tugallanmagan zamon"
+      # Jins:
+      "r": 'jins'
+      "м.": erkak jinsi
+      "ж.": ayol jinsi
+      "ср.": o‘rtacha jins
+      # Son:
+      "ch": son
+      "ед. ч.": birlik
+      "мн. ч.": ko‘plik
+      "-":
+      # Zamon
+      "t": zamon
+      "п.": o‘tgan zamon
+      "перф.": perfekt
+      "наст.": hozirgi zamon
+      "аор. инф.": aorist inf.
+      "наст. инф.": hozirgi zamon inf.
+      "буд.": kelajak zamon
+      "аор.": aorist
+      "аор. повел.": aorist buyruq
+      "аор. сосл.": aorist shart
+      "наст. повел.": hozirgi zamon buyruq
+      "наст. деепр.": hozirgi zamon ravishdosh
+
+  tips:
+    click_on_verse: Oyat raqamini bosib, uni ajratib olish mumkin.
+    click_on_verse__working: Ishlamoqda
+    click_on_verse__and: va
+    search_was_return_zero_results: Hech narsa topilmadi. Matn tilini to‘g‘ri tanlaganingizni tekshiring.
+    page_search_was_return_zero_results: Hech narsa topilmadi.
+
+  breadcrumbs:
+    bible: Muqaddas Kitob
+    VZ: Ahdi Atik (Eski Ahd)
+    NZ: Ahdi Jadid (Yangi Ahd)
+    articles: Maqolalar
+    bib_langs:
+      vz:
+        ru: 'sinodal tarjima (RST)'
+        en-nrsv: 'zamonaviy inglizcha tarjima (NRSV)'
+        eng-nkjv: 'King James tarjimasi (NKJV, 1982)'
+        csl-ru: 'cherkov slavyan tarjimasi rus harflari bilan (CSL-RU, 1751)'
+        csl-pnm: 'cherkov slavyan tarjimasi (CSL, 1751)'
+        heb-osm: 'ivrit tiliga tarjima (DHNT, 1885)'
+        gr-lxx-byz: 'yunoncha tarjima (LXX, septuaginta, mil.avv. 3-2 asrlar)'
+
+        gr-ru: 'ruscha satrma-satr tarjima (bibleox, 2025)'
+        gr-en: 'inglizcha satrma-satr tarjima (bibleox, 2025)'
+        gr-jp: 'yaponcha satrma-satr tarjima (bibleox, 2025)'
+
+        jp-ni: 'yaponcha tarjima (JP-NI)'
+        cn-ccbs: 'xitoycha tarjima (CCBS)'
+        ge-sch: 'nemischa tarjima (SCH)'
+        arab-avd: 'arabcha tarjima (AVD)'
+      nz:
+        ru: 'sinodal tarjima (RST)'
+        en-nrsv: 'zamonaviy inglizcha tarjima (NRSV)'
+        eng-nkjv: 'King James tarjimasi (NKJV, 1982)'
+        csl-ru: 'cherkov slavyan tarjimasi rus harflari bilan (CSL-RU, 1751)'
+        csl-pnm: 'cherkov slavyan tarjimasi (CSL, 1751)'
+        heb-osm: 'ivrit tiliga tarjima (DHNT, 1885)'
+        gr-lxx-byz: 'asl apostol matni'
+
+        gr-ru: 'ruscha satrma-satr tarjima (bibleox, 2025)'
+        gr-en: 'inglizcha satrma-satr tarjima (bibleox, 2025)'
+        gr-jp: 'yaponcha satrma-satr tarjima (bibleox, 2025)'
+
+        jp-ni: 'yaponcha tarjima (JP-NI, 1987)'
+        cn-ccbs: 'xitoycha tarjima (CCBS, 2012)'
+        ge-sch: 'nemischa tarjima (SCH, 1951)'
+        arab-avd: 'arabcha tarjima (AVD, 1999)'
+
+  menu:
+    bible: Muqaddas Kitob
+    links: An’ana
+    articles: Maqolalar
+    search: Qidiruv
+    settings: Sozlamalar
+    locale: Sayt tili
+    day: Kunduz
+    night: Tunda
+    veth_zavet: Ahdi Atik (Eski Ahd)
+    nov_zavet: Ahdi Jadid (Yangi Ahd)
+    profile: Profil
+    login: Kirish
+    another_categories: Boshqa bo‘limlar
+    same_subject: "O‘xshash materiallar:"
+
+  settings:
+    color_scheme: Ranglar
+    font_size: Matn hajmi
+
+  select_bar:
+    select_mode_btn: Ajratish
+    copy_btn: Nusxalash
+    copy_menu_title: Nusxalash
+    copy_text_btn: Matn
+    copy_address_btn: Manzil
+    copy_link_btn: Havola
+
+  chapter: bob
+  chapters: Boblar
+  psalm: zabur
+  psalms: Zaburlar
+
+  end_chapter:
+    the_end_of: Yakuni
+    suffix: ''
+    suffix_psalm: ''
+    chapter: bob
+    psalm: zabur
+
+  forward: Oldinga
+  backward: Orqaga
+
+  years_from: Masihiy yil

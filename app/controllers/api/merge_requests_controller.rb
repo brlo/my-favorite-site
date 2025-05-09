@@ -185,7 +185,10 @@ module Api
 
     def reject_by_merge_privs;   ability?('mrs_merge'); end
     def reject_by_rebase_privs;  ability?('mrs_merge'); end
-    def reject_by_reject_privs;  ability?('mrs_merge'); end
+    def reject_by_reject_privs
+      ability?('mrs_reject') ||
+      (ability?('mrs_self_reject') { @mr&.user_id == ::Current.user.id })
+    end
 
     def reject_by_destroy_privs; ability?('mrs_destroy'); end
 

@@ -22,6 +22,7 @@ class User < ApplicationMongoRecord
   field :allow_ips, type: Array
   field :is_admin, type: Boolean
   field :privs, type: Hash
+  field :pages_owner, type: Array
   # время создания можно получать из _id во так: id.generation_time
   field :c_at, as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
 
@@ -121,7 +122,9 @@ class User < ApplicationMongoRecord
   # mrs_create
   # mrs_update
   # mrs_destroy
-  # mrs_merge - даёт парво на merge, rebase, reject
+  # mrs_merge - даёт парво на merge, rebase
+  # mrs_reject
+  # mrs_self_reject
   #
   # dict_read
   # dict_create

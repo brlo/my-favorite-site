@@ -3,29 +3,42 @@
   <% now_chapter = @chapter %>
   <% next_chapter = @chapter + 1 %>
 
-  <% is_interliner = @verses.first.data&.fetch('w', nil).present? %>
-
+  <div id='chapter-title' class='hidden' data-title='<%= @page_title %>'></div>
   <div id='chapter-text'>
-    <article itemprop="articleBody" class="verses text-<%= text_size_from_cookies %><%= is_interliner ? ' interliner' : '' %>">
+    <article itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
       <table>
         <tbody>
-          <% @verses.each do |v| %>
+          <% @verses.each.with_index do |v, i| %>
             <% if v.line == 0 %>
               <tr><td colspan='2' class='csl zero-verse'><%= sanitize(v.text) %></tr>
             <% else %>
               <tr>
                 <td class='verse-line' id='L<%= v.line %>' data-line="<%= "#{v.line}" %>"><%= v.line %></td>
                 <td class='csl verse-text t-c-dir' id='T<%= v.line %>' data-line="<%= "#{v.line}" %>">
-                  <% if is_interliner %>
-                    <%= interliner_helper(v.data['w'], @dict).html_safe %>
-                  <% else %>
-                    <%= sanitize(v.text, tags: %w(j e i br)) %>
-                    <% if @comments[v.line] %>
-                      <a class='bib-comment' href='<%= my_page_link_to("/#{@comments[v.line].path}") %>'><%= t('bible_page.comment') %></a>
-                    <% end %>
+                  <%= sanitize(v.text, tags: %w(j e i br)) %>
+                  <% if @comments[v.line] %>
+                    <a class='bib-comment' href='<%= my_page_link_to("/#{@comments[v.line].path}") %>'><%= t('bible_page.comment') %></a>
                   <% end %>
                 </td>
               </tr>
+
+              <% if @is_interliner %>
+                <tr>
+                  <td class='verse-interline'></td>
+                  <td>
+                    <div style="font-size: 0.5em; margin-bottom: 10px;">
+                      Подстрочный перевод:
+                    </div>
+                    <div class='interliner'>
+                      <%= interliner_helper(@verses_gr[i].data).html_safe %>
+                    </div>
+                    <div style="font-size: 0.5em; margin-bottom: 10px;">
+                      Толкование: <a href="https://bible.optina.ru/new:<%= v.book %>:<%= "%02d" % v.ch %>:<%= "%02d" % v.line %>" rel='noindex nofollow'>bible.optina.ru</a>, <a href="https://azbyka.ru/biblia/in/?<%= ::AddressConverter.book_bibleox_to_azbyka(v.book) %>.<%= v.ch %>:<%= v.line %>&r" rel='noindex nofollow'>abyka.ru</a>
+                    </div>
+                  </td>
+                </tr>
+              <% end %>
+
             <% end %>
           <% end %>
         </tbody>

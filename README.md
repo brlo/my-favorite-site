@@ -8,7 +8,7 @@ docker compose up -d
 
 Консольи разработчика:
 
-docker exec -it bibleox rails c
+docker exec -it bibleox bundle exec rails c
 
 Деплой в прод через:
 
@@ -95,7 +95,7 @@ ansible -m setup all
 ```shell
 # console
 docker exec -it bibleox bash
-docker-compose exec app bundle exec rails console
+docker compose exec app bundle exec rails console
 
 # Sitemap
 rake g:sitemap
@@ -105,7 +105,7 @@ cd /projects/bibleox
 alias nginxerrors='sudo tail -n 30 -f /var/log/nginx/error.log'
 alias nginxlog='sudo tail -n 30 -f /var/log/nginx/access.log'
 alias bib_update_code='git fetch && git reset --hard && git checkout origin/main'
-alias bib_restart='sudo docker-compose restart -t 5'
+alias bib_restart='sudo docker compose restart -t 5'
 alias bib_reload='sudo rm /projects/bibleox/tmp/restart.txt && touch /projects/bibleox/tmp/restart.txt'
 alias bib_log='sudo docker logs -f bibleox'
 alias bib_docker='sudo docker exec -it bibleox bash'
@@ -118,7 +118,9 @@ alias bib_cache_clear='sudo rm /projects/bibleox/db/cache_search/*/*/*.json'
 
 обслуживается в https://dash.cloudflare.com/e5a70e8e380aa947cd45cdecbd410e6f/bibleox.com/dns/records
 
-через api-cloudflare происходит автоматическое продление сертификата letsencrypt на сервере bibleox
+через api-cloudflare происходит автоматическое продление сертификата letsencrypt на сервере bibleox.
+
+Если сломается, начинай диагностику с "crontab -e" под именем обычного пользователя.
 
 * СКРИПТЫ
 
@@ -161,6 +163,10 @@ u.can!('mrs_read')
 
 # может создавать MR
 u.can!('mrs_create')
+# может отклонять MR
+# u.can!('mrs_reject')
+# может отклонять свои MR
+# u.can!('mrs_self_reject')
 
 # может обновлять свои страницы
 # u.can!('pages_self_update')
@@ -168,6 +174,7 @@ u.can!('mrs_create')
 # u.can!('pages_editor_update')
 # может удалять свои страницы
 # u.can!('pages_self_destroy')
+
 
 # может управлять менюшками (создавать, редактировать, удалять)
 u.can!('menus_update')

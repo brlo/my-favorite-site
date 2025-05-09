@@ -28,8 +28,8 @@ namespace :g do
       # Добавляется автоматически:
       # add "/", :priority => 1.0
       # add '/q', :changefreq => 'weekly', :priority => 0.8
-      locales = ::I18n.available_locales.map(&:to_s)
 
+      # СТАТЬИ
       ::Page.each do |p|
         # ПРОПУСКАЕМ, если:
         # - не опубликована?
@@ -40,10 +40,13 @@ namespace :g do
         add "/#{p.lang}/#{p.lang}/w/#{p.path}/", :changefreq => changefreq, :priority => 0.9
       end
 
+      # Страница: О САЙТЕ
+      locales = ::I18n.available_locales.map(&:to_s)
       locales.each do |lang|
         add "/#{lang}/about/", :changefreq => changefreq, :priority => 0.7
       end
 
+      # БИБЛИЯ
       ::ApplicationHelper::LANG_CONTENT_TO_LANG_UI.each do |lang_content, lang_ui|
         # некоторые языки не индексируем
         next if ::ApplicationHelper::NOT_INDEXED_LANGS.include?(lang_content)

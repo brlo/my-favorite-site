@@ -1,0 +1,254 @@
+tm:
+  title: Bibloýeks
+  bible: Injil
+  about_site: 'Saýt hakda'
+  about_site_description: 'Injili öwrenmek üçin saýt. Developer bilen habarlaşmak.'
+  about_site_short: 'Injil we Pravoslav Sobitiniň apostol gelnegi hakda saýt'
+  about_text: Saýt 2022-nji ýylda Pravoslav din adamynyň bereketi bilen Sewastopol şäherinde döredildi.
+  about_news: Bibloýeksiň ösüşi hakda täzelikler
+  about_contact: Developer bilen habarlaşmak
+  fast_search: 'Sözlem ýa-da Ýak 2 16 gözleg'
+  voice: Seslendir
+
+  root_page:
+    title: 'Injil we Mukaddes Däp'
+    headers:
+      bible: 'Mukaddes Ýazgylar'
+      tradition: 'Mukaddes Däp'
+
+  bible_page:
+    comment_title: 'Injile düşündiriş'
+    comment: 'Düşündiriş'
+
+  search_page:
+    title: Gözleg
+    search_placeholder: Sözlem
+    matches: Gabat gelmeler
+    any_book: Islendik Kitap
+    old_testament: Köne Şertnama
+    new_testament: Täze Şertnama
+    gospel: Hoş habar
+    similar_phrase: Meňzeş sözlem
+    exact_phrase: Takyk sözlem
+    meta_description: "\"%{search}\" gözleg. Tapylan netijeler: %{matches}."
+    meta_description_first_verse: " Aýat: %{verse}"
+
+  page_search:
+    title: Gözleg
+
+  login_page:
+    title: 'Giriş'
+
+  profile_page:
+    title: 'Menim profilim'
+    logout: Çykmak
+
+  page:
+    title: "%{term}"
+    main_title: "Makalalar sanawy"
+    main_meta_desc: "Injil, hristian we din temasyndaky makalalar"
+    references: 'Bellikler'
+    no_books_links_yet: 'Häzirçe beýleki çykgytlar ýok. Soňra gaýdyp geliň.'
+    menu_name: 'Mazmuny'
+    search_placeholder: 'Bölümiň ählisinde gözleg'
+
+  dict_words:
+    title: "Injilden söz – \"%{word}\""
+
+  quotes_page:
+    title: Injilden sitatalar
+
+  quote_page:
+    title: "%{term} / sitatalar / Injil"
+    addresses_list_title: 'Diňe çykgytlar:'
+    whant_to_fix: 'Üýtgetmek ýa-da goşmak isleýärsiňizmi? Biz ýazyn'
+    or_edit_page_by_yourself: Ýa-da makalany özüňiz üýtgediň
+    edit_link: Üýtgetmek
+    author: Ulanyjy tarapyndan ýazyldy
+    editors: Redaktorlar
+
+  page_translations:
+    ar: '🇦🇪 Arapça'
+    cn: '🇨🇳 Hytaýça'
+    de: '🇩🇪 Nemesçe'
+    cp: '🇪🇬 Koptça'
+    en: '🇬🇧 Iňlisçe'
+    es: '🇪🇸 Ispança'
+    fr: '🇫🇷 Fransuzça'
+    gr: '🇬🇷 Grekçe'
+    il: '🇮🇱 Ibrança'
+    in: '🇮🇳 Hindi'
+    ir: '🇮🇷 Parsça'
+    it: '🇮🇹 Italiýança'
+    jp: '🇯🇵 Ýaponça'
+    ke: '🇰🇪 Suahili'
+    kr: '🇰🇷 Koreýçe'
+    rs: '🇷🇸 Serbçe'
+    ru: '🇷🇺 Rusça'
+    tm: '🇹🇲 Türkmençe'
+    tr: '🇹🇷 Türkçe'
+    uz: '🇺🇿 Özbekçe'
+    vn: '🇻🇳 Wýetnamça'
+
+  bib_translations:
+    translates: Terjimeler
+    ru: Rusça
+    csl: Sobit slaw.
+    en: Iňlisçe
+    heb: Ibrança
+    gr: Grekçe
+    jp: Ýaponça
+    cn: Hytaýça
+    ge: Nemesçe
+    arab: Arapça
+    interliners: Setirli terjimeler
+    gr-ru: Rusça
+    gr-en: Iňlisçe
+    gr-jp: Ýaponça
+
+  bib_word_info:
+    translation: terjime
+    lexema: lx
+    morphology: morfologiýa
+    transcription: transkripsiya
+    more: giňişleýin
+    morph:
+      # Söz bölegi:
+      "ch-r": 'söz bölegi'
+      "сущ.": at
+      "гл.": işlik
+      "прил.": sypat
+      "нареч.": hal
+      "мест.": orun ady
+      "числ.": san
+      "предл.": prepozisiýa
+      "союз": soýuz
+      "част.": bölüm
+      "межд.": ünlem
+      # Kelş:
+      "p": 'kelş'
+      "им. п.": ýönekeý kelş
+      "р. п.": eýelik kelşi
+      "род. п.": eýelik kelşi
+      "дат. п.": ýöneliş kelşi
+      "вин. п.": geçiş kelşi
+      "тв. п.": gural kelşi
+      "пред. п.": ýerleýiş kelşi
+      "зват. п.": çakylyş kelşi
+      "несов. вр.": "tälimsiz wagt"
+      # Jen:
+      "r": 'jen'
+      "м.": erkek jyns
+      "ж.": aýal jyns
+      "ср.": orta jyns
+      # San:
+      "ch": san
+      "ед. ч.": ýekeje san
+      "мн. ч.": köplük san
+      "-":
+      # Wagt
+      "t": wagt
+      "п.": öten wagt
+      "перф.": perfekt
+      "наст.": häzirki wagt
+      "аор. инф.": aorist inf.
+      "наст. инф.": häzirki inf.
+      "буд.": geljek wagt
+      "аор.": aorist
+      "аор. повел.": aorist buýruk
+      "аор. сосл.": aorist şert
+      "наст. повел.": häzirki buýruk
+      "наст. деепр.": häzirki işlik
+
+  tips:
+    click_on_verse: Aýat bellemek üçin onuň nomerine basyp bilersiňiz.
+    click_on_verse__working: Işleýär
+    click_on_verse__and: we
+    search_was_return_zero_results: Hiç zat tapylmady. Tekliň, belki tekst dili dogry saýlanmady?
+    page_search_was_return_zero_results: Hiç zat tapylmady.
+
+  breadcrumbs:
+    bible: Ýazgylar
+    VZ: Köne Şertnama
+    NZ: Täze Şertnama
+    articles: Makalalar
+    bib_langs:
+      vz:
+        ru: 'sinodal terjime (RST)'
+        en-nrsv: 'iňlis häzirki terjime (NRSV)'
+        eng-nkjv: iňlis Ýakub patyşanyň terjimesi (NKJV, 1982)
+        csl-ru: 'sobit slawýan terjime rus harplary (CSL-RU, 1751)'
+        csl-pnm: 'sobit slawýan terjime (CSL, 1751)'
+        heb-osm: 'ibran terjime (DHNT, 1885)'
+        gr-lxx-byz: 'grek terjime (LXX, septuaginta, 3-2 äs. Hz.öň)'
+
+        gr-ru: 'rus setirli terjime (bibleox, 2025)'
+        gr-en: 'iňlis setirli terjime (bibleox, 2025)'
+        gr-jp: 'ýapon setirli terjime (bibleox, 2025)'
+
+        jp-ni: 'ýapon terjime (JP-NI)'
+        cn-ccbs: 'hytaý terjime (CCBS)'
+        ge-sch: 'nemes terjime (SCH)'
+        arab-avd: 'arap terjime (AVD)'
+      nz:
+        ru: 'sinodal terjime (RST)'
+        en-nrsv: 'iňlis häzirki terjime (NRSV)'
+        eng-nkjv: iňlis Ýakub patyşanyň terjimesi (NKJV, 1982)
+        csl-ru: 'sobit slawýan terjime rus harplary (CSL-RU, 1751)'
+        csl-pnm: 'sobit slawýan terjime (CSL, 1751)'
+        heb-osm: 'ibran terjime (DHNT, 1885)'
+        gr-lxx-byz: 'asyl apostol tekst'
+
+        gr-ru: 'rus setirli terjime (bibleox, 2025)'
+        gr-en: 'iňlis setirli terjime (bibleox, 2025)'
+        gr-jp: 'ýapon setirli terjime (bibleox, 2025)'
+
+        jp-ni: 'ýapon terjime (JP-NI, 1987)'
+        cn-ccbs: 'hytaý terjime (CCBS, 2012)'
+        ge-sch: 'nemes terjime (SCH, 1951)'
+        arab-avd: 'arap terjime (AVD, 1999)'
+
+  menu:
+    bible: Ýazgylar
+    links: Däp
+    articles: Makalalar
+    search: Gözleg
+    settings: Sazlamalar
+    locale: Saýt dili
+    day: Gün
+    night: Gije
+    veth_zavet: Köne Şertnama
+    nov_zavet: Täze Şertnama
+    profile: Profil
+    login: Girmek
+    another_categories: Beýleki bölümler
+    same_subject: "Meňzeş materiallar:"
+
+  settings:
+    color_scheme: Reňkler
+    font_size: Tekst
+
+  select_bar:
+    select_mode_btn: Belläp almak
+    copy_btn: Göçürmek
+    copy_menu_title: Göçürmek
+    copy_text_btn: Tekst
+    copy_address_btn: Salgy
+    copy_link_btn: Çykgyt
+
+  chapter: bap
+  chapters: Baplar
+  psalm: zebur
+  psalms: Zeburlar
+
+  end_chapter:
+    the_end_of: Soňy
+    suffix: ''
+    suffix_psalm: ''
+    chapter: bap
+    psalm: zebur
+
+  forward: Öňe
+  backward: Yza
+
+  years_from: ýyl Hz. Isa dogulandan

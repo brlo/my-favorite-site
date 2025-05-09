@@ -38,4 +38,8 @@ class CurrentUser
   def privs_list
     @user&.privs_list || {}
   end
+
+  def pages_owner
+    @user&.pages_owner || {}
+  end
 end

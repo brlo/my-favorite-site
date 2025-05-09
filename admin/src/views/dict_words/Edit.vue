@@ -75,9 +75,10 @@ getWordsWaitings();
 
 const dicts = [
   { name: '', code: '' },
-  { name: 'Test JP-RU', code: 't' },
-  { name: 'Дворецкий GR-RU', code: 'd' },
   { name: 'Вейсман GR-RU', code: 'w' },
+  { name: 'Дворецкий GR-RU', code: 'd' },
+  { name: 'Bibleox', code: 'bbx' },
+  { name: 'Test JP-RU', code: 't' },
 ]
 
 let seen = computed(() => {

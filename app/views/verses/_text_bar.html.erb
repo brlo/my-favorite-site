@@ -1,18 +1,28 @@
 <div id='text-bar'>
   <div class='bar-el'>
     <select id="lang-select" name="lang-select">
-      <option value='ru' <% if @current_bib_lang == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
-      <option value='csl-pnm' <% if @current_bib_lang == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
-      <option value='csl-ru' <% if @current_bib_lang == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>
-      <option value='gr-lxx-byz' <% if @current_bib_lang == 'gr-lxx-byz' %>selected<% end %>><%= I18n.t('bib_translations.gr') %> (LXX+Byz)</option>
-      <!-- <option value='gr-ru' <% if @current_bib_lang == 'gr-ru' %>selected<% end %>><%= I18n.t('bib_translations.gr-ru') %> (GR-RU)</option> -->
-      <option value='eng-nkjv' <% if @current_bib_lang == 'eng-nkjv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NKJV)</option>
-      <option value='en-nrsv' <% if @current_bib_lang == 'en-nrsv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NRSV)</option>
-      <option value='heb-osm' <% if @current_bib_lang == 'heb-osm' %>selected<% end %>><%= I18n.t('bib_translations.heb') %> (OSM+DHNT)</option>
-      <option value='arab-avd' <% if @current_bib_lang == 'arab-avd' %>selected<% end %>><%= I18n.t('bib_translations.arab') %> (AVD)</option>
-      <option value='jp-ni' <% if @current_bib_lang == 'jp-ni' %>selected<% end %>><%= I18n.t('bib_translations.jp') %> (N.Interc)</option>
-      <option value='cn-ccbs' <% if @current_bib_lang == 'cn-ccbs' %>selected<% end %>><%= I18n.t('bib_translations.cn') %> (CCBS)</option>
-      <option value='ge-sch' <% if @current_bib_lang == 'ge-sch' %>selected<% end %>><%= I18n.t('bib_translations.ge') %> (SCH)</option>
+      <optgroup label="Переводы">
+        <option value='ru' <% if @current_bib_lang == 'ru' %>selected<% end %>><%= I18n.t('bib_translations.ru') %> (RST)</option>
+        <option value='csl-pnm' <% if @current_bib_lang == 'csl-pnm' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ)</option>
+        <option value='csl-ru' <% if @current_bib_lang == 'csl-ru' %>selected<% end %>><%= I18n.t('bib_translations.csl') %> (ELZ-RU)</option>
+        <option value='eng-nkjv' <% if @current_bib_lang == 'eng-nkjv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NKJV)</option>
+        <option value='en-nrsv' <% if @current_bib_lang == 'en-nrsv' %>selected<% end %>><%= I18n.t('bib_translations.en') %> (NRSV)</option>
+        <option value='arab-avd' <% if @current_bib_lang == 'arab-avd' %>selected<% end %>><%= I18n.t('bib_translations.arab') %> (AVD)</option>
+        <option value='jp-ni' <% if @current_bib_lang == 'jp-ni' %>selected<% end %>><%= I18n.t('bib_translations.jp') %> (N.Interc)</option>
+        <option value='cn-ccbs' <% if @current_bib_lang == 'cn-ccbs' %>selected<% end %>><%= I18n.t('bib_translations.cn') %> (CCBS)</option>
+        <option value='ge-sch' <% if @current_bib_lang == 'ge-sch' %>selected<% end %>><%= I18n.t('bib_translations.ge') %> (SCH)</option>
+      </optgroup>
+
+      <optgroup label="Подстрочники">
+        <option value='gr-ru' <% if @current_bib_lang == 'gr-ru' %>selected<% end %>><%= I18n.t('bib_translations.gr-ru') %> (BX)</option>
+        <option value='gr-en' <% if @current_bib_lang == 'gr-en' %>selected<% end %>><%= I18n.t('bib_translations.gr-en') %> (BX)</option>
+        <option value='gr-jp' <% if @current_bib_lang == 'gr-jp' %>selected<% end %>><%= I18n.t('bib_translations.gr-jp') %> (BX)</option>
+      </optgroup>
+
+      <optgroup label="Исходные тексты">
+        <option value='gr-lxx-byz' <% if @current_bib_lang == 'gr-lxx-byz' %>selected<% end %>><%= I18n.t('bib_translations.gr') %> (LXX+Byz)</option>
+        <option value='heb-osm' <% if @current_bib_lang == 'heb-osm' %>selected<% end %>><%= I18n.t('bib_translations.heb') %> (OSM+DHNT)</option>
+      </optgroup>
     </select>
   </div>
 

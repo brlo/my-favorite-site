@@ -99,16 +99,30 @@ en:
     editors: Editors
 
   page_translations:
-    ru: Russian
-    en: English
-    gr: Greek
-    de: German
-    ar: Arab
-    jp: Japanese
-    cn: Chinese
-    il: Hebrew
+    ar: '🇦🇪 Arabic'
+    cn: '🇨🇳 Chinese'
+    de: '🇩🇪 German'
+    cp: '🇪🇬 Coptic'
+    en: '🇬🇧 English'
+    es: '🇪🇸 Spanish'
+    fr: '🇫🇷 French'
+    gr: '🇬🇷 Greek'
+    il: '🇮🇱 Hebrew'
+    in: '🇮🇳 Hindi'
+    ir: '🇮🇷 Persian'
+    it: '🇮🇹 Italian'
+    jp: '🇯🇵 Japanese'
+    ke: '🇰🇪 Swahili'
+    kr: '🇰🇷 Korean'
+    rs: '🇷🇸 Serbian'
+    ru: '🇷🇺 Russian'
+    tm: '🇹🇲 Turkmen'
+    tr: '🇹🇷 Turkish'
+    uz: '🇺🇿 Uzbek'
+    vn: '🇻🇳 Vietnamese'
 
   bib_translations:
+    translates: Translations
     ru: Russian
     csl: Ch. Slavonic
     en: English
@@ -118,7 +132,48 @@ en:
     cn: Chinese
     ge: German
     arab: Arab
-    gr-ru: Greek-Rus
+    interliners: Interliners
+    gr-ru: Russian
+    gr-en: English
+    gr-jp: Japanese
+
+  bib_word_info:
+    translation: translate
+    lexema: lexema
+    morphology: morphology
+    transcription: transcription
+    more: read more
+    morph:
+      # Часть речи:
+      "сущ.": Noun
+      "гл.": Verb
+      "прил.": Adj
+      "нареч.": Adv
+      "мест.": Pron
+      "числ.": Num
+      "предл.": Prep
+      "союз": Conj
+      "част.": Part
+      "межд.": Int
+      # Падеж:
+      "Им. п.": Nom
+      "Род. п.": Gen
+      "Дат. п.": Dat
+      "Вин. п.": Acc
+      "Тв. п.": Ins
+      "Пред. п.": Pre
+      # Род:
+      "м.": Masc
+      "ж.": Fem
+      "ср.": Neut
+      # Число:
+      "ед. ч.": Sg
+      "мн. ч.": Pl
+      "-":
+      # Время
+      "п.": Past
+      "н.": Present
+      "б.": Future
 
   tips:
     click_on_verse: Highlight a verse by clicking on its number.

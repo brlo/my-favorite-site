@@ -52,17 +52,23 @@ const props = defineProps({
 
 // Параметры из URL query
 const urlParams = new URLSearchParams(window.location.search);
+const titleFromParam = urlParams.get('page_title')
+const menuIdFromParam = urlParams.get('menu_id')
+const parentIdFromParam = urlParams.get('parent_id')
 const pathFromParam = urlParams.get('page_path')
 const langFromParam = urlParams.get('lang')
 
 const errors = ref('');
 const page = ref({
   page_type: 1,
+  title: titleFromParam,
   path: pathFromParam,
   lang: langFromParam || 'ru',
   is_published: true,
   is_search: true,
   is_show_parent: true,
+  parent_id: parentIdFromParam,
+  menu_id: menuIdFromParam,
 });
 const mr = ref({});
 const user = ref();
@@ -112,14 +118,27 @@ if (props.currentUser) {
 
 // ЯЗЫКИ
 const langs = [
-  { name: '🇷🇺 RU', code: 'ru' },
-  { name: '🇺🇸 EN', code: 'en' },
-  { name: '🇬🇷 GR', code: 'gr' },
-  { name: '🇮🇱 IL', code: 'il' },
-  { name: '🇪🇬 AR', code: 'ar' },
-  { name: '🇯🇵 JP', code: 'jp' },
-  { name: '🇨🇳 CN', code: 'cn' },
-  { name: '🇩🇪 DE', code: 'de' },
+  { name: '🇦🇪 AR - Арабский', code: 'ar' },        // ОАЭ
+  { name: '🇨🇳 CN - Китайский', code: 'cn' },       // Китай
+  { name: '🇩🇪 DE - Немецкий', code: 'de' },        // Германия
+  { name: '🇪🇬 EG - Коптский', code: 'cp' },        // Египет
+  { name: '🇬🇧 EN - Английский', code: 'en' },      // Великобритания
+  { name: '🇪🇸 ES - Испанский', code: 'es' },       // Испанский
+  { name: '🇫🇷 FR - Французский', code: 'fr' },     // Франция
+  { name: '🇬🇷 GR - Греческий', code: 'gr' },       // Греция
+  { name: '🇮🇱 IL - Иврит', code: 'il' },           // Израиль
+  { name: '🇮🇳 IN - Хинди', code: 'in' },           // Индия
+  { name: '🇮🇷 IR - Персидский', code: 'ir' },      // Иран
+  { name: '🇮🇹 IT - Итальянский', code: 'it' },     // Италия
+  { name: '🇯🇵 JP - Японский', code: 'jp' },        // Япония
+  { name: '🇰🇪 KE - Суахили', code: 'ke' },         // Кения
+  { name: '🇰🇷 KR - Корейский', code: 'kr' },       // Южная Корея
+  { name: '🇷🇺 RU - Русский', code: 'ru' },         // Россия
+  { name: '🇷🇸 RS - Сербский', code: 'rs' },        // Сербия
+  { name: '🇹🇷 TR - Турецкий', code: 'tr' },        // Турция
+  { name: '🇹🇲 TM - Туркменский', code: 'tm' },     // Туркменистан
+  { name: '🇺🇿 UZ - Узбекский', code: 'uz' },       // Узбекистан
+  { name: '🇻🇳 VN - Вьетнамский', code: 'vn' }      // Вьетнам
 ]
 
 const pageTypes = [
@@ -400,9 +419,18 @@ function removeLink(index) {
   </div>
 
   <div v-if="user.privs.super" class="group-fields">
-    <div class="field">
+    <div v-if="!parentIdFromParam || page.is_deleted" class="field">
       <label>ID родителя (не обязательно)</label>
-      <AutocompletePage v-model="page.parent_id" fetchKey="id" :disabled="page.is_deleted" />
+      <AutocompletePage v-model="page.parent_id" fetchKey="id" :parentIdFromParam />
+    </div>
+    <div v-else  class="field">
+      <label>ID родителя</label>
+      <InputText v-model="page.parent_id" :disabled="!!parentIdFromParam" />
+    </div>
+
+    <div v-if="!!menuIdFromParam" class="field">
+      <label>Пункт меню для привязки</label>
+      <InputText v-model="page.menu_id" :disabled="!!menuIdFromParam" />
     </div>
   </div>
 
@@ -485,7 +513,7 @@ function removeLink(index) {
     </div>
   </div>
 
-  <div v-if="user.privs.super" class="group-fields">
+  <div v-if="page.id && user.privs.super" class="group-fields">
     <h2>Изображение для шапки</h2>
     <div v-if="page.cover" class="cover">
       <img :src="page.cover?.large"/>
@@ -508,7 +536,7 @@ function removeLink(index) {
     </div>
   </div>
 
-  <div class="field">
+  <div v-if="page.id" class="field">
     <h2>Ссылки (сразу под названием)</h2>
     <div v-for="(link, index) in page.links" :key="index">
       <InputText v-model="link[0]" placeholder="Название ссылки" class="link-name"/>

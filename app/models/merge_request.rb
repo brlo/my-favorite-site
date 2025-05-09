@@ -196,16 +196,16 @@ class MergeRequest < ApplicationMongoRecord
 
   # уведомить чат о создании MR:
   def chat_notify_create
-    ::TelegramBot::Notifiers.mr_create(mr: self, u: self.user, pg: self.page)
+    ::TelegramBot::Notifiers.mr_create(mr: self, u: ::Current.user, pg: self.page)
   end
 
   # уведомить чат о принятии MR:
   def chat_notify_merge
-    ::TelegramBot::Notifiers.mr_merge(mr: self, u: self.user, pg: self.page)
+    ::TelegramBot::Notifiers.mr_merge(mr: self, u: ::Current.user, pg: self.page)
   end
 
   # уведомить чат об отклонении MR:
   def chat_notify_reject
-    ::TelegramBot::Notifiers.mr_reject(mr: self, u: self.user, pg: self.page)
+    ::TelegramBot::Notifiers.mr_reject(mr: self, u: ::Current.user, pg: self.page)
   end
 end

@@ -1,3 +1,52 @@
 /* ruby, rb, rt {
   display: inline-block;
 } */
+
+ruby {
+  margin: 0;
+  background: #AAAAAA11;
+  padding: 15px 5px 5px 5px;
+  border-radius: 4px;
+  border: 1px solid #AAAAAA11;
+}
+
+ruby a {
+  text-decoration: none;
+}
+
+.word-info {
+  display: none; /* Скрываем по умолчанию */
+  width: 100%;
+  position: fixed;
+  padding: 20px 40px;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: #333;
+  background-color: #d7d5ca;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  z-index: 999;
+}
+
+.word-info .word-content {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  word-wrap: break-word;
+  white-space: normal;
+}
+
+body.select-bar-enabled .word-info {
+  bottom: 73px;
+}
+
+.word-link.active + .word-info {
+  display: block; /* Показываем при активации */
+}
+
+.night-mode .word-info {
+  color: #cdd1db;
+  background-color: #3e4759;
+}

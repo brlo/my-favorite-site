@@ -1,10 +1,14 @@
 module Api
   class MenusController < ApiApplicationController
-    before_action :reject_by_read_privs
-    before_action :reject_by_update_privs, only: [:create, :update, :destroy]
+    # before_action :reject_by_read_privs
+    # before_action :reject_by_update_privs, only: [:create, :update, :destroy]
 
     def list
       set_page()
+
+      # проверка привелегий
+      reject_by_read_privs()
+
       @menu = @page.menu
 
       render(json: {'success': 'ok', items: @menu}, status: :ok)
@@ -15,6 +19,10 @@ module Api
       set_page()
       @menu_item = ::Menu.new(menu_item_params)
       @menu_item.page_id = @page.id
+
+      # проверка привелегий
+      reject_by_update_privs()
+
       clear_page_cache()
 
       # begin
@@ -38,6 +46,10 @@ module Api
       set_page()
       set_menu_item()
       @menu_item.page_id = @page.id
+
+      # проверка привелегий
+      reject_by_update_privs()
+
       clear_page_cache()
 
       # begin
@@ -59,6 +71,10 @@ module Api
     def destroy
       set_page()
       set_menu_item()
+
+      # проверка привелегий
+      reject_by_update_privs()
+
       clear_page_cache()
 
       if @menu_item.childs.exists?
@@ -113,6 +129,13 @@ module Api
             expire_page("/#{l}/#{@page.lang}/w/#{menu.path}")
           }
         end
+      end
+    end
+
+    def page_owner?
+      if @page.present?
+        ::Current.user.pages_owner.to_a.include?(@page.id.to_s) ||
+        ::Current.user.pages_owner.to_a.include?(@page.p_id.to_s)
       end
     end
   end

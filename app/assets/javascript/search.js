@@ -1,5 +1,5 @@
 // Кнопка: искать
-function goToSearch(form) {
+function goToSearchSpecial(form) {
   let text = undefined;
   let lang = undefined;
 
@@ -118,7 +118,8 @@ new Choices(element, {
 //   };
 // };
 
-enableSearchListeners = function () {
+// Навороченная форма поиска по Библии на странице поиска по Библии
+enableSpecialSearchListeners = function () {
   const forms = document.querySelectorAll('.uniq-search-form');
   const searchIcons = document.querySelectorAll('.search-icon');
 
@@ -128,7 +129,7 @@ enableSearchListeners = function () {
     forms.forEach(function(form) {
       form.addEventListener('submit', function(e) {
         e.preventDefault(); // Отменить стандартное поведение формы
-        goToSearch(e.target);
+        goToSearchSpecial(e.target);
       });
     });
   };
@@ -141,7 +142,7 @@ enableSearchListeners = function () {
         e.preventDefault();
         // Находим ближайший родительский элемент <form>
         const form = e.target.closest('form');
-        goToSearch(form)
+        goToSearchSpecial(form)
       });
     });
   };
@@ -151,9 +152,8 @@ enableSearchListeners = function () {
   accurFilter = document.getElementById('search-accuracy');
   langFilter = document.getElementById('search-lang');
 
-  if (booksFilter) { booksFilter.addEventListener('change', function(e) { const form = e.target.closest('form'); goToSearch(form) }) }
-  if (booksFilter) { accurFilter.addEventListener('change', function(e) { const form = e.target.closest('form'); goToSearch(form) }) }
-  if (booksFilter) {  langFilter.addEventListener('change', function(e) { const form = e.target.closest('form'); goToSearch(form) }) }
+  if (booksFilter) { booksFilter.addEventListener('change', function(e) { const form = e.target.closest('form'); goToSearchSpecial(form) }) }
+  if (booksFilter) { accurFilter.addEventListener('change', function(e) { const form = e.target.closest('form'); goToSearchSpecial(form) }) }
+  if (booksFilter) {  langFilter.addEventListener('change', function(e) { const form = e.target.closest('form'); goToSearchSpecial(form) }) }
 };
-
-enableSearchListeners();
+enableSpecialSearchListeners();

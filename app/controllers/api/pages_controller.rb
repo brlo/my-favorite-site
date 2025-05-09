@@ -1,11 +1,14 @@
 module Api
   class PagesController < ApiApplicationController
-    before_action :reject_by_read_privs
-    before_action :reject_by_create_privs, only: [:create]
-    before_action :reject_by_update_privs, only: [:update, :cover]
-    before_action :reject_by_destroy_privs, only: [:destroy]
+    # before_action :reject_by_read_privs
+    # before_action :reject_by_create_privs, only: [:create]
+    # before_action :reject_by_update_privs, only: [:update, :cover]
+    # before_action :reject_by_destroy_privs, only: [:destroy]
 
     def list
+      # проверка привелегий
+      reject_by_read_privs()
+
       # надо бы ещё автора показать
       # TODO:
       # - ДОБАВИТЬ ОТДАЧУ РОДИТЕЛЬСКОЙ СТРАНИЦЫ, ЧТОБЫ БЫЛО ПОНЯТНО О ЧЁМ НАЗВАНИЕ СТАТЬИ ЕСЛИ ОНО КРАТКОЕ
@@ -46,6 +49,9 @@ module Api
 
     def show
       set_page()
+
+      # проверка привелегий
+      reject_by_read_privs()
     end
 
     # POST /pages or /pages.json
@@ -54,11 +60,27 @@ module Api
       # автор статьи
       @page.user_id = ::Current.user.id
 
+      # проверка привелегий
+      reject_by_create_privs()
+
       # параметры не получилось разрешить с массивом массивов внутри links, поэтому так делаю отдельно для links:
       @page.links = params[:page][:links]
 
       # begin
         if @page.save
+
+          # иногда страницу создают через клик на not-exist ссылку в меню, и попадают через 404 в админку,
+          # где предзаполнены некоторые поля, а также записана menu_id, с которой сюда попали.
+          # Так вот, если страницу в итоге удалось создать, то надо пойти и записать path этой страницы в menu_id.
+          #
+          # TODO: Внимание! Тут ведь могут прислать любую ссылку, поэтому надо бы подстраховаться
+          # и проверить, может ли пользователь менять это меню!
+          menu_id = params.dig(:page, :menu_id)
+          if menu_id
+            menu = Menu.find_by(id: menu_id)
+            menu.update(path: @page.path)
+          end
+
           render :show, status: :ok
         else
           # puts '=======ERRORS======='
@@ -73,7 +95,11 @@ module Api
     end
 
     def update
-      # set_page()
+      set_page()
+
+      # проверка привелегий
+      reject_by_update_privs()
+
       clear_page_cache()
 
       # добавим редактора статьи
@@ -99,6 +125,10 @@ module Api
 
     def cover
       set_page()
+
+      # проверка привелегий
+      reject_by_update_privs()
+
       clear_page_cache()
       @page.cover = params[:file]
       # u.cover.url # => '/url/to/file.png'
@@ -113,17 +143,38 @@ module Api
 
     def destroy
       set_page()
+
+      # проверка привелегий
+      reject_by_destroy_privs()
+
       clear_page_cache()
 
-      if @page.update(is_deleted: true)
-        render :show, status: :ok
-      else
-        render json: @page.errors, status: :unprocessable_entity
+      # удаляем ссылки в меню на эту удаляемую страницу
+      ::Menu.where(path: @page.path).each do |m|
+        # перед стираением адреса в меню, надо убедиться, что мы работаем в той же языковой области.
+        # делаем это, сравнивая язык страницы с отрисованым меню, и удаляемой страницы:
+        _page = Page.where(id: m.page_id).first
+        if _page&.lang == @page.lang
+          m.update(path: nil)
+        end
       end
+
+      @page.destroy!
+      render :show, status: :ok
+      # if @page.update(is_deleted: true)
+      #   render :show, status: :ok
+      # else
+      #   render json: @page.errors, status: :unprocessable_entity
+      # end
     end
 
+    # Так как теперь страницы удаляются целиком, то этот метод пока что не востребован
     def restore
       set_page()
+
+      # проверка привелегий
+      reject_by_destroy_privs()
+
       clear_page_cache()
 
       if @page.update(is_deleted: false)
@@ -160,12 +211,19 @@ module Api
       )
     end
 
-    def reject_by_read_privs;    ability?('pages_read'); end
-    def reject_by_create_privs;  ability?('pages_create'); end
+    def reject_by_read_privs
+      ability?('pages_read') || page_owner?()
+    end
+
+    def reject_by_create_privs
+      ability?('pages_create') || page_owner?()
+    end
 
     def reject_by_update_privs
       # подгружаем страницу
       set_page()
+
+      return if page_owner?()
 
       is_can =
       case @page.edit_mode.to_i
@@ -194,6 +252,8 @@ module Api
       # подгружаем страницу
       set_page()
 
+      return if page_owner?()
+
       # удалять может человек с привелегией, или автор с привелегией удалять своё
       ability?('pages_destroy') ||
       (ability?('pages_self_destroy') { @page&.user_id == ::Current.user.id })
@@ -203,6 +263,13 @@ module Api
       I18n.available_locales.each { |l|
         expire_page("/#{l}/#{@page.lang}/w/#{@page.path}")
       }
+    end
+
+    def page_owner?
+      if @page.present?
+        ::Current.user.pages_owner.to_a.include?(@page.id.to_s) ||
+        ::Current.user.pages_owner.to_a.include?(@page.p_id.to_s)
+      end
     end
   end
 end
