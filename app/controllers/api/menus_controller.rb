@@ -1,14 +1,16 @@
 module Api
   class MenusController < ApiApplicationController
-    # before_action :reject_by_read_privs
-    # before_action :reject_by_update_privs, only: [:create, :update, :destroy]
+    # прежде чем реджектить по привелегиям, надо сначала задать страницу
+    before_action :set_page, only: [:list, :create, :update, :destroy]
+    before_action :set_menu_item, only: [:update, :destroy]
+    # теперь реджектим
+    before_action :reject_by_read_privs, only: [:list]
+    before_action :reject_by_update_privs, only: [:create, :update]
+
+    # сбрасываем кэш до обновления страницы
+    before_action :clear_page_cache, only: [:update, :destroy]
 
     def list
-      set_page()
-
-      # проверка привелегий
-      reject_by_read_privs()
-
       @menu = @page.menu
 
       render(json: {'success': 'ok', items: @menu}, status: :ok)
@@ -16,12 +18,8 @@ module Api
 
     # POST /menus
     def create
-      set_page()
       @menu_item = ::Menu.new(menu_item_params)
       @menu_item.page_id = @page.id
-
-      # проверка привелегий
-      reject_by_update_privs()
 
       clear_page_cache()
 
@@ -43,14 +41,7 @@ module Api
     end
 
     def update
-      set_page()
-      set_menu_item()
       @menu_item.page_id = @page.id
-
-      # проверка привелегий
-      reject_by_update_privs()
-
-      clear_page_cache()
 
       # begin
         if @menu_item.update(menu_item_params)
@@ -69,14 +60,6 @@ module Api
     end
 
     def destroy
-      set_page()
-      set_menu_item()
-
-      # проверка привелегий
-      reject_by_update_privs()
-
-      clear_page_cache()
-
       if @menu_item.childs.exists?
         render json: {errors: ['Нельзя удалить пункт меню, у которого есть подпункты. Сначала нужно удалить подпункты']}, status: 422
       else
@@ -112,7 +95,8 @@ module Api
 
     def reject_by_read_privs;    ability?('pages_read'); end
     def reject_by_update_privs
-      ability?('menus_update') #||
+      return if page_owner?() # хозяину страницы можно всё
+      ability?('menus_update')
       #(ability?('menus_self_update') { @page&.user_id == ::Current.user.id })
     end
 

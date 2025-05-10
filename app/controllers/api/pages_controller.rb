@@ -1,21 +1,22 @@
 module Api
   class PagesController < ApiApplicationController
-    # before_action :reject_by_read_privs
-    # before_action :reject_by_create_privs, only: [:create]
-    # before_action :reject_by_update_privs, only: [:update, :cover]
-    # before_action :reject_by_destroy_privs, only: [:destroy]
+    # прежде чем реджектить по привелегиям, надо сначала задать страницу
+    before_action :set_page, only: [:show, :update, :cover, :destroy, :restore]
+    # теперь реджектим
+    before_action :reject_by_read_privs, only: [:list, :show]
+    before_action :reject_by_create_privs, only: [:create]
+    before_action :reject_by_update_privs, only: [:update, :cover]
+    before_action :reject_by_destroy_privs, only: [:destroy, :restore]
+
+    # сбрасываем кэш до обновления страницы
+    before_action :clear_page_cache, only: [:update, :cover, :destroy, :restore]
 
     def list
-      # проверка привелегий
-      reject_by_read_privs()
-
       # надо бы ещё автора показать
       # TODO:
       # - ДОБАВИТЬ ОТДАЧУ РОДИТЕЛЬСКОЙ СТРАНИЦЫ, ЧТОБЫ БЫЛО ПОНЯТНО О ЧЁМ НАЗВАНИЕ СТАТЬИ ЕСЛИ ОНО КРАТКОЕ
       # - УБРАТЬ ОТ СЮДА УДАЛЁННЫЕ СТАТЬИ, ЧТОБЫ ОНИ НЕ ПОКАЗЫВАЛИСЬ В ПОДСКАЗКАХ, НО ОСТАЛИСЬ НА ГЛАВНОЙ СВОДКЕ И В ПОИСКЕ С МЕТКАМИ
       # - В СВОДКЕ ПОКАЗЫВАТЬ ТОЛЬКО ТЕ ПР, КОТОРЫЕ ЕЩЁ НЕ ПРИНЯТЫ
-      # - ПОКАЗАТЬ СЛОВАРЬ ДВОРЕЦКОГО
-      # - сделать предложение в 404 создать страницу  (с учётом языка и род. страницы)
       @pages = ::Page.
         includes(:user).
         only(
@@ -48,10 +49,7 @@ module Api
     end
 
     def show
-      set_page()
-
-      # проверка привелегий
-      reject_by_read_privs()
+      # см. before_action наверху
     end
 
     # POST /pages or /pages.json
@@ -59,9 +57,6 @@ module Api
       @page = ::Page.new(page_params)
       # автор статьи
       @page.user_id = ::Current.user.id
-
-      # проверка привелегий
-      reject_by_create_privs()
 
       # параметры не получилось разрешить с массивом массивов внутри links, поэтому так делаю отдельно для links:
       @page.links = params[:page][:links]
@@ -95,13 +90,6 @@ module Api
     end
 
     def update
-      set_page()
-
-      # проверка привелегий
-      reject_by_update_privs()
-
-      clear_page_cache()
-
       # добавим редактора статьи
       @page.add_editor(::Current.user)
 
@@ -124,13 +112,6 @@ module Api
     end
 
     def cover
-      set_page()
-
-      # проверка привелегий
-      reject_by_update_privs()
-
-      clear_page_cache()
-
       uploaded_file = params[:file]
 
       # # Проверка доступности временного файла (исправленная версия)
@@ -168,13 +149,6 @@ module Api
     end
 
     def destroy
-      set_page()
-
-      # проверка привелегий
-      reject_by_destroy_privs()
-
-      clear_page_cache()
-
       # удаляем ссылки в меню на эту удаляемую страницу
       ::Menu.where(path: @page.path).each do |m|
         # перед стираением адреса в меню, надо убедиться, что мы работаем в той же языковой области.
@@ -196,13 +170,6 @@ module Api
 
     # Так как теперь страницы удаляются целиком, то этот метод пока что не востребован
     def restore
-      set_page()
-
-      # проверка привелегий
-      reject_by_destroy_privs()
-
-      clear_page_cache()
-
       if @page.update(is_deleted: false)
         render :show, status: :ok
       else
@@ -238,18 +205,17 @@ module Api
     end
 
     def reject_by_read_privs
-      ability?('pages_read') || page_owner?()
+      return if page_owner?() # хозяину страницы можно всё
+      ability?('pages_read')
     end
 
     def reject_by_create_privs
-      ability?('pages_create') || page_owner?()
+      return if page_owner?() # хозяину страницы можно всё
+      ability?('pages_create')
     end
 
     def reject_by_update_privs
-      # подгружаем страницу
-      set_page()
-
-      return if page_owner?()
+      return if page_owner?() # хозяину страницы можно всё
 
       is_can =
       case @page.edit_mode.to_i
@@ -275,10 +241,7 @@ module Api
     end
 
     def reject_by_destroy_privs
-      # подгружаем страницу
-      set_page()
-
-      return if page_owner?()
+      return if page_owner?() # хозяину страницы можно всё
 
       # удалять может человек с привелегией, или автор с привелегией удалять своё
       ability?('pages_destroy') ||

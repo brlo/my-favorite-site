@@ -121,7 +121,7 @@ const langs = [
   { name: '🇦🇪 AR - Арабский', code: 'ar' },        // ОАЭ
   { name: '🇨🇳 CN - Китайский', code: 'cn' },       // Китай
   { name: '🇩🇪 DE - Немецкий', code: 'de' },        // Германия
-  { name: '🇪🇬 EG - Коптский', code: 'cp' },        // Египет
+  { name: '🇪🇬 CP - Коптский', code: 'cp' },        // Египет
   { name: '🇬🇧 EN - Английский', code: 'en' },      // Великобритания
   { name: '🇪🇸 ES - Испанский', code: 'es' },       // Испанский
   { name: '🇫🇷 FR - Французский', code: 'fr' },     // Франция
@@ -174,6 +174,12 @@ let seen = computed(() => {
 let seenMenu = computed(() => {
   return (page.value.id && page.value.page_type == '4') ? true : false
 })
+
+// Пользователь является хозяином текущей страницы? Если да, то он может изменять её даже без прав на изменение страниц.
+let isPageOwner = computed(() => {
+  if (!props.currentUser?.pages_owner || !props?.id) return false
+  return props.currentUser.pages_owner.includes(props.id)
+});
 
 function submit() {
   let httpMethod = '', path = '';
@@ -354,14 +360,42 @@ function removeLink(index) {
 <h1 v-if="page.id">Редактирование статьи</h1>
 <h1 v-else>Новая статья</h1>
 
+
+<div v-if="currentUser">
+  <!-- Режим создания страницы -->
+  <div v-if="!page.id">
+    <div v-if="currentUser?.privs?.pages_create" class="can-info can-edit">
+      <i class="pi pi-check-circle"></i> Вы можете создавать новые страницы
+    </div>
+    <div v-else class="cannot-edit">
+      <i class="pi pi-times-circle"></i> Вы не можете создавать новые страницы
+    </div>
+  </div>
+
+  <!-- Режим редактирования страницы -->
+  <div v-else>
+    <div v-if="currentUser?.privs?.pages_update || isPageOwner" class="can-info can-edit">
+      <i class="pi pi-check-circle"></i> Вы можете редактировать эту страницу
+    </div>
+    <div v-else-if="currentUser?.privs?.mrs_create" class="can-info can-suggest">
+      <i class="pi pi-send"></i> Вы можете предлагать правки к этой странице
+    </div>
+    <div v-else class="can-info cannot-edit">
+      <i class="pi pi-times-circle"></i> Вы не можете редактировать эту страницу
+    </div>
+  </div>
+</div>
+
+
+
+
 <h2 v-if="page.is_deleted" class="page-deleted-label">СТАТЬЯ УДАЛЕНА!</h2>
 
 <IndexMergeRequests v-if="page.id" :pageId="page.id" :isPartial="true"/>
-
 <div class="flex action-bar">
   <Button v-if="!page.id" @click.prevent="submit" label="Опубликовать статью" icon="pi pi-check" />
   <SplitButton
-    v-else-if="currentUser?.privs?.pages_create"
+    v-else-if="currentUser?.privs?.pages_create || isPageOwner"
     label="Предложить правки"
     icon="pi pi-send"
     @click="isCreateMRVisible = true"
@@ -606,5 +640,41 @@ h2 {
   border-radius: 5px;
   padding: 50px 10px;
   text-align: center;
+}
+
+/* ПРО ПРАВА РЕДАКТИРОВАНИЯ СТРАНИЦЫ label */
+
+.can-info {
+  display: inline-block;
+  margin: 0;
+  font-size: 0.9em;
+  border-radius: 4px;
+  border: 1px solid;
+}
+
+.can-edit {
+  padding: 10px;
+  color: #22C55E;
+  background-color: #f0fdf467;
+  border-color: #22c55e4e;
+}
+
+.can-suggest {
+  padding: 10px;
+  color: #3B82F6;
+  background-color: #f0f9ff56;
+  border-color: #3b83f650;
+}
+
+.cannot-edit {
+  padding: 10px;
+  color: #EF4444;
+  background-color: #fef2f252;
+  border-color: #ef44444a;
+}
+
+.can-info .pi {
+  margin-right: 4px;
+  font-size: 1em;
 }
 </style>
