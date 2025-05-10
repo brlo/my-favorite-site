@@ -258,7 +258,7 @@ window.switchNightMode = function() {
   return false;
 };
 
-// выбор языка контента (в выпыдающем списке языков возле текста)
+// выбор языка контента Библии (в выпыдающем списке языков возле текста)
 function selectLang() {
   const langInput = document.getElementById('lang-select');
   const contentLang = langInput.value;

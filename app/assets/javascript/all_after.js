@@ -98,19 +98,24 @@ shareBtnListeners();
 
 // СЛУШАЕМ КЛИК НА ВЫБОР ЯЗЫКА ТЕКСТА
 function selectLangListeners() {
+  // Выбор языка Библии
   const langSelect = document.getElementById('lang-select');
 
   if (langSelect) {
     langSelect.addEventListener('change', function(event) {
       // какой язык выбрал пользователь
       const selectedValue = event.target.value;
+      selectLang(selectedValue);
+    });
+  }
 
-      // Это был селектор переключения языка Писания, или языка статьи?
-      if (langSelect.getAttribute('data-page') === 'true') {
-        selectPageLang(event.target);
-      } else {
-        selectLang(selectedValue);
-      }
+  // Выбор языка статей
+  const pageLangSelect = document.getElementById('page-lang-select');
+
+  if (pageLangSelect) {
+    pageLangSelect.addEventListener('change', function(event) {
+      // какой язык выбрал пользователь
+      selectPageLang(event.target);
     });
   }
 };
