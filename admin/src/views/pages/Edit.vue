@@ -395,7 +395,7 @@ function removeLink(index) {
 <div class="flex action-bar">
   <Button v-if="!page.id" @click.prevent="submit" label="Опубликовать статью" icon="pi pi-check" />
   <SplitButton
-    v-else-if="currentUser?.privs?.pages_create || isPageOwner"
+    v-else-if="currentUser?.privs?.pages_update || isPageOwner"
     label="Предложить правки"
     icon="pi pi-send"
     @click="isCreateMRVisible = true"
