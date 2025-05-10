@@ -130,10 +130,36 @@ module Api
       reject_by_update_privs()
 
       clear_page_cache()
-      @page.cover = params[:file]
+
+      uploaded_file = params[:file]
+
+      # # Проверка доступности временного файла (исправленная версия)
+      # unless File.exist?(uploaded_file.tempfile.path)
+      #   Rails.logger.error " === Temp file not found: #{e.message}"
+      #   return render json: { error: "Temp file not found" }, status: 422
+      # end
+
+      # # Проверка размера файла
+      # if uploaded_file.tempfile.size.zero?
+      #   Rails.logger.error " === File is empty: #{e.message}"
+      #   return render json: { error: "File is empty" }, status: 422
+      # end
+
+      # # Проверка изображения через MiniMagick
+      # begin
+      #   image = MiniMagick::Image.open(uploaded_file.tempfile.path)
+      #   image.validate!
+      # rescue MiniMagick::Error, Errno::ENOENT => e
+      #   Rails.logger.error " === Image validation failed: #{e.message}"
+      #   return render json: { error: "Invalid image file: #{e.message}" }, status: 422
+      # end
+
+      @page.cover = uploaded_file
+
       # u.cover.url # => '/url/to/file.png'
       # u.cover.current_path # => 'path/to/file.png'
       # u.cover_identifier # => 'file.png'
+
       if @page.save
         render(json: {'success': 'ok', cover: @page.cover.urls}, status: :ok)
       else

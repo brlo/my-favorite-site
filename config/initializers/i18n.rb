@@ -26,8 +26,9 @@ I18n::Backend::Simple.send(:include, I18n::Backend::Fallbacks)
 
 I18n.available_locales = %i(
   ar cn de en gr il jp ru
-  es fr in ir it ke kr rs tm tr uz vn
-) # cp - коптский нет смысла добавлять как язык интерфейса, ведь на нём не говорят
+  es fr in ir it ke kr rs tm tr uz vn cp
+) # cp - коптский нет смысла добавлять как язык интерфейса, но я добавил,
+# чтобы на него можно было переключаться в случае коптских статей (внутри файла всё равно предложена английская локализация)
 
 # I18n.default_locale = :ru
 ::I18n.fallbacks.map(
@@ -51,4 +52,5 @@ I18n.available_locales = %i(
   :tr => :en,
   :uz => :ru,
   :vn => :en,
+  :cp => :en,
 )

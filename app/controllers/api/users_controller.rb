@@ -9,7 +9,8 @@ module Api
           id: user.id,
           username: user.username,
           name: user.name,
-          privs: user.privs_list
+          privs: user.privs_list,
+          pages_owner: user.pages_owner,
         }.merge(success_response)
       else
         render json: {errors: 'access denied'}.merge(fail_response), status: 401
