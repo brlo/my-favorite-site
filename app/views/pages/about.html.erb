@@ -3,9 +3,17 @@
   <meta property="og:type" content="website"/>
   <meta property="og:url" content= "<%= @canonical_url %>" />
   <meta property="og:locale" content= "<%= ::I18n.locale %>" />
-  <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
-<% end %>
 
+  <% ::ALL_LOCALES.each do |lang,_| %>
+    <% next if ::I18n.locale.to_s == lang.to_s %>
+    <meta property="og:locale:alternate" content= "<%= lang %>" />
+  <% end %>
+
+  <% ::ALL_LOCALES.each do |lang,_| %>
+    <% next if ::I18n.locale.to_s == lang.to_s %>
+    <link rel="alternate" hreflang="<%= lang %>" href="<%= "https://bibleox.com/#{lang}/w/about" %>" />
+  <% end %>
+<% end %>
 
 <% content_for(:img_header) do %>
 <div class='flex-wrap img-header-wrap'>

@@ -1,4 +1,4 @@
-ke:
+sw:
   title: Bibleox
   bible: Biblia
   about_site: 'Kuhusu tovuti'
@@ -68,27 +68,35 @@ ke:
     editors: Wahariri
 
   page_translations:
-    ar: '🇦🇪 Kiarabu'
-    cn: '🇨🇳 Kichina'
+    ar: '🇸🇦 Kiarabu'
+    zh-Hans: '🇨🇳 Kichina Rahisi'
+    zh-Hant: '🇨🇳 Kichina cha Jadi'
     de: '🇩🇪 Kijerumani'
     cp: '🇪🇬 Kikopti'
     en: '🇬🇧 Kiingereza'
     es: '🇪🇸 Kihispania'
     fr: '🇫🇷 Kifaransa'
-    gr: '🇬🇷 Kigiriki'
-    il: '🇮🇱 Kiebrania'
-    in: '🇮🇳 Kihindi'
-    ir: '🇮🇷 Kiajemi'
+    el: '🇬🇷 Kigiriki'
+    he: '🇮🇱 Kiebrania'
+    hi: '🇮🇳 Kihindi'
+    fa: '🇮🇷 Kiajemi'
     it: '🇮🇹 Kiitaliano'
-    jp: '🇯🇵 Kijapani'
-    ke: '🇰🇪 Kiswahili'
-    kr: '🇰🇷 Kikorea'
-    rs: '🇷🇸 Kiserbia'
+    ja: '🇯🇵 Kijapani'
+    sw: '🇰🇪 Kiswahili'
+    ko: '🇰🇷 Kikorea'
+    sr: '🇷🇸 Kiserbia'
     ru: '🇷🇺 Kirusi'
-    tm: '🇹🇲 Kiturukimeni'
+    tk: '🇹🇲 Kiturukimeni'
     tr: '🇹🇷 Kituruki'
     uz: '🇺🇿 Kiuzbeki'
-    vn: '🇻🇳 Kivietinamu'
+    vi: '🇻🇳 Kivietinamu'
+
+    cu: '📜 Kislovakia ya Kanisa'
+    grc: '🏛️ Kigiriki cha Kale'
+    la: '🇻🇦 Kilatini'
+    cop: '🇪🇬 Kikopti'
+    frm: '🇫🇷 Kifaransa cha Karne za Kati'
+    fro: '🇫🇷 Kifaransa cha Kale (kabla ya karne ya 14)'
 
   bib_translations:
     translates: Tafsiri

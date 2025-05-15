@@ -11,7 +11,16 @@
       <meta name="keywords" content="<%= @meta_book_tags&.join(', ') %>" />
       <meta property="og:url" content= "<%= @canonical_url %>" />
       <meta property="og:locale" content= "<%= current_lang() %>" />
-      <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
+
+      <% @page_langs.each do |lang, path| %>
+        <% next if @content_lang == lang %>
+        <meta property="og:locale:alternate" content= "<%= lang %>" />
+      <% end %>
+
+      <% @page_langs.each do |lang, path| %>
+        <% next if @content_lang == lang %>
+        <link rel="alternate" hreflang="<%= lang %>" href="<%= "https://bibleox.com/#{lang}/w/#{path}" %>" />
+      <% end %>
   <% end %>
 
   <% classes = (@page.is_page_verses? && @verses.present?) ? 'verse-page' : 'text-page' %>
@@ -125,9 +134,11 @@
 
 <div id="minimap-container">
     <div class="minimap">
+        <div class="minimap-progress" id="minimapProgress"></div>
         <div class="minimap-items" id="minimapItems"></div>
     </div>
 </div>
+
 
 <div class='fixed-side-btn' id="scroll-to-top-btn">
   <svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">

@@ -67,7 +67,7 @@ class VersesController < ApplicationController
         @no_index = true
       end
       # не индексировать переводы: csl-pnm, en-nrsv
-      if ::ApplicationHelper::NOT_INDEXED_LANGS.include?(@content_lang)
+      if ::BIB_LANGS_NOT_INDEXED.include?(@content_lang)
         @no_index = true
       end
 
@@ -217,7 +217,7 @@ class VersesController < ApplicationController
   def search
     # default
     @search_accuracy = params[:acc] || 'similar'
-    @search_lang = params[:l] || ::ApplicationHelper::LANG_UI_TO_LANG_CONTENT[::I18n.locale.to_s]
+    @search_lang = params[:l] || ::LOCALE_TO_BIB_LANG[::I18n.locale.to_s]
     @search_books = params[:book]
     # не индексировать
     @no_index = true

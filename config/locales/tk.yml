@@ -1,4 +1,4 @@
-tm:
+tk:
   title: Bibloýeks
   bible: Injil
   about_site: 'Saýt hakda'
@@ -68,27 +68,35 @@ tm:
     editors: Redaktorlar
 
   page_translations:
-    ar: '🇦🇪 Arapça'
-    cn: '🇨🇳 Hytaýça'
+    ar: '🇸🇦 Arapça'
+    zh-Hans: '🇨🇳 Ýönekeýleşdirilen Hytaý'
+    zh-Hant: '🇨🇳 Däpli Hytaý'
     de: '🇩🇪 Nemesçe'
     cp: '🇪🇬 Koptça'
     en: '🇬🇧 Iňlisçe'
     es: '🇪🇸 Ispança'
     fr: '🇫🇷 Fransuzça'
-    gr: '🇬🇷 Grekçe'
-    il: '🇮🇱 Ibrança'
-    in: '🇮🇳 Hindi'
-    ir: '🇮🇷 Parsça'
+    el: '🇬🇷 Grekçe'
+    he: '🇮🇱 Ibrança'
+    hi: '🇮🇳 Hindi'
+    fa: '🇮🇷 Parsça'
     it: '🇮🇹 Italiýança'
-    jp: '🇯🇵 Ýaponça'
-    ke: '🇰🇪 Suahili'
-    kr: '🇰🇷 Koreýçe'
-    rs: '🇷🇸 Serbçe'
+    ja: '🇯🇵 Ýaponça'
+    sw: '🇰🇪 Suahili'
+    ko: '🇰🇷 Koreýçe'
+    sr: '🇷🇸 Serbçe'
     ru: '🇷🇺 Rusça'
-    tm: '🇹🇲 Türkmençe'
+    tk: '🇹🇲 Türkmençe'
     tr: '🇹🇷 Türkçe'
     uz: '🇺🇿 Özbekçe'
-    vn: '🇻🇳 Wýetnamça'
+    vi: '🇻🇳 Wýetnamça'
+
+    cu: '📜 Çerkez slawýan dili'
+    grc: '🏛️ Gadymy grek dili'
+    la: '🇻🇦 Latyn dili'
+    cop: '🇪🇬 Kop dili'
+    frm: '🇫🇷 Orta asyr fransuz dili'
+    fro: '🇫🇷 Köne fransuz dili (XIV asyr öň)'
 
   bib_translations:
     translates: Terjimeler

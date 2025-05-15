@@ -1,13 +1,29 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  # Редиректы со старых URL (коды стран) на новые (коды языков)
+  # редиректим /*/ (первый элемент)
+  get '/:loc_ui/*rest', to: redirect(status: 301) { |params, req|
+    lang = ::COUNTRY_TO_LANG[params[:loc_ui]] || 'en' # fallback на английский
+    encoded_rest = params[:rest].split('/').map { |part| ERB::Util.url_encode(part) }.join('/')
+    "/#{lang}/#{encoded_rest}"
+  }, constraints: { loc_ui: /cn|gr|il|jp/ }
+
+  # Редиректы со старых URL (коды стран) на новые (коды языков)
+  # редиректим /_/*/ (второй элемент)
+  get '/:loc_ui/:loc_cont/*rest', to: redirect(status: 301) { |params, req|
+    lang = ::COUNTRY_TO_LANG[params[:loc_cont]] || 'en' # fallback на английский
+    encoded_rest = params[:rest].split('/').map { |part| ERB::Util.url_encode(part) }.join('/')
+    "/#{params[:loc_ui]}/#{lang}/#{encoded_rest}"
+  }, constraints: { loc_cont: /cn|gr|il|jp/ }
+
   # default locale добавлено ради сложных ссылок link_to для админки
-  scope '/:locale', :locale => /ar|cn|de|eg|en|es|fr|gr|il|in|ir|it|jp|ke|kr|rs|ru|tm|tr|uz|vn|cp/, defaults: {locale: :ru} do
-    scope '/:content_lang', :content_lang => /ru|csl-pnm|csl-ru|gr-lxx-byz|en-nrsv|eng-nkjv|heb-osm|arab-avd|jp-ni|cn-ccbs|ge-sch|gr-ru|gr-en|gr-jp/ do
+  scope '/:locale', :locale => /#{::R_LOCALES}/, defaults: {locale: :ru} do
+    scope '/:content_lang', :content_lang => /#{::R_BIB_LANGS}/ do
       get '/:book_code/:chapter', to: 'verses#index', :constraints =>
         lambda { |req|
           book_code = req.params[:book_code]
-          book = BOOKS[book_code]
+          book = ::BOOKS[book_code]
           book && req.params[:chapter].to_i.between?(1, book[:chapters])
           # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
         },
@@ -16,7 +32,7 @@ Rails.application.routes.draw do
       get '/chapters/:book_code/:chapter', to: 'verses#chapter_ajax', :constraints =>
         lambda { |req|
           book_code = req.params[:book_code]
-          book = BOOKS[book_code]
+          book = ::BOOKS[book_code]
           book && req.params[:chapter].to_i.between?(1, book[:chapters])
           # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
         }
@@ -24,7 +40,7 @@ Rails.application.routes.draw do
       get '/', to: 'verses#index'
     end
 
-    scope '/:content_lang', :content_lang => /ar|cn|de|eg|en|es|fr|gr|il|in|ir|it|jp|ke|kr|rs|ru|tm|tr|uz|vn|cp/ do
+    scope '/:content_lang', :content_lang => /#{::R_CONT_LANGS}/ do
       # get '/w', to: 'pages#list', as: 'pages'
       get '/w/:page_path', to: 'pages#show', as: 'page'
       get '/w/:page_path/search', to: 'pages#search', as: 'page_search'
@@ -38,7 +54,7 @@ Rails.application.routes.draw do
     get '/:book_code/:chapter', to: 'verses#index_redirect', :constraints =>
       lambda { |req|
         book_code = req.params[:book_code]
-        book = BOOKS[book_code]
+        book = ::BOOKS[book_code]
         book && req.params[:chapter].to_i.between?(1, book[:chapters])
       }
     get '/q', to: 'verses#q_redirect'

@@ -7,86 +7,6 @@ module ApplicationHelper
     nil => 'small'
   }
 
-  PAGES_LANGS = {
-    'ar' => true, # 🇦🇪 AR - Арабский
-    'cn' => true, # 🇨🇳 CN - Китайский
-    'de' => true, # 🇩🇪 DE - Немецкий
-    'cp' => true, # 🇪🇬 CP - Коптский
-    'en' => true, # 🇬🇧 EN - Английский (или 🇺🇸)
-    'es' => true, # 🇪🇸 ES - Испанский
-    'fr' => true, # 🇫🇷 FR - Французский
-    'gr' => true, # 🇬🇷 GR - Греческий
-    'il' => true, # 🇮🇱 IL - Иврит
-    'in' => true, # 🇮🇳 IN - Хинди
-    'ir' => true, # 🇮🇷 IR - Персидский
-    'it' => true, # 🇮🇹 IT - Итальянский
-    'jp' => true, # 🇯🇵 JP - Японский
-    'ke' => true, # 🇰🇪 KE - Суахили
-    'kr' => true, # 🇰🇷 KR - Корейский
-    'rs' => true, # 🇷🇸 RS - Сербский
-    'ru' => true, # 🇷🇺 RU - Русский
-    'tm' => true, # 🇹🇲 TM - Туркменский
-    'tr' => true, # 🇹🇷 TR - Турецкий
-    'uz' => true, # 🇺🇿 UZ - Узбекский
-    'vn' => true, # 🇻🇳 VN - Вьетнамский
-  }
-
-  # Название перевода Библии переводим в I18n.locale
-  LANG_CONTENT_TO_LANG_UI = {
-    'ru'         => 'ru',
-    'en-nrsv'    => 'en',
-    'eng-nkjv'   => 'en',
-    'csl-ru'     => 'ru',
-    'csl-pnm'    => 'ru',
-    'heb-osm'    => 'il',
-    'gr-lxx-byz' => 'gr',
-
-    'gr-ru'      => 'ru',
-    'gr-en'      => 'en',
-    'gr-jp'      => 'jp',
-
-    'jp-ni'      => 'jp',
-    'cn-ccbs'    => 'cn',
-    'ge-sch'     => 'de',
-    'arab-avd'   => 'ar',
-  }
-
-  # поисковик не должен это индексировать.
-  NOT_INDEXED_LANGS = [
-    'csl-pnm',
-    'en-nrsv',
-  ]
-
-  # %w().map { ::Page.create(title: "Tradition #{_1}", path: "links_#{_1}") }
-
-  # I18n.locale переводим в название перевода Библии
-  LANG_UI_TO_LANG_CONTENT = {
-    # 'cs' => 'csl-ru',
-    ''   => 'ru',
-    nil  => 'ru',
-    'ru' => 'ru',
-    'en' => 'eng-nkjv',
-    'il' => 'heb-osm',
-    'gr' => 'gr-lxx-byz',
-    'jp' => 'jp-ni',
-    'cn' => 'cn-ccbs',
-    'de' => 'ge-sch',
-    'ar' => 'arab-avd',
-
-    'es' => 'eng-nkjv',
-    'fr' => 'eng-nkjv',
-    'in' => 'eng-nkjv',
-    'ir' => 'eng-nkjv',
-    'it' => 'eng-nkjv',
-    'ke' => 'eng-nkjv',
-    'kr' => 'eng-nkjv',
-    'rs' => 'ru',
-    'tm' => 'ru',
-    'tr' => 'eng-nkjv',
-    'uz' => 'ru',
-    'vn' => 'eng-nkjv',
-  }
-
   # ПОЯСНЕНИЕ:
   #
   # В Билейской части сайта у нас всегда указано в path локаль и язык текста Библии:
@@ -101,7 +21,7 @@ module ApplicationHelper
 
   # Подобрать ЯЗЫК UI подходящий к текущему преводу Библии
   def locale_for_content_lang content_lang = nil
-    LANG_CONTENT_TO_LANG_UI[content_lang || params[:content_lang]]
+    ::BIB_LANG_TO_LOCALE[content_lang || params[:content_lang]]
   end
 
   # НАЗВАНИЕ ПЕРЕВОДА БИБЛИИ (язык интерфейса определяй просто по I18n.locale)
@@ -116,16 +36,16 @@ module ApplicationHelper
     @current_bib_lang ||= begin
       if params[:content_lang].present?
         # Язык контента указан и такой язык есть в Библии
-        if LANG_CONTENT_TO_LANG_UI.has_key?(params[:content_lang])
+        if ::BIB_LANG_TO_LOCALE.has_key?(params[:content_lang])
           params[:content_lang]
         else
           # Если смотрим Page, то язык контента не совпадает с языками Библии.
           # Вот так подбираем подходящий язык Библии:
-          LANG_UI_TO_LANG_CONTENT[params[:content_lang]]
+          ::LOCALE_TO_BIB_LANG[params[:content_lang]]
         end
       elsif params[:locale].present?
         # Если язык контента совсем не указан, то определяем язык контента по языку интерфейса
-        LANG_UI_TO_LANG_CONTENT[params[:locale]]
+        ::LOCALE_TO_BIB_LANG[params[:locale]]
       end
     end
   end
@@ -135,7 +55,7 @@ module ApplicationHelper
     # Если явно указан язык контента и он валиден — берём его — params[:content_lang],
     # а иначе берём одноимённое название локали (языка интерфейса).
     @current_lang ||=
-    if PAGES_LANGS[params[:content_lang]]
+    if ALL_LOCALES[params[:content_lang]]
       params[:content_lang]
     else
       params[:locale]
@@ -187,30 +107,7 @@ module ApplicationHelper
   end
 
   def flag_by_lang(lang)
-    case lang.to_s.downcase
-    when 'ar'; '🇦🇪'  # Арабский
-    when 'cn'; '🇨🇳'  # Китайский
-    when 'de'; '🇩🇪'  # Немецкий
-    when 'cp'; '🇪🇬'  # Коптский
-    when 'en'; '🇬🇧'  # Английский
-    when 'es'; '🇪🇸'  # Испанский
-    when 'fr'; '🇫🇷'  # Французский
-    when 'gr'; '🇬🇷'  # Греческий
-    when 'il'; '🇮🇱'  # Иврит
-    when 'in'; '🇮🇳'  # Хинди
-    when 'ir'; '🇮🇷'  # Персидский
-    when 'it'; '🇮🇹'  # Итальянский
-    when 'jp'; '🇯🇵'  # Японский
-    when 'ke'; '🇰🇪'  # Суахили
-    when 'kr'; '🇰🇷'  # Корейский
-    when 'rs'; '🇷🇸'  # Сербский
-    when 'ru'; '🇷🇺'  # Русский
-    when 'tm'; '🇹🇲'  # Туркменский
-    when 'tr'; '🇹🇷'  # Турецкий
-    when 'uz'; '🇺🇿'  # Узбекский
-    when 'vn'; '🇻🇳'  # Вьетнамский
-    else; ''         # Возвращает пустую строку для неизвестных языков
-    end
+    ::FLAG_BY_LANG[lang.to_s.downcase].to_s
   end
 
   def day_visit

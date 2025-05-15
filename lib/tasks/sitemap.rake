@@ -47,9 +47,9 @@ namespace :g do
       end
 
       # БИБЛИЯ
-      ::ApplicationHelper::LANG_CONTENT_TO_LANG_UI.each do |lang_content, lang_ui|
+      ::BIB_LANG_TO_LOCALE.each do |lang_content, lang_ui|
         # некоторые языки не индексируем
-        next if ::ApplicationHelper::NOT_INDEXED_LANGS.include?(lang_content)
+        next if ::BIB_LANGS_NOT_INDEXED.include?(lang_content)
 
         ::BOOKS.each do |book_code, params|
           (1..params[:chapters]).each do |chapter|

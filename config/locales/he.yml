@@ -29,417 +29,425 @@
 # To learn more, please read the Rails Internationalization guide
 # available at https://guides.rubyonrails.org/i18n.html.
 
-gr:
+he:
   title: Bibleox
-  bible: Αγια ΓΡΑΦΗ
-  about_site: 'Σχετικά με'
-  about_site_description: 'Ιστοσελίδα για μελέτη της Αγίας Γραφής. Επαφές με τον προγραμματιστή.'
-  about_site_short: 'Ιστοσελίδα για την Αγία Γραφή (Βίβλο) και την Αποστολική Παράδοση της Ορθόδοξης Εκκλησίας'
-  about_text: Ο χώρος δημιουργήθηκε το 2022 στην πόλη της Σεβαστούπολης με την ευλογία ενός ορθόδοξου ιερέα.
-  about_news: Νέα Bibleox
-  about_contact: Επικοινωνία με τον προγραμματιστή
-  fast_search: Γρήγορη αναζήτηση
-  voice: φωνή
+  bible: כִּתבֵי הַקוֹדֶשׁ
+  about_site: 'על אודות'
+  about_site_description: 'אתר ללימוד תנ"ך. אנשי קשר עם מפתח.'
+  about_site_short: 'אתר אינטרנט על כתבי הקודש (התנ"ך) והמסורת השליחים של הכנסייה האורתודוקסית'
+  about_text: האתר נוצר בשנת 2022 בעיר סבסטופול בברכת כומר אורתודוקסי.
+  about_news: חדשות ביבלוקס
+  about_contact: יצירת קשר עם היזם
+  fast_search: חיפוש מהיר
+  voice: קוֹל
 
   root_page:
-    title: 'Αγία Γραφή και Ιερή Παράδοση'
+    title: 'תנ"ך ומסורת קודש'
     headers:
-      bible: 'Αγία Γραφή'
-      tradition: 'Ιερή Παράδοση'
+      bible: 'כתבי הקודש — תנ"ך'
+      tradition: 'מסורת קדושה'
 
   bible_page:
-    comment_title: 'Σχολιασμός των Αγίων Γραφών'
-    comment: 'Σχόλιο'
+    comment_title: 'פירוש התנ"ך'
+    comment: 'הֶעָרָה'
 
   search_page:
-    title: Αναζήτηση
-    search_placeholder: Φράση
-    matches: Αγώνες
-    any_book: Οποιοδήποτε βιβλίο
-    old_testament: Παλαιά Διαθήκη
-    new_testament: Καινή Διαθήκη
-    gospel: Ευαγγέλιο
-    similar_phrase: Παρόμοια φράση
-    exact_phrase: Ακριβής φράση
-    meta_description: "Αναζήτηση \"%{search}\". Αγώνες: %{matches}."
-    meta_description_first_verse: " Στίχος: %{verse}"
+    title: לחפש
+    search_placeholder: מִשׁפָּט
+    matches: התאמות
+    any_book: כל ספר
+    old_testament: הברית הישנה
+    new_testament: עדות חדשה
+    gospel: בְּשׂוֹרָה
+    similar_phrase: ביטוי דומה
+    exact_phrase: ביטוי מדויק
+    meta_description: "לחפש \"%{search}\". התאמות: %{matches}."
+    meta_description_first_verse: " פָּסוּק: %{verse}"
 
   page_search:
-    title: Αναζήτηση
+    title: לחפש
 
   login_page:
-    title: 'Συνδεθείτε'
+    title: 'להתחבר'
 
   profile_page:
-    title: 'Μου'
-    logout: Αποσύνδεση
+    title: 'לִי'
+    logout: להתנתק
 
   page:
     title: "%{term}"
-    main_title: "λίστα άρθρων"
-    main_meta_desc: "Άρθρα για βιβλικά, χριστιανικά και θρησκευτικά θέματα"
-    references: 'βιβλιογραφικές αναφορές'
-    no_books_links_yet: 'Δεν υπάρχουν σύνδεσμοι ακόμα.'
-    menu_name: 'Περιεχόμενα'
-    search_placeholder: 'Αναζήτηση ολόκληρης της ενότητας'
+    main_title: "רשימת מאמרים"
+    main_meta_desc: 'מאמרים בנושאים תנ"כיים, נוצריים ודתיים'
+    references: 'הפניות'
+    no_books_links_yet: 'עדיין אין קישורים.'
+    menu_name: 'תוכן עניינים'
+    search_placeholder: 'חפש בכל הקטע'
 
   dict_words:
     title: "Word from Bible – \"%{word}\""
 
   quotes_page:
-    title: Αποσπάσματα της Βίβλου
+    title: ציטוטים של התנ"ך
 
   quote_page:
-    title: "%{term} / εισαγωγικά / Αγια ΓΡΑΦΗ"
-    addresses_list_title: 'Μόνο αναφ:'
-    whant_to_fix: 'Θέλετε να διορθώσετε ή να προσθέσετε κάτι; Πες μας'
-    or_edit_page_by_yourself: Ή επεξεργαστείτε αυτό το άρθρο μόνοι σας
-    edit_link: Επεξεργασία
-    author: Δημοσιεύτηκε από
-    editors: συντάκτες
+    title: "%{term} / ציטוטים / כִּתבֵי הַקוֹדֶשׁ"
+    addresses_list_title: 'רק שופטים:'
+    whant_to_fix: 'רוצה לתקן או להוסיף משהו? תגיד לנו'
+    or_edit_page_by_yourself: או ערוך מאמר זה בעצמך
+    edit_link: לַעֲרוֹך
+    author: פורסם על ידי
+    editors: עורכים
 
   page_translations:
-    ar: '🇦🇪 Αραβικά'
-    cn: '🇨🇳 Κινέζικα'
-    de: '🇩🇪 Γερμανικά'
-    cp: '🇪🇬 Κοπτικά'
-    en: '🇬🇧 Αγγλικά'
-    es: '🇪🇸 Ισπανικά'
-    fr: '🇫🇷 Γαλλικά'
-    gr: '🇬🇷 Ελληνικά'
-    il: '🇮🇱 Εβραϊκά'
-    in: '🇮🇳 Χίντι'
-    ir: '🇮🇷 Περσικά'
-    it: '🇮🇹 Ιταλικά'
-    jp: '🇯🇵 Ιαπωνικά'
-    ke: '🇰🇪 Σουαχίλι'
-    kr: '🇰🇷 Κορεατικά'
-    rs: '🇷🇸 Σερβικά'
-    ru: '🇷🇺 Ρωσικά'
-    tm: '🇹🇲 Τουρκμενικά'
-    tr: '🇹🇷 Τουρκικά'
-    uz: '🇺🇿 Ουζμπεκικά'
-    vn: '🇻🇳 Βιετναμικά'
+    ar: '🇸🇦 ערבית'
+    zh-Hans: '🇨🇳 סינית מפושטת'
+    zh-Hant: '🇨🇳 סינית מסורתית'
+    de: '🇩🇪 גרמנית'
+    cp: '🇪🇬 קופטית'
+    en: '🇬🇧 אנגלית'
+    es: '🇪🇸 ספרדית'
+    fr: '🇫🇷 צרפתית'
+    el: '🇬🇷 יוונית'
+    he: '🇮🇱 עברית'
+    hi: '🇮🇳 הינדי'
+    fa: '🇮🇷 פרסית'
+    it: '🇮🇹 איטלקית'
+    ja: '🇯🇵 יפנית'
+    sw: '🇰🇪 סוואהילי'
+    ko: '🇰🇷 קוריאנית'
+    sr: '🇷🇸 סרבית'
+    ru: '🇷🇺 רוסית'
+    tk: '🇹🇲 טורקמנית'
+    tr: '🇹🇷 טורקית'
+    uz: '🇺🇿 אוזבקית'
+    vi: '🇻🇳 וייטנאמית'
+
+    cu: '📜 סלאבית כנסייתית'
+    grc: '🏛️ יוונית עתיקה'
+    la: '🇻🇦 לטינית'
+    cop: '🇪🇬 קופטית'
+    frm: '🇫🇷 צרפתית ימי־ביניימית'
+    fro: '🇫🇷 צרפתית עתיקה (לפני המאה ה־14)'
 
   bib_translations:
-    ru: Ρωσική
-    csl: σλαυικός
-    en: Αγγλικά
-    heb: Εβραϊκά
-    gr: Ελληνικά
-    jp: Ιαπωνικά
-    cn: κινέζικα
-    ge: Γερμανός
-    arab: Άραβας
-    gr-ru: ελληνορωσικά
+    ru: רוּסִי
+    csl: סלאבית
+    en: אנגלית
+    heb: עִברִית
+    gr: יווני
+    jp: יַפָּנִית
+    cn: סִינִית
+    ge: גֶרמָנִיָת
+    arab: ערבי
+    gr-ru: יוונית-רוסית
 
   tips:
-    click_on_verse: Επισημάνετε έναν στίχο κάνοντας κλικ στον αριθμό του.
-    click_on_verse__working: Εργα
-    click_on_verse__and: και
-    search_was_return_zero_results: Δεν βρέθηκε τίποτα. Ελέγξτε αν έχει επιλεγεί λάθος γλώσσα κειμένου;
-    page_search_was_return_zero_results: Δεν βρέθηκε τίποτα.
+    click_on_verse: סמן פסוק על ידי לחיצה על מספרו.
+    click_on_verse__working: עובד
+    click_on_verse__and: ו
+    search_was_return_zero_results: שום דבר לא נמצא. בדוק אם נבחרה שפת טקסט שגויה?
+    page_search_was_return_zero_results: שום דבר לא נמצא.
 
   breadcrumbs:
-    bible: Αγια ΓΡΑΦΗ
-    VZ: Παλαιά Διαθήκη
-    NZ: Καινή Διαθήκη
-    articles: Άρθρα
+    bible: כִּתבֵי הַקוֹדֶשׁ
+    VZ: הברית הישנה
+    NZ: עדות חדשה
+    articles: מאמרים
 
   menu:
-    bible: Αγια ΓΡΑΦΗ
-    links: Ιερά Παράδοση
-    articles: Άρθρα
-    search: Αναζήτηση
-    settings: Ρυθμίσεις
-    locale: Γλώσσα
-    day: Ημέρα
-    night: Νύχτα
-    veth_zavet: Παλαιά Διαθήκη
-    nov_zavet: Καινή Διαθήκη
-    profile: Προφίλ
-    login: Συνδεθείτε
-    another_categories: Άλλες κατηγορίες
-    same_subject: Παρόμοιες σελίδες
+    bible: כִּתבֵי הַקוֹדֶשׁ
+    links: מסורת הכנסייה
+    articles: מאמרים
+    search: לחפש
+    settings: הגדרות
+    locale: שפה
+    day: יְוֹם
+    night: לַיְלָה
+    veth_zavet: הברית הישנה
+    nov_zavet: עדות חדשה
+    profile: פּרוֹפִיל
+    login: להתחבר
+    another_categories: קטגוריות אחרות
+    same_subject: דפים דומים
 
   settings:
-    color_scheme: Χρωματιστά
-    font_size: Κείμενο
+    color_scheme: צבעים
+    font_size: טֶקסט
 
   select_bar:
-    select_mode_btn: Επιλέγω
-    copy_btn: αντίγραφο
-    copy_menu_title: αντίγραφο
-    copy_text_btn: Κείμενο
-    copy_address_btn: Διεύθυνση
-    copy_link_btn: Σύνδεσμος
+    select_mode_btn: בחר
+    copy_btn: עותק
+    copy_menu_title: עותק
+    copy_text_btn: טֶקסט
+    copy_address_btn: כתובת
+    copy_link_btn: קישור
 
-  chapter: κεφάλαιο
-  chapters: Κεφάλαια
-  psalm: ψαλμός
-  psalms: Ψαλμοί
+  chapter: פֶּרֶק
+  chapters: פרקים
+  psalm: מִזמוֹר
+  psalms: תהילים
 
   end_chapter:
-    the_end_of: Το τέλος του
+    the_end_of: הסוף של
     suffix: ''
     suffix_psalm: ''
-    chapter: κεφάλαιο
-    psalm: ψαλμός
+    chapter: פֶּרֶק
+    psalm: מִזמוֹר
 
-  forward: μπροστά
-  backward: πίσω
+  forward: קָדִימָה
+  backward: לְאָחוֹר
 
-  years_from: από τη γέννηση του Ιησού Χριστού
+  years_from: מלידתו של ישוע המשיח
 
   books:
     short:
-      gen: Γεν
-      ish: Έξ
-      lev: Λευ
-      chis: Αρ
-      vtor: Δτ
-      nav: Ιησ
-      sud: Κρ
-      ruf: Ρουθ
-      1ts: Α Βασ
-      2ts: Β Βασ
-      3ts: Γ Βασ
-      4ts: Δ Βασ
-      1par: Α Παρ
-      2par: Β Παρ
-      ezd: Εσδ
-      neem: Νε
-      esf: Εσθ
-      iov: Ιωβ
-      ps: Ψλ
-      pr: Πρμ
-      ekl: Εκ
-      pp: Ασμ
-      is: Ησ
-      ier: Ιερ
-      pier: Θρή
-      iez: Ιεζ
-      dan: Δν
-      os: Ωσ
-      iol: Ιλ
-      am: Αμ
-      av: Οβδ
-      ion: Ιων
-      mih: Μιχ
-      naum: Νμ
-      avm: Αβ
-      sof: Σφν
-      ag: Αγγ
-      zah: Ζαχ
-      mal: Μαλ
+      gen: ברא'
+      ish: שמות
+      lev: ויק'
+      chis: במד'
+      vtor: דבר'
+      nav: יהושע
+      sud: שפט'
+      ruf: רות
+      1ts: שמ"א
+      2ts: שמ"ב
+      3ts: מל"א
+      4ts: מל"ב
+      1par: דהי"א
+      2par: דהי"ב
+      ezd: עזרא
+      neem: נחמ'
+      esf: אסתר
+      iov: איוב
+      ps: תהל'
+      pr: משלי
+      ekl: קהלת
+      pp: שה"ש
+      is: ישע'
+      ier: ירמ'
+      pier: איכה
+      iez: יחז'
+      dan: דנ'
+      os: הושע
+      iol: יואל
+      am: עמוס
+      av: עבד'
+      ion: יונה
+      mih: מיכה
+      naum: נחום
+      avm: חבק'
+      sof: צפנ'
+      ag: חגי
+      zah: זכר'
+      mal: מלא'
 
-      # Книги, которых обычно нет в MyBible
-      1mak: I Μακ
-      2mak: II Μακ
-      3mak: III Μακ
-      3ezd: III Εσδρ
-      pos: Επ.Ιερ
-      var: Βαρ
-      2ezd: II Εσδρ
-      tov: Τωβ
-      iudf: Ιουδιθ
-      prs: Σ.Σολ
-      prsir: Σ.Σειρ
+      # Книги, которыйх обычно нет в MyBible
+      1mak: 1Mac
+      2mak: 2Mac
+      3mak: 3Mac
+      3ezd: 3Ezr
+      pos: lJer
+      var: Bar
+      2ezd: 2Ezr
+      tov: Tov
+      iudf: Judf
+      prs: pSolom
+      prsir: pSir
 
-      mf: Μτ
-      mk: Μκ
-      lk: Λκ
-      in: Ιω
-      act: Πραξ
-      rim: Ρωμ
-      1kor: Α Κορ
-      2kor: Β Κορ
-      gal: Γαλ
-      ef: Εφ
-      fil: Φιλ
-      kol: Κολ
-      1sol: Α Θεσ
-      2sol: Β Θεσ
-      1tim: Α Τιμ
-      2tim: Β Τιμ
-      tit: Τιτ
-      fm: Φλμ
-      evr: Εβρ
-      iak: Ιακ
-      1pet: Α Πε
-      2pet: Β Πε
-      1in: Α Ιω
-      2in: Β Ιω
-      3in: Γ Ιω
-      iud: Ιούδα
-      otkr: Απ
+      mf: מתי
+      mk: מרק
+      lk: לוק
+      in: יוח
+      act: מעש
+      rim: הרמ
+      1kor: א"קר
+      2kor: ב"קר
+      gal: גלט
+      ef: אפס
+      fil: ילפ
+      kol: קול
+      1sol: א"תס
+      2sol: ב"תס
+      1tim: א"טמ
+      2tim: ב"טמ
+      tit: טיט
+      fm: פלמ
+      evr: עבר
+      iak: יעק
+      1pet: א"פט
+      2pet: ב"פט
+      1in: א"יוח
+      2in: ב"יוח
+      3in: ג"יוח
+      iud: יהד
+      otkr: חזן
 
     mid:
-      gen: Γένεσις
-      ish: Έξοδος
-      lev: Λευιτικόν
-      chis: Αριθμοί
-      vtor: Δευτερονόμιον
-      nav: Ιησούς του Ναυή
-      sud: Κριταί
-      ruf: Ρουθ
-      1ts: Βασιλειών Α'
-      2ts: Βασιλειών Β'
-      3ts: Βασιλειών Γ'
-      4ts: Βασιλειών Δ'
-      1par: Παραλειπομένων Α'
-      2par: Παραλειπομένων Β'
-      ezd: Έσδρας
-      neem: Νεεμίας
-      esf: Εσθήρ
-      iov: Ιώβ
-      ps: Ψαλμοί
-      pr: Παροιμίαι
-      ekl: Εκκλησιαστής
-      pp: Άσμα Ασμάτων
-      is: Ησαΐας
-      ier: Ιερεμίας
-      pier: Θρήνοι Ιερεμίου
-      iez: Ιεζεκιήλ
-      dan: Δανιήλ
-      os: Ωσηέ
-      iol: Ιωήλ
-      am: Αμώς
-      av: Οβδιού
-      ion: Ιωνάς
-      mih: Μιχαίας
-      naum: Ναούμ
-      avm: Αββακούμ
-      sof: Σοφονίας
-      ag: Αγγαίος
-      zah: Ζαχαρίας
-      mal: Μαλαχίας
+      gen: בְּרֵאשִׁית
+      ish: שְׁמוֹת
+      lev: וַיִּקְרָא
+      chis: בְּמִדְבַּר
+      vtor: דְּבָרִים
+      nav: יְהוֹשֻׁע
+      sud: שׁוֹפְטִים
+      ruf: רוּת
+      1ts: שְׁמוּאֵל א
+      2ts: שְׁמוּאֵל ב
+      3ts: מְלָכִים א
+      4ts: מְלָכִים ב
+      1par: דִּבְרֵי הַיָּמִים א
+      2par: דִּבְרֵי הַיָּמִים ב
+      ezd: עֶזְרָא
+      neem: נְחֶמְיָה
+      esf: אֶסְתֵּר
+      iov: אִיּוֹב
+      ps: תְּהִלִים
+      pr: מִשְׁלֵי
+      ekl: קֹהֶלֶת
+      pp: שִׁיר הַשִּׁירִים
+      is: יְשַׁעְיָהוּ
+      ier: יִרְמְיָהוּ
+      pier: אֵיכָה
+      iez: יְחֶזְקֵאל
+      dan: דָּנִיֵּאל
+      os: הוֹשֵׁע
+      iol: יוֹאֵל
+      am: עָמוֹס
+      av: עֹבַדְיָה
+      ion: יוֹנָה
+      mih: מִיכָה
+      naum: נַחוּם
+      avm: חֲבַקּוּק
+      sof: צְפַנְיָה
+      ag: חַגַּי
+      zah: זְכַרְיָה
+      mal: מַלְאָכִי
 
       # книги которых обычно нет в MyBible
-      1mak: I Μακαβαιων
-      2mak: II Μακαβαιων
-      3mak: III Μακαβαιων
-      3ezd: III Εσδρασ
-      pos: Επιστολη Ιερεμιου
-      var: Βαρουχ
-      2ezd: II Εσδρασ
-      tov: Τωβιτ
-      iudf: Ιουδιθ
-      prs: Σοφια Σολομωντοσ
-      prsir: Σοφια Σειραχ
+      1mak: '1Mac'
+      2mak: '2Mac'
+      3mak: '3Mac'
+      3ezd: 'The Third Book of EZRA'
+      pos: Letter of JEREMIAH
+      var: The Book of BARUCH
+      2ezd: 'The Second Book of EZRA'
+      tov: 'Tov'
+      iudf: 'Judf'
+      prs: 'P. Solom'
+      prsir: 'P. Sir'
 
-      mf: Ευαγγέλιο κατά Ματθαίον
-      mk: Κατά Μάρκον
-      lk: Κατά Λουκάν
-      in: Κατά Ιωάννην
-      act: Πράξεις Αποστόλων
-      rim: Ρωμαίους
-      1kor: Κορινθίους Α'
-      2kor: Κορινθίους Β'
-      gal: Γαλάτας
-      ef: Εφεσίους
-      fil: Φιλιππησίους
-      kol: Κολοσσαείς
-      1sol: Θεσσαλονικείς Α'
-      2sol: Θεσσαλονικείς Β'
-      1tim: Τιμόθεον Α'
-      2tim: Τιμόθεον Β'
-      tit: Τίτον
-      fm: Φιλήμονα
-      evr: Εβραίους
-      iak: Ιακώβου
-      1pet: Πέτρου Α'
-      2pet: Πέτρου Β'
-      1in: Ιωάννη Α'
-      2in: Ιωάννη Β'
-      3in: Ιωάννη Γ'
-      iud: Ιούδα
-      otkr: Αποκάλυψις Ιωάννου
+      mf: הבשורה על-פי מתי
+      mk: הבשורה על-פי מרקוס
+      lk: הבשורה על-פי לוקס
+      in: הבשורה על-פי יוחנן
+      act: מעשי השליחים
+      rim: אל-הרומיים
+      1kor: הראשונה אל-הקורנתיים
+      2kor: השנית אל-הקורנתיים
+      gal: אל-הגלטיים
+      ef: אל-האפסיים
+      fil: אל-הפילפיים
+      kol: אל-הקולסים
+      1sol: הראשונה אל-התסלוניקים
+      2sol: השנית אל-התסלוניקים
+      1tim: הראשונה אל-טימותיוס
+      2tim: השנית אל-טימותיוס
+      tit: אל-טיטוס
+      fm: אל-פילימון
+      evr: אגרת אל-העברים
+      iak: אגרת יעקוב
+      1pet: האגרת הראשונה לפטרוס השליח
+      2pet: האגרת השנית לפטרוס השליח
+      1in: האגרת הראשונה ליוחנן השליח
+      2in: האגרת השנית ליוחנן השליח
+      3in: האגרת השלישית ליוחנן השליח
+      iud: אגרת יהודה
+      otkr: חזון יוחנן
 
     full:
-      gen: Γένεσις
-      ish: Έξοδος
-      lev: Λευιτικόν
-      chis: Αριθμοί
-      vtor: Δευτερονόμιον
-      nav: Ιησούς του Ναυή
-      sud: Κριταί
-      ruf: Ρουθ
-      1ts: Βασιλειών Α'
-      2ts: Βασιλειών Β'
-      3ts: Βασιλειών Γ'
-      4ts: Βασιλειών Δ'
-      1par: Παραλειπομένων Α'
-      2par: Παραλειπομένων Β'
-      ezd: Έσδρας
-      neem: Νεεμίας
-      esf: Εσθήρ
-      iov: Ιώβ
-      ps: Ψαλμοί
-      pr: Παροιμίαι
-      ekl: Εκκλησιαστής
-      pp: Άσμα Ασμάτων
-      is: Ησαΐας
-      ier: Ιερεμίας
-      pier: Θρήνοι Ιερεμίου
-      iez: Ιεζεκιήλ
-      dan: Δανιήλ
-      os: Ωσηέ
-      iol: Ιωήλ
-      am: Αμώς
-      av: Οβδιού
-      ion: Ιωνάς
-      mih: Μιχαίας
-      naum: Ναούμ
-      avm: Αββακούμ
-      sof: Σοφονίας
-      ag: Αγγαίος
-      zah: Ζαχαρίας
-      mal: Μαλαχίας
+      gen: בְּרֵאשִׁית
+      ish: שְׁמוֹת
+      lev: וַיִּקְרָא
+      chis: בְּמִדְבַּר
+      vtor: דְּבָרִים
+      nav: יְהוֹשֻׁע
+      sud: שׁוֹפְטִים
+      ruf: רוּת
+      1ts: שְׁמוּאֵל א
+      2ts: שְׁמוּאֵל ב
+      3ts: מְלָכִים א
+      4ts: מְלָכִים ב
+      1par: דִּבְרֵי הַיָּמִים א
+      2par: דִּבְרֵי הַיָּמִים ב
+      ezd: עֶזְרָא
+      neem: נְחֶמְיָה
+      esf: אֶסְתֵּר
+      iov: אִיּוֹב
+      ps: תְּהִלִים
+      pr: מִשְׁלֵי
+      ekl: קֹהֶלֶת
+      pp: שִׁיר הַשִּׁירִים
+      is: יְשַׁעְיָהוּ
+      ier: יִרְמְיָהוּ
+      pier: אֵיכָה
+      iez: יְחֶזְקֵאל
+      dan: דָּנִיֵּאל
+      os: הוֹשֵׁע
+      iol: יוֹאֵל
+      am: עָמוֹס
+      av: עֹבַדְיָה
+      ion: יוֹנָה
+      mih: מִיכָה
+      naum: נַחוּם
+      avm: חֲבַקּוּק
+      sof: צְפַנְיָה
+      ag: חַגַּי
+      zah: זְכַרְיָה
+      mal: מַלְאָכִי
 
       # книги которых обычно нет в MyBible
-      1mak: I Μακαβαιων
-      2mak: II Μακαβαιων
-      3mak: III Μακαβαιων
-      3ezd: III Εσδρασ
-      pos: Επιστολη Ιερεμιου
-      var: Βαρουχ
-      2ezd: II Εσδρασ
-      tov: Τωβιτ
-      iudf: Ιουδιθ
-      prs: Σοφια Σολομωντοσ
-      prsir: Σοφια Σειραχ
+      1mak: '1Mac'
+      2mak: '2Mac'
+      3mak: '3Mac'
+      3ezd: 'The Third Book of EZRA'
+      pos: Letter of JEREMIAH
+      var: The Book of BARUCH
+      2ezd: 'The Second Book of EZRA'
+      tov: 'Tov'
+      iudf: 'Judf'
+      prs: 'P. Solom'
+      prsir: 'P. Sir'
 
-      mf: Ευαγγέλιο κατά Ματθαίον
-      mk: Ευαγγέλιο κατά Μάρκον
-      lk: Ευαγγέλιο κατά Λουκάν
-      in: Ευαγγέλιο κατά Ιωάννην
-      act: Πράξεις Αποστόλων
-      rim: Προς Ρωμαίους
-      1kor: Προς Κορινθίους Α'
-      2kor: Προς Κορινθίους Β'
-      gal: Προς Γαλάτας
-      ef: Προς Εφεσίους
-      fil: Προς Φιλιππησίους
-      kol: Προς Κολοσσαείς
-      1sol: Προς Θεσσαλονικείς Α'
-      2sol: Προς Θεσσαλονικείς Β'
-      1tim: Προς Τιμόθεον Α'
-      2tim: Προς Τιμόθεον Β'
-      tit: Προς Τίτον
-      fm: Προς Φιλήμονα
-      evr: Προς Εβραίους
-      iak: Επιστολή Ιακώβου
-      1pet: Επιστολή Πέτρου Α'
-      2pet: Επιστολή Πέτρου Β'
-      1in: Επιστολή Ιωάννη Α'
-      2in: Επιστολή Ιωάννη Β'
-      3in: Επιστολή Ιωάννη Γ'
-      iud: Επιστολή Ιούδα
-      otkr: Αποκάλυψις Ιωάννου
+      mf: הבשורה על-פי מתי
+      mk: הבשורה על-פי מרקוס
+      lk: הבשורה על-פי לוקס
+      in: הבשורה על-פי יוחנן
+      act: מעשי השליחים
+      rim: אל-הרומיים
+      1kor: הראשונה אל-הקורנתיים
+      2kor: השנית אל-הקורנתיים
+      gal: אל-הגלטיים
+      ef: אל-האפסיים
+      fil: אל-הפילפיים
+      kol: אל-הקולסים
+      1sol: הראשונה אל-התסלוניקים
+      2sol: השנית אל-התסלוניקים
+      1tim: הראשונה אל-טימותיוס
+      2tim: השנית אל-טימותיוס
+      tit: אל-טיטוס
+      fm: אל-פילימון
+      evr: אגרת אל-העברים
+      iak: אגרת יעקוב
+      1pet: האגרת הראשונה לפטרוס השליח
+      2pet: האגרת השנית לפטרוס השליח
+      1in: האגרת הראשונה ליוחנן השליח
+      2in: האגרת השנית ליוחנן השליח
+      3in: האגרת השלישית ליוחנן השליח
+      iud: אגרת יהודה
+      otkr: חזון יוחנן
 
   errors:
-    no_translation_for_this_book: 'Δεν υπάρχει τέτοια μετάφραση για αυτό το βιβλίο'
+    no_translation_for_this_book: 'אין תרגום כזה לספר הזה'
     messages:
       taken: "has already been taken"
 

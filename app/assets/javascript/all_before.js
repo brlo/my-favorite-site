@@ -6,7 +6,13 @@ const localization = {
     night: 'ليلة',
     linkIsCopied: 'تم نسخ الرابط',
   },
-  cn: {
+  'zh-Hans': {
+    copyTitle: '复制的',
+    day: '天',
+    night: '夜晚',
+    linkIsCopied: '链接已复制',
+  },
+  'zh-Hant': {
     copyTitle: '复制的',
     day: '天',
     night: '夜晚',
@@ -24,19 +30,19 @@ const localization = {
     night: 'Night',
     linkIsCopied: 'The link is copied',
   },
-  gr: {
+  el: {
     copyTitle: 'αντιγράφηκε',
     day: 'Ημέρα',
     night: 'Νύχτα',
     linkIsCopied: 'Ο σύνδεσμος αντιγράφεται',
   },
-  il: {
+  he: {
     copyTitle: 'מוּעֲתָק',
     day: 'יְוֹם',
     night: 'לַיְלָה',
     linkIsCopied: 'הקישור מועתק',
   },
-  jp: {
+  ja: {
     copyTitle: 'コピーされました',
     day: '昼',
     night: '夜',
@@ -60,13 +66,13 @@ const localization = {
     "night": "Nuit",
     "linkIsCopied": "Lien copié"
   },
-  "in": { // хинди
+  "hi": { // хинди
     "copyTitle": "कॉपी किया गया",
     "day": "दिन",
     "night": "रात",
     "linkIsCopied": "लिंक कॉपी किया गया"
   },
-  "ir": { // персидский
+  "fa": { // персидский
     "copyTitle": "کپی شد",
     "day": "روز",
     "night": "شب",
@@ -78,25 +84,25 @@ const localization = {
     "night": "Notte",
     "linkIsCopied": "Link copiato"
   },
-  "ke": { // суахили
+  "sw": { // суахили
     "copyTitle": "Imenakiliwa",
     "day": "Mchana",
     "night": "Usiku",
     "linkIsCopied": "Kiunga kimenakiliwa"
   },
-  "kr": { // корейский
+  "ko": { // корейский
     "copyTitle": "복사됨",
     "day": "낮",
     "night": "밤",
     "linkIsCopied": "링크가 복사되었습니다"
   },
-  "rs": { // сербский
+  "sr": { // сербский
     "copyTitle": "Копирано",
     "day": "Дан",
     "night": "Ноћ",
     "linkIsCopied": "Линк је копиран"
   },
-  "tm": { // туркменский
+  "tk": { // туркменский
     "copyTitle": "Kopyalandy",
     "day": "Gün",
     "night": "Gije",
@@ -114,7 +120,7 @@ const localization = {
     "night": "Tun",
     "linkIsCopied": "Havola nusxa olindi"
   },
-  "vn": { // вьетнамский
+  "vi": { // вьетнамский
     "copyTitle": "Đã sao chép",
     "day": "Ngày",
     "night": "Đêm",

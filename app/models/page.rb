@@ -108,7 +108,7 @@ class Page < ApplicationMongoRecord
 
   # Получить комментарии к библейским стихам
   def self.comments_for_verses(verses)
-    lang = ::ApplicationHelper::LANG_CONTENT_TO_LANG_UI[verses.first&.lang]
+    lang = ::BIB_LANG_TO_LOCALE[verses.first&.lang]
     paths = verses.map { |v| "#{lang}-#{v.a}" }
     self.where(:path_low.in => paths)
   end

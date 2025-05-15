@@ -89,7 +89,7 @@ class PagesController < ApplicationController
         end
 
         # Доступные языки статьи
-        @page_langs = ::Page.where(group_lang_id: @page.group_lang_id).pluck(:lang, :path)
+        @page_langs = ::Page.where(group_lang_id: @page.group_lang_id).pluck(:lang, :path).sort
 
         # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
         if @page.parent_id
