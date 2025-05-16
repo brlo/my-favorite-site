@@ -143,9 +143,8 @@
       <dd id='change-ui-lang-area'>
         <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
         <select id="ui-lang-select">
-          <% I18n.t('page_translations').sort.each do |ln_code, ln_name| %>
-            <% next if ln_code == :cp %>
-            <option value='<%= ln_code %>' <%= ::I18n.locale == ln_code ? 'selected' : '' %>><%= "#{ln_name}" %></option>
+          <% ALL_LOCALES.each do |locale,_| %>
+            <option value='<%= locale %>' <%= ::I18n.locale == locale ? 'selected' : '' %>><%= "#{ ::I18n.t("page_translations.#{locale}") }" %></option>
           <% end %>
         </select>
       </dd>
