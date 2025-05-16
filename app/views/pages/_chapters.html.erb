@@ -105,7 +105,7 @@
 
 <% elsif @chapters.present? && @chapters.size > 1 %>
 
-  <div class='menu-tree'>
+  <div class='menu-tree t-c-dir'>
     <div class='small hint' style="margin-left: 12px;"><%= ::I18n.t('menu.same_subject') %></div>
     <div class='items'>
       <% @chapters.each.with_index do |(title, path, is_gold), i| %>

@@ -24,7 +24,7 @@
   <% end %>
 
   <% classes = (@page.is_page_verses? && @verses.present?) ? 'verse-page' : 'text-page' %>
-  <section id="page-content" class="looks-like-page t-c-dir <%= classes %>" itemscope="" itemtype="http://schema.org/Article">
+  <section id="page-content" class="looks-like-page <%= classes %>" itemscope="" itemtype="http://schema.org/Article">
     <%= render(partial: 'pages/chapters') %>
     <%= render(partial: 'pages/text_bar') %>
     <%= render(partial: 'pages/audio_player') %>
@@ -32,7 +32,7 @@
     <% if @page.is_page_verses? && @verses.present? %>
       <%= render(partial: 'pages/text') %>
     <% else %>
-      <article id='page-body' itemprop="articleBody" class="verses">
+      <article id='page-body' itemprop="articleBody" class="verses t-c-dir">
         <% if @page.body_menu.present? %>
           <%= render(partial: 'pages/body_menu') %>
         <% end %>
@@ -67,7 +67,7 @@
     <% end %>
 
     <% if @page.references.present? %>
-      <section id='page-references' class="looks-like-page">
+      <section id='page-references' class="looks-like-page t-c-dir">
         <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
         <div id="page-references-text">
           <% if @page.body_rendered.present? %>
@@ -89,7 +89,7 @@
       </div>
     </div>
 
-    <div class='notification'>
+    <div class='notification t-c-dir'>
       <% if @page.user_id %>
         <div id="page-author">
           <%= ::I18n.t('quote_page.author') %>: <%= @author_name %>

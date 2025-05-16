@@ -174,6 +174,19 @@ const pageTypesDesc = {
   5: 'Книга стихами — режим публикации небольших книг (например, древних писателей). Книга автоматически разобъётся на стихи.',
 }
 
+const langsWithoutLocales = {
+ 'la':  'it', // # Латынь (ISO 639-1/2)
+ 'grc': 'el', // # Древнегреческий (классический) (ISO 639-3)
+ 'frm': 'fr', // # Средневековый французский (ISO 639-3, French, Medieval ~1400–1600)
+ 'fro': 'fr', // # Старофранцузский (до XIV века) (ISO 639-3)
+ 'cop': 'en', // # Коптский (ISO 639-2/3)
+ 'cu':  'ru', // # Церковнославянский (ISO 639-1/2, код означает "Old Church Slavonic")
+}
+// Для древних языков, которым не сделана локализация UI, принимаем решение какую локализацию включать:
+function localeForPage(pageLang) {
+  return langsWithoutLocales[pageLang] || pageLang || 'ru';
+}
+
 let seen = computed(() => {
   return (props.id == undefined || page.value.id) ? true : false;
 })
@@ -362,7 +375,7 @@ function removeLink(index) {
 </Dialog>
 
 <router-link :to="{ name: 'Pages'}">← Назад</router-link>
-<a style='margin: 0 10px;' v-if="page.id" :href="`${apiUrl}/${page.lang}/${page.lang}/w/${page.path}`">Статья на сайте</a>
+<a style='margin: 0 10px;' v-if="page.id" :href="`${apiUrl}/${localeForPage(page.lang)}/${page.lang}/w/${page.path}`">Статья на сайте</a>
 
 <h1 v-if="page.id">Редактирование статьи</h1>
 <h1 v-else>Новая статья</h1>
