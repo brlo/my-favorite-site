@@ -24,7 +24,7 @@
   <% end %>
 
   <% classes = (@page.is_page_verses? && @verses.present?) ? 'verse-page' : 'text-page' %>
-  <section id="page-content" class="looks-like-page <%= classes %>" itemscope="" itemtype="http://schema.org/Article">
+  <section id="page-content" class="looks-like-page t-c-dir <%= classes %>" itemscope="" itemtype="http://schema.org/Article">
     <%= render(partial: 'pages/chapters') %>
     <%= render(partial: 'pages/text_bar') %>
     <%= render(partial: 'pages/audio_player') %>

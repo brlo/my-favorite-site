@@ -29,6 +29,26 @@
 #   ::Page.where(lang: o).each { |pg| pg.update!(lang: n) }
 # end
 
+# old_to_new = {
+#   'cn' => 'zh-Hans',
+#   'gr' => 'el',
+#   'il' => 'he',
+#   'in' => 'hi',
+#   'ir' => 'fa',
+#   'jp' => 'ja',
+#   'ke' => 'sw',
+#   'kr' => 'ko',
+#   'rs' => 'sr',
+#   'tm' => 'tk',
+#   'vn' => 'vi',
+#   'cp' => 'cop'
+# }.map do |o,n|
+#   pg = ::Page.where(path: "links_#{o}").first
+#   if pg
+#     pg.update!(path: "links_#{n}")
+#   end
+# end
+
 # При добавлении новых локалей, добавь их также и тут:
 # app/assets/javascript/all_before.js
 # admin/src/views/pages/Index.vue

@@ -32,9 +32,9 @@ class VersesController < ApplicationController
       @current_bib_lang = current_bib_lang()
       @locale_by_bib = locale_for_content_lang(@current_bib_lang)
 
-      @page = ::Page.find_by(path_low: "links_#{@locale_by_bib}")
+      @page = ::Page.where(path_low: "links_#{@locale_by_bib.downcase}").first
       # @page = ::Page.find_by(path_low: "links_#{::I18n.locale}")
-      if @page.page_type.to_i == ::Page::PAGE_TYPES['список']
+      if @page&.page_type.to_i == ::Page::PAGE_TYPES['список']
         @tree_menu = @page.tree_menu
       end
 

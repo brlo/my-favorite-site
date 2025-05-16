@@ -119,11 +119,11 @@ module ApplicationHelper
   end
 
   def text_content_direction
-    @text_content_direction ||= ['heb-osm', 'arab-avd', 'il', 'ar'].include?(params[:content_lang]) ? 'rtl' : 'ltr'
+    @text_content_direction ||= ['heb-osm', 'arab-avd', 'he', 'ar'].include?(params[:content_lang]) ? 'rtl' : 'ltr'
   end
 
   def text_ui_direction
-    @text_ui_direction ||= ['il', 'ar'].include?(::I18n.locale.to_s) ? 'rtl' : 'ltr'
+    @text_ui_direction ||= ['he', 'ar'].include?(::I18n.locale.to_s) ? 'rtl' : 'ltr'
   end
 
   def interliner_helper(verse_data)
