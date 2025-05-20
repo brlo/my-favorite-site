@@ -74,6 +74,12 @@ db.changeUserPassword("bibl_explorer", "123")
 Verse.create_indexes
 ```
 
+
+Долгие запросы
+```
+sudo docker exec -it mongo-4.2 mongo --eval "db.currentOp({ active: true, secs_running: { \$gt: 1 } })"
+```
+
 * Deployment instructions
 
 git:

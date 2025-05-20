@@ -195,10 +195,18 @@ let seenMenu = computed(() => {
   return (page.value.id && page.value.page_type == '4') ? true : false
 })
 
-// Пользователь является хозяином текущей страницы? Если да, то он может изменять её даже без прав на изменение страниц.
 let isPageOwner = computed(() => {
-  if (!props.currentUser?.pages_owner || !props?.id) return false
-  return props.currentUser.pages_owner.includes(props.id)
+  // Проверяем, что массив pages_owner существует и не пуст
+  if (!props.currentUser?.pages_owner?.length) return false;
+
+  // Если передан props.id и он есть в массиве — true
+  if (props.id && props.currentUser.pages_owner.includes(props.id)) return true;
+
+  // Если передан page.value.parent_id и он есть в массиве — true
+  if (page.value?.parent_id && props.currentUser.pages_owner.includes(page.value.parent_id)) return true;
+
+  // Иначе — false
+  return false;
 });
 
 function submit() {

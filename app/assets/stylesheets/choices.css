@@ -431,3 +431,7 @@
 }
 
 /* =====  End of Choices  ====== */
+
+.choices__item {
+  white-space: nowrap;
+}

@@ -1,50 +1,19 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 de:
   title: Bibleox
   bible: Bibel
-  about_site: 'Um'
-  about_site_description: 'Website zum Bibelstudium. Kontakte mit Entwickler.'
-  about_site_short: 'Website über die Heilige Schrift (Bibel) und die Apostolische Tradition der Orthodoxen Kirche'
-  about_text: Die Stätte wurde 2022 in der Stadt Sewastopol mit dem Segen eines orthodoxen Priesters gegründet.
-  about_news: Bibleox-Neuigkeiten
-  about_contact: Kontakt mit Entwickler
-  fast_search: Schnelle Suche
-  voice: Stimme
+  about_site: 'Über die Seite'
+  about_site_description: 'Website zum Studium der Bibel. Kontakt zum Entwickler.'
+  about_site_short: 'Website über die Heilige Schrift (Bibel) und die apostolische Tradition der Orthodoxen Kirche'
+  about_text: Die Website wurde 2022 in der Stadt Sewastopol mit dem Segen eines orthodoxen Geistlichen erstellt.
+  about_news: Neuigkeiten über die Entwicklung von Bibleox
+  about_contact: Kontakt zum Entwickler
+  fast_search: 'Phrase suchen oder Jak 2 16'
+  voice: Vorlesen
 
   root_page:
-    title: 'Bibel und heilige Tradition'
+    title: 'Bibel und Heilige Tradition'
     headers:
-      bible: 'Bibel — Heilige Schrift'
+      bible: 'Heilige Schrift'
       tradition: 'Heilige Tradition'
 
   bible_page:
@@ -52,51 +21,51 @@ de:
     comment: 'Kommentar'
 
   search_page:
-    title: Suchen
+    title: Suche
     search_placeholder: Phrase
-    matches: Streichhölzer
-    any_book: Irgendein Buch
+    matches: Treffer
+    any_book: Beliebiges Buch
     old_testament: Altes Testament
     new_testament: Neues Testament
     gospel: Evangelium
-    similar_phrase: Ähnlicher Satz
-    exact_phrase: Exakte Formulierung
-    meta_description: "Suchen \"%{search}\". Streichhölzer: %{matches}."
+    similar_phrase: Ähnliche Phrase
+    exact_phrase: Exakte Phrase
+    meta_description: "Suche nach \"%{search}\". Gefundene Ergebnisse: %{matches}."
     meta_description_first_verse: " Vers: %{verse}"
 
   page_search:
-    title: Suchen
+    title: Suche in
 
   login_page:
-    title: anmelden
+    title: 'Anmeldung'
 
   profile_page:
-    title: Mich
-    logout: Ausloggen
+    title: 'Mein Profil'
+    logout: Abmelden
 
   page:
     title: "%{term}"
-    main_title: "Artikelliste"
+    main_title: "Artikelübersicht"
     main_meta_desc: "Artikel zu biblischen, christlichen und religiösen Themen"
-    references: 'Verweise'
-    no_books_links_yet: 'Es gibt noch keine Links.'
+    references: 'Anmerkungen'
+    no_books_links_yet: 'Hier gibt es noch keine weiteren Links. Schauen Sie später wieder vorbei.'
     menu_name: 'Inhaltsverzeichnis'
-    search_placeholder: 'Durchsuchen Sie den gesamten Abschnitt'
+    search_placeholder: 'Suche im gesamten Bereich'
 
   dict_words:
-    title: "Word from Bible – \"%{word}\""
+    title: "Bibelwort – \"%{word}\""
 
   quotes_page:
     title: Bibelzitate
 
   quote_page:
     title: "%{term} / Zitate / Bibel"
-    addresses_list_title: 'Nur Schiedsrichter:'
-    whant_to_fix: 'Möchten Sie etwas reparieren oder hinzufügen? Erzähl uns'
-    or_edit_page_by_yourself: Oder bearbeiten Sie diesen Artikel selbst
+    addresses_list_title: 'Nur Links:'
+    whant_to_fix: 'Möchten Sie korrigieren oder ergänzen? Schreiben Sie uns'
+    or_edit_page_by_yourself: Oder bearbeiten Sie den Artikel selbst
     edit_link: Bearbeiten
-    author: Herausgegeben von
-    editors: Herausgeber
+    author: Veröffentlicht von
+    editors: Bearbeiter
 
   page_translations:
     ar: '🇸🇦 Arabisch'
@@ -121,7 +90,7 @@ de:
     tr: '🇹🇷 Türkisch'
     uz: '🇺🇿 Usbekisch'
     vi: '🇻🇳 Vietnamesisch'
-
+    # --- für diese Sprachen gibt es keine Benutzeroberflächen-Übersetzung
     cu: '📜 Kirchenslawisch'
     grc: '🏛️ Altgriechisch'
     la: '🇻🇦 Latein'
@@ -130,22 +99,80 @@ de:
     fro: '🇫🇷 Altfranzösisch (vor dem 14. Jh.)'
 
   bib_translations:
+    translates: Übersetzungen
     ru: Russisch
-    csl: Slawisch
+    csl: Kirchenslaw.
     en: Englisch
     heb: Hebräisch
     gr: Griechisch
     jp: Japanisch
     cn: Chinesisch
     ge: Deutsch
-    arab: Araber
-    gr-ru: Griechisch-Rus
+    arab: Arabisch
+    interliners: Interlinearübersetzungen
+    gr-ru: Russisch
+    gr-en: Englisch
+    gr-jp: Japanisch
+
+  bib_word_info:
+    translation: Übersetzung
+    lexema: lx
+    morphology: Morphologie
+    transcription: Transkription
+    more: mehr
+    morph:
+      # Wortart:
+      "ch-r": 'Wortart'
+      "сущ.": Substantiv
+      "гл.": Verb
+      "прил.": Adjektiv
+      "нареч.": Adverb
+      "мест.": Pronomen
+      "числ.": Numerale
+      "предл.": Präposition
+      "союз": Konjunktion
+      "част.": Partikel
+      "межд.": Interjektion
+      # Fall:
+      "p": 'Fall'
+      "им. п.": Nominativ
+      "р. п.": Genitiv
+      "род. п.": Genitiv
+      "дат. п.": Dativ
+      "вин. п.": Akkusativ
+      "тв. п.": Instrumental
+      "пред. п.": Präpositiv
+      "зват. п.": Vokativ
+      "несов. вр.": "unvoll. Zeit"
+      # Geschlecht:
+      "r": 'Geschlecht'
+      "м.": männlich
+      "ж.": weiblich
+      "ср.": sächlich
+      # Zahl:
+      "ch": Zahl
+      "ед. ч.": Singular
+      "мн. ч.": Plural
+      "-":
+      # Zeit
+      "t": Zeit
+      "п.": Vergangenheit
+      "перф.": Perfekt
+      "наст.": Präsens
+      "аор. инф.": Aorist Inf.
+      "наст. инф.": Präsens Inf.
+      "буд.": Futur
+      "аор.": Aorist
+      "аор. повел.": Aorist Imper.
+      "аор. сосл.": Aorist Konj.
+      "наст. повел.": Präsens Imper.
+      "наст. деепр.": Präsens Ger.
 
   tips:
-    click_on_verse: Markieren Sie einen Vers, indem Sie auf seine Nummer klicken.
+    click_on_verse: Sie können einen Vers auswählen, indem Sie auf seine Nummer klicken.
     click_on_verse__working: Funktioniert
-    click_on_verse__and: Und
-    search_was_return_zero_results: Nichts gefunden. Prüfen Sie, ob die falsche Textsprache ausgewählt ist?
+    click_on_verse__and: und
+    search_was_return_zero_results: Nichts gefunden. Überprüfen Sie, ob die richtige Textsprache ausgewählt ist.
     page_search_was_return_zero_results: Nichts gefunden.
 
   breadcrumbs:
@@ -153,34 +180,69 @@ de:
     VZ: Altes Testament
     NZ: Neues Testament
     articles: Artikel
+    bib_langs:
+      vz:
+        ru: 'Synodalübersetzung (RST)'
+        en-nrsv: 'moderne englische Übersetzung (NRSV)'
+        eng-nkjv: 'King-James-Übersetzung (NKJV, 1982)'
+        csl-ru: 'kirchenslawische Übersetzung in russischen Buchstaben (CSL-RU, 1751)'
+        csl-pnm: 'kirchenslawische Übersetzung (CSL, 1751)'
+        heb-osm: 'hebräische Übersetzung (DHNT, 1885)'
+        gr-lxx-byz: 'griechische Übersetzung (LXX, Septuaginta, 3.-2. Jh. v. Chr.)'
+
+        gr-ru: 'russische Interlinearübersetzung (bibleox, 2025)'
+        gr-en: 'englische Interlinearübersetzung (bibleox, 2025)'
+        gr-jp: 'japanische Interlinearübersetzung (bibleox, 2025)'
+
+        jp-ni: 'japanische Übersetzung (JP-NI)'
+        cn-ccbs: 'chinesische Übersetzung (CCBS)'
+        ge-sch: 'deutsche Übersetzung (SCH)'
+        arab-avd: 'arabische Übersetzung (AVD)'
+      nz:
+        ru: 'Synodalübersetzung (RST)'
+        en-nrsv: 'moderne englische Übersetzung (NRSV)'
+        eng-nkjv: 'King-James-Übersetzung (NKJV, 1982)'
+        csl-ru: 'kirchenslawische Übersetzung in russischen Buchstaben (CSL-RU, 1751)'
+        csl-pnm: 'kirchenslawische Übersetzung (CSL, 1751)'
+        heb-osm: 'hebräische Übersetzung (DHNT, 1885)'
+        gr-lxx-byz: 'originaler apostolischer Text'
+
+        gr-ru: 'russische Interlinearübersetzung (bibleox, 2025)'
+        gr-en: 'englische Interlinearübersetzung (bibleox, 2025)'
+        gr-jp: 'japanische Interlinearübersetzung (bibleox, 2025)'
+
+        jp-ni: 'japanische Übersetzung (JP-NI, 1987)'
+        cn-ccbs: 'chinesische Übersetzung (CCBS, 2012)'
+        ge-sch: 'deutsche Übersetzung (SCH, 1951)'
+        arab-avd: 'arabische Übersetzung (AVD, 1999)'
 
   menu:
     bible: Schrift
     links: Tradition
     articles: Artikel
-    search: Suchen
+    search: Suche
     settings: Einstellungen
-    locale: Sprache
+    locale: Sprache der Benutzeroberfläche
     day: Tag
     night: Nacht
     veth_zavet: Altes Testament
     nov_zavet: Neues Testament
     profile: Profil
-    login: anmelden
+    login: Anmelden
     another_categories: Andere Kategorien
-    same_subject: "Ähnliche Seiten:"
+    same_subject: "Ähnliche Materialien:"
 
   settings:
     color_scheme: Farben
     font_size: Text
 
   select_bar:
-    select_mode_btn: Wählen
+    select_mode_btn: Auswählen
     copy_btn: Kopieren
     copy_menu_title: Kopieren
     copy_text_btn: Text
     copy_address_btn: Adresse
-    copy_link_btn: Verknüpfung
+    copy_link_btn: Link
 
   chapter: Kapitel
   chapters: Kapitel
@@ -188,16 +250,16 @@ de:
   psalms: Psalmen
 
   end_chapter:
-    the_end_of: Das Ende von
+    the_end_of: Ende
     suffix: ''
     suffix_psalm: ''
     chapter: Kapitel
     psalm: Psalm
 
-  forward: Nach vorne
-  backward: Rückwärts
+  forward: Vorwärts
+  backward: Zurück
 
-  years_from: seit der Geburt Jesu Christi
+  years_from: Jahr nach Christus
 
   books:
     short:
