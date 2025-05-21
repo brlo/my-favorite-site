@@ -191,9 +191,8 @@ module Api
       # можно хозяину
       return if page_owner?()
       # можно, если пользователь отменёет свой MR
-      return if @mr&.user_id == ::Current.user.id
+      return if ::Current.user.present? && (@mr&.user_id == ::Current.user.id)
       ability?('mrs_reject')
-      # (ability?('mrs_self_reject') { @mr&.user_id == ::Current.user.id })
     end
 
     def reject_by_destroy_privs; ability?('mrs_destroy'); end
