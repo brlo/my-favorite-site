@@ -58,6 +58,10 @@ module Api
       # автор статьи
       @page.user_id = ::Current.user.id
 
+      # Особая логика для тех, кто является хозяином единственной страницы.
+      # Создаваемым ими страницам принудительно выставляется эта единственная страница в качестве родителя.
+      set_page_parent()
+
       # параметры не получилось разрешить с массивом массивов внутри links, поэтому так делаю отдельно для links:
       @page.links = params[:page][:links]
 
@@ -258,6 +262,17 @@ module Api
       if @page.present?
         ::Current.user.pages_owner.to_a.include?(@page.id.to_s) ||
         ::Current.user.pages_owner.to_a.include?(@page.p_id.to_s)
+      end
+    end
+
+    # Особая логика для тех, кто является хозяином единственной страницы.
+    # Создаваемым ими страницам принудительно выставляется эта единственная страница в качестве родителя.
+    def set_page_parent
+      return unless @page.present?
+      return unless ::Current.user&.pages_owner.is_a?(Array)
+
+      if ::Current.user.pages_owner.size == 1
+        @page.p_id = ::Current.user.pages_owner.first
       end
     end
   end

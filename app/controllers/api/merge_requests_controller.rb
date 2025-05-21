@@ -1,5 +1,9 @@
 module Api
   class MergeRequestsController < ApiApplicationController
+    # прежде чем реджектить по привелегиям, надо сначала задать страницу
+    before_action :set_merge_request, only: [:show, :update, :merge, :reject, :rebase]
+    before_action :clear_page_cache, only: [:merge]
+    # теперь реджектим
     before_action :reject_by_read_privs
     before_action :reject_by_create_privs, only: [:create]
     before_action :reject_by_update_privs, only: [:update]
@@ -29,7 +33,6 @@ module Api
     end
 
     def show
-      set_merge_request()
       @page = ::Page.find(@mr.page_id)
       @user = ::User.find(@mr.user_id)
     end
@@ -59,8 +62,6 @@ module Api
     end
 
     def update
-      set_merge_request()
-
       # # begin
       #   if @mr.update(page_params)
       #     render :show, status: :ok
@@ -89,9 +90,6 @@ module Api
 
     # POST /merge_requests/:id/merge
     def merge
-      set_merge_request()
-      clear_page_cache()
-
       @mr.comment = mr_params[:comment]
 
       # begin
@@ -111,8 +109,6 @@ module Api
 
     # POST /merge_requests/:id/reject
     def reject
-      set_merge_request()
-
       @mr.comment = mr_params[:comment]
 
       # begin
@@ -132,8 +128,6 @@ module Api
 
     # POST /merge_requests/:id/rebase
     def rebase
-      set_merge_request()
-
       # begin
         if @mr.rebase!
           render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
@@ -183,11 +177,23 @@ module Api
     def reject_by_create_privs;  ability?('mrs_create'); end
     def reject_by_update_privs;  ability?('mrs_update'); end
 
-    def reject_by_merge_privs;   ability?('mrs_merge'); end
-    def reject_by_rebase_privs;  ability?('mrs_merge'); end
+    def reject_by_merge_privs;
+      return if page_owner?()
+      ability?('mrs_merge')
+    end
+
+    def reject_by_rebase_privs;
+      return if page_owner?()
+      ability?('mrs_merge')
+    end
+
     def reject_by_reject_privs
-      ability?('mrs_reject') ||
-      (ability?('mrs_self_reject') { @mr&.user_id == ::Current.user.id })
+      # можно хозяину
+      return if page_owner?()
+      # можно, если пользователь отменёет свой MR
+      return if @mr&.user_id == ::Current.user.id
+      ability?('mrs_reject')
+      # (ability?('mrs_self_reject') { @mr&.user_id == ::Current.user.id })
     end
 
     def reject_by_destroy_privs; ability?('mrs_destroy'); end
@@ -197,6 +203,14 @@ module Api
       I18n.available_locales.each { |l|
         expire_page("/#{l}/#{@page.lang}/w/#{@page.path}")
       }
+    end
+
+    def page_owner?
+      pg = @mr&.page
+      if pg.present?
+        ::Current.user.pages_owner.to_a.include?(pg.id.to_s) ||
+        ::Current.user.pages_owner.to_a.include?(pg.p_id.to_s)
+      end
     end
   end
 end
