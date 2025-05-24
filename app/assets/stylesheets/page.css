@@ -720,11 +720,11 @@ h2.parent-title {
 }
 
 .night-mode .minimap-item {
-    background-color: #aaa;
+    background-color: #aaaaaa58;
 }
 
 .night-mode .minimap-item.active {
-    background-color: #fff;
+    background-color: #ffffff9b;
 }
 
 /* МЕТКА */
