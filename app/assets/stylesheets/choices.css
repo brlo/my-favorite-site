@@ -432,6 +432,9 @@
 
 /* =====  End of Choices  ====== */
 
-.choices__item {
+.choices__list--dropdown.choices__item {
   white-space: nowrap;
+  overflow-y: auto;
+  overflow-x: hidden;
+  width: 120%;
 }

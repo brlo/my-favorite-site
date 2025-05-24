@@ -1,34 +1,3 @@
-# Files in the config/locales directory are used for internationalization
-# and are automatically loaded by Rails. If you want to use locales other
-# than English, add the necessary files in this directory.
-#
-# To use the locales, use `I18n.t`:
-#
-#     I18n.t "hello"
-#
-# In views, this is aliased to just `t`:
-#
-#     <%= t("hello") %>
-#
-# To use a different locale, set it with `I18n.locale`:
-#
-#     I18n.locale = :es
-#
-# This would use the information in config/locales/es.yml.
-#
-# The following keys must be escaped otherwise they will not be retrieved by
-# the default I18n backend:
-#
-# true, false, on, off, yes, no
-#
-# Instead, surround them with single quotes.
-#
-# en:
-#   "true": "foo"
-#
-# To learn more, please read the Rails Internationalization guide
-# available at https://guides.rubyonrails.org/i18n.html.
-
 en:
   title: Bibleox
   bible: Bible
@@ -99,35 +68,34 @@ en:
     editors: Editors
 
   page_translations:
-    ar: '🇸🇦 Arabic'
-    zh-Hans: '🇨🇳 Simplified Chinese'
-    zh-Hant: '🇨🇳 Traditional Chinese'
-    de: '🇩🇪 German'
-    cp: '🇪🇬 Coptic'
-    en: '🇺🇸 English'
-    es: '🇪🇸 Spanish'
-    fr: '🇫🇷 French'
-    el: '🇬🇷 Greek'
-    he: '🇮🇱 Hebrew'
-    hi: '🇮🇳 Hindi'
-    fa: '🇮🇷 Persian'
-    it: '🇮🇹 Italian'
-    ja: '🇯🇵 Japanese'
-    sw: '🇰🇪 Swahili'
-    ko: '🇰🇷 Korean'
-    sr: '🇷🇸 Serbian'
-    ru: '🇷🇺 Russian'
-    tk: '🇹🇲 Turkmen'
-    tr: '🇹🇷 Turkish'
-    uz: '🇺🇿 Uzbek'
-    vi: '🇻🇳 Vietnamese'
+    ar: 'Arabic'
+    zh-Hans: 'Simplified Chinese'
+    zh-Hant: 'Traditional Chinese'
+    de: 'German'
+    en: 'English'
+    es: 'Spanish'
+    fr: 'French'
+    el: 'Greek'
+    he: 'Hebrew'
+    hi: 'Hindi'
+    fa: 'Persian'
+    it: 'Italian'
+    ja: 'Japanese'
+    sw: 'Swahili'
+    ko: 'Korean'
+    sr: 'Serbian'
+    ru: 'Russian'
+    tk: 'Turkmen'
+    tr: 'Turkish'
+    uz: 'Uzbek'
+    vi: 'Vietnamese'
 
-    cu: '📜 Church Slavonic'
-    grc: '🏛️ Ancient Greek'
-    la: '🇻🇦 Latin'
-    cop: '🇪🇬 Coptic'
-    frm: '🇫🇷 Medieval French'
-    fro: '🇫🇷 Old French (pre-14th century)'
+    cu: 'Church Slavonic'
+    grc: 'Greek Patristic'
+    la: 'Latin'
+    cop: 'Coptic'
+    frm: 'Medieval French'
+    fro: 'Old French (pre-14th century)'
 
   bib_translations:
     translates: Translations

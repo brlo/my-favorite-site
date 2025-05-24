@@ -62,6 +62,14 @@ module ApplicationHelper
     end
   end
 
+  # строка языка для выпадающего меню "выбор языка статьи"
+  def lang_string_full lang_code
+    l_code = lang_code.upcase
+    l_flag = ::FLAG_BY_LANG[lang_code]
+    l_name = I18n.t("page_translations.#{lang_code}")
+    "#{l_code}　#{l_flag} #{l_name}"
+  end
+
   # Очистка одного стиха от спец. символов в конце (для поисковой страницы)
   def verse_alone_clean text
     if text[-1] =~ /[\.\,\-\;\:]/
@@ -119,16 +127,21 @@ module ApplicationHelper
   end
 
   def text_content_direction
-    @text_content_direction ||= ['heb-osm', 'arab-avd', 'he', 'ar'].include?(params[:content_lang]) ? 'rtl' : 'ltr'
+    @text_content_direction ||= ['heb-osm', 'arab-avd', 'he', 'ar', 'fa'].include?(params[:content_lang]) ? 'rtl' : 'ltr'
   end
 
   def text_ui_direction
-    @text_ui_direction ||= ['he', 'ar'].include?(::I18n.locale.to_s) ? 'rtl' : 'ltr'
+    @text_ui_direction ||= ['he', 'ar', 'fa'].include?(::I18n.locale.to_s) ? 'rtl' : 'ltr'
   end
 
   def interliner_helper(verse_data)
     words = verse_data['w']
     words_with_info = verse_data['wi']
+
+    # Изменились названия локалей, поэтому когда обращаемся к переводу внутри стиха,
+    # ключи en и ru оставляем как есть, а ja подменяем на старый jp:
+    interliner_lang = locale_for_content_lang()
+    interliner_lang = interliner_lang == 'ja' ? 'jp' : interliner_lang
 
     # Если есть полная информация для построения подстрочника, то выстраиваем html целиком
     # А иначе проставим просто заглушки "-"
@@ -151,7 +164,7 @@ module ApplicationHelper
           # слово
           s  = "<ruby>#{ wi['raw'] }"
           # перевод
-          s += "<rt><a class='word-link' href='/#{I18n.locale}/words/#{ wi['bw_id'] }'>#{ wi.dig('trl', locale_for_content_lang()) }</a>"
+          s += "<rt><a class='word-link' href='/#{I18n.locale}/words/#{ wi['bw_id'] }'>#{ wi.dig('trl', interliner_lang) }</a>"
 
           # ИНФОРМАЦИЯ ВО ВСПЛЫВАЮЩЕМ БАРЕ
           s += "<div class='word-info'><div class='word-content'>"
@@ -160,7 +173,7 @@ module ApplicationHelper
           # лексема
           s += " (#{ I18n.t('bib_word_info.lexema') }: #{ wi['lex'] })"
           # перевод
-          s += ", перевод в контексте: <b>#{ wi.dig('trl', locale_for_content_lang()) }</b>. "
+          s += ", перевод в контексте: <b>#{ wi.dig('trl', interliner_lang) }</b>. "
           # морфология (часть речи и проч.)
           s += wi['inf'].to_h.map { |k,v| "#{ I18n.t("bib_word_info.morph")[v.to_s.downcase.to_sym].presence || v.presence }" }.reject(&:blank?).join(', ')
 

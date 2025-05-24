@@ -89,11 +89,11 @@ class PagesController < ApplicationController
         end
 
         # Доступные языки статьи
-        @page_langs = ::Page.where(group_lang_id: @page.group_lang_id).pluck(:lang, :path).sort
+        @page_langs = ::Page.where(group_lang_id: @page.group_lang_id).pluck(:lang, :path).to_h
 
         # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
         if @page.parent_id
-          @parent_page = ::Page.only(:id, :p_id, :title, :path, :page_type).find_by!(id: @page.parent_id)
+          @parent_page = ::Page.only(:id, :p_id, :title, :path, :page_type, :lang).find_by!(id: @page.parent_id)
         end
 
         if @parent_page
@@ -173,19 +173,19 @@ class PagesController < ApplicationController
         if @parent_page
           # родитель родителя статьи
           if @parent_page.parent_id
-            @pg1 = ::Page.only(:id, :p_id, :title, :path).find_by!(id: @parent_page.parent_id)
+            @pg1 = ::Page.only(:id, :p_id, :title, :path, :lang).find_by!(id: @parent_page.parent_id)
 
             # родитель родителя родителя статьи
             if @pg1.parent_id
-              @pg2 = ::Page.only(:id, :p_id, :title, :path).find_by!(id: @pg1.parent_id)
-              @breadcrumbs << [@pg2.title, @pg2.path]
+              @pg2 = ::Page.only(:id, :p_id, :title, :path, :lang).find_by!(id: @pg1.parent_id)
+              @breadcrumbs << [@pg2.title, @pg2.path, @pg2.lang]
             end
 
-            @breadcrumbs << [@pg1.title, @pg1.path]
+            @breadcrumbs << [@pg1.title, @pg1.path, @pg1.lang]
           end
 
           # родитель статьи
-          @breadcrumbs << [@parent_page.title, @parent_page.path]
+          @breadcrumbs << [@parent_page.title, @parent_page.path, @parent_page.lang]
         end
 
         @breadcrumbs << [@page.title, nil]

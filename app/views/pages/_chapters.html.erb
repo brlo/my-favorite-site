@@ -5,9 +5,9 @@
   <div class='flex-wrap breadcrumbs-wrap'>
     <div class='content'>
       <nav class='breadcrumbs'>
-      <% @breadcrumbs.each.with_index do |(title, path), i| %>
+      <% @breadcrumbs.each.with_index do |(title, path, page_lang), i| %>
         <% if path.present? %>
-          <a href="<%= my_page_link_to("/#{path}") %>"><%= title %></a>
+          <a href="<%= my_page_link_to("/#{path}", page_lang: page_lang) %>"><%= title %></a>
         <% else %>
           <%= title %>
         <% end %>
@@ -36,7 +36,7 @@
 
   <% if @parent_page.present? && @page.is_show_parent  %>
     <h2 class='parent-title'>
-      <a href='<%= my_page_link_to("/#{@parent_page.path}") %>'><%= @parent_page.title %></a>
+      <a href='<%= my_page_link_to("/#{@parent_page.path}", page_lang: @parent_page.lang) %>'><%= @parent_page.title %></a>
     </h2>
   <% end %>
 

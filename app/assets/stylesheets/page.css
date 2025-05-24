@@ -564,19 +564,41 @@ h2.parent-title {
 }
 
 .minimap-item {
-    position: absolute;
+    position: relative;
     left: 2px;
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
     background-color: #525252;
     border-radius: 50%;
-    margin-left: -2px;
+    margin-left: -3px;
     cursor: pointer;
     transition: background-color 0.3s ease;
 }
 
 .minimap-item.active {
     background-color: #000;
+}
+
+/* синяя обводка активного кружка */
+.minimap-item.active::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0); /* Начальное состояние - масштаб 0 */
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: rgba(0, 110, 255, 0.5);
+  z-index: -1;
+  opacity: 0; /* Начальное состояние - прозрачный */
+  transition: transform 2s ease, opacity 2s ease; /* Анимация масштаба и прозрачности */
+}
+
+/* Состояние при активации */
+.minimap-item.active::before {
+  transform: translate(-50%, -50%) scale(1); /* Конечное состояние - масштаб 1 */
+  opacity: 1; /* Конечное состояние - непрозрачный */
 }
 
 .minimap-label {

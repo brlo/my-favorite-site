@@ -107,8 +107,7 @@ class BaseUploader < CarrierWave::Uploader::Base
   end
 
   def convert_to_jpg_if_needed
-    return unless original?
-    return if file.content_type == 'image/jpeg'
+    return if file.content_type != 'image/jpeg'
 
     manipulate! do |img|
       img.format('jpg') { |c| c.quality ORIGINAL_COMPRESS_QUALITY }

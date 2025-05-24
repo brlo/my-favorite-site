@@ -5,8 +5,10 @@
   <% if is_lang_show %>
     <div class='bar-el'>
       <select id="page-lang-select" data-page='true' name="lang-select">
-        <% @page_langs.each do |lang, path| %>
-          <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @content_lang == lang %>selected<% end %>><%= I18n.t("page_translations.#{lang}") %></option>
+        <% ::FLAG_BY_LANG.each do |lang, flag| %>
+          <% path = @page_langs[lang] %>
+          <% next if path.nil? %>
+          <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @content_lang == lang %>selected<% end %>><%= lang_string_full(lang) %></option>
         <% end %>
       </select>
     </div>

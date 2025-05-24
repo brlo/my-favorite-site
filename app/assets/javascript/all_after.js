@@ -847,6 +847,7 @@ window.BX.minimap.init = function() {
   const minimapItems = document.getElementById('minimapItems');
   const pageHeight = document.documentElement.scrollHeight;
   const minimapHeight = window.BX.minimap.el.offsetHeight - 40;
+  const minimapProgress = document.getElementById('minimapProgress');
 
   // Если заголовков слишком много, то будем скрывать их подписи, иначе они наезжают друг на друга,
   // Показываться будут только активные и наведенные (реализовано в css)
@@ -948,6 +949,11 @@ window.BX.minimap.init = function() {
       updateActiveSection();
   });
 
+
+
+  updateActiveSection();
+}
+
   // // показ кнопки открытия меню
   // window.BX.minimap.openBtn.style.display = 'block';
 
@@ -966,8 +972,6 @@ window.BX.minimap.init = function() {
   //     }
   // });
 
-  updateActiveSection();
-}
 // инициализация миникарты
 window.BX.minimap.init();
 window.BX.minimap.hide();

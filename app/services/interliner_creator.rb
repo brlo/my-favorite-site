@@ -72,10 +72,10 @@ class InterlinerCreator
         _wi = ::DictWord.word_clean_diacritic_only_gr(word_info_json['w'])
         # ИИ часто пишет вместо греческой буквы "ρ" латинскую "р": ὑπὲр. Из-за этого падаем. Поэтому делаем авто-замену буквы "р"
         # эта переменная только для проверок:
-        _wi = _wi.to_s.tr('рмкнv', 'ρμκνν')
+        _wi = _wi.to_s.tr('армкнvг', 'αρμκννγ')
         # поэтому правим и тут (слово и лексему), это будет сохраняться в БД
-        word_info_json['w'] = word_info_json['w'].to_s.tr('рмкнv', 'ρμκνν')
-        word_info_json['l'] = word_info_json['l'].to_s.tr('рмкнv', 'ρμκνν')
+        word_info_json['w'] = word_info_json['w'].to_s.tr('армкнvг', 'αρμκννγ')
+        word_info_json['l'] = word_info_json['l'].to_s.tr('армкнvг', 'αρμκννγ')
 
         # Если слова в стихе и слово от ИИ не равны (нарушена последовательность или ещё что-то)
         is_raise_or_skip = (_w != _wi)
