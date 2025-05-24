@@ -568,7 +568,7 @@ h2.parent-title {
     left: 2px;
     width: 6px;
     height: 6px;
-    background-color: #525252;
+    background-color: #5252527c;
     border-radius: 50%;
     margin-left: -3px;
     cursor: pointer;
@@ -576,7 +576,7 @@ h2.parent-title {
 }
 
 .minimap-item.active {
-    background-color: #000;
+    background-color: #0000007e;
 }
 
 /* синяя обводка активного кружка */
@@ -589,7 +589,7 @@ h2.parent-title {
   width: 15px;
   height: 15px;
   border-radius: 50%;
-  background-color: rgba(0, 110, 255, 0.5);
+  background-color: rgba(0, 110, 255, 0.3);
   z-index: -1;
   opacity: 0; /* Начальное состояние - прозрачный */
   transition: transform 2s ease, opacity 2s ease; /* Анимация масштаба и прозрачности */

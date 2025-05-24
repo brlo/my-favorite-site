@@ -8,6 +8,8 @@
 *.log
 *.log.*
 
+README_PRIVATE.md
+
 node_modules
 
 /sys_config
