@@ -972,20 +972,22 @@ window.BX.minimap.init = function() {
   //     }
   // });
 
+// !!!
+
 // инициализация миникарты
-window.BX.minimap.init();
-window.BX.minimap.hide();
+// window.BX.minimap.init();
+// window.BX.minimap.hide();
 
 
 // авто-появление миникарты после прокрутки пониже от верха страницы
-if (window.BX.minimap.el) {
-  window.addEventListener('scroll', () => {
-    // Появляется на широких экранах при прокрутке вниз на 2000px
-    if (window.innerWidth >= 1250 && document.body.scrollHeight > 3000 && window.scrollY > 500) {
-      window.BX.minimap.show();
-    } else {
-      window.BX.minimap.hide();
-    }
-  });
-};
+// if (window.BX.minimap.el) {
+//   window.addEventListener('scroll', () => {
+//     // Появляется на широких экранах при прокрутке вниз на 2000px
+//     if (window.innerWidth >= 1250 && document.body.scrollHeight > 3000 && window.scrollY > 500) {
+//       window.BX.minimap.show();
+//     } else {
+//       window.BX.minimap.hide();
+//     }
+//   });
+// };
 
