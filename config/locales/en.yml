@@ -69,13 +69,13 @@ en:
 
   page_translations:
     ar: 'Arabic'
-    zh-Hans: 'Simplified Chinese'
-    zh-Hant: 'Traditional Chinese'
+    zh-Hans: 'Chinese simplified'
+    zh-Hant: 'Chinese traditional'
     de: 'German'
     en: 'English'
     es: 'Spanish'
     fr: 'French'
-    el: 'Greek'
+    el: 'Modern Greek'
     he: 'Hebrew'
     hi: 'Hindi'
     fa: 'Persian'
@@ -89,29 +89,46 @@ en:
     tr: 'Turkish'
     uz: 'Uzbek'
     vi: 'Vietnamese'
-
+    # ---
     cu: 'Church Slavonic'
-    grc: 'Greek Patristic'
+    grc: 'Patristic Greek'
     la: 'Latin'
     cop: 'Coptic'
     frm: 'Medieval French'
-    fro: 'Old French (pre-14th century)'
+    fro: 'Old French'
 
   bib_translations:
+    # --- Переводы
     translates: Translations
-    ru: Russian
-    csl: Ch. Slavonic
-    en: English
-    heb: Hebrew
-    gr: Greek
-    jp: Japanese
-    cn: Chinese
-    ge: German
-    arab: Arab
-    interliners: Interliners
-    gr-ru: Russian
-    gr-en: English
-    gr-jp: Japanese
+    arab-avd: 'Arabic'
+    cn-ccbs: 'Simplified Chinese'
+    csl-pnm: 'Church Slavonic'
+    csl-ru: 'Church Slavonic'
+    el: 'Modern Greek'
+    eng-nkjv: 'English'
+    en-nrsv: 'English'
+    es: 'Spanish'
+    fa: 'Persian'
+    ge-sch: 'German'
+    hi: 'Hindi'
+    jp-ni: 'Japanese'
+    ko: 'Korean'
+    ru: 'Russian'
+    sr: 'Serbian'
+    tk: 'Turkmen'
+    uz: 'Uzbek'
+    vi: 'Vietnamese'
+    # --- Древние тексты
+    ancient_texts: Ancient Texts
+    gr-lxx-byz: 'Ancient Greek'
+    heb-osm: 'Hebrew'
+    syc: 'Peshitta'
+    cop: 'Coptic'
+    # --- Подстрочники
+    interliners: Interlinears
+    gr-en: 'English'
+    gr-jp: 'Japanese'
+    gr-ru: 'Russian'
 
   bib_word_info:
     translation: translate

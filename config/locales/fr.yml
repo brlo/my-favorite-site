@@ -75,7 +75,7 @@ fr:
     en: 'Anglais'
     es: 'Espagnol'
     fr: 'Français'
-    el: 'Grec'
+    el: 'Grec moderne'
     he: 'Hébreu'
     hi: 'Hindi'
     fa: 'Persan'
@@ -89,29 +89,46 @@ fr:
     tr: 'Turc'
     uz: 'Ouzbek'
     vi: 'Vietnamien'
-
-    cu: 'Slavon d’église'
-    grc: 'Patristique grecque'
+    # ---
+    cu: 'Slavon d’église'  # Церковнославянский
+    grc: 'Grec patristique'  # Патристический греческий (язык отцов Церкви)
     la: 'Latin'
     cop: 'Copte'
-    frm: 'Français médiéval'
-    fro: 'Ancien français (avant le XIVᵉ siècle)'
+    frm: 'Français médiéval'  # Средневековый французский (XIV–XV вв.)
+    fro: 'Ancien français'  # Старофранцузский (IX–XIII вв.)
 
   bib_translations:
+    # --- Переводы
     translates: Traductions
-    ru: Russe
-    csl: Slavon d'église
-    en: Anglais
-    heb: Hébreu
-    gr: Grec
-    jp: Japonais
-    cn: Chinois
-    ge: Allemand
-    arab: Arabe
+    arab-avd: 'Arabe'
+    cn-ccbs: 'Chinois simplifié'
+    csl-pnm: "Slavon d'église"
+    csl-ru: "Slavon d'église"
+    el: 'Grec moderne'
+    eng-nkjv: 'Anglais'
+    en-nrsv: 'Anglais'
+    es: 'Espagnol'
+    fa: 'Persan'
+    ge-sch: 'Allemand'
+    hi: 'Hindi'
+    jp-ni: 'Japonais'
+    ko: 'Coréen'
+    ru: 'Russe'
+    sr: 'Serbe'
+    tk: 'Turkmène'
+    uz: 'Ouzbek'
+    vi: 'Vietnamien'
+    # --- Древние тексты
+    ancient_texts: Textes anciens
+    gr-lxx-byz: 'Grec ancien'
+    heb-osm: 'Hébreu'
+    syc: 'Peshitta'
+    cop: 'Copte'
+    # --- Подстрочники
     interliners: Interlinéaires
-    gr-ru: Russe
-    gr-en: Anglais
-    gr-jp: Japonais
+    gr-en: 'Anglais'
+    gr-jp: 'Japonais'
+    gr-ru: 'Russe'
 
   bib_word_info:
     translation: traduction

@@ -75,13 +75,13 @@ de:
     en: 'Englisch'
     es: 'Spanisch'
     fr: 'Französisch'
-    el: 'Griechisch'
+    el: 'Neugriechisch'
     he: 'Hebräisch'
     hi: 'Hindi'
     fa: 'Persisch'
     it: 'Italienisch'
     ja: 'Japanisch'
-    sw: 'Swahili'
+    sw: 'Suaheli'
     ko: 'Koreanisch'
     sr: 'Serbisch'
     ru: 'Russisch'
@@ -89,29 +89,46 @@ de:
     tr: 'Türkisch'
     uz: 'Usbekisch'
     vi: 'Vietnamesisch'
-    # --- für diese Sprachen gibt es keine Benutzeroberflächen-Übersetzung
+    # ---
     cu: 'Kirchenslawisch'
-    grc: 'Griechische patristische'
+    grc: 'Patristisches Griechisch'
     la: 'Latein'
     cop: 'Koptisch'
-    frm: 'Mittelalterliches Französisch'
-    fro: 'Altfranzösisch (vor dem 14. Jh.)'
+    frm: 'Mittelfranzösisch'
+    fro: 'Altfranzösisch'
 
   bib_translations:
+    # --- Переводы
     translates: Übersetzungen
-    ru: Russisch
-    csl: Kirchenslaw.
-    en: Englisch
-    heb: Hebräisch
-    gr: Griechisch
-    jp: Japanisch
-    cn: Chinesisch
-    ge: Deutsch
-    arab: Arabisch
+    arab-avd: 'Arabisch'
+    cn-ccbs: 'Vereinfachtes Chinesisch'
+    csl-pnm: 'Kirchenslawisch'
+    csl-ru: 'Kirchenslawisch'
+    el: 'Neugriechisch'
+    eng-nkjv: 'Englisch'
+    en-nrsv: 'Englisch'
+    es: 'Spanisch'
+    fa: 'Persisch'
+    ge-sch: 'Deutsch'
+    hi: 'Hindi'
+    jp-ni: 'Japanisch'
+    ko: 'Koreanisch'
+    ru: 'Russisch'
+    sr: 'Serbisch'
+    tk: 'Turkmenisch'
+    uz: 'Usbekisch'
+    vi: 'Vietnamesisch'
+    # --- Древние тексты
+    ancient_texts: Antike Texte
+    gr-lxx-byz: 'Altgriechisch'
+    heb-osm: 'Hebräisch'
+    syc: 'Peschitta'
+    cop: 'Koptisch'
+    # --- Подстрочники
     interliners: Interlinearübersetzungen
-    gr-ru: Russisch
-    gr-en: Englisch
-    gr-jp: Japanisch
+    gr-en: 'Englisch'
+    gr-jp: 'Japanisch'
+    gr-ru: 'Russisch'
 
   bib_word_info:
     translation: Übersetzung

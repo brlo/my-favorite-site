@@ -75,7 +75,7 @@ it:
     en: 'Inglese'
     es: 'Spagnolo'
     fr: 'Francese'
-    el: 'Greco'
+    el: 'Greco moderno'
     he: 'Ebraico'
     hi: 'Hindi'
     fa: 'Persiano'
@@ -89,29 +89,46 @@ it:
     tr: 'Turco'
     uz: 'Uzbeco'
     vi: 'Vietnamita'
-
+    # ---
     cu: 'Slavo ecclesiastico'
-    grc: 'Patristica greca'
+    grc: 'Greco patristico'
     la: 'Latino'
     cop: 'Copto'
     frm: 'Francese medievale'
-    fro: 'Francese antico (pre-XIV secolo)'
+    fro: 'Francese antico'
 
   bib_translations:
+    # --- Переводы
     translates: Traduzioni
-    ru: Russo
-    csl: Slav. eccl.
-    en: Inglese
-    heb: Ebraico
-    gr: Greco
-    jp: Giapponese
-    cn: Cinese
-    ge: Tedesco
-    arab: Arabo
+    arab-avd: 'Arabo'
+    cn-ccbs: 'Cinese semplificato'
+    csl-pnm: 'Slavo ecclesiastico'
+    csl-ru: 'Slavo ecclesiastico'
+    el: 'Greco moderno'
+    eng-nkjv: 'Inglese'
+    en-nrsv: 'Inglese'
+    es: 'Spagnolo'
+    fa: 'Persiano'
+    ge-sch: 'Tedesco'
+    hi: 'Hindi'
+    jp-ni: 'Giapponese'
+    ko: 'Coreano'
+    ru: 'Russo'
+    sr: 'Serbo'
+    tk: 'Turkmeno'
+    uz: 'Uzbeco'
+    vi: 'Vietnamita'
+    # --- Древние тексты
+    ancient_texts: Testi antichi
+    gr-lxx-byz: 'Greco antico'
+    heb-osm: 'Ebraico'
+    syc: 'Peshitta'
+    cop: 'Copto'
+    # --- Подстрочники
     interliners: Interlineari
-    gr-ru: Russo
-    gr-en: Inglese
-    gr-jp: Giapponese
+    gr-en: 'Inglese'
+    gr-jp: 'Giapponese'
+    gr-ru: 'Russo'
 
   bib_word_info:
     translation: traduzione

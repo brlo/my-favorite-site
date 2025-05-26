@@ -8,7 +8,7 @@
         <% ::FLAG_BY_LANG.each do |lang, flag| %>
           <% path = @page_langs[lang] %>
           <% next if path.nil? %>
-          <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @content_lang == lang %>selected<% end %>><%= lang_string_full(lang) %></option>
+          <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @content_lang == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
         <% end %>
       </select>
     </div>

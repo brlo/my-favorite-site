@@ -75,7 +75,7 @@ sw:
     en: 'Kiingereza'
     es: 'Kihispania'
     fr: 'Kifaransa'
-    el: 'Kigiriki'
+    el: 'Kigiriki cha Kisasa'
     he: 'Kiebrania'
     hi: 'Kihindi'
     fa: 'Kiajemi'
@@ -89,29 +89,46 @@ sw:
     tr: 'Kituruki'
     uz: 'Kiuzbeki'
     vi: 'Kivietinamu'
-
-    cu: 'Kislovakia ya Kanisa'
-    grc: 'Patristiki ya Kigiriki'
+    # ---
+    cu: 'Kislovakia'  # Церковнославянский
+    grc: 'Kigiriki cha Mitume'  # Патристический греческий (язык отцов Церкви)
     la: 'Kilatini'
     cop: 'Kikopti'
-    frm: 'Kifaransa cha Karne za Kati'
-    fro: 'Kifaransa cha Kale (kabla ya karne ya 14)'
+    frm: 'Kifaransa cha Karne za Kati'  # Средневековый французский
+    fro: 'Kifaransa cha Kale'  # Старофранцузский
 
   bib_translations:
+    # --- Переводы
     translates: Tafsiri
-    ru: Kirusi
-    csl: Kislavoni cha Kanisa
-    en: Kiingereza
-    heb: Kiebrania
-    gr: Kigiriki
-    jp: Kijapani
-    cn: Kichina
-    ge: Kijerumani
-    arab: Kiarabu
-    interliners: Tafsiri za mstari
-    gr-ru: Kirusi
-    gr-en: Kiingereza
-    gr-jp: Kijapani
+    arab-avd: 'Kiarabu'
+    cn-ccbs: 'Kichina Rahisi'
+    csl-pnm: 'Kislovakia'
+    csl-ru: 'Kislovakia'
+    el: 'Kigiriki cha Kisasa'
+    eng-nkjv: 'Kiingereza'
+    en-nrsv: 'Kiingereza'
+    es: 'Kihispania'
+    fa: 'Kiajemi'
+    ge-sch: 'Kijerumani'
+    hi: 'Kihindi'
+    jp-ni: 'Kijapani'
+    ko: 'Kikorea'
+    ru: 'Kirusi'
+    sr: 'Kiserbia'
+    tk: 'Kiturukimeni'
+    uz: 'Kiuzbeki'
+    vi: 'Kivietinamu'
+    # --- Древние тексты
+    ancient_texts: Maandishi ya Kale
+    gr-lxx-byz: 'Kigiriki cha Kale'
+    heb-osm: 'Kiebrania'
+    syc: 'Peshitta'
+    cop: 'Kikopti'
+    # --- Подстрочники
+    interliners: Tafsiri za Mstari kwa Mstari
+    gr-en: 'Kiingereza'
+    gr-jp: 'Kijapani'
+    gr-ru: 'Kirusi'
 
   bib_word_info:
     translation: tafsiri

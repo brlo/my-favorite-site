@@ -69,13 +69,13 @@ uz:
 
   page_translations:
     ar: 'Arabcha'
-    zh-Hans: 'Soddalashtirilgan Xitoy'
-    zh-Hant: 'Anʼanaviy Xitoy'
+    zh-Hans: 'Soddalashtirilgan Xitoycha'
+    zh-Hant: 'Anʼanaviy Xitoycha'
     de: 'Nemischa'
     en: 'Inglizcha'
     es: 'Ispancha'
-    fr: 'Frantsuzcha'
-    el: 'Yunoncha'
+    fr: 'Fransuzcha'
+    el: 'Zamonaviy Yunoncha'
     he: 'Ibroniy'
     hi: 'Hindcha'
     fa: 'Forscha'
@@ -88,30 +88,47 @@ uz:
     tk: 'Turkmancha'
     tr: 'Turkcha'
     uz: 'Oʻzbekcha'
-    vi: 'Vetnamcha'
-
-    cu: 'Cherkov slavyan tili'
-    grc: 'Yunon patristikasi'
-    la: 'Lotin tili'
-    cop: 'Qibtiy tili'
-    frm: 'Oʻrta asr fransuz tili'
-    fro: 'Qadimgi fransuz tili (XIV asrdan oldin)'
+    vi: 'Vyetnamcha'
+    # ---
+    cu: 'Cherkov Slavyanchasi'
+    grc: 'Patristik Yunoncha'
+    la: 'Lotincha'
+    cop: 'Qibtiy'
+    frm: 'Oʻrta asr fransuzcha'
+    fro: 'Qadimgi fransuzcha'
 
   bib_translations:
+    # --- Переводы
     translates: Tarjimalar
-    ru: Ruscha
-    csl: Cherkov slavyan (CSL)
-    en: Inglizcha
-    heb: Ibroniy
-    gr: Yunoncha
-    jp: Yaponcha
-    cn: Xitoycha
-    ge: Nemischa
-    arab: Arabcha
-    interliners: Satrma-satr tarjimalar
-    gr-ru: Ruscha
-    gr-en: Inglizcha
-    gr-jp: Yaponcha
+    arab-avd: 'Arabcha'
+    cn-ccbs: 'Soddalashtirilgan Xitoycha'
+    csl-pnm: 'Cherkov Slavyanchasi'
+    csl-ru: 'Cherkov Slavyanchasi'
+    el: 'Zamonaviy Yunoncha'
+    eng-nkjv: 'Inglizcha'
+    en-nrsv: 'Inglizcha'
+    es: 'Ispancha'
+    fa: 'Forscha'
+    ge-sch: 'Nemischa'
+    hi: 'Hindcha'
+    jp-ni: 'Yaponcha'
+    ko: 'Koreyscha'
+    ru: 'Ruscha'
+    sr: 'Serbcha'
+    tk: 'Turkmancha'
+    uz: 'Oʻzbekcha'
+    vi: 'Vyetnamcha'
+    # --- Древние тексты
+    ancient_texts: Qadimiy Matnlar
+    gr-lxx-byz: 'Qadimgi Yunoncha'
+    heb-osm: 'Ibroniy'
+    syc: 'Peshitta'
+    cop: 'Qibtiy'
+    # --- Подстрочники
+    interliners: Interlinearlar
+    gr-en: 'Inglizcha'
+    gr-jp: 'Yaponcha'
+    gr-ru: 'Ruscha'
 
   bib_word_info:
     translation: tarjima

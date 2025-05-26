@@ -69,14 +69,14 @@ vi:
 
   page_translations:
     ar: 'Tiếng Ả Rập'
-    zh-Hans: 'Tiếng Trung Giản thể'
-    zh-Hant: 'Tiếng Trung Phồn thể'
+    zh-Hans: 'Tiếng Trung giản thể'
+    zh-Hant: 'Tiếng Trung phồn thể'
     de: 'Tiếng Đức'
     en: 'Tiếng Anh'
     es: 'Tiếng Tây Ban Nha'
     fr: 'Tiếng Pháp'
-    el: 'Tiếng Hy Lạp'
-    he: 'Tiếng Hebrew'
+    el: 'Tiếng Hy Lạp hiện đại'
+    he: 'Tiếng Do Thái'
     hi: 'Tiếng Hindi'
     fa: 'Tiếng Ba Tư'
     it: 'Tiếng Ý'
@@ -89,29 +89,46 @@ vi:
     tr: 'Tiếng Thổ Nhĩ Kỳ'
     uz: 'Tiếng Uzbek'
     vi: 'Tiếng Việt'
-
-    cu: 'Tiếng Slavơ Nhà thờ'
-    grc: 'Giáo phụ Hy Lạp'
+    # ---
+    cu: 'Tiếng Slavơ nhà thờ'  # Church Slavonic (церковнославянский)
+    grc: 'Tiếng Hy Lạp giáo phụ'  # Patristic Greek (святоотеческий греческий)
     la: 'Tiếng Latinh'
     cop: 'Tiếng Coptic'
-    frm: 'Tiếng Pháp Trung cổ'
-    fro: 'Tiếng Pháp cổ (trước thế kỷ 14)'
+    frm: 'Tiếng Pháp trung cổ'  # Medieval French
+    fro: 'Tiếng Pháp cổ'  # Old French
 
   bib_translations:
-    translates: 'Bản dịch'
+    # --- Переводы
+    translates: Bản dịch
+    arab-avd: 'Tiếng Ả Rập'
+    cn-ccbs: 'Tiếng Trung giản thể'
+    csl-pnm: 'Tiếng Slavơ nhà thờ'
+    csl-ru: 'Tiếng Slavơ nhà thờ'
+    el: 'Tiếng Hy Lạp hiện đại'
+    eng-nkjv: 'Tiếng Anh'
+    en-nrsv: 'Tiếng Anh'
+    es: 'Tiếng Tây Ban Nha'
+    fa: 'Tiếng Ba Tư'
+    ge-sch: 'Tiếng Đức'
+    hi: 'Tiếng Hindi'
+    jp-ni: 'Tiếng Nhật'
+    ko: 'Tiếng Hàn'
     ru: 'Tiếng Nga'
-    csl: 'Tiếng Slavơ Giáo hội'
-    en: 'Tiếng Anh'
-    heb: 'Tiếng Hebrew'
-    gr: 'Tiếng Hy Lạp'
-    jp: 'Tiếng Nhật'
-    cn: 'Tiếng Trung'
-    ge: 'Tiếng Đức'
-    arab: 'Tiếng Ả Rập'
-    interliners: 'Bản dịch sát nghĩa'
-    gr-ru: 'Tiếng Nga'
+    sr: 'Tiếng Serbia'
+    tk: 'Tiếng Turkmen'
+    uz: 'Tiếng Uzbek'
+    vi: 'Tiếng Việt'
+    # --- Древние тексты
+    ancient_texts: Văn bản cổ
+    gr-lxx-byz: 'Tiếng Hy Lạp cổ'
+    heb-osm: 'Tiếng Do Thái'
+    syc: 'Peshitta'
+    cop: 'Tiếng Coptic'
+    # --- Подстрочники
+    interliners: Bản dịch liên tuyến
     gr-en: 'Tiếng Anh'
     gr-jp: 'Tiếng Nhật'
+    gr-ru: 'Tiếng Nga'
 
   bib_word_info:
     translation: 'dịch'

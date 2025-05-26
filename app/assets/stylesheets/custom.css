@@ -97,7 +97,7 @@ header {
   background-color: #f6f4e4;
 }
 
-header .container {
+header .container, footer .container {
   position: relative;
   max-width: 1200px;
   width: 100%;
@@ -218,6 +218,12 @@ dd#change-ui-lang-area {
   display: inline-block;
   min-height: 65px;
   font-size: 0.7em;
+  padding: 0 0 15px 0;
+}
+
+dd#change-ui-lang-area label {
+  display: inline-block;
+  padding: 5px 0;
 }
 
 dd#change-ui-lang-area .choices__inner {
@@ -255,14 +261,13 @@ dd#change-ui-lang-area .choices__inner {
 
 footer {
   flex-shrink: 0;
-  text-align: center;
   padding: 30px 0;
   background-color: #f6f4e4;
 }
 
 footer dd {
   margin: 0;
-  padding: 0 20px;
+  padding: 0;
 }
 
 .flex-wrap {

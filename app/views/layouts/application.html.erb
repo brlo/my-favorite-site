@@ -140,20 +140,21 @@
     </div>
 
     <footer>
-      <dd id='change-ui-lang-area'>
-        <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
-        <select id="ui-lang-select">
+      <div class="container">
+        <dd id='change-ui-lang-area'>
+          <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
+          <select id="ui-lang-select">
 
-          <% ::FLAG_BY_LANG.each do |lang, flag| %>
-            <% puts "========= #{lang}---#{::ALL_LOCALES[lang]}" %>
-            <% next if !::ALL_LOCALES.has_key?(lang) %>
-            <option value='<%= lang %>' <%= ::I18n.locale.to_s == lang ? 'selected' : '' %>><%= lang_string_full(lang) %></option>
-          <% end %>
-        </select>
-      </dd>
-      <dd>2022-<%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>
-      <dd><%= ::I18n.t('about_site_short') %></dd>
-      <dd><a title='<%= day_visit() %>' href='<%= my_link_to('/about/') %>'><%= I18n.t('about_site') %></a></dd>
+            <% ::FLAG_BY_LANG.each do |lang, flag| %>
+              <% next if !::ALL_LOCALES.has_key?(lang) %>
+              <option value='<%= lang %>' <%= ::I18n.locale.to_s == lang ? 'selected' : '' %>><%= page_lang_string_full(lang) %></option>
+            <% end %>
+          </select>
+        </dd>
+        <dd>2022-<%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>
+        <dd><%= ::I18n.t('about_site_short') %></dd>
+        <dd><a title='<%= day_visit() %>' href='<%= my_link_to('/about/') %>'><%= I18n.t('about_site') %></a></dd>
+      </div>
     </footer>
 
 <%= content_for?(:end_of_page) ? yield(:end_of_page) : '' %>

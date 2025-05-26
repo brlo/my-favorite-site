@@ -317,9 +317,9 @@
   font-weight: 600;
   font-size: 12px;
   padding: 10px;
-  border-bottom: 1px solid #f7f7f7;
+  border-bottom: 1px solid #EEE;
   color: #000000;
-
+  background-color: #f6f4e3;
 }
 
 .choices__button {
@@ -406,9 +406,9 @@
   border-color: #5d4734;
 }
 .night-mode .choices__heading {
-  border-bottom: 1px solid #4d4137;
-  color: #59b682;
   background-color: transparent;
+  border-bottom: 1px solid transparent;
+  color: #59b682;
 }
 .night-mode .choices__input {
   background-color: #4d4137;
@@ -432,9 +432,13 @@
 
 /* =====  End of Choices  ====== */
 
-.choices__list--dropdown.choices__item {
+.choices__list {
   white-space: nowrap;
+}
+.choices__list--dropdown {
+  width: calc(100% + 250px) !important;
+}
+.choices__list--dropdown.choices__item {
   overflow-y: auto;
   overflow-x: hidden;
-  width: 120%;
 }

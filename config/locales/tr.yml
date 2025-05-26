@@ -75,7 +75,7 @@ tr:
     en: 'İngilizce'
     es: 'İspanyolca'
     fr: 'Fransızca'
-    el: 'Yunanca'
+    el: 'Modern Yunanca'
     he: 'İbranice'
     hi: 'Hintçe'
     fa: 'Farsça'
@@ -89,29 +89,46 @@ tr:
     tr: 'Türkçe'
     uz: 'Özbekçe'
     vi: 'Vietnamca'
-
+    # ---
     cu: 'Kilise Slavcası'
-    grc: 'Yunan patristiği'
+    grc: 'Patristik Yunanca'
     la: 'Latince'
     cop: 'Kıptice'
     frm: 'Ortaçağ Fransızcası'
-    fro: 'Eski Fransızca (14. yüzyıl öncesi)'
+    fro: 'Eski Fransızca'
 
   bib_translations:
+    # --- Переводы
     translates: Çeviriler
-    ru: Rusça
-    csl: Kilise Slavcası
-    en: İngilizce
-    heb: İbranice
-    gr: Yunanca
-    jp: Japonca
-    cn: Çince
-    ge: Almanca
-    arab: Arapça
-    interliners: Satır altı çeviriler
-    gr-ru: Rusça
-    gr-en: İngilizce
-    gr-jp: Japonca
+    arab-avd: 'Arapça'
+    cn-ccbs: 'Basitleştirilmiş Çince'
+    csl-pnm: 'Kilise Slavcası'
+    csl-ru: 'Kilise Slavcası'
+    el: 'Modern Yunanca'
+    eng-nkjv: 'İngilizce'
+    en-nrsv: 'İngilizce'
+    es: 'İspanyolca'
+    fa: 'Farsça'
+    ge-sch: 'Almanca'
+    hi: 'Hintçe'
+    jp-ni: 'Japonca'
+    ko: 'Korece'
+    ru: 'Rusça'
+    sr: 'Sırpça'
+    tk: 'Türkmence'
+    uz: 'Özbekçe'
+    vi: 'Vietnamca'
+    # --- Древние тексты
+    ancient_texts: Antik Metinler
+    gr-lxx-byz: 'Antik Yunanca'
+    heb-osm: 'İbranice'
+    syc: 'Peşitta'
+    cop: 'Kıptice'
+    # --- Подстрочники
+    interliners: Satır Arası Çeviriler
+    gr-en: 'İngilizce'
+    gr-jp: 'Japonca'
+    gr-ru: 'Rusça'
 
   bib_word_info:
     translation: çeviri

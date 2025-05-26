@@ -69,13 +69,13 @@ ko:
 
   page_translations:
     ar: '아랍어'
-    zh-Hans: '간체 중국어'
-    zh-Hant: '번체 중국어'
+    zh-Hans: '중국어(간체)'
+    zh-Hant: '중국어(번체)'
     de: '독일어'
     en: '영어'
     es: '스페인어'
     fr: '프랑스어'
-    el: '그리스어'
+    el: '현대 그리스어'
     he: '히브리어'
     hi: '힌디어'
     fa: '페르시아어'
@@ -89,29 +89,46 @@ ko:
     tr: '터키어'
     uz: '우즈베크어'
     vi: '베트남어'
-
+    # ---
     cu: '교회 슬라브어'
-    grc: '그리스 교부'
+    grc: '교부 그리스어'
     la: '라틴어'
     cop: '콥트어'
     frm: '중세 프랑스어'
-    fro: '고대 프랑스어 (14세기 이전)'
+    fro: '고대 프랑스어'
 
   bib_translations:
-    translates: 번역
-    ru: 러시아어
-    csl: 교회 슬라브어
-    en: 영어
-    heb: 히브리어
-    gr: 그리스어
-    jp: 일본어
-    cn: 중국어
-    ge: 독일어
-    arab: 아랍어
-    interliners: 직역본
-    gr-ru: 러시아어
-    gr-en: 영어
-    gr-jp: 일본어
+    # --- Переводы
+    translates: 번역본
+    arab-avd: '아랍어'
+    cn-ccbs: '중국어(간체)'
+    csl-pnm: '교회 슬라브어'
+    csl-ru: '교회 슬라브어'
+    el: '현대 그리스어'
+    eng-nkjv: '영어'
+    en-nrsv: '영어'
+    es: '스페인어'
+    fa: '페르시아어'
+    ge-sch: '독일어'
+    hi: '힌디어'
+    jp-ni: '일본어'
+    ko: '한국어'
+    ru: '러시아어'
+    sr: '세르비아어'
+    tk: '투르크멘어'
+    uz: '우즈베크어'
+    vi: '베트남어'
+    # --- Древние тексты
+    ancient_texts: 고대 텍스트
+    gr-lxx-byz: '고대 그리스어'
+    heb-osm: '히브리어'
+    syc: '페시타'
+    cop: '콥트어'
+    # --- Подстрочники
+    interliners: 인터리니어
+    gr-en: '영어'
+    gr-jp: '일본어'
+    gr-ru: '러시아어'
 
   bib_word_info:
     translation: 번역

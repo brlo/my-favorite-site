@@ -69,17 +69,17 @@ tk:
 
   page_translations:
     ar: 'Arapça'
-    zh-Hans: 'Ýönekeýleşdirilen Hytaý'
-    zh-Hant: 'Däpli Hytaý'
+    zh-Hans: 'Ýönekeýleşdirilen Hytaýça'
+    zh-Hant: 'Adaty Hytaýça'
     de: 'Nemesçe'
     en: 'Iňlisçe'
     es: 'Ispança'
     fr: 'Fransuzça'
-    el: 'Grekçe'
-    he: 'Ibrança'
+    el: 'Täze Grek dili'
+    he: 'Ýewreýçe'
     hi: 'Hindi'
     fa: 'Parsça'
-    it: 'Italiýança'
+    it: 'Italýança'
     ja: 'Ýaponça'
     sw: 'Suahili'
     ko: 'Koreýçe'
@@ -89,29 +89,46 @@ tk:
     tr: 'Türkçe'
     uz: 'Özbekçe'
     vi: 'Wýetnamça'
-
-    cu: 'Çerkez slawýan dili'
-    grc: 'Grek patristikasy'
-    la: 'Latyn dili'
-    cop: 'Kop dili'
-    frm: 'Orta asyr fransuz dili'
-    fro: 'Köne fransuz dili (XIV asyr öň)'
+    # ---
+    cu: 'Sobor Slawýan dili'
+    grc: 'Ata-patristik Grek dili'
+    la: 'Latynça'
+    cop: 'Kopt dili'
+    frm: 'Orta asyr Fransuzça'
+    fro: 'Gadymy Fransuzça'
 
   bib_translations:
-    translates: Terjimeler
-    ru: Rusça
-    csl: Sobit slaw.
-    en: Iňlisçe
-    heb: Ibrança
-    gr: Grekçe
-    jp: Ýaponça
-    cn: Hytaýça
-    ge: Nemesçe
-    arab: Arapça
-    interliners: Setirli terjimeler
-    gr-ru: Rusça
-    gr-en: Iňlisçe
-    gr-jp: Ýaponça
+    # --- Переводы
+    translates: 'Terjimeler'
+    arab-avd: 'Arapça'
+    cn-ccbs: 'Ýönekeýleşdirilen Hytaýça'
+    csl-pnm: 'Sobor Slawýan dili'
+    csl-ru: 'Sobor Slawýan dili'
+    el: 'Täze Grek dili'
+    eng-nkjv: 'Iňlisçe'
+    en-nrsv: 'Iňlisçe'
+    es: 'Ispança'
+    fa: 'Parsça'
+    ge-sch: 'Nemesçe'
+    hi: 'Hindi'
+    jp-ni: 'Ýaponça'
+    ko: 'Koreýçe'
+    ru: 'Rusça'
+    sr: 'Serbçe'
+    tk: 'Türkmençe'
+    uz: 'Özbekçe'
+    vi: 'Wýetnamça'
+    # --- Древние тексты
+    ancient_texts: 'Gadymy tekstler'
+    gr-lxx-byz: 'Gadymy Grek dili'
+    heb-osm: 'Ýewreýçe'
+    syc: 'Peşitta'
+    cop: 'Kopt dili'
+    # --- Подстрочники
+    interliners: 'Setirara terjimeler'
+    gr-en: 'Iňlisçe'
+    gr-jp: 'Ýaponça'
+    gr-ru: 'Rusça'
 
   bib_word_info:
     translation: terjime

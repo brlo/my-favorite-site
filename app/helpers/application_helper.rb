@@ -62,12 +62,32 @@ module ApplicationHelper
     end
   end
 
+  # строка языка для выпадающего меню "выбор языка Библии"
+  def bib_lang_string_full translation_code, short: '', is_translate: false
+    l_flag = ::FLAG_BY_LANG[translation_code]
+    # название языка локализованное (все названия в текущей локали)
+    l_name_tr = I18n.t("bib_translations.#{translation_code}")
+    # название языка универсальное (на том языке, именем которого называется)
+    l_name_uni = ::BIB_LANGS[translation_code]
+    if is_translate
+      "#{l_flag} #{l_name_tr} — #{l_name_uni} (#{short})"
+    else
+      "#{l_flag} #{l_name_uni} (#{short})"
+    end
+  end
+
   # строка языка для выпадающего меню "выбор языка статьи"
-  def lang_string_full lang_code
-    l_code = lang_code.upcase
+  def page_lang_string_full lang_code, is_translate: false
     l_flag = ::FLAG_BY_LANG[lang_code]
-    l_name = I18n.t("page_translations.#{lang_code}")
-    "#{l_code}　#{l_flag} #{l_name}"
+    # название языка локализованное (все названия в текущей локали)
+    l_name_tr = I18n.t("page_translations.#{lang_code}")
+    # название языка универсальное (на том языке, именем которого называется)
+    l_name_uni = ::PAGE_LANGS[lang_code]
+    if is_translate
+      "#{l_flag} #{l_name_tr} — #{l_name_uni}"
+    else
+      "#{l_flag} #{l_name_uni}"
+    end
   end
 
   # Очистка одного стиха от спец. символов в конце (для поисковой страницы)

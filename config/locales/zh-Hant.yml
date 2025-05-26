@@ -76,7 +76,7 @@ zh-Hant:
     en: '英語'
     es: '西班牙語'
     fr: '法語'
-    el: '希臘語'
+    el: '現代希臘語'
     he: '希伯來語'
     hi: '印地語'
     fa: '波斯語'
@@ -90,25 +90,46 @@ zh-Hant:
     tr: '土耳其語'
     uz: '烏茲別克語'
     vi: '越南語'
-
+    # ---
     cu: '教會斯拉夫語'
-    grc: '希臘教父文獻'
+    grc: '教父希臘語'
     la: '拉丁語'
     cop: '科普特語'
     frm: '中古法語'
-    fro: '古法語（14世紀前）'
+    fro: '古法語'
 
   bib_translations:
-    ru: 俄語
-    csl: 斯拉夫
-    en: 英語
-    heb: 希伯來語
-    gr: 希臘語
-    jp: 日本人
-    cn: 中國人
-    ge: 德語
-    arab: 阿拉伯
-    gr-ru: 希臘語-俄語
+    # --- Переводы
+    translates: '譯本'
+    arab-avd: '阿拉伯語'
+    cn-ccbs: '簡體中文'
+    csl-pnm: '教會斯拉夫語'
+    csl-ru: '教會斯拉夫語'
+    el: '現代希臘語'
+    eng-nkjv: '英語'
+    en-nrsv: '英語'
+    es: '西班牙語'
+    fa: '波斯語'
+    ge-sch: '德語'
+    hi: '印地語'
+    jp-ni: '日語'
+    ko: '韓語'
+    ru: '俄語'
+    sr: '塞爾維亞語'
+    tk: '土庫曼語'
+    uz: '烏茲別克語'
+    vi: '越南語'
+    # --- Древние тексты
+    ancient_texts: '古代文本'
+    gr-lxx-byz: '古希臘語'
+    heb-osm: '希伯來語'
+    syc: '敘利亞語別西大譯本'
+    cop: '科普特語'
+    # --- Подстрочники
+    interliners: '逐行對照譯本'
+    gr-en: '英語'
+    gr-jp: '日語'
+    gr-ru: '俄語'
 
   tips:
     click_on_verse: 通過點擊編號突出一節經文。
