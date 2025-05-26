@@ -86,7 +86,8 @@ module ApplicationHelper
     if is_translate
       "#{l_flag} #{l_name_tr} — #{l_name_uni}"
     else
-      "#{l_flag} #{l_name_uni}"
+      # когда универсального названия нет (так делаем для подстрочников), то берём перевод
+      "#{l_flag} #{l_name_uni || l_name_tr}"
     end
   end
 

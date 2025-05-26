@@ -292,12 +292,12 @@ PAGE_LANGS = {
   "uz" => 'Oʻzbekcha',
   "vi" => 'Tiếng Việt',
   # ---
-  "cu" => '',
-  "grc" => '',
-  "la" => '',
-  "cop" => '',
-  "frm" => '',
-  "fro" => '',
+  "cu" => nil,
+  "grc" => nil,
+  "la" => nil,
+  "cop" => nil,
+  "frm" => nil,
+  "fro" => nil,
 }
 
 # Универсальные названия языков для переводов Библии
