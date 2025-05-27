@@ -436,7 +436,7 @@
   white-space: nowrap;
 }
 .choices__list--dropdown {
-  width: calc(100% + 250px) !important;
+  min-width: 350px !important;
 }
 .choices__list--dropdown.choices__item {
   overflow-y: auto;

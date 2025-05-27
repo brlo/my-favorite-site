@@ -148,6 +148,9 @@ module Api
       if @page.save
         render(json: {'success': 'ok', cover: @page.cover.urls}, status: :ok)
       else
+        puts "======================= ERROR =============================="
+        puts @page.errors.inspect
+
         render(json: @page.errors, status: :unprocessable_entity)
       end
     end

@@ -31,10 +31,6 @@ class BaseUploader < CarrierWave::Uploader::Base
   #   %w(jpg jpeg gif png)
   # end
 
-  # Оригинал подлежит лишь конвертированию в jpg
-  # остальные версии конвертируются в jpg в процессе создания подходящего размера
-  process :convert_to_jpg_if_needed, :if => :original?
-
   def filename
     "#{PREFIX}#{ secure_token(length: 16) }.#{ saving_format }" if original_filename.present?
   end
@@ -104,15 +100,6 @@ class BaseUploader < CarrierWave::Uploader::Base
 
   def saving_format
     SAVING_FORMAT
-  end
-
-  def convert_to_jpg_if_needed
-    return if file.content_type != 'image/jpeg'
-
-    manipulate! do |img|
-      img.format('jpg') { |c| c.quality ORIGINAL_COMPRESS_QUALITY }
-      img
-    end
   end
 
   ## НЕ РЕКОМЕНДУЕТСЯ ИСПОЛЬЗОВАТЬ ЭТУ ПРОВЕРКУ. ВОЗМОЖНЫ FALSE POSITIVE
