@@ -62,7 +62,7 @@ fr:
     title: '%{term} / citations / Bible'
     addresses_list_title: 'Références uniquement :'
     whant_to_fix: 'Vous souhaitez corriger ou compléter ? Contactez-nous'
-    or_edit_page_by_yourself: Ou éditez l\'article vous-même
+    or_edit_page_by_yourself: "Ou éditez l'article vous-même"
     edit_link: Éditer
     author: Publié par
     editors: Éditeurs

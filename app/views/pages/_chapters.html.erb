@@ -58,7 +58,6 @@
     <% else %>
       <%= @page.title %>
     <% end %>
-
   </h1>
 
   <% if @page.title_sub.present? %>
@@ -114,7 +113,7 @@
         <% i == (@chapter_current-1) ? (classes += ' selected') : nil %>
         <% is_gold ? (classes += ' gold') : nil %>
         <div class="<%= classes %>">
-          <a href="<%= my_page_link_to("/#{path}") %>"><%= title %></a>
+          <a href="<%= my_page_link_to("/#{path}", page_lang: @page.lang) %>"><%= title %></a>
         </div>
       <% end %>
     </div>
