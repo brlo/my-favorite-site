@@ -335,7 +335,7 @@
   height: 100%;
   color: #4c5428;
   background-color: #204f0314;
-  cursor: default;
+  cursor: pointer;
 }
 .menu-tree .menu-link a:hover {
   color: #4c5428b8;
