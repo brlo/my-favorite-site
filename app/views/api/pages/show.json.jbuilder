@@ -4,6 +4,8 @@ json.success 'ok'
 
 json.item do
   json.id                pg.id.to_s
+  json.is_bibleox        pg.is_bibleox
+  json.is_menu_icons     pg.is_menu_icons
   json.is_published      pg.is_published
   json.is_deleted        pg.is_deleted
   json.is_search         pg.is_search

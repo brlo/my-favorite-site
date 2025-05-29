@@ -190,6 +190,17 @@ sw:
     click_on_verse__and: na
     search_was_return_zero_results: Hakuna kilichopatikana. Angalia ikiwa lugha ya maandishi haikuchaguliwa sawa?
     page_search_was_return_zero_results: Hakuna kilichopatikana.
+    bibleox_translated: Maandishi yaliyotayarishwa na jamii ya bibleox
+    bibleox_translated_desc: |
+      Tunataka maandishi haya yapatikane kwa kila mtu - ndiyo sababu tumeandaa tafsiri hii.
+
+      Kwa bahati mbaya, si rahisi kila mara kupata tafsiri zilizokamilika, kwa hivyo tunazitengeneza wenyewe.
+      Zana za kiotomatiki na wanadamu wote hufanya kazi hii. Wewe pia unaweza kusaidia!
+
+      Baadhi ya sehemu zinaweza kusikika bila kukamilika, lakini tumekuwa makini kuhakikisha ufasaha wa maana.
+
+      Ukigundua makosa au ukihitaji kuboresha maandishi - maoni yako yanakaribishwa! Bora zaidi - jiunge na jamii na pendekeza mabadiliko yako.
+      Kama vyanzo vya Wikipedia, maandishi haya yanapatikana kwa uhuru chini ya leseni ya CC BY-SA.
 
   breadcrumbs:
     bible: Maandiko

@@ -14,6 +14,12 @@ function clickDestroy() {
 function clickForUpdate() {
   emit('forUpdate', props.item)
 }
+
+// Функция для сортировки дочерних элементов по приоритету
+const sortedChilds = (childs) => {
+  if (!childs) return []
+  return [...childs].sort((a, b) => a.priority - b.priority)
+}
 </script>
 
 <template>
@@ -35,7 +41,7 @@ function clickForUpdate() {
 
   <div class="menu-element-childs">
     <MenuItem
-      v-for="child in item.childs"
+      v-for="child in sortedChilds(item.childs)"
       :item="child"
       @destroy="(item) => { emit('destroy', item) }"
       @forUpdate="(item) => { emit('forUpdate', item) }"

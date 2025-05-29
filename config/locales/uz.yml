@@ -190,6 +190,17 @@ uz:
     click_on_verse__and: va
     search_was_return_zero_results: Hech narsa topilmadi. Matn tilini to‘g‘ri tanlaganingizni tekshiring.
     page_search_was_return_zero_results: Hech narsa topilmadi.
+    bibleox_translated: bibleox hamjamiyati tomonidan tayyorlangan matn
+    bibleox_translated_desc: |
+      Biz bu matnni hamma uchun qulay boʻlishini istaymiz - shuning uchun bu tarjimani tayyorladik.
+
+      Afsuski, tayyor tarjimalarni har doim topa olmaymiz, shuning uchun oʻzimiz yaratamiz.
+      Bunda avtomatlashtirilgan vositalar ham, odamlar ham ishlaydi. Siz ham yordam bera olasiz!
+
+      Baʼzi qismlar mukammal boʻlmasligi mumkin, lekin biz maʼnoning aniqligini saqlashga harakat qildik.
+
+      Agar xatolikni aniqlasangiz yoki matnni yaxshilamoqchi boʻlsangiz - tanqidga mamnunmiz! Yaxshisi - hamjamiyatga qoʻshiling va oʻzgartirishlaringizni taklif qiling.
+      Wikipedia materiallari singari, bu matn CC BY-SA litsenziyasi ostida bepul tarqatiladi.
 
   breadcrumbs:
     bible: Muqaddas Kitob

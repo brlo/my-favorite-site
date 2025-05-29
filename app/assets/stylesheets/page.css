@@ -66,10 +66,17 @@
   font-size: 0.9em;
 }
 
-#page-content h1.title {
+#h1-title {
   margin-top: 10px;
-  font-size: 36px;
   text-align: center;
+}
+
+#page-content #h1-title h1.title {
+  display: inline-block;
+}
+
+#page-content h1.title {
+  font-size: 36px;
 }
 
 #page-content #title-sub {
@@ -345,6 +352,7 @@
   transition: background-color 80ms ease;
 }
 
+/* GOLD */
 .menu-tree .menu-link.gold a {
   color: #5f572b !important;
   background: #ffd7008a;
@@ -770,3 +778,20 @@ h2.parent-title {
   #minimap-container { display: none;}
 } */
 
+
+
+/* GOD */
+.menu-tree .menu-link.gold.God a {
+  color: #fff !important;
+  background-color: #b63333 !important;
+  font-weight: bold;
+}
+.menu-tree .menu-link.gold.God a:hover {
+  background-color: #c84242 !important;
+}
+
+.menu-tree a img {
+  height: 33px;
+  margin: -10px 5px -10px -10px;
+  border-radius: 4px 0 0 4px;
+}

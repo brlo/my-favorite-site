@@ -27,9 +27,9 @@ class CoverUploader < BaseUploader
   # иконки для менюшек
   # TIP! Если после добавления версии захочешь для старых картинок создать эту версию, делай так:
   # Page.order_by(u_at: :asc).last(20).map{ _1.cover.recreate_versions!(:micro) }
-  # version :micro do
-  #   process resize_to_fit: [90, 70]
-  # end
+  version :micro do
+    process resize_to_fit: [90, 70]
+  end
 
   # Ограничиваем допустимый размер картинок (для этого просто создаётся этот метод)
   # doc: https://github.com/carrierwaveuploader/carrierwave/wiki/How-to:-Validate-image-file-size

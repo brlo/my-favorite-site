@@ -8,6 +8,7 @@
         <% _class.push('menu-subject') %>
       <% else %>
         <% _class.push('menu-unit', 'menu-link') %>
+        <% if (item[:is_gold] && item[:priority] == 1 && item[:title] =~ /Иисус Христос/); _class.push('God') end %>
         <% item[:path].blank? ? _class.push('not-exist') : nil %>
       <% end %>
       <% item[:is_gold] ? _class.push('gold') : nil %>
@@ -15,7 +16,12 @@
         <% if item[:childs].present? && item[:path].blank? %>
           <%= item[:title] %>
         <% elsif item[:path].presence %>
-          <a href="<%= my_page_link_to("/#{item[:path]}", page_lang: page_lang) %>"><%= item[:title] %></a>
+          <a href="<%= my_page_link_to("/#{item[:path]}", page_lang: page_lang) %>">
+            <% if @menu_icons %>
+              <img src='<%= @menu_icons[item[:path]] %>' loading="lazy"/>
+            <% end %>
+            <%= item[:title] %>
+          </a>
         <% else %>
           <% link_params = {menu_id: item[:id], parent_id: item[:page_id]} %>
           <a

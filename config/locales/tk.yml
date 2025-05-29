@@ -190,6 +190,17 @@ tk:
     click_on_verse__and: we
     search_was_return_zero_results: Hiç zat tapylmady. Tekliň, belki tekst dili dogry saýlanmady?
     page_search_was_return_zero_results: Hiç zat tapylmady.
+    bibleox_translated: bibleox jemgyýeti tarapyndan taýýarlanan tekst
+    bibleox_translated_desc: |
+      Bu tekstin herkese elýeterli bolmagyny isleýäris - şonuň üçin bu terjimäni taýýarladyk.
+
+      Gynansagam, taýýar terjimäni her wagt tapyp bilmeýäris, şonuň üçin özümiz döredýäris.
+      Awtomatik gural we adamlar bu işde işleýär. Siz hem kömek edip bilersiňiz!
+
+      Käbir bölekler mukammal seslenmese-de, manynyň takyklygyny saklamaga synanyşdyk.
+
+      Ýalňyşlyk tapanyňyz ýa-da tekstini gowulandymak isleseňiz - tankytlar hoş geldi! Has gowusy - jemgyýete goşulyň we üýtgeşmeleriňizi teklip ediň.
+      Wikipediýa materiallary ýaly, bu tekst CC BY-SA ygtyýarnamasy astynda erkin ýaýraýar.
 
   breadcrumbs:
     bible: Ýazgylar

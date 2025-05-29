@@ -64,6 +64,8 @@ const page = ref({
   title: titleFromParam,
   path: pathFromParam,
   lang: langFromParam || 'ru',
+  is_bibleox: false,
+  is_menu_icons: false,
   is_published: true,
   is_search: true,
   is_show_parent: true,
@@ -562,20 +564,34 @@ function removeLink(index) {
   </div>
 
   <div v-if="user.privs.super" class="group-fields">
-    <div class="field">
-      <label for="issearch">Поисковое поле</label>
+    <div class="field one-line">
       <Checkbox v-model="page.is_search" inputId="issearch" :binary="true" />
+      <label for="issearch">Поисковое поле</label>
     </div>
   </div>
 
   <div v-if="user.privs.super" class="group-fields">
-    <div class="field">
-      <label for="isshowparent">Показывать родителя над заголовком?</label>
-      <Checkbox v-model="page.is_show_parent" inputId="isshowparent" :binary="true" />
+    <div class="field one-line">
+      <Checkbox v-model="page.is_bibleox" inputId="isbbx" :binary="true" />
+      <label for="isbbx">Это текст сообщества bibleox?</label>
     </div>
   </div>
 
-  <div v-if="page.id && user.privs.super" class="group-fields">
+  <div v-if="user.privs.super" class="group-fields">
+    <div class="field one-line">
+      <Checkbox v-model="page.is_menu_icons" inputId="ismi" :binary="true" />
+      <label for="ismi">Показывать в меню мини-иконки?</label>
+    </div>
+  </div>
+
+  <div v-if="user.privs.super" class="group-fields">
+    <div class="field one-line">
+      <Checkbox v-model="page.is_show_parent" inputId="isshowparent" :binary="true" />
+      <label for="isshowparent">Показывать родителя над заголовком?</label>
+    </div>
+  </div>
+
+  <div v-if="page.id && (user.privs.super || isPageOwner)" class="group-fields">
     <h2>Изображение для шапки</h2>
     <div v-if="page.cover" class="cover">
       <img :src="page.cover?.large"/>
@@ -632,6 +648,12 @@ h2 {
   width: 100%;
   margin: 15px 0 5px 0;
   border-bottom: 1px solid grey;
+}
+
+.field.one-line {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .fields-published {

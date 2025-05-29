@@ -190,6 +190,17 @@ de:
     click_on_verse__and: und
     search_was_return_zero_results: Nichts gefunden. Überprüfen Sie, ob die richtige Textsprache ausgewählt ist.
     page_search_was_return_zero_results: Nichts gefunden.
+    bibleox_translated: Text vorbereitet von der bibleox-Community
+    bibleox_translated_desc: |
+      Wir möchten, dass dieser Text für jeden zugänglich ist — deshalb haben wir diese Übersetzung erstellt.
+
+      Leider ist es nicht immer möglich, fertige Übersetzungen zu finden, also erstellen wir sie selbst.
+      Sowohl automatische Tools als auch Menschen arbeiten daran. Sie können auch helfen!
+
+      Möglicherweise klingen einige Teile nicht perfekt, aber wir haben versucht, die Bedeutung genau zu erhalten.
+
+      Wenn Sie einen Fehler bemerken oder den Text verbessern möchten — Kritik ist willkommen! Noch besser — treten Sie der Community bei und schlagen Sie Ihre Änderungen vor.
+      Wie Wikipedia-Materialien ist dieser Text frei unter der CC BY-SA-Lizenz verfügbar.
 
   breadcrumbs:
     bible: Schrift

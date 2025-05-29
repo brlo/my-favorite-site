@@ -12,13 +12,9 @@ module Api
     before_action :clear_page_cache, only: [:update, :cover, :destroy, :restore]
 
     def list
-      # надо бы ещё автора показать
       # TODO:
-      # - ДОБАВИТЬ ОТДАЧУ РОДИТЕЛЬСКОЙ СТРАНИЦЫ, ЧТОБЫ БЫЛО ПОНЯТНО О ЧЁМ НАЗВАНИЕ СТАТЬИ ЕСЛИ ОНО КРАТКОЕ
-      # - УБРАТЬ ОТ СЮДА УДАЛЁННЫЕ СТАТЬИ, ЧТОБЫ ОНИ НЕ ПОКАЗЫВАЛИСЬ В ПОДСКАЗКАХ, НО ОСТАЛИСЬ НА ГЛАВНОЙ СВОДКЕ И В ПОИСКЕ С МЕТКАМИ
       # - В СВОДКЕ ПОКАЗЫВАТЬ ТОЛЬКО ТЕ ПР, КОТОРЫЕ ЕЩЁ НЕ ПРИНЯТЫ
       @pages = ::Page.
-        includes(:user).
         only(
           :id, :title, :path, :is_published, :is_deleted, :page_type,
           :edit_mode, :lang, :group_lang_id, :user_id, :parent_id,
@@ -41,6 +37,14 @@ module Api
 
       # страницы
       @pages = @pages.to_a
+
+      # авторы страниц (пока посчитал излишним в выпадающем списке)
+      # u_ids = @pages.pluck(:u_id).uniq.compact
+      # @authors = ::User.where(id: u_ids) if u_ids
+
+      # родительские страницы
+      p_ids = @pages.pluck(:p_id).uniq.compact
+      @parent_pages = ::Page.where(:id.in => p_ids).pluck(:id, :title).to_h if p_ids.any?
 
       # просмотры этих страниц из редиса
       @page_visits = ::PageVisits.visits(@pages.map{|p| p.id.to_s }) if @pages.any?
@@ -200,6 +204,7 @@ module Api
       params.require(:page).except(
         :id, :created_at, :updated_at, :is_deleted, :cover, :links,
       ).permit(
+        :is_bibleox, :is_menu_icons,
         :is_published,
         :page_type, :edit_mode,
         :title, :title_sub, :meta_desc,
@@ -207,7 +212,7 @@ module Api
         :parent_id,
         :lang, :group_lang_id,
         :body, :references,
-        :tags_str, :priority, :audio, :is_search, :is_show_parent
+        :tags_str, :priority, :audio, :is_search, :is_show_parent, :is_menu_icons
       )
     end
 

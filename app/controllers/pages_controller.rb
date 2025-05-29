@@ -164,8 +164,19 @@ class PagesController < ApplicationController
           end
         end
 
+        # !!!!!!!!!!!!!! TREE MENU !!!!!!!!!!!!!!!!
         if @page.page_type.to_i == ::Page::PAGE_TYPES['список']
           @tree_menu = @page.tree_menu
+
+          # запрошен показ мини-иконок у пунктов меню, надо заранее подгрузить эти картинки
+          if @page.is_menu_icons
+            # мини-иконки у пунктов меню
+            page_menu_paths = ::Menu.where(page_id: @page.id).pluck(:path)
+            # {path: micro-url}
+            @menu_icons = ::Page.where(lang: @page.lang, :path.in => page_menu_paths).only(:id, :path, :cover).map do
+              [_1.path, _1.cover.micro.url]
+            end.to_h
+          end
         end
 
         # ХЛЕБНЫЕ КРОШКИ

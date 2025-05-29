@@ -502,3 +502,111 @@ a.bib-comment:hover {
 .share-btn {
   display: inline-block;
 }
+
+
+/* МЕТКА BIBLEOX с объяснениями */
+
+.translation-notice {
+  width: 27px;
+  display: inline-block;
+  margin: 0 0 0 5px;
+  position: relative;
+  cursor: help;
+  opacity: 0.5;
+  vertical-align: middle;
+  top: -3px;
+}
+
+.translation-notice:hover {
+  opacity: 1;
+}
+
+.translation-icon {
+  opacity: 0.8;
+  transition: all 0.3s ease;
+}
+
+.translation-tooltip {
+  font-size: 12px; /* РАЗМЕР ТЕКСТА */
+  font-family: Arial, sans-serif !important;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 300px;
+  background: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #333;
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 100;
+  margin-top: 0;
+}
+
+.translation-tooltip .title {
+  display: block;
+  font-size: 15px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+
+/* Стрелочка с рамкой */
+.translation-tooltip::before {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 6px;
+  border-style: solid;
+  border-color: transparent transparent #fff transparent;
+}
+
+/* Рамка для стрелки (повторяет цвет основной рамки) */
+.translation-tooltip::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-width: 7px;
+  border-style: solid;
+  border-color: transparent transparent #e0e0e0 transparent;
+  z-index: -1;
+}
+
+.translation-notice:hover .translation-tooltip {
+  visibility: visible;
+  opacity: 1;
+  margin-top: 5px;
+}
+
+.translation-tooltip p {
+  margin: 0 0 10px 0;
+}
+
+.translation-tooltip p:last-child {
+  margin-bottom: 0;
+}
+
+/* Тёмная тема */
+
+.night-mode .translation-tooltip {
+  background: #2d2d2d;
+  border-color: #444;
+  color: #f0f0f0;
+}
+
+.night-mode .translation-tooltip::before {
+  border-color: transparent transparent #2d2d2d transparent;
+}
+
+.night-mode .translation-tooltip::after {
+  border-color: transparent transparent #444 transparent;
+}
+

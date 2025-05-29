@@ -190,6 +190,17 @@ fr:
     click_on_verse__and: 'et'
     search_was_return_zero_results: 'Aucun résultat trouvé. Vérifiez si la langue du texte est correcte.'
     page_search_was_return_zero_results: 'Aucun résultat trouvé.'
+    bibleox_translated: Texte préparé par la communauté bibleox
+    bibleox_translated_desc: |
+      Nous voulons que ce texte soit accessible à tous — c'est pourquoi nous avons préparé cette traduction.
+
+      Malheureusement, il n'est pas toujours possible de trouver des traductions toutes prêtes, alors nous les créons nous-mêmes.
+      Des outils automatiques et des humains y travaillent. Vous pouvez aussi aider !
+
+      Certaines parties peuvent ne pas sembler parfaites, mais nous avons essayé de préserver la précision du sens.
+
+      Si vous remarquez une inexactitude ou souhaitez améliorer le texte — les critiques sont bienvenues ! Mieux encore — rejoignez la communauté et proposez vos modifications.
+      Comme les contenus de Wikipédia, ce texte est diffusé librement sous licence CC BY-SA.
 
   breadcrumbs:
     bible: Écriture

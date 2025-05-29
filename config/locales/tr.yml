@@ -190,6 +190,17 @@ tr:
     click_on_verse__and: ve
     search_was_return_zero_results: Hiçbir şey bulunamadı. Metin dilinin doğru seçilip seçilmediğini kontrol edin.
     page_search_was_return_zero_results: Hiçbir şey bulunamadı.
+    bibleox_translated: bibleox topluluğu tarafından hazırlanan metin
+    bibleox_translated_desc: |
+      Bu metnin herkes tarafından erişilebilir olmasını istiyoruz - bu yüzden bu çeviriyi hazırladık.
+
+      Ne yazık ki her zaman hazır çeviriler bulamıyoruz, bu yüzden kendimiz oluşturuyoruz.
+      Hem otomatik araçlar hem de insanlar bunun üzerinde çalışıyor. Siz de yardım edebilirsiniz!
+
+      Bazı kısımlar mükemmel görünmeyebilir, ancak anlamın doğruluğunu korumaya çalıştık.
+
+      Bir yanlışlık fark ederseniz veya metni geliştirmek isterseniz - eleştirileriniz memnuniyetle karşılanır! Daha iyisi - topluluğa katılın ve düzenlemelerinizi önerin.
+      Wikipedia materyalleri gibi, bu metin CC BY-SA lisansıyla ücretsiz olarak dağıtılmaktadır.
 
   breadcrumbs:
     bible: Kutsal Yazılar

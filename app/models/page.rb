@@ -30,6 +30,8 @@ class Page < ApplicationMongoRecord
 
   # Тип страницы (для писания и тд)
   field :pt,         as: :page_type, type: String, default: 1
+  field :is_bbx,     as: :is_bibleox, type: Boolean, default: false # текст-перевод подготовлен нами?
+  field :is_mi,      as: :is_menu_icons, type: Boolean, default: false # показывать ли мини-иконки рядом с пунктами меню
   field :is_pub,     as: :is_published, type: Boolean, default: false
   field :is_del,     as: :is_deleted, type: Boolean
   field :is_srch,    as: :is_search, type: Boolean, default: true

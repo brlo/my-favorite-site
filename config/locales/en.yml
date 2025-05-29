@@ -174,6 +174,17 @@ en:
     click_on_verse__and: and
     search_was_return_zero_results: Nothing found. Check if the wrong text language is selected?
     page_search_was_return_zero_results: Nothing found.
+    bibleox_translated: Text prepared by the bibleox community
+    bibleox_translated_desc: |
+      We want this text to be accessible to everyone — that's why we've prepared this translation.
+
+      Unfortunately, it's not always possible to find ready-made translations, so we create them ourselves.
+      Both automated tools and humans work on this. You can help too!
+
+      Some parts might not sound perfect, but we've tried to preserve the accuracy of the meaning.
+
+      If you notice an inaccuracy or want to improve the text — criticism is welcome! Even better — join the community and suggest your edits.
+      Like Wikipedia materials, this text is freely available under the CC BY-SA license.
 
   breadcrumbs:
     bible: Scripture

@@ -137,6 +137,17 @@ zh-Hans:
     click_on_verse__and: 和
     search_was_return_zero_results: 什么都没找到。 检查是否选择了错误的文本语言？
     page_search_was_return_zero_results: 什么都没找到。
+    bibleox_translated: 本文由bibleox社区准备
+    bibleox_translated_desc: |
+      我们希望每个人都能阅读这个文本，所以我们准备了这份翻译。
+
+      可惜的是，并非总能找到现成的翻译，所以我们自己制作。
+      自动工具和人工都在为此努力。你也可以帮忙！
+
+      某些部分可能听起来不够完美，但我们尽力保持了意义的准确性。
+
+      如果您发现错误或想改进文本 — 欢迎批评！更好的方式是加入社区并提出修改建议。
+      和维基百科的内容一样，本文采用CC BY-SA许可自由分发。
 
   breadcrumbs:
     bible: 圣经

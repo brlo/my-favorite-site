@@ -190,6 +190,17 @@ vi:
     click_on_verse__and: 'và'
     search_was_return_zero_results: 'Không tìm thấy kết quả nào. Kiểm tra xem có phải đã chọn sai ngôn ngữ văn bản không?'
     page_search_was_return_zero_results: 'Không tìm thấy kết quả nào.'
+    bibleox_translated: Văn bản được chuẩn bị bởi cộng đồng bibleox
+    bibleox_translated_desc: |
+      Chúng tôi muốn văn bản này có thể tiếp cận được với mọi người - đó là lý do chúng tôi chuẩn bị bản dịch này.
+
+      Thật không may, không phải lúc nào cũng tìm được bản dịch sẵn có, vì vậy chúng tôi tự tạo ra chúng.
+      Cả công cụ tự động và con người đều làm việc này. Bạn cũng có thể giúp đỡ!
+
+      Một số phần có thể không hoàn hảo, nhưng chúng tôi đã cố gắng giữ nguyên ý nghĩa chính xác.
+
+      Nếu bạn phát hiện sai sót hoặc muốn cải thiện văn bản - chúng tôi hoan nghênh phê bình! Tốt hơn nữa - hãy tham gia cộng đồng và đề xuất chỉnh sửa của bạn.
+      Giống như tài liệu Wikipedia, văn bản này được phân phối tự do theo giấy phép CC BY-SA.
 
   breadcrumbs:
     bible: 'Kinh Thánh'
