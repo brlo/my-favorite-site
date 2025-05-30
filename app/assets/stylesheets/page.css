@@ -470,7 +470,7 @@
 .menu-tree .icon .real img {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* заполняет контейнер, сохраняя пропорции */
+  object-fit: contain; /* вписывается в контейнер, сохраняя пропорции */
   object-position: center; /* центрирует картинку (можно изменить на top, left и т. д.) */
 }
 
