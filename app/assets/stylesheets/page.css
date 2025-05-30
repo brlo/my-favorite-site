@@ -329,7 +329,7 @@
   color: #AAAAAA;
   background-color: #80808015;
 }
-.menu-tree .menu-link.not-exist span:hover {
+.menu-tree .menu-link.not-exist a:hover span {
   padding: 5px 10px;
   color: #AAAAAA;
   background-color: rgba(102, 102, 102, 0.153);
@@ -347,7 +347,7 @@
   background-color: #204f0314;
   z-index: -1;
 }
-.menu-tree .menu-link span:hover {
+.menu-tree .menu-link a:hover span {
   color: #4c5428b8;
   background-color: #2c640a1c;
   -webkit-transition: background-color 80ms ease;
@@ -360,12 +360,12 @@
   color: #5f572b !important;
   background: #ffd7008a;
 }
-.menu-tree .menu-link.gold span:hover {
+.menu-tree .menu-link.gold a:hover span {
   background: #ffd700b0;
 }
 
 .menu-tree .menu-link.selected span,
-.menu-tree .menu-link.selected span:hover {
+.menu-tree .menu-link.selected a:hover span {
   background-color: #8c6964;
   color: #fdfcf1 !important;
 }
@@ -374,19 +374,19 @@
   color: #ffe86b !important;
   background: #ffd70014;
 }
-.night-mode .menu-tree .menu-link.gold span:hover {
+.night-mode .menu-tree .menu-link.gold a:hover span {
   background: #ffd70020;
 }
 
 .night-mode .menu-tree .menu-link span {
   color: #61afef;
 }
-.night-mode .menu-tree .menu-link span:hover {
+.night-mode .menu-tree .menu-link a:hover span {
   color: #7dc3ff;
 }
 
 .night-mode .menu-tree .menu-link.selected span,
-.night-mode .menu-tree .menu-link.selected span:hover {
+.night-mode .menu-tree .menu-link.selected a:hover span {
   background-color: rgba(205,151,101, 1);
   color: #282c34 !important;
 }
@@ -396,7 +396,7 @@
   background-color: #61afef10;
 }
 
-.night-mode .menu-tree span:hover {
+.night-mode .menu-tree a:hover span {
   background-color: #61afef20;
 }
 
@@ -413,19 +413,19 @@
 }
 
 
-.menu-tree span.non-kanon {
+.menu-tree a.non-kanon span {
   background-color: #7e7e7e30;
   color: #888;
 }
-.menu-tree span.non-kanon:hover {
+.menu-tree a.non-kanon:hover span {
   background-color: #7e7e7e40;
   color: #777;
 }
-.night-mode .menu-tree span.non-kanon {
+.night-mode .menu-tree a.non-kanon span {
   background-color: #7e7e7e1f;
   color: #999;
 }
-.night-mode .menu-tree span.non-kanon:hover {
+.night-mode .menu-tree a.non-kanon:hover span {
   background-color: #7e7e7e2f;
   color: #AAA;
 }
@@ -436,7 +436,7 @@
   color: #AAAAAA;
   background-color: #80808015;
 }
-.menu-tree .menu-link.not-exist span:hover {
+.menu-tree .menu-link.not-exist a:hover span {
   padding: 5px 10px;
   color: #AAAAAA;
   background-color: rgba(102, 102, 102, 0.153);
@@ -450,17 +450,44 @@
   background-color: #b63333 !important;
   font-weight: bold;
 }
-.menu-tree .menu-link.gold.God span:hover {
+.menu-tree .menu-link.gold.God a:hover span {
   background-color: #c84242 !important;
 
 }
 
-.menu-tree img {
+.menu-tree .icon {
+  width: 40px;
   height: 32.5px;
   margin: 0;
   border-radius: 4px 0 0 4px;
+  display: flex;
+  justify-content: center;
   flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
 }
+
+.menu-tree .icon .real img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* заполняет контейнер, сохраняя пропорции */
+  object-position: center; /* центрирует картинку (можно изменить на top, left и т. д.) */
+}
+
+.menu-tree .icon .blured {
+  position: absolute;
+  background-color: #333;
+  z-index: -1;
+}
+
+.menu-tree .icon .blured img {
+  width: 100%;
+  height: 100%;
+  filter: blur(15px);
+  object-fit: cover;
+  object-position: center;
+}
+
 
 .menu-link a {
   display: flex !important;
