@@ -17,11 +17,12 @@
           <%= item[:title] %>
         <% elsif item[:path].presence %>
           <a href="<%= my_page_link_to("/#{item[:path]}", page_lang: page_lang) %>">
-            <% if @menu_icons %>
-            <div class='icon'>
-              <div class='blured'><img src='<%= @menu_icons[item[:path]] %>' loading="lazy"/></div>
-              <div class='real'><img src='<%= @menu_icons[item[:path]] %>' loading="lazy"/></div>
-            </div>
+            <% icon_url = @menu_icons[item[:path]] %>
+            <% if icon_url %>
+              <div class='icon'>
+                <div class='blured'><img src='<%= icon_url %>' loading="lazy"/></div>
+                <div class='real'><img src='<%= icon_url %>' loading="lazy"/></div>
+              </div>
             <% end %>
             <span><%= item[:title] %></span>
           </a>
