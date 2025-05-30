@@ -324,27 +324,30 @@
   margin: 1px 4px 1px 0;
 }
 
-.menu-tree .menu-link.not-exist a {
+.menu-tree .menu-link.not-exist span {
   padding: 5px 10px;
   color: #AAAAAA;
   background-color: #80808015;
 }
-.menu-tree .menu-link.not-exist a:hover {
+.menu-tree .menu-link.not-exist span:hover {
   padding: 5px 10px;
   color: #AAAAAA;
   background-color: rgba(102, 102, 102, 0.153);
 }
 
 .menu-tree .menu-link a {
+  text-decoration: none;
+}
+
+.menu-tree .menu-link span {
   display: inline-block;
   padding: 5px 10px;
-  text-decoration: none;
   height: 100%;
   color: #4c5428;
   background-color: #204f0314;
-  cursor: pointer;
+  z-index: -1;
 }
-.menu-tree .menu-link a:hover {
+.menu-tree .menu-link span:hover {
   color: #4c5428b8;
   background-color: #2c640a1c;
   -webkit-transition: background-color 80ms ease;
@@ -353,47 +356,47 @@
 }
 
 /* GOLD */
-.menu-tree .menu-link.gold a {
+.menu-tree .menu-link.gold span {
   color: #5f572b !important;
   background: #ffd7008a;
 }
-.menu-tree .menu-link.gold a:hover {
+.menu-tree .menu-link.gold span:hover {
   background: #ffd700b0;
 }
 
-.menu-tree .menu-link.selected a,
-.menu-tree .menu-link.selected a:hover {
+.menu-tree .menu-link.selected span,
+.menu-tree .menu-link.selected span:hover {
   background-color: #8c6964;
   color: #fdfcf1 !important;
 }
 
-.night-mode .menu-tree .menu-link.gold a {
+.night-mode .menu-tree .menu-link.gold span {
   color: #ffe86b !important;
   background: #ffd70014;
 }
-.night-mode .menu-tree .menu-link.gold a:hover {
+.night-mode .menu-tree .menu-link.gold span:hover {
   background: #ffd70020;
 }
 
-.night-mode .menu-tree .menu-link a {
+.night-mode .menu-tree .menu-link span {
   color: #61afef;
 }
-.night-mode .menu-tree .menu-link a:hover {
+.night-mode .menu-tree .menu-link span:hover {
   color: #7dc3ff;
 }
 
-.night-mode .menu-tree .menu-link.selected a,
-.night-mode .menu-tree .menu-link.selected a:hover {
+.night-mode .menu-tree .menu-link.selected span,
+.night-mode .menu-tree .menu-link.selected span:hover {
   background-color: rgba(205,151,101, 1);
   color: #282c34 !important;
 }
 
 
-.night-mode .menu-tree a {
+.night-mode .menu-tree span {
   background-color: #61afef10;
 }
 
-.night-mode .menu-tree a:hover {
+.night-mode .menu-tree span:hover {
   background-color: #61afef20;
 }
 
@@ -410,35 +413,65 @@
 }
 
 
-.menu-tree a.non-kanon {
+.menu-tree span.non-kanon {
   background-color: #7e7e7e30;
   color: #888;
 }
-.menu-tree a.non-kanon:hover {
+.menu-tree span.non-kanon:hover {
   background-color: #7e7e7e40;
   color: #777;
 }
-.night-mode .menu-tree a.non-kanon {
+.night-mode .menu-tree span.non-kanon {
   background-color: #7e7e7e1f;
   color: #999;
 }
-.night-mode .menu-tree a.non-kanon:hover {
+.night-mode .menu-tree span.non-kanon:hover {
   background-color: #7e7e7e2f;
   color: #AAA;
 }
 
 
-.menu-tree .menu-link.not-exist a {
+.menu-tree .menu-link.not-exist span {
   padding: 5px 10px;
   color: #AAAAAA;
   background-color: #80808015;
 }
-.menu-tree .menu-link.not-exist a:hover {
+.menu-tree .menu-link.not-exist span:hover {
   padding: 5px 10px;
   color: #AAAAAA;
   background-color: rgba(102, 102, 102, 0.153);
 }
 
+
+
+/* GOD */
+.menu-tree .menu-link.gold.God span {
+  color: #fff !important;
+  background-color: #b63333 !important;
+  font-weight: bold;
+}
+.menu-tree .menu-link.gold.God span:hover {
+  background-color: #c84242 !important;
+
+}
+
+.menu-tree img {
+  height: 32.5px;
+  margin: 0;
+  border-radius: 4px 0 0 4px;
+  flex-shrink: 0;
+}
+
+.menu-link a {
+  display: flex !important;
+  align-items: flex-start;
+}
+
+.menu-tree a span {
+  flex: 1;
+}
+
+/* menu end */
 
 
 .night-mode #page-content blockquote {
@@ -779,19 +812,3 @@ h2.parent-title {
 } */
 
 
-
-/* GOD */
-.menu-tree .menu-link.gold.God a {
-  color: #fff !important;
-  background-color: #b63333 !important;
-  font-weight: bold;
-}
-.menu-tree .menu-link.gold.God a:hover {
-  background-color: #c84242 !important;
-}
-
-.menu-tree a img {
-  height: 33px;
-  margin: -10px 5px -10px -10px;
-  border-radius: 4px 0 0 4px;
-}

@@ -20,7 +20,7 @@
             <% if @menu_icons %>
               <img src='<%= @menu_icons[item[:path]] %>' loading="lazy"/>
             <% end %>
-            <%= item[:title] %>
+            <span><%= item[:title] %></span>
           </a>
         <% else %>
           <% link_params = {menu_id: item[:id], parent_id: item[:page_id]} %>

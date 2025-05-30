@@ -48,7 +48,9 @@
         <% data[:desc] == 'Евангелие' ? m_classes.push('gold') : nil %>
         <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
         <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
-          <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></a>
+          <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>">
+            <span><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></span>
+          </a>
         </div>
       <% end %>
     </div>
@@ -62,7 +64,9 @@
         <% book_code == 'ps' ? m_classes.push('gold') : nil %>
         <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
         <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
-          <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>"><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></a>
+          <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>">
+            <span><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></span>
+          </a>
         </div>
       <% end %>
     </div>
