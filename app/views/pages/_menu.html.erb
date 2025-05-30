@@ -27,7 +27,7 @@
           <a
             rel='noindex nofollow'
             href="<%= my_page_link_to("/#{ item[:title].to_s.gsub(/[^\p{L}0-9_\-\s\(\)\,]/, '') }", page_lang: page_lang) %>?<%= link_params.map{ |k,v| "#{k}=#{v}" }.join('&') %>">
-            <%= item[:title] %>
+            <span><%= item[:title] %></span>
           </a>
         <% end %>
       </div>
