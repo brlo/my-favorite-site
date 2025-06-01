@@ -465,6 +465,11 @@
   flex-shrink: 0;
   position: relative;
   overflow: hidden;
+  /* --- */
+  background-color: #836b5240;
+}
+.night-mode .menu-tree .icon {
+  background-color: #836b527d;
 }
 
 .menu-tree .icon .real img {
@@ -474,7 +479,7 @@
   object-position: center; /* центрирует картинку (можно изменить на top, left и т. д.) */
 }
 
-.menu-tree .icon .blured {
+/* .menu-tree .icon .blured {
   position: absolute;
   background-color: #333;
   z-index: -1;
@@ -486,7 +491,7 @@
   filter: blur(15px);
   object-fit: cover;
   object-position: center;
-}
+} */
 
 
 .menu-link a {

@@ -132,6 +132,12 @@ function destroy(obj) {
     })
   }
 }
+
+// Функция для сортировки элементов по приоритету
+const sortedChilds = (childs) => {
+  if (!childs) return []
+  return [...childs].sort((a, b) => a.priority - b.priority)
+}
 </script>
 
 <template>
@@ -204,7 +210,7 @@ function destroy(obj) {
 
   <div v-if="treeMenu" class="menu-items">
     <MenuItem
-      v-for="item in treeMenu"
+      v-for="item in sortedChilds(treeMenu)"
       :item="item"
       @destroy="(item) => { destroy(item) }"
       @forUpdate="(item) => { currentMenuItem = item }"
