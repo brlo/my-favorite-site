@@ -1,6 +1,12 @@
 Rails.application.routes.draw do
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+  # редиректим /jp (без слеша и дополнительных частей)
+  get '/:loc_ui', to: redirect(status: 301) { |params, req|
+    lang = ::COUNTRY_TO_LANG[params[:loc_ui]] || 'en' # fallback на английский
+    "/#{lang}"
+  }, constraints: { loc_ui: /cn|gr|il|jp/ }
+
   # Редиректы со старых URL (коды стран) на новые (коды языков)
   # редиректим /*/ (первый элемент)
   get '/:loc_ui/*rest', to: redirect(status: 301) { |params, req|
