@@ -277,7 +277,12 @@ PAGE_LANGS = {
   "en" => 'English',
   "es" => 'Español',
   "fr" => 'Français',
+  "frm" => nil,
+  "fro" => nil,
   "el" => 'Ελληνικά',
+  "grc" => nil,
+  "cop" => nil,
+  "la" => nil,
   "he" => 'עברית',
   "hi" => 'हिन्दी',
   "fa" => 'فارسی',
@@ -287,17 +292,12 @@ PAGE_LANGS = {
   "ko" => '한국어',
   "sr" => 'Српски',
   "ru" => 'Русский',
+  "cu" => nil,
   "tk" => 'Türkmen dili',
   "tr" => 'Türkçe',
   "uz" => 'Oʻzbekcha',
   "vi" => 'Tiếng Việt',
   # ---
-  "cu" => nil,
-  "grc" => nil,
-  "la" => nil,
-  "cop" => nil,
-  "frm" => nil,
-  "fro" => nil,
 }
 
 # Универсальные названия языков для переводов Библии

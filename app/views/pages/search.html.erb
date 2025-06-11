@@ -14,9 +14,9 @@
     <meta property="og:locale:alternate" content= "<%= ::I18n.locale == :ru ? 'en' : 'ru' %>" />
   <% end %>
 
-  <h2><%= t('page_search.title') %> "<a href="<%= my_page_link_to("/#{@page.path}") %>"><%= @page.title %></a>"</h2>
+  <h2><%= t('page_search.title') %> "<a href="<%= my_page_link_to("/#{@page.path}", page_lang: @page.lang) %>"><%= @page.title %></a>"</h2>
 
-  <form class='page-search-form' action="<%= my_page_link_to("/#{@page.path}/search") %>">
+  <form class='page-search-form' action="<%= my_page_link_to("/#{@page.path}/search", page_lang: @page.lang) %>">
     <div class='search-tree-input-area'>
       <input
         class='pretty search-tree-input'

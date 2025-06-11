@@ -13,6 +13,9 @@ ruby {
 ruby a {
   text-decoration: none;
 }
+ruby v {
+  color: transparent;
+}
 
 .word-info {
   display: none; /* Скрываем по умолчанию */

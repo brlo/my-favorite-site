@@ -98,7 +98,7 @@
 <% if @tree_menu.present? %>
 
   <% if @page.is_search %>
-  <form class='tree-search page-search-form' action="<%= my_page_link_to("/#{@page.path}/search") %>">
+  <form class='tree-search page-search-form' action="<%= my_page_link_to("/#{@page.path}/search", page_lang: @page.lang) %>">
     <div class='search-tree-input-area'>
       <input
         class='pretty search-tree-input'

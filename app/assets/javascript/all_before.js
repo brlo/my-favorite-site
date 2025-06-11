@@ -128,8 +128,24 @@ const localization = {
   }
 };
 
+// Код языка интерфейса (кнопочек и названий)
+function getUILocale() {
+  // просто берём самый первый элемент из path, т.к. локаль всегда должна указываться в адресе
+  // (а вот язык контента не всегда может быть указан)
+  const path = window.location.pathname;
+  // выкидываем пустые элементы после разделения по '/'
+  const path_arr = path.split('/').filter(function (el) {
+    return (el != null) && el != '';
+  });
+  return path_arr[0];
+}
+
+function getContentLocale() {
+  return document.documentElement.lang;
+}
+
 window.BX = {
-  locale: document.documentElement.lang,
+  locale: getUILocale() || getContentLocale(),
   options: {
     // включен ли режим выделения стихов (нужен мобилам, которые не могут нажать CTRL)
     isSelectMode: false,

@@ -183,9 +183,9 @@ module ApplicationHelper
         if wi['trl']
           # ЕСТЬ ПЕРЕВОД, СТРОИМ ПОДСТРОЧНИК ПО ПОЛНОЙ ПРОГРАММЕ
           # слово
-          s  = "<ruby>#{ wi['raw'] }"
+          s  = "<ruby>&nbsp;#{ wi['raw'] }&nbsp;"
           # перевод
-          s += "<rt><a class='word-link' href='/#{I18n.locale}/words/#{ wi['bw_id'] }'>#{ wi.dig('trl', interliner_lang) }</a>"
+          s += "<rt><v>(</v><a class='word-link' href='/#{I18n.locale}/words/#{ wi['bw_id'] }'>#{ wi.dig('trl', interliner_lang) }</a><v>)</v>"
 
           # ИНФОРМАЦИЯ ВО ВСПЛЫВАЮЩЕМ БАРЕ
           s += "<div class='word-info'><div class='word-content'>"
