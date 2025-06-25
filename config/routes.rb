@@ -88,6 +88,7 @@ Rails.application.routes.draw do
       scope 'images' do
         get  'list', to: 'images#list'
         post '/', to: 'images#create'
+        put '/:id', to: 'images#update'
         delete '/:id', to: 'images#destroy'
       end
 

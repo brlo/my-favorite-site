@@ -4,7 +4,13 @@ module Api
     before_action :reject_by_update_privs, only: [:create, :update, :destroy]
 
     def list
-      @imgs = Image.order_by(c_at: :desc).last(250)
+      @imgs = Image.order_by(c_at: :desc).limit(100)
+
+      term = params[:term].to_s
+      if term.present? && term.length > 2
+        term = term.gsub(/[^[[:alnum:]]\s]/, '')
+        @imgs = @imgs.where(title: /.*#{term}.*/i)
+      end
 
       render(
         json: {
@@ -29,7 +35,14 @@ module Api
       # u.simple.current_path # => 'path/to/file.png'
       # u.simple_identifier # => 'file.png'
       if @img.save
-        render(json: {'success': 'ok', item: @img.simple.urls}, status: :ok)
+        render(json: {
+          'success': 'ok',
+          item: {
+            id: @img.id.to_s,
+            title: @img.title.to_s,
+            urls: @img.simple.urls,
+          },
+        }, status: :ok)
       else
         render(json: @img.errors, status: :unprocessable_entity)
       end
@@ -44,9 +57,16 @@ module Api
       end
     end
 
-    # TODO:
-    # def update
-    # end
+    def update
+      @img = ::Image.find(params[:id]) || not_found!()
+      @img.title = params[:title]
+
+      if @img.save
+        render(json: {'success': 'ok', item: @img.simple.urls}, status: :ok)
+      else
+        render(json: @img.errors, status: :unprocessable_entity)
+      end
+    end
 
     private
 
@@ -54,9 +74,9 @@ module Api
       {'success': 'ok'}
     end
 
-    def reject_by_read_privs;    ability?('super'); end
+    def reject_by_read_privs;    ability?('gallery_read'); end
     def reject_by_update_privs
-      ability?('super') #||
+      ability?('gallery_write') #||
       #(ability?('menus_self_update') { @page&.user_id == ::Current.user.id })
     end
   end

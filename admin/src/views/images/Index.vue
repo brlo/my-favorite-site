@@ -76,9 +76,13 @@ if (props.currentUser) {
 
 // Загружаем картинку
 function onBeforeImgSend(event) {
+  // Добавляем заголовок в FormData
+  event.formData.append('title', image.value.title || '');
   // плагин prime сам загружает картинку на сервер, показывает процесс загрузки.
   // но мы должны задать в шапке токен для авторизации на сервере.
   // поэтому понадобился этот хук в колбэке перед запросом:
+
+  // Установка заголовков (например, токен)
   return event.xhr.setRequestHeader('X-API-TOKEN', getCookie('api_token'));
 }
 
@@ -87,18 +91,27 @@ function onImgUpload(event) {
   if (event.xhr.status === 200) {
     let responseJson = JSON.parse(event.xhr.responseText);
     if (responseJson.success == 'ok') {
-      // image.value.simple = responseJson.simple;
-      window.location = window.location.href;
+      console.log(responseJson)
+      toastSuccess('Успех', 'Картинка загружена');
+      image.value.title = ''; // Очистка поля
+
+      // Если сервер возвращает созданную картинку — добавляем её в список
+      if (responseJson.item) {
+        images.value.unshift(responseJson.item);
+      } else {
+        // Или просто обновляем весь список
+        autoSearch();
+      }
     }
   } else {
-    console.log('Error in onCoverUpload, event.xhr:', event.xhr)
+    console.error('Ошибка загрузки:', event.xhr);
+    toastError('Ошибка', 'Не удалось загрузить картинку');
   }
   return true;
 }
 
 // Удалить
 function onDestroy(imgId) {
-  console.log(imgId);
   pconfirm.require({
     message: 'Точно хотите удалить картинку с id: "' + imgId + '"?',
     header: 'Удаление картинки',
@@ -110,6 +123,13 @@ function onDestroy(imgId) {
       api.delete(`/images/${imgId}`).then(data => {
         if (data.success == 'ok') {
           toastSuccess('Успех', 'Картинка удалена');
+
+          // Удаляем локально без повторного запроса
+          const index = images.value.findIndex(img => img.id === imgId);
+          if (index > -1) {
+            images.value.splice(index, 1);
+          }
+
           errors.value = '';
         } else {
           console.log('FAIL!', data);
@@ -118,27 +138,45 @@ function onDestroy(imgId) {
         }
       })
     }
-  })
+  });
   return true;
 }
 
 // Обновить
-// function onUpdate(imgId) {
-//   console.log(imgId);
+function onUpdate(imgId, newTitle) {
+  api.put(`/images/${imgId}`, { title: newTitle }).then(data => {
+    if (data.success == 'ok') {
+      const index = images.value.findIndex(img => img.id === imgId);
+      if (index > -1) {
+        images.value[index].title = newTitle; // Обновляем локально
+      }
 
-//   api.put(`/images/${imgId}`, {name: name}).then(data => {
-//     if (data.success == 'ok') {
-//       toastSuccess('Успех', 'Картинка обновлена');
-//       errors.value = '';
-//     } else {
-//       console.log('FAIL!', data);
-//       toastError('Ошибка', 'Не удалось обновить картинку');
-//       errors.value = data.errors ? data.errors : data;
-//     }
-//   })
+      toastSuccess('Успех', 'Картинка обновлена');
+      errors.value = '';
+    } else {
+      console.log('FAIL!', data);
+      toastError('Ошибка', 'Не удалось обновить картинку');
+      errors.value = data.errors ? data.errors : data;
+    }
+  })
 
-//   return true;
-// }
+  return true;
+}
+
+async function onCopy(image) {
+  const html = `<a href="${image.urls.m}"><img src="${image.urls.s}" loading="lazy"/></a>[<a href="${image.urls.m}">крупнее</a>]`;
+
+  try {
+    const blob = new Blob([html], { type: 'text/html' });
+    const data = [new ClipboardItem({ 'text/html': blob })];
+
+    await navigator.clipboard.write(data);
+    toastInfo('Копирование', 'HTML успешно скопирован');
+  } catch (err) {
+    console.error('Ошибка копирования:', err);
+    toastError('Ошибка', 'Не удалось скопировать HTML');
+  }
+}
 
 watchEffect(
   function() {
@@ -154,14 +192,14 @@ watchEffect(
 <h2 v-if="isListOnly">Недавно изменённые картинки</h2>
 <h2 v-else="isListOnly">Картинки</h2>
 
-<div v-if="user.privs.super" class="group-fields">
+<div v-if="user.privs.gallery_read" class="group-fields">
   <div class="field">
-    <label>Название</label>
+    <label>Название новой картинки:</label>
     <InputText v-model="image.title" placeholder="Название" />
   </div>
 </div>
 
-<div v-if="user.privs.super" class="group-fields">
+<div v-if="user.privs.gallery_write" class="group-fields">
   <div class="field">
     <FileUpload name="file" :url="`${apiUrl}/ru/api/images/`" @upload="onImgUpload($event)" :onBeforeSend="onBeforeImgSend" :multiple="false" accept="image/*" :maxFileSize="9000000">
       <template #empty>
@@ -184,13 +222,18 @@ watchEffect(
 
 <div id="images">
   <div class="image" v-for="image in images">
-    <a :href="image.urls.m"><img :src="image.urls?.s" /></a>
+    <a :href="image.urls.m"><img :src="image.urls?.s" loading="lazy"/></a>
     [<a :href="image.urls.m">крупнее</a>]
     <br>
     <br>
-    <InputText placeholder="Название" autocomplete="off" :value="image.title" />
+    <InputText
+      placeholder="Название"
+      autocomplete="off"
+      v-model="image.title"
+    />
     <br>
-    <a>Обновить</a> |
+    <a @click="onUpdate(image.id, image.title)">Применить</a> |
+    <a @click="onCopy(image)">Скопировать</a> |
     <a @click="onDestroy(image.id)">Удалить</a>
   </div>
 </div>

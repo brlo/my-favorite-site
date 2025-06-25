@@ -76,6 +76,12 @@ u.update!(privs: {}, is_admin: false, pages_owner: [])
 u.can!('pages_read')
 ```
 
+# Для доступа в галлерею:
+
+```ruby
+u.can!('gallery_read')
+u.can!('gallery_write')
+```
 
 # Для начала редактирования через MR:
 
