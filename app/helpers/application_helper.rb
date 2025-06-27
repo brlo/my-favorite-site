@@ -187,20 +187,21 @@ module ApplicationHelper
           # перевод
           s += "<rt><v>(</v><a class='word-link' href='/#{I18n.locale}/words/#{ wi['bw_id'] }'>#{ wi.dig('trl', interliner_lang) }</a><v>)</v>"
 
-          # ИНФОРМАЦИЯ ВО ВСПЛЫВАЮЩЕМ БАРЕ
-          s += "<div class='word-info'><div class='word-content'>"
-          # слово
-          s += "<b>#{ wi['raw'] } [#{ wi.dig('trc', 'en') }]</b> "
-          # лексема
-          s += " (#{ I18n.t('bib_word_info.lexema') }: #{ wi['lex'] })"
-          # перевод
-          s += ", перевод в контексте: <b>#{ wi.dig('trl', interliner_lang) }</b>. "
-          # морфология (часть речи и проч.)
-          s += wi['inf'].to_h.map { |k,v| "#{ I18n.t("bib_word_info.morph")[v.to_s.downcase.to_sym].presence || v.presence }" }.reject(&:blank?).join(', ')
+          # # ИНФОРМАЦИЯ ВО ВСПЛЫВАЮЩЕМ БАРЕ
+          # s += "<div class='word-info'><div class='word-content'>"
+          # # слово
+          # s += "<b>#{ wi['raw'] } [#{ wi.dig('trc', 'en') }]</b> "
+          # # лексема
+          # s += " (#{ I18n.t('bib_word_info.lexema') }: #{ wi['lex'] })"
+          # # перевод
+          # s += ", перевод в контексте: <b>#{ wi.dig('trl', interliner_lang) }</b>. "
+          # # морфология (часть речи и проч.)
+          # s += wi['inf'].to_h.map { |k,v| "#{ I18n.t("bib_word_info.morph")[v.to_s.downcase.to_sym].presence || v.presence }" }.reject(&:blank?).join(', ')
 
-          # ссылка на подробности
-          s += "<br><a href='/#{I18n.locale}/words/#{ wi['bw_id'] }'>#{ I18n.t('bib_word_info.more') }</a>"
-          s += "</div></div>"
+          # # ссылка на подробности
+          # s += "<br><a href='/#{I18n.locale}/words/#{ wi['bw_id'] }'>#{ I18n.t('bib_word_info.more') }</a>"
+          # s += "</div></div>"
+
           s += "</rt></ruby>"
         else
           # ПЕРЕВОД НЕТ, СКОРЕЕ ВСЕГО ЭТО ЗНАК ПРЕПИНАНИЯ

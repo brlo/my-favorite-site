@@ -764,230 +764,55 @@ if (scrollToTopBtn) {
   });
 }
 
-window.BX.shareLink = function() {
-  const url = decodeURIComponent(window.location.href);
-  BX.tools.copyText(url)
-  BX.notifications.addNotification('<t>' + BX.localization.linkIsCopied + ':</t>' + url);
+window.BX.shareLink = function(url) {
+  if (url == undefined) { url = window.location.href };
+  const url_dec = decodeURIComponent(url); // window.location.href
+  BX.tools.copyText(url_dec)
+  BX.notifications.addNotification('<t>' + BX.localization.linkIsCopied + ':</t>' + url_dec);
 }
 
 
-// ================================================================
-// ==================== ПОДСТРОЧНИК INTERLINER ====================
-// ================================================================
-window.enableInterlinerListeners = function() {
-  document.querySelectorAll('.word-link').forEach(link => {
-    link.addEventListener('click', function(e) {
+// Создаёт ссылки (цепь) возле заголовков, для копирования ссылки с якорем
+window.BX.addShareHeaders = function() {
+  const headers = document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]');
+
+  headers.forEach(header => {
+    const link = document.createElement('a');
+    if (header.tagName === 'H1') {
+      // Текущий URL без фрагмента (#...)
+      link.href = window.location.href.split('#')[0];
+    } else {
+      link.href = '#' + header.id;
+    }
+    link.className = 'copy-anchor';
+
+    link.addEventListener('click', function (e) {
       e.preventDefault();
+      window.BX.shareLink(e.target.href)
+    });
 
-      // Скрываем все открытые блоки с информацией
-      document.querySelectorAll('.word-info').forEach(info => {
-        info.style.display = 'none';
-      });
+    header.insertAdjacentElement('afterbegin', link);
+  });
+};
+window.BX.addShareHeaders();
 
-      // Показываем/скрываем информацию для текущего слова
-      const wordInfo = this.nextElementSibling;
-      if (wordInfo && wordInfo.classList.contains('word-info')) {
-        wordInfo.style.display = wordInfo.style.display === 'block' ? 'none' : 'block';
+
+// Ссылки внутри text-bar иногда маленькие, тяжело нажать. Если был мисс-клик, то надо найти внутри элемента ссылку и донажать её.
+window.BX.insideLinksClicker = function() {
+  const barEls = document.querySelectorAll('.bar-el.btn'); // исправлен селектор (добавлены точки)
+
+  barEls.forEach(el => {
+    el.addEventListener('click', function(e) {
+      // Проверяем, есть ли внутри элемента ссылка <a>
+      const link = el.querySelector('a');
+
+      if (link && !e.target.closest('a')) {
+        // Если ссылка есть и клик был не по ней (или её потомкам),
+        // то предотвращаем действие по умолчанию и программно кликаем по ссылке
+        e.preventDefault();
+        link.click();
       }
     });
   });
-
-  // Скрываем информацию при клике вне слова или информации
-  document.addEventListener('click', function(e) {
-    if (!e.target.closest('.word-link') && !e.target.closest('.word-info')) {
-      document.querySelectorAll('.word-info').forEach(info => {
-        info.style.display = 'none';
-      });
-    }
-  });
 };
-window.enableInterlinerListeners();
-
-
-// ================================================================
-// ============================== minimap =========================
-// ================================================================
-// window.BX.minimap = {
-//   el: document.getElementById('minimap-container'),
-//   openBtn: document.getElementById('call-minimap-btn'),
-//   isShown: false,
-// }
-
-// // ВКЛ
-// window.BX.minimap.show = function () {
-//   if (window.BX.minimap.el) {
-//     window.BX.minimap.el.classList.remove('hidden');
-//     window.BX.minimap.isShown = true;
-//   };
-// };
-
-// // ВЫКЛ
-// window.BX.minimap.hide = function () {
-//   if (window.BX.minimap.el) {
-//     window.BX.minimap.el.classList.add('hidden');
-//     window.BX.minimap.isShown = false;
-//   };
-// };
-
-// // Переключить видимость minimap
-// window.BX.minimap.toggleVision = function() {
-//   if (window.BX.minimap.isShown == true) {
-//     window.BX.minimap.hide();
-//   } else {
-//     window.BX.minimap.show();
-//   };
-// };
-
-// window.BX.minimap.init = function() {
-//   if (!document.getElementById('page-content')) { return };
-//   if (document.body.scrollHeight < 3000) { return };
-
-//   // Находим только h2 с ID
-//   const headings = Array.from(document.querySelectorAll('#page-body h2[id]'));
-//   const minimapItems = document.getElementById('minimapItems');
-//   const pageHeight = document.documentElement.scrollHeight;
-//   const minimapHeight = window.BX.minimap.el.offsetHeight - 40;
-//   const minimapProgress = document.getElementById('minimapProgress');
-
-//   // Если заголовков слишком много, то будем скрывать их подписи, иначе они наезжают друг на друга,
-//   // Показываться будут только активные и наведенные (реализовано в css)
-//   if (headings.length > 10) {
-//     window.BX.minimap.el.classList.add('too-many');
-//   }
-
-//   // Создаем элементы мини-карты
-//   headings.forEach((heading, index) => {
-//       const rect = heading.getBoundingClientRect();
-//       const scrollPosition = window.scrollY;
-//       const headingTop = rect.top + scrollPosition;
-//       const positionPercent = (headingTop / pageHeight) * 100;
-
-//       const item = document.createElement('div');
-//       item.className = 'minimap-item';
-//       item.dataset.id = heading.id;
-//       item.style.top = `${(positionPercent / 100) * minimapHeight}px`;
-
-//       const label = document.createElement('a');
-//       label.className = 'minimap-label';
-//       label.href = `#${heading.id}`
-//       label.textContent = heading.textContent;
-
-//       // Невидимая область для наведения
-//       const hitArea = document.createElement('div');
-//       hitArea.className = 'minimap-hit-area';
-
-//       item.appendChild(label);
-//       item.appendChild(hitArea);
-//       minimapItems.appendChild(item);
-
-//       // наведение на невидимую область рядом с точкой, показывает label
-//       hitArea.addEventListener('mouseenter', () => {
-//           if (!label.classList.contains('active')) {
-//             label.classList.add('visible');
-//           };
-//       });
-
-//       hitArea.addEventListener('mouseleave', () => {
-//           if (!label.classList.contains('active')) {
-//             label.classList.remove('visible');
-//           };
-//       });
-//   });
-
-//   // Функция для определения активного раздела
-//   function updateActiveSection() {
-//       const scrollPosition = window.scrollY; // - (window.innerHeight * 0.2);
-//       let activeSection = null;
-
-//       // Находим последний h2, который ещё не прокрутили
-//       for (let i = 0; i < headings.length; i++) {
-//           const heading = headings[i];
-//           const headingTop = heading.offsetTop;
-
-//           if (scrollPosition >= headingTop) {
-//               activeSection = heading.id;
-//           } else {
-//               break;
-//           }
-//       }
-
-//       // Если не нашли, выбираем первый раздел
-//       if (!activeSection && headings.length > 0) {
-//           activeSection = headings[0].id;
-//       }
-
-//       // Обновляем активные элементы
-//       document.querySelectorAll('.minimap-item').forEach(item => {
-//           item.classList.toggle('active', item.dataset.id === activeSection);
-//       });
-//   }
-
-//   // Обновляем при скроле
-//   // Оптимизация производительности
-//   let isScrolling;
-//   window.addEventListener('scroll', function() {
-//       window.clearTimeout(isScrolling);
-//       isScrolling = setTimeout(function() {
-//           updateActiveSection();
-//       }, 50);
-//   });
-//   // Обновляем при ресайзе
-//   window.addEventListener('resize', function() {
-//       const newPageHeight = document.documentElement.scrollHeight;
-//       const newMinimapHeight = window.BX.minimap.el.offsetHeight - 40;
-
-//       headings.forEach(heading => {
-//           const headingTop = heading.offsetTop;
-//           const positionPercent = (headingTop / newPageHeight) * 100;
-
-//           const item = document.querySelector(`.minimap-item[data-id="${heading.id}"]`);
-//           if (item) {
-//               item.style.top = `${(positionPercent / 100) * newMinimapHeight}px`;
-//           }
-//       });
-
-//       updateActiveSection();
-//   });
-
-
-
-//   updateActiveSection();
-// }
-
-  // // показ кнопки открытия меню
-  // window.BX.minimap.openBtn.style.display = 'block';
-
-  // // клик по кнопке для открытия меню — открывает его
-  // window.BX.minimap.openBtn.addEventListener('click', () => {
-  //     // если в window.BX.minimap.el.classList есть класс opened
-  //     if (window.BX.minimap.el.classList.contains('opened')) {
-  //         if (window.innerWidth <= 1250) {
-  //           // на маленьких экранах надо спрятать и полоску миникарты (а на больших она остаётся видна)
-  //           window.BX.minimap.hide();
-  //         };
-  //         window.BX.minimap.el.classList.remove('opened'); // убрать класс opened
-  //     } else {
-  //         window.BX.minimap.show();
-  //         window.BX.minimap.el.classList.add('opened'); // добавить класс opened
-  //     }
-  // });
-
-// !!!
-
-// инициализация миникарты
-// window.BX.minimap.init();
-// window.BX.minimap.hide();
-
-
-// авто-появление миникарты после прокрутки пониже от верха страницы
-// if (window.BX.minimap.el) {
-//   window.addEventListener('scroll', () => {
-//     // Появляется на широких экранах при прокрутке вниз на 2000px
-//     if (window.innerWidth >= 1250 && document.body.scrollHeight > 3000 && window.scrollY > 500) {
-//       window.BX.minimap.show();
-//     } else {
-//       window.BX.minimap.hide();
-//     }
-//   });
-// };
-
+window.BX.insideLinksClicker();

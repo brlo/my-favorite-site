@@ -502,6 +502,9 @@ a.bib-comment:hover {
 .share-btn {
   display: inline-block;
 }
+.dl-btn {
+  text-decoration: none;
+}
 
 
 /* МЕТКА BIBLEOX с объяснениями */
