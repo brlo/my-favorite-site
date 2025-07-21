@@ -223,6 +223,8 @@ class VersesController < ApplicationController
     @no_index = true
 
     posibleAddr = params[:t].to_s
+    # заменяем длинные тире на обычный дефис
+    posibleAddr = posibleAddr.gsub(/[–—]/, '-')
     # Сначала пробуем перевести: быт 1 1 -> быт 1:1
     # этот алгоритм нужен только тут, а метод human_to_link универсальный, используется везде
     if posibleAddr =~ /[\d]+\s[\d\-,]+$/

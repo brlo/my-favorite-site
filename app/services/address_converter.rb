@@ -21,6 +21,8 @@ class AddressConverter
   # Переводит Зах. 1 -> /zah/1/
   def self.human_to_link address
     address = address.to_s.strip.downcase.gsub(/[ \s\(\)]/, '')
+    # заменяем длинные тире на обычный дефис
+    address = address.gsub(/[–—]/, '-')
 
     # адрес есть, > 3 символов, заканчивается цифрой
     if address.present? && address.length > 3 && address =~ /\d$/

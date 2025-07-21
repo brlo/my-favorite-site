@@ -99,6 +99,18 @@ class Page < ApplicationMongoRecord
   has_many :merge_requests, foreign_key: 'p_id', primary_key: 'id', dependent: :destroy
   belongs_to :user, foreign_key: 'u_id', primary_key: 'id'
 
+  # Связь с родителем (использует p_id)
+  belongs_to :parent,
+             class_name: 'Page',
+             foreign_key: :p_id,
+             optional: true,
+             inverse_of: :children
+  # Обратная связь на дочерние страницы
+  has_many :children,
+           class_name: 'Page',
+           foreign_key: :p_id,
+           inverse_of: :parent
+
   scope :published, -> { where(is_published: true) }
   scope :deleted, -> { where(is_deleted: true) }
 

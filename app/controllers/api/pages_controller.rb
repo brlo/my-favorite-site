@@ -80,8 +80,32 @@ module Api
           # и проверить, может ли пользователь менять это меню!
           menu_id = params.dig(:page, :menu_id)
           if menu_id
-            menu = Menu.find_by(id: menu_id)
+            # ! ТУТ СВЯЗЫВАЕМ СТРАНИЦУ С УКАЗАННЫМ В ПАРАМЕТРАХ ЭЛЕМЕНТОМ МЕНЮ.
+            menu = ::Menu.find_by(id: menu_id)
             menu.update(path: @page.path)
+          else
+            # ! ТУТ ПЫТАЕМСЯ СОЗДАТЬ ЭЛЕМЕНТ МЕНЮ ДЛЯ СОЗДАННОЙ СТРАНИЦЫ И НАПОЛНИТЬ КАКИМИ-НИБУДЬ ПАРАМЕТРАМИ.
+            #
+            # Если указан только родитель, а menu_id не указан, то надо самим сгенерировать элемент меню у родителя
+            if @page.parent&.is_page_menu?
+              # Если указали для нового элемента меню родительский элемент меню, то либо ищем его, либо создаём:
+              parent_menu_item = nil
+              menu_category_name = params.dig(:page, :menu_category).presence
+              if menu_category_name
+                parent_menu_item = ::Menu.find_or_create_by!(
+                  page_id: @page.parent_id,
+                  title: menu_category_name,
+                )
+              end
+
+              # создаём сам элемент меню
+              new_item = ::Menu.create!(
+                page_id: @page.parent_id, # страница-хозяин элемента меню
+                parent_id: parent_menu_item&.id, # родительский элемент
+                title: params.dig(:page, :menu_item_name).presence || @page.title,
+                path: @page.path,
+              )
+            end
           end
 
           render :show, status: :ok
