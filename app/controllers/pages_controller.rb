@@ -168,14 +168,19 @@ class PagesController < ApplicationController
         if @page.page_type.to_i == ::Page::PAGE_TYPES['список']
           @tree_menu = @page.tree_menu
 
+          # ПОДГРУЗКА КАРТИНОК К МЕНЮШКАМ! ТЯЖЕЛЫЙ ЗАПРОС (хотя я ускорил индексом, но всё равно получается 300мс, поэтому добавил кэш)
           # запрошен показ мини-иконок у пунктов меню, надо заранее подгрузить эти картинки
           if @page.is_menu_icons
             # мини-иконки у пунктов меню
             page_menu_paths = ::Menu.where(page_id: @page.id).pluck(:path)
             # {path: micro-url}
-            @menu_icons = ::Page.where(lang: @page.lang, :path.in => page_menu_paths).only(:id, :path, :cover).map do
-              [_1.path, _1.cover.micro.url]
-            end.to_h
+            cache_key = "pg_icons_#{params[:lg]}_#{Digest::MD5.hexdigest(page_menu_paths.join)}"
+            @menu_icons =
+            ::Rails.cache.fetch(cache_key, expires_in: 12.hours) do
+              ::Page.where(lang: @page.lang, :path.in => page_menu_paths).only(:id, :path, :cover).map do
+                [_1.path, _1.cover.micro.url]
+              end.to_h
+            end
           end
         end
 

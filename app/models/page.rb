@@ -94,6 +94,10 @@ class Page < ApplicationMongoRecord
   index({group_lang_id: 1},               { background: true })
   index({user_id: 1},                     { background: true })
   index({redirect_from: 1}, { sparse: true, background: true })
+  # для списка последний статей в админке
+  index({ updated_at: -1 },               { background: true })
+  # для поиска картинок для пунктов Menu на страницах типа "Труды святых отцов"
+  index({ lg: 1, path: 1 },               { background: true })
 
   # почему-то dependent: :destroy не работает
   has_many :merge_requests, foreign_key: 'p_id', primary_key: 'id', dependent: :destroy
