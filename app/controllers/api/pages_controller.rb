@@ -27,11 +27,10 @@ module Api
       term = params[:term].to_s
       if term.present? && term.length > 2
         term = term.gsub(/[^[[:alnum:]]\s]/, '')
-        @pages = @pages.where(title: /.*#{term}.*/i)
+        # @pages = @pages.where(title: /.*#{term}.*/i)
+        # regex-поиск вместо полнотекстового
+        @pages = @pages.where(:$text => { :$search => term })
       end
-
-      # regex-поиск вместо полнотекстового
-      @pages = @pages.where(:$text => { :$search => term })
 
       # указанный пользователем лимит, но не больше 100
       if params[:limit].present?
