@@ -30,6 +30,9 @@ module Api
         @pages = @pages.where(title: /.*#{term}.*/i)
       end
 
+      # regex-поиск вместо полнотекстового
+      @pages = @pages.where(:$text => { :$search => term })
+
       # указанный пользователем лимит, но не больше 100
       if params[:limit].present?
         @pages = @pages.limit([params[:limit].to_i, 100].min)

@@ -98,6 +98,8 @@ class Page < ApplicationMongoRecord
   index({ updated_at: -1 },               { background: true })
   # для поиска картинок для пунктов Menu на страницах типа "Труды святых отцов"
   index({ lg: 1, path: 1 },               { background: true })
+  # полнотекстовый поиск по названию
+  index({ title: 'text' }, { default_language: 'none', language_override: 'lang' })
 
   # почему-то dependent: :destroy не работает
   has_many :merge_requests, foreign_key: 'p_id', primary_key: 'id', dependent: :destroy
@@ -160,6 +162,12 @@ class Page < ApplicationMongoRecord
   def is_page_menu?; self.page_type.to_i == 4; end
   # страница с разбивкой на стихи
   def is_page_verses?; self.page_type.to_i == 5; end
+
+  def self.fulltext_search(term, lang: nil)
+    query = where(:$text => { :$search => term })
+    query = query.where(lang: lang) if lang
+    query.with_score.order_by(_text_score: :desc)
+  end
 
   def menu
     if self.page_type.to_i == PAGE_TYPES['список']
