@@ -6,6 +6,10 @@
 
 docker compose up -d
 
+запуск разработки админки:
+
+cd admin && npm run dev
+
 Консольи разработчика:
 
 docker exec -it bibleox bundle exec rails c

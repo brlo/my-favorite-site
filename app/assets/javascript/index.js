@@ -643,9 +643,6 @@ function loadChapter(linkEl) {
         // также надо обновить title страницы
         document.title = document.getElementById('chapter-title').dataset.title;
 
-        // также надо установить события для клика на слова в подстрочнике
-        window.enableInterlinerListeners();
-
         // сбрасываем player — аудио текста (вдруг он был запущен)
         window.BX.player.update();
       }
