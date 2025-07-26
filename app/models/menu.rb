@@ -14,6 +14,8 @@ class Menu < ApplicationMongoRecord
   field :path, type: String
   # выделяется золотым цветом в списке (привлекает внимание)
   field :is_gold, type: Boolean
+  # для денормализации. после обновления страницы, сюда заполняется, пустая ли она (она будет считаться пустой, если там текста меньше 100 символов в теле статьи)
+  field :is_em, as: :is_empty, type: Boolean
 
   # приоритетность ссылки
   field :priority, type: Integer
@@ -29,6 +31,7 @@ class Menu < ApplicationMongoRecord
   # Menu.remove_indexes
   # Menu.remove_undefined_indexes
   index({page_id: 1}, {background: true})
+  index({path: 1},    {background: true})
 
   before_validation :normalize_attributes
   validates :page_id, :title, presence: true
@@ -55,6 +58,7 @@ class Menu < ApplicationMongoRecord
       path: self.path,
       priority: self.priority,
       is_gold: self.is_gold,
+      is_empty: self.is_empty,
       created_at: self.c_at&.strftime("%Y-%m-%d %H:%M:%S"),
       updated_at: self.u_at&.strftime("%Y-%m-%d %H:%M:%S"),
     }

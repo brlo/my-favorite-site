@@ -150,6 +150,8 @@ class PagesController < ApplicationController
             # ГЛАВЫ. все соседи данной страницы в меню (будем считать, что это главы)
             if @page_in_menu
               siblings_and_me = parent_ids_with_links[@page_in_menu.parent_id]
+              siblings_and_me = siblings_and_me.select { |m| m.is_empty != true }
+
               # соседи из меню (одинаковый родитель)
               @chapters = siblings_and_me.map { |m| [m.title, m.path, m.is_gold] }
 

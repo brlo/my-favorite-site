@@ -125,6 +125,7 @@ class Page < ApplicationMongoRecord
   validates :page_type, :title, :lang, :path, presence: true
 
   after_create :chat_notify_create
+  before_update :update_menus_params
 
   # Получить комментарии к библейским стихам
   def self.comments_for_verses(verses)
@@ -651,5 +652,30 @@ class Page < ApplicationMongoRecord
   # уведомить чат:
   def chat_notify_create
     ::TelegramBot::Notifiers.page_create(u: self.user, pg: self)
+  end
+
+  # Запускается в колбэке:
+  # update_menus_params
+  #
+  # Вручную запускать:
+  # Page.each {|p| p.send(:update_menus_params, is_force: true) }
+  def update_menus_params(is_force: false)
+    # Если тело статьи меньше 100 символов, то считаем его пустым (какая-то заглушка написана)
+    is_body_was_empty = self.body_was.to_s.length < 100
+    is_body_empty = self.body.to_s.length < 100
+
+    # если текст остался коротким, или наоборот остался длинным, то ничего не делаем,
+    # а вот если состояние изменилось, то надо в менюшка обновить состояние страницы
+    return if (is_body_was_empty == is_body_empty) && is_force != true
+
+    # обновляем параметры в связанных меню
+    ::Menu.where(path: self.path).each do |m|
+      # перед стираением адреса в меню, надо убедиться, что мы работаем в той же языковой области.
+      # делаем это, сравнивая язык страницы с отрисованым меню, и удаляемой страницы:
+      _page = Page.where(id: m.page_id).only(:id, :title, :lang).first
+      if _page&.lang == self.lang
+        m.update(is_empty: is_body_empty)
+      end
+    end
   end
 end

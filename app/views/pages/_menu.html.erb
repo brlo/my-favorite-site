@@ -9,6 +9,7 @@
       <% else %>
         <% _class.push('menu-unit', 'menu-link') %>
         <% if (item[:is_gold] && item[:priority] == 1 && item[:title] =~ /Иисус Христос/); _class.push('God') end %>
+        <% item[:is_empty] ? _class.push('not-exist') : nil %>
         <% item[:path].blank? ? _class.push('not-exist') : nil %>
       <% end %>
       <% item[:is_gold] ? _class.push('gold') : nil %>
