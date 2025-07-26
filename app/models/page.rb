@@ -95,10 +95,11 @@ class Page < ApplicationMongoRecord
   index({user_id: 1},                     { background: true })
   index({redirect_from: 1}, { sparse: true, background: true })
   # для списка последний статей в админке
-  index({ updated_at: -1 },               { background: true })
+  index({ updated_at: -1},                { background: true })
   # для поиска картинок для пунктов Menu на страницах типа "Труды святых отцов"
-  index({ lg: 1, path: 1 },               { background: true })
+  index({ lg: 1, path: 1},                { background: true })
   # полнотекстовый поиск по названию
+  index({ title: 1},                      { background: true })
   index({ title: 'text' }, { default_language: 'none', language_override: 'lang' })
 
   # почему-то dependent: :destroy не работает
