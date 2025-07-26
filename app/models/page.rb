@@ -661,8 +661,8 @@ class Page < ApplicationMongoRecord
   # Page.each {|p| p.send(:update_menus_params, is_force: true) }
   def update_menus_params(is_force: false)
     # Если тело статьи меньше 100 символов, то считаем его пустым (какая-то заглушка написана)
-    is_body_was_empty = self.body_was.to_s.length < 100
-    is_body_empty = self.body.to_s.length < 100
+    is_body_was_empty = self.body_was.to_s.length < 30
+    is_body_empty = self.body.to_s.length < 30
 
     # если текст остался коротким, или наоборот остался длинным, то ничего не делаем,
     # а вот если состояние изменилось, то надо в менюшка обновить состояние страницы
