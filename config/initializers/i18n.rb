@@ -9,4 +9,6 @@ I18n.available_locales = ::ALL_LOCALES.keys
 #)
 
 # I18n.default_locale = :ru
-::I18n.fallbacks.map(::LANG_FALLBACKS)
+::I18n.default_locale = :en
+# ::I18n.fallbacks.map(::LANG_FALLBACKS) # не работает
+::I18n.fallbacks = ::LANG_FALLBACKS
