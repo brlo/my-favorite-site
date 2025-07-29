@@ -90,6 +90,7 @@ class Page < ApplicationMongoRecord
   # Page.remove_undefined_indexes
   # Page.remove_indexes
   # Page.create_indexes
+  index({ title: 1},                      { background: true })
   index({path_low: 1},      { unique: true, background: true })
   index({group_lang_id: 1},               { background: true })
   index({user_id: 1},                     { background: true })
@@ -99,7 +100,6 @@ class Page < ApplicationMongoRecord
   # для поиска картинок для пунктов Menu на страницах типа "Труды святых отцов"
   index({ lg: 1, path: 1},                { background: true })
   # полнотекстовый поиск по названию
-  index({ title: 1},                      { background: true })
   index({ title: 'text' }, { default_language: 'none', language_override: 'lang' })
 
   # почему-то dependent: :destroy не работает
