@@ -73,7 +73,7 @@ USER app
 
 # Устанавливаем Puppeteer и Chrome
 # RUN npx puppeteer browsers install chrome
-npm install puppeteer-core
+RUN npm install puppeteer-core
 
 # Configure the main process to run when running the image
 CMD ["/bin/bash /app/start.sh"]
