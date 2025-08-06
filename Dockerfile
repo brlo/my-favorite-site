@@ -32,17 +32,17 @@ RUN apt-get install -y --no-install-recommends locales && \
 
 ENV LC_ALL=C.UTF-8
 
-# Обновляем пакеты и устанавливаем зависимости для Google Chrome
-RUN apt-get update && apt-get install -y \
-    wget \
-    gnupg \
-    apt-transport-https \
-    ca-certificates \
-    && wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
-    && echo "deb [signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
-    && apt-get update && apt-get install -y \
-    google-chrome-stable \
-    && rm -rf /var/lib/apt/lists/*
+# # Обновляем пакеты и устанавливаем зависимости для Google Chrome
+# RUN apt-get update && apt-get install -y \
+#     wget \
+#     gnupg \
+#     apt-transport-https \
+#     ca-certificates \
+#     && wget -q -O - https://dl.google.com/linux/linux_signing_key.pub | gpg --dearmor -o /usr/share/keyrings/google-chrome.gpg \
+#     && echo "deb [signed-by=/usr/share/keyrings/google-chrome.gpg] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list \
+#     && apt-get update && apt-get install -y \
+#     google-chrome-stable \
+#     && rm -rf /var/lib/apt/lists/*
 
 # Устанавливаем японские и прочие редкие шрифты
 RUN apt-get update && apt-get install -y \
@@ -72,7 +72,8 @@ WORKDIR /app
 USER app
 
 # Устанавливаем Puppeteer и Chrome
-RUN npx puppeteer browsers install chrome
+# RUN npx puppeteer browsers install chrome
+npm install puppeteer-core
 
 # Configure the main process to run when running the image
 CMD ["/bin/bash /app/start.sh"]

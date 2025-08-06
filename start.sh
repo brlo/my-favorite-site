@@ -44,7 +44,7 @@ case "$RUN_MOD" in
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     rm -rf public/assets/*.gz
     # для преобразования страниц в pdf
-    npx puppeteer browsers install chrome
+    # npx puppeteer browsers install chrome
     # bundle exec rake db:migrate
     exec bundle exec puma -C config/puma.rb -e production
     ;;
@@ -54,7 +54,7 @@ case "$RUN_MOD" in
     bundle exec rake assets:clobber
     bundle exec rake assets:clean
     # для преобразования страниц в pdf
-    npx puppeteer browsers install chrome
+    # npx puppeteer browsers install chrome
     rm -f tmp/pids/server.pid
     echo "============ DEV ============="
     exec bundle exec rails s -p 3000 -b '0.0.0.0'
