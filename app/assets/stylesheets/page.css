@@ -491,8 +491,9 @@
 .menu-tree .vis {
   display: inline-block;
   font-size: .5em;
-  vertical-align: super;
+  vertical-align: middle;
   opacity: .6;
+  margin-left: 2px;
 }
 /* menu end */
 
