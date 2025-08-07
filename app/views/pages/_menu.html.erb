@@ -18,15 +18,22 @@
           <%= item[:title] %>
         <% elsif item[:path].presence %>
           <a href="<%= my_page_link_to("/#{item[:path]}", page_lang: page_lang) %>">
-            <% if @menu_icons %>
-              <% icon_url = @menu_icons[item[:path]] %>
-              <% if icon_url %>
-                <div class='icon'>
-                  <div class='real'><img src='<%= icon_url %>' loading="lazy"/></div>
-                </div>
-              <% end %>
+            <% if @menus_info %>
+              <% icon_url = @menus_info.dig(item[:path], :icon) %>
+              <% visits = @menus_info.dig(item[:path], :visits) %>
             <% end %>
-            <span><%= item[:title] %></span>
+
+            <% if icon_url %>
+              <div class='icon'>
+                <div class='real'><img src='<%= icon_url %>' loading="lazy"/></div>
+              </div>
+            <% end %>
+            <span>
+              <%= item[:title] %>
+              <% if visits %>
+                <div class='vis'><%= visits %></div>
+              <% end %>
+            </span>
           </a>
         <% else %>
           <% link_params = {menu_id: item[:id], parent_id: item[:page_id]} %>

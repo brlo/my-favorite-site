@@ -12,8 +12,8 @@ gem 'ostruct'
 gem 'redis'
 gem 'connection_pool'
 
-# для генерации pdf из html
-gem 'grover'
+# для генерации pdf
+# gem 'prawn'
 
 # https://github.com/skroutz/greeklish/tree/master
 # https://github.com/agorf/greeklish_iso843

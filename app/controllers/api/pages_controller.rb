@@ -1,7 +1,7 @@
 module Api
   class PagesController < ApiApplicationController
     # прежде чем реджектить по привелегиям, надо сначала задать страницу
-    before_action :set_page, only: [:show, :update, :cover, :destroy, :restore]
+    before_action :set_page, only: [:show, :update, :cover, :add_pdf, :remove_pdf, :destroy, :restore]
     # теперь реджектим
     before_action :reject_by_read_privs, only: [:list, :show]
     before_action :reject_by_create_privs, only: [:create]
@@ -185,6 +185,29 @@ module Api
       end
     end
 
+    def add_pdf
+      uploaded_file = params[:pdf_file]
+
+      if uploaded_file && uploaded_file.content_type == 'application/pdf'
+        # путь для сохранения
+        save_path = Rails.root.join('public', 's', 'page_pdfs', "#{@page.id}.pdf")
+
+        # Сохраняем файл
+        File.open(save_path, 'wb') do |file|
+          file.write(uploaded_file.read)
+        end
+
+        render(json: {'success': 'ok'}, status: :ok)
+      else
+        render(json: { status: 'error', message: 'Неверный файл. Ожидается PDF.' }, status: :unprocessable_entity)
+      end
+    end
+
+    def remove_pdf
+      @page.remove_pdf!
+      render json: { success: 'ok' }
+    end
+
     def destroy
       # удаляем ссылки в меню на эту удаляемую страницу
       ::Menu.where(path: @page.path).each do |m|
@@ -228,7 +251,7 @@ module Api
     # Only allow a list of trusted parameters through.
     def page_params
       params.require(:page).except(
-        :id, :created_at, :updated_at, :is_deleted, :cover, :links,
+        :id, :created_at, :updated_at, :is_deleted, :cover, :links, :is_pdf,
       ).permit(
         :is_bibleox, :is_menu_icons,
         :is_published,

@@ -26,6 +26,7 @@ json.item do
   json.priority          pg.priority
   json.audio             pg.audio
   json.cover             pg.cover.urls
+  json.is_pdf            pg.pdf_exists?
   json.created_at        pg.c_at
   json.updated_at        pg.u_at
 end

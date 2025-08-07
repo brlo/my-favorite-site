@@ -170,19 +170,22 @@ class PagesController < ApplicationController
         if @page.page_type.to_i == ::Page::PAGE_TYPES['список']
           @tree_menu = @page.tree_menu
 
-          # ПОДГРУЗКА КАРТИНОК К МЕНЮШКАМ! ТЯЖЕЛЫЙ ЗАПРОС (хотя я ускорил индексом, но всё равно получается 300мс, поэтому добавил кэш)
+          # ПОДГРУЗКА КАРТИНОК И ПРОСМОТРОВ К МЕНЮШКАМ! ТЯЖЕЛЫЙ ЗАПРОС (хотя я ускорил индексом, но всё равно получается 300мс, поэтому добавил кэш)
           # запрошен показ мини-иконок у пунктов меню, надо заранее подгрузить эти картинки
-          if @page.is_menu_icons
-            # мини-иконки у пунктов меню
-            page_menu_paths = ::Menu.where(page_id: @page.id).pluck(:path)
-            # {path: micro-url}
-            cache_key = "pg_icons_#{params[:lg]}_#{Digest::MD5.hexdigest(page_menu_paths.join)}"
-            @menu_icons =
-            ::Rails.cache.fetch(cache_key, expires_in: 12.hours) do
-              ::Page.where(lang: @page.lang, :path.in => page_menu_paths).only(:id, :path, :cover).map do
-                [_1.path, _1.cover.micro.url]
-              end.to_h
+          # if @page.is_menu_icons
+          page_menu_paths = ::Menu.where(page_id: @page.id).pluck(:path)
+          cache_key = "pg_m_inf_#{@page.id}}"
+          @menus_info =
+          ::Rails.cache.fetch(cache_key, expires_in: 24.hours) do
+            pgs = ::Page.where(lang: @page.lang, :path.in => page_menu_paths).only(:id, :path, :cover).to_a
+            pgs_visits = PageVisits.visits(pgs.map{|p| p.id.to_s })
+            info = {}
+            pgs.each do |p|
+              info[p.path] = {}
+              info[p.path][:icon] = p.cover.micro.url if @page.is_menu_icons
+              info[p.path][:visits] = pgs_visits[p.id.to_s]
             end
+            info
           end
         end
 
@@ -329,9 +332,14 @@ class PagesController < ApplicationController
     if @page.nil?
       render status: 404
     else
-      path_to_pdf = ::PdfGenerator.path_to_page_pdf(@page)
-      # Перенаправление пользователя на скачивание файла
-      redirect_to my_res_link_to(path_to_pdf), allow_other_host: true, status: :found
+      # path_to_pdf = ::PdfGenerator.path_to_page_pdf(@page)
+      if @page.pdf_exists?
+        path_to_pdf =  "/#{@page.pdf_path}"
+        # Перенаправление пользователя на скачивание файла
+        redirect_to my_res_link_to(path_to_pdf), allow_other_host: true, status: :found
+      else
+        render status: 404
+      end
     end
   end
 

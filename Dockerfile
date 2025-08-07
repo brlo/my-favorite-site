@@ -44,19 +44,30 @@ ENV LC_ALL=C.UTF-8
 #     google-chrome-stable \
 #     && rm -rf /var/lib/apt/lists/*
 
+# Устанавливаем разные пакеты
+RUN apt-get update && apt-get install -y \
+    net-tools \
+    iputils-ping \
+    unzip \
+    mc
+
 # Устанавливаем японские и прочие редкие шрифты
 RUN apt-get update && apt-get install -y \
     fonts-ipafont-gothic \
     fonts-ipafont-mincho \
     fonts-noto-cjk
 
-# Устанавливаем Node.js, необходимый для работы Puppeteer, который используется гемом Grover
+# Устанавливаем Node.js для админки
 RUN apt-get update && apt-get install -y \
     nodejs \
     npm \
     && npm install -g n \
     && n stable \
-    && apt-get purge -y npm
+    # Очищаем кэш и удаляем npm
+    && npm cache clean -f \
+    && apt-get purge -y npm \
+    && apt-get autoremove -y \
+    && rm -rf /var/lib/apt/lists/*
 
 # Создаем каталог для гемов в домашней директории пользователя app
 RUN mkdir -p /home/app/gems
@@ -70,10 +81,6 @@ RUN chown -R app:app /home/app
 WORKDIR /app
 
 USER app
-
-# Устанавливаем Puppeteer и Chrome
-# RUN npx puppeteer browsers install chrome
-RUN npm install puppeteer-core
 
 # Configure the main process to run when running the image
 CMD ["/bin/bash /app/start.sh"]

@@ -13,9 +13,6 @@ services:
       # (появляются с задержкой, выталкиваются в видимую область, новыми логами)
       # http://tarunlalwani.com/post/why-delayed-output-python-docker/
       - 'PYTHONUNBUFFERED=1'
-      # исправление для AppArmor, для работы chrome, для генерации пдф-страниц
-      # https://chromium.googlesource.com/chromium/src/+/main/docs/security/apparmor-userns-restrictions.md
-      - 'CHROME_DEVEL_SANDBOX=/opt/google/chrome/chrome-sandbox'
     volumes:
       - .:/app
       - gems-volume:/usr/local/bundle

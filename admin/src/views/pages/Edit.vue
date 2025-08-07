@@ -350,6 +350,48 @@ function clickRemoveCover() {
   return true;
 }
 
+// Обработчик перед отправкой PDF
+function onBeforePdfSend(event) {
+  event.xhr.setRequestHeader('X-API-TOKEN', getCookie('api_token'));
+  return true;
+}
+
+// Обработчик после загрузки PDF
+function onPdfUpload(event) {
+  if (event.xhr.status === 200) {
+    const response = JSON.parse(event.xhr.responseText);
+    if (response.success === 'ok') {
+      page.value.is_pdf = true;
+      toastSuccess('Успех', 'PDF-файл успешно загружен');
+    } else {
+      toastError('Ошибка', response.message || 'Не удалось загрузить PDF');
+    }
+  } else {
+    toastError('Ошибка', 'Ошибка при загрузке PDF');
+  }
+}
+
+// Удаление PDF
+function removePdf() {
+  pconfirm.require({
+    message: 'Вы точно хотите удалить прикрепленный PDF-файл?',
+    header: 'Удаление PDF',
+    acceptLabel: 'Да',
+    rejectLabel: 'Нет',
+    icon: 'pi pi-exclamation-triangle',
+    accept: () => {
+      api.delete(`/pages/${page.value.id}/pdf`).then(data => {
+        if (data.success === 'ok') {
+          page.value.is_pdf = false;
+          toastSuccess('Успех', 'PDF-файл удален');
+        } else {
+          toastError('Ошибка', data.message || 'Не удалось удалить PDF');
+        }
+      });
+    }
+  });
+}
+
 const submitBtnItems = [
   {
     label: 'Сохранить',
@@ -611,6 +653,38 @@ function removeLink(index) {
           <p>Перенесите сюда файл для загрузки.</p>
         </template>
       </FileUpload>
+    </div>
+  </div>
+
+
+  <div v-if="page.id && (user.privs.super || isPageOwner)" class="group-fields">
+    <h2>Загрузка PDF-файла</h2>
+
+    <div class="field">
+      <FileUpload
+        name="pdf_file"
+        :url="`${apiUrl}/ru/api/pages/${page.id}/pdf`"
+        @upload="onPdfUpload($event)"
+        :onBeforeSend="onBeforePdfSend"
+        :multiple="false"
+        accept="application/pdf"
+        :maxFileSize="10000000"
+      >
+        <template #empty>
+          <p>Перенесите сюда PDF-файл для загрузки (макс. 10MB).</p>
+        </template>
+      </FileUpload>
+    </div>
+
+    <div v-if="page.is_pdf" class="pdf-info">
+      <p>PDF уже прикреплён? ({{ page.is_pdf }})</p>
+      <Button
+        @click.prevent="removePdf"
+        label="Удалить PDF"
+        text
+        severity="danger"
+        icon="pi pi-trash"
+      />
     </div>
   </div>
 

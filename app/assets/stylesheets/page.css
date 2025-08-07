@@ -488,6 +488,12 @@
   flex: 1;
 }
 
+.menu-tree .vis {
+  display: inline-block;
+  font-size: .5em;
+  vertical-align: super;
+  opacity: .6;
+}
 /* menu end */
 
 
@@ -848,4 +854,3 @@ h4:hover .copy-anchor,
 .copy-anchor:hover {
   opacity: 1;
 }
-

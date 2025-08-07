@@ -15,11 +15,13 @@
   <% end %>
 
   <div class='right-group'>
-    <div class="bar-el btn">
-      <a class='dl-btn' rel='nofollow' href='<%= my_page_link_to("/#{@page.path}/as_pdf") %>'>
-        pdf
-      </a>
-    </div>
+    <% if @page.pdf_exists? %>
+      <div class="bar-el btn">
+        <a class='dl-btn' rel='nofollow' href='<%= my_page_link_to("/#{@page.path}/as_pdf") %>'>
+          pdf
+        </a>
+      </div>
+    <% end %>
 
     <div class="bar-el btn">
       <a class='share-btn'>

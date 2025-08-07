@@ -100,8 +100,10 @@ Rails.application.routes.draw do
           get    '/',  to: 'pages#show'
           put    '/',  to: 'pages#update'
           delete '/',  to: 'pages#destroy'
-          post   '/restore',  to: 'pages#restore'
+          post   '/restore', to: 'pages#restore'
           post   '/cover', to: 'pages#cover'
+          post   '/pdf', to: 'pages#add_pdf'
+          delete '/pdf', to: 'pages#remove_pdf'
 
            # меню
           scope 'menus' do

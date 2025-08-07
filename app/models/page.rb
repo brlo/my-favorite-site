@@ -251,9 +251,9 @@ class Page < ApplicationMongoRecord
     end
 
     # Удаляем пдф-версию страницы, если изменился заголовок или текст страницы
-    if self.title_changed? || self.body_changed?
-      ::PdfGenerator.page_pdf_remove(self)
-    end
+    # if self.title_changed? || self.body_changed?
+    #   ::PdfGenerator.page_pdf_remove(self)
+    # end
 
     if self.body_changed?
       # приводим в порядок body
@@ -498,6 +498,8 @@ class Page < ApplicationMongoRecord
 
     _menu = []
     doc.css('h2, h3, h4').each do |el|
+      # Удаляем теги strong из текста перед обработкой
+      el.css('strong').each { |e| e.replace(e.content) }
       # из текста удаляем всё, кроме букв, цифр, пробела и "-". Меняем " " на "-"
       title = el.text.gsub(/[^[[:alnum:]]\s\-]/, '').gsub(' ', '-')
       # добываем порядковый номер повторяющегося заголовка
@@ -646,6 +648,22 @@ class Page < ApplicationMongoRecord
 
   def generate_img
     ::ImgTextWrap.page_generate_img(self)
+  end
+
+  def pdf_path
+    "s/page_pdfs/#{self.id}.pdf"
+  end
+
+  def pdf_exists?
+    full_path = Rails.root.join('public', pdf_path)
+    File.exist?(full_path)
+  end
+
+  def remove_pdf!
+    if pdf_exists?
+      full_path = Rails.root.join('public', pdf_path)
+      ::File.delete(full_path)
+    end
   end
 
   private
