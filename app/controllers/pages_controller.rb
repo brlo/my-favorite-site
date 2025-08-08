@@ -177,13 +177,16 @@ class PagesController < ApplicationController
           cache_key = "pg_m_inf_#{@page.id}}"
           @menus_info =
           ::Rails.cache.fetch(cache_key, expires_in: 24.hours) do
+            info = nil
             pgs = ::Page.where(lang: @page.lang, :path.in => page_menu_paths).only(:id, :path, :cover).to_a
-            pgs_visits = PageVisits.visits(pgs.map{|p| p.id.to_s })
-            info = {}
-            pgs.each do |p|
-              info[p.path] = {}
-              info[p.path][:icon] = p.cover.micro.url if @page.is_menu_icons
-              info[p.path][:visits] = pgs_visits[p.id.to_s]
+            if pgs.any?
+              pgs_visits = PageVisits.visits(pgs.map{|p| p.id.to_s })
+              info = {}
+              pgs.each do |p|
+                info[p.path] = {}
+                info[p.path][:icon] = p.cover.micro.url if @page.is_menu_icons
+                info[p.path][:visits] = pgs_visits[p.id.to_s]
+              end
             end
             info
           end
