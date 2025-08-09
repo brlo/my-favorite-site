@@ -668,10 +668,10 @@ function removeLink(index) {
         :onBeforeSend="onBeforePdfSend"
         :multiple="false"
         accept="application/pdf"
-        :maxFileSize="10000000"
+        :maxFileSize="100000000"
       >
         <template #empty>
-          <p>Перенесите сюда PDF-файл для загрузки (макс. 10MB).</p>
+          <p>Перенесите сюда PDF-файл для загрузки (макс. 100MB).</p>
         </template>
       </FileUpload>
     </div>

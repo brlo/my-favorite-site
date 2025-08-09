@@ -144,7 +144,7 @@ module ApplicationHelper
   end
 
   def page_visit(id)
-    @page_visit ||= ::PageVisits.visit(id, browser: browser)
+    @page_visit ||= ::PageVisits.visit(id, user_ip: request.ip, browser: browser)
   end
 
   def text_content_direction

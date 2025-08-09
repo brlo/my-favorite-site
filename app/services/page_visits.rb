@@ -1,5 +1,6 @@
 class PageVisits
   class << self
+    # увеличить счётчик количества дневних посещений (общих, для статистики)
     def day_visit browser: nil
       bot_marker = browser&.bot? ? 'b-' : ''
       redis_key = "#{bot_marker}vis#{Date.today}"
@@ -11,6 +12,7 @@ class PageVisits
       int_to_human_s(count)
     end
 
+    # счётчики общих посещений за последнюю неделю
     def week_visits
       hash = {}
       {
@@ -27,9 +29,27 @@ class PageVisits
       hash
     end
 
-    def visit(page, browser: nil)
-      redis_key = "vis:#{page.id}"
-      count = ::RedisConnectionPool.incr(redis_key)
+    # Увеличивает счётчик посещений страницы,
+    # если пользователь сегодня ещё не посещал эту страницу.
+    # Отдаёт итоговый счётчик просмотров страницы
+    def visit(page, user_ip:, browser: nil)
+      # метка для защиты от накрутов: пока она существует, следующий просмотр не защитается
+      redis_user_key = "vis:#{page.id}=#{user_ip}"
+      # счётчик просмотров страницы
+      redis_page_key = "vis:#{page.id}"
+
+      # Метка для защиты от накрутов просмотров ещё существует?
+      if ::RedisConnectionPool.exists?(redis_user_key)
+        # если уже посещал, просто вернуть текущий счётчик просмотров страницы
+        count = ::RedisConnectionPool.get(redis_page_key)
+      else
+        # Создать метку для щащиты от накрутов на 12 часов
+        ::RedisConnectionPool.setex(redis_user_key, 12 * 60 * 60, nil)
+        # увеличить счётчик посещений страницы
+        redis_key = "vis:#{page.id}"
+        count = ::RedisConnectionPool.incr(redis_page_key)
+      end
+
       int_to_human_s(count)
     end
 
