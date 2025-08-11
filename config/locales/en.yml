@@ -10,6 +10,8 @@ en:
   fast_search: Fast search
   voice: Voice
 
+  lang_select_tip: "This text is available in other languages:"
+
   root_page:
     title: 'The Bible and Holy Tradition'
     headers:

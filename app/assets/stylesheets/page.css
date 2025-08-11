@@ -494,6 +494,7 @@
   vertical-align: middle;
   opacity: .6;
   margin-left: 2px;
+  user-select: none;
 }
 /* menu end */
 

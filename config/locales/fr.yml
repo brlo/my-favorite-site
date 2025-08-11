@@ -10,6 +10,8 @@ fr:
   fast_search: 'Rechercher une phrase ou Jac 2 16'
   voice: Écouter
 
+  lang_select_tip: "Ce texte est disponible dans d'autres langues :"
+
   root_page:
     title: 'Bible et Sainte Tradition'
     headers:

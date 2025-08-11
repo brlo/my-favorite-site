@@ -10,6 +10,8 @@ hi:
   fast_search: 'वाक्यांश या याकूब 2:16 खोजें'
   voice: आवाज़ दें
 
+  lang_select_tip: "यह पाठ अन्य भाषाओं में उपलब्ध है:"
+
   root_page:
     title: 'बाइबिल और पवित्र परंपरा'
     headers:

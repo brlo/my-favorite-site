@@ -10,6 +10,8 @@ es:
   fast_search: 'Buscar frase o Sant 2 16'
   voice: Vocalizar
 
+  lang_select_tip: "Este texto está disponible en otros idiomas:"
+
   root_page:
     title: 'Biblia y Sagrada Tradición'
     headers:

@@ -10,6 +10,8 @@ de:
   fast_search: 'Phrase suchen oder Jak 2 16'
   voice: Vorlesen
 
+  lang_select_tip: "Dieser Text ist in anderen Sprachen verfügbar:"
+
   root_page:
     title: 'Bibel und Heilige Tradition'
     headers:

@@ -11,6 +11,8 @@ zh-Hans:
   fast_search: 快速搜索
   voice: 嗓音
 
+  lang_select_tip: "该文本有以下语言版本:"
+
   root_page:
     title: '圣经和神圣传统'
     headers:

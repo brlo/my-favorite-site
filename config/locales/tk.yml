@@ -10,6 +10,8 @@ tk:
   fast_search: 'Sözlem ýa-da Ýak 2 16 gözleg'
   voice: Seslendir
 
+  lang_select_tip: "Bu tekst başga dillerde hem elýeterli:"
+
   root_page:
     title: 'Injil we Mukaddes Däp'
     headers:

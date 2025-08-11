@@ -10,6 +10,8 @@ ko:
   fast_search: '구절 검색 또는 약 2:16'
   voice: 음성으로 듣기
 
+  lang_select_tip: "이 텍스트는 다른 언어로도 제공됩니다:"
+
   root_page:
     title: '성경과 성전(聖傳)'
     headers:

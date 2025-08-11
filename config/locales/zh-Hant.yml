@@ -11,6 +11,8 @@ zh-Hant:
   fast_search: 快速搜尋
   voice: 嗓音
 
+  lang_select_tip: "該文本有以下語言版本:"
+
   root_page:
     title: '聖經和神聖傳統'
     headers:

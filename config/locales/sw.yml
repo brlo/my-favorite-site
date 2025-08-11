@@ -10,6 +10,8 @@ sw:
   fast_search: 'Tafuta maneno au Yak 2 16'
   voice: Sauti
 
+  lang_select_tip: "Maandishi haya yanapatikana kwa lugha zingine:"
+
   root_page:
     title: 'Biblia na Mapokeo Matakatifu'
     headers:

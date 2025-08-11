@@ -10,6 +10,8 @@ uz:
   fast_search: 'Ibora yoki Yoqub 2:16 qidirish'
   voice: Ovozli o‘qish
 
+  lang_select_tip: "Ushbu matn boshqa tillarda ham mavjud:"
+
   root_page:
     title: 'Muqaddas Kitob va Muqaddas An’ana'
     headers:

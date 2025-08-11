@@ -10,6 +10,8 @@ it:
   fast_search: 'Cerca una frase o Gc 2 16'
   voice: Ascolta
 
+  lang_select_tip: "Questo testo è disponibile in altre lingue:"
+
   root_page:
     title: 'Bibbia e Sacra Tradizione'
     headers:

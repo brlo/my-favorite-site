@@ -1,6 +1,10 @@
 <% is_lang_show = (@page_langs.present? && @page_langs.count > 1) %>
 <% is_audio_show = !!@audio_link %>
 
+<% if is_lang_show %>
+  <div class='lang-description'><%= ::I18n.t('lang_select_tip') %></div>
+<% end %>
+
 <div id='text-bar'>
   <% if is_lang_show %>
     <div class='bar-el'>

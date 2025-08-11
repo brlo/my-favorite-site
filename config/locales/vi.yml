@@ -10,6 +10,8 @@ vi:
   fast_search: 'Tìm cụm từ hoặc Gc 2 16'
   voice: Đọc thành tiếng
 
+  lang_select_tip: "Văn bản này có sẵn bằng các ngôn ngữ khác:"
+
   root_page:
     title: 'Kinh Thánh và Truyền thống Thánh'
     headers:

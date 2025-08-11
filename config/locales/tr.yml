@@ -10,6 +10,8 @@ tr:
   fast_search: 'İfade ara ya da Yak 2 16'
   voice: Seslendir
 
+  lang_select_tip: "Bu metin diğer dillerde de mevcuttur:"
+
   root_page:
     title: 'Kutsal Kitap ve Kutsal Gelenek'
     headers:

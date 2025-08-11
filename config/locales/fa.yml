@@ -10,6 +10,8 @@ fa:
   fast_search: 'جستجوی عبارت یا یعقوب ۲:۱۶'
   voice: 'خواندن متن'
 
+  lang_select_tip: "این متن به زبان های دیگر نیز موجود است:"
+
   root_page:
     title: 'کتاب مقدس و سنت مقدس'
     headers:
