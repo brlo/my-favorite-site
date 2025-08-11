@@ -515,7 +515,7 @@
 /* article menu */
 
 #article-menu {
-  margin: 10px auto;
+  margin: 40px auto 10px auto;
   min-width: 200px;
   max-width: 900px;
   padding: 10px 15px;
@@ -855,4 +855,8 @@ h3:hover .copy-anchor,
 h4:hover .copy-anchor,
 .copy-anchor:hover {
   opacity: 1;
+}
+
+#page-body.verses {
+  margin-top: -20px !important;
 }
