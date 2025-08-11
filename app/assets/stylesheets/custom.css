@@ -497,3 +497,7 @@ a#current-book {
   padding-left: 0px;
   opacity: .8;
 }
+
+#page-content .lang-description {
+  padding-top: 35px;
+}

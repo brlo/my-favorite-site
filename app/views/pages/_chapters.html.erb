@@ -114,6 +114,8 @@
   </form>
   <% end %>
 
+  <%= render(partial: 'pages/text_bar') %>
+
   <div class='menu-tree t-c-dir'>
     <div>
     <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0, page_lang: @page.lang}) %>
