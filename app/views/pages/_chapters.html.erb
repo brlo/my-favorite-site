@@ -71,7 +71,6 @@
         <div class="translation-tooltip">
           <span class='title'><%= ::I18n.t('tips.bibleox_translated') %></span>
           <p><%= ::I18n.t('tips.bibleox_translated_desc') %></p>
-          <!--Не требуется больших усилий. Можно исправить даже одно слово, просто перейдя по <a href="<%= "#{::SETTINGS['admin']['url'] }/page_translate/#{ @page.id.to_s }/" %>">ссылке для перевода</a>.-->
         </div>
       </div>
     <% end %>
@@ -95,27 +94,30 @@
     </div>
   <% end %>
 
+
 <% if @tree_menu.present? %>
-
   <% if @page.is_search %>
-  <form class='tree-search page-search-form' action="<%= my_page_link_to("/#{@page.path}/search", page_lang: @page.lang) %>">
-    <div class='search-tree-input-area'>
-      <input
-        class='pretty search-tree-input'
-        name="t"
-        type="text"
-        required
-        placeholder='<%= I18n.t("page.search_placeholder") %>'
-        value=''
-        autocomplete='off'
-      />
-      <a class='page-search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
-    </div>
-  </form>
+    <form class='tree-search page-search-form' action="<%= my_page_link_to("/#{@page.path}/search", page_lang: @page.lang) %>">
+      <div class='search-tree-input-area'>
+        <input
+          class='pretty search-tree-input'
+          name="t"
+          type="text"
+          required
+          placeholder='<%= I18n.t("page.search_placeholder") %>'
+          value=''
+          autocomplete='off'
+        />
+        <a class='page-search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      </div>
+    </form>
   <% end %>
+<% end %>
 
-  <%= render(partial: 'pages/text_bar') %>
+<%= render(partial: 'pages/text_bar') %>
 
+<% if @tree_menu.present? %>
+  <!-- Собственное меню страницы -->
   <div class='menu-tree t-c-dir'>
     <div>
     <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0, page_lang: @page.lang}) %>
@@ -123,9 +125,9 @@
   </div>
 
 <% elsif @chapters.present? && @chapters.size > 1 %>
-
+  <!-- Похожие мастериалы -->
   <div class='menu-tree t-c-dir'>
-    <div class='small hint' style="margin-left: 12px;"><%= ::I18n.t('menu.same_subject') %></div>
+    <div class='bar-description'><%= ::I18n.t('menu.same_subject') %></div>
     <div class='items'>
       <% @chapters.each.with_index do |(title, path, is_gold), i| %>
         <% classes = "menu-unit menu-link" %>

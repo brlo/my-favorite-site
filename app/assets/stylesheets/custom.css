@@ -110,6 +110,10 @@ header .container, footer .container {
 /* text bar -- настройки перед текстом (язык, озвучить) */
 /* ==================================================== */
 
+#text-bar-wrapper {
+  padding-top: 35px;
+}
+
 #text-bar {
   display: flex;
   gap: 20px;
@@ -491,13 +495,9 @@ a#current-book {
   cursor: default;
 }
 
-.lang-description {
+.bar-description {
   font-size: 12px;
   padding-bottom: 5px;
   padding-left: 0px;
   opacity: .8;
-}
-
-#page-content .lang-description {
-  padding-top: 35px;
 }

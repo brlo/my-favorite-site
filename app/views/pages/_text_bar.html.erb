@@ -1,49 +1,51 @@
 <% is_lang_show = (@page_langs.present? && @page_langs.count > 1) %>
 <% is_audio_show = !!@audio_link %>
 
-<% if is_lang_show %>
-  <div class='lang-description'><%= ::I18n.t('lang_select_tip') %></div>
-<% end %>
-
-<div id='text-bar'>
+<div id="text-bar-wrapper">
   <% if is_lang_show %>
-    <div class='bar-el'>
-      <select id="page-lang-select" data-page='true' name="lang-select">
-        <% ::FLAG_BY_LANG.each do |lang, flag| %>
-          <% path = @page_langs[lang] %>
-          <% next if path.nil? %>
-          <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @content_lang == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
-        <% end %>
-      </select>
-    </div>
+    <div class='bar-description'><%= ::I18n.t('lang_select_tip') %></div>
   <% end %>
 
-  <div class='right-group'>
-    <% if @page.pdf_exists? %>
+  <div id='text-bar'>
+    <% if is_lang_show %>
+      <div class='bar-el'>
+        <select id="page-lang-select" data-page='true' name="lang-select">
+          <% ::FLAG_BY_LANG.each do |lang, flag| %>
+            <% path = @page_langs[lang] %>
+            <% next if path.nil? %>
+            <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @content_lang == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
+          <% end %>
+        </select>
+      </div>
+    <% end %>
+
+    <div class='right-group'>
+      <% if @page.pdf_exists? %>
+        <div class="bar-el btn">
+          <a class='dl-btn' rel='nofollow' href='<%= my_page_link_to("/#{@page.path}/as_pdf") %>'>
+            pdf
+          </a>
+        </div>
+      <% end %>
+
       <div class="bar-el btn">
-        <a class='dl-btn' rel='nofollow' href='<%= my_page_link_to("/#{@page.path}/as_pdf") %>'>
-          pdf
+        <a class='share-btn'>
+          <svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+          </svg>
         </a>
       </div>
-    <% end %>
 
-    <div class="bar-el btn">
-      <a class='share-btn'>
-        <svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-          <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
-        </svg>
-      </a>
+      <% if is_audio_show %>
+        <div class='bar-el btn' id='btn-play-text'>
+          <svg style="width: 15px; margin-right: 5px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
+            <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
+            <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />
+          </svg>
+
+          Озвучить
+        </div>
+      <% end %>
     </div>
-
-    <% if is_audio_show %>
-      <div class='bar-el btn' id='btn-play-text'>
-        <svg style="width: 15px; margin-right: 5px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
-          <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
-          <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />
-        </svg>
-
-        Озвучить
-      </div>
-    <% end %>
   </div>
 </div>
