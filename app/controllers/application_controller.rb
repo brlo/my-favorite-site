@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   include ApplicationHelper
 
+  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
+
   helper_method :logged_in?
 
   around_action :set_current_user
@@ -62,5 +64,11 @@ class ApplicationController < ActionController::Base
       canon_path += "/#{::I18n.locale}"
     end
     "#{canon_path}#{path}"
+  end
+
+  private
+
+  def render_not_found
+    render file: "#{Rails.root}/public/404.html", status: :not_found, layout: false
   end
 end

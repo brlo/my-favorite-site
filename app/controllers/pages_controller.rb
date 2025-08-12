@@ -333,7 +333,7 @@ class PagesController < ApplicationController
     @page = ::Page.find_by(path_low: path_downcased)
 
     if @page.nil?
-      render status: 404
+      render_not_found()
     else
       # path_to_pdf = ::PdfGenerator.path_to_page_pdf(@page)
       if @page.pdf_exists?
@@ -341,7 +341,7 @@ class PagesController < ApplicationController
         # Перенаправление пользователя на скачивание файла
         redirect_to my_res_link_to(path_to_pdf), allow_other_host: true, status: :found
       else
-        render status: 404
+        render_not_found()
       end
     end
   end
