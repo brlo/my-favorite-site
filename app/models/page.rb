@@ -99,6 +99,8 @@ class Page < ApplicationMongoRecord
   index({ updated_at: -1},                { background: true })
   # для поиска картинок для пунктов Menu на страницах типа "Труды святых отцов"
   index({ lg: 1, path: 1},                { background: true })
+  # для поиска из консоли
+  index({parent_id: 1},                   { background: true })
   # полнотекстовый поиск по названию
   index({ title: 'text' }, { default_language: 'none', language_override: 'lang' })
 

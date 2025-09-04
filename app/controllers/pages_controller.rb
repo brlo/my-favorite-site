@@ -20,7 +20,7 @@ class PagesController < ApplicationController
     # 404 - документ скрыт или удалён
     if @page
       if @page.is_deleted || (@page.is_published != true)
-        not_found!()
+        render_not_found()
       end
     end
 
@@ -37,7 +37,7 @@ class PagesController < ApplicationController
         redirect_to my_page_link_to("/#{::CGI.escape(@page.path)}")
       else
         # Если страницу всё равно не нашли, то отдаём 404 с предложением создать страницу
-        # not_found!()
+        # render_not_found()
 
         # Собираем ссылка на админку, для быстрого заполнения полей при создании страницы.
         # Пояснение: когда мы хотим создавать страницы, мы сначала добавляем в меню родительской страницы

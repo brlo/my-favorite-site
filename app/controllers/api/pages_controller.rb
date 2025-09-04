@@ -252,6 +252,7 @@ module Api
     def page_params
       params.require(:page).except(
         :id, :created_at, :updated_at, :is_deleted, :cover, :links, :is_pdf,
+        :menu_category, :menu_item_name,
       ).permit(
         :is_bibleox, :is_menu_icons,
         :is_published,

@@ -775,6 +775,9 @@ window.BX.shareLink = function(url) {
 // Создаёт ссылки (цепь) возле заголовков, для копирования ссылки с якорем
 window.BX.addShareHeaders = function() {
   const article = document.getElementById('page-body');
+
+  if (!article) return;
+
   const headers = article.querySelectorAll('h2[id], h3[id], h4[id]');
 
   headers.forEach(header => {
