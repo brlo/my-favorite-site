@@ -10,6 +10,8 @@ development:
   telegram_bot:
     token: 'test'
     chat_id: '-123'
+  index_now:
+    key: 'sample_key'
 
 production:
   admin:
@@ -19,3 +21,5 @@ production:
   telegram_bot:
     token: 'test'
     chat_id: '-123'
+  index_now:
+    key: 'sample_key'

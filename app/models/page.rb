@@ -129,6 +129,11 @@ class Page < ApplicationMongoRecord
 
   after_create :chat_notify_create
   before_update :update_menus_params
+  after_update :notify_search_engines
+
+  def notify_search_engines
+    ::IndexNowService.notify_about_page(self)
+  end
 
   # Получить комментарии к библейским стихам
   def self.comments_for_verses(verses)
