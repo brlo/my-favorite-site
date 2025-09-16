@@ -101,11 +101,16 @@ module Api
               end
 
               # создаём сам элемент меню
+              menu_title = params.dig(:page, :menu_item_name).presence || @page.title
+              # если в названии меню только цифра, то приоритет меню тоже равен этой цифре
+              # (удобно, когда автоматически создаётся много частей одной книги)
+              priority = menu_title =~ /^\d+$/ ? menu_title.to_i : 0
               new_item = ::Menu.create!(
                 page_id: @page.parent_id, # страница-хозяин элемента меню
                 parent_id: parent_menu_item&.id, # родительский элемент
-                title: params.dig(:page, :menu_item_name).presence || @page.title,
+                title: menu_title,
                 path: @page.path,
+                priority: priority,
               )
             end
           end
