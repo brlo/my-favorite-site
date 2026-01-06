@@ -66,7 +66,7 @@ Rails.application.routes.draw do
     get '/q', to: 'verses#q_redirect'
     get '/q/:page_path', to: 'verses#q_redirect'
 
-    get '/words/:word', to: 'dict_words#word'
+    get '/words/:bib_word_id', to: 'dict_words#word'
 
     get '/about', to: 'pages#about'
     get '/search', to: 'verses#search'
@@ -138,6 +138,36 @@ Rails.application.routes.draw do
           get    '/',        to: 'dict_words#show'
           put    '/',        to: 'dict_words#update'
           delete '/',        to: 'dict_words#destroy'
+        end
+      end
+
+      # ПРОЕКТЫ ПЕРЕВОДОВ
+      scope 'translation_projects' do
+        get  '/', to: 'translation_projects#index'
+
+        scope ':translation_project_id' do
+          get    '/',         to: 'translation_projects#show'
+          put    '/',         to: 'translation_projects#update'
+          delete '/',         to: 'translation_projects#destroy'
+          # распарсить (разбить на единицы) и присоединить страницу в проекту перевода
+          post   '/add_page', to: 'translation_projects#add_page'
+
+          # исходный материал для переводов (разбитый на единицы авторский текст)
+          scope 'segments' do
+            get '/', to: 'segments#index'
+
+            scope ':segment_id' do
+              # переводы пользователей для сегментов
+              scope 'translations' do
+                post '/', to: 'translations#create'
+
+                scope ':translation_id' do
+                  delete '/',     to: 'translations#destroy'
+                  post   '/vote', to: 'translations#vote'
+                end
+              end
+            end
+          end
         end
       end
 

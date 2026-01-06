@@ -1,37 +1,5 @@
-require 'nokogiri'
-# Menu.create_indexes
-
-class Menu < ApplicationMongoRecord
-  include Mongoid::Document
-
-  # родительский элемент меню
-  field :parent_id, type: BSON::ObjectId
-  # На какой странице отрисовывается этот список (страница-владелец меню)
-  field :page_id, type: BSON::ObjectId
-  # основной заголовок
-  field :title, type: String
-  # path (без него элемент меню будет обычным заголовком, без ссылки)
-  field :path, type: String
-  # выделяется золотым цветом в списке (привлекает внимание)
-  field :is_gold, type: Boolean
-  # для денормализации. после обновления страницы, сюда заполняется, пустая ли она (она будет считаться пустой, если там текста меньше 100 символов в теле статьи)
-  field :is_em, as: :is_empty, type: Boolean
-
-  # приоритетность ссылки
-  field :priority, type: Integer
-  # время создания можно получать из _id во так: id.generation_time
-  field :c_at, as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
-  field :u_at, as: :updated_at, type: DateTime, default: ->{ DateTime.now.utc.round }
-
-  # rake db:mongoid:create_indexes
-  # rake db:mongoid:remove_indexes
-  # rake db:mongoid:remove_undefined_indexes
-  # для поиска в нужной книге
-  # Menu.create_indexes
-  # Menu.remove_indexes
-  # Menu.remove_undefined_indexes
-  index({page_id: 1}, {background: true})
-  index({path: 1},    {background: true})
+class Menu < ApplicationRecord
+  self.table_name = 'menus'
 
   before_validation :normalize_attributes
   validates :page_id, :title, presence: true
@@ -45,22 +13,20 @@ class Menu < ApplicationMongoRecord
     self.title = self.title.to_s.strip
     self.path = self.path.to_s.strip if self.path.present?
     self.priority = self.priority.to_i
-
-    self.u_at = DateTime.now.utc.round
   end
 
   def attrs_for_render
     {
-      id: self.id.to_s,
-      parent_id: self.parent_id.to_s,
-      page_id: self.page_id.to_s,
+      id: self.id,
+      parent_id: self.parent_id,
+      page_id: self.page_id,
       title: self.title,
       path: self.path,
       priority: self.priority,
       is_gold: self.is_gold,
       is_empty: self.is_empty,
-      created_at: self.c_at&.strftime("%Y-%m-%d %H:%M:%S"),
-      updated_at: self.u_at&.strftime("%Y-%m-%d %H:%M:%S"),
+      created_at: self.created_at&.strftime("%Y-%m-%d %H:%M:%S"),
+      updated_at: self.updated_at&.strftime("%Y-%m-%d %H:%M:%S"),
     }
   end
 
@@ -68,37 +34,31 @@ class Menu < ApplicationMongoRecord
     records = self.where(page_id: page_id).to_a
   end
 
-  def self.subpages_of_page(page, limit: 3000)
+  def self.subpages_ids_of_page(page)
     # если у страницы нет родителя, то она сама и есть родитель, надо просто отдать все её менюшки
     if page.page_type.to_i == ::Page::PAGE_TYPES['список']
       # 1. Достаём все страницы из меню текущей страницы
       menus = ::Menu.where(page_id: page.id).to_a.compact
       if menus.any?
         sub_pages_paths = menus.pluck(:path).compact
-        if sub_pages_paths.any?
-          sub_pages_1lvl = ::Page.where(:path_low.in => sub_pages_paths.map(&:downcase), lang: page.lang).limit(count).to_a
-        end
+        sub_pages_1lvl = ::Page.where(path_low: sub_pages_paths.map(&:downcase), lang: page.lang).ids if sub_pages_paths.any?
       end
 
       # 2. Достаём все страницы из меню полученных страниц (если у них есть меню)
       if sub_pages_1lvl&.any?
-        menus = ::Menu.where(:page_id.in => sub_pages_1lvl.pluck(:id)).to_a.compact
+        menus = ::Menu.where(page_id: sub_pages_1lvl).to_a.compact
         if menus.any?
           sub_pages_paths = menus.pluck(:path).compact
-          if sub_pages_paths.any?
-            sub_pages_2lvl = ::Page.where(:path_low.in => sub_pages_paths.map(&:downcase), lang: page.lang).limit(count).to_a
-          end
+          sub_pages_2lvl = ::Page.where(path_low: sub_pages_paths.map(&:downcase), lang: page.lang).ids if sub_pages_paths.any?
         end
       end
 
       # 3. Достаём все страницы из меню дважды вложенных страниц
       if sub_pages_2lvl&.any?
-        menus = ::Menu.where(:page_id.in => sub_pages_2lvl.pluck(:id)).to_a.compact
+        menus = ::Menu.where(page_id: sub_pages_2lvl).to_a.compact
         if menus.any?
           sub_pages_paths = menus.pluck(:path).compact
-          if sub_pages_paths.any?
-            sub_pages_3lvl = ::Page.where(:path_low.in => sub_pages_paths.map(&:downcase), lang: page.lang).limit(count).to_a
-          end
+          sub_pages_3lvl = ::Page.where(path_low: sub_pages_paths.map(&:downcase), lang: page.lang).ids if sub_pages_paths.any?
         end
       end
 
@@ -106,7 +66,7 @@ class Menu < ApplicationMongoRecord
     end
 
     # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
-    parent_page = ::Page.only(:id, :p_id, :title, :path, :page_type).find_by!(id: page.parent_id)
+    parent_page = ::Page.select(:id, :parent_id, :title, :path, :page_type).find_by!(id: page.parent_id)
 
     # =========================================================================
     # сначала добываем все элементы меню родительской страницы,
@@ -141,7 +101,7 @@ class Menu < ApplicationMongoRecord
     menus = collect_all_children(parent_ids_with_links, page.id)
 
     sub_pages_paths = menus.pluck(:path).compact
-    sub_pages = ::Page.where(:path_low.in => sub_pages_paths.map(&:downcase), lang: lang).limit(count).to_a
+    sub_pages = ::Page.where(path_low: sub_pages_paths.map(&:downcase), lang: lang).limit(count).ids
   end
 
   private
@@ -159,3 +119,13 @@ class Menu < ApplicationMongoRecord
     children
   end
 end
+
+
+
+
+
+
+
+
+
+

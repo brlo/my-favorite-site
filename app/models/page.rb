@@ -1,10 +1,14 @@
 require 'nokogiri'
-# Page.create_indexes
 
-class Page < ApplicationMongoRecord
+class Page < ApplicationRecord
+  self.table_name = 'pages'
+
+  mount_uploader :cover, CoverUploader
+
   ALLOW_TAGS = %w(
     ul ol li h1 h2 h3 h4 blockquote strong b i em strike sup s u hr p a mark
     img code table tbody colgroup tr td th
+    ruby rp rt small
   )
   ALLOW_ATTRS = %w(id href class start src loading)
 
@@ -22,104 +26,61 @@ class Page < ApplicationMongoRecord
     'contributors' => 3,
   }
 
-  include Mongoid::Document
+  # include PgSearch::Model
+  # # first_match = NewPage.search("Лионский").with_pg_search_highlight.first
+  # # first_match.pg_search_highlight
+  # # => "Born in rural <b>Лионский</b>, where the buffalo roam."
+  # pg_search_scope :search,
+  #               against: :body_search,
+  #               using: {
+  #                 tsearch: {
+  #                   dictionary: 'english',
+  #                   tsvector_column: 'body_tsvector',
+  #                   highlight: {
+  #                     StartSel: '<mark>',
+  #                     StopSel: '</mark>',
+  #                     MinWords: 123,
+  #                     MaxWords: 456,
+  #                     ShortWord: 4,
+  #                     HighlightAll: true,
+  #                     MaxFragments: 3,
+  #                     FragmentDelimiter: '&hellip;'
+  #                   }
+  #                 }
+  #               },
+  #               ranked_by: ":trigram"
 
-  mount_uploader :cover, CoverUploader
-
-  attr_accessor :tags_str
-
-  # Тип страницы (для писания и тд)
-  field :pt,         as: :page_type, type: String, default: 1
-  field :is_bbx,     as: :is_bibleox, type: Boolean, default: false # текст-перевод подготовлен нами?
-  field :is_mi,      as: :is_menu_icons, type: Boolean, default: false # показывать ли мини-иконки рядом с пунктами меню
-  field :is_pub,     as: :is_published, type: Boolean, default: false
-  field :is_del,     as: :is_deleted, type: Boolean
-  field :is_srch,    as: :is_search, type: Boolean, default: true
-  field :is_sh_p,    as: :is_show_parent, type: Boolean, default: true
-  field :e_md,       as: :edit_mode, type: Integer, default: 1
-  # автор
-  field :u_id,       as: :user_id, type: BSON::ObjectId
-  # ids редакторов
-  field :editors, type: Array
-  field :links,   type: Array
-  # основной заголовок
-  field :title, type: String
-  # Название части книги (Том 1, или просто "1") или годы жизни автора
-  field :ts,         as: :title_sub, type: String
-  # meta-описание (через запятую ключевые слова)
-  field :meta,       as: :meta_desc, type: String
-  # path
-  field :path, type: String
-  field :path_low, type: String
-  field :p_id,       as: :parent_id, type: BSON::ObjectId
-  # старый путь к статье, с которого надо редиректить на текущий path
-  field :r_from,     as: :redirect_from, type: String
-  # аудио-файл
-  field :au,         as: :audio, type: String
-  # язык
-  field :lg,         as: :lang, type: String
-  # языковой идентификатор страницы для поиска таких же страниц на другом языке
-  field :gli,        as: :group_lang_id, type: BSON::ObjectId
-  # текст статьи (для редактирования)
-  field :bd,         as: :body, type: String
-  # текст статьи (для поиска)
-  field :bds,        as: :body_search, type: Array
-  # текст статьи (для показа пользователю)
-  field :bdr,        as: :body_rendered, type: String
-  # текст статьи с разбивкой на стихи
-  field :vrs,        as: :verses, type: Array
-  # ссылки и заметки (для редактирования)
-  field :rfs,        as: :references, type: String
-  # ссылки и заметки (для показа пользователю)
-  field :rfsr,       as: :references_rendered, type: String
-  # меню, построенное из распарсенных заголовков body (h2, h3, h4)
-  field :bd_menu,    as: :body_menu, type: Array
-  # id темы
-  field :tags, type: Array
-  # приоритетность статьи
-  field :prior,      as: :priority, type: Integer
-  # время создания можно получать из _id во так: id.generation_time
-  field :c_at,       as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
-  field :u_at,       as: :updated_at, type: DateTime, default: ->{ DateTime.now.utc.round }
-  # Дата последнего мерджа. Служит идентификатором мерджа.
-  field :m_at,       as: :merge_ver, type: DateTime, default: ->{ DateTime.now.utc.round }
-
-  # rake db:mongoid:create_indexes
-  # rake db:mongoid:remove_indexes
-  # rake db:mongoid:remove_undefined_indexes
-  # Page.remove_undefined_indexes
-  # Page.remove_indexes
-  # Page.create_indexes
-  index({ title: 1},                      { background: true })
-  index({path_low: 1},      { unique: true, background: true })
-  index({group_lang_id: 1},               { background: true })
-  index({user_id: 1},                     { background: true })
-  index({redirect_from: 1}, { sparse: true, background: true })
-  # для списка последний статей в админке
-  index({ updated_at: -1},                { background: true })
-  # для поиска картинок для пунктов Menu на страницах типа "Труды святых отцов"
-  index({ lg: 1, path: 1},                { background: true })
-  # для поиска из консоли
-  index({parent_id: 1},                   { background: true })
-  # полнотекстовый поиск по названию
-  index({ title: 'text' }, { default_language: 'none', language_override: 'lang' })
+  # === Ассоциации ===
+  belongs_to :user, optional: true
+  belongs_to :parent, class_name: 'Page', optional: true, inverse_of: :children
+  has_many :children, class_name: 'Page', foreign_key: :parent_id, inverse_of: :parent
+  # has_many :merge_requests, foreign_key: :p_id, dependent: :destroy
 
   # почему-то dependent: :destroy не работает
-  has_many :merge_requests, foreign_key: 'p_id', primary_key: 'id', dependent: :destroy
-  belongs_to :user, foreign_key: 'u_id', primary_key: 'id'
+  # has_many :merge_requests, foreign_key: 'p_id', primary_key: 'id', dependent: :destroy
+  # belongs_to :user, foreign_key: 'u_id', primary_key: 'id'
 
-  # Связь с родителем (использует p_id)
-  belongs_to :parent,
-             class_name: 'Page',
-             foreign_key: :p_id,
-             optional: true,
-             inverse_of: :children
-  # Обратная связь на дочерние страницы
-  has_many :children,
-           class_name: 'Page',
-           foreign_key: :p_id,
-           inverse_of: :parent
+  # # Связь с родителем (использует p_id)
+  # belongs_to :parent,
+  #            class_name: 'Page',
+  #            foreign_key: :p_id,
+  #            optional: true,
+  #            inverse_of: :children
+  # # Обратная связь на дочерние страницы
+  # has_many :children,
+  #          class_name: 'Page',
+  #          foreign_key: :p_id,
+  #          inverse_of: :parent
 
+  # === Валидации ===
+  validates :page_type, :title, :lang, :path, presence: true
+
+  # === Генерация search_vector при сохранении ===
+  after_save :update_body_tsvector
+
+  # === Скоупы ===
+  scope :published, -> { where(is_published: true) }
+  scope :deleted, -> { where(is_deleted: true) }
   scope :published, -> { where(is_published: true) }
   scope :deleted, -> { where(is_deleted: true) }
 
@@ -127,9 +88,9 @@ class Page < ApplicationMongoRecord
 
   validates :page_type, :title, :lang, :path, presence: true
 
-  after_create :chat_notify_create
+  # after_create :chat_notify_create
   before_update :update_menus_params
-  after_save :notify_search_engines
+  # after_save :notify_search_engines
 
   def notify_search_engines
     if Rails.env.production?
@@ -140,8 +101,8 @@ class Page < ApplicationMongoRecord
   # Получить комментарии к библейским стихам
   def self.comments_for_verses(verses)
     lang = ::BIB_LANG_TO_LOCALE[verses.first&.lang]
-    paths = verses.map { |v| "#{lang}-#{v.a}" }
-    self.where(:path_low.in => paths)
+    paths = verses.map { |v| "#{lang}-#{v.address}" }
+    self.where(path_low: paths)
   end
 
   # Если это статья-комментарий на библейский стих, то надо собрать ссылку на стих
@@ -174,12 +135,6 @@ class Page < ApplicationMongoRecord
   # страница с разбивкой на стихи
   def is_page_verses?; self.page_type.to_i == 5; end
 
-  def self.fulltext_search(term, lang: nil)
-    query = where(:$text => { :$search => term })
-    query = query.where(lang: lang) if lang
-    query.with_score.order_by(_text_score: :desc)
-  end
-
   def menu
     if self.page_type.to_i == PAGE_TYPES['список']
       # отдаём элементы меню простым массивом, а дерево построит фронтенд
@@ -196,11 +151,6 @@ class Page < ApplicationMongoRecord
         field_parent_id: :parent_id
       )
     end
-  end
-
-  # текст в виде строк в массиве
-  def body_as_arr
-    self.class.html_to_arr(self.body)
   end
 
   # текст в виде строк в массиве
@@ -250,7 +200,6 @@ class Page < ApplicationMongoRecord
 
     self.edit_mode = self.edit_mode.to_i
 
-    self.tags = self.tags_str.to_s.split(',').map(&:strip) if self.tags_str.present?
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
     self.group_lang_id = self.group_lang_id || BSON::ObjectId.new
 
@@ -366,15 +315,14 @@ class Page < ApplicationMongoRecord
     # вручную запустить так:
     # # sanitizer=::Rails::Html::SafeListSanitizer.new; Page.each {|p| p.body_search = sanitizer.sanitize(p.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, '.'), tags: []).split(/\s?\.+\s?/); p.save }
     if self.body_rendered_changed?
-      # заменяем тэги <p> и <h1,2,3> <blockquote> на пробел (иначе слова сливаются на этих тэгах, если тэги убрать)
-      simple_text = self.body_rendered.to_s.gsub(/<\/(h|p|blockquote)[0-9]?>/, '.')
+      # заменяем тэги <p> и <h1,2,3> <blockquote> на пробел (иначе слова сливаются на этих тэгах, если тэги просто убрать)
+      simple_text = self.body_rendered.to_s.gsub(/<\/(?:[hH][1-9]|p|blockquote)>/, ' ')
+      # убираем все диакритические знаки и ударения из греческого
+      # simple_text = DictWord.word_clean_gr(simple_text.to_s) if self.lang.in?(['grc', 'el'])
       # убираем из получившихся строк все html-тэги
-      simple_text = sanitizer.sanitize(simple_text.to_s, tags: [])
-      # разбиваем по предложениям и храним в массиве (чтобы легче было искать в рамках предложения)
-      self.body_search = sanitizer.sanitize(simple_text).split(/\s?\.+\s?/).reject(&:blank?)
+      self.body_search = sanitizer.sanitize(simple_text.to_s, tags: [])
+      # clean_text = ActionView::Base.full_sanitizer.sanitize(clean_text)
     end
-
-    self.u_at = DateTime.now.utc.round
   end
 
   # ПЕРВИЧНАЯ Разбивка сплошного текста на стихи с нумерацией, когда =%= ещё нет
@@ -700,10 +648,27 @@ class Page < ApplicationMongoRecord
     ::Menu.where(path: self.path).each do |m|
       # перед стираением адреса в меню, надо убедиться, что мы работаем в той же языковой области.
       # делаем это, сравнивая язык страницы с отрисованым меню, и удаляемой страницы:
-      _page = Page.where(id: m.page_id).only(:id, :title, :lang).first
+      _page = Page.where(id: m.page_id).select(:id, :title, :lang).first
       if _page&.lang == self.lang
         m.update(is_empty: is_body_empty)
       end
     end
+  end
+
+  # Заполняем поле для поиска по тексту статьи (там должден остаться только текст, без тэгов)
+  #
+  # вручную запустить так:
+  # # sanitizer=::Rails::Html::SafeListSanitizer.new; Page.each {|p| p.body_search = sanitizer.sanitize(p.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, '.'), tags: []).split(/\s?\.+\s?/); p.save }
+  def update_body_tsvector
+    pg_dict = LANG_TO_PG_LANGUAGE[lang&.downcase]
+
+    self.class.where(id: id).update_all(
+      self.class.sanitize_sql([
+        "body_tsvector = to_tsvector(?, ?)",
+        pg_dict,
+        self.body_search
+      ])
+    )
+    # update_all - чтобы избежать повторных колбэков
   end
 end

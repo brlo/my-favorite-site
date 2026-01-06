@@ -1,0 +1,23 @@
+# backup:
+# docker exec bibpostgres pg_dump -U bibleox bibleox_production > backup_$(date +%F).sql
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: postgres
+  pool: 3
+  username: bibleox
+  password: bibleox
+  database: bibleox_development
+
+development:
+  <<: *default
+  database: bibleox_development
+
+test:
+  <<: *default
+  database: bibleox_test
+
+production:
+  <<: *default
+  pool: 25  # <= max_connections в PostgreSQL
+  database: bibleox_production

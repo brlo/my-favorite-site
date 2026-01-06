@@ -65,7 +65,7 @@ class PagesController < ApplicationController
 
         @author_name = @page.user&.name
         if @page.editors&.any?
-          @editors_names = ::User.where(:id.in => @page.editors).pluck(:name)
+          @editors_names = ::User.where(id: @page.editors).pluck(:name)
         end
 
         # не индексировать, где текст UI не совпадает с текстом контента
@@ -93,7 +93,7 @@ class PagesController < ApplicationController
 
         # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
         if @page.parent_id
-          @parent_page = ::Page.only(:id, :p_id, :title, :path, :page_type, :lang).find_by!(id: @page.parent_id)
+          @parent_page = ::Page.select(:id, :parent_id, :title, :path, :page_type, :lang).find_by!(id: @page.parent_id)
         end
 
         if @parent_page
@@ -178,7 +178,7 @@ class PagesController < ApplicationController
           @menus_info =
           ::Rails.cache.fetch(cache_key, expires_in: 24.hours) do
             info = nil
-            pgs = ::Page.where(lang: @page.lang, :path.in => page_menu_paths).only(:id, :path, :cover).to_a
+            pgs = ::Page.where(lang: @page.lang, path: page_menu_paths).select(:id, :path, :cover).to_a
             if pgs.any?
               pgs_visits = PageVisits.visits(pgs.map{|p| p.id.to_s })
               info = {}
@@ -197,11 +197,11 @@ class PagesController < ApplicationController
         if @parent_page
           # родитель родителя статьи
           if @parent_page.parent_id
-            @pg1 = ::Page.only(:id, :p_id, :title, :path, :lang).find_by!(id: @parent_page.parent_id)
+            @pg1 = ::Page.select(:id, :parent_id, :title, :path, :lang).find_by!(id: @parent_page.parent_id)
 
             # родитель родителя родителя статьи
             if @pg1.parent_id
-              @pg2 = ::Page.only(:id, :p_id, :title, :path, :lang).find_by!(id: @pg1.parent_id)
+              @pg2 = ::Page.select(:id, :parent_id, :title, :path, :lang).find_by!(id: @pg1.parent_id)
               @breadcrumbs << [@pg2.title, @pg2.path, @pg2.lang]
             end
 
@@ -293,26 +293,20 @@ class PagesController < ApplicationController
     # в спец поле, где всё в нижнем регистре.
     @page = ::Page.find_by(path_low: path_downcased, lang: @content_lang)
 
-    # https://www.mongodb.com/docs/manual/core/link-text-indexes/
     if params[:t].present?
       # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9
       @search_text = params[:t].gsub(/[^[[:alpha:]]0-9]/i, ' ')
 
-      search_params = {
-        page: @page,
-        text: @search_text
-      }
-
       # Запрашиваем результаты из БД
-      @matches, @search_regexp = ::PageSearch.new(search_params).fetch_objects(2_000)
-
+      @matches = ::PageSearch.new(
+        page: @page,
+        text: @search_text,
+      ).fetch_objects(2_000)
       # пока нет нормальной пагинации, берём для показа только первые 500 совпадений
       @matches = @matches.first(500)
-
       @matches_count = @matches.count
     else
       @search_text = params[:t]
-
       @matches_count = 0
     end
 

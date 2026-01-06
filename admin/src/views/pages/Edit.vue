@@ -10,7 +10,6 @@ import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
 import Checkbox from 'primevue/checkbox';
 import Button from 'primevue/button';
-import SplitButton from 'primevue/splitbutton';
 import Textarea from 'primevue/textarea';
 import FileUpload from 'primevue/fileupload';
 import { getCookie } from '@/libs/cookies'
@@ -34,9 +33,6 @@ const apiUrl = import.meta.env.VITE_API_URL
 import ConfirmDialog from 'primevue/confirmdialog';
 import { useConfirm } from "primevue/useconfirm";
 const pconfirm = useConfirm();
-
-import Dialog from 'primevue/dialog';
-
 
 import { useToast } from "primevue/usetoast";
 const toast = useToast();
@@ -72,9 +68,7 @@ const page = ref({
   parent_id: parentIdFromParam,
   menu_id: menuIdFromParam,
 });
-const mr = ref({});
 const user = ref();
-const isCreateMRVisible = ref()
 
 // переменная для установки текста в редакторе
 // редактор подгрузит данные в себя и затрёт эту перменную.
@@ -212,50 +206,41 @@ let isPageOwner = computed(() => {
 });
 
 function submit() {
-  let httpMethod = '', path = '';
-  if (page.value.id) {
-    httpMethod = 'put'
-    path = `/pages/${page.value.id}/`
-  } else {
-    httpMethod = 'post'
-    path = '/pages/'
-  }
+  pconfirm.require({
+    message: 'Точно хотите сохранить статью с названием: "' + page.value.title + '"?',
+    header: 'Сохранение статьи',
+    acceptLabel: 'Сохранить', rejectLabel: 'Отмена',
+    rejectClass: 'p-button-danger p-button-text p-button-text',
+    acceptClass: 'p-button-text',
+    accept: () => {
+        let httpMethod = '', path = '';
+        if (page.value.id) {
+          httpMethod = 'put'
+          path = `/pages/${page.value.id}/`
+        } else {
+          httpMethod = 'post'
+          path = '/pages/'
+        }
 
-  api[httpMethod](path, { page: page.value }).then(data => {
-    console.log(data)
-    if (data.success == 'ok') {
-      page.value = data.item;
-      sendTextToBody.value = data.item.body;
-      sendTextToReferences.value = data.item.references;
-      toastSuccess('Успех', 'Статья создана');
-      errors.value = '';
-      router.push({ name: 'Pages' });
-    } else {
-      toastError('Ошибка', 'Не удалось создать статью');
-      console.log('FAIL!', data);
-      errors.value = data.errors ? data.errors : data;
+        api[httpMethod](path, { page: page.value }).then(data => {
+          console.log(data)
+          if (data.success == 'ok') {
+            page.value = data.item;
+            sendTextToBody.value = data.item.body;
+            sendTextToReferences.value = data.item.references;
+            toastSuccess('Успех', 'Статья создана');
+            errors.value = '';
+            router.push({ name: 'Pages' });
+          } else {
+            toastError('Ошибка', 'Не удалось создать статью');
+            console.log('FAIL!', data);
+            errors.value = data.errors ? data.errors : data;
+          }
+        })
     }
   })
 }
 
-function submitToReview() {
-  // прячем окошко с вопросом
-  isCreateMRVisible.value = false;
-
-  const params = { mr: { comment: mr.value.comment }, page: page.value }
-  api.post('/merge_requests', params).then(data => {
-    console.log(data)
-    if (data.success == 'ok') {
-      toastSuccess('Успех', 'Статья отправлена на проверку');
-      errors.value = '';
-      router.push({ name: 'ShowMergeRequest', params: { id: data.item.id } });
-    } else {
-      toastError('Ошибка', 'Не удалось отправить изменения на проверку');
-      console.log('FAIL!', data);
-      errors.value = data.errors ? data.errors : data;
-    }
-  })
-}
 
 function destroy() {
   pconfirm.require({
@@ -392,16 +377,6 @@ function removePdf() {
   });
 }
 
-const submitBtnItems = [
-  {
-    label: 'Сохранить',
-    icon: 'pi pi-check',
-    command: () => {
-      submit()
-    }
-  },
-];
-
 function addLink() {
   page.value.links.push(['', '']);
 };
@@ -413,18 +388,6 @@ function removeLink(index) {
 <template>
 <ConfirmDialog/>
 <Toast />
-
-<Dialog v-model:visible="isCreateMRVisible" modal header="Отправка на проверку" :style="{ width: '25rem' }">
-    <div class="field">
-      <label for="mr-comment">Пояснительный комментарий:</label>
-      <Textarea v-model="mr.comment" id="mr-comment" autoResize rows="1" cols="30" autocomplete="off" />
-    </div>
-    <div class="field">
-      <label>Правки будут отправлены на проверку. Продолжить?</label>
-      <Button type="button" label="Отмена" severity="secondary" @click="isCreateMRVisible = false" style="margin-right: 10px;"/>
-      <Button type="button" label="Отправить!" @click="submitToReview" />
-    </div>
-</Dialog>
 
 <router-link :to="{ name: 'Pages'}">← Назад</router-link>
 <a style='margin: 0 10px;' v-if="page.id" :href="`${apiUrl}/${localeForPage(page.lang)}/${page.lang}/w/${page.path}`">Статья на сайте</a>
@@ -450,7 +413,7 @@ function removeLink(index) {
       <i class="pi pi-check-circle"></i> Вы можете редактировать эту страницу
     </div>
     <div v-else-if="currentUser?.privs?.mrs_create" class="can-info can-suggest">
-      <i class="pi pi-send"></i> Вы можете предлагать правки к этой странице
+      <i class="pi pi-send"></i> Вы можете предлагать правки к этой странице (временно не работает)
     </div>
     <div v-else class="can-info cannot-edit">
       <i class="pi pi-times-circle"></i> Вы не можете редактировать эту страницу
@@ -459,23 +422,12 @@ function removeLink(index) {
 </div>
 
 
-
-
 <h2 v-if="page.is_deleted" class="page-deleted-label">СТАТЬЯ УДАЛЕНА!</h2>
 
 <IndexMergeRequests v-if="page.id" :pageId="page.id" :isPartial="true"/>
 <div class="flex action-bar">
   <Button v-if="!page.id" @click.prevent="submit" label="Опубликовать статью" icon="pi pi-check" />
-  <SplitButton
-    v-else-if="currentUser?.privs?.pages_update || isPageOwner"
-    label="Предложить правки"
-    icon="pi pi-send"
-    @click="isCreateMRVisible = true"
-    :model="submitBtnItems"
-    :disabled="page.is_deleted"
-  />
-  <Button v-else @click.prevent="isCreateMRVisible = true" label="Предложить правки" icon="pi pi-check" />
-
+  <Button v-else-if="currentUser?.privs?.pages_update || isPageOwner" @click.prevent="submit" label="Сохранить" icon="pi pi-check" />
 
   <div class="field fields-published">
     <label for="page-published" id="label-is-page-published">

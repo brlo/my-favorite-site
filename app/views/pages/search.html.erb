@@ -34,16 +34,20 @@
   <div class='hint'><%= t('search_page.matches') %>: <%= @matches_count %></div>
   <hr>
 
-  <article>
+  <article class='looks-like-page'>
   <% if @matches_count > 0 %>
 
     <% @matches.each do |m| %>
-      <div class='line'>
-        <% line_text = highlight(m[:text].to_s, @search_regexp) %>
-        "<%= verse_alone_clean(line_text.html_safe) %>"<br/>
-        (<a href="<%= my_page_link_to("/#{m[:path]}") %>"><%= m[:title] %></a>)
-      </div>
-      <br>
+
+      <h2><%= m.title %></h3>
+      <% m.snippet.split('-%-').each do |match_part| %>
+        <div class='line'>
+          <% line_text = sanitize(match_part, tags: %w(mark)) %>
+          «<%= verse_alone_clean(line_text.html_safe) %>»<br/>
+          (<a href="<%= my_page_link_to("/#{m.path}") %>"><%= m.title %></a>)
+        </div>
+        <br>
+      <% end %>
     <% end %>
 
   <% else %>

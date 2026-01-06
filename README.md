@@ -10,7 +10,9 @@ docker compose up -d
 
 cd admin && npm run dev
 
-Консольи разработчика:
+потом переходи по адресу: http://localhost:5173/
+
+Консоль и разработчика:
 
 docker exec -it bibleox bundle exec rails c
 
@@ -27,10 +29,6 @@ bib_restart
 * Ruby version
 
 3.1+
-
-* System dependencies
-
-mongo-4.2
 
 
 

@@ -2,6 +2,7 @@
 <div id='text-bar'>
   <div class='bar-el'>
     <select id="lang-select" name="lang-select">
+      <optgroup label="Переводы">
         <option value='ru' <% if @current_bib_lang == 'ru' %>selected<% end %>>            <%= bib_lang_string_full('ru', short: 'RST') %></option>
         <option value='csl-pnm' <% if @current_bib_lang == 'csl-pnm' %>selected<% end %>>  <%= bib_lang_string_full('csl-pnm', short: 'ELZ') %></option>
         <option value='csl-ru' <% if @current_bib_lang == 'csl-ru' %>selected<% end %>>    <%= bib_lang_string_full('csl-ru', short: 'ELZ-RU') %></option>
@@ -11,9 +12,18 @@
         <option value='jp-ni' <% if @current_bib_lang == 'jp-ni' %>selected<% end %>>      <%= bib_lang_string_full('jp-ni', short: 'N.Interc') %></option>
         <option value='cn-ccbs' <% if @current_bib_lang == 'cn-ccbs' %>selected<% end %>>  <%= bib_lang_string_full('cn-ccbs', short: 'CCBS') %></option>
         <option value='ge-sch' <% if @current_bib_lang == 'ge-sch' %>selected<% end %>>    <%= bib_lang_string_full('ge-sch', short: 'SCH') %></option>
+      </optgroup>
 
+      <optgroup label="Подстрочники">
+        <option value='gr-ru' <% if @current_bib_lang == 'gr-ru' %>selected<% end %>>      <%= bib_lang_string_full('gr-ru', short: 'BX') %></option>
+        <option value='gr-en' <% if @current_bib_lang == 'gr-en' %>selected<% end %>>      <%= bib_lang_string_full('gr-en', short: 'BX') %></option>
+        <option value='gr-jp' <% if @current_bib_lang == 'gr-jp' %>selected<% end %>>      <%= bib_lang_string_full('gr-jp', short: 'BX') %></option>
+      </optgroup>
+
+      <optgroup label="Древние тексты">
         <option value='gr-lxx-byz' <% if @current_bib_lang == 'gr-lxx-byz' %>selected<% end %>><%= bib_lang_string_full('gr-lxx-byz', short: 'LXX+Byz', is_translate: true) %></option>
         <option value='heb-osm' <% if @current_bib_lang == 'heb-osm' %>selected<% end %>>  <%= bib_lang_string_full('heb-osm', short: 'OSM+DHNT', is_translate: true) %></option>
+      </optgroup>
     </select>
   </div>
 

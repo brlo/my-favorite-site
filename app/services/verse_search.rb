@@ -1,148 +1,139 @@
 class VerseSearch
-  RU_WORD_ENDS_REGEXP = /(ими|ыми|ами|ями|ому|ему|ого|его|ешь|ишь|ете|ите|их|ых|ий|ый|ая|яя|ое|ую|юю|ее|ие|ые|ой|ей|им|ым|ом|ос|ем|ик|ек|ок|ть|ет|ут|ют|ит|ат|ят|о|а|у|и|е|ы|ю|я|ь)$/i
-  EN_WORD_ENDS_REGEXP = /(ing|er|ed|es|s)$/i
-
   # возвращает минимальную длинную слова для поиска, с учётом языка
-  def self.min_len(lang)
+  def self.min_len(tr_code)
     # японские иероглифы разрешаем искать в кол-ве 2 шт.
-    (lang == 'jp-ni' || lang == 'cn-ccbs') ? 2 : 3
+    (tr_code == 'jp-ni' || tr_code == 'cn-ccbs') ? 2 : 3
   end
 
-  attr_reader :params
-  # params: {
-  #   text: @search_text,
-  #   book: @search_books,
-  #   accuracy: @search_accuracy,
-  #   lang: 'ru'
-  # }
-  def initialize params
-    @params = params
+  attr_reader :text, :tr_code, :book, :accuracy
+
+  def initialize text:, tr_code: 'ru', book: nil, accuracy: nil
+    @text = text.to_s    # текст для поиска
+    @tr_code = tr_code   # код перевода Библии
+    @book = book         # конкретная книга для поиска
+    @accuracy = accuracy # точность
+
+    @zavet = nil
+    @search_books = nil
+
+    # в каких книгах в итоге будем искать
+    if @book.present?
+      if @book == 'z1'
+        @zavet = false
+      elsif @book == 'z2'
+        @zavet = true
+      elsif @book == 'e4'
+        @search_books = %w(mf mk lk in)
+      else
+        @search_books = [@book]
+      end
+    end
   end
 
   def fetch_objects(count)
-    # инициализация
-    text = params[:text].to_s
-    accuracy = params[:accuracy]
-    lang = params[:lang]
-    zavet = nil
-    books = nil
-
-    _book = params[:book]
-    if _book.present?
-      if _book == 'z1'
-        zavet = 1
-      elsif _book == 'z2'
-        zavet = 2
-      elsif _book == 'e4'
-        books = %w(mf mk lk in)
-      else
-        books = [_book]
-      end
+    # названия книг валидны?
+    if @search_books.present?
+      return [] unless @search_books.all? { |b| ::BOOKS.has_key?(b) }
     end
 
-    # валидации
-    if books.present?
-      return [] unless books.all? { |b| ::BOOKS.has_key?(b) }
-    end
-
-    if ::CacheSearch::SEARCH_LANGS.exclude?(lang)
+    # названия переводом Библии валидны?
+    if ::CacheSearch::SEARCH_LANGS.exclude?(tr_code)
       return []
     end
 
-    cache_search_service = ::CacheSearch.new
-    # фильтрация
-    text = cache_search_service.safe_term(text)
-
     # не ищем меньше 3 символов и больше 100
-    min_len = ::VerseSearch.min_len(lang)
-    return [] unless text.present? && text.length >= min_len
+    min_len = ::VerseSearch.min_len(tr_code)
+    return [] if @text.blank? || @text.length < min_len
 
-    # подготовка запроса с предварительной проверкой результата в кэше
-    verses_json =
-    # begin
-    cache_search_service.get(text, accuracy, lang) do
-      # готовим запрос
-      search_params = prepare_search_params(text, accuracy, lang)
+    # добываем
+    relation = ::Verse
+    relation = relation.where(tr_code: @tr_code) if @tr_code.present?
+    relation = relation.where(book: @search_books) if @search_books.present?
+    relation = relation.where(zavet: @zavet) if !@zavet.nil?
+    relation = relation.limit(count)
 
-      # https://www.mongodb.com/docs/mongoid/master/reference/text-search/
-      # https://www.mongodb.com/docs/manual/core/link-text-indexes/
+    # оставляем только буквы, пробелы, тире (кто-то, что-то)
+    clean_text = @text.gsub(/[^[[:alpha:]]\s\-]/, '').gsub(/\s+/, ' ').strip
+    lang = ::BIB_LANG_TO_LOCALE[tr_code.to_s]
 
-      # добываем
-      verses = ::Verse.where(
-        **search_params
-      ).limit(count).order_by(book_id: 1, chapter: 1, line: 1).to_a
-
-      # переводим в json (для однообразности, потому что из кэша получаем тоже в json)
-      verses.map { |v| v.as_json(only: %i(a bc bid ch l lang t z)) }
-    end
-
-    # в кэш положили поиск по всем книгам, но клиенту может быть нужен фильтр
-    verses_json = verses_json.select { |v| v['z'] == zavet } if zavet
-    verses_json = verses_json.select { |v| books.include?(v['bc']) } if books.present?
-
-    verses_json
-  end
-
-  def prepare_search_params text, accuracy, lang
-    search_params = {lang: lang}
-
-    # меняем Ё на Е
-    text = text.gsub(/ё/i, 'е')
-    # оставляем только буквы и пробелы (кто-то, что-то)
-    clean_text = text.gsub(/[^[[:alpha:]]\s\-]/, '').gsub(/\s+/, ' ').strip
-
-    # с этими языками никаких манипуляций не предпринимаем.
-    # Там пробелов нет, иероглифы, что там с окончаниями я вообще не знаю
-    if %w(jp-ni cn-ccbs arab-avd).include?(lang)
-      clean_text = clean_text.to_s.first(150)
-      search_params['text'] = /#{clean_text}/i
-      return search_params
-    end
-
-    if accuracy == 'exact'
-      # точное совпадение (пишем в кавычках)
-      arr = clean_text.split(' ').first(5)
-      regex = arr.join('[\,\.\-\s\!\?\:\;]+')
-    elsif accuracy == 'similar'
-      # похожая фраза (когда будет готово отдельное поле, перейти на него)
-      arr = clean_text.split(' ').first(5)
-
-      regex =
-      case lang()
-      when 'ru'
-        arr.map do |w|
-          # убираем окончание если оно есть И от слова остаётся больше 3-х букв
-          _w = w.sub(RU_WORD_ENDS_REGEXP, '')
-          _w.length > 3 ? _w : w
-        end.join('[А-ЯЁ\,\.\-\s\!\?\:\;]+')
-      when 'en-nrsv', 'eng-nkjv'
-        arr.map do |w|
-          # убираем окончание если оно есть И от слова остаётся больше 3-х букв
-          _w = w.sub(EN_WORD_ENDS_REGEXP, '')
-          _w.length > 3 ? _w : w
-        end.join('[A-Z\,\.\-\s\!\?\:\;]+')
-      when 'csl-pnm', 'csl-ru'
-        arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.join('[А-ЯЁ\,\.\-\s\!\?\:\;]+')
-      when 'heb-osm'
-        arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.join('[א-ת\,\.\-\s\!\?\:\;]+')
-      when 'gr-lxx-byz'
-        arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.join('[Α-Ω\,\.\-\s\!\?\:\;]+')
-      else
-        arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.join('[\p{Alnum}\,\.\-\s\!\?\:\;]+')
-      end
-    end
-
-    search_params['text'] = /#{regex}/i
-
-    # puts "==="
-    # puts "search_params: #{search_params}"
-    # puts "==="
-    search_params
+    verses = search_with_snippet(clean_text, lang: lang, relation: relation)
+    verses
   end
 
   private
 
-  def lang
-    @params[:lang]
+  # === Кастомный метод поиска с поддержкой языка и сниппетами ===
+  # VerseSearch.search_with_snippet('православная', tr_code: 'ru').to_a.first.snippet
+  # VerseSearch.search_with_snippet('святая православная церковь', tr_code: 'ru').to_a.last.snippet
+  # VerseSearch.search_with_snippet('ορθοδ', tr_code: '...').to_a.last.snippet
+  def search_with_snippet(term, lang: nil, relation: nil)
+    pg_dict = ::LANG_TO_PG_LANGUAGE[lang.to_s.downcase]
+
+    quoted_dict, ts_query_sql = algo_for_fulltext_search(term, pg_dict)
+    results = make_a_fulltext_query(relation, quoted_dict, ts_query_sql)
+
+    # Если это был сложный поиск по лексемам и он не дал результата, то попытаемся
+    # воспользоваться простым поиском по префиксу, ведь, возможно, ввели неполное слово "православ",
+    # от которого не получилось взять лексему.
+    if results.blank? && pg_dict != 'simple'
+      # раз результатов нет по сложному алгоритму (лексемы), то попробуем простой алгоритм (simple)
+      quoted_dict, ts_query_sql = algo_for_fulltext_search(term, 'simple')
+      results = make_a_fulltext_query(relation, quoted_dict, ts_query_sql)
+    else
+      results
+    end
+  end
+
+  def algo_for_fulltext_search term, pg_dict
+    safe_term = pg_dict == 'simple' ? "#{term}:*" : term
+
+    quoted_dict = ::Verse.connection.quote(pg_dict)
+    quoted_term = ::Verse.connection.quote(safe_term)
+
+    ts_query_sql =
+    if pg_dict == 'simple'
+      # поиск по префиксу
+      "to_tsquery(#{quoted_dict}, #{quoted_term})"
+    else
+      # поиск по лексемам
+      "plainto_tsquery(#{quoted_dict}, #{quoted_term})"
+    end
+
+    [quoted_dict, ts_query_sql]
+  end
+
+  #    - Параметры форматирования:
+  #      * StartSel=<mark>, StopSel=</mark> - оборачивание совпадений в HTML-теги
+  #      * MaxFragments=100 - максимальное количество фрагментов
+  #      * FragmentDelimiter=... - разделитель между фрагментами (многоточие)
+  #      * MaxWords=60, MinWords=20 - ограничения длины фрагментов
+  def make_a_fulltext_query relation, quoted_dict, ts_query_sql
+    relation ||= ::Verse
+    relation
+      .select(
+        "verses.*",
+        "ts_headline(#{quoted_dict}, text_search, #{ts_query_sql}, " \
+          "'StartSel=<mark>, StopSel=</mark>, MaxFragments=100, " \
+          "FragmentDelimiter=-%-, MaxWords=30, MinWords=10') AS snippet"
+      )
+      .where("text_tsvector @@ #{ts_query_sql}")
+      .order("id ASC")
+      .to_a
+
+    # puts "Поиск совпадений среди:"
+    # puts relation.count
+    # puts
+
+    # С РАССЧЕТОМ И СОРТИРОВКОЙ ПО РАНГУ (колву совпавших слов)
+    # relation = relation
+    #   .select(
+    #     "verses.*",
+    #     "ts_rank_cd(text_tsvector, #{ts_query_sql}) AS rank",
+    #     "ts_headline(#{quoted_dict}, text_search, #{ts_query_sql}, " \
+    #       "'StartSel=<mark>, StopSel=</mark>, MaxFragments=100, " \
+    #       "FragmentDelimiter=..., MaxWords=60, MinWords=20') AS snippet"
+    #   )
+    #   .where("text_tsvector @@ #{ts_query_sql}")
+    #   .order("rank DESC")
   end
 end

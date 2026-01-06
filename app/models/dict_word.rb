@@ -1,8 +1,4 @@
-# db.createUser({ user: 'bibl_explorer', pwd: '123', roles: [ { role: "readWrite", db: "biblia_production" } ] });
-# DictWord.create_indexes
-
-class DictWord < ApplicationMongoRecord
-
+class DictWord < ApplicationRecord
   DICTS = {
     'd' => {'name' => 'Дворецкий И.Х.', 'from' => 'gr', 'to' => 'ru'},
     'w' => {'name' => 'Вейсман А.Д.', 'from' => 'gr', 'to' => 'ru'},
@@ -10,49 +6,14 @@ class DictWord < ApplicationMongoRecord
     't' => {'name' => 'Тестовый', 'from' => 'jp', 'to' => 'ru'},
   }
 
-  include Mongoid::Document
+  self.table_name = 'dict_words'
+
   # dict       - d (d - Дворецкий, w - Вайсман, bbx - словарь для собственных определений (результат исследований))
   # word       - εὐθεώρητος
   # desc       -
   #   <h>εὐ-θεώρητος 2</h>
   #   <n>1)</n> легко заметный, хорошо видимый <a>Arst., Plut.</a>;
   #   <n>2)</n> легко воспринимаемый, ощутительный <a>Arst., Plut.</a>
-  # created_at - дата-время-создания
-
-  # Словарь (Дворецкого, Вайсмана)
-  field :dict, type: String
-  # Слово
-  field :w,   as: :word, type: String
-  # Слово, записанное без доп.знаков (для поиска)
-  field :ws,  as: :word_simple, type: String
-  # Слово, записанное без доп.знаков и без окончаний (для поиска)
-  field :wse,  as: :word_simple_no_endings, type: String
-  # Синоним
-  field :sin, as: :sinonim, type: String
-  # Лексема
-  field :lx,  as: :lexema, type: String
-  # Чтение
-  field :t,   as: :transcription, type: String
-  # Чтение латинскими буквами
-  field :tl,  as: :transcription_lat, type: String
-  # Перевод короткий (может быть для подстрочника)
-  field :trs, as: :translation_short, type: String
-  # Перевод
-  field :tr,  as: :translation, type: String
-  # Главный признак (сущ., гл., прил., вопрос, мест.)
-  field :tag, as: :tag, type: String
-  # Описание слова
-  field :desc, type: String
-  # время создания можно получать из _id во так: id.generation_time
-  field :c_at, as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
-  field :u_at, as: :updated_at, type: DateTime, default: ->{ DateTime.now.utc.round }
-
-  # DictWord.remove_indexes
-  # DictWord.create_indexes
-  # DictWord.remove_undefined_indexes
-  index({dict: 1}, {background: true})
-  index({ws: 1},   {background: true})
-  index({tag: 1},  {background: true})
 
   before_validation :normalize_attributes
 
@@ -74,8 +35,8 @@ class DictWord < ApplicationMongoRecord
       translation:       self.translation,
       tag:               self.tag,
       desc:              self.desc,
-      created_at:        self.c_at&.strftime("%Y-%m-%d %H:%M:%S"),
-      updated_at:        self.u_at&.strftime("%Y-%m-%d %H:%M:%S"),
+      created_at:        self.created_at&.strftime("%Y-%m-%d %H:%M:%S"),
+      updated_at:        self.updated_at&.strftime("%Y-%m-%d %H:%M:%S"),
       updated_at_word:   self.updated_at_word,
     }
   end
@@ -110,8 +71,6 @@ class DictWord < ApplicationMongoRecord
       tags: ::Page::ALLOW_TAGS,
       attributes: ::Page::ALLOW_ATTRS,
     )
-
-    self.u_at = DateTime.now.utc.round
   end
 
   # удаляем все диакритические знаки и все три ударения: оксия, вария, периспоменон
@@ -140,6 +99,22 @@ class DictWord < ApplicationMongoRecord
     w1 = word_clean_gr(word)
     w2 = remove_greek_ending(w1)
 
-    self.or(word_simple: w1, word_simple_no_endings: w2).to_a
+    where(word_simple: w1).or(where(word_simple_no_endings: w2)).to_a
+  end
+
+  def search_dict_words(term)
+    term = term.gsub(/[^[[:alnum:]]\s]/, '')
+    term = ::DictWord.word_clean_gr(term)
+
+    # Поля, по которым ищем
+    fields = %i[word_simple sinonim lexema tag transcription transcription_lat translation_short translation]
+
+    # Строим условия: поле ILIKE 'term%'
+    conditions = fields.map { |field| where("LOWER(#{field}) LIKE LOWER(?)", "#{term}%") }
+
+    # Объединяем условия через OR
+    query = conditions.reduce(:or)
+
+    @dict_words = query.order(:word)
   end
 end

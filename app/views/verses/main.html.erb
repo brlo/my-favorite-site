@@ -32,12 +32,14 @@
 
   <%= render(partial: 'verses/text_bar') %>
 
-  <div class='pre-bible-text csl t-c-dir'>
-    "<%= sanitize(@main_verses.map(&:t).join(' '), tags: []) %>"
-    <% v = @main_verses.first %>
-    <% v_last = @main_verses.last %>
-    (<a href="<%= "/#{locale}/#{current_bib_lang}/#{ v['bc'] }/#{ v['ch'] }#L#{ v['l'] }-#{v_last['l']}" %>"><%= ::I18n.t("books.short.#{ v['bc'] }", locale: @locale_by_bib) %>. <%= v['ch'] %>:<%= v['l'] %>-<%= v_last['l'] %></a>)
-  </div>
+  <% if @main_verses.any? %>
+    <div class='pre-bible-text csl t-c-dir'>
+      "<%= sanitize(@main_verses.map(&:text).join(' '), tags: []) %>"
+      <% v = @main_verses.first %>
+      <% v_last = @main_verses.last %>
+      (<a href="<%= "/#{locale}/#{current_bib_lang}/#{ v.book }/#{ v.chapter }#L#{ v.line }-#{v_last.line}" %>"><%= ::I18n.t("books.short.#{ v.book }", locale: @locale_by_bib) %>. <%= v.chapter %>:<%= v.line %>-<%= v_last.line %></a>)
+    </div>
+  <% end %>
 
   <div class="bible-list">
     <div class="bible-column menu-tree">

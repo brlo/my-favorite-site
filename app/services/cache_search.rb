@@ -61,7 +61,7 @@ class CacheSearch
     # больше 100 символов искать нельзя
     term = term[0..99]
 
-    term.downcase
+    term
   end
 
   def safe_filename(term)

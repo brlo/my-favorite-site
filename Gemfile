@@ -8,6 +8,8 @@ gem "rails", "~> 8.0.1", ">= 8.0.1"
 
 gem 'mongoid'
 gem 'ostruct'
+gem 'pg'
+# gem 'pg_search'
 
 gem 'redis'
 gem 'connection_pool'

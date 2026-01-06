@@ -13,52 +13,52 @@ module Api
     before_action :reject_by_reject_privs, only: [:reject]
 
     def list
-      @mrs = ::MergeRequest.includes(:user).only(
-        :id, :user_id, :page_id, :is_merged,
-        :plus_i, :minus_i,
-        :c_at, :u_at,
-        :is_merged, :action_at
-      ).order_by(updated_at: -1).limit(20)
+      # @mrs = ::MergeRequest.includes(:user).only(
+      #   :id, :user_id, :page_id, :is_merged,
+      #   :plus_i, :minus_i,
+      #   :c_at, :u_at,
+      #   :is_merged, :action_at
+      # ).order(updated_at: :DESC).limit(20)
 
-      @mrs = @mrs.where(page_id: params[:page_id]) if params[:page_id].present?
-      @mrs = @mrs.where(is_merged: params[:is_merged]) if params.key?(:is_merged)
-      # указанный пользователем лимит, но не больше 100
-      @mrs = @mrs.limit([params[:limit].to_i, 100].min) if params[:limit].present?
-      @mrs = @mrs.to_a
+      # @mrs = @mrs.where(page_id: params[:page_id]) if params[:page_id].present?
+      # @mrs = @mrs.where(is_merged: params[:is_merged]) if params.key?(:is_merged)
+      # # указанный пользователем лимит, но не больше 100
+      # @mrs = @mrs.limit([params[:limit].to_i, 100].min) if params[:limit].present?
+      # @mrs = @mrs.to_a
 
-      page_ids = @mrs.pluck(:p_id)
-      pages = ::Page.where(:id.in => page_ids).only(:id, :title, :is_published, :is_deleted).to_a
-      @pages_by_id = pages.index_by(&:id)
-      render :list, status: :ok
+      # page_ids = @mrs.pluck(:p_id)
+      # pages = ::Page.where(id: page_ids).select(:id, :title, :is_published, :is_deleted).to_a
+      # @pages_by_id = pages.index_by(&:id)
+      # render :list, status: :ok
     end
 
     def show
-      @page = ::Page.find(@mr.page_id)
-      @user = ::User.find(@mr.user_id)
+      # @page = ::Page.find(@mr.page_id)
+      # @user = ::User.find(@mr.user_id)
     end
 
     # POST /merge_requests
     def create
-      @mr = ::MergeRequest.create_mr(
-        user: ::Current.user,
-        page_id: params[:page][:id],
-        page_params: page_params,
-        mr_params: mr_params,
-      )
+      # @mr = ::MergeRequest.create_mr(
+      #   user: ::Current.user,
+      #   page_id: params[:page][:id],
+      #   page_params: page_params,
+      #   mr_params: mr_params,
+      # )
 
-      # begin
-        if @mr.save
-          render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
-        else
-          # puts '=======ERRORS======='
-          # puts @mr.errors.messages.inspect
-          render json: @mr&.errors, status: :unprocessable_entity
-        end
-      # rescue => e
-      #   logger.error e.message
-      #   logger.error e.backtrace.join("\n")
-      #   raise(e)
-      # end
+      # # begin
+      #   if @mr.save
+      #     render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
+      #   else
+      #     # puts '=======ERRORS======='
+      #     # puts @mr.errors.messages.inspect
+      #     render json: @mr&.errors, status: :unprocessable_entity
+      #   end
+      # # rescue => e
+      # #   logger.error e.message
+      # #   logger.error e.backtrace.join("\n")
+      # #   raise(e)
+      # # end
     end
 
     def update
@@ -90,57 +90,57 @@ module Api
 
     # POST /merge_requests/:id/merge
     def merge
-      @mr.comment = mr_params[:comment]
+      # @mr.comment = mr_params[:comment]
 
-      # begin
-        if @mr.merge!
-          render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
-        else
-          # puts '=======ERRORS======='
-          # puts @mr.errors.messages.inspect
-          render json: @mr.errors, status: :unprocessable_entity
-        end
-      # rescue => e
-      #   logger.error e.message
-      #   logger.error e.backtrace.join("\n")
-      #   raise(e)
-      # end
+      # # begin
+      #   if @mr.merge!
+      #     render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
+      #   else
+      #     # puts '=======ERRORS======='
+      #     # puts @mr.errors.messages.inspect
+      #     render json: @mr.errors, status: :unprocessable_entity
+      #   end
+      # # rescue => e
+      # #   logger.error e.message
+      # #   logger.error e.backtrace.join("\n")
+      # #   raise(e)
+      # # end
     end
 
     # POST /merge_requests/:id/reject
     def reject
-      @mr.comment = mr_params[:comment]
+      # @mr.comment = mr_params[:comment]
 
-      # begin
-        if @mr.reject!
-          render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
-        else
-          # puts '=======ERRORS======='
-          # puts @mr.errors.messages.inspect
-          render json: @mr.errors, status: :unprocessable_entity
-        end
-      # rescue => e
-      #   logger.error e.message
-      #   logger.error e.backtrace.join("\n")
-      #   raise(e)
-      # end
+      # # begin
+      #   if @mr.reject!
+      #     render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
+      #   else
+      #     # puts '=======ERRORS======='
+      #     # puts @mr.errors.messages.inspect
+      #     render json: @mr.errors, status: :unprocessable_entity
+      #   end
+      # # rescue => e
+      # #   logger.error e.message
+      # #   logger.error e.backtrace.join("\n")
+      # #   raise(e)
+      # # end
     end
 
     # POST /merge_requests/:id/rebase
     def rebase
-      # begin
-        if @mr.rebase!
-          render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
-        else
-          # puts '=======ERRORS======='
-          # puts @mr.errors.messages.inspect
-          render json: @mr.errors, status: :unprocessable_entity
-        end
-      # rescue => e
-      #   logger.error e.message
-      #   logger.error e.backtrace.join("\n")
-      #   raise(e)
-      # end
+      # # begin
+      #   if @mr.rebase!
+      #     render(json: {'success': 'ok', item: @mr.attrs_for_render}, status: :ok)
+      #   else
+      #     # puts '=======ERRORS======='
+      #     # puts @mr.errors.messages.inspect
+      #     render json: @mr.errors, status: :unprocessable_entity
+      #   end
+      # # rescue => e
+      # #   logger.error e.message
+      # #   logger.error e.backtrace.join("\n")
+      # #   raise(e)
+      # # end
     end
 
     private

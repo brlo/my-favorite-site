@@ -1,21 +1,57 @@
-<h1>Библейское слово "<b><%= params[:word] %></b>" в греческих словарях</h1>
+<h1>Библейское слово "<b><%= @bib_word.word %></b>" в греческих словарях</h1>
 
-<% if @lexemas.any? || @dict_words.any? %>
-  <div class="lexemas">
-      <% @lexemas.each do |l| %>
-          <div class="lexema">
-              <div class='word'>
-                <%= l.word %>
-                <% if l.transcription.present? %>
-                  [<%= l.transcription %>]
-                <% end %>
-              </div>
-              <% if l.present? %>
-                <div>Лексема: <%= l.lexema %></div>
-              <% end %>
-              <div>Кол-во: <%= l.counts %></div>
-          </div>
+<% if @bib_word.present? %>
+
+  <div class='warning' style='font-weight: bold; color: red;'>Sorry, this page is under construction yet!</div>
+
+  <div>
+    <h2><%= @bib_word.word %> [<%= @bib_word.transcriptions.to_h.dig('en').to_a.join(', ') %>]</h2>
+
+    <p><b>translates:</b></p>
+    <% @bib_word.translations.to_h.each do |k,v| %>
+      <p><b><%= k %></b>: <%= v.to_a.join(', ') %></p>
+    <% end %>
+
+    <p><b>INFO:</b></p>
+    <% @bib_word.info.to_h.each do |k,v| %>
+      <% if v.present? %>
+        <p>
+          <%= I18n.t("bib_word_info.morph")[k.to_s.downcase.to_sym].presence || k %>:
+          <%= I18n.t("bib_word_info.morph")[v.to_s.downcase.to_sym].presence || v %>
+        </p>
       <% end %>
+    <% end %>
+
+    <p>id: <%= @bib_word.id %></p>
+    <p>lexema: <%= @bib_word.lexema %></p>
+    <p>count: <%= @bib_word.counts %></p>
+    <p>count by lexema: <%= @bib_word.counts_by_lexema %></p>
+
+    <p>verses:
+      <% @bib_word.addrs.each.with_index do |addr, i| %>
+        <a href="<%= my_bib_link_to(::AddressConverter.addr_to_link(addr)) %>">
+          <%= ::AddressConverter.humanize(addr) %>
+        </a><%= i+1 < @bib_word.addrs.length ? ',' : '' %>
+      <% end %>
+    </p>
+    <p>random verses:</p>
+    <p>Подстрочник:</p>
+    <% ::Verse.where(address: @bib_word.addrs.sample(5), tr_code: 'gr-ru').each do |v| %>
+      <p>
+        <% line_text = highlight(v.text, @bib_word.word) %>
+        "<%= verse_alone_clean(line_text.html_safe) %>"
+        (<a href="<%= "/#{I18n.locale}/gr-ru/#{ v.book }/#{ v.chapter }#L#{ v.line }" %>"><%= ::I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %></a>)
+      </p>
+    <% end %>
+
+    <p>Перевод:</p>
+    <% ::Verse.where(address: @bib_word.addrs.sample(5), tr_code: current_bib_lang()).each do |v| %>
+      <p>
+        <% line_text = highlight(v.text.to_s, @bib_word.translations.to_h[::I18n.locale.to_s]) %>
+        "<%= verse_alone_clean(line_text.html_safe) %>"
+        (<a href="<%= my_bib_link_to("/#{ v.book }/#{ v.chapter }#L#{ v.line }") %>"><%= ::I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %></a>)
+      </p>
+    <% end %>
   </div>
 
   <div class="dict-words">
@@ -23,7 +59,7 @@
           <div class="dict-word">
             <div class='dict-name'>
               <%= ::DictWord::DICTS.dig(w.dict, 'name') %>
-              [<a href="<%= "#{::SETTINGS['admin']['url'] }/dict_words/#{ w.id.to_s }/" %>">e</a>]
+              [<a href="<%= "#{::SETTINGS['admin']['url'] }/dict_words/#{ w.id }/" %>">e</a>]
             </div>
             <h2>
               <%= w.word %> —
@@ -50,6 +86,23 @@
                   <div class='desc'><%= sanitize(w.desc.to_s, tags: ::Page::ALLOW_TAGS, attributes: ::Page::ALLOW_ATTRS).html_safe %></div>
                 <% end %>
             </div>
+          </div>
+      <% end %>
+  </div>
+
+  <div class="lexemas">
+      <% @lexemas.each do |l| %>
+          <div class="lexema">
+              <div class='word'>
+                <%= l.word %>
+                <% if l.transcription.present? %>
+                  [<%= l.transcription %>]
+                <% end %>
+              </div>
+              <% if l.present? %>
+                <div>Лексема: <%= l.lexema %></div>
+              <% end %>
+              <div>Кол-во: <%= l.counts %></div>
           </div>
       <% end %>
   </div>

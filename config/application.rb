@@ -62,5 +62,6 @@ module Bibleox
 
     # Autoload lib, but do not eager load it (maybe overlooked).
     config.autoload_paths << config.root.join("lib")
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '*')]
   end
 end

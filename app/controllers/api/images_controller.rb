@@ -4,12 +4,12 @@ module Api
     before_action :reject_by_update_privs, only: [:create, :update, :destroy]
 
     def list
-      @imgs = Image.order_by(c_at: :desc).limit(100)
+      @imgs = Image.order(id: :DESC).limit(100)
 
       term = params[:term].to_s
       if term.present? && term.length > 2
         term = term.gsub(/[^[[:alnum:]]\s]/, '')
-        @imgs = @imgs.where(title: /.*#{term}.*/i)
+        @imgs = @imgs.where("title ILIKE ?", "%#{term}%") # ищет любые совпадения где угодно в строке
       end
 
       render(

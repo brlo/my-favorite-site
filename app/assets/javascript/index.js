@@ -170,17 +170,17 @@ selectBar.copyTextAndAddressClicked = function () {
   let text = selectBar.getSelectedText();
   let address = selectBar.getSelectedAddress();
 
-  let textBefore = '"' + text + '"' + ' (';
+  let textBefore = '«' + text + '»' + ' (';
   let textAfter = ')';
   let linkText = address;
   const href = window.location.href;
   BX.tools.copyTextLink(textBefore, linkText, textAfter, href);
 
-  //let result = '"' + text + '"' + ' (' + address + ')';
+  //let result = '«' + text + '»' + ' (' + address + ')';
   // BX.tools.copyText(result);
   BX.notifications.addNotification(
     '<t>' + window.BX.localization.copyTitle + ':</t>' +
-    '"' + text.slice(0,30) + '..."' +
+    '«' + text.slice(0,30) + '...»' +
     '<br>' +
     '(' + address + ')'
   );

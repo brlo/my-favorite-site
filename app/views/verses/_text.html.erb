@@ -33,7 +33,7 @@
                       <%= interliner_helper(@verses_gr[i].data).html_safe %>
                     </div>
                     <div style="font-size: 0.5em; margin-bottom: 10px;">
-                      Толкование: <a href="https://bible.optina.ru/new:<%= v.book %>:<%= "%02d" % v.ch %>:<%= "%02d" % v.line %>" rel='noindex nofollow'>bible.optina.ru</a>, <a href="https://azbyka.ru/biblia/in/?<%= ::AddressConverter.book_bibleox_to_azbyka(v.book) %>.<%= v.ch %>:<%= v.line %>&r" rel='noindex nofollow'>abyka.ru</a>
+                      Толкование: <a href="https://bible.optina.ru/new:<%= v.book %>:<%= "%02d" % v.chapter %>:<%= "%02d" % v.line %>" rel='noindex nofollow'>bible.optina.ru</a>, <a href="https://azbyka.ru/biblia/in/?<%= ::AddressConverter.book_bibleox_to_azbyka(v.book) %>.<%= v.chapter %>:<%= v.line %>&r" rel='noindex nofollow'>abyka.ru</a>
                     </div>
                   </td>
                 </tr>

@@ -21,7 +21,8 @@ class BaseUploader < CarrierWave::Uploader::Base
   # DEV
   else
     PREFIX = 'd_'.freeze
-    BASE_URL_FOR_ALL =    'https://res.bibleox.com'.freeze
+    # отдельный путь прописывается для префиксов с прода (p_), но тут пока это ненужно, и даже мешает, когда переносятся в dev данные с прода.
+    BASE_URL_FOR_ALL =    'http://bibleox.lan'.freeze
     # разработчик смотрит файлы на своём компьютере, поэтому абсолютный пуль не нужен
     BASE_URL_FOR_PREFIX = 'http://bibleox.lan'
   end

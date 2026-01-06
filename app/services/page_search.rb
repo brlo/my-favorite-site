@@ -1,142 +1,100 @@
 class PageSearch
-  RU_WORD_ENDS_REGEXP = /(ими|ыми|ами|ями|ому|ему|ого|его|ешь|ишь|ете|ите|их|ых|ий|ый|ая|яя|ое|ую|юю|ее|ие|ые|ой|ей|им|ым|ом|ос|ем|ик|ек|ок|ть|ет|ут|ют|ит|ат|ят|о|а|у|и|е|ы|ю|я|ь)$/i
-  EN_WORD_ENDS_REGEXP = /(ing|er|ed|es|s)$/i
-
   # возвращает минимальную длинную слова для поиска, с учётом языка
   def self.min_len(lang)
     # японские иероглифы разрешаем искать в кол-ве 2 шт.
     (lang == 'jp-ni' || lang == 'cn-ccbs') ? 2 : 3
   end
 
-  attr_reader :params
-  # params: {
-  #   page: @page,
-  #   text: @search_text
-  # }
-  def initialize params
-    @params = params
+  attr_reader :page, :text
+
+  def initialize page:, text:
+    @page = page
+    @text = text
+    @lang = @page.lang
   end
 
   def fetch_objects(count)
-    @page = params[:page]
-
-    # инициализация
-    text = params[:text].to_s
-    lang = @page.lang
-
     # не ищем меньше 3 символов и больше 120
-    min_len = ::PageSearch.min_len(lang)
-    return [[], nil] if text.blank?
-    return [[], nil] if text.length < min_len
-    return [[], nil] if text.length > 120
-
-    # готовим регулярки для запроса (там на каждое слово запроса будет регулярка, и мы каждую из них будем искать в предложениях)
-    regexes_arr = prepare_search_regexp(text, lang)
+    min_len = ::PageSearch.min_len(@lang)
+    return [] if @text.blank? || @text.length < min_len || @text.length > 120
 
     # начальная страница
     # sub_pages = [@page]
     # плюс все дочерние
-    sub_pages = ::Menu.subpages_of_page(@page, limit: count)
+    sub_pages_ids = ::Menu.subpages_ids_of_page(@page)
 
     # ПОИСК
-    matches = []
-    sub_pages.each do |pg|
-      matches += find_in_page(pg, regexes_arr)
-    end
+    relation = ::Page.where(is_published: true, is_deleted: [nil, false])
+    relation = relation.where(id: sub_pages_ids) if sub_pages_ids.present?
+    relation = relation.where(lang: @lang) if @lang.present?
+    relation = relation.limit(count)
 
-    [matches, regexes_arr]
-  end
+    # оставляем только буквы, пробелы, тире (кто-то, что-то)
+    clean_text = @text.gsub(/[^[[:alpha:]]\s\-]/, '').gsub(/\s+/, ' ').strip
 
-  def prepare_search_regexp(text, lang)
-    # меняем Ё на Е
-    text = text.gsub(/ё/i, 'е')
-    # оставляем только буквы и пробелы (кто-то, что-то)
-    clean_text = text.gsub(/[^[[:alpha:]]\s\-]/, '').gsub(/\s+/, ' ').strip
-
-    # с этими языками никаких манипуляций не предпринимаем.
-    # Там пробелов нет, иероглифы, что там с окончаниями я вообще не знаю
-    if %w(jp-ni cn-ccbs arab-avd).include?(lang)
-      clean_text = clean_text.to_s.first(150)
-      regexes = [/#{clean_text}/i]
-      return regexes
-    end
-
-    if 'accuracy' == 'exact'
-      # точное совпадение (пишем в кавычках)
-      arr = clean_text.split(' ').first(5)
-      regexes = arr.map { _1.to_s + '[\,\.\-\s\!\?\:\;]+' }
-    else
-      # похожая фраза (когда будет готово отдельное поле, перейти на него)
-      arr = clean_text.split(' ').first(10)
-
-      regexes =
-      case lang()
-      when 'ru'
-        arr.map do |w|
-          # убираем окончание если оно есть И от слова остаётся больше 3-х букв
-          _w = w.sub(RU_WORD_ENDS_REGEXP, '')
-          _w = _w.length > 3 ? _w : w
-          '\b' + _w + '[\p{Alnum}]{0,4}\b'
-        end
-      when 'en-nrsv', 'eng-nkjv'
-        arr.map do |w|
-          # убираем окончание если оно есть И от слова остаётся больше 3-х букв
-          _w = w.sub(EN_WORD_ENDS_REGEXP, '')
-          _w = _w.length > 3 ? _w : w
-          _w + '[A-Z\,\.\-\s\!\?\:\;]+'
-        end
-      when 'csl-pnm', 'csl-ru'
-        arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.map { _1 + '[А-ЯЁ\,\.\-\s\!\?\:\;]+' }
-      when 'heb-osm'
-        arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.map { _1 + '[א-ת\,\.\-\s\!\?\:\;]+' }
-      when 'gr-lxx-byz'
-        arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.map { _1 + '[Α-Ω\,\.\-\s\!\?\:\;]+' }
-      else
-        arr.map { |w| len = [4, w.length-2].max; w[0..len-1] }.map { _1 + '[\p{Alnum}\,\.\-\s\!\?\:\;]+' }
-      end
-    end
-
-    search_regexes = regexes.map { /#{_1}/i }
-
-    # puts "==="
-    # puts "search_params: #{search_params}"
-    # puts "==="
-    search_regexes
+    pages = search_with_snippet(clean_text, lang: @lang, relation: relation)
+    pages
   end
 
   private
 
-  def find_in_page(page, regexes_arr)
-    # пропускаем страницы, которые являются лишь накопителями других
-    # страниц (например, страница с биографией святого отца)
-    return [] if page.page_type.to_i == ::Page::PAGE_TYPES['список']
-    return [] if page.body_search.blank?
+  # === Кастомный метод поиска с поддержкой языка и сниппетами ===
+  # NewPage.search_with_snippet('православная', lang: 'ru').to_a.first.snippet
+  # NewPage.search_with_snippet('святая православная церковь', lang: 'ru').to_a.last.snippet
+  # NewPage.search_with_snippet('ορθοδ', lang: 'grc').to_a.last.snippet
+  def search_with_snippet(term, lang: nil, relation: nil)
+    pg_dict = ::LANG_TO_PG_LANGUAGE[lang.to_s.downcase]
 
-    matches = []
+    quoted_dict, ts_query_sql = algo_for_fulltext_search(term, pg_dict)
+    results = make_a_fulltext_query(relation, quoted_dict, ts_query_sql)
 
-    # ищем в названии страницы
-    if regexes_arr.all? { |reg| page.title =~ reg }
-      matches << {
-        path: page.path,
-        title: page.title,
-        text: page.title,
-      }
+    # Если это был сложный поиск по лексемам и он не дал результата, то попытаемся
+    # воспользоваться простым поиском по префиксу, ведь, возможно, ввели неполное слово "православ",
+    # от которого не получилось взять лексему.
+    if results.blank? && pg_dict != 'simple'
+      # раз результатов нет по сложному алгоритму (лексемы), то попробуем простой алгоритм (simple)
+      quoted_dict, ts_query_sql = algo_for_fulltext_search(term, 'simple')
+      results = make_a_fulltext_query(relation, quoted_dict, ts_query_sql)
+    else
+      results
     end
-
-    # ищем в содержимом тексте
-    page.body_search.each do |sentence|
-      if regexes_arr.all? { |reg| sentence =~ reg }
-        matches << {
-          path: page.path,
-          title: page.title,
-          text: sentence,
-        }
-      end
-    end
-    matches
   end
 
-  def lang
-    @page.lang
+
+  def algo_for_fulltext_search term, pg_dict
+    safe_term = pg_dict == 'simple' ? "#{term}:*" : term
+
+    quoted_dict = ::Page.connection.quote(pg_dict)
+    quoted_term = ::Page.connection.quote(safe_term)
+
+    ts_query_sql =
+    if pg_dict == 'simple'
+      # поиск по префиксу
+      "to_tsquery(#{quoted_dict}, #{quoted_term})"
+    else
+      # поиск по лексемам
+      "plainto_tsquery(#{quoted_dict}, #{quoted_term})"
+    end
+
+    [quoted_dict, ts_query_sql]
+  end
+
+  #    - Параметры форматирования:
+  #      * StartSel=<mark>, StopSel=</mark> - оборачивание совпадений в HTML-теги
+  #      * MaxFragments=100 - максимальное количество фрагментов
+  #      * FragmentDelimiter=... - разделитель между фрагментами (многоточие)
+  #      * MaxWords=60, MinWords=20 - ограничения длины фрагментов
+  def make_a_fulltext_query relation, quoted_dict, ts_query_sql
+    relation ||= ::Page
+    relation
+      .select(
+        "pages.*",
+        "ts_rank_cd(body_tsvector, #{ts_query_sql}) AS rank",
+        "ts_headline(#{quoted_dict}, body_search, #{ts_query_sql}, " \
+          "'StartSel=<mark>, StopSel=</mark>, MaxFragments=100, " \
+          "FragmentDelimiter=-%-, MaxWords=30, MinWords=10') AS snippet"
+      )
+      .where("body_tsvector @@ #{ts_query_sql}")
+      .order("rank DESC")
   end
 end

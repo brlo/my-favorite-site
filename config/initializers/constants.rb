@@ -82,6 +82,41 @@ ALL_LOCALES = {
   'grc' => true, # Древнегреческий (классический) (ISO 639-3)
 }
 
+# Доступные в PG языки:
+# Verse.connection.execute('SELECT cfgname FROM pg_ts_config;').to_a
+LANG_TO_PG_LANGUAGE = {
+  'ar' => 'arabic',
+  # '' => 'armenian',
+  # '' => 'basque',
+  # '' => 'catalan',
+  # '' => 'danish',
+  # '' => 'dutch',
+  'en' => 'english',
+  # '' => 'estonian',
+  # '' => 'finnish',
+  'fr' => 'french',
+  'de' => 'german',
+  'el' => 'greek',
+  'grc' => 'greek',
+  'hi' => 'hindi',
+  # '' => 'hungarian',
+  # '' => 'indonesian',
+  # '' => 'irish',
+  'it' => 'italian',
+  # '' => 'lithuanian',
+  # '' => 'nepali',
+  # '' => 'norwegian',
+  # '' => 'portuguese',
+  # '' => 'romanian',
+  'ru' => 'russian',
+  'sr' => 'serbian',
+  'es' => 'spanish',
+  # '' => 'swedish',
+  # '' => 'tamil',
+  'tr' => 'turkish',
+  # '' => 'yiddish',
+}; LANG_TO_PG_LANGUAGE.default = 'simple'
+
 # Эти языки не имеют локали для UI. На них может быть только контент (статьи).
 LANGS_CONTENT_ONLY = {
  'frm' => true, # Средневековый французский (ISO 639-3, French, Medieval ~1400–1600)

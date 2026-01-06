@@ -39,7 +39,7 @@ class VersesController < ApplicationController
       end
 
       # Первые три стиха из 1ИН, для главной страницы
-      @main_verses = ::Verse.where(lang: @current_bib_lang, book: '1in', chapter: 1, :l.in => [1,2,3]).sort(line: 1).to_a
+      @main_verses = ::Verse.where(tr_code: @current_bib_lang, book: '1in', chapter: 1, line: [1,2,3]).order(line: :asc).to_a
 
       @page_title = ::I18n.t('root_page.title')
       @meta_description = ::I18n.t('about_site_short')
@@ -89,7 +89,7 @@ class VersesController < ApplicationController
         end
 
         # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
-        @verses = ::Verse.where(lang: @int_content_lang || @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+        @verses = ::Verse.where(tr_code: @int_content_lang || @content_lang, book: @book_code, chapter: @chapter).order(line: :asc).to_a
         # Статьи-комментарии к стихам
         page_comments = ::Page.comments_for_verses(@verses)
         # индексируем по номерам стихов для быстрого доступа
@@ -103,7 +103,7 @@ class VersesController < ApplicationController
           # Теперь переделал полностью всё
           # 1. Надо отобразить сначалу строчку из нормального перевода.
           # 2. Потом греческие слова с подстрочным переводом.
-          @verses_gr = ::Verse.where(lang: 'gr-ru', book: @book_code, chapter: @chapter).sort(line: 1).to_a
+          @verses_gr = ::Verse.where(tr_code: 'gr-ru', book: @book_code, chapter: @chapter).order(line: :asc).to_a
         end
 
         @current_menu_item = 'biblia'
@@ -169,7 +169,7 @@ class VersesController < ApplicationController
       @is_psalm = @book_code == 'ps'
 
       # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
-      @verses = ::Verse.where(lang: @int_content_lang || @content_lang, book: @book_code, chapter: @chapter).sort(line: 1).to_a
+      @verses = ::Verse.where(tr_code: @int_content_lang || @content_lang, book: @book_code, chapter: @chapter).order(line: :asc).to_a
       # Статьи-комментарии к стихам
       page_comments = ::Page.comments_for_verses(@verses)
       # индексируем по номерам стихов для быстрого доступа
@@ -184,7 +184,7 @@ class VersesController < ApplicationController
         # Теперь переделал полностью всё
         # 1. Надо отобразить сначалу строчку из нормального перевода.
         # 2. Потом греческие слова с подстрочным переводом.
-        @verses_gr = ::Verse.where(lang: 'gr-ru', book: @book_code, chapter: @chapter).sort(line: 1).to_a
+        @verses_gr = ::Verse.where(tr_code: 'gr-ru', book: @book_code, chapter: @chapter).order(line: :asc).to_a
       end
 
 
@@ -199,10 +199,10 @@ class VersesController < ApplicationController
       @page_title += " / ЦСЯ" if ['csl-ru', 'csl-pnm'].include?(@content_lang)
 
       @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
-      if @verses.first.z == 1
-        @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
-      else
+      if @verses.first.zavet == true
         @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
+      else
+        @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
       end
 
       render 'chapter_ajax', layout: false
@@ -239,28 +239,18 @@ class VersesController < ApplicationController
       # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9-,.
       @search_text = params[:t].gsub(/[^\s[[:alpha:]]\-\,\.\:\;]*/i, '')
 
-      search_params = {
+      # Запрашиваем результаты из БД
+      @verses = ::VerseSearch.new(
         text: @search_text,
+        tr_code: @search_lang,
         book: @search_books,
         accuracy: @search_accuracy,
-        lang: @search_lang
-      }
-
-      if @search_accuracy == 'similar'
-        min_len = ::VerseSearch.min_len(@search_lang)
-        @search_regexp = @search_text.split(' ').select{|w| w.length >= min_len}
-      else
-        @search_regexp = @search_text
-      end
-
-      # Запрашиваем результаты из БД
-      @verses_json = ::VerseSearch.new(search_params).fetch_objects(3_000)
-
-      @matches_count = @verses_json.count
+      ).fetch_objects(3_000)
+      @matches_count = @verses.count
     else
       @search_text = params[:t]
 
-      @verses_json = []
+      @verses = []
       @matches_count = 0
     end
 
@@ -268,9 +258,9 @@ class VersesController < ApplicationController
     @page_title = ::I18n.t('search_page.title')
     @page_title += ": #{params[:t].to_s[0..20]}" if params[:t].present?
     @meta_description = ::I18n.t('search_page.meta_description', search: @search_text, matches: @matches_count)
-    if @verses_json.presence
+    if @verses.presence
       @meta_description +=
-      ::I18n.t('search_page.meta_description_first_verse', verse: @verses_json.first['t'].to_s[0..150])
+      ::I18n.t('search_page.meta_description_first_verse', verse: @verses.first.text.to_s[0..150])
     end
     @meta_book_tags = [params[:t]] if params[:t].present?
     @canonical_url = build_canonical_url("/search/?acc=#{@search_accuracy}&l=#{@search_lang}&t=#{@search_text}")

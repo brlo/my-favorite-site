@@ -15,21 +15,20 @@ module Api
       # TODO:
       # - В СВОДКЕ ПОКАЗЫВАТЬ ТОЛЬКО ТЕ ПР, КОТОРЫЕ ЕЩЁ НЕ ПРИНЯТЫ
       @pages = ::Page.
-        only(
+        select(
           :id, :title, :path, :is_published, :is_deleted, :page_type,
           :edit_mode, :lang, :group_lang_id, :user_id, :parent_id,
-          :c_at, :u_at
+          :created_at, :updated_at
         ).
         limit(20).
-        order_by(updated_at: -1)
+        order(updated_at: :DESC)
         # where(:is_deleted.ne => true)
 
       term = params[:term].to_s
       if term.present? && term.length > 2
         term = term.gsub(/[^[[:alnum:]]\s]/, '')
-        # @pages = @pages.where(title: /.*#{term}.*/i)
-        # regex-поиск вместо полнотекстового
-        @pages = @pages.where(:$text => { :$search => term })
+        @pages = @pages.where("title ILIKE ?", "%#{term}%") # ищет любые совпадения где угодно в строке
+        # @pages = @pages.where("title % ?", term) # ищет наиболее релевантные совпадения, даже с ошибками в слове запроса
       end
 
       # указанный пользователем лимит, но не больше 100
@@ -45,8 +44,8 @@ module Api
       # @authors = ::User.where(id: u_ids) if u_ids
 
       # родительские страницы
-      p_ids = @pages.pluck(:p_id).uniq.compact
-      @parent_pages = ::Page.where(:id.in => p_ids).pluck(:id, :title).to_h if p_ids.any?
+      p_ids = @pages.pluck(:parent_id).uniq.compact
+      @parent_pages = ::Page.where(id: p_ids).pluck(:id, :title).to_h if p_ids.any?
 
       # просмотры этих страниц из редиса
       @page_visits = ::PageVisits.visits(@pages.map{|p| p.id.to_s }) if @pages.any?
@@ -285,7 +284,7 @@ module Api
         :parent_id,
         :lang, :group_lang_id,
         :body, :references,
-        :tags_str, :priority, :audio, :is_search, :is_show_parent, :is_menu_icons
+        :priority, :audio, :is_search, :is_show_parent, :is_menu_icons
       )
     end
 
@@ -342,7 +341,7 @@ module Api
     def page_owner?
       if @page.present?
         ::Current.user.pages_owner.to_a.include?(@page.id.to_s) ||
-        ::Current.user.pages_owner.to_a.include?(@page.p_id.to_s)
+        ::Current.user.pages_owner.to_a.include?(@page.parent_id.to_s)
       end
     end
 
@@ -353,7 +352,7 @@ module Api
       return unless ::Current.user&.pages_owner.is_a?(Array)
 
       if ::Current.user.pages_owner.size == 1
-        @page.p_id = ::Current.user.pages_owner.first
+        @page.parent_id = ::Current.user.pages_owner.first
       end
     end
   end

@@ -16,16 +16,16 @@ module Api
         # слова показывает с сортировкой по слову
         term = term.gsub(/[^[[:alnum:]]\s]/, '')
         term = ::DictWord.word_clean_gr(term)
-        q = [
-          :word_simple, :sinonim, :lexema, :tag, :transcription, :transcription_lat,
-          :translation_short, :translation,
-        ].map do |n|
-          { n => /#{term}.*/i }
-        end
-        @dict_words = @dict_words.any_of(q).order_by(w: 1)
+        # Поля, по которым ищем
+        fields = %i[word_simple sinonim lexema tag transcription transcription_lat translation_short translation]
+        # Строим условия: поле ILIKE 'term%'
+        conditions = fields.map { |field| ::DictWord.where("LOWER(#{field}) LIKE LOWER(?)", "#{term}%") }
+        # Объединяем условия через OR
+        query = conditions.reduce(:or)
+        @dict_words = query.order(:word)
       else
         # показываем недавно изменённые слова, если слово не ищут, а просто просят список
-        @dict_words = @dict_words.order_by(updated_at: -1)
+        @dict_words = @dict_words.order(updated_at: :DESC)
       end
 
       @dict_words.to_a
@@ -42,7 +42,7 @@ module Api
 
       10.times do
         # TODO: лексемы надо запросить отдельно
-        lexemas += ::Lexema.only(:id, :word, :lexema_clean, :counts).skip(skip).order(counts: -1).first(pack)
+        lexemas += ::Lexema.select(:id, :word, :lexema_clean, :counts).offset(skip).order(counts: :DESC).first(pack)
 
         ws += lexemas.pluck(:word)
         ls += lexemas.pluck(:lexema_clean)

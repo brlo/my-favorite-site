@@ -4,7 +4,7 @@ class CurrentUser
   end
 
   def id
-    @user._id
+    @user.id
   end
 
   def name
