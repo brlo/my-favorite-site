@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 202601233605) do
+ActiveRecord::Schema[8.0].define(version: 202601233606) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -66,6 +66,7 @@ ActiveRecord::Schema[8.0].define(version: 202601233605) do
     t.bigint "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "h_id"
   end
 
   create_table "info", force: :cascade do |t|
@@ -136,6 +137,7 @@ ActiveRecord::Schema[8.0].define(version: 202601233605) do
     t.tsvector "body_tsvector"
     t.string "group_lang_id", null: false
     t.text "body_search"
+    t.string "h_id"
     t.index ["body_tsvector"], name: "index_pages_on_body_tsvector", using: :gin
     t.index ["lang", "path"], name: "index_pages_on_lang_and_path"
     t.index ["parent_id"], name: "index_pages_on_parent_id"

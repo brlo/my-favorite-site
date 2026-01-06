@@ -1,11 +1,11 @@
-OldUser.each.with_index { |o,i| o.update!(int_id: i+1) }
-OldPage.each.with_index { |o,i| o.update!(int_id: i+1) }
-OldVerse.each.with_index { |o,i| o.update!(int_id: i+1) }
-OldBibWord.each.with_index { |o,i| o.update!(int_id: i+1) }
-OldDictWord.each.with_index { |o,i| o.update!(int_id: i+1) }
-OldImage.each.with_index { |o,i| o.update!(int_id: i+1) }
-OldLexema.each.with_index { |o,i| o.update!(int_id: i+1) }
-OldMenu.each.with_index { |o,i| o.update!(int_id: i+1) }
+OldUser.batch_size(100).all.each.with_index { |o,i| o.update!(int_id: i+1) }
+OldPage.batch_size(1).all.each.with_index  { |o,i| o.update!(int_id: i+1); puts(i) }
+OldVerse.batch_size(50).all.each.with_index { |o,i| o.update!(int_id: i+1) }
+OldBibWord.batch_size(100).all.each.with_index { |o,i| o.update!(int_id: i+1) }
+OldDictWord.batch_size(100).all.each.with_index { |o,i| o.update!(int_id: i+1) }
+OldImage.batch_size(100).all.each.with_index { |o,i| o.update!(int_id: i+1) }
+OldLexema.batch_size(100).all.each.with_index { |o,i| o.update!(int_id: i+1) }
+OldMenu.batch_size(100).all.each.with_index { |o,i| o.update!(int_id: i+1) }
 
 # USER
 OldUser.each do |o|
@@ -13,7 +13,6 @@ OldUser.each do |o|
   n.attributes = o.attributes.except('_id', 'id', 'c_at', 'u_at', 'int_id')
   n.id = o.int_id
   n.created_at = o.c_at
-  n.updated_at = o.u_at
   n.save
 end
 
@@ -29,7 +28,7 @@ def migrate_page(old)
   )
   n.id = old.int_id
   if old.parent_id
-    old_parent = old.parent
+    old_parent = OldPage.where(id: old.parent_id).first
     if old_parent
       new_parent = Page.where(id: old_parent.int_id).first
       if new_parent.nil?
@@ -38,7 +37,7 @@ def migrate_page(old)
       n.parent_id = old_parent.int_id
     end
   end
-  n.user_id = User.find(old.user_id).int_id if old.user_id
+  n.user_id = OldUser.where(id: old.user_id).first&.int_id if old.user_id
   n.group_lang_id = old.group_lang_id.to_s if old.group_lang_id
   n.created_at = old.c_at
   n.updated_at = old.u_at
@@ -53,18 +52,20 @@ def migrate_page(old)
   n
 end
 
-OldPage.each { |o| migrate_page(o) }; nil
+OldPage.batch_size(1).all.each { |o| migrate_page(o) }; nil
+
+OldPage.only(:id, :int_id).batch_size(1).all.each { |o| n = Page.find(o.int_id); n.update!(h_id: o.id) }
 
 # перенос картинок
-OldPage.where.not(cover: nil).each { |o|
-  n = Page.find(o.int_id)
-  n.update_column(:cover, o.cover_before_type_cast)
-  old_path = File.join(Rails.root, 'public', "s/img/page/cover/#{o.id}")
-  new_path = File.join(Rails.root, 'public', "s/img/page/cover/#{n.id}")
+# OldPage.where.not(cover: nil).batch_size(1).all.each { |o|
+#   n = Page.find(o.int_id)
+#   n.update_column(:cover, o.cover_before_type_cast)
+#   old_path = File.join(Rails.root, 'public', "s/img/page/cover/#{o.id}")
+#   new_path = File.join(Rails.root, 'public', "s/img/page/cover/#{n.id}")
 
-  # Переименовать папку
-  FileUtils.mv(old_path, new_path) if Dir.exist?(old_path)
-}; nil
+#   # Переименовать папку
+#   FileUtils.mv(old_path, new_path) if Dir.exist?(old_path)
+# }; nil
 
 
 # Сравни!
@@ -73,7 +74,7 @@ Page.count
 
 # bundle exec rails db:migrate:redo
 # VERSE
-OldVerse.each do |o|
+OldVerse.batch_size(100).all.each do |o|
   n = Verse.new
   n.attributes = o.attributes_full_names.except('_id', 'id', 'c_at', 'u_at', 'int_id', 'lang', 'z')
   n.id = o.int_id
@@ -86,7 +87,7 @@ OldVerse.each do |o|
 end
 
 # bundle exec rails db:migrate:redo
-OldMenu.each do |o|
+OldMenu.batch_size(1000).all.each do |o|
   n = Menu.new
   n.attributes = o.attributes_full_names.slice('title', 'path', 'priority', 'is_gold', 'is_empty')
   n.id = o.int_id
@@ -137,9 +138,10 @@ end
 
 
 
-OldImage.each do |old_img|
+OldImage.batch_size(100).all.each do |old_img|
   new_img = Image.create(
     id: old_img.int_id,
+    h_id: old_img.id.to_s,
     title: old_img.title,
     user_id: old_img.u_id,
     created_at: old_img.c_at,
@@ -149,20 +151,21 @@ OldImage.each do |old_img|
   if new_img.errors.any?
     puts('==========')
     puts new_img.errors.messages
-  elsif old_img.simple_before_type_cast.present?
-    new_img.update_column(:simple, old_img.simple_before_type_cast)
+  # elsif old_img.simple_before_type_cast.present?
+    # new_img.update_column(:simple, old_img.simple_before_type_cast)
 
-    old_path = File.join(Rails.root, 'public', "s/img/image/simple/#{old_img.id}")
-    new_path = File.join(Rails.root, 'public', "s/img/image/simple/#{new_img.id}")
+    # old_path = File.join(Rails.root, 'public', "s/img/image/simple/#{old_img.id}")
+    # new_path = File.join(Rails.root, 'public', "s/img/image/simple/#{new_img.id}")
 
-    # Переименовать папку
-    FileUtils.mv(old_path, new_path) if Dir.exist?(old_path)
+    # # Переименовать папку
+    # FileUtils.mv(old_path, new_path) if Dir.exist?(old_path)
   end
 end
 
+OldImage.only(:id, :int_id).batch_size(100).all.each { |o| n = Image.find(o.int_id); n.update!(h_id: o.id) }
 
 
-OldLexema.each do |o|
+OldLexema.batch_size(100).all.each do |o|
   n = Lexema.new
   n.attributes = o.attributes_full_names.except('_id', 'id', 'c_at', 'u_at', 'int_id', 'w_d')
   n.id = o.int_id
@@ -171,7 +174,7 @@ OldLexema.each do |o|
   n.save
 end
 
-OldDictWord.each do |o|
+OldDictWord.batch_size(100).all.each do |o|
   n = DictWord.new
   n.attributes = o.attributes_full_names.except('_id', 'id', 'c_at', 'u_at', 'int_id')
   n.id = o.int_id
@@ -180,7 +183,7 @@ OldDictWord.each do |o|
   n.save
 end
 
-OldBibWord.each do |o|
+OldBibWord.batch_size(100).all.each do |o|
   n = BibWord.new
   n.attributes = o.attributes_full_names.except('_id', 'id', 'c_at', 'u_at', 'int_id', 'counts_by_l')
   n.id = o.int_id

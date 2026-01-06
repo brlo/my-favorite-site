@@ -37,7 +37,7 @@ class BaseUploader < CarrierWave::Uploader::Base
   end
 
   def store_dir
-    "s/img/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
+    "s/img/#{model.class.to_s.underscore}/#{mounted_as}/#{model.h_id.presence || model.id}"
   end
 
   def recreate_versions_from_cache! options = {}
