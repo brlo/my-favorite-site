@@ -93,7 +93,7 @@ class PagesController < ApplicationController
 
         # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
         if @page.parent_id
-          @parent_page = ::Page.select(:id, :parent_id, :title, :path, :page_type, :lang).find_by!(id: @page.parent_id)
+          @parent_page = ::Page.select(:id, :h_id, :parent_id, :title, :path, :page_type, :lang).find_by!(id: @page.parent_id)
         end
 
         if @parent_page
@@ -197,11 +197,11 @@ class PagesController < ApplicationController
         if @parent_page
           # родитель родителя статьи
           if @parent_page.parent_id
-            @pg1 = ::Page.select(:id, :parent_id, :title, :path, :lang).find_by!(id: @parent_page.parent_id)
+            @pg1 = ::Page.select(:id, :h_id, :parent_id, :title, :path, :lang).find_by!(id: @parent_page.parent_id)
 
             # родитель родителя родителя статьи
             if @pg1.parent_id
-              @pg2 = ::Page.select(:id, :parent_id, :title, :path, :lang).find_by!(id: @pg1.parent_id)
+              @pg2 = ::Page.select(:id, :h_id, :parent_id, :title, :path, :lang).find_by!(id: @pg1.parent_id)
               @breadcrumbs << [@pg2.title, @pg2.path, @pg2.lang]
             end
 

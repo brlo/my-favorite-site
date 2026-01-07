@@ -54,18 +54,19 @@ end
 
 OldPage.batch_size(1).all.each { |o| migrate_page(o) }; nil
 
-OldPage.only(:id, :int_id).batch_size(1).all.each { |o| n = Page.find(o.int_id); n.update!(h_id: o.id) }
+# сохраняем старый путь к картинкам
+OldPage.only(:id, :int_id).batch_size(1000).all.each { |o| n = Page.find(o.int_id); n.update_column(:h_id, o.id.to_s) }
 
 # перенос картинок
-# OldPage.where.not(cover: nil).batch_size(1).all.each { |o|
-#   n = Page.find(o.int_id)
-#   n.update_column(:cover, o.cover_before_type_cast)
-#   old_path = File.join(Rails.root, 'public', "s/img/page/cover/#{o.id}")
-#   new_path = File.join(Rails.root, 'public', "s/img/page/cover/#{n.id}")
+OldPage.only(:id, :int_id, :cover).where.not(cover: nil).batch_size(200).all.each { |o|
+  n = Page.find(o.int_id)
+  n.update_column(:cover, o.cover_before_type_cast)
 
-#   # Переименовать папку
-#   FileUtils.mv(old_path, new_path) if Dir.exist?(old_path)
-# }; nil
+  # old_path = File.join(Rails.root, 'public', "s/img/page/cover/#{o.id}")
+  # new_path = File.join(Rails.root, 'public', "s/img/page/cover/#{n.id}")
+  # # Переименовать папку
+  # FileUtils.mv(old_path, new_path) if Dir.exist?(old_path)
+}; nil
 
 
 # Сравни!
@@ -114,25 +115,19 @@ end
 
 
 # перенос счётчиков посещения страниц
-Page.find_each do |n|
-  o = OldPage.where(int_id: n.id).first
+Page.select(:id, :h_id).find_each do |n|
+  old_key = "vis:#{o.h_id}"
+  new_key = "vis:#{n.id}"
 
-  if o
-    old_key = "vis:#{o.id}"
-    new_key = "vis:#{n.id}"
+  # Получаем старое значение
+  old_count = RedisConnectionPool.get(old_key)&.to_i
 
-    # Получаем старое значение
-    old_count = RedisConnectionPool.get(old_key)&.to_i
-
-    if old_count&.positive?
-      RedisConnectionPool.set(new_key, old_count)
-      puts "Migrated #{old_count} visits: #{old_key} → #{new_key}"
-      RedisConnectionPool.del(old_key)
-    else
-      puts "===================== NOT POSITIVE COUNTER old_key: #{old_key} ====================="
-    end
+  if old_count&.positive?
+    RedisConnectionPool.set(new_key, old_count)
+    puts "Migrated #{old_count} visits: #{old_key} → #{new_key}"
+    # RedisConnectionPool.del(old_key)
   else
-    puts "===================== SKIP id: #{n.id} ====================="
+    puts "===================== NOT POSITIVE COUNTER old_key: #{old_key} ====================="
   end
 end
 
@@ -151,19 +146,20 @@ OldImage.batch_size(100).all.each do |old_img|
   if new_img.errors.any?
     puts('==========')
     puts new_img.errors.messages
-  # elsif old_img.simple_before_type_cast.present?
-    # new_img.update_column(:simple, old_img.simple_before_type_cast)
-
-    # old_path = File.join(Rails.root, 'public', "s/img/image/simple/#{old_img.id}")
-    # new_path = File.join(Rails.root, 'public', "s/img/image/simple/#{new_img.id}")
-
-    # # Переименовать папку
-    # FileUtils.mv(old_path, new_path) if Dir.exist?(old_path)
   end
 end
 
-OldImage.only(:id, :int_id).batch_size(100).all.each { |o| n = Image.find(o.int_id); n.update!(h_id: o.id) }
+OldImage.only(:id, :int_id, :simple).where.not(simple: nil).batch_size(200).all.each { |o|
+  n = Image.find(o.int_id)
+  n.update_column(:simple, o.simple_before_type_cast)
 
+  # old_path = File.join(Rails.root, 'public', "s/img/image/simple/#{old_img.id}")
+  # new_path = File.join(Rails.root, 'public', "s/img/image/simple/#{new_img.id}")
+  # # Переименовать папку
+  # FileUtils.mv(old_path, new_path) if Dir.exist?(old_path)
+}; nil
+
+OldImage.only(:id, :int_id).batch_size(500).all.each { |o| n = Image.find(o.int_id); n.update_column(:h_id, o.id.to_s) }
 
 OldLexema.batch_size(100).all.each do |o|
   n = Lexema.new

@@ -66,7 +66,7 @@ class Menu < ApplicationRecord
     end
 
     # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
-    parent_page = ::Page.select(:id, :parent_id, :title, :path, :page_type).find_by!(id: page.parent_id)
+    parent_page = ::Page.select(:id, :h_id, :parent_id, :title, :path, :page_type).find_by!(id: page.parent_id)
 
     # =========================================================================
     # сначала добываем все элементы меню родительской страницы,
