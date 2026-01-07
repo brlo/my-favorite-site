@@ -178,7 +178,7 @@ class PagesController < ApplicationController
           @menus_info =
           ::Rails.cache.fetch(cache_key, expires_in: 24.hours) do
             info = nil
-            pgs = ::Page.where(lang: @page.lang, path: page_menu_paths).select(:id, :path, :cover).to_a
+            pgs = ::Page.where(lang: @page.lang, path: page_menu_paths).select(:id, :h_id, :path, :cover).to_a
             if pgs.any?
               pgs_visits = PageVisits.visits(pgs.map{|p| p.id.to_s })
               info = {}
