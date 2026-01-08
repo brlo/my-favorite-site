@@ -9,15 +9,17 @@ class DictWordsController < ApplicationController
 
     elsif param_id =~ /\d+/
       # 1. Идентификатор - цифра. Ищем и отдаём по этому id слово.
-      @bib_word = ::BibWord.find(param_id)
-      word = @bib_word.word
+      # @bib_word = ::BibWord.find(param_id) # ------------------------ раскомментировать после выпуска подстрочника, и привести в порядок view
+      dict_word = ::DictWord.find(param_id) # а от этого отказаться в пользу bib_word (см. строку ниже с ---- комментарием)
+      word = dict_word.word
 
       @page_title = ::I18n.t('dict_words.title', word: word)
       @meta_description = @page_title
 
       @lexemas = ::Lexema.where(word: word).to_a
       lex_words = @lexemas.pluck(:lexema_clean).compact.uniq
-      all_words = [@bib_word.word, @bib_word.lexema, word] + lex_words
+      # all_words = [@bib_word.word, @bib_word.lexema, word] + lex_words # ------------------------ раскомментировать после выпуска подстрочника, и привести в порядок view
+      all_words = [dict_word.word, dict_word.lexema, word] + lex_words
       all_words.map! { |w| ::DictWord.word_clean_gr(w) }
       @dict_words = ::DictWord.where(:word_simple.in => all_words).to_a
 

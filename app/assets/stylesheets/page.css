@@ -871,3 +871,9 @@ h4:hover .copy-anchor,
   position: absolute;
   margin: 4px 0 0 -35px;
 }
+
+#search-results .parent-link {
+  margin-top: 5px;
+  opacity: .5;
+  font-size: .5em;
+}

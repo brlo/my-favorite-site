@@ -1,4 +1,4 @@
-<h1>Библейское слово "<b><%= @bib_word.word %></b>" в греческих словарях</h1>
+<h1>Библейское слово «<b><%= @dict_words.first.word %></b>» в греческих словарях</h1>
 
 <% if @bib_word.present? %>
 
@@ -53,7 +53,9 @@
       </p>
     <% end %>
   </div>
+<% end %>
 
+<% if @dict_words.any? %>
   <div class="dict-words">
       <% @dict_words.each do |w| %>
           <div class="dict-word">
