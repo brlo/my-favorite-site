@@ -30,7 +30,7 @@
                       Подстрочный перевод:
                     </div>
                     <div class='interliner'>
-                      <% if @verses_gr %>
+                      <% if @verses_gr && @verses_gr[i] %>
                         <%= interliner_helper(@verses_gr[i].data).html_safe %>
                       <% end %>
                     </div>
