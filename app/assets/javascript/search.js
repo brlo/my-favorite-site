@@ -1,27 +1,28 @@
 // Кнопка: искать
 function goToSearchSpecial(form) {
   let text = undefined;
-  let lang = undefined;
 
   // если форму с input внутри передали, то она приоритетнее! Берём значение от туда.
   // Так делаем ради примитивного поля для поиска на главной странице
   if (form) {
     text = form.querySelector('.search-tree-input').value;
   } else {
-    text = document.querySelector('search-tree-input').value;
+    text = document.querySelector('.search-tree-input').value;
   };
 
   // text = searchInput.value; //. /[^\sA-Za-zА-Яа-я0-9-]*/, ''
-  book = document.getElementById('search-books').value;
-  acc = document.getElementById('search-accuracy').value;
-  lang = document.getElementById('search-lang').value;
+  const book = document.getElementById('search-books').value;
+  const acc = document.getElementById('search-accuracy').value;
+  const lang = document.getElementById('search-lang').value;
 
-  let params = [];
-  if (book && book.length > 0) { params.push('book=' + book) };
-  if (acc && acc.length > 0) { params.push('acc=' + acc) };
-  if (lang && lang.length > 0) { params.push('l=' + lang) };
-  if (text && text.length > 0) { params.push('t=' + text) };
-  document.location.href = '/' + window.BX.locale + '/search?' + params.join('&');
+  const params = new URLSearchParams();
+
+  if (book && book.length > 0) params.append('book', book);
+  if (acc && acc.length > 0) params.append('acc', acc);
+  if (lang && lang.length > 0) params.append('l', lang);
+  if (text && text.length > 0) params.append('t', text);
+
+  document.location.href = '/' + window.BX.locale + '/search?' + params.toString();
 };
 
 // Выпадающие списки: выбор книги для поиска

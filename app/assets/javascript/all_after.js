@@ -239,22 +239,22 @@ menuBooks.eraseSearch = function () {
 menuBooks.goToSearch = function(form) {
   let text = undefined;
   let lang = undefined;
+
   // если форму с input внутри передали, то она приоритетнее! Берём значение от туда.
   // Так делаем ради примитивного поля для поиска на главной странице
   if (form) {
-    text = form.querySelector('.search-tree-input');
-    lang = document.getElementById('lang-select');
+    text = form.querySelector('.search-tree-input').value;
+    lang = document.getElementById('lang-select').value;
   } else {
     text = menuBooks.searchInput.value;
   };
 
-  let params = [];
+  const params = new URLSearchParams();
 
-  if (lang && lang.value.length > 0) { params.push('l=' + lang.value) };
-  if (text && text.value.length > 0) { params.push('t=' + text.value) };
+  if (lang && lang.length > 0) params.append('l', lang);
+  if (text && text.length > 0) params.append('t', text);
 
-  const url = '/' + window.BX.locale + '/search?' + params.join('&');
-  document.location.href = url;
+  document.location.href = '/' + window.BX.locale + '/search?' + params.toString();
 }
 
 menuBooks.enableListeners = function () {

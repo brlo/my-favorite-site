@@ -294,12 +294,11 @@ class PagesController < ApplicationController
     @page = ::Page.find_by(path_low: path_downcased, lang: @content_lang)
 
     if params[:t].present?
-      # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9
-      @search_text = params[:t].gsub(/[^[[:alpha:]]0-9]/i, ' ')
+      @search_text = params[:t]
 
       # Запрашиваем результаты из БД
       @matches = ::PageSearch.new(
-        page: @page,
+        start_page: @page,
         text: @search_text,
       ).fetch_objects(2_000)
       # пока нет нормальной пагинации, берём для показа только первые 500 совпадений

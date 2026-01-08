@@ -34,13 +34,13 @@ class Page < ApplicationRecord
   #               against: :body_search,
   #               using: {
   #                 tsearch: {
-  #                   dictionary: 'english',
+  #                   dictionary: 'russian',
   #                   tsvector_column: 'body_tsvector',
   #                   highlight: {
   #                     StartSel: '<mark>',
   #                     StopSel: '</mark>',
-  #                     MinWords: 123,
-  #                     MaxWords: 456,
+  #                     MinWords: 10,
+  #                     MaxWords: 40,
   #                     ShortWord: 4,
   #                     HighlightAll: true,
   #                     MaxFragments: 3,
@@ -53,6 +53,10 @@ class Page < ApplicationRecord
   # === Ассоциации ===
   belongs_to :user, optional: true
   belongs_to :parent, class_name: 'Page', optional: true, inverse_of: :children
+  # For preload
+  belongs_to :parent_for_preview, -> {
+    select(:id, :h_id, :title, :cover, :parent_id, :path)
+  }, class_name: 'Page', optional: true, foreign_key: :parent_id
   has_many :children, class_name: 'Page', foreign_key: :parent_id, inverse_of: :parent
   # has_many :merge_requests, foreign_key: :p_id, dependent: :destroy
 

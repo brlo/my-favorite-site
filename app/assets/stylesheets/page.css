@@ -860,3 +860,14 @@ h4:hover .copy-anchor,
 #page-body.verses {
   margin-top: -20px !important;
 }
+
+#search-results .match {
+  margin: 0 0 10px 35px;
+  position: relative;
+}
+
+#search-results .thumb {
+  width: 30px;
+  position: absolute;
+  margin: 4px 0 0 -35px;
+}

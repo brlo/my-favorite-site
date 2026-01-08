@@ -118,8 +118,8 @@ module Api
 
     def page_owner?
       if @page.present?
-        ::Current.user.pages_owner.to_a.include?(@page.id.to_s) ||
-        ::Current.user.pages_owner.to_a.include?(@page.p_id.to_s)
+        ::Current.user.pages_owner.to_a.include?(@page.id) ||
+        ::Current.user.pages_owner.to_a.include?(@page.parent_id)
       end
     end
   end

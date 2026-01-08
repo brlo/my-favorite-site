@@ -34,20 +34,24 @@
   <div class='hint'><%= t('search_page.matches') %>: <%= @matches_count %></div>
   <hr>
 
-  <article class='looks-like-page'>
+  <article class='looks-like-page' id='search-results'>
   <% if @matches_count > 0 %>
 
     <% @matches.each do |m| %>
+      <div class='match'>
+        <h4>
+          <% match_thumb_url = m.cover.present? ? m.cover.micro.url : m.parent_for_preview&.cover&.micro&.url %>
+          <% if match_thumb_url %><img src="<%= match_thumb_url %>" loading="lazy" class="thumb"/><% end %>
+          <a href="<%= my_page_link_to("/#{m.path}") %>"><%= m.title %></a> / <span class='parent-link'><a href="<%= my_page_link_to("/#{m.parent_for_preview&.path}") %>"><%= m.parent_for_preview&.title %></a></span>
+        </h4>
 
-      <h2><%= m.title %></h3>
-      <% m.snippet.split('-%-').each do |match_part| %>
+        <%# m.snippet.split('-%-').each do |match_part| %>
         <div class='line'>
-          <% line_text = sanitize(match_part, tags: %w(mark)) %>
-          «<%= verse_alone_clean(line_text.html_safe) %>»<br/>
-          (<a href="<%= my_page_link_to("/#{m.path}") %>"><%= m.title %></a>)
+          <% line_text = sanitize(m.snippet, tags: %w(strong)) %>
+          <%= verse_alone_clean(line_text.html_safe) %>…
         </div>
-        <br>
-      <% end %>
+        <%# end %>
+      </div>
     <% end %>
 
   <% else %>

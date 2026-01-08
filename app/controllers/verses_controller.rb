@@ -234,10 +234,8 @@ class VersesController < ApplicationController
     # если это ссылка, то просто найдём её
     if link = ::AddressConverter.human_to_link(posibleAddr)
       redirect_to("/#{I18n.locale}/#{@search_lang}#{link}")
-    # https://www.mongodb.com/docs/manual/core/link-text-indexes/
     elsif params[:t].present?
-      # из текста удаляем все символы, кроме пробела и A-ZА-Я0-9-,.
-      @search_text = params[:t].gsub(/[^\s[[:alpha:]]\-\,\.\:\;]*/i, '')
+      @search_text = params[:t]
 
       # Запрашиваем результаты из БД
       @verses = ::VerseSearch.new(
