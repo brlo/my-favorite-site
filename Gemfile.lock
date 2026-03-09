@@ -95,8 +95,6 @@ GEM
     concurrent-ruby (1.3.6)
     connection_pool (3.0.2)
     crass (1.0.6)
-    cssbundling-rails (1.4.3)
-      railties (>= 6.0.0)
     csv (3.3.5)
     date (3.5.1)
     debug (1.11.1)
@@ -195,6 +193,10 @@ GEM
       prettyprint
     prettyprint (0.2.0)
     prism (1.7.0)
+    propshaft (1.3.1)
+      actionpack (>= 7.0.0)
+      activesupport (>= 7.0.0)
+      rack
     psych (5.3.1)
       date
       stringio
@@ -263,14 +265,6 @@ GEM
     securerandom (0.4.1)
     sitemap_generator (6.3.0)
       builder (~> 3.0)
-    sprockets (4.2.2)
-      concurrent-ruby (~> 1.0)
-      logger
-      rack (>= 2.2.4, < 4)
-    sprockets-rails (3.5.2)
-      actionpack (>= 6.1)
-      activesupport (>= 6.1)
-      sprockets (>= 3.0.0)
     sqlite3 (2.9.0-aarch64-linux-gnu)
     sqlite3 (2.9.0-aarch64-linux-musl)
     sqlite3 (2.9.0-arm-linux-gnu)
@@ -323,7 +317,6 @@ DEPENDENCIES
   browser
   carrierwave
   connection_pool
-  cssbundling-rails
   debug
   greeklish_iso843
   httparty
@@ -331,13 +324,13 @@ DEPENDENCIES
   jbuilder
   nokogiri
   pg
+  propshaft
   puma
   rack-cors
   rails (~> 8.0.1, >= 8.0.1)
   redis
   rmagick
   sitemap_generator
-  sprockets-rails
   sqlite3
   stimulus-rails
   turbo-rails

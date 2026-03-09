@@ -22,7 +22,7 @@ case "$RUN_MOD" in
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     ./bin/bib_assets_remove.sh
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
-    bundle exec rake assets:precompile
+    RAILS_ENV=production bundle exec rake assets:precompile
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     bundle exec rake assets:clean
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='

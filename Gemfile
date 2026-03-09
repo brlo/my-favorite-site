@@ -113,7 +113,7 @@ end
 # СТАЛО:
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
+# gem "sprockets-rails"
 
 # Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
 # gem "jsbundling-rails"
@@ -126,7 +126,8 @@ gem "turbo-rails"
 gem "stimulus-rails"
 
 # Bundle and process CSS [https://github.com/rails/cssbundling-rails]
-gem "cssbundling-rails"
+# gem "cssbundling-rails"
+gem "propshaft"
 
 # Build JSON APIs with ease [https://github.com/rails/jbuilder]
 gem "jbuilder"
