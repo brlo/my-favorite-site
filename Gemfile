@@ -6,8 +6,9 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.1", ">= 8.0.1"
 
-gem 'mongoid'
-gem 'ostruct'
+# gem 'mongoid'
+# gem 'ostruct'
+
 gem 'pg'
 # gem 'pg_search'
 
@@ -31,20 +32,11 @@ gem 'actionpack-page_caching'
 
 gem 'rack-cors', :require => 'rack/cors'
 
-# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
-gem "sprockets-rails"
-
 # Use sqlite3 as the database for Active Record
 gem "sqlite3"
 
 # Use the Puma web server [https://github.com/puma/puma]
 gem "puma"
-
-# Build JSON APIs with ease [https://github.com/rails/jbuilder]
-gem "jbuilder"
-
-gem 'terser'
-gem 'mini_racer'
 
 gem 'addressable'
 gem 'httparty'
@@ -52,13 +44,13 @@ gem 'httparty'
 gem 'rmagick'
 
 # https://github.com/halostatue/diff-lcs
-gem 'diff-lcs'
+# gem 'diff-lcs'
 
 # html parser for prettify links in articles
 gem 'nokogiri'
 
 gem 'carrierwave'
-gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
+# gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
@@ -106,3 +98,35 @@ end
 #   gem "selenium-webdriver"
 #   gem "webdrivers"
 # end
+
+
+# Было
+
+# # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+# gem "sprockets-rails"
+# # Build JSON APIs with ease [https://github.com/rails/jbuilder]
+# gem "jbuilder"
+
+# gem 'terser'
+# gem 'mini_racer'
+
+# СТАЛО:
+
+# The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
+gem "sprockets-rails"
+
+# Bundle and transpile JavaScript [https://github.com/rails/jsbundling-rails]
+# gem "jsbundling-rails"
+gem "importmap-rails"
+
+# Hotwire's SPA-like page accelerator [https://turbo.hotwired.dev]
+gem "turbo-rails"
+
+# Hotwire's modest JavaScript framework [https://stimulus.hotwired.dev]
+gem "stimulus-rails"
+
+# Bundle and process CSS [https://github.com/rails/cssbundling-rails]
+gem "cssbundling-rails"
+
+# Build JSON APIs with ease [https://github.com/rails/jbuilder]
+gem "jbuilder"

@@ -1,0 +1,16 @@
+<div class="match" data-controller="text-fragment">
+  <h4>
+    <a href="<%= my_page_link_to("/#{m.path}") %>"
+       data-text-fragment-target="link"
+       data-text-fragment-base-url-value="<%= my_page_link_to("/#{m.path}") %>">
+      <%= m.title %>
+    </a>
+    <div class='parent-link'><%= m.parent_for_preview&.title %></div>
+  </h4>
+
+  <div class='line'>
+    <span data-text-fragment-target="snippet" class="snippet-text">
+      <%= verse_alone_clean(sanitize(m.highlighted_snippet, tags: %w(strong)).html_safe) %>
+    </span>…
+  </div>
+</div>

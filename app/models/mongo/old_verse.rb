@@ -2,69 +2,69 @@
 # Verse.create_indexes
 
 class OldVerse < ApplicationMongoRecord
-  include Mongoid::Document
+  # include Mongoid::Document
 
-  store_in collection: 'verses'
+  # store_in collection: 'verses'
 
-  # lang       - ru
-  # address    - zah:9:8
-  # zavet      - 1
-  # book_id    - 10
-  # book       - zah
-  # chapter    - 9
-  # line       - 8
-  # text       - текст стиха
-  # data       - спец. параметры
-  # created_at - дата-время-создания
+  # # lang       - ru
+  # # address    - zah:9:8
+  # # zavet      - 1
+  # # book_id    - 10
+  # # book       - zah
+  # # chapter    - 9
+  # # line       - 8
+  # # text       - текст стиха
+  # # data       - спец. параметры
+  # # created_at - дата-время-создания
 
-  # временное поле для миграции на pg
-  field :int_id, type: Integer
-  # язык
-  field :lang, type: String
-  # код стиха
-  field :a, as: :address, type: String
-  # Завет (1 или 2)
-  field :z, as: :zavet, type: Integer
-  # id книги (для сортировки)
-  field :bid, as: :book_id, type: Integer
-  # код книги
-  field :bc, as: :book, type: String
-  # номер главы
-  field :ch, as: :chapter, type: Integer
-  # номер стиха
-  field :l, as: :line, type: Integer
-  # текст стиха
-  field :t, as: :text, type: String
-  # запасное поле для параметров
-  field :data, type: Hash
-  # время создания можно получать из _id во так: id.generation_time
-  field :c_at, as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
+  # # временное поле для миграции на pg
+  # field :int_id, type: Integer
+  # # язык
+  # field :lang, type: String
+  # # код стиха
+  # field :a, as: :address, type: String
+  # # Завет (1 или 2)
+  # field :z, as: :zavet, type: Integer
+  # # id книги (для сортировки)
+  # field :bid, as: :book_id, type: Integer
+  # # код книги
+  # field :bc, as: :book, type: String
+  # # номер главы
+  # field :ch, as: :chapter, type: Integer
+  # # номер стиха
+  # field :l, as: :line, type: Integer
+  # # текст стиха
+  # field :t, as: :text, type: String
+  # # запасное поле для параметров
+  # field :data, type: Hash
+  # # время создания можно получать из _id во так: id.generation_time
+  # field :c_at, as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
 
-  # rake db:mongoid:create_indexes
-  # rake db:mongoid:remove_indexes
-  # rake db:mongoid:remove_undefined_indexes
-  # для поиска в нужной книге
-  index({lang: 1, book: 1},                      {background: true})
-  # для поиска в нужном завете
-  index({lang: 1, zavet: 1},                     {background: true})
-  # для отдачи нужной главы
-  index({lang: 1, book: 1, ch: 1},               {background: true})
-  # чтобы не создавались одинаковые стихи
-  index({lang: 1, book_id: 1, ch: 1, line: 1},   {unique: true, background: true})
-  # для поиска по тексту
-  index({lang: 1, text: 'text'},                 {background: true})
+  # # rake db:mongoid:create_indexes
+  # # rake db:mongoid:remove_indexes
+  # # rake db:mongoid:remove_undefined_indexes
+  # # для поиска в нужной книге
+  # index({lang: 1, book: 1},                      {background: true})
+  # # для поиска в нужном завете
+  # index({lang: 1, zavet: 1},                     {background: true})
+  # # для отдачи нужной главы
+  # index({lang: 1, book: 1, ch: 1},               {background: true})
+  # # чтобы не создавались одинаковые стихи
+  # index({lang: 1, book_id: 1, ch: 1, line: 1},   {unique: true, background: true})
+  # # для поиска по тексту
+  # index({lang: 1, text: 'text'},                 {background: true})
 
-  validates :lang, :address, :book_id, :book, :chapter, :line, :text, presence: true
+  # validates :lang, :address, :book_id, :book, :chapter, :line, :text, presence: true
 
-  before_validation :set_address_if_nil
+  # before_validation :set_address_if_nil
 
-  def set_address_if_nil
-    if self.address.nil?
-      if book && chapter && line
-        self.address = "#{book}:#{chapter}:#{line}"
-      else
-        raise('Verse must contain Book, Chapter and Line')
-      end
-    end
-  end
+  # def set_address_if_nil
+  #   if self.address.nil?
+  #     if book && chapter && line
+  #       self.address = "#{book}:#{chapter}:#{line}"
+  #     else
+  #       raise('Verse must contain Book, Chapter and Line')
+  #     end
+  #   end
+  # end
 end

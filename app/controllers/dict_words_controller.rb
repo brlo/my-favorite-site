@@ -21,7 +21,7 @@ class DictWordsController < ApplicationController
       # all_words = [@bib_word.word, @bib_word.lexema, word] + lex_words # ------------------------ раскомментировать после выпуска подстрочника, и привести в порядок view
       all_words = [dict_word.word, dict_word.lexema, word] + lex_words
       all_words.map! { |w| ::DictWord.word_clean_gr(w) }
-      @dict_words = ::DictWord.where(:word_simple.in => all_words).to_a
+      @dict_words = ::DictWord.where(word_simple: all_words).to_a
 
       if @dict_words.blank?
         render status: 404

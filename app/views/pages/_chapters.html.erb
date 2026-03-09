@@ -1,4 +1,4 @@
-<div id='chapter-header'>
+<div id='chapter-header' data-controller='menu-filter'>
 
 <% if @breadcrumbs.present? %>
   <% content_for(:breadcrumbs) do %>
@@ -103,12 +103,19 @@
           class='pretty search-tree-input'
           name="t"
           type="text"
+          minlength="3"
           required
           placeholder='<%= I18n.t("page.search_placeholder") %>'
           value=''
           autocomplete='off'
+          data-action="input->menu-filter#filter"
+          data-menu-filter-use-translit-value="false"
+          placeholder="Поиск по меню..."
+          class="menu-search-input"
         />
-        <a class='page-search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+        <button type="submit" class='search-icon'>
+          <svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+        </button>
       </div>
     </form>
   <% end %>
@@ -117,16 +124,16 @@
 <%= render(partial: 'pages/text_bar') %>
 
 <% if @tree_menu.present? %>
-  <!-- Собственное меню страницы -->
-  <div class='menu-tree t-c-dir'>
+
+  <div class='menu-tree <%= text_cont_classes %>' data-menu-filter-target="tree">
     <div>
-    <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0, page_lang: @page.lang}) %>
+      <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0, page_lang: @page.lang}) %>
     </div>
   </div>
 
 <% elsif @chapters.present? && @chapters.size > 1 %>
   <!-- Похожие мастериалы -->
-  <div class='menu-tree t-c-dir'>
+  <div class='menu-tree <%= text_cont_classes %>'>
     <div class='bar-description'><%= ::I18n.t('menu.same_subject') %></div>
     <div class='items'>
       <% @chapters.each.with_index do |(title, path, is_gold), i| %>

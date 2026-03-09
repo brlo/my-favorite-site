@@ -32,6 +32,6 @@
   </div>
 <% end %>
 
-<div style='color: red'>
-  <a onclick='window.BX.logout(); return false;'><%= I18n.t('profile_page.logout') %></a>
+<div style='color: red' data-controller='logout'>
+  <a data-action='click->logout#logout'><%= I18n.t('profile_page.logout') %></a>
 </div>

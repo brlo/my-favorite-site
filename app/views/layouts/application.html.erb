@@ -32,21 +32,15 @@
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <style type="text/css">
-    <% if @current_bib_lang == 'csl-pnm' %>
-      @font-face {font-family: "Ponomar";src: url('<%= my_res_link_to('/fonts/PonomarUnicode.otf') %>') format("opentype");}
-      .csl {font-family: "Ponomar", Verdana, Tahoma;font-size: 1.4em;line-height: 1.5em;}
-    <% end %>
-      .t-c-dir {direction: <%= text_content_direction() %>;}
-      .t-ui-dir {direction: <%= text_ui_direction() %>;}
+      @font-face {font-family: 'Ponomar';src: url('<%= my_res_link_to('/fonts/PonomarUnicode.otf') %>') format("opentype");font-display: swap;}
     </style>
-    <%= javascript_include_tag "application", media: "all" %>
+    <%= javascript_importmap_tags %>
   </head>
 
-  <%# classes = @is_night_mode ? "night-mode" : "" %>
-  <body>
-    <%= javascript_include_tag "first_needs", media: "all" %>
+  <body data-controller="initial-settings books-menu metrics" data-action='click->books-menu#clickOutside'>
+
     <header>
       <div class='container'>
         <div class="logo">
@@ -55,33 +49,53 @@
           </a>
         </div>
         <nav>
-          <a href="<%= my_bib_link_to("/") %>" id='bible-link' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
+          <a href="<%= my_bib_link_to("/") %>" id='bible-link' data-action='books-menu#show' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
           <a href="<%= my_page_link_to("/links_#{current_lang()}/") %>" id='quotes-link' class="<%= @current_menu_item == 'links' ? ' selected' : nil %>"><%= I18n.t('menu.links') %></a>
 
-          <a id="settings-btn" class="local"><%= ::I18n.t('menu.settings') %></a>
+          <div id="settings-btn" data-controller="settings" data-action="click@window->settings#clickOutside">
+            <a class="local"
+              data-action="click->settings#toggleMenu"
+              data-settings-target="button">
+              <%= ::I18n.t('menu.settings') %>
+            </a>
 
-          <div id='settings-area' class='hidden'>
-            <el>
-              <label>
-                <%= ::I18n.t('settings.color_scheme') %>:
-              </label>
-              <div class='switcher'>
-                <a id="night-mode-switcher" class="local"><%= @is_night_mode ? ::I18n.t('menu.night') : ::I18n.t('menu.day') %></a>
-              </div>
-            </el>
-            <el>
-              <label>
-                <%= ::I18n.t('settings.font_size') %>:
-              </label>
-              <div class='switcher'>
-                <div id='text-menu'>
-                  <a id='text-small-btn'>А</a>
-                  <a id='text-medium-btn'>А</a>
-                  <a id='text-large-btn'>А</a>
+            <div id='settings-area'
+                class='hidden'
+                data-settings-target="menu">
+              <el>
+                <label>
+                  <%= ::I18n.t('settings.color_scheme') %>:
+                </label>
+                <div class='switcher'>
+                  <a id="night-mode-switcher"
+                    class="local"
+                    data-action="click->settings#toggleNightMode"
+                    data-settings-target="nightModeSwitcher">
+                    <%= @is_night_mode ? ::I18n.t('menu.night') : ::I18n.t('menu.day') %>
+                  </a>
                 </div>
-              </div>
-            </el>
+              </el>
+              <el>
+                <label>
+                  <%= ::I18n.t('settings.font_size') %>:
+                </label>
+                <div class='switcher'>
+                  <div id='text-menu'>
+                    <a id='text-small-btn'
+                      data-action="click->settings#textSizeClicked"
+                      data-settings-target="textSmallBtn">А</a>
+                    <a id='text-medium-btn'
+                      data-action="click->settings#textSizeClicked"
+                      data-settings-target="textMediumBtn">А</a>
+                    <a id='text-large-btn'
+                      data-action="click->settings#textSizeClicked"
+                      data-settings-target="textLargeBtn">А</a>
+                  </div>
+                </div>
+              </el>
+            </div>
           </div>
+
         </nav>
       </div>
     </header>
@@ -89,40 +103,72 @@
     <div class='flex-wrap menu-wrap'>
       <div class='content' style="margin: 0; padding: 0 10px;">
         <% locale = I18n.locale %>
-        <nav id="menu-books" class="menu-books hidden">
+        <nav id="menu-books"
+            class="menu-books hidden"
+            data-books-menu-target="menu">
 
-          <form action="/" class="search-form">
-            <input class="search-tree-input" type="text" id="filter-books" value="" placeholder="<%= t('fast_search') %>" autocomplete="off">
-            <a class='search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+          <form action="/<%= I18n.locale %>/search"
+                class='search-form'
+                data-controller='search'
+                data-action='submit->search#submit'>
+
+            <input class='search-tree-input'
+                  type='text'
+                  id='filter-books'
+                  value=''
+                  placeholder="<%= t('fast_search') %>"
+                  autocomplete='off'
+                  minlength="3"
+                  required
+                  data-books-menu-target='searchInput'
+                  data-action='input->books-menu#filter'
+                  data-search-target='input'
+                  data-search-locale-value="<%= I18n.locale %>">
+
+            <button type="submit" class='search-icon'>
+              <svg width="20" height="20" viewBox="0 0 20 20">
+                <path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path>
+              </svg>
+            </button>
           </form>
 
           <div class="bible-list">
+            <!-- Ветхий и Новый Завет -->
             <div class="bible-column menu-tree">
               <div class='small hint'><%= I18n.t('menu.nov_zavet') %></div>
               <% ::BOOKS.each do |book_code, data| %>
                 <% next if data[:zavet] == 1 %>
-                <% classes = []; m_classes = [] %>
+                <% m_classes = [] %>
                 <% @book_code == book_code ? m_classes.push('selected') : nil %>
                 <% data[:desc] == 'Евангелие' ? m_classes.push('gold') : nil %>
-                <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
+                <% data[:is_kanon] ? classes = 'kanon' : classes = 'non-kanon' %>
+
                 <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
-                  <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>">
+                  <a class="<%= classes %>"
+                    href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>"
+                    title="<%= data[:desc] %>"
+                    data-books-menu-target="bookLink">
                     <span><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></span>
                   </a>
                 </div>
               <% end %>
             </div>
 
+            <!-- Аналогично для Ветхого Завета -->
             <div class="bible-column menu-tree">
               <div class='small hint'><%= I18n.t('menu.veth_zavet') %></div>
               <% ::BOOKS.each do |book_code, data| %>
                 <% next if data[:zavet] == 2 %>
-                <% classes = []; m_classes = [] %>
+                <% m_classes = [] %>
                 <% @book_code == book_code ? m_classes.push('selected') : nil %>
                 <% book_code == 'ps' ? m_classes.push('gold') : nil %>
-                <% data[:is_kanon] ? classes.push('kanon') : classes.push('non-kanon') %>
+                <% data[:is_kanon] ? classes = 'kanon' : classes = 'non-kanon' %>
+
                 <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
-                  <a class="<%= classes.join(' ') %>" href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>" title="<%= data[:desc] %>">
+                  <a class="<%= classes %>"
+                    href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>"
+                    title="<%= data[:desc] %>"
+                    data-books-menu-target="bookLink">
                     <span><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></span>
                   </a>
                 </div>
@@ -131,6 +177,7 @@
           </div>
 
         </nav>
+
       </div>
     </div>
 
@@ -144,11 +191,16 @@
     </div>
 
     <footer>
-      <div class="container">
-        <dd id='change-ui-lang-area'>
-          <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
-          <select id="ui-lang-select">
+      <div class='container'>
+        <dd id='change-ui-lang-area'
+          data-controller='choices-select'
+          data-choices-select-placeholder-value='Язык сайта'
+          data-choices-select-search-enabled-value='false'
+          data-choices-select-position-value='top'
+          data-action='change->choices-select#selectUILang'>
 
+          <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
+          <select id="ui-lang-select" class='search-select'>
             <% ::FLAG_BY_LANG.each do |lang, flag| %>
               <% next if !::ALL_LOCALES.has_key?(lang) %>
               <option value='<%= lang %>' <%= ::I18n.locale.to_s == lang ? 'selected' : '' %>><%= page_lang_string_full(lang) %></option>
@@ -162,12 +214,7 @@
     </footer>
 
 <%= content_for?(:end_of_page) ? yield(:end_of_page) : '' %>
-    <%= javascript_include_tag "all_after", media: "all" %>
     <% if @no_index != true %>
-      <%= javascript_include_tag "metrics", media: "all" %>
-      <!-- Yandex.Metrika counter -->
-      <noscript><div><img src="https://mc.yandex.ru/watch/90555809" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-      <!-- /Yandex.Metrika counter -->
     <% end %>
   </body>
 </html>

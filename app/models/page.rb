@@ -612,6 +612,12 @@ class Page < ApplicationRecord
   end
 
   def pdf_path
+    if self.h_id.present?
+      p = "s/page_pdfs/#{self.h_id}.pdf"
+      full_path = Rails.root.join('public', p)
+      return p if File.exist?(full_path)
+    end
+
     "s/page_pdfs/#{self.id}.pdf"
   end
 

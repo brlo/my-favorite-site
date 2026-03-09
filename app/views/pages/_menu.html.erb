@@ -4,16 +4,24 @@
     <% items.each do |item| %>
 
       <% _class = [] %>
+      <% is_link_target = false %>
       <% if item[:childs].present? %>
         <% _class.push('menu-subject') %>
       <% else %>
         <% _class.push('menu-unit', 'menu-link') %>
+        <% is_link_target = true%>
         <% if (item[:is_gold] && item[:priority] == 1 && item[:title] =~ /Иисус Христос/); _class.push('God') end %>
         <% item[:is_empty] ? _class.push('not-exist') : nil %>
         <% item[:path].blank? ? _class.push('not-exist') : nil %>
       <% end %>
+
       <% item[:is_gold] ? _class.push('gold') : nil %>
+
+      <% if is_link_target %>
+      <div class='depth-<%= depth %> <%= _class.join(' ') %>' data-menu-filter-target="link">
+      <% else %>
       <div class='depth-<%= depth %> <%= _class.join(' ') %>'>
+      <% end %>
         <% if item[:childs].present? && item[:path].blank? %>
           <%= item[:title] %>
         <% elsif item[:path].presence %>

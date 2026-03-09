@@ -106,6 +106,9 @@ header .container, footer .container {
   margin: 0 auto;
 }
 
+.csl {font-family: 'Ponomar', Verdana, Tahoma;font-size: 1.4em;line-height: 1.5em;}
+.t-rtl {direction: rtl;}
+
 /* ==================================================== */
 /* text bar -- настройки перед текстом (язык, озвучить) */
 /* ==================================================== */
@@ -371,11 +374,13 @@ input.btn:active, input.btn:focus {
   position: relative;
 }
 
-.search-tree-input-area a {
+.search-tree-input-area .search-icon {
   position: absolute;
   right: 12px;
   top: 12px;
   cursor: pointer;
+  background: none;
+  border: none;
 }
 /* TEXT TAGS  */
 
@@ -423,8 +428,8 @@ body.night-mode {
 }
 
 /* все ссылки */
-.night-mode a { color: #61afef; }
-.night-mode a:hover { color: #7dc3ff;}
+.night-mode a, .night-mode button { color: #61afef; }
+.night-mode a:hover, .night-mode button:hover { color: #7dc3ff;}
 
 /* активная ссылка в header */
 .night-mode a.selected { color: #cd9765; }
@@ -500,4 +505,26 @@ a#current-book {
   padding-bottom: 5px;
   padding-left: 0px;
   opacity: .8;
+}
+
+.spinner {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(0, 0, 0, 0.1);
+  border-top-color: #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 10px auto;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+#infinite-scroll-trigger, .end-of-results {
+  height: 150px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

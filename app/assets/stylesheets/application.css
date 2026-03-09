@@ -23,7 +23,7 @@ header nav {
 header nav > a {
   padding-right: 10px;
 }
-header nav > a#settings-btn {
+header nav > #settings-btn {
   margin-left: auto;
   padding-right: 0;
 }
@@ -138,7 +138,7 @@ header nav > a#settings-btn {
   position: relative;
 }
 
-.menu-books form a {
+.menu-books form .search-icon {
   position: absolute;
   right: 3px;
   top: 3px;
@@ -164,9 +164,12 @@ header nav > a#settings-btn {
   margin-left: -10px;
 }
 
-.menu-books a.search-icon {
+.menu-books .search-icon {
   display: inline-block;
   padding: 4px 5px 5px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 .menu-books .menu-tree {
@@ -612,4 +615,3 @@ a.bib-comment:hover {
 .night-mode .translation-tooltip::after {
   border-color: transparent transparent #444 transparent;
 }
-

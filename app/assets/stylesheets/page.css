@@ -862,14 +862,14 @@ h4:hover .copy-anchor,
 }
 
 #search-results .match {
-  margin: 0 0 10px 35px;
+  margin: 0 0 10px 39px;
   position: relative;
 }
 
 #search-results .thumb {
   width: 30px;
   position: absolute;
-  margin: 4px 0 0 -35px;
+  margin: 4px 0 0 -40px;
 }
 
 #search-results .parent-link {

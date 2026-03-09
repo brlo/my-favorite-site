@@ -1,27 +1,27 @@
 # Image.create_indexes
 
 class OldImage < ApplicationMongoRecord
-  include Mongoid::Document
+  # include Mongoid::Document
 
-  store_in collection: 'images'
+  # store_in collection: 'images'
 
-  mount_uploader :simple, SimpleUploader
+  # mount_uploader :simple, SimpleUploader
 
-  # временное поле для миграции на pg
-  field :int_id, type: Integer
-  # meta-описание (через запятую ключевые слова)
-  field :title, as: :title, type: String
-  # время создания можно получать из _id во так: id.generation_time
-  field :u_id
-  field :c_at,       as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
-  field :u_at,       as: :updated_at, type: DateTime, default: ->{ DateTime.now.utc.round }
+  # # временное поле для миграции на pg
+  # field :int_id, type: Integer
+  # # meta-описание (через запятую ключевые слова)
+  # field :title, as: :title, type: String
+  # # время создания можно получать из _id во так: id.generation_time
+  # field :u_id
+  # field :c_at,       as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
+  # field :u_at,       as: :updated_at, type: DateTime, default: ->{ DateTime.now.utc.round }
 
-  # rake db:mongoid:create_indexes
-  # rake db:mongoid:remove_indexes
-  # rake db:mongoid:remove_undefined_indexes
-  # Image.remove_undefined_indexes
-  # Image.remove_indexes
-  # Image.create_indexes
+  # # rake db:mongoid:create_indexes
+  # # rake db:mongoid:remove_indexes
+  # # rake db:mongoid:remove_undefined_indexes
+  # # Image.remove_undefined_indexes
+  # # Image.remove_indexes
+  # # Image.create_indexes
 
-  # belongs_to :user, foreign_key: 'u_id', primary_key: 'id'
+  # # belongs_to :user, foreign_key: 'u_id', primary_key: 'id'
 end

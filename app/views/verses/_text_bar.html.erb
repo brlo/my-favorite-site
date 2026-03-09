@@ -1,36 +1,48 @@
 <div class='bar-description'><%= ::I18n.t('lang_select_tip') %></div>
 <div id='text-bar'>
   <div class='bar-el'>
-    <select id="lang-select" name="lang-select">
-      <optgroup label="Переводы">
-        <option value='ru' <% if @current_bib_lang == 'ru' %>selected<% end %>>            <%= bib_lang_string_full('ru', short: 'RST') %></option>
-        <option value='csl-pnm' <% if @current_bib_lang == 'csl-pnm' %>selected<% end %>>  <%= bib_lang_string_full('csl-pnm', short: 'ELZ') %></option>
-        <option value='csl-ru' <% if @current_bib_lang == 'csl-ru' %>selected<% end %>>    <%= bib_lang_string_full('csl-ru', short: 'ELZ-RU') %></option>
-        <option value='eng-nkjv' <% if @current_bib_lang == 'eng-nkjv' %>selected<% end %>><%= bib_lang_string_full('eng-nkjv', short: 'NKJV') %></option>
-        <option value='en-nrsv' <% if @current_bib_lang == 'en-nrsv' %>selected<% end %>>  <%= bib_lang_string_full('en-nrsv', short: 'NRSV') %></option>
-        <option value='arab-avd' <% if @current_bib_lang == 'arab-avd' %>selected<% end %>><%= bib_lang_string_full('arab-avd', short: 'AVD') %></option>
-        <option value='jp-ni' <% if @current_bib_lang == 'jp-ni' %>selected<% end %>>      <%= bib_lang_string_full('jp-ni', short: 'N.Interc') %></option>
-        <option value='cn-ccbs' <% if @current_bib_lang == 'cn-ccbs' %>selected<% end %>>  <%= bib_lang_string_full('cn-ccbs', short: 'CCBS') %></option>
-        <option value='ge-sch' <% if @current_bib_lang == 'ge-sch' %>selected<% end %>>    <%= bib_lang_string_full('ge-sch', short: 'SCH') %></option>
-      </optgroup>
+    <div class='lang-select'
+      data-controller='choices-select'
+      data-choices-select-placeholder-value='Язык Библии'
+      data-choices-select-search-enabled-value='false'
+      data-choices-select-position-value='down'
+      data-action='change->choices-select#selectLang'>
 
-      <optgroup label="Подстрочники">
-        <option value='gr-ru' <% if @current_bib_lang == 'gr-ru' %>selected<% end %>>      <%= bib_lang_string_full('gr-ru', short: 'BX') %></option>
-        <option value='gr-en' <% if @current_bib_lang == 'gr-en' %>selected<% end %>>      <%= bib_lang_string_full('gr-en', short: 'BX') %></option>
-        <option value='gr-jp' <% if @current_bib_lang == 'gr-jp' %>selected<% end %>>      <%= bib_lang_string_full('gr-jp', short: 'BX') %></option>
-      </optgroup>
+      <select id='lang-select' class="search-select">
+        <optgroup label="Переводы">
+          <option value='ru' <% if @current_bib_lang == 'ru' %>selected<% end %>>            <%= bib_lang_string_full('ru', short: 'RST') %></option>
+          <option value='csl-pnm' <% if @current_bib_lang == 'csl-pnm' %>selected<% end %>>  <%= bib_lang_string_full('csl-pnm', short: 'ELZ') %></option>
+          <option value='csl-ru' <% if @current_bib_lang == 'csl-ru' %>selected<% end %>>    <%= bib_lang_string_full('csl-ru', short: 'ELZ-RU') %></option>
+          <option value='eng-nkjv' <% if @current_bib_lang == 'eng-nkjv' %>selected<% end %>><%= bib_lang_string_full('eng-nkjv', short: 'NKJV') %></option>
+          <option value='en-nrsv' <% if @current_bib_lang == 'en-nrsv' %>selected<% end %>>  <%= bib_lang_string_full('en-nrsv', short: 'NRSV') %></option>
+          <option value='arab-avd' <% if @current_bib_lang == 'arab-avd' %>selected<% end %>><%= bib_lang_string_full('arab-avd', short: 'AVD') %></option>
+          <option value='jp-ni' <% if @current_bib_lang == 'jp-ni' %>selected<% end %>>      <%= bib_lang_string_full('jp-ni', short: 'N.Interc') %></option>
+          <option value='cn-ccbs' <% if @current_bib_lang == 'cn-ccbs' %>selected<% end %>>  <%= bib_lang_string_full('cn-ccbs', short: 'CCBS') %></option>
+          <option value='ge-sch' <% if @current_bib_lang == 'ge-sch' %>selected<% end %>>    <%= bib_lang_string_full('ge-sch', short: 'SCH') %></option>
+        </optgroup>
 
-      <optgroup label="Древние тексты">
-        <option value='gr-lxx-byz' <% if @current_bib_lang == 'gr-lxx-byz' %>selected<% end %>><%= bib_lang_string_full('gr-lxx-byz', short: 'LXX+Byz', is_translate: true) %></option>
-        <option value='heb-osm' <% if @current_bib_lang == 'heb-osm' %>selected<% end %>>  <%= bib_lang_string_full('heb-osm', short: 'OSM+DHNT', is_translate: true) %></option>
-      </optgroup>
-    </select>
+        <optgroup label="Подстрочники">
+          <option value='gr-ru' <% if @current_bib_lang == 'gr-ru' %>selected<% end %>>      <%= bib_lang_string_full('gr-ru', short: 'BX') %></option>
+          <option value='gr-en' <% if @current_bib_lang == 'gr-en' %>selected<% end %>>      <%= bib_lang_string_full('gr-en', short: 'BX') %></option>
+          <option value='gr-jp' <% if @current_bib_lang == 'gr-jp' %>selected<% end %>>      <%= bib_lang_string_full('gr-jp', short: 'BX') %></option>
+        </optgroup>
+
+        <optgroup label="Древние тексты">
+          <option value='gr-lxx-byz' <% if @current_bib_lang == 'gr-lxx-byz' %>selected<% end %>><%= bib_lang_string_full('gr-lxx-byz', short: 'LXX+Byz', is_translate: true) %></option>
+          <option value='heb-osm' <% if @current_bib_lang == 'heb-osm' %>selected<% end %>>  <%= bib_lang_string_full('heb-osm', short: 'OSM+DHNT', is_translate: true) %></option>
+        </optgroup>
+      </select>
+    </div>
   </div>
 
 
   <div class='right-group'>
-    <% if @prefix_for_audio_link %>
-      <div class='bar-el btn' id='btn-play-text'>
+    <% if @audio_file %>
+      <div class='bar-el btn' id='btn-play-text'
+        data-controller='audio-player'
+        data-audio-player-audio-link-value='<%= my_res_link_to(@audio_file) %>'
+        data-action="click->audio-player#toggleVision">
+
         <svg style="width: 15px; margin-right: 5px;" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
           <path d="M13.5 4.06c0-1.336-1.616-2.005-2.56-1.06l-4.5 4.5H4.508c-1.141 0-2.318.664-2.66 1.905A9.76 9.76 0 001.5 12c0 .898.121 1.768.35 2.595.341 1.24 1.518 1.905 2.659 1.905h1.93l4.5 4.5c.945.945 2.561.276 2.561-1.06V4.06zM18.584 5.106a.75.75 0 011.06 0c3.808 3.807 3.808 9.98 0 13.788a.75.75 0 11-1.06-1.06 8.25 8.25 0 000-11.668.75.75 0 010-1.06z" />
           <path d="M15.932 7.757a.75.75 0 011.061 0 6 6 0 010 8.486.75.75 0 01-1.06-1.061 4.5 4.5 0 000-6.364.75.75 0 010-1.06z" />

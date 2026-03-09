@@ -183,14 +183,6 @@ Rails.application.routes.draw do
       post '/login/telegram', to: 'users#telegram_login'
     end
 
-    # # Admin
-    # namespace 'admin' do
-    #   resources :quotes_subjects
-    #   resources :quotes_pages
-    #   get '/dump', to: 'quotes_pages#dump', as: 'dump'
-    # end
-
-    # Defines the root path route ('/')
     get '/', to: 'verses#index'
   end
 

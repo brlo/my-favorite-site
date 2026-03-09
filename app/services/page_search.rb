@@ -1,132 +1,155 @@
 class PageSearch
-  # возвращает минимальную длинную слова для поиска, с учётом языка
-  def self.min_len(lang)
-    # японские иероглифы разрешаем искать в кол-ве 2 шт.
-    (lang == 'jp-ni' || lang == 'cn-ccbs') ? 2 : 3
-  end
+  # Конфигурация
+  MAX_TEXT_LENGTH = 250
+  MIN_LEN_BY_LANG = { 'jp-ni' => 2, 'cn-ccbs' => 2 }.freeze
+  DEFAULT_MIN_LEN = 3
 
-  attr_reader :start_page, :text
+  PAGE_MODEL = ::Page
+  MENU_SERVICE = ::Menu
 
-  def initialize start_page:, text:
+  attr_reader :start_page, :text, :lang
+
+  def initialize(start_page:, text:)
     @start_page = start_page
     @text = text
-    @lang = @start_page.lang
+    @lang = start_page.lang
   end
 
-  # === Кастомный метод поиска с поддержкой языка и сниппетами ===
-  # PageSearch.new(text: 'православная', start_page: @page).fetch_objects(10).to_a.first.snippet
-  # PageSearch.new(text: 'святая православная церковь', start_page: @page).fetch_objects(10).to_a.last.snippet
-  # PageSearch.new(text: 'ορθοδ', start_page: @page).fetch_objects(10).to_a.last.snippet
-  def fetch_objects(count)
-    # не ищем меньше 3 символов и больше 120
-    min_len = ::PageSearch.min_len(@lang)
-    return [] if @text.blank? || @text.length < min_len || @text.length > 250
+  def count
+    return 0 unless valid_search_term?
 
-    # словарь (язык), который должен использовать PG при организации поиска
-    pg_dict = ::LANG_TO_PG_LANGUAGE[@lang.to_s.downcase]
+    relation = base_relation
+    pg_dict = pg_dictionary
+    safe_term = sanitize_term
 
-    # оставляем только допустимые символы, экранируем
-    safe_term = @text.strip.gsub(/[^[[:alpha:]]\s\-\+]/, '').gsub(/\s+/, ' ').strip
+    strategies(pg_dict, safe_term).each do |ts_query_sql|
+      count = relation.where("body_tsvector @@ #{ts_query_sql}").count
+      return count if count.positive?
+    end
 
-    # начальная страница
-    # sub_pages = [@start_page]
-    # плюс все дочерние
-    sub_pages_ids = ::Menu.subpages_ids_of_page(@start_page)
+    0
+  end
 
-    # ПОИСК
-    relation = ::Page.where(is_published: true, is_deleted: [nil, false])
-    relation = relation.select(:id, :h_id, :title, :cover, :parent_id)
-    relation = relation.preload(:parent_for_preview)
-    relation = relation.where(id: sub_pages_ids) if sub_pages_ids.present?
-    relation = relation.where(lang: @lang) if @lang.present?
-    relation = relation.limit(count)
+  def fetch_objects(offset: 0, limit: 20)
+    return [] unless valid_search_term?
 
-    pages = search_with_snippet(safe_term, pg_dict: pg_dict, relation: relation)
-    pages
+    relation = base_relation.limit(limit).offset(offset)
+    pg_dict = pg_dictionary
+    safe_term = sanitize_term
+
+    strategies(pg_dict, safe_term).each do |ts_query_sql|
+      results = execute_search(relation, pg_dict, ts_query_sql)
+      return populate_snippets(results, pg_dict, ts_query_sql) if results.any?
+    end
+
+    []
   end
 
   private
 
-  def search_with_snippet(term, pg_dict: nil, relation: nil)
-    if term.split(' ').size > 3
-      results = exact_query(term, pg_dict, relation)
-      return results if results.any?
+  # === Валидация и Подготовка ===
+
+  def valid_search_term?
+    return false if text.blank?
+    return false if text.length > MAX_TEXT_LENGTH
+    return false if text.length < min_length
+    true
+  end
+
+  def min_length
+    MIN_LEN_BY_LANG.fetch(lang, DEFAULT_MIN_LEN)
+  end
+
+  def sanitize_term
+    text.strip.gsub(/[^[[:alpha:]]\s\-\+]/, '').gsub(/\s+/, ' ').strip
+  end
+
+  def pg_dictionary
+    ::LANG_TO_PG_LANGUAGE[lang.to_s.downcase] || 'simple'
+  end
+
+  # === Логика Поиска (Стратегии) ===
+
+  # Возвращает массив SQL-выражений tsquery в порядке приоритета
+  def strategies(pg_dict, term)
+    words = term.split(' ')
+    queries = []
+
+    # 1. Exact (Phrase) - если слов много
+    if words.size > 3
+      queries << build_ts_query(pg_dict, words.join(' <-> '))
     end
 
-    results = and_query(term, pg_dict, relation)
-    # return results if results.any?
+    # 2. And (All words)
+    queries << build_ts_query(pg_dict, words.join(' & '))
 
-    # results = websearch_query(term, pg_dict, relation)
-    # return results if results.any?
+    # 3. Prefix (Fallback) - если слов мало
+    if words.size < 3
+      queries << build_ts_query(pg_dict, words.map { "#{_1}:*" }.join(' & '))
+    end
 
-    # # Если это был сложный поиск по лексемам и он не дал результата, то попытаемся
-    # # воспользоваться простым поиском по префиксу, ведь, возможно, ввели неполное слово "православ",
-    # # от которого не получилось взять лексему.
-    # if results.blank? && pg_dict != 'simple'
-    #   # раз результатов нет по сложному алгоритму (лексемы), то попробуем простой алгоритм (simple)
-    #   ts_query_sql = simple_algo(term, 'simple')
-    #   results = make_a_fulltext_query(relation, pg_dict, ts_query_sql)
-    # else
-    #   results
-    # end
+    queries
   end
 
-  def exact_query term, pg_dict, relation
-    query_term = term.split(' ').map { "#{_1}" }.join(' <-> ')
-    ts_query_sql = "to_tsquery('#{pg_dict}', #{quoted(query_term)})"
-
-    results = make_a_fulltext_query(relation, pg_dict, ts_query_sql)
-    results
+  def build_ts_query(pg_dict, query_text)
+    # Безопасная санитизация SQL
+    PAGE_MODEL.sanitize_sql_array(["to_tsquery(?, ?)", pg_dict, query_text])
   end
 
-  def and_query term, pg_dict, relation
-    query_term = term.split(' ').map { "#{_1}:*" }.join(' & ')
-    ts_query_sql = "to_tsquery('#{pg_dict}', #{quoted(query_term)})"
+  # === Работа с БД ===
 
-    results = make_a_fulltext_query(relation, pg_dict, ts_query_sql)
-    results
+  def base_relation
+    sub_pages_ids = MENU_SERVICE.subpages_ids_of_page(start_page)
+
+    PAGE_MODEL
+      .where(is_published: true, is_deleted: [nil, false])
+      .tap { |r| r.where!(id: sub_pages_ids) if sub_pages_ids.present? }
+      .tap { |r| r.where!(lang: lang) if lang.present? }
+      .preload(:parent_for_preview)
   end
 
-  def websearch_query term, pg_dict, relation
-    # unquoted text: text not inside quote marks will be converted to terms separated by & operators, as if processed by plainto_tsquery.
-    # "quoted text": text inside quote marks will be converted to terms separated by <-> operators, as if processed by phraseto_tsquery.
-    # OR:            the word “or” will be converted to the | operator.
-    # -:             a dash will be converted to the ! operator.
-    ts_query_sql = "websearch_to_tsquery('#{pg_dict}', #{quoted(term)})"
-
-    # if pg_dict == 'simple'
-    #   # поиск по префиксу
-    #   # tsquery operators & (AND), | (OR), ! (NOT), and <-> (FOLLOWED BY)
-    #   "to_tsquery(#{pg_dict}, #{quoted_term})"
-    # else
-    #   # поиск по лексемам
-    #   "plainto_tsquery(#{pg_dict}, #{quoted_term})"
-    # end
-
-    results = make_a_fulltext_query(relation, pg_dict, ts_query_sql)
-    results
-  end
-
-  # - Параметры форматирования:
-  #   * StartSel=<mark>, StopSel=</mark> - оборачивание совпадений в HTML-теги
-  #   * MaxFragments=100 - максимальное количество фрагментов
-  #   * FragmentDelimiter=... - разделитель между фрагментами (многоточие)
-  #   * MaxWords=60, MinWords=20 - ограничения длины фрагментов
-  def make_a_fulltext_query relation, pg_dict, ts_query_sql
-    relation ||= ::Page
+  def execute_search(relation, pg_dict, ts_query_sql)
     relation
       .select(
-        "pages.*",
-        "ts_rank_cd(body_tsvector, #{ts_query_sql}) AS rank",
-        "ts_headline('#{pg_dict}', body_search, #{ts_query_sql}, " \
-          "'StartSel=<strong>, StopSel=</strong>, MaxFragments=1, " \
-          "FragmentDelimiter=-%-, MinWords=10, MaxWords=30') AS snippet"
+        :id, :h_id, :title, :path, :cover, :parent_id,
+        "ts_rank(body_tsvector, #{ts_query_sql}) AS rank"
       )
       .where("body_tsvector @@ #{ts_query_sql}")
       .order("rank DESC")
+      .to_a
   end
 
-  def quoted term
-    ::Page.connection.quote(term)
+  # === Пост-обработка ===
+
+  def populate_snippets(results, pg_dict, ts_query_sql)
+    return results if results.blank?
+
+    ids = results.map(&:id)
+    # Один запрос на все сниппеты
+    snippets_map = PAGE_MODEL
+      .where(id: ids)
+      .select("id", snippet_sql(pg_dict, ts_query_sql))
+      .index_by(&:id)
+      .transform_values(&:snippet)
+
+    results.each do |page|
+      # Используем instance_variable вместо singleton_method для чистоты
+      page.instance_variable_set(:@search_snippet, snippets_map[page.id])
+      page.define_singleton_method(:highlighted_snippet) { @search_snippet }
+    end
+
+    results
+  end
+
+  def snippet_sql(pg_dict, ts_query_sql)
+    # Выносим конфигурацию сниппета в константу или метод
+    <<-SQL.squish
+      ts_headline(
+        '#{pg_dict}',
+        body_search,
+        #{ts_query_sql},
+        'StartSel=<strong>, StopSel=</strong>, MaxFragments=1, FragmentDelimiter=-%-, MinWords=10, MaxWords=30'
+      ) AS snippet
+    SQL
   end
 end

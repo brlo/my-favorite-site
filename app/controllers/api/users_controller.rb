@@ -27,6 +27,7 @@ module Api
       end
 
       if @user && @user.authenticate(@attrs[:password]) && @user.allow_ip?(request.ip)
+        session[:api_token] = @user.get_api_token() # запоминаем в сессии, чтобы авторизация работала и на rails-сайте
         render json: {api_token: @user.get_api_token()}.merge(success_response)
       else
         render json: {errors: 'access denied'}.merge(fail_response), status: 422
@@ -43,6 +44,8 @@ module Api
 
       if auth_service.valid?
         user = auth_service.find_or_create_user!
+
+        session[:api_token] = user.get_api_token() # запоминаем в сессии, чтобы авторизация работала и на rails-сайте
         render json: {api_token: user.get_api_token()}.merge(success_response)
       else
         render json: {params: params}.merge(fail_response)

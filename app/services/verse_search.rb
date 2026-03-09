@@ -85,7 +85,7 @@ class VerseSearch
   end
 
   def exact_query term, pg_dict, relation
-    query_term = term.split(' ').map { "#{_1}" }.join(' <-> ')
+    query_term = term.split(' ').join(' <-> ')
     ts_query_sql = "to_tsquery('#{pg_dict}', #{quoted(query_term)})"
 
     results = make_a_fulltext_query(relation, pg_dict, ts_query_sql)
@@ -93,10 +93,17 @@ class VerseSearch
   end
 
   def and_query term, pg_dict, relation
-    query_term = term.split(' ').map { "#{_1}:*" }.join(' & ')
+    query_term = term.split(' ').join(' & ')
     ts_query_sql = "to_tsquery('#{pg_dict}', #{quoted(query_term)})"
-
     results = make_a_fulltext_query(relation, pg_dict, ts_query_sql)
+
+    # попробум поискать через префиксы, вдруг пользователь ввёл неполное слово, для которого не получается подобрать лексему
+    if results.empty? && term.split(' ').size < 3
+      query_term = term.split(' ').map { "#{_1}:*" }.join(' & ')
+      ts_query_sql = "to_tsquery('#{pg_dict}', #{quoted(query_term)})"
+      results = make_a_fulltext_query(relation, pg_dict, ts_query_sql).to_a
+    end
+
     results
   end
 

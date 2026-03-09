@@ -1,6 +1,6 @@
 class VersesController < ApplicationController
   # https://github.com/rails/actionpack-page_caching
-  caches_page :index, :chapter_ajax
+  caches_page :index
 
   def index_redirect
     path  = "/#{I18n.locale}/#{current_bib_lang()}"
@@ -74,7 +74,7 @@ class VersesController < ApplicationController
       @book_code ||= params[:book_code] || 'gen'
       @chapter = (params[:chapter] || 1).to_i
 
-      # # ключ для кэширования
+      # ключ для кэширования
       @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
 
       # if stale?(last_modified: ::Time.now.beginning_of_week.utc, etag: @bible_path)
@@ -83,10 +83,7 @@ class VersesController < ApplicationController
         # AUDIO
         audio_prefix = "/s/audio/bib/#{@content_lang}/"
         audio_file = "#{audio_prefix}#{@book_code}/#{@book_code}#{ @chapter }.mp3"
-        if ::File.exist?("#{Rails.root}/public#{ audio_file }")
-          # во view сохраним только префикс, а ссылку будем собирать при запуске аудио
-          @prefix_for_audio_link = audio_prefix
-        end
+        @audio_file = audio_file if ::File.exist?("#{Rails.root}/public#{ audio_file }")
 
         # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
         @verses = ::Verse.where(tr_code: @int_content_lang || @content_lang, book: @book_code, chapter: @chapter).order(line: :asc).to_a
@@ -140,78 +137,6 @@ class VersesController < ApplicationController
         end
       # end
     end
-  end
-
-  def chapter_ajax
-    # TODO: в процессе апдейта надо ещё тэг title у страницы поменять
-    @content_lang = current_bib_lang()
-
-    # Запрошен подстрочник
-    @is_interliner = ['gr-ru', 'gr-en', 'gr-jp'].include?(@content_lang)
-    if @is_interliner
-      @int_content_lang =
-      if @content_lang == 'gr-ru'
-        'ru'
-      elsif @content_lang == 'gr-en'
-        'eng-nkjv'
-      elsif @content_lang == 'gr-jp'
-        'jp-ni'
-      end
-    end
-
-    @book_code ||= params[:book_code] || 'gen'
-    @chapter = (params[:chapter] || 1).to_i
-
-    # # ключ для кэширования
-    @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
-
-    # if stale?(last_modified: ::Time.now.beginning_of_week.utc, etag: @bible_path)
-      @is_psalm = @book_code == 'ps'
-
-      # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
-      @verses = ::Verse.where(tr_code: @int_content_lang || @content_lang, book: @book_code, chapter: @chapter).order(line: :asc).to_a
-      # Статьи-комментарии к стихам
-      page_comments = ::Page.comments_for_verses(@verses)
-      # индексируем по номерам стихов для быстрого доступа
-      @comments = page_comments.map { [_1.path_low.split(':').last.to_i, _1] }.to_h
-
-
-      # Запрошен подстрочник
-      if @is_interliner
-        # Раньше было так:
-        # @dict = preload_dict_for_verses(@verses)
-
-        # Теперь переделал полностью всё
-        # 1. Надо отобразить сначалу строчку из нормального перевода.
-        # 2. Потом греческие слова с подстрочным переводом.
-        @verses_gr = ::Verse.where(tr_code: 'gr-ru', book: @book_code, chapter: @chapter).order(line: :asc).to_a
-      end
-
-
-      @current_menu_item = 'biblia'
-      @page_title =
-        ::I18n.t("books.mid.#{@book_code}") +
-        ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
-        " #{@chapter} / " +
-        ::I18n.t('bible')
-
-      # чтобы поисковики не жаловались на одинаковые заголовки в разных русских языках
-      @page_title += " / ЦСЯ" if ['csl-ru', 'csl-pnm'].include?(@content_lang)
-
-      @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
-      if @verses.first.zavet == true
-        @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
-      else
-        @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
-      end
-
-      render 'chapter_ajax', layout: false
-    # end
-  end
-
-  def quotes
-    @current_menu_item = 'quotes'
-    # @page_title = ::I18n.t("quotes")
   end
 
   def search

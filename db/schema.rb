@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 202601233606) do
+ActiveRecord::Schema[8.0].define(version: 202601233607) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -161,6 +161,7 @@ ActiveRecord::Schema[8.0].define(version: 202601233606) do
     t.string "pages_owner", default: [], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "pages_owner_int", default: [], array: true
     t.index ["api_token"], name: "index_users_on_api_token", unique: true
     t.index ["username", "provider"], name: "index_users_on_username_and_provider"
     t.index ["username"], name: "index_users_on_username", unique: true

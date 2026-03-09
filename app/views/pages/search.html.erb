@@ -20,48 +20,50 @@
     <div class='search-tree-input-area'>
       <input
         class='pretty search-tree-input'
-        name="t"
-        type="text"
+        name='t'
+        type='text'
+        minlength="3"
         required
         placeholder='<%= I18n.t("page.search_placeholder") %>'
         value='<%= @search_text %>'
-        autocomplete="off"
+        autocomplete='off'
       />
-      <a class='page-search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+      <button type="submit" class='search-icon'>
+        <svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+      </button>
     </div>
   </form>
-
-  <div class='hint'><%= t('search_page.matches') %>: <%= @matches_count %></div>
+  <% if @matches_count%>
+    <div class='hint'><%= t('search_page.matches') %>: <%= @matches_count %></div>
+  <% end %>
   <hr>
 
   <article class='looks-like-page' id='search-results'>
-  <% if @matches_count > 0 %>
-
-    <% @matches.each do |m| %>
-      <div class='match'>
-        <h4>
-          <% match_thumb_url = m.cover.present? ? m.cover.micro.url : m.parent_for_preview&.cover&.micro&.url %>
-          <% if match_thumb_url %><img src="<%= match_thumb_url %>" loading="lazy" class="thumb"/><% end %>
-          <a href="<%= my_page_link_to("/#{m.path}") %>"><%= m.title %></a>
-          <div class='parent-link'><%= m.parent_for_preview&.title %></div>
-        </h4>
-
-        <%# m.snippet.split('-%-').each do |match_part| %>
-        <div class='line'>
-          <% line_text = sanitize(m.snippet, tags: %w(strong)) %>
-          <%= verse_alone_clean(line_text.html_safe) %>…
-        </div>
-        <%# end %>
-      </div>
+    <% if @matches.any? %>
+      <%= render partial: "pages/match", collection: @matches, as: :m %>
+    <% else %>
+      <div class='tip'><%= I18n.t('tips.page_search_was_return_zero_results') %></div>
     <% end %>
-
-  <% else %>
-    <div class='tip'><%= I18n.t('tips.page_search_was_return_zero_results') %></div>
-  <% end %>
   </article>
+
+  <% if @matches.any? && @matches.count == @per_page %>
+    <div id='infinite-scroll-trigger'
+      data-controller="infinite-scroll"
+      data-infinite-scroll-url-value="<%= request.path %>?<%= request.query_parameters.except(:page).to_query %>"
+      data-infinite-scroll-page-value="<%= params[:page]&.to_i || 1 %>">
+
+      <div class="infinite-scroll-spinner" hidden><div class="spinner"></div></div>
+    </div>
+  <% else %>
+    <%= render partial: "pages/end_of_results" %>
+  <% end %>
 <% end %>
 
-<div class='fixed-side-btn' id="scroll-to-top-btn">
+<div id='scroll-to-top-btn'
+     class='fixed-side-btn'
+     data-controller="scroll-button"
+     data-action="click->scroll-button#scrollToTarget">
+
   <svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 10.5 12 3m0 0 7.5 7.5M12 3v18" />
   </svg>

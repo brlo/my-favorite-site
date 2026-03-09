@@ -147,12 +147,16 @@ module ApplicationHelper
     @page_visit ||= ::PageVisits.visit(id, user_ip: request.ip, browser: browser)
   end
 
-  def text_content_direction
-    @text_content_direction ||= ['heb-osm', 'arab-avd', 'he', 'ar', 'fa'].include?(params[:content_lang]) ? 'rtl' : 'ltr'
+  def font_classes
+    font_custom_classes ||= @current_bib_lang == 'csl-pnm' ? 'csl' : ''
   end
 
-  def text_ui_direction
-    @text_ui_direction ||= ['he', 'ar', 'fa'].include?(::I18n.locale.to_s) ? 'rtl' : 'ltr'
+  def text_cont_classes
+    text_content_direction = ['heb-osm', 'arab-avd', 'he', 'ar', 'fa'].include?(params[:content_lang]) ? 't-rtl' : ''
+  end
+
+  def text_ui_classes
+    text_ui_direction = ['he', 'ar', 'fa'].include?(::I18n.locale.to_s) ? 't-rtl' : ''
   end
 
   def interliner_helper(verse_data)

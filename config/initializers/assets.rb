@@ -10,4 +10,4 @@ Rails.application.config.assets.version = "1.0"
 # application.js, application.css, and all non-JS/CSS in the app/assets
 # folder are already added.
 # Rails.application.config.assets.precompile  = %w( index.js search.js all_after.js all_before.js )
-Rails.application.config.assets.precompile  = %w( manifest.js )
+# Rails.application.config.assets.precompile  = %w( manifest.js )

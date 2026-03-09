@@ -15,43 +15,60 @@
 <% end %>
 
 <div class='hint' style='margin-top: 0;'><%= t('search_page.title') %>: </div>
-<form class='uniq-search-form'>
+<form class='uniq-search-form' data-controller='form-help'>
   <div id='search-input-area'>
-    <input class='pretty search-tree-input' name="text" type="text" required autocomplete='off' autofocus placeholder='<%= I18n.t("search_page.search_placeholder") %>' value='<%= @search_text %>'>
-    <a class='search-icon'><svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg></a>
+    <input class='pretty search-tree-input' name="t" type="text" minlength="3" required autocomplete='off' autofocus placeholder='<%= I18n.t("search_page.search_placeholder") %>' value='<%= @search_text %>'>
+    <button type="submit" class='search-icon'>
+      <svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+    </button>
   </div>
 
   <br>
 
-  <div class='search-options'>
-    <select id="search-books" name="books">
-      <option value='' <% if @search_books.blank? %>selected<% end %>><%= I18n.t('search_page.any_book') %></option>
-      <option value='z1' <% if @search_books == 'z1' %>selected<% end %>><%= I18n.t('search_page.old_testament') %></option>
-      <option value='z2' <% if @search_books == 'z2' %>selected<% end %>><%= I18n.t('search_page.new_testament') %></option>
-      <option value='e4' <% if @search_books == 'e4' %>selected<% end %>><%= I18n.t('search_page.gospel') %></option>
-      <% BOOKS.each do |book, params| %>
-        <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= I18n.t("books.mid.#{book}") %></option>
-      <% end %>
-    </select>
+  <div class='search-options choices-container'>
 
-    <select id="search-accuracy" name="accuracy">
-      <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>><%= I18n.t('search_page.similar_phrase') %></option>
-      <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>><%= I18n.t('search_page.exact_phrase') %></option>
-    </select>
+    <!-- Книги -->
+    <span class='search-param'
+      data-controller='choices-select'
+      data-choices-select-placeholder-value="<%= I18n.t('search_page.any_book') %>"
+      data-choices-select-search-enabled-value="true"
+      data-choices-select-position-value="down">
 
-    <select id="search-lang" name="lang-select">
-      <option value='ru' <% if @search_lang == 'ru' %>selected<% end %>>            <%= bib_lang_string_full('ru', short: 'RST') %></option>
-      <option value='csl-pnm' <% if @search_lang == 'csl-pnm' %>selected<% end %>>  <%= bib_lang_string_full('csl-pnm', short: 'ELZ') %></option>
-      <option value='csl-ru' <% if @search_lang == 'csl-ru' %>selected<% end %>>    <%= bib_lang_string_full('csl-ru', short: 'ELZ-RU') %></option>
-      <option value='eng-nkjv' <% if @search_lang == 'eng-nkjv' %>selected<% end %>><%= bib_lang_string_full('eng-nkjv', short: 'NKJV') %></option>
-      <option value='en-nrsv' <% if @search_lang == 'en-nrsv' %>selected<% end %>>  <%= bib_lang_string_full('en-nrsv', short: 'NRSV') %></option>
-      <option value='arab-avd' <% if @search_lang == 'arab-avd' %>selected<% end %>><%= bib_lang_string_full('arab-avd', short: 'AVD') %></option>
-      <option value='jp-ni' <% if @search_lang == 'jp-ni' %>selected<% end %>>      <%= bib_lang_string_full('jp-ni', short: 'N.Interc') %></option>
-      <option value='cn-ccbs' <% if @search_lang == 'cn-ccbs' %>selected<% end %>>  <%= bib_lang_string_full('cn-ccbs', short: 'CCBS') %></option>
-      <option value='ge-sch' <% if @search_lang == 'ge-sch' %>selected<% end %>>    <%= bib_lang_string_full('ge-sch', short: 'SCH') %></option>
-      <option value='gr-lxx-byz' <% if @search_lang == 'gr-lxx-byz' %>selected<% end %>><%= bib_lang_string_full('gr-lxx-byz', short: 'LXX+Byz', is_translate: true) %></option>
-      <option value='heb-osm' <% if @search_lang == 'heb-osm' %>selected<% end %>>  <%= bib_lang_string_full('heb-osm', short: 'OSM+DHNT', is_translate: true) %></option>
-    </select>
+      <select id='search-books' name='book' class='search-select' data-action='change->form-help#safeSubmitForm'>
+        <option value='' <% if @search_books.blank? %>selected<% end %>><%= I18n.t('search_page.any_book') %></option>
+        <option value='z1' <% if @search_books == 'z1' %>selected<% end %>><%= I18n.t('search_page.old_testament') %></option>
+        <option value='z2' <% if @search_books == 'z2' %>selected<% end %>><%= I18n.t('search_page.new_testament') %></option>
+        <option value='e4' <% if @search_books == 'e4' %>selected<% end %>><%= I18n.t('search_page.gospel') %></option>
+        <% BOOKS.each do |book, params| %>
+          <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= I18n.t("books.mid.#{book}") %></option>
+        <% end %>
+      </select>
+    </span>
+
+    <!-- Точность -->
+    <span class='search-param'
+      data-controller='choices-select'
+      data-choices-select-search-enabled-value="false"
+      data-choices-select-position-value="down">
+
+      <select id="search-accuracy" name="acc" class='search-select' data-action='change->form-help#safeSubmitForm'>
+        <option value='similar' <% if @search_accuracy == 'similar' %>selected<% end %>><%= I18n.t('search_page.similar_phrase') %></option>
+        <option value='exact' <% if @search_accuracy == 'exact' %>selected<% end %>><%= I18n.t('search_page.exact_phrase') %></option>
+      </select>
+    </span>
+
+    <!-- Язык -->
+    <span class='search-param'
+      data-controller='choices-select'
+      data-choices-select-placeholder-value="<%= bib_lang_string_full('ru', short: 'RST') %>"
+      data-choices-select-search-enabled-value="true"
+      data-choices-select-position-value="down">
+
+      <select id="search-lang" name="l" class='search-select' data-action='change->form-help#safeSubmitForm'>
+        <option value='ru' <% if @search_lang == 'ru' %>selected<% end %>><%= bib_lang_string_full('ru', short: 'RST') %></option>
+        <!-- остальные опции -->
+      </select>
+    </span>
 
     <button type='submit' style='display: none;'>Submit</button>
   </div>
@@ -62,7 +79,7 @@
 <hr>
 
 <article>
-  <%= javascript_include_tag "first_needs", media: "all" %>
+  <%#= javascript_include_tag "first_needs", media: "all" %>
 <% if @matches_count > 0 %>
 
   <% @verses.each do |v| %>
@@ -79,4 +96,4 @@
 <% end %>
 </article>
 
-<%= javascript_include_tag "search", media: "all" %>
+<%#= javascript_include_tag "search", media: "all" %>

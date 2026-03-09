@@ -196,7 +196,7 @@ let isPageOwner = computed(() => {
   if (!props.currentUser?.pages_owner?.length) return false;
 
   // Если передан props.id и он есть в массиве — true
-  if (props.id && props.currentUser.pages_owner.includes(props.id)) return true;
+  if (props.id && props.currentUser.pages_owner.includes(Number(props.id))) return true;
 
   // Если передан page.value.parent_id и он есть в массиве — true
   if (page.value?.parent_id && props.currentUser.pages_owner.includes(page.value.parent_id)) return true;

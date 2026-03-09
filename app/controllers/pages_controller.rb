@@ -295,15 +295,17 @@ class PagesController < ApplicationController
 
     if params[:t].present?
       @search_text = params[:t]
+      @page_number = params[:page]&.to_i || 1
+      @per_page = 10
+      offset = (@page_number - 1) * @per_page
 
       # Запрашиваем результаты из БД
-      @matches = ::PageSearch.new(
+      search_service = ::PageSearch.new(
         start_page: @page,
         text: @search_text,
-      ).fetch_objects(2_000)
-      # пока нет нормальной пагинации, берём для показа только первые 500 совпадений
-      @matches = @matches.first(500)
-      @matches_count = @matches.count
+      )
+      @matches = search_service.fetch_objects(limit: @per_page, offset: offset)
+      @matches_count = search_service.count if @page_number == 1
     else
       @search_text = params[:t]
       @matches_count = 0
@@ -316,6 +318,24 @@ class PagesController < ApplicationController
 
     @meta_book_tags = [params[:t]] if params[:t].present?
     @canonical_url = build_canonical_url("/w/#{::CGI.escape(@page.path)}/search?t=#{@search_text}")
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream {
+        if @matches.present?
+          render turbo_stream: turbo_stream.append(
+            'search-results',
+            partial: 'pages/match',
+            collection: @matches,
+            as: :m
+          )
+        else
+          render turbo_stream: turbo_stream.replace(
+            'infinite-scroll-trigger', partial: 'pages/end_of_results'
+          )
+        end
+      }
+    end
   end
 
   def page_as_pdf

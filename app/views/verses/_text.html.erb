@@ -4,20 +4,41 @@
   <% next_chapter = @chapter + 1 %>
 
   <div id='chapter-title' class='hidden' data-title='<%= @page_title %>'></div>
-  <div id='chapter-text'>
+
+  <div id='chapter-text'
+       data-controller="verse-highlighter"
+       data-verse-highlighter-select-bar-outlet="#select-bar-container">
+
     <article itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
       <table>
         <tbody>
           <% @verses.each.with_index do |v, i| %>
             <% if v.line == 0 %>
-              <tr><td colspan='2' class='csl zero-verse'><%= sanitize(v.text) %></tr>
+              <tr><td colspan='2' class='zero-verse <%= font_classes %> <%= text_cont_classes %>'><%= sanitize(v.text) %></tr>
             <% else %>
               <tr>
-                <td class='verse-line' id='L<%= v.line %>' data-line="<%= "#{v.line}" %>"><%= v.line %></td>
-                <td class='csl verse-text t-c-dir' id='T<%= v.line %>' data-line="<%= "#{v.line}" %>">
+                <td class='verse-line'
+                    id='L<%= v.line %>'
+                    data-line="<%= v.line %>"
+                    data-chapter="<%= v.chapter %>"
+                    data-action="click->verse-highlighter#lineNumberClicked"
+                    data-verse-highlighter-target="verseLine">
+                  <%= v.line %>
+                </td>
+
+                <td class='verse-text <%= font_classes %> <%= text_cont_classes %>'
+                    id='T<%= v.line %>'
+                    data-line="<%= v.line %>"
+                    data-action="click->verse-highlighter#lineTextClicked"
+                    data-verse-highlighter-target="verseText">
+
                   <%= sanitize(v.text, tags: %w(j e i br)) %>
+
                   <% if @comments[v.line] %>
-                    <a class='bib-comment' href='<%= my_page_link_to("/#{@comments[v.line].path}") %>'><%= t('bible_page.comment') %></a>
+                    <a class='bib-comment'
+                       href='<%= my_page_link_to("/#{@comments[v.line].path}") %>'>
+                      <%= t('bible_page.comment') %>
+                    </a>
                   <% end %>
                 </td>
               </tr>
@@ -35,12 +56,15 @@
                       <% end %>
                     </div>
                     <div style="font-size: 0.5em; margin-bottom: 10px;">
-                      Толкование: <a href="https://bible.optina.ru/new:<%= v.book %>:<%= "%02d" % v.chapter %>:<%= "%02d" % v.line %>" rel='noindex nofollow'>bible.optina.ru</a>, <a href="https://azbyka.ru/biblia/in/?<%= ::AddressConverter.book_bibleox_to_azbyka(v.book) %>.<%= v.chapter %>:<%= v.line %>&r" rel='noindex nofollow'>abyka.ru</a>
+                      Толкование:
+                      <a href="https://bible.optina.ru/new:<%= v.book %>:<%= "%02d" % v.chapter %>:<%= "%02d" % v.line %>"
+                         rel='noindex nofollow'>bible.optina.ru</a>,
+                      <a href="https://azbyka.ru/biblia/in/?<%= ::AddressConverter.book_bibleox_to_azbyka(v.book) %>.<%= v.chapter %>:<%= v.line %>&r"
+                         rel='noindex nofollow'>abyka.ru</a>
                     </div>
                   </td>
                 </tr>
               <% end %>
-
             <% end %>
           <% end %>
         </tbody>
@@ -53,14 +77,28 @@
       <% else %>
         <span class='invisible'>← <%= I18n.t('backward') %></span>
       <% end %>
-      <span id="end-tip"><%= I18n.t('end_chapter.the_end_of') %><br><%= now_chapter %><%= @is_psalm ? ::I18n.t('end_chapter.suffix_psalm') : ::I18n.t('end_chapter.suffix') %><br><%= @is_psalm ? ::I18n.t('end_chapter.psalm') : ::I18n.t('end_chapter.chapter') %></span>
+
+      <span id="end-tip">
+        <%= I18n.t('end_chapter.the_end_of') %><br>
+        <%= now_chapter %><%= @is_psalm ? ::I18n.t('end_chapter.suffix_psalm') : ::I18n.t('end_chapter.suffix') %><br>
+        <%= @is_psalm ? ::I18n.t('end_chapter.psalm') : ::I18n.t('end_chapter.chapter') %>
+      </span>
+
       <% if next_chapter <= ::BOOKS[@book_code][:chapters] %>
-        <a href="<%= my_bib_link_to("/#{@book_code}/#{next_chapter}") %>"><%= I18n.t('forward') %> →</a>
+        <a id='next-page-link' href="<%= my_bib_link_to("/#{@book_code}/#{next_chapter}") %>">
+          <%= I18n.t('forward') %> →
+        </a>
       <% else %>
         <span class='invisible'><%= I18n.t('forward') %> →</span>
       <% end %>
     </div>
   </div>
 
-  <div class='tip-hkeys t-ui-dir'><%= I18n.t('tips.click_on_verse') %> <%= I18n.t('tips.click_on_verse__working') %> <div class='key'>Shift</div> <%= I18n.t('tips.click_on_verse__and') %> <div class='key'>Ctrl</div></dd>
+  <div class='tip-hkeys <%= text_ui_classes %>'>
+    <%= I18n.t('tips.click_on_verse') %>
+    <%= I18n.t('tips.click_on_verse__working') %>
+    <div class='key'>Shift</div>
+    <%= I18n.t('tips.click_on_verse__and') %>
+    <div class='key'>Ctrl</div>
+  </div>
 <% end %>
