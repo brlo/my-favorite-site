@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import notifications from "../services/notifications_service.js"
 import { strip, stripDots, copyText, copyTextLink } from "../lib/tools/"
-import { t } from "../lib/localization/"
+import { t, t_cont } from "../lib/localization/"
 
 export default class extends Controller {
   static targets = [
@@ -155,17 +155,17 @@ export default class extends Controller {
     let text = this.getSelectedText()
     let address = this.getSelectedAddress()
 
-    let textBefore = t('quoteStart') + text + t('quoteEnd') + t('bracketStart')
-    let textAfter = t('bracketEnd')
+    let textBefore = t_cont('quoteStart') + text + t_cont('quoteEnd') + t_cont('bracketStart')
+    let textAfter = t_cont('bracketEnd')
     let linkText = address
     const href = window.location.href
     copyTextLink(textBefore, linkText, textAfter, href)
 
     notifications.add(
       '<t>' + t('copyTitle') + ':</t>' +
-      t('quoteStart') + text.slice(0,30) + '...' + t('quoteEnd') +
+      t_cont('quoteStart') + text.slice(0,30) + '...' + t_cont('quoteEnd') +
       '<br>' +
-      t('bracketStart') + address + t('bracketEnd')
+      t_cont('bracketStart') + address + t_cont('bracketEnd')
     )
     return
   }

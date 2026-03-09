@@ -223,35 +223,34 @@ export const getUILocale = () => {
 
 export const getContentLocale = () => { return document.documentElement.lang }
 
-// export const locale = () => { return getUILocale() || getContentLocale() }
-
-
-// Вычисляем локаль ОДИН РАЗ при загрузке модуля
-const currentLocale = (() => {
-  // Используем IIFE для немедленного вычисления
-  const uiLocale = getUILocale();
-  const contentLocale = getContentLocale();
-  return uiLocale || contentLocale || 'en';
-})();
 
 // Функция для получения текущей локали (просто возвращает вычисленное значение)
-export const getCurrentLocale = () => currentLocale;
-
-// Функция для обновления локали (если нужно пересчитать)
-export const refreshLocale = () => {
-  // Можно вызвать при изменении URL без перезагрузки страницы
+export const getCurrentLocale = () => {
   const uiLocale = getUILocale();
   const contentLocale = getContentLocale();
   return uiLocale || contentLocale || 'en';
 };
 
-// Основная функция для получения локализованных строк
 export const t = (key) => {
-  const localization = localizations[currentLocale];
-  return localization[key] || key;
+  const locale = getCurrentLocale(); // всегда актуальное значение
+  const localization = localizations[locale];
+  return localization?.[key] || key;
 };
 
-// Если нужно получить все строки для текущей локали
+export const t_cont = (key) => {
+  const contentLocale = getContentLocale() || 'en';
+  console.log(contentLocale)
+  const localization = localizations[contentLocale];
+  return localization?.[key] || key;
+};
+
+export const t_ui = (key) => {
+  const uiLocale = getUILocale() || 'en';
+  const localization = localizations[uiLocale];
+  return localization?.[key] || key;
+};
+
+
 export const getCurrentLocalization = () => {
-  return localizations[currentLocale];
+  return localizations[getCurrentLocale()];
 };
