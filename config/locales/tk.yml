@@ -190,6 +190,7 @@ tk:
     click_on_verse: Aýat bellemek üçin onuň nomerine basyp bilersiňiz.
     click_on_verse__working: Işleýär
     click_on_verse__and: we
+    click_on_verse__ending: ''
     search_was_return_zero_results: Hiç zat tapylmady. Tekliň, belki tekst dili dogry saýlanmady?
     page_search_was_return_zero_results: Hiç zat tapylmady.
     bibleox_translated: bibleox jemgyýeti tarapyndan taýýarlanan tekst

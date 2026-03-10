@@ -136,6 +136,7 @@ he:
     click_on_verse: סמן פסוק על ידי לחיצה על מספרו.
     click_on_verse__working: עובד
     click_on_verse__and: ו
+    click_on_verse__ending: ''
     search_was_return_zero_results: שום דבר לא נמצא. בדוק אם נבחרה שפת טקסט שגויה?
     page_search_was_return_zero_results: שום דבר לא נמצא.
     bibleox_translated: טקסט שהוכן על ידי קהילת bibleox

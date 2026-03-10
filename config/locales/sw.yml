@@ -190,6 +190,7 @@ sw:
     click_on_verse: Unaweza kuchagua mstari kwa kubonyeza nambari yake.
     click_on_verse__working: Inafanya kazi
     click_on_verse__and: na
+    click_on_verse__ending: ''
     search_was_return_zero_results: Hakuna kilichopatikana. Angalia ikiwa lugha ya maandishi haikuchaguliwa sawa?
     page_search_was_return_zero_results: Hakuna kilichopatikana.
     bibleox_translated: Maandishi yaliyotayarishwa na jamii ya bibleox

@@ -136,6 +136,7 @@ ar:
     click_on_verse: قم بتمييز الآية بالضغط على رقمها.
     click_on_verse__working: يعمل
     click_on_verse__and: و
+    click_on_verse__ending: ''
     search_was_return_zero_results: لم يتم العثور على شيء. تحقق مما إذا تم تحديد لغة النص الخاطئة؟
     page_search_was_return_zero_results: لم يتم العثور على شيء.
     bibleox_translated: النص مُعد من قبل مجتمع bibleox

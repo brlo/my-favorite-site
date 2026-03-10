@@ -190,6 +190,7 @@ es:
     click_on_verse: Puede seleccionar un versículo haciendo clic en su número.
     click_on_verse__working: Funciona
     click_on_verse__and: y
+    click_on_verse__ending: ''
     search_was_return_zero_results: No se encontraron resultados. ¿Verificó si seleccionó el idioma correcto del texto?
     page_search_was_return_zero_results: No se encontraron resultados.
     bibleox_translated: Texto preparado por la comunidad bibleox

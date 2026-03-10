@@ -190,6 +190,7 @@ fr:
     click_on_verse: 'Vous pouvez sélectionner un verset en cliquant sur son numéro.'
     click_on_verse__working: 'Fonctionne'
     click_on_verse__and: 'et'
+    click_on_verse__ending: ''
     search_was_return_zero_results: 'Aucun résultat trouvé. Vérifiez si la langue du texte est correcte.'
     page_search_was_return_zero_results: 'Aucun résultat trouvé.'
     bibleox_translated: Texte préparé par la communauté bibleox

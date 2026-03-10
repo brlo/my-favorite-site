@@ -190,6 +190,7 @@ uz:
     click_on_verse: Oyat raqamini bosib, uni ajratib olish mumkin.
     click_on_verse__working: Ishlamoqda
     click_on_verse__and: va
+    click_on_verse__ending: ''
     search_was_return_zero_results: Hech narsa topilmadi. Matn tilini to‘g‘ri tanlaganingizni tekshiring.
     page_search_was_return_zero_results: Hech narsa topilmadi.
     bibleox_translated: bibleox hamjamiyati tomonidan tayyorlangan matn

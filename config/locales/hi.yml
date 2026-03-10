@@ -190,6 +190,7 @@ hi:
     click_on_verse: आप पद संख्या पर क्लिक करके पद को चुन सकते हैं।
     click_on_verse__working: काम करता है
     click_on_verse__and: और
+    click_on_verse__ending: ''
     search_was_return_zero_results: कुछ नहीं मिला। जाँचें, क्या आपने गलत भाषा चुनी है?
     page_search_was_return_zero_results: कुछ नहीं मिला।
     bibleox_translated: bibleox समुदाय द्वारा तैयार पाठ

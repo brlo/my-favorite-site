@@ -190,6 +190,7 @@ vi:
     click_on_verse: 'Có thể chọn câu bằng cách nhấn vào số của nó.'
     click_on_verse__working: 'Hoạt động'
     click_on_verse__and: 'và'
+    click_on_verse__ending: ''
     search_was_return_zero_results: 'Không tìm thấy kết quả nào. Kiểm tra xem có phải đã chọn sai ngôn ngữ văn bản không?'
     page_search_was_return_zero_results: 'Không tìm thấy kết quả nào.'
     bibleox_translated: Văn bản được chuẩn bị bởi cộng đồng bibleox

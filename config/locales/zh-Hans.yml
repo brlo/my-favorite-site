@@ -134,9 +134,10 @@ zh-Hans:
     gr-ru: '俄语'
 
   tips:
-    click_on_verse: 通过单击编号突出显示一节经文。
-    click_on_verse__working: 作品
-    click_on_verse__and: 和
+    click_on_verse: 点击经节编号可选择该节。
+    click_on_verse__working: 配合
+    click_on_verse__and: 或
+    click_on_verse__ending: 键可多选。
     search_was_return_zero_results: 什么都没找到。 检查是否选择了错误的文本语言？
     page_search_was_return_zero_results: 什么都没找到。
     bibleox_translated: 本文由bibleox社区准备

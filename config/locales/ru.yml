@@ -190,6 +190,7 @@ ru:
     click_on_verse: Можно выделить стих, нажав на его номер.
     click_on_verse__working: Работает
     click_on_verse__and: и
+    click_on_verse__ending: ''
     search_was_return_zero_results: Ничего не найдено. Проверьте, может быть выбран не тот язык текста?
     page_search_was_return_zero_results: Ничего не найдено.
     bibleox_translated: Текст подготовлен bibleox-сообществом

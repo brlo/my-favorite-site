@@ -190,6 +190,7 @@ fa:
     click_on_verse: 'می‌توانید با کلیک بر شماره آیه، آن را انتخاب کنید.'
     click_on_verse__working: 'کار می‌کند'
     click_on_verse__and: 'و'
+    click_on_verse__ending: ''
     search_was_return_zero_results: 'هیچ نتیجه‌ای یافت نشد. بررسی کنید که آیا زبان متن صحیح انتخاب شده است؟'
     page_search_was_return_zero_results: 'هیچ نتیجه‌ای یافت نشد.'
     bibleox_translated: متن تهیه‌شده توسط جامعه bibleox

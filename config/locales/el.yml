@@ -136,6 +136,7 @@ el:
     click_on_verse: Επισημάνετε έναν στίχο κάνοντας κλικ στον αριθμό του.
     click_on_verse__working: Εργα
     click_on_verse__and: και
+    click_on_verse__ending: ''
     search_was_return_zero_results: Δεν βρέθηκε τίποτα. Ελέγξτε αν έχει επιλεγεί λάθος γλώσσα κειμένου;
     page_search_was_return_zero_results: Δεν βρέθηκε τίποτα.
     bibleox_translated: Κείμενο προετοιμασμένο από την κοινότητα bibleox

@@ -133,9 +133,10 @@ ja:
     gr-ru: 'ロシア語'
 
   tips:
-    click_on_verse: 詩の番号をクリックしてその詩を強調表示します。
-    click_on_verse__working: 作品
-    click_on_verse__and: そして
+    click_on_verse: 詩番号をクリックして選択します。
+    click_on_verse__working: ''
+    click_on_verse__and: キーと
+    click_on_verse__ending: キーで複数選択できます。
     search_was_return_zero_results: 何も見つかりません。 間違ったテキスト言語が選択されていないか確認してください?
     page_search_was_return_zero_results: 何も見つかりません。
     bibleox_translated: bibleoxコミュニティによって準備されたテキスト

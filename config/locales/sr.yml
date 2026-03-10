@@ -190,6 +190,7 @@ sr:
     click_on_verse: Можете истакнути стих кликом на његов број.
     click_on_verse__working: Ради
     click_on_verse__and: и
+    click_on_verse__ending: ''
     search_was_return_zero_results: Ништа није пронађено. Проверите да ли је изабран одговарајући језик текста?
     page_search_was_return_zero_results: Ништа није пронађено.
     bibleox_translated: Текст припремила bibleox заједница

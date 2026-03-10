@@ -134,9 +134,10 @@ zh-Hant:
     gr-ru: '俄語'
 
   tips:
-    click_on_verse: 通過點擊編號突出一節經文。
-    click_on_verse__working: 作品
-    click_on_verse__and: 和
+    click_on_verse: 點擊經節編號可選取該節。
+    click_on_verse__working: 搭配
+    click_on_verse__and: 或
+    click_on_verse__ending: 鍵可多選。
     search_was_return_zero_results: 什麼都沒找到。 檢查是否選擇了錯誤的文本語言？
     page_search_was_return_zero_results: 什麼都沒找到。
     bibleox_translated: 本文由bibleox社區準備

@@ -190,6 +190,7 @@ tr:
     click_on_verse: Ayet numarasına tıklayarak ayeti seçebilirsiniz.
     click_on_verse__working: Çalışıyor
     click_on_verse__and: ve
+    click_on_verse__ending: ''
     search_was_return_zero_results: Hiçbir şey bulunamadı. Metin dilinin doğru seçilip seçilmediğini kontrol edin.
     page_search_was_return_zero_results: Hiçbir şey bulunamadı.
     bibleox_translated: bibleox topluluğu tarafından hazırlanan metin
