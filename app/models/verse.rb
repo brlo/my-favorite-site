@@ -13,7 +13,10 @@ class Verse < ApplicationRecord
   def normalize_attributes
     # в поле text_search не должно быть html-тэгов, так как оно нужно для подсветки
     # совпадений после поиска через поле с токенами text_tsvector и показа в поисковой выдаче)
-    self.text_search = sanitizer.sanitize(self.text, tags: [])
+    #
+    # u00AD — это SOFT HYPHEN, с которым я намучался целый день, прежде чем понял из-за чего разбиваются целые слова
+    # при нормализации в лексемы, и потом в итоге не ищутся нормально. Надо эти переносы удалять обязательно. Они часто встречаются и их не видно визуально.
+    self.text_search = sanitizer.sanitize(self.text, tags: []).gsub("\u00AD", '')
   end
 
   def set_address_if_nil
