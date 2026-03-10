@@ -27,7 +27,7 @@ case "$RUN_MOD" in
     bundle exec rake assets:clean
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     # JS
-    find public/assets/ -type f \
+    find public/assets/**/* -type f \
         -name "*.js" ! -name "*.min.*" \
         -exec echo {} \; \
         -exec ./bin/bib_minify_js.rb -i {} -o {}.min \; \
@@ -35,16 +35,17 @@ case "$RUN_MOD" in
         -exec mv {}.min {} \;
     # CSS
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
-    find public/assets/ -type f \
+    find public/assets/**/* -type f \
         -name "*.css" ! -name "*.min.*" \
         -exec echo {} \; \
         -exec ./bin/bib_minify_css.sh -i {} -o {}.min \; \
         -exec rm {} \; \
         -exec mv {}.min {} \;
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
-    rm -rf public/assets/*.gz
+    rm -rf public/assets/**/*.gz
+
     # bundle exec rake db:migrate
-    exec bundle exec puma -C config/puma.rb -e production
+    exec bundle exec rails s -p 3000 -b '0.0.0.0' -e production
     ;;
 "dev")
     bundle install

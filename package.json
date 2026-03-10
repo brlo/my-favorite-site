@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "puppeteer-core": "^24.16.0"
+    "puppeteer-core": "^24.16.0",
+    "sass": "^1.97.3"
   }
 }

@@ -351,7 +351,7 @@ input.pretty:focus {
   background-color: #fff;
   border-color: #86b7fe;
   outline: 0;
-  box-shadow: 0 0 0 0.25rem rgb(13 110 253 / 25%);
+  box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, .25);
 }
 
 input.btn {
@@ -451,7 +451,7 @@ body.night-mode {
   background-color: #4d41375e;
   border-color: #5d47345e;
   color: #ccc;
-  box-shadow: 0 0 0 0.15rem rgb(89 182 130 / 35%);
+  box-shadow: 0 0 0 0.15rem rgba(89, 182, 130, .35);
 }
 
 .night-mode #search-input {
