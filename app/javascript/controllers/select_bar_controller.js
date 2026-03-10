@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
-import notifications from "../services/notifications_service.js"
-import { strip, stripDots, copyText, copyTextLink } from "../lib/tools/"
-import { t, t_cont } from "../lib/localization/"
+import notifications from "services/notifications_service"
+import { strip, stripDots, copyText, copyTextLink } from "lib/tools"
+import { t, t_cont } from "lib/localization"
 
 export default class extends Controller {
   static targets = [

@@ -127,8 +127,7 @@ module ApplicationHelper
   # ссылка на ресурс
   if Rails.env.production?
     def my_res_link_to(path)
-      # assets_path = ActionController::Base.helpers.asset_path(path)
-      "https://res.bibleox.com#{assets_path}"
+      ActionController::Base.helpers.asset_path(path)
     end
   else
     def my_res_link_to(path)

@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import Cookies from "../lib/cookies"
+import Cookies from "lib/cookies"
 
 export default class extends Controller {
   static values = {

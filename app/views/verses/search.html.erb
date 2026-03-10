@@ -65,8 +65,17 @@
       data-choices-select-position-value="down">
 
       <select id="search-lang" name="l" class='search-select' data-action='change->form-help#safeSubmitForm'>
-        <option value='ru' <% if @search_lang == 'ru' %>selected<% end %>><%= bib_lang_string_full('ru', short: 'RST') %></option>
-        <!-- остальные опции -->
+        <option value='ru' <% if @search_lang == 'ru' %>selected<% end %>>            <%= bib_lang_string_full('ru', short: 'RST') %></option>
+        <option value='csl-pnm' <% if @search_lang == 'csl-pnm' %>selected<% end %>>  <%= bib_lang_string_full('csl-pnm', short: 'ELZ') %></option>
+        <option value='csl-ru' <% if @search_lang == 'csl-ru' %>selected<% end %>>    <%= bib_lang_string_full('csl-ru', short: 'ELZ-RU') %></option>
+        <option value='eng-nkjv' <% if @search_lang == 'eng-nkjv' %>selected<% end %>><%= bib_lang_string_full('eng-nkjv', short: 'NKJV') %></option>
+        <option value='en-nrsv' <% if @search_lang == 'en-nrsv' %>selected<% end %>>  <%= bib_lang_string_full('en-nrsv', short: 'NRSV') %></option>
+        <option value='arab-avd' <% if @search_lang == 'arab-avd' %>selected<% end %>><%= bib_lang_string_full('arab-avd', short: 'AVD') %></option>
+        <option value='jp-ni' <% if @search_lang == 'jp-ni' %>selected<% end %>>      <%= bib_lang_string_full('jp-ni', short: 'N.Interc') %></option>
+        <option value='cn-ccbs' <% if @search_lang == 'cn-ccbs' %>selected<% end %>>  <%= bib_lang_string_full('cn-ccbs', short: 'CCBS') %></option>
+        <option value='ge-sch' <% if @search_lang == 'ge-sch' %>selected<% end %>>    <%= bib_lang_string_full('ge-sch', short: 'SCH') %></option>
+        <option value='gr-lxx-byz' <% if @search_lang == 'gr-lxx-byz' %>selected<% end %>><%= bib_lang_string_full('gr-lxx-byz', short: 'LXX+Byz', is_translate: true) %></option>
+        <option value='heb-osm' <% if @search_lang == 'heb-osm' %>selected<% end %>>  <%= bib_lang_string_full('heb-osm', short: 'OSM+DHNT', is_translate: true) %></option>
       </select>
     </span>
 
@@ -79,7 +88,6 @@
 <hr>
 
 <article>
-  <%#= javascript_include_tag "first_needs", media: "all" %>
 <% if @matches_count > 0 %>
 
   <% @verses.each do |v| %>
@@ -95,5 +103,3 @@
   <div class='tip'><%= I18n.t('tips.search_was_return_zero_results') %></div>
 <% end %>
 </article>
-
-<%#= javascript_include_tag "search", media: "all" %>

@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import { en2ruTranslit } from '../lib/tools'
+import { en2ruTranslit } from 'lib/tools'
 
 export default class extends Controller {
   static targets = ["tree", "link"]
