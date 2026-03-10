@@ -1,5 +1,7 @@
 <div class="match" data-controller="text-fragment">
   <h4>
+    <% match_thumb_url = m.cover.present? ? m.cover.micro.url : m.parent_for_preview&.cover&.micro&.url %>
+    <% if match_thumb_url %><img src="<%= match_thumb_url %>" loading="lazy" class="thumb"/><% end %>
     <a href="<%= my_page_link_to("/#{m.path}") %>"
        data-text-fragment-target="link"
        data-text-fragment-base-url-value="<%= my_page_link_to("/#{m.path}") %>">

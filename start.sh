@@ -45,7 +45,7 @@ case "$RUN_MOD" in
     rm -rf public/assets/**/*.gz
 
     # bundle exec rake db:migrate
-    exec bundle exec rails s -p 3000 -b '0.0.0.0' -e production
+    exec bundle exec puma -C config/puma.rb -e production
     ;;
 "dev")
     bundle install
