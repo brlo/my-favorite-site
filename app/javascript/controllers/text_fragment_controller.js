@@ -5,7 +5,7 @@ export default class extends Controller {
   static targets = ["link", "snippet"]
   static values = {
     baseUrl: String,
-    wordsCount: { type: Number, default: 40 } // длина фрагмента
+    wordsCount: { type: Number, default: 4 } // длина фрагмента
   }
 
   connect() {
@@ -35,20 +35,30 @@ export default class extends Controller {
   }
 
   createSimpleFragment(text) {
-    // Разбиваем на слова, фильтруем пустые
-    const words = text.split(' ').filter(w => w.length > 0)
+    const tokens = text.match(/\S+/g) || []
 
-    // Берём первые N слов — этого обычно достаточно для уникальности
-    const fragmentWords = words.slice(0, this.wordsCountValue)
-
-    if (fragmentWords.length < 3) {
-      // Слишком короткий текст — используем как есть
-      return encodeURIComponent(text)
+    if (tokens.length <= this.wordsCountValue * 2) {
+      return this._encodeFragmentPart(tokens.join(' '))
     }
 
-    const fragment = fragmentWords.join(' ')
+    const firstTokens = tokens.slice(0, this.wordsCountValue)
+    const lastTokens = tokens.slice(-this.wordsCountValue)
 
-    // экранируем запятые, чтобы они не ломали синтаксис
-    return encodeURIComponent(fragment)
+    let firstPart = firstTokens.join(' ').trim().replace(/[.,;:!?…]+$/, '')
+    let lastPart = lastTokens.join(' ').trim().replace(/^[.,;:!?…]+/, '')
+
+    if (!firstPart || !lastPart) {
+      return this._encodeFragmentPart(tokens.join(' '))
+    }
+
+    // Разделительную запятую нельзя кодировать
+    return `${this._encodeFragmentPart(firstPart)},${this._encodeFragmentPart(lastPart)}`
+  }
+
+  // Кодирование для Text Fragment API
+  _encodeFragmentPart(text) {
+    return encodeURIComponent(text)
+      .replace(/-/g, '%2D')   // Дефис → %2D (конфликтует с синтаксисом контекста)
+      .replace(/_/g, '%5F')   // Подчёркивание → %5F (на всякий случай)
   }
 }
