@@ -15,7 +15,6 @@ export default class extends Controller {
   searchIconClick(event) {
     event.preventDefault()
     const form = event.currentTarget.closest('form')
-    console.log('searchIconClick')
     if (form) this.goToSearch(form)
   }
 

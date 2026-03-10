@@ -239,7 +239,6 @@ export const t = (key) => {
 
 export const t_cont = (key) => {
   const contentLocale = getContentLocale() || 'en';
-  console.log(contentLocale)
   const localization = localizations[contentLocale];
   return localization?.[key] || key;
 };
