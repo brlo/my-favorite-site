@@ -205,7 +205,7 @@ class Page < ApplicationRecord
     self.edit_mode = self.edit_mode.to_i
 
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
-    self.group_lang_id = self.group_lang_id || BSON::ObjectId.new
+    self.group_lang_id = self.group_lang_id || generate_string(10)
 
     if self.references_changed?
       self.references = self.class.safe_html(self.references).strip
