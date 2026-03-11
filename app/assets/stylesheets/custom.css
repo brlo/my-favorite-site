@@ -7,6 +7,8 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  /* для быстрого считывания тач-событий, без ожидания 300мс (будет ли второй тач для зума) */
+  touch-action: manipulation;
 }
 
 html,
