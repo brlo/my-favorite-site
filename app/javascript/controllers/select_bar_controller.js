@@ -155,7 +155,7 @@ export default class extends Controller {
     let text = this.getSelectedText()
     let address = this.getSelectedAddress()
 
-    let textBefore = t_cont('quoteStart') + text + t_cont('quoteEnd') + t_cont('bracketStart')
+    let textBefore = t_cont('quoteStart') + text + t_cont('quoteEnd') + ' ' + t_cont('bracketStart')
     let textAfter = t_cont('bracketEnd')
     let linkText = address
     const href = window.location.href
