@@ -9,6 +9,8 @@
   box-sizing: border-box;
   /* для быстрого считывания тач-событий, без ожидания 300мс (будет ли второй тач для зума) */
   touch-action: manipulation;
+  /* убрать подсветку элемента во время тача, выглядит как глюк */
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
