@@ -1,11 +1,14 @@
 module ApplicationHelper
-  # размеры текста для пользователя (выбирается в шапке)
-  TEXT_SIZES = {
-    '1' => 'small',
-    '2' => 'medium',
-    '3' => 'large',
-    nil => 'small'
-  }
+
+  # размер шрифта, выбранный пользователем
+  def text_size_class
+    text_size = cookies[:textSize] || '2' # default
+    case text_size
+    when '1' then 'text-small'
+    when '3' then 'text-large'
+    else 'text-medium'
+    end
+  end
 
   # ПОЯСНЕНИЕ:
   #
@@ -98,13 +101,6 @@ module ApplicationHelper
     else
       text
     end
-  end
-
-  # Пользовательский размер текста из кук
-  def text_size_from_cookies
-    # Определяем размер текста по кукам.
-    # Если в куках пусто или непонятно что, то берём значение по-умолчанию
-    @text_size_from_cookies ||= TEXT_SIZES[cookies[:textSize]] || TEXT_SIZES[nil]
   end
 
   # Делает ссылку с указанной локалью (текущей)

@@ -38,7 +38,7 @@
   <% end %>
   <hr>
 
-  <article class='looks-like-page' id='search-results'>
+  <article class='looks-like-page <%= text_size_class %>' id='search-results'>
     <% if @matches.any? %>
       <%= render partial: "pages/match", collection: @matches, as: :m %>
     <% else %>

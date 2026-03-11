@@ -13,23 +13,52 @@ export default class extends Controller {
 
   // Предварительная инициализация размера текста
   preInitText() {
+    const textSizeFromCookies = Cookies.get('textSize')
+
     // Устанавливаем класс и активную кнопку согласно кукам
-    // к элементам страницы это применяется на старте, в initial_settings_controller
-    if (document.cookie.includes('textSize=3')) {
+    if (textSizeFromCookies == '3') {
       this.textLargeBtnTarget.classList.add('active')
-    } else if (document.cookie.includes('textSize=2')) {
+    } else if (textSizeFromCookies == '2') {
       this.textMediumBtnTarget.classList.add('active')
     } else {
       this.textSmallBtnTarget.classList.add('active')
     }
+
+    // применяем к article (предварительно это уже задано на сервере, но может быть кэш, поэтому тут проверяем)
+    const articleEl = document.querySelector('article')
+    if (!articleEl) return
+
+    let correctClass;
+    if (textSizeFromCookies == '1') {
+      correctClass = 'text-small'
+    } else if (textSizeFromCookies == '2') {
+      correctClass = 'text-medium'
+    } else if (textSizeFromCookies == '3') {
+      correctClass = 'text-large'
+    }
+
+    // Удаляем все классы размера текста перед применением нового
+    articleEl.classList.remove('text-small', 'text-medium', 'text-large')
+    articleEl.classList.add(correctClass)
   }
 
   // Предварительная инициализация цветовой схемы
   preInitColors() {
-    if (document.cookie.includes('isNightMode=1')) {
-      document.body.classList.add('night-mode')
+    const isAppliedToBody = document.body.classList.contains('night-mode')
+    const isNightModeInCookies = Cookies.get('isNightMode') == '1'
+    if (isNightModeInCookies) {
+      // применяем к body, если ещё не включено
+      if (!isAppliedToBody) document.body.classList.add('night-mode')
+      // устанавливаем кнопку
       if (this.hasNightModeSwitcherTarget) {
         this.nightModeSwitcherTarget.innerHTML = t('night')
+      }
+    } else {
+      // удаляем у body, если есть
+      if (isAppliedToBody) document.body.classList.remove('night-mode')
+      // устанавливаем кнопку
+      if (this.hasNightModeSwitcherTarget) {
+        this.nightModeSwitcherTarget.innerHTML = t('day')
       }
     }
   }

@@ -1,6 +1,10 @@
 <% if @verses.present? %>
   <div id='chapter-text'>
-    <article id='page-body' itemprop="articleBody" class="verses">
+    <article
+      id='page-body'
+      itemprop="articleBody"
+      class="verses <%= text_size_class %>">
+
       <table>
         <tbody>
           <% i_glob = 0 %>

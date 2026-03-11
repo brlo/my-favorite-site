@@ -9,7 +9,10 @@
        data-controller="verse-highlighter"
        data-verse-highlighter-select-bar-outlet="#select-bar-container">
 
-    <article itemprop="articleBody" class="verses text-<%= text_size_from_cookies %>">
+    <article
+      itemprop="articleBody"
+      class="verses <%= text_size_class %>">
+
       <table>
         <tbody>
           <% @verses.each.with_index do |v, i| %>

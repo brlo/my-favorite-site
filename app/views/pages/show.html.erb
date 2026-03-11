@@ -33,7 +33,12 @@
     <% if @page.is_page_verses? && @verses.present? %>
       <%= render(partial: 'pages/text') %>
     <% else %>
-      <article id='page-body' data-controller='share-links' itemprop="articleBody" class="verses <%= text_cont_classes %>">
+      <article
+        id='page-body'
+        data-controller='share-links'
+        itemprop="articleBody"
+        class="verses <%= text_cont_classes %> <%= text_size_class %>">
+
         <% if @page.body_menu.present? %>
           <%= render(partial: 'pages/body_menu') %>
         <% end %>

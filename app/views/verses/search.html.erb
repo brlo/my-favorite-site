@@ -87,7 +87,7 @@
 <div class='hint'><%= t('search_page.matches') %>: <%= @matches_count %></div>
 <hr>
 
-<article>
+<article class="<%= text_size_class %>">
 <% if @matches_count > 0 %>
 
   <% @verses.each do |v| %>

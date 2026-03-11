@@ -39,7 +39,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body data-controller="initial-settings books-menu metrics" data-action='click->books-menu#clickOutside'>
+  <body
+    class="<%= 'night-mode' if @is_night_mode %>"
+    data-controller="books-menu metrics"
+    data-action='click->books-menu#clickOutside'>
 
     <header>
       <div class='container'>
