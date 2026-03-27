@@ -134,8 +134,8 @@ class PageSearch
 
     results.each do |page|
       # Используем instance_variable вместо singleton_method для чистоты
-      page.instance_variable_set(:@search_snippet, snippets_map[page.id])
-      page.define_singleton_method(:highlighted_snippet) { @search_snippet }
+      page.instance_variable_set(:@search_snippets, snippet_split_and_sort(snippets_map[page.id]) )
+      page.define_singleton_method(:highlighted_snippets) { @search_snippets }
     end
 
     results
@@ -148,8 +148,40 @@ class PageSearch
         '#{pg_dict}',
         body_search,
         #{ts_query_sql},
-        'StartSel=<strong>, StopSel=</strong>, MaxFragments=1, FragmentDelimiter=-%-, MinWords=10, MaxWords=30'
+        'StartSel=<strong>, StopSel=</strong>, MaxFragments=10, FragmentDelimiter=-%-, MinWords=10, MaxWords=30'
       ) AS snippet
     SQL
+  end
+
+  # принимает строку от БД, с разделителями "-%-" и поддсветкой тэгами <strong> (см. метод snippet_sql)
+  # отдаёт массив (делит строку по "-%-"), осортированный по наиболее хорошим совпадениям (считает strong)
+  def snippet_split_and_sort highlighted_snippet
+    return unless highlighted_snippet.present?
+
+    snippets = highlighted_snippet.to_s.split('-%-')
+
+    # считаем только разные слова (uniq)
+    snippets_with_rank = snippets.map { |s| [s, s.scan(/<strong>(.*?)<\/strong>/).flatten.uniq.count] }
+
+    if snippets.count > 1
+      # сколько слов в поисковой фразе
+      search_words_count = @text.split(' ').count
+      min_words_in_snippet = case search_words_count
+      when ..2
+        search_words_count
+      when 3..4
+        search_words_count - 1
+      when 5..7
+        search_words_count - 2
+      else
+        search_words_count - 3
+      end
+
+      filtered = snippets_with_rank.select { |_, rank| rank >= min_words_in_snippet }
+      snippets_with_rank = filtered if filtered.any?
+    end
+
+    snippets_with_rank.sort_by { |_, rank| rank }
+    snippets_with_rank.map(&:first)
   end
 end

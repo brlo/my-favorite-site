@@ -63,6 +63,7 @@ class VerseSearch
     relation = relation.where(tr_code: @tr_code) if @tr_code.present?
     relation = relation.where(book: @search_books) if @search_books.present?
     relation = relation.where(zavet: @zavet) if !@zavet.nil?
+    relation = relation.order(%i[tr_code book_id chapter line])
     relation = relation.limit(count)
 
     verses = search_with_snippet(safe_term, pg_dict: pg_dict, relation: relation)

@@ -16,12 +16,6 @@ export default class extends Controller {
     }
   }
 
-  disconnect() {
-    // if (this.choices) {
-    //   this.choices.destroy()
-    // }
-  }
-
   play() {
     // ничего не делаем, если нет плеера
     if (!this.audioEl) return;

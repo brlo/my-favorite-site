@@ -877,3 +877,17 @@ h4:hover .copy-anchor,
   opacity: .5;
   font-size: .5em;
 }
+
+#search-results .line a {
+  display: block;
+  font-size: 0.8em;
+  text-decoration: none;
+  color: #333;
+  margin: 0 0 25px 0;
+  /* user-select: text; */
+  /* -webkit-user-drag: none; */
+}
+
+#search-results .line a:hover { color: #8c6964; }
+.night-mode #search-results .line a { color: #abb2bf; }
+.night-mode #search-results .line a:hover { color: #7dc3ff; }

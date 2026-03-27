@@ -1,6 +1,6 @@
 class VersesController < ApplicationController
   # https://github.com/rails/actionpack-page_caching
-  caches_page :index, :chapter_ajax
+  # caches_page :index, :chapter_ajax
 
   def index_redirect
     path  = "/#{I18n.locale}/#{current_bib_lang()}"
