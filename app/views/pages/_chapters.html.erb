@@ -85,7 +85,7 @@
       <div class='btn-group'>
         <% @page.links.each do |k,v| %>
           <% if v.present? %>
-            <a class='btn' href='<%= v %>'><%= k %></a>
+            <a class='btn' href='<%= my_page_link_to(v, page_lang: @page.lang) %>'><%= k %></a>
           <% else %>
             <div class='btn pressed'><%= k %></div>
           <% end %>
