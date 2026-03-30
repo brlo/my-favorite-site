@@ -80,7 +80,7 @@ let pageMenu = null
 
 // СТАТЬЯ
 function getPage() {
-  api.get(`/pages/${props.id}`).then(data => {
+  api.get(`/pages/${props.id}/`).then(data => {
     page.value = data.item;
     sendTextToBody.value = data.item.body;
     sendTextToReferences.value = data.item.references;
@@ -95,7 +95,7 @@ if (props.id) {
 const userClean = () => user.value = { privs: {} };
 
 function getUser() {
-  api.get('/users/me').then(data => {
+  api.get('/users/me/').then(data => {
     console.log('GET User', data)
     if (data.success == 'ok') {
       user.value = data;
@@ -251,7 +251,7 @@ function destroy() {
     acceptClass: 'p-button-danger p-button-text',
     icon: 'pi pi-exclamation-triangle',
     accept: () => {
-      api.delete(`/pages/${page.value.id}`).then(data => {
+      api.delete(`/pages/${page.value.id}/`).then(data => {
         if (data.success == 'ok') {
           toastSuccess('Успех', 'Статья удалена');
           errors.value = '';
@@ -275,7 +275,7 @@ function restore() {
     acceptClass: 'p-button-danger p-button-text',
     icon: 'pi pi-exclamation-triangle',
     accept: () => {
-      api.post(`/pages/${page.value.id}/restore`).then(data => {
+      api.post(`/pages/${page.value.id}/restore/`).then(data => {
         if (data.success == 'ok') {
           page.value = data.item;
           toastSuccess('Успех', 'Статья восстановлена!');
@@ -319,7 +319,7 @@ function clickRemoveCover() {
     rejectClass: 'p-button-text p-button-text',
     acceptClass: 'p-button-danger p-button-text',
     accept: () => {
-      api.post(`/pages/${page.value.id}/cover`, {file: null}).then(data => {
+      api.post(`/pages/${page.value.id}/cover/`, {file: null}).then(data => {
         if (data.success == 'ok') {
           page.value.cover = data.cover;
           toastSuccess('Удалено', 'Изображение для шапки удалено!');
@@ -365,7 +365,7 @@ function removePdf() {
     rejectLabel: 'Нет',
     icon: 'pi pi-exclamation-triangle',
     accept: () => {
-      api.delete(`/pages/${page.value.id}/pdf`).then(data => {
+      api.delete(`/pages/${page.value.id}/pdf/`).then(data => {
         if (data.success === 'ok') {
           page.value.is_pdf = false;
           toastSuccess('Успех', 'PDF-файл удален');

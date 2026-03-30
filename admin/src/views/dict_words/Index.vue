@@ -67,7 +67,7 @@ function autoSearch() {
   if (dict.value.length) params.dict = dict.value;
   if (props.limit) params.limit = props.limit;
 
-  api.get('/dict_words/list', params).then(data => {
+  api.get('/dict_words/list/', params).then(data => {
     isLoading.value = false;
     console.log(data)
     if (data.success == 'ok') {

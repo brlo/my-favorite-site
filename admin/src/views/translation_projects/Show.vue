@@ -63,11 +63,11 @@ const loadData = async () => {
   isLoading.value = true
   try {
     // Загружаем сегменты для главы
-    const segmentsData = api.get(`/translation_projects/${props.translationProjectId}/chapters/${props.chapter}/segments`)
+    const segmentsData = api.get(`/translation_projects/${props.translationProjectId}/chapters/${props.chapter}/segments/`)
     segments.value = segmentsData.items
 
     // Загружаем доступные языки оригинала для этого документа
-    const docData = api.get(`/translation_projects/${props.translationProjectId}`)
+    const docData = api.get(`/translation_projects/${props.translationProjectId}/`)
     availableSourceLangs.value = docData.source_langs || []
 
     if (availableSourceLangs.value.length > 0) {
@@ -84,7 +84,7 @@ const loadData = async () => {
 // Голосование за перевод
 const voteUp = async (translationId) => {
   try {
-    await api.post(`/translations/${translationId}/vote_up`)
+    await api.post(`/translations/${translationId}/vote_up/`)
     toastSuccess('Голос учтён')
     loadData() // Перезагружаем данные для обновления счетчиков
   } catch (error) {
@@ -93,7 +93,7 @@ const voteUp = async (translationId) => {
 }
 const voteDown = async (translationId) => {
   try {
-    await api.post(`/translations/${translationId}/vote_down`)
+    await api.post(`/translations/${translationId}/vote_down/`)
     toastSuccess('Голос учтён')
     loadData() // Перезагружаем данные для обновления счетчиков
   } catch (error) {
@@ -110,7 +110,7 @@ const submitTranslation = async (segmentId) => {
   }
 
   try {
-    await api.post('/translations', {
+    await api.post('/translations/', {
       segment_id: segmentId,
       text: translationText.trim(),
       lang: selectedTargetLang.value,

@@ -56,7 +56,7 @@ const availableLangs = [
 // Загрузка проекта
 function getProject() {
   isLoading.value = true;
-  api.get(`/translation-projects/${props.id}`).then(data => {
+  api.get(`/translation-projects/${props.id}/`).then(data => {
     project.value = data.item;
   }).catch(error => {
     toastError('Ошибка', 'Не удалось загрузить проект');
@@ -128,7 +128,7 @@ function attachPageToProject() {
   }
 
   isLoading.value = true;
-  api.post(`/translation-projects/${project.value.id}/add_page`, {
+  api.post(`/translation-projects/${project.value.id}/add_page/`, {
     page_id: selectedPage.value
   }).then(data => {
     if (data.success == 'ok') {
@@ -156,7 +156,7 @@ function destroy() {
     acceptClass: 'p-button-danger p-button-text',
     icon: 'pi pi-exclamation-triangle',
     accept: () => {
-      api.delete(`/translation-projects/${project.value.id}`).then(data => {
+      api.delete(`/translation-projects/${project.value.id}/`).then(data => {
         if (data.success == 'ok') {
           toastSuccess('Успех', 'Проект удален');
           errors.value = '';

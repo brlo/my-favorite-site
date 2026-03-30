@@ -10,7 +10,7 @@ const isLoaded = ref(false)
 const userClean = () => user.value = { privs: {} };
 
 function getUser() {
-  api.get('/users/me').then(data => {
+  api.get('/users/me/').then(data => {
     console.log('GET User', data)
     if (data.success == 'ok') {
       user.value = data;

@@ -39,7 +39,7 @@ const sendTextToEditor = ref('')
 
 // ПОЛУЧАЕМ СЛОВО
 function getDictWord() {
-  api.get(`/dict_words/${props.id}`).then(data => {
+  api.get(`/dict_words/${props.id}/`).then(data => {
     console.log(data);
     dictWord.value = data.item;
     sendTextToEditor.value = data.item.desc;
@@ -53,7 +53,7 @@ if (props.id) {
 // ПОЛУЧАЕМ СПИСОК ОЖИДАЮЩИХ ОПРЕДЕЛЕНИЯ СЛОВ
 function getWordsWaitings() {
   const dict = listDict.value;
-  api.get(`/dict_words/list_waitings`, { dict }).then(data => {
+  api.get(`/dict_words/list_waitings/`, { dict }).then(data => {
     console.log(data);
     wordsWaitings.value = data.items.words;
     lexemasWaitings.value = data.items.lexemas;
@@ -120,7 +120,7 @@ function submit() {
 
 function destroy() {
   if(confirm("Удалить слово? \n" + dictWord.value.word)){
-    api.delete(`/dict_words/${dictWord.value.id}`).then(data => {
+    api.delete(`/dict_words/${dictWord.value.id}/`).then(data => {
       if (data.success == 'ok') {
         toastSuccess('Успех', 'Слово удалено');
         errors.value = '';

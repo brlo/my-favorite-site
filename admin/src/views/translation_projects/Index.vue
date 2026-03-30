@@ -70,7 +70,7 @@ function autoSearch() {
   isLoading.value = true;
   let params = { term: searchTerm.value };
   if (props.limit) params.limit = props.limit;
-  api.get('/translation_projects', params).then(data => {
+  api.get('/translation_projects/', params).then(data => {
     isLoading.value = false;
     console.log(data)
     if (data.success == 'ok') {

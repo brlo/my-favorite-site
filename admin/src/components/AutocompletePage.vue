@@ -25,7 +25,7 @@ function autoSearch(event) {
 
   if (searchTerm.length < 3) return;
 
-  api.get('/pages/list', { term: searchTerm }).then(data => {
+  api.get('/pages/list/', { term: searchTerm }).then(data => {
     isLoading.value = false;
     console.log(data)
     if (data.success == 'ok') {

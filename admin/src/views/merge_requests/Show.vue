@@ -105,7 +105,7 @@ function diffWithContext(textDiffs, fullTextAsArr) {
 }
 
 function getItem() {
-  api.get(`/merge_requests/${props.id}`).then(data => {
+  api.get(`/merge_requests/${props.id}/`).then(data => {
     console.log(data)
     if (data.success == 'ok') {
       mergeRequest.value = data.item;
@@ -122,7 +122,7 @@ getItem()
 function merge() {
   if(confirm("Правки будут применены к статье. Продолжить?")) {
     const params = { mr: { comment: mergeRequest.value.comment } }
-    api.post(`/merge_requests/${props.id}/merge`, params).then(data => {
+    api.post(`/merge_requests/${props.id}/merge/`, params).then(data => {
       console.log(data)
       if (data.success == 'ok') {
         toastSuccess('Принято', 'Правки успешно применены к статье');
@@ -140,7 +140,7 @@ function merge() {
 
 function rebase() {
   if(confirm("Правки будут обновлены. Продолжить?")) {
-    api.post(`/merge_requests/${props.id}/rebase`).then(data => {
+    api.post(`/merge_requests/${props.id}/rebase/`).then(data => {
       console.log(data)
       if (data.success == 'ok') {
         toastInfo('Обновлено', 'Правки успешно обновлены');
@@ -158,7 +158,7 @@ function rebase() {
 function reject() {
   if(confirm("Правки будут отклонены. Продолжить?")) {
     const params = { mr: { comment: mergeRequest.value.comment } }
-    api.post(`/merge_requests/${props.id}/reject`, params).then(data => {
+    api.post(`/merge_requests/${props.id}/reject/`, params).then(data => {
       console.log(data)
       if (data.success == 'ok') {
         toastInfo('Отклонено', 'Правки отклонены');

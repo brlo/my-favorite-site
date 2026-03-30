@@ -25,7 +25,7 @@ function autoSearch(event) {
 
   if (searchTerm.length < 1) return;
 
-  api.get('/dict_words/list', { term: searchTerm }).then(data => {
+  api.get('/dict_words/list/', { term: searchTerm }).then(data => {
     isLoading.value = false;
     console.log(data)
     if (data.success == 'ok') {

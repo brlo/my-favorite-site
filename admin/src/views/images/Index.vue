@@ -44,7 +44,7 @@ function autoSearch() {
   isLoading.value = true;
   let params = { term: searchTerm.value };
   if (props.limit) params.limit = props.limit;
-  api.get('/images/list', params).then(data => {
+  api.get('/images/list/', params).then(data => {
     isLoading.value = false;
     console.log(data)
     if (data.success == 'ok') {
@@ -57,7 +57,7 @@ function autoSearch() {
 
 // Авторизуемся
 function getUser() {
-  api.get('/users/me').then(data => {
+  api.get('/users/me/').then(data => {
     console.log('GET User', data)
     if (data.success == 'ok') {
       user.value = data;
@@ -120,7 +120,7 @@ function onDestroy(imgId) {
     acceptClass: 'p-button-danger p-button-text',
     icon: 'pi pi-exclamation-triangle',
     accept: () => {
-      api.delete(`/images/${imgId}`).then(data => {
+      api.delete(`/images/${imgId}/`).then(data => {
         if (data.success == 'ok') {
           toastSuccess('Успех', 'Картинка удалена');
 
@@ -144,7 +144,7 @@ function onDestroy(imgId) {
 
 // Обновить
 function onUpdate(imgId, newTitle) {
-  api.put(`/images/${imgId}`, { title: newTitle }).then(data => {
+  api.put(`/images/${imgId}/`, { title: newTitle }).then(data => {
     if (data.success == 'ok') {
       const index = images.value.findIndex(img => img.id === imgId);
       if (index > -1) {

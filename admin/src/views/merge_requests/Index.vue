@@ -58,7 +58,7 @@ function getList() {
 
   if (props.limit) params.limit = props.limit;
 
-  api.get('/merge_requests/list', params).then(data => {
+  api.get('/merge_requests/list/', params).then(data => {
     console.log(data)
     if (data.success == 'ok') {
       mergeRequests.value = data.items;

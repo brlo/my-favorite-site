@@ -6,7 +6,7 @@ let stats = ref({})
 let errors = ref()
 
 function getStats() {
-  api.get('/stats/visits').then(data => {
+  api.get('/stats/visits/').then(data => {
     console.log(data)
     if (data.success == 'ok') {
       stats.value = data.week_visits;

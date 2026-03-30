@@ -118,7 +118,7 @@ function submitCurrentMenuItem() {
 // УДАЛИТЬ
 function destroy(obj) {
   if(confirm("Удалить элемент меню? \n" + obj.title)){
-    const path = `/pages/${obj.page_id}/menus/${obj.id}`
+    const path = `/pages/${obj.page_id}/menus/${obj.id}/`
     api.delete(path).then(data => {
       if (data.success == 'ok') {
         removeMenuElement(obj.id)
