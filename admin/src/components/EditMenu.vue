@@ -84,7 +84,7 @@ function submitCurrentMenuItem() {
   if (currentMenuItem.value.id) {
     isUpdate = true
     httpMethod = 'put'
-    path = `/pages/${props.pageId}/menus/${currentMenuItem.value.id}`
+    path = `/pages/${props.pageId}/menus/${currentMenuItem.value.id}/`
   } else {
     isUpdate = false
     httpMethod = 'post'

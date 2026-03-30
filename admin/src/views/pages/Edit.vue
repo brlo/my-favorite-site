@@ -600,7 +600,7 @@ function removeLink(index) {
     </div>
 
     <div class="field">
-      <FileUpload name="file" :url="`${apiUrl}/ru/api/pages/${id}/cover`" @upload="onCoverUpload($event)" :onBeforeSend="onBeforeCoverSend" :multiple="false" accept="image/*" :maxFileSize="9000000">
+      <FileUpload name="file" :url="`${apiUrl}/ru/api/pages/${id}/cover/`" @upload="onCoverUpload($event)" :onBeforeSend="onBeforeCoverSend" :multiple="false" accept="image/*" :maxFileSize="9000000">
         <template #empty>
           <p>Перенесите сюда файл для загрузки.</p>
         </template>
