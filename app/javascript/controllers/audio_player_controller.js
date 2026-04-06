@@ -78,14 +78,14 @@ export default class extends Controller {
   playNext() {
     if (this.isShown == true) {
       const nextPage = document.getElementById('next-page-link');
-      if (nextPage) {
-        Cookies.set('autoplay', '1')
-        nextPage.click();
+      if (nextPage && nextPage.href) {
+        Cookies.set('autoplay', '1');
+        Turbo.visit(nextPage.href);
       } else {
         this.hide();
-      };
-    };
-  };
+      }
+    }
+  }
 
   // Переключить видимость audio-тэга
   toggleVision() {
@@ -96,5 +96,3 @@ export default class extends Controller {
     };
   };
 }
-
-
