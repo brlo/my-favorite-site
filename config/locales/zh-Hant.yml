@@ -72,6 +72,7 @@ zh-Hant:
 
   page_translations:
     ar: '阿拉伯語'
+    hy: '亞美尼亞語'
     zh-Hans: '簡體中文'
     zh-Hant: '繁體中文'
     de: '德語'
@@ -99,6 +100,7 @@ zh-Hant:
     cop: '科普特語'
     frm: '中古法語'
     fro: '古法語'
+    xcl: '古典亞美尼亞語（格拉巴爾）'
 
   bib_translations:
     # --- Переводы

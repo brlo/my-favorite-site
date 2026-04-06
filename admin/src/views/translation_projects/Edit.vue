@@ -50,7 +50,7 @@ const availableLangs = [
   { name: '🇩🇪 Немецкий', code: 'de' },
   { name: '🇨🇳 Китайский', code: 'zh' },
   { name: '🇯🇵 Японский', code: 'ja' },
-  { name: '🇦🇪 Арабский', code: 'ar' },
+  { name: '🇸🇦 Арабский', code: 'ar' },
 ];
 
 // Загрузка проекта

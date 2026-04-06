@@ -71,6 +71,7 @@ ja:
 
   page_translations:
     ar: 'アラビア語'
+    hy: 'アルメニア語'
     zh-Hans: '簡体字中国語'
     zh-Hant: '繁体字中国語'
     de: 'ドイツ語'
@@ -98,6 +99,7 @@ ja:
     cop: 'コプト語'
     frm: '中世フランス語'
     fro: '古フランス語'
+    xcl: '古典アルメニア語 (グラバール)'
 
   bib_translations:
     # --- Переводы

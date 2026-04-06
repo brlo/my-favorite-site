@@ -71,6 +71,7 @@ sw:
 
   page_translations:
     ar: 'Kiarabu'
+    hy: 'Kiarmenia'
     zh-Hans: 'Kichina Rahisi'
     zh-Hant: 'Kichina cha Jadi'
     de: 'Kijerumani'
@@ -98,6 +99,7 @@ sw:
     cop: 'Kikopti'
     frm: 'Kifaransa cha Karne za Kati'  # Средневековый французский
     fro: 'Kifaransa cha Kale'  # Старофранцузский
+    xcl: 'Kiarmenia cha Kale (Grabar)'
 
   bib_translations:
     # --- Переводы

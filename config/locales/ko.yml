@@ -71,6 +71,7 @@ ko:
 
   page_translations:
     ar: '아랍어'
+    hy: '아르메니아어'
     zh-Hans: '중국어(간체)'
     zh-Hant: '중국어(번체)'
     de: '독일어'
@@ -98,6 +99,7 @@ ko:
     cop: '콥트어'
     frm: '중세 프랑스어'
     fro: '고대 프랑스어'
+    xcl: '고전 아르메니아어 (그라바르)'
 
   bib_translations:
     # --- Переводы

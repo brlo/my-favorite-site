@@ -71,6 +71,7 @@ vi:
 
   page_translations:
     ar: 'Tiếng Ả Rập'
+    hy: 'Tiếng Armenia'
     zh-Hans: 'Tiếng Trung giản thể'
     zh-Hant: 'Tiếng Trung phồn thể'
     de: 'Tiếng Đức'
@@ -98,6 +99,7 @@ vi:
     cop: 'Tiếng Coptic'
     frm: 'Tiếng Pháp trung cổ'  # Medieval French
     fro: 'Tiếng Pháp cổ'  # Old French
+    xcl: 'Tiếng Armenia cổ điển (Grabar)'
 
   bib_translations:
     # --- Переводы

@@ -71,6 +71,7 @@ tk:
 
   page_translations:
     ar: 'Arapça'
+    hy: 'Ermeni dili'
     zh-Hans: 'Ýönekeýleşdirilen Hytaýça'
     zh-Hant: 'Adaty Hytaýça'
     de: 'Nemesçe'
@@ -98,6 +99,7 @@ tk:
     cop: 'Kopt dili'
     frm: 'Orta asyr Fransuzça'
     fro: 'Gadymy Fransuzça'
+    xcl: 'Gadymy ermeni dili (Grabar)'
 
   bib_translations:
     # --- Переводы

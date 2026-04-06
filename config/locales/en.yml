@@ -71,6 +71,7 @@ en:
 
   page_translations:
     ar: 'Arabic'
+    hy: 'Armenian'
     zh-Hans: 'Chinese simplified'
     zh-Hant: 'Chinese traditional'
     de: 'German'
@@ -98,6 +99,7 @@ en:
     cop: 'Coptic'
     frm: 'Medieval French'
     fro: 'Old French'
+    xcl: 'Classical Armenian (Grabar)'
 
   bib_translations:
     # --- Переводы

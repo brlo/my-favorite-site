@@ -71,6 +71,7 @@ it:
 
   page_translations:
     ar: 'Arabo'
+    hy: 'Armeno'
     zh-Hans: 'Cinese semplificato'
     zh-Hant: 'Cinese tradizionale'
     de: 'Tedesco'
@@ -98,6 +99,7 @@ it:
     cop: 'Copto'
     frm: 'Francese medievale'
     fro: 'Francese antico'
+    xcl: 'Armeno classico (Grabar)'
 
   bib_translations:
     # --- Переводы

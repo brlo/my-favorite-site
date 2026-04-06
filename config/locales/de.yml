@@ -71,6 +71,7 @@ de:
 
   page_translations:
     ar: 'Arabisch'
+    hy: 'Armenisch'
     zh-Hans: 'Vereinfachtes Chinesisch'
     zh-Hant: 'Traditionelles Chinesisch'
     de: 'Deutsch'
@@ -98,6 +99,7 @@ de:
     cop: 'Koptisch'
     frm: 'Mittelfranzösisch'
     fro: 'Altfranzösisch'
+    xcl: 'Altarmenisch (Grabar)'
 
   bib_translations:
     # --- Переводы

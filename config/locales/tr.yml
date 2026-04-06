@@ -71,6 +71,7 @@ tr:
 
   page_translations:
     ar: 'Arapça'
+    hy: 'Ermenice'
     zh-Hans: 'Basitleştirilmiş Çince'
     zh-Hant: 'Geleneksel Çince'
     de: 'Almanca'
@@ -98,6 +99,7 @@ tr:
     cop: 'Kıptice'
     frm: 'Ortaçağ Fransızcası'
     fro: 'Eski Fransızca'
+    xcl: 'Klasik Ermenice (Grabar)'
 
   bib_translations:
     # --- Переводы

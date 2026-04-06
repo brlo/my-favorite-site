@@ -115,6 +115,7 @@ if (props.currentUser) {
 // ЯЗЫКИ
 const langs = [
   { name: '🇸🇦 AR - Арабский', code: 'ar' },
+  { name: '🇦🇲 HY - Армянский', code: 'hy' },
   { name: '🇨🇳 zh-Hans - Китайский упр.', code: 'zh-Hans' },
   { name: '🇨🇳 zh-Hant - Китайский традиц.', code: 'zh-Hant' },
   { name: '🇩🇪 DE - Немецкий', code: 'de' },
@@ -142,6 +143,7 @@ const langs = [
   { name: '🇫🇷 FRM - Средневековый французский (Medieval ~1400–1600)', code: 'frm' },
   { name: '🇫🇷 FRO - Старофранцузский (до XIV века)', code: 'fro' },
   { name: '🇪🇬 COP - Коптский', code: 'cop' },
+  { name: '🇦🇲 XCL - Древнеармянский (грабар)', code: 'xcl' },
 ]
 
 const pageTypes = [

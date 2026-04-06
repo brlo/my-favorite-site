@@ -71,6 +71,7 @@ uz:
 
   page_translations:
     ar: 'Arabcha'
+    hy: 'Arman tili'
     zh-Hans: 'Soddalashtirilgan Xitoycha'
     zh-Hant: 'Anʼanaviy Xitoycha'
     de: 'Nemischa'
@@ -98,6 +99,7 @@ uz:
     cop: 'Qibtiy'
     frm: 'Oʻrta asr fransuzcha'
     fro: 'Qadimgi fransuzcha'
+    xcl: 'Qadimiy arman tili (Grabar)'
 
   bib_translations:
     # --- Переводы

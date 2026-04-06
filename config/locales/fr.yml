@@ -71,6 +71,7 @@ fr:
 
   page_translations:
     ar: 'Arabe'
+    hy: 'Arménien'
     zh-Hans: 'Chinois simplifié'
     zh-Hant: 'Chinois traditionnel'
     de: 'Allemand'
@@ -98,6 +99,7 @@ fr:
     cop: 'Copte'
     frm: 'Français médiéval'  # Средневековый французский (XIV–XV вв.)
     fro: 'Ancien français'  # Старофранцузский (IX–XIII вв.)
+    xcl: 'Arménien classique (Grabar)'
 
   bib_translations:
     # --- Переводы
