@@ -117,7 +117,8 @@ module ApplicationHelper
 
   # Делает ссылку с указанной локалью (текущей)
   def my_page_link_to(path, page_lang: nil)
-    path = path.gsub(/\/*/, '') # убираем слэши
+    path = path.gsub(/\A\/+/, '')  # убираем слэши вначале
+    path = path.gsub(/\/+\z/, '')  # убираем слэши вконце
     "/#{I18n.locale}/#{ page_lang ? page_lang : current_lang()}/w/#{path}/"
   end
 
