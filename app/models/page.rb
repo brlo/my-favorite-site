@@ -26,30 +26,6 @@ class Page < ApplicationRecord
     'contributors' => 3,
   }
 
-  # include PgSearch::Model
-  # # first_match = NewPage.search("Лионский").with_pg_search_highlight.first
-  # # first_match.pg_search_highlight
-  # # => "Born in rural <b>Лионский</b>, where the buffalo roam."
-  # pg_search_scope :search,
-  #               against: :body_search,
-  #               using: {
-  #                 tsearch: {
-  #                   dictionary: 'russian',
-  #                   tsvector_column: 'body_tsvector',
-  #                   highlight: {
-  #                     StartSel: '<mark>',
-  #                     StopSel: '</mark>',
-  #                     MinWords: 10,
-  #                     MaxWords: 40,
-  #                     ShortWord: 4,
-  #                     HighlightAll: true,
-  #                     MaxFragments: 3,
-  #                     FragmentDelimiter: '&hellip;'
-  #                   }
-  #                 }
-  #               },
-  #               ranked_by: ":trigram"
-
   # === Ассоциации ===
   belongs_to :user, optional: true
   belongs_to :parent, class_name: 'Page', optional: true, inverse_of: :children
@@ -79,9 +55,6 @@ class Page < ApplicationRecord
 
   # === Валидации ===
   validates :page_type, :title, :lang, :path, presence: true
-
-  # === Генерация search_vector при сохранении ===
-  after_save :update_body_tsvector
 
   # === Скоупы ===
   scope :published, -> { where(is_published: true) }
@@ -316,20 +289,6 @@ class Page < ApplicationRecord
           end
         end
       end
-    end
-
-    # Заполняем поле для поиска по тексту статьи (там должден остаться только текст, без тэгов)
-    #
-    # вручную запустить так:
-    # # sanitizer=::Rails::Html::SafeListSanitizer.new; Page.each {|p| p.body_search = sanitizer.sanitize(p.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, '.'), tags: []).split(/\s?\.+\s?/); p.save }
-    if self.body_rendered_changed?
-      # заменяем тэги <p> и <h1,2,3> <blockquote> на пробел (иначе слова сливаются на этих тэгах, если тэги просто убрать)
-      simple_text = self.body_rendered.to_s.gsub(/<\/(?:[hH][1-9]|p|blockquote)>/, ' ')
-      # убираем все диакритические знаки и ударения из греческого
-      # simple_text = DictWord.word_clean_gr(simple_text.to_s) if self.lang.in?(['grc', 'el'])
-      # убираем из получившихся строк все html-тэги
-      self.body_search = sanitizer.sanitize(simple_text.to_s, tags: [])
-      # clean_text = ActionView::Base.full_sanitizer.sanitize(clean_text)
     end
   end
 
@@ -667,23 +626,6 @@ class Page < ApplicationRecord
         m.update(is_empty: is_body_empty)
       end
     end
-  end
-
-  # Заполняем поле для поиска по тексту статьи (там должден остаться только текст, без тэгов)
-  #
-  # вручную запустить так:
-  # # sanitizer=::Rails::Html::SafeListSanitizer.new; Page.each {|p| p.body_search = sanitizer.sanitize(p.body_rendered.to_s.gsub(/<\/(h|p)[0-9]?>/, '.'), tags: []).split(/\s?\.+\s?/); p.save }
-  def update_body_tsvector
-    pg_dict = LANG_TO_PG_LANGUAGE[lang&.downcase]
-
-    self.class.where(id: id).update_all(
-      self.class.sanitize_sql([
-        "body_tsvector = to_tsvector(?, ?)",
-        pg_dict,
-        self.body_search
-      ])
-    )
-    # update_all - чтобы избежать повторных колбэков
   end
 
   def sync_paragraphs

@@ -79,15 +79,10 @@ class VerseSearch
     end
 
     results = and_query(term, pg_dict, relation)
-    # return results if results.any?
-
-    # results = websearch_query(term, pg_dict, relation)
-    # return results if results.any?
   end
 
   def exact_query term, pg_dict, relation
-    query_term = term.split(' ').join(' <-> ')
-    ts_query_sql = "to_tsquery('#{pg_dict}', #{quoted(query_term)})"
+    ts_query_sql = "phraseto_tsquery('#{pg_dict}', #{quoted(term)})"
 
     results = make_a_fulltext_query(relation, pg_dict, ts_query_sql)
     results
@@ -105,26 +100,6 @@ class VerseSearch
       results = make_a_fulltext_query(relation, pg_dict, ts_query_sql).to_a
     end
 
-    results
-  end
-
-  def websearch_query term, pg_dict, relation
-    # unquoted text: text not inside quote marks will be converted to terms separated by & operators, as if processed by plainto_tsquery.
-    # "quoted text": text inside quote marks will be converted to terms separated by <-> operators, as if processed by phraseto_tsquery.
-    # OR:            the word “or” will be converted to the | operator.
-    # -:             a dash will be converted to the ! operator.
-    ts_query_sql = "websearch_to_tsquery('#{pg_dict}', #{quoted(term)})"
-
-    # if pg_dict == 'simple'
-    #   # поиск по префиксу
-    #   # tsquery operators & (AND), | (OR), ! (NOT), and <-> (FOLLOWED BY)
-    #   "to_tsquery(#{pg_dict}, #{quoted_term})"
-    # else
-    #   # поиск по лексемам
-    #   "plainto_tsquery(#{pg_dict}, #{quoted_term})"
-    # end
-
-    results = make_a_fulltext_query(relation, pg_dict, ts_query_sql)
     results
   end
 
