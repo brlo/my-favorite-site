@@ -300,7 +300,7 @@ class PagesController < ApplicationController
       offset = (@page_number - 1) * @per_page
 
       # Запрашиваем результаты из БД
-      search_service = ::PageSearch.new(
+      search_service = ::PageParagraphSearch.new(
         start_page: @page,
         text: @search_text,
       )

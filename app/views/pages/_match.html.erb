@@ -1,25 +1,26 @@
-<div class="match">
+<% page = m.page_for_preview %>
+
+<div class='match' data-controller='text-fragment'>
   <h4>
-    <% match_thumb_url = m.cover.present? ? m.cover.micro.url : m.parent_for_preview&.cover&.micro&.url %>
+    <% match_thumb_url = page.cover.present? ? page.cover.micro.url : page.parent_for_preview&.cover&.micro&.url %>
     <% if match_thumb_url %><img src="<%= match_thumb_url %>" loading="lazy" class="thumb"/><% end %>
 
-    <a href="<%= my_page_link_to("/#{m.path}") %>">
-      <%= m.title %>
+    <a href="<%= my_page_link_to("/#{page.path}") %>"
+       data-text-fragment-target='link'
+       data-text-fragment-base-url-value="<%= my_page_link_to("/#{page.path}") %>"
+       data-turbo='false'>
+
+      <%= page.title %>
     </a>
 
-    <div class='parent-link'><%= m.parent_for_preview&.title %></div>
+    <div class='parent-link'><%= page.parent_for_preview&.title %></div>
   </h4>
 
   <% m.highlighted_snippets&.each do |snippet| %>
-    <div class='line' data-controller="text-fragment">
-      <a href="<%= my_page_link_to("/#{m.path}") %>"
-       data-text-fragment-target="link"
-       data-text-fragment-base-url-value="<%= my_page_link_to("/#{m.path}") %>"
-       data-turbo='false'>
-        <span data-text-fragment-target="snippet" class="snippet-text">
-          <%= verse_alone_clean(sanitize(snippet, tags: %w(strong)).html_safe) %>
-        </span>…
-      </a>
+    <div class='line'>
+      <span data-text-fragment-target='snippet' class='snippet-text'>
+        <%= verse_alone_clean(sanitize(snippet, tags: %w(strong)).html_safe) %>
+      </span>…
     </div>
   <% end %>
 </div>

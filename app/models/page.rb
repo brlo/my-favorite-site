@@ -58,6 +58,7 @@ class Page < ApplicationRecord
     select(:id, :h_id, :title, :cover, :parent_id, :path)
   }, class_name: 'Page', optional: true, foreign_key: :parent_id
   has_many :children, class_name: 'Page', foreign_key: :parent_id, inverse_of: :parent
+  has_many :page_paragraphs
   # has_many :merge_requests, foreign_key: :p_id, dependent: :destroy
 
   # почему-то dependent: :destroy не работает
@@ -94,6 +95,7 @@ class Page < ApplicationRecord
 
   # after_create :chat_notify_create
   before_update :update_menus_params
+  before_save :sync_paragraphs, if: :body_rendered_changed?
   # after_save :notify_search_engines
 
   def notify_search_engines
@@ -639,7 +641,7 @@ class Page < ApplicationRecord
 
   # уведомить чат:
   def chat_notify_create
-    ::TelegramBot::Notifiers.page_create(u: self.user, pg: self)
+    # ::TelegramBot::Notifiers.page_create(u: self.user, pg: self)
   end
 
   # Запускается в колбэке:
@@ -682,5 +684,38 @@ class Page < ApplicationRecord
       ])
     )
     # update_all - чтобы избежать повторных колбэков
+  end
+
+  def sync_paragraphs
+    if is_deleted? || !is_published?
+      page_paragraphs.destroy_all
+      return
+    end
+
+    # 1. Разбиваем на параграфы, заголовки и цитаты
+    parts = body.to_s.split(/<\s*\/?\s*(?:h[2-4]|p|blockquote)\b[^>]*>/i).map(&:strip).select { _1.to_s.length > 10 }
+
+    # 2. Склеиваем, пока не наберётся 250 символов
+    chunks = []
+    buffer = ''
+
+    parts.each do |part|
+      # Считаем длину ДО добавления
+      future_len = buffer.length + part.length
+
+      if future_len > 250
+        chunks << buffer if buffer.present?
+        buffer = part  # Длинный кусок пойдёт в новый блок
+      else
+        buffer << (buffer.empty? ? part : " #{part}")
+      end
+    end
+    chunks << buffer if buffer.present?
+
+    # 3. Пересоздаём параграфы
+    page_paragraphs.destroy_all
+    chunks.each_with_index do |content, idx|
+      page_paragraphs.create!(position: idx, content: content, lang: lang)
+    end
   end
 end
