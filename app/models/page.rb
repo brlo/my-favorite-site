@@ -5,6 +5,8 @@ class Page < ApplicationRecord
 
   mount_uploader :cover, CoverUploader
 
+  attr_reader :is_body_rendered_changed
+
   ALLOW_TAGS = %w(
     ul ol li h1 h2 h3 h4 blockquote strong b i em strike sup s u hr p a mark
     img code table tbody colgroup tr td th
@@ -68,7 +70,8 @@ class Page < ApplicationRecord
 
   # after_create :chat_notify_create
   before_update :update_menus_params
-  before_save :sync_paragraphs, if: :body_rendered_changed?
+  before_save :cache_before_save_state
+  after_save :sync_paragraphs, if: :is_body_rendered_changed
   # after_save :notify_search_engines
 
   def notify_search_engines
@@ -626,6 +629,10 @@ class Page < ApplicationRecord
         m.update(is_empty: is_body_empty)
       end
     end
+  end
+
+  def cache_before_save_state
+    @is_body_rendered_changed = self.body_rendered_changed?
   end
 
   def sync_paragraphs
