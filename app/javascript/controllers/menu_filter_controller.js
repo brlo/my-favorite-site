@@ -4,8 +4,7 @@ import { en2ruTranslit } from 'lib/tools'
 export default class extends Controller {
   static targets = ["tree", "link"]
   static values = {
-    filter: String,
-    useTranslit: Boolean
+    filter: String
   }
 
   filter(event) {
@@ -21,18 +20,15 @@ export default class extends Controller {
       return
     }
 
-    // Ищем совпадения
-    const hasMatches = this.findMatches(cleanText)
+    // Пробуем прямой поиск
+    let hasMatches = this.findMatches(cleanText)
 
-    // Если нет совпадений и транслит еще не использовали
-    if (!hasMatches && !this.useTranslitValue) {
-      // Пробуем транслитерацию
+    // Если нет совпадений, пробуем транслитерацию
+    if (!hasMatches) {
       const translitText = en2ruTranslit(cleanText)
-      this.useTranslitValue = true
-      this.findMatches(translitText)
-    } else {
-      // Сбрасываем флаг транслита для следующего поиска
-      this.useTranslitValue = false
+      if (translitText !== cleanText) {
+        hasMatches = this.findMatches(translitText)
+      }
     }
   }
 
@@ -46,8 +42,8 @@ export default class extends Controller {
 
   findMatches(searchText) {
     // Создаем паттерн для поиска последовательности символов
-    const pattern = searchText.split('').join('{1}.*')
-    const regex = new RegExp(pattern)
+    const pattern = searchText.split('').join('.*')
+    const regex = new RegExp(pattern, 'i')
 
     let hasMatches = false
 
@@ -64,10 +60,15 @@ export default class extends Controller {
       }
     })
 
-    // Если есть совпадения, скрываем все подменю
+    // Управляем видимостью подменю
     if (hasMatches) {
       this.treeTargets.forEach(tree => {
         tree.classList.add('hidden-children')
+      })
+    } else {
+      // Если нет совпадений, показываем все подменю
+      this.treeTargets.forEach(tree => {
+        tree.classList.remove('hidden-children')
       })
     }
 
@@ -75,7 +76,7 @@ export default class extends Controller {
   }
 
   resetFilter() {
-    // Показываем все элементы
+    // Скрываем все элементы
     this.linkTargets.forEach(link => {
       link.classList.remove('visible')
     })
