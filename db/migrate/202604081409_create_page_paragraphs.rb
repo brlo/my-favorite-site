@@ -8,6 +8,9 @@ class CreatePageParagraphs < ActiveRecord::Migration[8.0]
       t.string :lang, null: false
       t.index :position
     end
+    ActiveRecord::Migration.add_index :page_paragraphs, :content_tsvector, using: :gin
+    # ActiveRecord::Base.connection.columns('page_paragraphs')
+    # ActiveRecord::Base.connection.indexes('page_paragraphs')
   end
 
   def down

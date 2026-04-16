@@ -31,6 +31,7 @@ export default class extends Controller {
   }
 
   // Парсит фрагмент вида #L1-2,5,10-11 → [1,2,3,5,10,11]
+  // старый вариант: https://github.com/brlo/my-favorite-site/blob/cdca7b2510a037eabded6733bf6ead58ae80fc03/app/assets/javascript/index.js#L112
   getLinesArrFromUrlFragment() {
     let fragmentStr = window.location.hash
 
@@ -41,7 +42,7 @@ export default class extends Controller {
     let lineStr = fragmentStr.substring(1)
 
     // Используем внешнюю регулярку или дефолтную
-    const regexpLines = window.selectBar?.fragmentRegexp || /^L[\d,-]+$/
+    const regexpLines = /^L(\d{1,3}|\d{1,3}-\d{1,3})(,(\d{1,3}|\d{1,3}-\d{1,3})){0,6}$/
 
     if (!regexpLines.test(lineStr)) return []
 
@@ -256,7 +257,7 @@ export default class extends Controller {
 
     firstEl.scrollIntoView({
       behavior: 'smooth',
-      block: 'start' // или 'center', если хотите по центру экрана
+      block: 'start' // или 'center'
     })
 
     // Компенсация фиксированного хедера после скролла

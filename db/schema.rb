@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.0].define(version: 202603272055) do
+ActiveRecord::Schema[8.0].define(version: 202604081409) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
+  enable_extension "pgroonga"
 
   create_table "bib_words", force: :cascade do |t|
     t.integer "bw_id", null: false
@@ -103,6 +104,16 @@ ActiveRecord::Schema[8.0].define(version: 202603272055) do
     t.index ["path"], name: "index_menus_on_path"
   end
 
+  create_table "page_paragraphs", force: :cascade do |t|
+    t.bigint "page_id", null: false
+    t.integer "position", null: false
+    t.text "content", null: false
+    t.tsvector "content_tsvector"
+    t.string "lang", null: false
+    t.index ["page_id"], name: "index_page_paragraphs_on_page_id"
+    t.index ["position"], name: "index_page_paragraphs_on_position"
+  end
+
   create_table "pages", force: :cascade do |t|
     t.bigint "parent_id"
     t.bigint "user_id"
@@ -138,6 +149,7 @@ ActiveRecord::Schema[8.0].define(version: 202603272055) do
     t.string "group_lang_id", null: false
     t.text "body_search"
     t.string "h_id"
+    t.index ["body_search"], name: "pages_body_search_idx", using: :pgroonga
     t.index ["body_tsvector"], name: "index_pages_on_body_tsvector", using: :gin
     t.index ["lang", "path"], name: "index_pages_on_lang_and_path"
     t.index ["parent_id"], name: "index_pages_on_parent_id"
@@ -181,6 +193,7 @@ ActiveRecord::Schema[8.0].define(version: 202603272055) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.tsvector "text_tsvector"
+    t.index ["book_id"], name: "index_verses_on_book_id"
     t.index ["text_tsvector"], name: "index_verses_on_text_tsvector", using: :gin
     t.index ["tr_code", "book", "chapter"], name: "index_verses_on_tr_code_and_book_and_chapter"
     t.index ["tr_code", "book"], name: "index_verses_on_tr_code_and_book"
@@ -188,6 +201,7 @@ ActiveRecord::Schema[8.0].define(version: 202603272055) do
     t.index ["tr_code", "zavet"], name: "index_verses_on_tr_code_and_zavet"
   end
 
+  add_foreign_key "page_paragraphs", "pages"
   add_foreign_key "pages", "pages", column: "parent_id"
   add_foreign_key "pages", "users"
 end
