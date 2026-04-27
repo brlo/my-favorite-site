@@ -36,10 +36,9 @@ class Page < ApplicationRecord
     select(:id, :h_id, :title, :cover, :parent_id, :path)
   }, class_name: 'Page', optional: true, foreign_key: :parent_id
   has_many :children, class_name: 'Page', foreign_key: :parent_id, inverse_of: :parent
-  has_many :page_paragraphs
+  has_many :page_paragraphs, dependent: :destroy
   # has_many :merge_requests, foreign_key: :p_id, dependent: :destroy
 
-  # почему-то dependent: :destroy не работает
   # has_many :merge_requests, foreign_key: 'p_id', primary_key: 'id', dependent: :destroy
   # belongs_to :user, foreign_key: 'u_id', primary_key: 'id'
 
