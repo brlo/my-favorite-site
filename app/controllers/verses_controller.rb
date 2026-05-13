@@ -163,7 +163,8 @@ class VersesController < ApplicationController
       @search_text = params[:t]
 
       # Запрашиваем результаты из БД
-      @verses = ::VerseSearch.new(
+      searcher = @search_lang.in?(%w[jp-ni cn-ccbs]) ? ::VerseSearchPgroonga : ::VerseSearch
+      @verses = searcher.new(
         text: @search_text,
         tr_code: @search_lang,
         book: @search_books,

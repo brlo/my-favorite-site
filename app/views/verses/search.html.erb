@@ -92,7 +92,7 @@
 
   <% @verses.each do |v| %>
     <div class='line'>
-      <% line_text = sanitize(v.snippet, tags: %w(strong)) %>
+      <% line_text = sanitize(v.snippet, tags: %w(strong span), attributes: %w(class)) %>
       «<%= verse_alone_clean(line_text.html_safe) %>»
       (<a href="<%= my_bib_link_to("/#{ v.book }/#{ v.chapter }#L#{ v.line }") %>"><%= ::I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %></a>)
     </div>

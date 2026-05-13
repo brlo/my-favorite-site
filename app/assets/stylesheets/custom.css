@@ -532,3 +532,5 @@ a#current-book {
   justify-content: center;
   align-items: center;
 }
+
+.keyword { font-weight: bold; }
