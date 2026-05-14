@@ -93,7 +93,7 @@
   <% @verses.each do |v| %>
     <div class='line'>
       <% line_text = sanitize(v.snippet, tags: %w(strong span), attributes: %w(class)) %>
-      <%= t('quote_start', locale: v.lang) %><%= verse_alone_clean(line_text.html_safe) %><%= t('quote_end', locale: v.lang) %><%= t('space_between_quote_and_bracket', locale: v.lang) %><%= t('bracket_start', locale: v.lang) %><a href="<%= my_bib_link_to("/#{ v.book }/#{ v.chapter }#L#{ v.line }") %>"><%= ::I18n.t("books.short.#{ v.book }", locale: v.lang) %>. <%= v.chapter %>:<%= v.line %></a><%= t('bracket_end', locale: v.lang) %>
+      <%= t('quote_start', locale: v.lang) %><%= verse_alone_clean(line_text.html_safe) %><%= t('quote_end', locale: v.lang) %><%= t('space_between_quote_and_bracket', locale: v.lang) %><%= t('bracket_start', locale: v.lang) %><a href="<%= "/#{ ::I18n.locale }/#{ @search_lang }/#{ v.book }/#{ v.chapter }#L#{ v.line }" %>"><%= ::I18n.t("books.short.#{ v.book }", locale: v.lang) %>. <%= v.chapter %>:<%= v.line %></a><%= t('bracket_end', locale: v.lang) %>
     </div>
     <br>
   <% end %>
