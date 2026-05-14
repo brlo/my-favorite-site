@@ -9,6 +9,11 @@ vi:
   about_contact: Liên hệ với nhà phát triển
   fast_search: 'Tìm cụm từ hoặc Gc 2 16'
   voice: Đọc thành tiếng
+  quote_start: '“'
+  quote_end: '”'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Văn bản này có sẵn bằng các ngôn ngữ khác:"
 

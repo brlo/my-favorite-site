@@ -9,6 +9,11 @@ el:
   about_contact: Επικοινωνία με τον προγραμματιστή
   fast_search: Γρήγορη αναζήτηση
   voice: φωνή
+  quote_start: '«'
+  quote_end: '»'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Αυτό το κείμενο είναι διαθέσιμο σε άλλες γλώσσες:"
 

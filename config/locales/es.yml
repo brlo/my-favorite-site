@@ -9,6 +9,11 @@ es:
   about_contact: Contacto con el desarrollador
   fast_search: 'Buscar frase o Sant 2 16'
   voice: Vocalizar
+  quote_start: '«'
+  quote_end: '»'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Este texto está disponible en otros idiomas:"
 

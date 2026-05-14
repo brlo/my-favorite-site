@@ -9,6 +9,11 @@ fa:
   about_contact: 'تماس با توسعه‌دهنده'
   fast_search: 'جستجوی عبارت یا یعقوب ۲:۱۶'
   voice: 'خواندن متن'
+  quote_start: '«'
+  quote_end: '»'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "این متن به زبان های دیگر نیز موجود است:"
 

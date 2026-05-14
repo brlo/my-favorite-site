@@ -142,7 +142,7 @@ class VersesController < ApplicationController
   def search
     # default
     @search_accuracy = params[:acc] || 'similar'
-    @search_lang = params[:l] || ::LOCALE_TO_BIB_LANG[::I18n.locale.to_s]
+    @search_lang = params[:l] || current_bib_lang() # ::LOCALE_TO_BIB_LANG[::I18n.locale.to_s]
     @search_books = params[:book]
     # не индексировать
     @no_index = true
@@ -163,7 +163,12 @@ class VersesController < ApplicationController
       @search_text = params[:t]
 
       # Запрашиваем результаты из БД
-      searcher = @search_lang.in?(%w[jp-ni cn-ccbs]) ? ::VerseSearchPgroonga : ::VerseSearch
+      searcher = if @search_lang.in?(%w[jp-ni cn-ccbs arab-avd heb-osm gr-lxx-byz]) || @search_accuracy == 'exact'
+        ::VerseSearchPgroonga
+      else
+        ::VerseSearch
+      end
+
       @verses = searcher.new(
         text: @search_text,
         tr_code: @search_lang,

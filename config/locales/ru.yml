@@ -9,6 +9,11 @@ ru:
   about_contact: Контакт с разработчиком
   fast_search: 'Поиск фразы или Иак 2 16'
   voice: Озвучить
+  quote_start: '«'
+  quote_end: '»'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Этот текст доступен на других языках:"
 

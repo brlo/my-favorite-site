@@ -9,6 +9,11 @@ ja:
   about_contact: 開発者との連絡
   fast_search: 高速検索
   voice: 声
+  quote_start: '「'
+  quote_end: '」'
+  bracket_start: '（'
+  bracket_end: '）'
+  space_between_quote_and_bracket: ''
 
   lang_select_tip: "このテキストは他の言語でも利用可能です:"
 

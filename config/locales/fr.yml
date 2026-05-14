@@ -9,6 +9,11 @@ fr:
   about_contact: Contact avec le développeur
   fast_search: 'Rechercher une phrase ou Jac 2 16'
   voice: Écouter
+  quote_start: '«'
+  quote_end: '»'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Ce texte est disponible dans d'autres langues :"
 

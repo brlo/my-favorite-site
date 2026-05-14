@@ -9,6 +9,11 @@ hy:
   about_contact: Կապ մշակողի հետ
   fast_search: Արագ որոնում
   voice: Ձայն
+  quote_start: '«'
+  quote_end: '»'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Այս տեքստը հասանելի է նաև այլ լեզուներով՝"
 

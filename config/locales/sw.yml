@@ -9,6 +9,11 @@ sw:
   about_contact: Mawasiliano na mtaalamu wa maendeleo
   fast_search: 'Tafuta maneno au Yak 2 16'
   voice: Sauti
+  quote_start: '“'
+  quote_end: '”'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Maandishi haya yanapatikana kwa lugha zingine:"
 

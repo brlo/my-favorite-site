@@ -9,6 +9,11 @@ ar:
   about_contact: الاتصال مع المطور
   fast_search: بحث سريع
   voice: صوت
+  quote_start: '«'
+  quote_end: '»'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "هذا النص متاح بلغات أخرى:"
 

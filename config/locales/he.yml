@@ -9,6 +9,11 @@ he:
   about_contact: יצירת קשר עם היזם
   fast_search: חיפוש מהיר
   voice: קוֹל
+  quote_start: '"'
+  quote_end: '"'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "טקסט זה זמין בשפות אחרות:"
 

@@ -9,6 +9,11 @@ en:
   about_contact: Contact with developer
   fast_search: Fast search
   voice: Voice
+  quote_start: '“'
+  quote_end: '”'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "This text is available in other languages:"
 

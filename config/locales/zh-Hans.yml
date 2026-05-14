@@ -10,6 +10,11 @@ zh-Hans:
   about_contact: 联系开发商
   fast_search: 快速搜索
   voice: 嗓音
+  quote_start: '“'
+  quote_end: '”'
+  bracket_start: '（'
+  bracket_end: '）'
+  space_between_quote_and_bracket: ''
 
   lang_select_tip: "该文本有以下语言版本:"
 

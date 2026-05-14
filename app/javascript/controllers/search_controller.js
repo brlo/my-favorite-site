@@ -23,10 +23,10 @@ export default class extends Controller {
 
     if (form) {
       text = form.querySelector('.search-tree-input')?.value
-      lang = document.getElementById('lang-select')?.value
     } else if (this.hasInputTarget) {
       text = this.inputTarget.value
     }
+    lang = document.getElementById('lang-select')?.value
 
     const params = new URLSearchParams()
     if (lang && lang.length > 0) params.append('l', lang)

@@ -9,6 +9,11 @@ tr:
   about_contact: Geliştirici ile iletişim
   fast_search: 'İfade ara ya da Yak 2 16'
   voice: Seslendir
+  quote_start: '“'
+  quote_end: '”'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Bu metin diğer dillerde de mevcuttur:"
 

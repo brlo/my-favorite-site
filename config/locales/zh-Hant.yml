@@ -10,6 +10,11 @@ zh-Hant:
   about_contact: 聯繫開發商
   fast_search: 快速搜尋
   voice: 嗓音
+  quote_start: '「'
+  quote_end: '」'
+  bracket_start: '（'
+  bracket_end: '）'
+  space_between_quote_and_bracket: ''
 
   lang_select_tip: "該文本有以下語言版本:"
 

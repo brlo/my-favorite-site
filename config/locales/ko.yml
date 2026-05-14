@@ -9,6 +9,11 @@ ko:
   about_contact: 개발자 연락처
   fast_search: '구절 검색 또는 약 2:16'
   voice: 음성으로 듣기
+  quote_start: '“'
+  quote_end: '”'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "이 텍스트는 다른 언어로도 제공됩니다:"
 

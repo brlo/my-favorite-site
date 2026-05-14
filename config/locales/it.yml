@@ -9,6 +9,11 @@ it:
   about_contact: Contatto con lo sviluppatore
   fast_search: 'Cerca una frase o Gc 2 16'
   voice: Ascolta
+  quote_start: '«'
+  quote_end: '»'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Questo testo è disponibile in altre lingue:"
 

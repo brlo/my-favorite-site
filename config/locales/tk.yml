@@ -9,6 +9,11 @@ tk:
   about_contact: Developer bilen habarlaşmak
   fast_search: 'Sözlem ýa-da Ýak 2 16 gözleg'
   voice: Seslendir
+  quote_start: '«'
+  quote_end: '»'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Bu tekst başga dillerde hem elýeterli:"
 

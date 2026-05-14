@@ -109,6 +109,7 @@ class PageParagraphSearch
     rel = PAGE_PARAGRAPH_MODEL.preload(page_for_preview: :parent_for_preview)
     rel = rel.where(page_id: sub_pages_ids) if sub_pages_ids.present?
     rel = rel.where(lang: lang) if lang.present?
+    rel
   end
 
   def execute_search(relation, pg_dict, ts_query_sql)

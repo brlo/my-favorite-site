@@ -19,7 +19,7 @@
   <% m.highlighted_snippets&.each do |snippet| %>
     <div class='line'>
       <span data-text-fragment-target='snippet' class='snippet-text'>
-        <%= verse_alone_clean(sanitize(snippet, tags: %w(strong)).html_safe) %>
+        <%= verse_alone_clean(sanitize(snippet, tags: %w(strong span), attributes: %w(class)).html_safe) %>
       </span>…
     </div>
   <% end %>

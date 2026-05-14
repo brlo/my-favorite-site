@@ -1,10 +1,8 @@
 class VerseSearchPgroonga
-  # Конфигурация
   MAX_TEXT_LENGTH = 250
-  MIN_LEN_BY_LANG = { 'jp-ni' => 2, 'cn-ccbs' => 2 }.freeze
+  MIN_LEN_BY_LANG = { 'jp-ni' => 1, 'cn-ccbs' => 1 }.freeze
   DEFAULT_MIN_LEN = 3
 
-  # Настройки PGroonga
   PROXIMITY_DISTANCE = 8 # *N: кол-во токенов МЕЖДУ первым и последним словом
   SNIPPET_WIDTH = 150
   SNIPPET_MAX_FRAGMENTS = 5
@@ -46,7 +44,7 @@ class VerseSearchPgroonga
     relation = base_relation
 
     build_groonga_queries(words).each do |groonga_query|
-      count = relation.where("body_search &@~ #{groonga_query}").count
+      count = relation.where("body_search &@~ ?", groonga_query).count
       return count if count.positive?
     end
     0
@@ -55,15 +53,15 @@ class VerseSearchPgroonga
   # def fetch_objects(offset: 0, limit: 20)
   def fetch_objects(limit)
     return [] unless valid_search_term?
-    words = sanitize_and_tokenize
-    return [] if words.empty?
+    keywords = sanitize_and_tokenize
+    return [] if keywords.empty?
 
     relation = base_relation.limit(limit) # .offset(offset)
     conn = ActiveRecord::Base.connection
 
-    build_groonga_queries(words).each do |groonga_query|
-      results = execute_search(relation, conn, groonga_query, words)
-      return process_snippets(results, words) if results.any?
+    build_groonga_queries(keywords).each do |groonga_query|
+      results = execute_search(relation, conn, groonga_query, keywords)
+      return process_snippets(results, keywords) if results.any?
     end
     []
   end
@@ -92,7 +90,7 @@ class VerseSearchPgroonga
   end
 
   def min_length
-    MIN_LEN_BY_LANG.fetch(lang, DEFAULT_MIN_LEN)
+    MIN_LEN_BY_LANG.fetch(tr_code, DEFAULT_MIN_LEN)
   end
 
   def sanitize_and_tokenize
@@ -103,23 +101,23 @@ class VerseSearchPgroonga
     # Для CJK допускаем слова от 1 символа, для латиницы/кириллицы от 2
     cjk = ['jp-ni', 'cn-ccbs', 'zh', 'ja', 'ko'].include?(lang)
     min_word_len = cjk ? 1 : 2
-    clean.split.select { |w| w.length >= min_word_len }
+    clean.split(' ').select { |w| w.length >= min_word_len }
   end
 
   # === Логика Поиска (Стратегии) ===
 
-  def escape_groonga(str)
-    # Экранируем спецсимволы Groonga, чтобы не ломать синтаксис запроса
-    # str.gsub(/([\\\"*+!(){}[\]<>\-])/, '\\\\\1')
-    str
-  end
-
-  def build_groonga_queries(words)
+  def build_groonga_queries(keywords)
     queries = []
-    escaped = words.map { |w| escape_groonga(w) }
-    joined  = escaped.join(' ')
+    joined  = keywords.join(' ')
 
-    queries << "'*N#{PROXIMITY_DISTANCE}\"#{joined}\"'"
+    if accuracy == 'exact'
+      # тут учитывается близость слов друг ко другу
+      queries << "*N#{PROXIMITY_DISTANCE}\"#{joined}\""
+    else
+      # здесь произвольный порядок и удалённость слов
+      # (но в рамках библейского стиха это не критично, а вот при поиске по статьям - очень критично, чтобы слова были рядом)
+      queries << "#{joined}"
+    end
 
     queries
   end
@@ -131,23 +129,26 @@ class VerseSearchPgroonga
     relation = relation.where(tr_code: @tr_code) if @tr_code.present?
     relation = relation.where(book: @search_books) if @search_books.present?
     relation = relation.where(zavet: @zavet) if !@zavet.nil?
-    relation = relation.order(%i[tr_code book_id chapter line])
     # relation = relation.limit(@limit) if @limit.present?
+    relation
   end
 
   def execute_search(relation, conn, groonga_query, keywords)
-    # Безопасная подстановка массива для сниппетов и строки для поиска
-    keywords_sql = "ARRAY[#{keywords.map { |w| "'#{w}'" }.join(',')}]::text[]"
-    query_sql    = groonga_query # conn.quote(groonga_query)
-
+    # TIP!!!: после того как функции pgroonga_highlight_html добавил имя индекса (таким образом подключается нормализатор из этого индекса)
+    # заработала подсветка синтаксиса с разным регистром. Хотя, всё это дело очень мутно работает.
     relation
       .select(
         :id, :text, :book, :chapter, :line, :lang,
-        "pgroonga_snippet_html(text_search, #{keywords_sql}) AS snippets_raw"
+        "pgroonga_highlight_html(text_search, pgroonga_query_extract_keywords('#{keywords.join(' ')}'), '#{index_name}') AS snippets_raw"
       )
-      .where("text_search &@~ #{query_sql}")
-      .order("id ASC") # Детерминированная пагинация. Релевантность обеспечивается стратегиями + Ruby-ранжированием
+      .where("text_search &@~ ?", groonga_query)
+      .order(%i[tr_code book_id chapter line])
       .to_a
+  end
+
+  def index_name
+    # @tr_code == 'jp-ni' ? 'idx_verses_text_search_mecab' : 'idx_verses_text_search_default'
+    'idx_verses_text_search_default'
   end
 
   # === Пост-обработка: Сниппеты ===
@@ -161,7 +162,7 @@ class VerseSearchPgroonga
       ranked = verse.snippets_raw
 
       verse.instance_variable_set(:@search_snippets, ranked)
-      verse.define_singleton_method(:snippet) { @search_snippets&.first }
+      verse.define_singleton_method(:snippet) { @search_snippets }
     end
     results
   end

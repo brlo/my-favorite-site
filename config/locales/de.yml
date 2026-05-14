@@ -9,6 +9,11 @@ de:
   about_contact: Kontakt zum Entwickler
   fast_search: 'Phrase suchen oder Jak 2 16'
   voice: Vorlesen
+  quote_start: '„'
+  quote_end: '“'
+  bracket_start: '('
+  bracket_end: ')'
+  space_between_quote_and_bracket: ' '
 
   lang_select_tip: "Dieser Text ist in anderen Sprachen verfügbar:"
 

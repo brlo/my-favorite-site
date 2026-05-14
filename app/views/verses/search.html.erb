@@ -17,7 +17,7 @@
 <div class='hint' style='margin-top: 0;'><%= t('search_page.title') %>: </div>
 <form class='uniq-search-form' data-controller='form-help'>
   <div id='search-input-area'>
-    <input class='pretty search-tree-input' name="t" type="text" minlength="3" required autocomplete='off' autofocus placeholder='<%= I18n.t("search_page.search_placeholder") %>' value='<%= @search_text %>'>
+    <input class='pretty search-tree-input' name="t" type="text" minlength="1" required autocomplete='off' autofocus placeholder='<%= I18n.t("search_page.search_placeholder") %>' value='<%= @search_text %>'>
     <button type="submit" class='search-icon'>
       <svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
     </button>
@@ -93,8 +93,7 @@
   <% @verses.each do |v| %>
     <div class='line'>
       <% line_text = sanitize(v.snippet, tags: %w(strong span), attributes: %w(class)) %>
-      «<%= verse_alone_clean(line_text.html_safe) %>»
-      (<a href="<%= my_bib_link_to("/#{ v.book }/#{ v.chapter }#L#{ v.line }") %>"><%= ::I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %></a>)
+      <%= t('quote_start', locale: v.lang) %><%= verse_alone_clean(line_text.html_safe) %><%= t('quote_end', locale: v.lang) %><%= t('space_between_quote_and_bracket', locale: v.lang) %><%= t('bracket_start', locale: v.lang) %><a href="<%= my_bib_link_to("/#{ v.book }/#{ v.chapter }#L#{ v.line }") %>"><%= ::I18n.t("books.short.#{ v.book }", locale: v.lang) %>. <%= v.chapter %>:<%= v.line %></a><%= t('bracket_end', locale: v.lang) %>
     </div>
     <br>
   <% end %>
