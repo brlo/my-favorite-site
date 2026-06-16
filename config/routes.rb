@@ -40,6 +40,7 @@ Rails.application.routes.draw do
     resources :users do
       member do
         get :activate
+        delete :block
       end
       collection do
         get :edit_main_info

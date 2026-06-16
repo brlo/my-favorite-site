@@ -1,5 +1,5 @@
 class DictWordsController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login_and_activation
 
   def word
     # раньше тут был поиск не по id, а по словам, поэтому какое-то время ещё надо слова поддерживать:

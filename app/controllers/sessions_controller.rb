@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_action :require_login, only: [:new, :create]
+  skip_before_action :require_login_and_activation, only: [:new, :create]
   before_action :redirect_if_logged_in, only: [:new, :create]
 
   rate_limit to: 30, within: 12.hours, by: -> { request.ip }, only: %w[create]

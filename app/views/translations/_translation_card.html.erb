@@ -10,7 +10,7 @@
   <div class='translation <%= 'top' if index == 0 %>'>
     <div class='meta'>
       <div class='author'>
-        <%= translation.user&.name %> (@<%= translation.user&.username %>)
+        <%= translation.user.name %> (@<%= translation.user.username %>)
       </div>
       <% if translation.editable_by?(current_user) %>
         <div class='actions px-6 ml-auto'>
@@ -125,17 +125,8 @@
           <span class='vote-btn approved' title='Одобрен как основной перевод'>✓</span>
         <% end %>
 
-        <% if current_user&.is_admin? %>
-          <%= button_to translation.is_approved ? 'Открепить' : 'Закрепить',
-              approve_translation_project_segment_translation_path(
-                translation_project_id: translation.translation_project_id,
-                segment_id: translation.segment_id,
-                id: translation.id
-              ),
-              class: 'vote-btn',
-              method: :patch,
-              title: 'Одобрить как основной перевод',
-              data: { turbo_confirm: 'Сделать этот перевод основным?' } %>
+        <% if translation.user.is_blocked %>
+          <span class='vote-btn' title='Пользователь заблокирован'>⛔️</span>
         <% end %>
 
         <% if upvotes > 0 || downvotes > 0 %>
@@ -150,6 +141,28 @@
                   action: "click->voters#toggle"
                 },
                 class: "voters-link" %>
+        <% end %>
+
+        <% if current_user&.is_admin? %>
+          <%= button_to translation.is_approved ? 'Открепить' : 'Закрепить',
+              approve_translation_project_segment_translation_path(
+                translation_project_id: translation.translation_project_id,
+                segment_id: translation.segment_id,
+                id: translation.id
+              ),
+              class: 'vote-btn',
+              method: :patch,
+              title: 'Одобрить как основной перевод',
+              data: { turbo_confirm: 'Сделать этот перевод основным?' } %>
+        <% end %>
+
+        <% if current_user&.is_admin? %>
+          <%= button_to '⛔️ Забл.',
+              block_user_path(id: translation.user_id, translation_id: translation.id),
+              class: 'vote-btn',
+              method: :delete,
+              title: 'Заблокировать пользователя',
+              data: { turbo_confirm: "Заблокировать пользователя? #{ translation.user.username }" } %>
         <% end %>
       </div>
 

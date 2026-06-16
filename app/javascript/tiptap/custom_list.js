@@ -1,6 +1,8 @@
-import OrderedList from "@tiptap/extension-ordered-list"
+
+import { OrderedList } from "tiptap/tiptap_bundle"
 
 export const CustomList = OrderedList.extend({
+  name: 'orderedList',
   addAttributes() {
     return {
       ...this.parent?.(),

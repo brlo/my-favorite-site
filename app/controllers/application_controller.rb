@@ -5,7 +5,27 @@ class ApplicationController < ActionController::Base
 
   before_action :set_is_night_mode
   before_action :set_locale
-  before_action :require_login
+  before_action :require_login_and_activation
+
+  def require_login_and_activation
+    require_login
+
+    if !current_user.activated?
+      redirect_to root_path, alert: "Необходимо активировать аккаунт, перейдя по ссылке в письме", status: :see_other
+    end
+
+    if current_user.is_blocked
+      redirect_to root_path, alert: "Ваш аккаунт заблокирован", status: :see_other
+    end
+  end
+
+  def require_login_and_not_blocked
+    require_login
+
+    if current_user.is_blocked
+      redirect_to root_path, alert: "Ваш аккаунт заблокирован", status: :see_other
+    end
+  end
 
   def set_is_night_mode
     @is_night_mode = cookies[:isNightMode] == '1'

@@ -1,9 +1,9 @@
 class TranslationsController < ApplicationController
+  skip_before_action :require_login_and_activation, only: %w[show voters]
+  before_action :require_admin, only: %w[approve]
+
   before_action :set_segment
   before_action :set_translation, except: %w[new create]
-
-  skip_before_action :require_login, only: %w[show voters]
-  before_action :require_admin, only: %w[approve]
 
   # голосование
   rate_limit to: 2, within: 10.seconds, by: -> { request.ip }, only: %w[upvote downvote], if: -> { logged_in? && !current_user.is_admin? }
@@ -26,7 +26,7 @@ class TranslationsController < ApplicationController
 
   def show
     render partial: 'translations/translation_card',
-      locals: { translation: @translation, target_lang: @translation.lang }
+      locals: { translation: @translation }
   end
 
   def create
@@ -82,7 +82,7 @@ class TranslationsController < ApplicationController
   def update
     if @translation.editable_by?(current_user) && @translation.update(translation_params)
       render partial: 'translations/translation_card',
-        locals: { translation: @translation, target_lang: @translation.lang }
+        locals: { translation: @translation }
     else
       render partial: "translations/edit_form",
             locals: { translation: @translation },
@@ -113,7 +113,7 @@ class TranslationsController < ApplicationController
   def upvote
     if @translation.upvote(current_user)
       render partial: 'translations/translation_card',
-        locals: { translation: @translation, target_lang: @translation.lang }
+        locals: { translation: @translation }
     else
       head :unprocessable_entity
     end
@@ -124,7 +124,7 @@ class TranslationsController < ApplicationController
 
     if is_user_already_make_translation && @translation.downvote(current_user)
       render partial: 'translations/translation_card',
-        locals: { translation: @translation, target_lang: @translation.lang }
+        locals: { translation: @translation }
     else
       head :unprocessable_entity
     end

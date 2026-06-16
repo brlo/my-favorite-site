@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login_and_activation
 
   # Чтобы начать создавать html-файды для работы от кэша, просто раскоментируй:
   # А nginx уже настроен так, чтобы отдавать эти файлы, если они есть.

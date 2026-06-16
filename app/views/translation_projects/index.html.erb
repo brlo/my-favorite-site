@@ -27,7 +27,22 @@
   <% end %>
 
   <div>Раздел переводов находится на стадии beta-тестирования. На время тестирования к переводу предлагается небольшое количество трудов.</div>
+
   <% if @projects.any? %>
     <%= render @projects %>
   <% end %>
+
+  <% if current_user.is_admin? %>
+    <div>
+      <h2>Переводы за последние сутки</h2>
+      <% Translation.where(created_at: 1.day.ago..).each do |translation| %>
+          <div style='border-bottom: 1px solid grey;' class='py-6 my-6'>
+            <div><%= translation.user.username %></div>
+            <div><%= translation.text %></div>
+            <div><%= translation.sub_text %></div>
+          </div>
+      <% end %>
+    </div>
+  <% end %>
 </section>
+

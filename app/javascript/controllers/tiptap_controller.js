@@ -1,12 +1,5 @@
 import { Controller } from "@hotwired/stimulus"
-import { Editor } from "@tiptap/core"
-import StarterKit from "@tiptap/starter-kit"
-import Typography from "@tiptap/extension-typography"
-import Underline from "@tiptap/extension-underline"
-import Link from "@tiptap/extension-link"
-import Highlight from "@tiptap/extension-highlight"
-import Image from "@tiptap/extension-image"
-import { TableKit } from '@tiptap/extension-table'
+import { Editor, StarterKit, Typography, Underline, Link, Highlight, Image, TableKit } from "tiptap/tiptap_bundle"
 import { CustomList } from "tiptap/custom_list"
 
 export default class extends Controller {

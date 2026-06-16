@@ -16,27 +16,12 @@ pin "colors" # @0.6.2
 pin "process" # @2.1.0
 pin "choices.js" # @11.1.0
 
-# Основные пакеты
-pin "@tiptap/core", to: "https://esm.sh/@tiptap/core"
-pin "@tiptap/starter-kit", to: "https://esm.sh/@tiptap/starter-kit"
-
-# Расширения
-pin "@tiptap/extension-typography", to: "https://esm.sh/@tiptap/extension-typography"
-pin "@tiptap/extension-underline", to: "https://esm.sh/@tiptap/extension-underline"
-pin "@tiptap/extension-highlight", to: "https://esm.sh/@tiptap/extension-highlight"
-pin "@tiptap/extension-image", to: "https://esm.sh/@tiptap/extension-image"
-pin "@tiptap/extension-link", to: "https://esm.sh/@tiptap/extension-link"
-pin "@tiptap/extension-table", to: "https://esm.sh/@tiptap/extension-table"
-pin "@tiptap/extension-ordered-list", to: "https://esm.sh/@tiptap/extension-ordered-list"
-
-# pin "@tiptap/core", to: "tiptap/core/dist/index.js"
-# pin "@tiptap/starter-kit", to: "tiptap/starter-kit/dist/index.js"
-# pin "@tiptap/extension-typography", to: "tiptap/extension-typography/dist/index.js"
-# pin "@tiptap/extension-underline", to: "tiptap/extension-underline/dist/index.js"
-# pin "@tiptap/extension-link", to: "tiptap/extension-link/dist/index.js"
-# pin "@tiptap/extension-highlight", to: "tiptap/extension-highlight/dist/index.js"
-# pin "@tiptap/extension-image", to: "tiptap/extension-image/dist/index.js"
-# pin "@tiptap/extension-table", to: "tiptap/extension-table/dist/index.js"
-
-# Локальный кастомный список
-pin "tiptap/custom_list", to: "tiptap/custom_list.js"
+# ОБЯЗАТЕЛЬНО ДЕЛАЙ ПОСЛЕ ИЗМЕНЕНИЯ СПИСКА, чтобы у пользователей работало без VPN
+# подключить в importmap, предварительно скачав к себе:
+# bin/importmap pin @tiptap/core @tiptap/starter-kit @tiptap/extension-typography @tiptap/extension-underline @tiptap/extension-link @tiptap/extension-highlight @tiptap/extension-image @tiptap/extension-table  --preload --from jsdelivr
+# скачать заново всё:
+# bin/importmap pristine
+#
+# Так как с предыдущими пунктами была куча багов, упаковал всё в один локальный файл.
+# см. команды для сборки в app/javascript/tiptap_bundle.js
+pin "tiptap_bundle", to: "tiptap_bundle.js"

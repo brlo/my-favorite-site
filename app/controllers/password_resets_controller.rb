@@ -1,5 +1,5 @@
 class PasswordResetsController < ApplicationController
-  skip_before_action :require_login
+  skip_before_action :require_login_and_activation
 
   rate_limit to: 20, within: 1.day, by: -> { request.ip }, only: %w[create]
   rate_limit to: 20, within: 1.day, by: -> { params[:email] }, only: %w[create]

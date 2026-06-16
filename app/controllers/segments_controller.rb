@@ -1,5 +1,5 @@
 class SegmentsController < ApplicationController
-  # before_action :require_login
+  # before_action :require_login_and_activation
   # before_action :set_project
   # before_action :set_segment
 

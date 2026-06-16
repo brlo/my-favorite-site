@@ -1,5 +1,5 @@
 <%# Добавляем новый перевод в список %>
 <%= turbo_stream.append "translations-list-#{@translation.segment_id}" do %>
   <%= render partial: 'translations/translation_card',
-      locals: { translation: @translation, segment: @translation.segment, target_lang: @translation.lang } %>
+      locals: { translation: @translation, segment: @translation.segment } %>
 <% end %>

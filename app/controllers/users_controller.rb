@@ -1,7 +1,10 @@
 class UsersController < ApplicationController
+  skip_before_action :require_login_and_activation
+  before_action :require_login_and_not_blocked, except: %w[new create activate]
+  before_action :require_admin, only: %w[block]
+
   before_action :set_user, only: %w[show edit_main_info edit_password update_main_info update_password]
   before_action :set_active_menu_item
-  skip_before_action :require_login, only: %w[new create activate]
 
   rate_limit to: 20, within: 1.day, by: -> { request.ip }, only: %w[create update_main_info update_password]
 
@@ -89,6 +92,17 @@ class UsersController < ApplicationController
       redirect_to login_path, notice: t('users.notices.update_your_password_if_you_forgotten_it')
     else
       not_authenticated
+    end
+  end
+
+  def block
+    user = User.find(params[:id])
+    translation = Translation.find(params[:translation_id]) if params[:translation_id]
+    if user.update!(is_blocked: !user.is_blocked)
+      render partial: 'translations/translation_card',
+        locals: { translation: translation }
+    else
+      head :unprocessable_entity
     end
   end
 

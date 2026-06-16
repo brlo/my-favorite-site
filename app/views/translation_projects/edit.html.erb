@@ -35,7 +35,7 @@
         <%= f.label :lang_to, 'Язык оригинала' %>
         <%= f.select :lang_to,
             ::ALL_LOCALES.keys.map { |lang| [page_lang_string_full(lang), lang] },
-            { selected: @lang_to },
+            { selected: 'ru' },
             {
               class: 'search-select form-select'
             }

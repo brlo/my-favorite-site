@@ -132,14 +132,14 @@ class User < ApplicationRecord
     return if email.blank?
 
     if email.to_s.include?('+')
-      errors.add(:email, t('activerecord.errors.email_cant_contain_plus'))
+      errors.add(:email, I18n.t('activerecord.errors.messages.email_cant_contain_plus'))
     end
   end
 
   def email_change_too_often
     return if ::UserMailer.send(:can_fire?, 'activation_needed_email', self.id)
 
-    errors.add(:email, t('activerecord.errors.email_cant_be_restored_too_often'))
+    errors.add(:email, I18n.t('activerecord.errors.email_cant_be_restored_too_often'))
   end
 
   def generate_username
