@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_06_120721) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_16_165910) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -138,6 +138,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_120721) do
     t.text "body_rendered"
     t.string "cover"
     t.datetime "created_at", null: false
+    t.integer "date_end_int"
+    t.integer "date_start_int"
     t.integer "edit_mode", default: 1, null: false
     t.integer "editors", default: [], array: true
     t.string "group_lang_id", null: false
@@ -156,6 +158,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_120721) do
     t.bigint "parent_id"
     t.string "path", null: false
     t.string "path_low", null: false
+    t.string "period_end"
+    t.string "period_start"
     t.integer "priority"
     t.string "redirect_from"
     t.text "references"
@@ -165,8 +169,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_120721) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.jsonb "verses", default: []
-    t.datetime "year_end"
-    t.datetime "year_start"
     t.index ["lang", "path"], name: "index_pages_on_lang_and_path"
     t.index ["parent_id"], name: "index_pages_on_parent_id"
     t.index ["path_low"], name: "index_pages_on_path_low", unique: true
@@ -185,13 +187,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_120721) do
     t.integer "line"
     t.jsonb "open_tags", default: []
     t.integer "paragraph", null: false
+    t.integer "part"
     t.bigint "source_segment_id"
     t.text "text"
     t.bigint "translation_project_id", null: false
     t.datetime "updated_at", null: false
     t.index ["source_segment_id"], name: "index_segments_on_source_segment_id"
-    t.index ["translation_project_id", "chapter", "paragraph", "line"], name: "idx_on_translation_project_id_chapter_paragraph_lin_90bd6f22b9"
     t.index ["translation_project_id", "lang"], name: "index_segments_on_translation_project_id_and_lang"
+    t.index ["translation_project_id", "part", "chapter", "paragraph", "line", "lang"], name: "idx_on_translation_project_id_part_chapter_paragrap_3a450d47ec"
     t.index ["translation_project_id"], name: "index_segments_on_translation_project_id"
   end
 
@@ -210,7 +213,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_120721) do
     t.string "lang", null: false
     t.bigint "segment_id", null: false
     t.string "source_lang"
+    t.text "sub_text"
     t.text "text", null: false
+    t.bigint "translation_project_id"
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
     t.integer "vote_score", default: 0
@@ -218,6 +223,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_120721) do
     t.index ["is_approved"], name: "index_translations_on_is_approved", where: "(is_approved = true)"
     t.index ["segment_id", "lang"], name: "index_translations_on_segment_id_and_lang"
     t.index ["segment_id"], name: "index_translations_on_segment_id"
+    t.index ["translation_project_id"], name: "index_translations_on_translation_project_id"
     t.index ["user_id"], name: "index_translations_on_user_id"
   end
 
@@ -232,9 +238,11 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_120721) do
     t.string "email"
     t.integer "failed_logins_count", default: 0
     t.boolean "is_admin", default: false
+    t.boolean "is_blocked"
     t.datetime "last_activity_at"
     t.datetime "last_login_at"
-    t.string "last_login_ip"
+    t.string "last_login_from_ip_address"
+    t.datetime "last_logout_at"
     t.datetime "lock_expires_at"
     t.string "name"
     t.bigint "pages_owner", default: [], array: true
@@ -253,6 +261,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_120721) do
     t.string "username"
     t.index ["activation_token"], name: "index_users_on_activation_token"
     t.index ["api_token"], name: "index_users_on_api_token", unique: true
+    t.index ["last_logout_at", "last_activity_at"], name: "index_users_on_last_logout_at_and_last_activity_at"
     t.index ["remember_me_token"], name: "index_users_on_remember_me_token", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["unlock_token"], name: "index_users_on_unlock_token", unique: true
@@ -292,5 +301,6 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_06_120721) do
   add_foreign_key "segments", "segments", column: "source_segment_id"
   add_foreign_key "segments", "translation_projects"
   add_foreign_key "translations", "segments"
+  add_foreign_key "translations", "translation_projects"
   add_foreign_key "translations", "users"
 end

@@ -2,7 +2,7 @@ class TranslationProjectsController < ApplicationController
   before_action :set_project, only: %w[show edit update destroy import_content result]
   before_action :set_active_menu_item
 
-  before_action :require_login, except: %w[index show result]
+  skip_before_action :require_login, only: %w[index show result]
   before_action :require_admin, except: %w[index show result]
 
   def index

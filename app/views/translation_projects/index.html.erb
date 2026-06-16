@@ -26,6 +26,7 @@
     <%= link_to '＋ Создать проект', new_translation_project_path(locale: ::I18n.locale) %>
   <% end %>
 
+  <div>Раздел переводов находится на стадии beta-тестирования. На время тестирования к переводу предлагается небольшое количество трудов.</div>
   <% if @projects.any? %>
     <%= render @projects %>
   <% end %>

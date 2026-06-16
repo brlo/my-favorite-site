@@ -4,7 +4,9 @@ class Translation < ApplicationRecord
   belongs_to :user
 
   validates :text, :lang, :source_lang, presence: true
-  validates :user_id, uniqueness: { scope: [:segment_id, :lang], message: :taken }
+  # Разрешаем два перевода, а не 1
+  # validates :user_id, uniqueness: { scope: [:segment_id, :lang], message: :taken }
+  validate :limit_two_per_segment_lang
 
   after_save :update_segment_project_langs
   before_destroy :remove_downvotes_from_segment
@@ -77,6 +79,23 @@ class Translation < ApplicationRecord
         tr.votes.delete(user_key)
         tr.save
       end
+    end
+  end
+
+  def limit_two_per_segment_lang
+    return unless user_id.present? && segment_id.present? && lang.present?
+
+    count = self.class.where(
+      user_id: user_id,
+      segment_id: segment_id,
+      lang: lang
+    ).count
+
+    # Для обновления: исключаем текущую запись
+    count -= 1 if persisted?
+
+    if count >= 2
+      errors.add(:user_id, "может создать максимум 2 варианта перевода")
     end
   end
 end

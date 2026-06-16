@@ -10,7 +10,7 @@
       <div class="segment-content">
         <div class="segment-meta">
           <% fragment_id = "ch#{ segment.chapter }-p#{ segment.paragraph }-l#{ segment.line }" %>
-          <span data-share-id='<%= fragment_id %>' class='fragment-number'>#<%= fragment_id %></span>
+          <span id='<%= fragment_id %>' data-share-id='<%= fragment_id %>' class='fragment-number'>#<%= fragment_id %></span>
           <div class='html-tags'>
             <% segment.open_tags.map { it['n'] }.each do |t| %>
               <span class="tag"><%= t %></span>
@@ -55,7 +55,7 @@
 
         <%= turbo_frame_tag "new_translation_form_#{segment.id}" %>
       <% else %>
-        <small>Чтобы предлагать переводы надо <%= link_to 'зарегистрироваться', login_path %></small>
+        <small>Чтобы предлагать переводы надо <%= link_to 'зарегистрироваться', login_path, data: {turbo: false} %></small>
       <% end %>
     </div>
   </div>

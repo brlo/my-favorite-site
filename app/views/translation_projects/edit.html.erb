@@ -12,7 +12,7 @@
             method: :delete,
             data: {
               turbo_method: :delete,
-              turbo_confirm: "Уверен, что хочешь удалить проект перевода? '#{@project.title}'"
+              turbo_confirm: "Уверены, что хотите удалить проект перевода? '#{@project.title}'"
           } %>
         </div>
         <div class="card-body">
@@ -26,21 +26,20 @@
 
 
 <div class="card border-primary">
-  <div class="card-header bg-primary text-white">
-    <h5 class="mb-0">Импортировать новую часть текста</h5>
-  </div>
-  <div class="card-body">
+  <h2 class="mb-0">Импортировать новую часть текста</h2>
     <%= form_with url: import_content_translation_project_path(@project), method: :post, local: true do |f| %>
 
       <%= render 'layouts/alerts', ar_object: @project %>
 
-      <div class="row g-3 mb-3">
-        <div class="col-md-3">
-          <%= f.label :lang, 'Язык оригинала' %>
-          <%= f.select :lang,
-              [['Русский', 'ru'], ['Латынь', 'la'], ['Греческий', 'grc'], ['Английский', 'en']],
-              {}, class: 'form-select' %>
-        </div>
+      <div>
+        <%= f.label :lang_to, 'Язык оригинала' %>
+        <%= f.select :lang_to,
+            ::ALL_LOCALES.keys.map { |lang| [page_lang_string_full(lang), lang] },
+            { selected: @lang_to },
+            {
+              class: 'search-select form-select'
+            }
+        %>
       </div>
 
       <%= render 'shared/tiptap_editor', form: f, field_name: :html_content, initial_value: "" %>
@@ -49,7 +48,6 @@
         <%= f.submit 'Разбить и добавить',
             class: 'btn btn-primary',
             data: { disable_with: 'Обработка...' } %>
-        <%= link_to 'Отмена', @project, class: 'btn btn-outline-secondary' %>
       </div>
     <% end %>
   </div>

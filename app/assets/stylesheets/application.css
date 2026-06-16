@@ -1348,9 +1348,6 @@ color: #ff8888;
   }
 
   .translations-header {
-    position: sticky;
-    top: 0;
-    background: white;
     padding-top: 0;
     padding-bottom: 5px;
   }
@@ -1457,10 +1454,10 @@ color: #ff8888;
   transition: box-shadow 0.2s;
 }
 
-.translation.top {
+/* .translation.top {
   border-color: rgba(17, 124, 60, 0.465);
   box-shadow: 0 1px 3px rgba(87, 115, 98, 0.233);
-}
+} */
 
 
 
@@ -1479,6 +1476,7 @@ color: #ff8888;
   gap: 0.5rem;
   align-items: center;
   flex-wrap: wrap;
+  color: grey;
 }
 
 /* Время */
@@ -1521,11 +1519,6 @@ color: #ff8888;
   transition: all 0.2s;
 }
 
-.translation .vote-btn:not(:disabled):hover,
-.translation .vote-btn.voted {
-  background: var(--bg-gray);
-}
-
 .translation .vote-btn.voted.up {
   border-color: #0059ff;
   background-color: #0059ff12;
@@ -1553,6 +1546,10 @@ color: #ff8888;
   border-color: #eee;
   background-color: transparent !important;
   cursor: default;
+}
+
+.translation button.vote-btn:hover {
+  opacity: 0.8;
 }
 
 /* Счётчики голосов */

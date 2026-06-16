@@ -31,7 +31,7 @@
                         rows: 1,
                         class: "translation-input" %>
 
-        <%= f.hidden_field :lang, value: params[:lang_to] %>
+        <%= f.hidden_field :lang, value: params[:lang_to] || translation.lang %>
         <%= f.hidden_field :source_lang, value: translation.segment.lang %>
 
         <div class="form-actions">

@@ -10,7 +10,7 @@
   <div class='translation <%= 'top' if index == 0 %>'>
     <div class='meta'>
       <div class='author'>
-        <%= translation.user&.username || translation.user&.name || 'Аноним' %>
+        <%= translation.user&.name %> (@<%= translation.user&.username %>)
       </div>
       <% if translation.editable_by?(current_user) %>
         <div class='actions px-6 ml-auto'>
@@ -76,12 +76,14 @@
 
         <% else %>
 
-          <span class="vote-btn up <%= 'zero' if upvotes.zero? %>" title='Понравилось'>
-            <%= ::VOTE_PLUS %>
-            <span class="vote-count" data-chapter-translator-target="upvoteCount">
-              <%= upvotes if upvotes > 0 %>
+          <% if logged_in? || upvotes > 0 %>
+            <span class="vote-btn up <%= 'zero' if upvotes.zero? %>" title='Понравилось'>
+              <%= ::VOTE_PLUS %>
+              <span class="vote-count" data-chapter-translator-target="upvoteCount">
+                <%= upvotes if upvotes > 0 %>
+              </span>
             </span>
-          </span>
+          <% end %>
 
         <% end %>
 
@@ -108,12 +110,15 @@
 
         <% else %>
 
-          <span class="vote-btn down <%= 'zero' if downvotes.zero? %>" title='"Требуются доработки". Это голос отдать могут только те, кто уже предложил свой вариант перевода'>
-            <%= ::VOTE_MINUS %>
-            <span class="vote-count" data-chapter-translator-target="downvoteCount">
-              <%= downvotes if downvotes > 0 %>
+          <% if logged_in? || downvotes > 0 %>
+            <span class="vote-btn down <%= 'zero' if downvotes.zero? %>" title='"Требуются доработки". Это голос отдать могут только те, кто уже предложил свой вариант перевода'>
+              <%= ::VOTE_MINUS %>
+              <span class="vote-count" data-chapter-translator-target="downvoteCount">
+                <%= downvotes if downvotes > 0 %>
+              </span>
             </span>
-          </span>
+          <% end %>
+
         <% end %>
 
         <% if translation.is_approved %>
@@ -133,17 +138,19 @@
               data: { turbo_confirm: 'Сделать этот перевод основным?' } %>
         <% end %>
 
-        <%= link_to "Кто голосовал",
-              voters_translation_project_segment_translation_path(
-                translation_project_id: translation.translation_project_id,
-                segment_id: translation.segment_id,
-                id: translation.id,
-              ),
-              data: {
-                turbo_frame: "voters_list_#{translation.id}",
-                action: "click->voters#toggle"
-              },
-              class: "voters-link" %>
+        <% if upvotes > 0 || downvotes > 0 %>
+          <%= link_to "Кто голосовал",
+                voters_translation_project_segment_translation_path(
+                  translation_project_id: translation.translation_project_id,
+                  segment_id: translation.segment_id,
+                  id: translation.id,
+                ),
+                data: {
+                  turbo_frame: "voters_list_#{translation.id}",
+                  action: "click->voters#toggle"
+                },
+                class: "voters-link" %>
+        <% end %>
       </div>
 
       <%= turbo_frame_tag "voters_list_#{translation.id}", class: "voters-list-container" %>

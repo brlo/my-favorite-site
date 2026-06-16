@@ -8,7 +8,7 @@
         <div class="voters-list">
           <% @upvoters.each do |user, voted_at| %>
             <div class="voter-item">
-              <span class="voter-name"><%= user.name %></span>
+              <span class="voter-name"><%= user.name %> (@<%= user.username %>)</span>
               <span class="voter-time"><%= time_ago_in_words(voted_at) %></span>
             </div>
           <% end %>
@@ -22,7 +22,7 @@
         <div class="voters-list">
           <% @downvoters.each do |user, voted_at| %>
             <div class="voter-item">
-              <span class="voter-name"><%= user.name %></span>
+              <span class="voter-name"><%= user.name %> (@<%= user.username %>)</span>
               <span class="voter-time"><%= time_ago_in_words(voted_at) %></span>
             </div>
           <% end %>

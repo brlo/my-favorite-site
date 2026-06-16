@@ -2,7 +2,7 @@ class TranslationsController < ApplicationController
   before_action :set_segment
   before_action :set_translation, except: %w[new create]
 
-  before_action :require_login, except: %w[show voters]
+  skip_before_action :require_login, only: %w[show voters]
   before_action :require_admin, only: %w[approve]
 
   # голосование
@@ -102,7 +102,7 @@ class TranslationsController < ApplicationController
         turbo_stream.update(
           "segment-with-translations-#{@translation.segment_id}",
           partial: "translations/segment_with_translations",
-          locals: { segment: @translation.segment.reload }
+          locals: { segment: @translation.segment }
         )
       ]
     else
@@ -131,12 +131,17 @@ class TranslationsController < ApplicationController
   end
 
   def approve
-    @translation.update!(is_approved: !@translation.is_approved)
-
-    redirect_back_or_to(
-      translation_project_path(@segment.translation_project),
-      notice: 'Перевод одобрен как основной'
-    )
+    if @translation.update!(is_approved: !@translation.is_approved)
+      render turbo_stream: [
+        turbo_stream.update(
+          "segment-with-translations-#{@translation.segment_id}",
+          partial: "translations/segment_with_translations",
+          locals: { segment: @translation.segment }
+        )
+      ]
+    else
+      head :unprocessable_entity
+    end
   end
 
   def voters

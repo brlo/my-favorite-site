@@ -57,6 +57,7 @@
 
           <select id="page-lang-select" data-page='true' class='search-select'>
             <% ::FLAG_BY_LANG.each do |lang, flag| %>
+              <% next if !::ALL_LOCALES.has_key?(lang) %>
               <option value='<%= translation_project_path(part: @part, lang_to: lang) %>' <% if @lang_to == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
             <% end %>
           </select>

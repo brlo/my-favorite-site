@@ -2,7 +2,7 @@
 <%= turbo_frame_tag dom_id(project) do %>
   <h5 class="card-title mb-0">
     <% if project.source_langs.any? %>
-        <% project.source_langs.each do |lang| %><%= flag_by_lang(lang) %><% end %>
+        <% project.source_langs.each do |lang| %><%= flag_by_lang(lang) %><% end %> → 🌐
     <% end %>
     <%= link_to project.title, project, data: { turbo_frame: "_top" } %>
   </h5>

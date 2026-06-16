@@ -1,4 +1,6 @@
 class VersesController < ApplicationController
+  skip_before_action :require_login
+
   # https://github.com/rails/actionpack-page_caching
   # caches_page :index, :chapter_ajax
 
