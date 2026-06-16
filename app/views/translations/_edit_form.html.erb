@@ -1,0 +1,51 @@
+<%= turbo_frame_tag "translation-#{translation.id}" do %>
+  <div class="translation-form-container" data-translation-form-target="formContainer">
+    <div class="translation-form-card">
+      <div class="form-header flex">
+        <h5>Редактирование перевода</h5>
+        <%= link_to 'Отмена', translation_project_segment_translation_path(
+              translation_project_id: translation.translation_project_id,
+              segment_id: translation.segment_id,
+              id: translation.id
+            ),
+            class: 'px-2 ml-auto',
+            method: :get,
+            data: {
+              turbo_frame: "translation-#{ translation.id }",
+              turbo_prefetch: false
+            }  %>
+      </div>
+
+      <%= render 'layouts/alerts', ar_object: translation %>
+
+      <%= form_with model: translation,
+                    url: translation_project_segment_translation_path(
+                      translation_project_id: translation.translation_project_id,
+                      segment_id: translation.segment_id,
+                      id: translation.id
+                    ),
+                    method: :patch,
+                    data: {
+                      turbo_frame: "translation-#{ translation.id }",
+                      turbo_prefetch: false
+                    },
+                    class: "inline-form" do |f| %>
+
+        <%= f.text_area :text,
+                        placeholder: "Напишите ваш вариант перевода...",
+                        rows: 3,
+                        class: "translation-input",
+                        autofocus: true %>
+
+        <%= f.text_area :sub_text,
+                        placeholder: "Комментарий-сноска (если хотите приложить комментарий к переводу)",
+                        rows: 1,
+                        class: "translation-input" %>
+
+        <div class="form-actions">
+          <%= f.submit "Сохранить перевод", class: "btn-submit" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

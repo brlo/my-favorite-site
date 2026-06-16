@@ -10,6 +10,9 @@ json.item do
   json.is_deleted        pg.is_deleted
   json.is_search         pg.is_search
   json.is_show_parent    pg.is_show_parent
+  json.is_past           pg.is_past
+  json.period_start      pg.period_start
+  json.period_end        pg.period_end
   json.page_type         pg.page_type.to_i
   json.edit_mode         pg.edit_mode.to_i
   json.title             pg.title

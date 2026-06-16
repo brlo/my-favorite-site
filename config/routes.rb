@@ -1,6 +1,6 @@
-Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+# Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
+Rails.application.routes.draw do
   # редиректим /jp (без слеша и дополнительных частей)
   get '/:loc_ui', to: redirect(status: 301) { |params, req|
     lang = ::COUNTRY_TO_LANG[params[:loc_ui]] || 'en' # fallback на английский
@@ -25,6 +25,49 @@ Rails.application.routes.draw do
 
   # default locale добавлено ради сложных ссылок link_to для админки
   scope '/:locale', :locale => /#{::R_LOCALES}/, defaults: {locale: :ru} do
+    # Сессии (логин/логаут)
+    get 'login', to: 'sessions#new', as: :login
+    post 'login', to: 'sessions#create'
+    delete 'logout', to: 'sessions#destroy', as: :logout
+
+    # Регистрация
+    get 'signup', to: 'users#new', as: :signup
+    post 'signup', to: 'users#create'
+
+    # Профиль и остальное
+    # resource :profile, only: [:show, :edit, :update]
+    get '/profile', to: 'users#show', as: :profile
+    resources :users do
+      member do
+        get :activate
+      end
+      collection do
+        get :edit_main_info
+        get :edit_password
+        get :unlock_account
+        patch :update_main_info
+        patch :update_password
+      end
+    end
+    resources :password_resets, only: %w[new create edit update]
+
+    resources :translation_projects, path: '/translate' do
+      member do
+        post :import_content
+        get :result
+      end
+      resources :segments, only: [] do
+        resources :translations do
+          member do
+            post :upvote
+            post :downvote
+            patch :approve
+            get :voters
+          end
+        end
+      end
+    end
+
     scope '/:content_lang', :content_lang => /#{::R_BIB_LANGS}/ do
       get '/:book_code/:chapter', to: 'verses#index', :constraints =>
         lambda { |req|
@@ -115,19 +158,19 @@ Rails.application.routes.draw do
         end
       end
 
-      scope 'merge_requests' do
-        get    'list', to: 'merge_requests#list'
-        post   '/',    to: 'merge_requests#create'
+      # scope 'merge_requests' do
+      #   get    'list', to: 'merge_requests#list'
+      #   post   '/',    to: 'merge_requests#create'
 
-        scope ':id' do
-          get    '/',        to: 'merge_requests#show'
-          put    '/',        to: 'merge_requests#update'
-          # delete '/',        to: 'merge_requests#destroy'
-          post   '/merge',   to: 'merge_requests#merge'
-          post   '/reject',  to: 'merge_requests#reject'
-          post   '/rebase',  to: 'merge_requests#rebase'
-        end
-      end
+      #   scope ':id' do
+      #     get    '/',        to: 'merge_requests#show'
+      #     put    '/',        to: 'merge_requests#update'
+      #     # delete '/',        to: 'merge_requests#destroy'
+      #     post   '/merge',   to: 'merge_requests#merge'
+      #     post   '/reject',  to: 'merge_requests#reject'
+      #     post   '/rebase',  to: 'merge_requests#rebase'
+      #   end
+      # end
 
       scope 'dict_words' do
         get    'list', to: 'dict_words#list'
@@ -138,36 +181,6 @@ Rails.application.routes.draw do
           get    '/',        to: 'dict_words#show'
           put    '/',        to: 'dict_words#update'
           delete '/',        to: 'dict_words#destroy'
-        end
-      end
-
-      # ПРОЕКТЫ ПЕРЕВОДОВ
-      scope 'translation_projects' do
-        get  '/', to: 'translation_projects#index'
-
-        scope ':translation_project_id' do
-          get    '/',         to: 'translation_projects#show'
-          put    '/',         to: 'translation_projects#update'
-          delete '/',         to: 'translation_projects#destroy'
-          # распарсить (разбить на единицы) и присоединить страницу в проекту перевода
-          post   '/add_page', to: 'translation_projects#add_page'
-
-          # исходный материал для переводов (разбитый на единицы авторский текст)
-          scope 'segments' do
-            get '/', to: 'segments#index'
-
-            scope ':segment_id' do
-              # переводы пользователей для сегментов
-              scope 'translations' do
-                post '/', to: 'translations#create'
-
-                scope ':translation_id' do
-                  delete '/',     to: 'translations#destroy'
-                  post   '/vote', to: 'translations#vote'
-                end
-              end
-            end
-          end
         end
       end
 

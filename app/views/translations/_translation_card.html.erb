@@ -1,0 +1,152 @@
+<% if !defined?(index) %>
+  <% index = 0 %>
+<% end %>
+
+<% if !defined?(is_user_already_make_translation) %>
+  <% is_user_already_make_translation = translation.segment.is_user_already_make_translation(user: current_user, lang: translation.lang)  %>
+<% end %>
+
+<%= turbo_frame_tag "translation-#{ translation.id }" do %>
+  <div class='translation <%= 'top' if index == 0 %>'>
+    <div class='meta'>
+      <div class='author'>
+        <%= translation.user&.username || translation.user&.name || 'Аноним' %>
+      </div>
+      <% if translation.editable_by?(current_user) %>
+        <div class='actions px-6 ml-auto'>
+          <%= link_to '✕', translation_project_segment_translation_path(
+                translation_project_id: translation.translation_project_id,
+                segment_id: translation.segment_id,
+                id: translation.id
+              ),
+              class: 'px-2',
+              method: :delete,
+              data: {
+                turbo_confirm: 'Точно хотите удалить этот перевод?',
+                turbo_method: :delete,
+                turbo_prefetch: false
+              }  %>
+          <%= link_to 'Ред.', edit_translation_project_segment_translation_path(
+                translation_project_id: translation.translation_project_id,
+                segment_id: translation.segment_id,
+                id: translation.id
+              ),
+              class: 'px-2',
+              method: :get,
+              data: {
+                turbo_frame: "translation-#{ translation.id }",
+                turbo_prefetch: false
+              }  %>
+        </div>
+      <% end %>
+      <div class='time-ago' title="<%= translation.created_at.strftime('%Y-%m-%d') %>">
+        <%= time_ago_in_words(translation.created_at) %>
+      </div>
+    </div>
+
+    <div class='text'>
+      <%= translation.text %>
+    </div>
+    <% if translation.sub_text.present? %>
+      <div class='sub-text'>*<%= translation.sub_text %></div>
+    <% end %>
+
+    <div data-controller='voters'>
+      <div class='votes'>
+        <% upvotes = translation.upvotes %>
+        <% if logged_in? && translation.user_id != current_user&.id %>
+          <%= button_to upvote_translation_project_segment_translation_path(
+                translation_project_id: translation.translation_project_id,
+                segment_id: translation.segment_id,
+                id: translation.id
+              ),
+              method: :post,
+              class: "vote-btn up #{'voted' if translation.user_vote(current_user) == 1} #{'zero' if upvotes.zero?}",
+              title: 'Понравилось',
+              data: {
+                turbo_frame: "translation-#{ translation.id }",
+                turbo_prefetch: false
+              } do %>
+            <%= ::VOTE_PLUS %>
+
+            <span class="vote-count" data-chapter-translator-target="upvoteCount">
+              <%= upvotes if upvotes > 0 %>
+            </span>
+          <% end %>
+
+        <% else %>
+
+          <span class="vote-btn up <%= 'zero' if upvotes.zero? %>" title='Понравилось'>
+            <%= ::VOTE_PLUS %>
+            <span class="vote-count" data-chapter-translator-target="upvoteCount">
+              <%= upvotes if upvotes > 0 %>
+            </span>
+          </span>
+
+        <% end %>
+
+        <% downvotes = translation.downvotes %>
+        <% if logged_in? && translation.user_id != current_user&.id && is_user_already_make_translation %>
+          <%= button_to downvote_translation_project_segment_translation_path(
+                translation_project_id: translation.translation_project_id,
+                segment_id: translation.segment_id,
+                id: translation.id
+              ),
+              method: :post,
+              class: "vote-btn down #{'voted' if translation.user_vote(current_user) == -1} #{'zero' if downvotes.zero?}",
+              title: '"Требуются доработки". Это голос отдать могут только те, кто уже предложил свой вариант перевода',
+              data: {
+                turbo_frame: "translation_#{ translation.id }",
+                turbo_prefetch: false
+              } do %>
+            <%= ::VOTE_MINUS %>
+
+            <span class="vote-count" data-chapter-translator-target="downvoteCount">
+              <%= downvotes if downvotes > 0 %>
+            </span>
+          <% end %>
+
+        <% else %>
+
+          <span class="vote-btn down <%= 'zero' if downvotes.zero? %>" title='"Требуются доработки". Это голос отдать могут только те, кто уже предложил свой вариант перевода'>
+            <%= ::VOTE_MINUS %>
+            <span class="vote-count" data-chapter-translator-target="downvoteCount">
+              <%= downvotes if downvotes > 0 %>
+            </span>
+          </span>
+        <% end %>
+
+        <% if translation.is_approved %>
+          <span class='vote-btn approved' title='Одобрен как основной перевод'>✓</span>
+        <% end %>
+
+        <% if current_user&.is_admin? %>
+          <%= button_to translation.is_approved ? 'Открепить' : 'Закрепить',
+              approve_translation_project_segment_translation_path(
+                translation_project_id: translation.translation_project_id,
+                segment_id: translation.segment_id,
+                id: translation.id
+              ),
+              class: 'vote-btn',
+              method: :patch,
+              title: 'Одобрить как основной перевод',
+              data: { turbo_confirm: 'Сделать этот перевод основным?' } %>
+        <% end %>
+
+        <%= link_to "Кто голосовал",
+              voters_translation_project_segment_translation_path(
+                translation_project_id: translation.translation_project_id,
+                segment_id: translation.segment_id,
+                id: translation.id,
+              ),
+              data: {
+                turbo_frame: "voters_list_#{translation.id}",
+                action: "click->voters#toggle"
+              },
+              class: "voters-link" %>
+      </div>
+
+      <%= turbo_frame_tag "voters_list_#{translation.id}", class: "voters-list-container" %>
+    </div>
+  </div>
+<% end %>

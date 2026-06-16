@@ -1,0 +1,56 @@
+<%= content_for :title, 'Редактировать проект' %>
+
+<div class="container py-4">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <div class="card">
+        <div class="card-header">
+          <h1>Редактировать проект</h1>
+
+          <%= link_to 'Удалить', translation_project_path(@project),
+            method: :delete,
+            data: {
+              turbo_method: :delete,
+              turbo_confirm: "Уверен, что хочешь удалить проект перевода? '#{@project.title}'"
+          } %>
+        </div>
+        <div class="card-body">
+          <%= render 'form', project: @project %>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="card border-primary">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">Импортировать новую часть текста</h5>
+  </div>
+  <div class="card-body">
+    <%= form_with url: import_content_translation_project_path(@project), method: :post, local: true do |f| %>
+
+      <%= render 'layouts/alerts', ar_object: @project %>
+
+      <div class="row g-3 mb-3">
+        <div class="col-md-3">
+          <%= f.label :lang, 'Язык оригинала' %>
+          <%= f.select :lang,
+              [['Русский', 'ru'], ['Латынь', 'la'], ['Греческий', 'grc'], ['Английский', 'en']],
+              {}, class: 'form-select' %>
+        </div>
+      </div>
+
+      <%= render 'shared/tiptap_editor', form: f, field_name: :html_content, initial_value: "" %>
+
+      <div class="d-flex gap-2">
+        <%= f.submit 'Разбить и добавить',
+            class: 'btn btn-primary',
+            data: { disable_with: 'Обработка...' } %>
+        <%= link_to 'Отмена', @project, class: 'btn btn-outline-secondary' %>
+      </div>
+    <% end %>
+  </div>
+</div>

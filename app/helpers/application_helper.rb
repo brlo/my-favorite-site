@@ -272,4 +272,34 @@ module ApplicationHelper
   #     s += "</ruby>"
   #   end.join
   # end
+
+  def time_ago_in_words(created_at)
+    return "" unless created_at
+    created_at = Time.parse(created_at) if created_at.is_a?(String)
+
+    seconds = Time.current - created_at
+
+    case seconds
+    when 0...60
+      ::I18n.t('time_ago.just_now')
+    when 60...3600
+      minutes = (seconds / 60).round
+      "#{minutes} #{::I18n.t('time_ago.minute')}"
+    when 3600...86400
+      hours = (seconds / 3600).round
+      "#{hours} #{::I18n.t('time_ago.hour')}"
+    when 86400...604800
+      days = (seconds / 86400).round
+      "#{days} #{::I18n.t('time_ago.day')}"
+    # when 604800...2592000
+    #   weeks = (seconds / 604800).round
+    #   "#{weeks} #{::I18n.t('time_ago.week')}"
+    when 2592000...31536000
+      months = (seconds / 2592000).round
+      "#{months} #{::I18n.t('time_ago.month')}"
+    else
+      years = (seconds / 31536000).round
+      "#{years} #{::I18n.t('time_ago.year')}"
+    end
+  end
 end

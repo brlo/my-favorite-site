@@ -1,4 +1,161 @@
 ru:
+  time_ago:
+    just_now: 'только что'
+    minute: 'мин'
+    hour: 'ч'
+    day: 'д'
+    week: 'нед'
+    month: 'мес'
+    year: 'г'
+
+  bc:
+    profile: 'Профиль'
+    change_password: 'Смена пароля'
+    edit_password: 'Редактирование профиля'
+
+  helpers:
+    label:
+      session:
+        email: "Email-адрес"
+        password_reset: "Email-адрес аккаунта, от которого забыли пароль"
+        password_reset_alert: "Если указанный email-адрес есть в нашей системе, вы получите письмо с инструкциями"
+        password_reset_ok: "Пароль успешно обновлён"
+    submit:
+      session:
+        create: "Войти"
+        password_reset: "Сбросить пароль"
+      user:
+        create: "Зарегистрироваться"
+        update: "Обновить"
+
+  activemodel:
+    attributes:
+      session:
+        email: "Email-адрес"
+        password: "Пароль"
+        remember_me: "Запомнить меня"
+    errors:
+      models:
+        session:
+          invalid_credentials: "Неверный email или пароль"
+          account_activation_pending: "Необходимо сначала активировать аккаунт, перейдя по ссылке из письма на почте."
+
+  activerecord:
+    models:
+      translation: "Перевод"
+    attributes:
+      translation:
+        user_id: "Пользователь"
+        segment_id: "Фрагмент"
+        lang: "Язык"
+        text: "Текст перевода"
+      user:
+        username: "Username"
+        name: "Имя пользователя"
+        email: "Email-адрес"
+        password: "Пароль"
+        password_confirmation: "Подтверждение пароля"
+        pages_owner: "Владелец страниц"
+        privs: "Привилегии"
+        failed_logins_count: "Количество неудачных входов"
+        lock_expires_at: "Блокировка истекает"
+    errors:
+      messages:
+        record_invalid: 'содержит ошибки'
+        blank: 'не может быть пустым'
+        invalid: 'имеет недопустимый формат'
+        too_short: 'слишком короткий. Минимум 6 символов.'
+        taken: 'уже занят'
+        confirmation: 'не совпадает'
+        email_cant_contain_plus: "не может содержать символ '+'"
+        email_cant_be_restored_too_often: 'можно изменять не более двух раз в сутки'
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: "уже предложил перевод для этого фрагмента"
+  users:
+    links:
+      login: 'Вход'
+      logout: 'Выйти из профиля'
+      profile_edit: 'Редактировать данные профиля'
+      password_change: 'Изменить пароль'
+    titles:
+      signup: 'Регистрация'
+      login: 'Вход на сайт'
+      password_reset: 'Восстановление пароля'
+      new_password: 'Установка нового пароля'
+      profile: 'Профиль пользователя'
+      password_change: 'Смена пароля'
+      profile_edit: 'Редактирование профиля'
+    buttons:
+      signup: 'Зарегистрироваться'
+      login: 'Войти'
+      password_reset: 'Сбросить пароль'
+      new_password: 'Установить пароль'
+      save_changes: 'Сохранить изменения'
+      save_new_password: 'Сохранить новый пароль'
+    notices:
+      error: 'Ошибка'
+      registration_successful: 'Вы успешно зарегистрировались'
+      profile_is_updated: 'Профиль успешно обновлён'
+      password_is_changed: 'Пароль успешно изменён'
+      password_confirm_is_wrong: 'Пароль и подтверждение пароля не совпадает'
+      current_password_is_wrong: 'Текущий пароль указан ошибочно'
+      user_is_activated: 'Почта подтверждена. Аккаунт активирован.'
+      update_your_password_if_you_forgotten_it: 'Пожалуйста, обновите ваш пароль, если вы забыли его'
+      already_logged_in: 'Вы уже авторизованы'
+      logged_out: 'Вы разлогинились'
+      logged_in: 'Вы успешно авторизовались'
+      login_failed: 'Вход на сайт не удался'
+      loggin_failed_account_is_locked: 'Вход на сайт не удался. Аккаунт заблокирован. Активируйте, перейдя по ссылке из письма на почте'
+    alerts:
+      are_you_shure: 'Вы уверены?'
+    hints:
+      email_confirmed: '✅ Email подтвержден'
+      email_not_confirmed: '⚠️ Email не подтвержден. Перейдите по ссылке из письма.'
+    fields:
+      current_password: 'Текущий пароль'
+      new_password: 'Новый пароль'
+      new_password_confirmation: 'Подтверждение нового пароля'
+
+    is_already_registred: 'Уже регистрировались?'
+    is_not_yet_registred: 'Нет аккаунта?'
+    is_forgot_password: 'Забыли пароль?'
+    letters:
+      welcome:
+        subject: 'Вы зарегистрировались на сайте bibleox.com'
+        body: |
+          <p>Здравствуйте, %{name}.</p><br>
+          <p>От вашего имени кто-то совершил регистрацию на сайте bibleox.com. Для входа на сайт перейдите по ссылке: %{url}.</p>
+          <p>Если это были не вы, просто проигнорируйте это письмо.</p>
+          <p>Хорошего дня!</p>
+      activation_needed:
+        subject: 'Подтверждение почты'
+        body: |
+          <p>Здравствуйте, %{name}.</p><br>
+          <p>Этот адрес был использован при регистрации на сайте bibleox.com. Чтобы активировать аккаунт, перейдите по ссылке: %{url}.</p><br>
+          <p>Если это были не вы, просто проигнорируйте это письмо.</p>
+          <p>Хорошего дня!</p>
+      password_reset:
+        subject: 'Сброс пароля'
+        body: |
+            <p>Здравствуйте, %{name}.</p><br>
+            <p>Кто-то запросил сброс пароля для этого email-адреса на сайте bibleox.com. Чтобы установить новый пароль, перейдите по ссылке: %{url}.</p>
+            <p>Эта ссылка перестанет работать через 24 часа.</p>
+            <p>Если это были не вы, просто проигнорируйте это письмо.</p><br>
+            <p>Хорошего дня!</p>
+        # <p>Hello, %{ name }.</p><br>
+        # <p>You have requested to reset your password. To choose a new password, just follow this link: %{url}.</p>
+        # <p>This link will expire in 24 hours.</p><br>
+        # <p>Have a great day!</p>
+      account_unlock:
+        subject: 'Разблокировка аккаунта'
+        body: |
+          <p>Здравствуйте, %{name}.</p><br>
+          <p>Кто-то пытался войти в ваш аккаунт на сайте bibleox.com, вводя неправильный пароль слишком много раз. Чтобы защитить ваш аккаунт, мы временно заблокировали его. Для разблокировки перейдите по ссылке: %{url}.</p><br>
+          <p>Хорошего дня!</p>
+
   title: Библeокс
   bible: Библия
   about_site: 'О сайте'
@@ -14,6 +171,7 @@ ru:
   bracket_start: '('
   bracket_end: ')'
   space_between_quote_and_bracket: ' '
+  colon: ':'
 
   lang_select_tip: "Этот текст доступен на других языках:"
 
@@ -256,6 +414,7 @@ ru:
   menu:
     bible: Писание
     links: Предание
+    translates: Переводы
     articles: Статьи
     search: Поиск
     settings: Настройки
@@ -537,6 +696,7 @@ ru:
       otkr: Откровение Иоанна Богослова
 
   errors:
+    alert: 'Возникли ошибки'
     no_translation_for_this_book: 'В этом переводе книга отсутствует'
     messages:
       taken: "has already been taken"

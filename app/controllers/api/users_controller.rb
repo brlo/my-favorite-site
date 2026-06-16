@@ -2,6 +2,9 @@ module Api
   class UsersController < ApiApplicationController
     # skip_before_action :reject_not_admins, only: [:psw_login, :telegram_login]
 
+    rate_limit to: 2, within: 10.minutes, by: -> { request.ip }, only: [:psw_login]
+    rate_limit to: 2, within: 10.minutes, by: -> { params[username] }, only: [:psw_login]
+
     def me
       user = ::Current.user
       if ::Current.user
@@ -26,8 +29,7 @@ module Api
         ::User.by_site.where(username: @attrs[:username]).first
       end
 
-      if @user && @user.authenticate(@attrs[:password]) && @user.allow_ip?(request.ip)
-        session[:api_token] = @user.get_api_token() # запоминаем в сессии, чтобы авторизация работала и на rails-сайте
+      if @user && @user.valid_password?(@attrs[:password]) && @user.allow_ip?(request.ip)
         render json: {api_token: @user.get_api_token()}.merge(success_response)
       else
         render json: {errors: 'access denied'}.merge(fail_response), status: 422

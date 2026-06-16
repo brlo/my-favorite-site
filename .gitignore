@@ -20,6 +20,7 @@ res/docker-data/store/*/
 res/docker-data/config/*/*.conf
 
 # Ignore bundler config.
+/.idea
 /.bundle
 /TODO.txt
 /.irb_history

@@ -1,0 +1,19 @@
+<%= form_with model: project, local: true do |f| %>
+  <%= render 'layouts/alerts', ar_object: project %>
+
+  <div>
+    <%= f.label :title, 'Название проекта' %>
+    <%= f.text_field :title, required: true, maxlength: 200 %>
+  </div>
+
+  <div>
+    <%= f.label :description, 'Описание' %>
+    <%= f.text_area :description, rows: 4, placeholder: 'Краткое описание проекта, источники, особенности перевода...' %>
+  </div>
+
+  <div>
+    <%= f.submit project.new_record? ? 'Создать проект' : 'Сохранить изменения',
+        class: 'btn btn-primary',
+        data: { disable_with: 'Сохранение...' } %>
+  </div>
+<% end %>

@@ -14,6 +14,7 @@ en:
   bracket_start: '('
   bracket_end: ')'
   space_between_quote_and_bracket: ' '
+  colon: ':'
 
   lang_select_tip: "This text is available in other languages:"
 
@@ -201,6 +202,37 @@ en:
     VZ: Old Testament
     NZ: New Testament
     articles: Articles
+    bib_langs:
+      vz:
+        ru: 'Synodal Translation (RST)'
+        en-nrsv: 'New Revised Standard Version (NRSV)'
+        eng-nkjv: 'New King James Version (NKJV, 1982)'
+        csl-ru: 'Church Slavonic Translation in Russian letters (CSL-RU, 1751)'
+        csl-pnm: 'Church Slavonic Translation (CSL, 1751)'
+        heb-osm: 'Hebrew Translation (DHNT, 1885)'
+        gr-lxx-byz: 'Greek Translation (LXX, Septuagint, 3rd-2nd cent. BC)'
+        gr-ru: 'Russian Interlinear Translation (bibleox, 2025)'
+        gr-en: 'English Interlinear Translation (bibleox, 2025)'
+        gr-jp: 'Japanese Interlinear Translation (bibleox, 2025)'
+        jp-ni: 'Japanese Translation (JP-NI)'
+        cn-ccbs: 'Chinese Translation (CCBS)'
+        ge-sch: 'German Translation (SCH)'
+        arab-avd: 'Arabic Translation (AVD)'
+      nz:
+        ru: 'Synodal Translation (RST)'
+        en-nrsv: 'New Revised Standard Version (NRSV)'
+        eng-nkjv: 'New King James Version (NKJV, 1982)'
+        csl-ru: 'Church Slavonic Translation in Russian letters (CSL-RU, 1751)'
+        csl-pnm: 'Church Slavonic Translation (CSL, 1751)'
+        heb-osm: 'Hebrew Translation (DHNT, 1885)'
+        gr-lxx-byz: 'Original Apostolic Text'
+        gr-ru: 'Russian Interlinear Translation (bibleox, 2025)'
+        gr-en: 'English Interlinear Translation (bibleox, 2025)'
+        gr-jp: 'Japanese Interlinear Translation (bibleox, 2025)'
+        jp-ni: 'Japanese Translation (JP-NI, 1987)'
+        cn-ccbs: 'Chinese Translation (CCBS, 2012)'
+        ge-sch: 'German Translation (SCH, 1951)'
+        arab-avd: 'Arabic Translation (AVD, 1999)'
 
   menu:
     bible: Scripture

@@ -14,6 +14,7 @@ ko:
   bracket_start: '('
   bracket_end: ')'
   space_between_quote_and_bracket: ' '
+  colon: ':'
 
   lang_select_tip: "이 텍스트는 다른 언어로도 제공됩니다:"
 

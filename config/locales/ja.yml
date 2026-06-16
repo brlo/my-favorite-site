@@ -14,6 +14,7 @@ ja:
   bracket_start: '（'
   bracket_end: '）'
   space_between_quote_and_bracket: ''
+  colon: ' : '
 
   lang_select_tip: "このテキストは他の言語でも利用可能です:"
 
@@ -163,6 +164,37 @@ ja:
     VZ: 旧約聖書
     NZ: 新約聖書
     articles: 記事
+    bib_langs:
+      vz:
+        ru: 'シノド翻訳 (RST)'
+        en-nrsv: '現代英語訳 (NRSV)'
+        eng-nkjv: 'ニューキングジェームズ版 (NKJV, 1982)'
+        csl-ru: '教会スラブ語翻訳（ロシア文字） (CSL-RU, 1751)'
+        csl-pnm: '教会スラブ語翻訳 (CSL, 1751)'
+        heb-osm: 'ヘブライ語翻訳 (DHNT, 1885)'
+        gr-lxx-byz: 'ギリシャ語訳 七十人訳聖書 (LXX, 紀元前3-2世紀)'
+        gr-ru: 'ロシア語逐語訳 (bibleox, 2025)'
+        gr-en: '英語逐語訳 (bibleox, 2025)'
+        gr-jp: '日本語逐語訳 (bibleox, 2025)'
+        jp-ni: '日本語訳 (JP-NI)'
+        cn-ccbs: '中国語訳 (CCBS)'
+        ge-sch: 'ドイツ語訳 (SCH)'
+        arab-avd: 'アラビア語訳 (AVD)'
+      nz:
+        ru: 'シノド翻訳 (RST)'
+        en-nrsv: '現代英語訳 (NRSV)'
+        eng-nkjv: 'ニューキングジェームズ版 (NKJV, 1982)'
+        csl-ru: '教会スラブ語翻訳（ロシア文字） (CSL-RU, 1751)'
+        csl-pnm: '教会スラブ語翻訳 (CSL, 1751)'
+        heb-osm: 'ヘブライ語翻訳 (DHNT, 1885)'
+        gr-lxx-byz: '原典使徒文書'
+        gr-ru: 'ロシア語逐語訳 (bibleox, 2025)'
+        gr-en: '英語逐語訳 (bibleox, 2025)'
+        gr-jp: '日本語逐語訳 (bibleox, 2025)'
+        jp-ni: '日本語訳 (JP-NI, 1987)'
+        cn-ccbs: '中国語訳 (CCBS, 2012)'
+        ge-sch: 'ドイツ語訳 (SCH, 1951)'
+        arab-avd: 'アラビア語訳 (AVD, 1999)'
 
   menu:
     bible: 聖書

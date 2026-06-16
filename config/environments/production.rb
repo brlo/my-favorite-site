@@ -62,6 +62,19 @@ Rails.application.configure do
 
   # Use a different cache store in production.
   # config.cache_store = :mem_cache_store
+  config.cache_store = :redis_cache_store, {
+    url: SETTINGS['redis']['rails_cache_url'],
+    # connect_timeout: 2.0,
+    # read_timeout: 2.0,
+    # write_timeout: 2.0,
+
+    # namespace: 'rails_cache',        # изолируем кэш Rails от твоих данных
+    compress: true,                  # сжимаем большие значения
+    compress_threshold: 1.kilobyte,
+    expires_in: 1.day,               # TTL по умолчанию
+    # pool_size: 5,
+    # pool_timeout: 2
+  }
 
   # Use a real queuing backend for Active Job (and separate queues per environment).
   # config.active_job.queue_adapter     = :resque
@@ -72,6 +85,18 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
   # config.action_mailer.raise_delivery_errors = false
+  #
+  # https://godocs.unisender.ru/smtp-api
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:   'smtp.go2.unisender.ru', # Адрес их SMTP сервера
+    port:      465,
+    user_name: ::SETTINGS.dig('email', 'username'), # Ваш логин
+    password:  ::SETTINGS.dig('email', 'key'), # Ваш пароль/API ключ
+    authentication: :plain,
+    ssl: true,
+    tls: false
+  }
 
   # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
   # the I18n.default_locale when a translation cannot be found).

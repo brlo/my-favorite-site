@@ -52,7 +52,7 @@ module Api
     end
 
     def logged_in?
-      ::Current.user.logged_in?()
+      ::Current.user&.logged_in?()
     end
 
     def set_current_user

@@ -1,0 +1,31 @@
+<div style='max-width:450px; margin: 20px auto;'>
+  <h1><%= t('users.titles.profile_edit') %></h1>
+
+  <%= form_with model: @user, url: update_main_info_users_path, method: :patch, local: true do |f| %>
+    <%= render 'layouts/alerts', ar_object: @user %>
+
+    <div class="mb-3">
+      <%= f.label :name, 'Имя' %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :email, 'Email' %>
+      <%= f.email_field :email, class: 'form-control' %>
+      <small>
+        <% if @user.activated? %>
+          <%= t('users.hints.email_confirmed') %>
+        <% else %>
+          <%= t('users.hints.email_not_confirmed') %>
+        <% end %>
+      </small>
+    </div>
+
+    <div class="mb-3">
+      <%= f.label :username, 'Username' %>
+      <%= f.text_field :username, class: 'form-control' %>
+    </div>
+
+    <%= f.submit t('users.buttons.save_changes'), class: 'btn btn-primary' %>
+  <% end %>
+</div>

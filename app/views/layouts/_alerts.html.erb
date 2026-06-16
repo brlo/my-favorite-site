@@ -1,0 +1,30 @@
+<% if ar_object.errors.any? %>
+  <div class="errors">
+    <div class='error-title'><%= t('errors.alert') %>:</div>
+    <ul>
+      <% ar_object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+
+<% if notice || alert %>
+  <div class="flash-messages">
+    <% if notice %>
+      <div class="flash notice"><%= notice %></div>
+    <% end %>
+    <% if alert %>
+      <div class="flash alert"><%= alert %></div>
+    <% end %>
+  </div>
+<% end %>
+
+<script>
+  setTimeout(() => {
+    document.querySelectorAll('.flash, .notice').forEach(flash => {
+      flash.style.opacity = '0';
+      setTimeout(() => flash.remove(), 300);
+    });
+  }, 3000);
+</script>

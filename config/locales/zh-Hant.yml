@@ -15,6 +15,7 @@ zh-Hant:
   bracket_start: '（'
   bracket_end: '）'
   space_between_quote_and_bracket: ''
+  colon: ' : '
 
   lang_select_tip: "該文本有以下語言版本:"
 
@@ -164,6 +165,41 @@ zh-Hant:
     VZ: 舊約
     NZ: 新約
     articles: 文章
+    bib_langs:
+      vz:
+        ru: '主教公會譯本 (RST)'
+        en-nrsv: '英文現代譯本 (NRSV)'
+        eng-nkjv: '英文雅各王譯本 (NKJV, 1982)'
+        csl-ru: '教會斯拉夫語俄文字母譯本 (CSL-RU, 1751)'
+        csl-pnm: '教會斯拉夫語譯本 (CSL, 1751)'
+        heb-osm: '希伯來語譯本 (DHNT, 1885)'
+        gr-lxx-byz: '希臘語譯本 (LXX, 七十士譯本, 西元前3-2世紀)'
+
+        gr-ru: '俄語逐詞譯本 (bibleox, 2025)'
+        gr-en: '英語逐詞譯本 (bibleox, 2025)'
+        gr-jp: '日語逐詞譯本 (bibleox, 2025)'
+
+        jp-ni: '日語譯本 (JP-NI)'
+        cn-ccbs: '中文譯本 (CCBS)'
+        ge-sch: '德語譯本 (SCH)'
+        arab-avd: '阿拉伯語譯本 (AVD)'
+      nz:
+        ru: '主教公會譯本 (RST)'
+        en-nrsv: '英文現代譯本 (NRSV)'
+        eng-nkjv: '英文雅各王譯本 (NKJV, 1982)'
+        csl-ru: '教會斯拉夫語俄文字母譯本 (CSL-RU, 1751)'
+        csl-pnm: '教會斯拉夫語譯本 (CSL, 1751)'
+        heb-osm: '希伯來語譯本 (DHNT, 1885)'
+        gr-lxx-byz: '原始使徒文本'
+
+        gr-ru: '俄語逐詞譯本 (bibleox, 2025)'
+        gr-en: '英語逐詞譯本 (bibleox, 2025)'
+        gr-jp: '日語逐詞譯本 (bibleox, 2025)'
+
+        jp-ni: '日語譯本 (JP-NI, 1987)'
+        cn-ccbs: '中文譯本 (CCBS, 2012)'
+        ge-sch: '德語譯本 (SCH, 1951)'
+        arab-avd: '阿拉伯語譯本 (AVD, 1999)'
 
   menu:
     bible: 聖經

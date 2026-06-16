@@ -48,7 +48,7 @@ module Api
       @parent_pages = ::Page.where(id: p_ids).pluck(:id, :title).to_h if p_ids.any?
 
       # просмотры этих страниц из редиса
-      @page_visits = ::PageVisits.visits(@pages.map{|p| p.id.to_s }) if @pages.any?
+      @page_visits = ::PageVisits.visits(@pages.map{|p| p.id }) if @pages.any?
 
       render :list, status: :ok
     end
@@ -277,7 +277,8 @@ module Api
         :menu_category, :menu_item_name,
       ).permit(
         :is_bibleox, :is_menu_icons,
-        :is_published,
+        :is_published, :is_past,
+        :period_start, :period_end,
         :page_type, :edit_mode,
         :title, :title_sub, :meta_desc,
         :path,

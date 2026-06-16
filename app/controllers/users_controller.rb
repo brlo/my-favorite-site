@@ -1,85 +1,109 @@
 class UsersController < ApplicationController
-#   # Страница входа
-#   def login
-#     @page_title = ::I18n.t('login_page.title')
-#     @current_menu_item = 'login'
-#     @no_index = true
+  before_action :set_user, only: %w[show edit_main_info edit_password update_main_info update_password]
+  before_action :set_active_menu_item
+  skip_before_action :require_login, only: %w[new create activate]
 
-#     # для всех показываем вход через Телеграм, а вот админу доступен скрытый вход
-#     # если передан любой параметр в поле site (то есть авторизация через наш сайт)
-#     @is_site_auth_enabled = params[:site] # 1 - поставь, чтобы временно включить для всех
-#   end
+  rate_limit to: 20, within: 1.day, by: -> { request.ip }, only: %w[create update_main_info update_password]
 
-#   # Вход через сайт
-#   def handle_login_site
-#     @user =
-#     if params[:username].present?
-#       ::User.by_site.where(username: params[:username]).first
-#     end
+  # Регистрация
+  def new
+    @user = User.new
 
-#     if @user && @user.authenticate(params[:password]) && @user.allow_ip?(request.ip)
-#       session[:user_id] = @user._id.to_s
-#       redirect_to chapter_path(locale: ::I18n.locale, content_lang: current_bib_lang(), book_code: 'gen', chapter: 1)
-#     else
-#       redirect_to login_path(locale: ::I18n.locale)
-#     end
-#   end
+    @page_title = t('users.titles.signup')
+    # @meta_description = ::I18n.t("books.full.#{@book_code}")
+    # @canonical_url = build_canonical_url("/#{@book_code}/#{@chapter}/")
+  end
 
-#   # Вход через Телеграм
-#   def handle_telegram_login
-#     # хэш, с которым мы сравниваем наши рассчёты
-#     attrs = params.permit(:hash, :auth_date, :first_name, :id, :last_name, :photo_url, :username)
-#     auth_service = ::AuthTelegram.new(attrs)
+  # Профиль
+  def show
+    @breadcrumbs = [[t('bc.profile')]]
+    @user = current_user
 
-#     if auth_service.valid?
-#       user = auth_service.find_or_create_user!
-#       session[:user_id] = user._id.to_s
-#       render json: {'success': 'ok', url: chapter_path(locale: ::I18n.locale, book_code: 'gen', chapter: 1)}
-#     else
-#       render json: {'success': 'fail', params: params}
-#       # redirect_to login_path(locale: ::I18n.locale)
-#     end
-#   end
+    @page_title = t('users.titles.signup')
+  end
 
-#   # Выход
-#   def logout
-#     session[:user_id] = nil
-#     render json: {'success': 'ok'}
-#     # redirect_to chapter_path(locale: ::I18n.locale, book_code: 'gen', chapter: 1)
-#   end
+  # Редактирование профиля
+  def edit_main_info
+    @breadcrumbs = [[t('bc.profile'), profile_path], [t('bc.edit_password')]]
+    @user = current_user
+  end
 
-#   # Страница профиля
-#   def profile
-#     @page_title = ::I18n.t('profile_page.title')
-#     @current_menu_item = 'profile'
-#     @no_index = true
+  # Редактирование пароля
+  def edit_password
+    @breadcrumbs = [[t('bc.profile'), profile_path], [t('bc.change_password')]]
+    @user = current_user
+  end
 
-#     if logged_in?()
-#       @user = ::Current.user
-#     else
-#       redirect_to login_path(locale: ::I18n.locale)
-#     end
-#   end
+  def create
+    @user = User.new(user_params)
 
-#   # Обновление профиля
-#   def profile_update
-#     @user = ::Current.user.instance
-#     attrs = params.require(:user).permit(:name, :new_password, :new_password_confirmation, allow_ips: [])
+    if @user.save
+      auto_login(@user)
+      redirect_to root_path, notice: t('users.notices.registration_successful')
+    else
+      render :new, status: :unprocessable_entity
+    end
+  end
 
-#     if attrs[:new_password].present?
-#       attrs[:password] = attrs.delete(:new_password)
-#       attrs[:password_confirmation] = attrs.delete(:new_password_confirmation)
-#     else
-#       attrs.delete(:new_password)
-#       attrs.delete(:new_password_confirmation)
-#     end
+  def update_main_info
+    attrs = params.expect(user: %w[email name username])
+    if @user.update(attrs)
+      redirect_to edit_main_info_users_path, notice: t('users.notices.profile_is_updated')
+    else
+      @breadcrumbs = [[t('bc.profile'), profile_path], [t('bc.edit_password')]]
+      render :edit_main_info, status: :unprocessable_entity
+    end
+  end
 
-#     if attrs[:allow_ips]
-#       attrs[:allow_ips] = attrs[:allow_ips].select { |ip| ip.present? }
-#     end
+  def update_password
+    if @user.valid_password?(params[:current_password])
+      if params[:new_password].present? && params[:new_password] == params[:new_password_confirmation]
+        @user.password_confirmation = params[:new_password_confirmation]
+        if @user.change_password(params[:new_password])
+          redirect_to profile_path, notice: t('users.notices.password_is_changed')
+        else
+          redirect_to edit_password_users_path, alert: "#{t('users.notices.error')}: #{@user.errors.full_messages.join(', ')}"
+        end
+      else
+        redirect_to edit_password_users_path, alert: t('users.notices.password_confirm_is_wrong')
+      end
+    else
+      redirect_to edit_password_users_path, alert: t('users.notices.current_password_is_wrong')
+    end
+  end
 
-#     @user.update(attrs)
+  def activate
+    if @user = User.load_from_activation_token(params[:id])
+      @user.activate!
+      redirect_to login_path, notice: t('users.notices.user_is_activated'), status: :see_other
+    else
+      not_authenticated
+    end
+  end
 
-#     redirect_to profile_path(locale: ::I18n.locale)
-#   end
+  def unlock_account
+    # находим аккаунт сначала по токену, а потом убеждаемся,
+    # что свой аккаунт активирует тот, кто сейчас авторизован
+    if @user = User.load_from_unlock_token(params[:token]) && @user.id == current_user.id
+      @user.login_unlock!
+      redirect_to login_path, notice: t('users.notices.update_your_password_if_you_forgotten_it')
+    else
+      not_authenticated
+    end
+  end
+
+  private
+
+  def user_params
+    # params.require(:user).permit(:username, :password, :password_confirmation, :name)
+    params.expect(user: %w[email name password password_confirmation])
+  end
+
+  def set_user
+    @user = current_user
+  end
+
+  def set_active_menu_item
+    @current_menu_item = 'users'
+  end
 end

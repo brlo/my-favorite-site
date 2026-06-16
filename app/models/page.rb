@@ -1,4 +1,6 @@
 require 'nokogiri'
+require_relative '../tools/string/rubyfy'
+require_relative '../tools/string/date_to_int'
 
 class Page < ApplicationRecord
   self.table_name = 'pages'
@@ -6,6 +8,9 @@ class Page < ApplicationRecord
   mount_uploader :cover, CoverUploader
 
   attr_reader :is_body_rendered_changed
+  # period_start
+  # period_end
+  # is_past
 
   ALLOW_TAGS = %w(
     ul ol li h1 h2 h3 h4 blockquote strong b i em strike sup s u hr p a mark
@@ -37,6 +42,7 @@ class Page < ApplicationRecord
   }, class_name: 'Page', optional: true, foreign_key: :parent_id
   has_many :children, class_name: 'Page', foreign_key: :parent_id, inverse_of: :parent
   has_many :page_paragraphs, dependent: :destroy
+  has_many :bible_references, dependent: :destroy
   # has_many :merge_requests, foreign_key: :p_id, dependent: :destroy
 
   # has_many :merge_requests, foreign_key: 'p_id', primary_key: 'id', dependent: :destroy
@@ -69,6 +75,7 @@ class Page < ApplicationRecord
 
   # after_create :chat_notify_create
   before_update :update_menus_params
+  before_save :calc_date_int, if: -> { period_start_changed? || period_end_changed? }
   before_save :cache_before_save_state
   after_save :sync_paragraphs, if: :is_body_rendered_changed
   # after_save :notify_search_engines
@@ -187,6 +194,8 @@ class Page < ApplicationRecord
     if self.references_changed?
       self.references = self.class.safe_html(self.references).strip
       self.references_rendered = render_references_footnotes(self.references)
+      # "私[わたし]" => "<ruby><rb>私</rb><rt>わたし</rt></ruby>"
+      self.references_rendered = ::Tools::String::Rubyfy.call(self.references_rendered)
     end
 
     # Удаляем пдф-версию страницы, если изменился заголовок или текст страницы
@@ -218,79 +227,8 @@ class Page < ApplicationRecord
       # добавляем картинкам параметр отложенной загрузки: loading='lazy'
       self.body_rendered = add_lazy_to_img_tags(self.body_rendered)
 
-      # Обработка страниц, где запрошена разбивка на стихи как в Библии.
-      if self.is_page_verses?
-
-        # избавяемся от лишних тэгов и пустых строк
-        _text = self.body_rendered.to_s.gsub('<p></p>', ' ')
-        _text = sanitizer.sanitize(
-          _text,
-          tags: %w(h2 a sup),
-          attributes: %w(id href class)
-        )
-
-        if _text.present?
-
-          verse_marker = '=%='
-
-          # если есть =%=, значит стихи в отдельном поле уже построены и нам опять прислали новый сплошной текст
-          # в котором уже есть деление с помощью =%=, и теперь надо тольк по этому маркеру заново собрать verses
-          if _text.include?(verse_marker)
-            # ------------------ ЕСТЬ BODY с маркером строк, делаем VERSES -------------------------
-
-            # главы
-            # [ [ЗАГОЛОВОК, ТЕКСТ], ...]
-            chapters = []
-
-            doc = ::Nokogiri.HTML(_text)
-            current_title = ''
-            current_chapter_text = ''
-            doc.at_css('body').children.each do |el|
-              if el.name == 'h2'
-                # встретился заголовок главы
-                # значит старая глава закончилась
-                if current_chapter_text.present?
-                  chapters << [
-                    current_title,
-                    current_chapter_text.gsub('\n', '')
-                  ]
-                end
-
-                # начинаем новый набор главы
-                current_title = el.inner_html
-                current_chapter_text = ''
-              else
-                current_chapter_text += el.to_s
-              end
-            end
-            # Забираем остатки
-            if current_chapter_text.present?
-              chapters << [
-                current_title,
-                current_chapter_text.gsub('\n', '')
-              ]
-            end
-
-            # строим результат, по пути делим тексты глав на строки по маркерам_chapter_title, _chapter_text
-            self.verses =
-            chapters.map do |(_chapter_title, _chapter_text)|
-              { title: _chapter_title, lines: _chapter_text.split(verse_marker)}
-            end
-          else
-            # --------------------- НЕТ BODY с маркером строк, делаем VERSES из простого body, и из verses -- BODY с маркерами строк ---------
-            # а если есть боди, но нет =%=, то действуем по-другому, как в первый раз (образуем стихи).
-            self.verses = split_to_verses(_text)
-
-            self.body =
-            self.verses.map do |data|
-              title = data[:title]
-              t = title.present? ? "<h2>#{ title }</h2>" : ''
-
-              t + data[:lines].join("<p>#{verse_marker}</p>")
-            end.join("<p>#{verse_marker}</p>")
-          end
-        end
-      end
+      # "私[わたし]" => "<ruby><rb>私</rb><rt>わたし</rt></ruby>"
+      self.body_rendered = ::Tools::String::Rubyfy.call(self.body_rendered)
     end
   end
 
@@ -598,6 +536,10 @@ class Page < ApplicationRecord
     end
   end
 
+  def is_body_empty?
+    body.to_s.length < 40
+  end
+
   private
 
   # уведомить чат:
@@ -613,7 +555,7 @@ class Page < ApplicationRecord
   def update_menus_params(is_force: false)
     # Если тело статьи меньше 100 символов, то считаем его пустым (какая-то заглушка написана)
     is_body_was_empty = self.body_was.to_s.length < 40
-    is_body_empty = self.body.to_s.length < 40
+    is_body_empty = self.is_body_empty?
 
     # если текст остался коротким, или наоборот остался длинным, то ничего не делаем,
     # а вот если состояние изменилось, то надо в менюшка обновить состояние страницы
@@ -665,5 +607,10 @@ class Page < ApplicationRecord
     chunks.each_with_index do |content, idx|
       page_paragraphs.create!(position: idx, content: content, lang: lang)
     end
+  end
+
+  def calc_date_int
+    self.date_start_int = ::Tools::String::DateToInt.call(period_start) if period_start.present?
+    self.date_end_int = ::Tools::String::DateToInt.call(period_end) if period_end.present?
   end
 end

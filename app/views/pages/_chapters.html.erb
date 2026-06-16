@@ -1,60 +1,41 @@
-<div id='chapter-header' data-controller='menu-filter'>
-
-<% if @breadcrumbs.present? %>
-  <% content_for(:breadcrumbs) do %>
-  <div class='flex-wrap breadcrumbs-wrap'>
-    <div class='content'>
-      <nav class='breadcrumbs'>
-      <% @breadcrumbs.each.with_index do |(title, path, page_lang), i| %>
-        <% if path.present? %>
-          <a href="<%= my_page_link_to("/#{path}", page_lang: page_lang) %>"><%= title %></a>
-        <% else %>
-          <%= title %>
-        <% end %>
-        <%= (i+1) == @breadcrumbs.size ? '' : ' » ' %>
-      <% end %>
-      </nav>
-    </div>
-  </div>
-  <% end %>
-<% end %>
+<div id="chapter-header" data-controller="menu-filter">
 
 <% if @page.cover? %>
   <% content_for(:img_header) do %>
-  <div class='flex-wrap img-header-wrap'>
-    <div class='blured'>
-      <img src="<%= @page.cover.large.url %>" draggable='false' alt="<%= @page.title %>"/>
+  <div class="flex-wrap img-header-wrap">
+    <div class="blured">
+      <img src="<%= @page.cover.large.url %>" draggable="false" alt="<%= @page.title %>">
     </div>
     <div class="content">
-      <div class='img-header'>
-        <img src="<%= @page.cover.large.url %>" draggable='false' alt="<%= @page.title %>"/>
+      <div class="img-header">
+        <img src="<%= @page.cover.large.url %>" draggable="false" alt="<%= @page.title %>">
       </div>
     </div>
   </div>
   <% end %>
 <% end %>
 
-  <% if @parent_page.present? && @page.is_show_parent  %>
-    <h2 class='parent-title'>
-      <a href='<%= my_page_link_to("/#{@parent_page.path}", page_lang: @parent_page.lang) %>'><%= @parent_page.title %></a>
+  <% if @parent_page.present? && @page.is_show_parent %>
+    <h2 class="parent-title">
+      <a href="<%= my_page_link_to("/#{@parent_page.path}", page_lang: @parent_page.lang) %>"><%= @parent_page.title %></a>
     </h2>
   <% end %>
 
   <div id="h1-title">
     <h1
       class="title"
-      id='current-address'
-      data-book-short-name='<%= @page.path %>'
-      data-lang-ui='<%= I18n.locale %>'
-      data-lang-content='<%= @content_lang %>'
-      data-book-code=''
-      data-page-path='<%= @page.path %>'
-      data-disable-chapters='<%= @is_disable_chapters ? 1 : 0 %>'
-      data-chapter='<%= @chapter_current %>'
+      id="current-address"
+      data-book-short-name="<%= @page.path %>"
+      data-lang-ui="<%= I18n.locale %>"
+      data-lang-content="<%= @content_lang %>"
+      data-book-code=""
+      data-page-path="<%= @page.path %>"
+      data-disable-chapters="<%= @is_disable_chapters ? 1 : 0 %>"
+      data-chapter="<%= @chapter_current %>"
       itemprop="headline"
     >
       <% if @page.is_page_bib_comment? %>
-        <a href='<%= my_bib_link_to("/#{@page.link_to_bible_verse}") %>'><%= @page.title %></a>  |
+        <a href="<%= my_bib_link_to("/#{@page.link_to_bible_verse}") %>"><%= @page.title %></a>  |
         <%= t('bible_page.comment_title') %>
       <% else %>
         <%= @page.title %>
@@ -69,7 +50,7 @@
           </svg>
         </span>
         <div class="translation-tooltip">
-          <span class='title'><%= ::I18n.t('tips.bibleox_translated') %></span>
+          <span class="title"><%= ::I18n.t('tips.bibleox_translated') %></span>
           <p><%= ::I18n.t('tips.bibleox_translated_desc') %></p>
         </div>
       </div>
@@ -77,17 +58,17 @@
   </div>
 
   <% if @page.title_sub.present? %>
-    <div id='title-sub'><%= @page.title_sub %></div>
+    <div id="title-sub"><%= @page.title_sub %></div>
   <% end %>
 
   <% if @page.links.present? %>
-    <div id='links-sub'>
-      <div class='btn-group'>
+    <div id="links-sub">
+      <div class="btn-group">
         <% @page.links.each do |k,v| %>
           <% if v.present? %>
-            <a class='btn' href='<%= my_page_link_to(v, page_lang: @page.lang) %>'><%= k %></a>
+            <a class="btn" href="<%= my_page_link_to(v, page_lang: @page.lang) %>"><%= k %></a>
           <% else %>
-            <div class='btn pressed'><%= k %></div>
+            <div class="btn pressed"><%= k %></div>
           <% end %>
         <% end %>
       </div>
@@ -97,22 +78,22 @@
 
 <% if @tree_menu.present? %>
   <% if @page.is_search %>
-    <form class='tree-search page-search-form' action="<%= my_page_link_to("/#{@page.path}/search", page_lang: @page.lang) %>">
-      <div class='search-tree-input-area'>
+    <form class="tree-search page-search-form" action="<%= my_page_link_to("/#{@page.path}/search", page_lang: @page.lang) %>">
+      <div class="search-tree-input-area">
         <input
-          class='pretty search-tree-input'
+          class="pretty search-tree-input"
           name="t"
           type="text"
           minlength="1"
           required
-          placeholder='<%= I18n.t("page.search_placeholder") %>'
-          value=''
-          autocomplete='off'
+          placeholder="<%= I18n.t("page.search_placeholder") %>"
+          value=""
+          autocomplete="off"
           data-action="input->menu-filter#filter"
           placeholder="Поиск по меню..."
           class="menu-search-input"
-        />
-        <button type="submit" class='search-icon'>
+>
+        <button type="submit" class="search-icon">
           <svg width="20" height="20" viewBox="0 0 20 20"><path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path></svg>
         </button>
       </div>
@@ -124,7 +105,7 @@
 
 <% if @tree_menu.present? %>
 
-  <div class='menu-tree <%= text_cont_classes %>' data-menu-filter-target="tree">
+  <div class="menu-tree <%= text_cont_classes %>" data-menu-filter-target="tree">
     <div>
       <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0, page_lang: @page.lang}) %>
     </div>
@@ -132,9 +113,9 @@
 
 <% elsif @chapters.present? && @chapters.size > 1 %>
   <!-- Похожие мастериалы -->
-  <div class='menu-tree <%= text_cont_classes %>'>
-    <div class='bar-description'><%= ::I18n.t('menu.same_subject') %></div>
-    <div class='items'>
+  <div class="menu-tree <%= text_cont_classes %>">
+    <div class="bar-description"><%= ::I18n.t('menu.same_subject') %></div>
+    <div class="items">
       <% @chapters.each.with_index do |(title, path, is_gold), i| %>
         <% classes = "menu-unit menu-link" %>
         <% i == (@chapter_current-1) ? (classes += ' selected') : nil %>

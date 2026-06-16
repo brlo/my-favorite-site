@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM ruby:3.4.1
+FROM ruby:4.0
 # # При сборке образа на macOS используй это:
 # FROM --platform=linux/amd64 ruby:3.4.1
 

@@ -1,0 +1,33 @@
+<%= turbo_frame_tag "voters_list_#{translation.id}", class: "voters-list-container" do %>
+  <div class="voters-panel">
+    <div class="voters-sections">
+      <div class="voters-section">
+        <div class="section-title">
+          <span><%= ::VOTE_PLUS %> Понравилось</span>
+        </div>
+        <div class="voters-list">
+          <% @upvoters.each do |user, voted_at| %>
+            <div class="voter-item">
+              <span class="voter-name"><%= user.name %></span>
+              <span class="voter-time"><%= time_ago_in_words(voted_at) %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="voters-section">
+        <div class="section-title">
+          <span><%= ::VOTE_MINUS %> Требуются доработки</span>
+        </div>
+        <div class="voters-list">
+          <% @downvoters.each do |user, voted_at| %>
+            <div class="voter-item">
+              <span class="voter-name"><%= user.name %></span>
+              <span class="voter-time"><%= time_ago_in_words(voted_at) %></span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

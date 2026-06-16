@@ -1,0 +1,43 @@
+<%= turbo_frame_tag "new_translation_form_#{translation.segment_id}" do %>
+  <div class="translation-form-container" data-translation-form-target="formContainer">
+    <div class="translation-form-card">
+      <div class="form-header">
+        <h5>Ваш перевод</h5>
+        <%= link_to "✕", "#",
+                    data: { action: "click->translation-form#hideForm" },
+                    class: "close-btn" %>
+      </div>
+
+      <%= render 'layouts/alerts', ar_object: translation %>
+
+      <%= form_with model: translation,
+                    url: translation_project_segment_translations_path(
+                      translation_project_id: translation.translation_project_id,
+                      segment_id: translation.segment_id
+                    ),
+                    data: {
+                      turbo_frame: "translations_list_#{translation.segment_id}"
+                    },
+                    class: "inline-form" do |f| %>
+
+        <%= f.text_area :text,
+                        placeholder: "Напишите ваш вариант перевода...",
+                        rows: 3,
+                        class: "translation-input",
+                        autofocus: true %>
+
+        <%= f.text_area :sub_text,
+                        placeholder: "Комментарий-сноска (если хотите приложить комментарий к переводу)",
+                        rows: 1,
+                        class: "translation-input" %>
+
+        <%= f.hidden_field :lang, value: params[:lang_to] %>
+        <%= f.hidden_field :source_lang, value: translation.segment.lang %>
+
+        <div class="form-actions">
+          <%= f.submit "Отправить перевод", class: "btn-submit" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>

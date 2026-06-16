@@ -14,6 +14,7 @@ fa:
   bracket_start: '('
   bracket_end: ')'
   space_between_quote_and_bracket: ' '
+  colon: ':'
 
   lang_select_tip: "این متن به زبان های دیگر نیز موجود است:"
 

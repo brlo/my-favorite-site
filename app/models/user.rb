@@ -1,10 +1,9 @@
 require 'securerandom'
-require 'bcrypt'
 
 class User < ApplicationRecord
-  self.table_name = 'users'
+  authenticates_with_sorcery!
 
-  has_secure_password
+  self.table_name = 'users'
 
   # username        - vasyabot
   # name            - Vasiliy Ivanovich
@@ -14,16 +13,27 @@ class User < ApplicationRecord
   # created_at      - дата-время-создания
 
   has_many :pages, dependent: :nullify
-  has_many :merge_requests, dependent: :nullify
+  has_many :translations, dependent: :destroy
 
-  validates :username, presence: true
+  validates :name, length: { minimum: 2, maximum: 50 }
   validates :provider, inclusion: { in: %w[site telegram] }
 
-  validate :password_digest_validation
-  validate :uid_validation
+  validates :username, presence: true, uniqueness: true, length: { minimum: 2, maximum: 50 }
+  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  validate :email_no_plus_subaddressing
+  validate :email_change_too_often
+
+  validates :password, length: { minimum: 6, maximum: 60 }, if: -> { new_record? || changes[:crypted_password] }
+  validates :password, confirmation: true, if: -> { new_record? || changes[:crypted_password] }
+  validates :password_confirmation, presence: true, if: -> { new_record? || changes[:crypted_password] }
 
   before_create :set_api_token
   before_validation :set_provider_default, on: :create
+  before_validation :generate_username
+  validate :uid_validation
+
+  before_update :setup_activation, if: -> { email_changed? }
+  after_update_commit :send_activation_needed_email!, if: -> { previous_changes["email"].present? }
 
   scope :by_site, -> { where(provider: 'site') }
   scope :by_telegram, -> { where(provider: 'telegram') }
@@ -89,6 +99,19 @@ class User < ApplicationRecord
     (privs || {})['mr_max'] || 5
   end
 
+  # email подтверждён?
+  def activated?
+    activation_state == 'active'
+  end
+
+  def activation_pending?
+    activation_state == 'pending'
+  end
+
+  def activation_not_started?
+    activation_state.nil?
+  end
+
   private
 
   def set_api_token
@@ -99,15 +122,42 @@ class User < ApplicationRecord
     self.provider ||= 'site'
   end
 
-  def password_digest_validation
-    if provider == 'site' && password_digest.blank?
-      errors.add(:password_digest, 'no password present')
-    end
-  end
-
   def uid_validation
     if provider == 'telegram' && uid.blank?
       errors.add(:uid, 'no uid present')
     end
+  end
+
+  def email_no_plus_subaddressing
+    return if email.blank?
+
+    if email.to_s.include?('+')
+      errors.add(:email, t('activerecord.errors.email_cant_contain_plus'))
+    end
+  end
+
+  def email_change_too_often
+    return if ::UserMailer.send(:can_fire?, 'activation_needed_email', self.id)
+
+    errors.add(:email, t('activerecord.errors.email_cant_be_restored_too_often'))
+  end
+
+  def generate_username
+    return if name.blank?
+    return if username.present?
+
+    base = name.strip.gsub(/\s+/, '_')
+    candidate = base
+    counter = 0
+    max = 100
+
+    # Циклически проверяем, пока не найдем свободное имя
+    while User.exists?(username: candidate)
+      counter += 1
+      break if counter > max
+      candidate = "#{base}_#{counter}"
+    end
+
+    self.username = candidate
   end
 end

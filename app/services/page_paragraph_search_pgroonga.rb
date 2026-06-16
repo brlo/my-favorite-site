@@ -69,7 +69,7 @@ class PageParagraphSearchPgroonga
     return [] if clean.length < min_length
 
     # Для CJK допускаем слова от 1 символа, для латиницы/кириллицы от 2
-    cjk = ['jp-ni', 'cn-ccbs', 'zh', 'ja', 'ko'].include?(lang)
+    cjk = %w[jp-ni cn-ccbs zh ja ko].include?(lang)
     min_word_len = cjk ? 1 : 2
     clean.split(' ').select { |w| w.length >= min_word_len }
   end

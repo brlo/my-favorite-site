@@ -19,7 +19,7 @@ class PagesController < ApplicationController
 
     # 404 - документ скрыт или удалён
     if @page
-      if @page.is_deleted || (@page.is_published != true)
+      if @page.is_deleted || @page.is_published != true
         render_not_found()
       end
     end
@@ -202,17 +202,17 @@ class PagesController < ApplicationController
             # родитель родителя родителя статьи
             if @pg1.parent_id
               @pg2 = ::Page.select(:id, :h_id, :parent_id, :title, :path, :lang).find_by!(id: @pg1.parent_id)
-              @breadcrumbs << [@pg2.title, @pg2.path, @pg2.lang]
+              @breadcrumbs << [@pg2.title, my_page_link_to(@pg2.path, page_lang: @pg2.lang)]
             end
 
-            @breadcrumbs << [@pg1.title, @pg1.path, @pg1.lang]
+            @breadcrumbs << [@pg1.title, my_page_link_to(@pg1.path, page_lang: @pg1.lang)]
           end
 
           # родитель статьи
-          @breadcrumbs << [@parent_page.title, @parent_page.path, @parent_page.lang]
+          @breadcrumbs << [@parent_page.title, my_page_link_to(@parent_page.path, page_lang: @parent_page.lang)]
         end
 
-        @breadcrumbs << [@page.title, nil]
+        @breadcrumbs << [@page.title]
 
         # Стихи страницы (как в Библии), если есть
         @verses = @page.verses
@@ -266,6 +266,9 @@ class PagesController < ApplicationController
         if @verses.present? && @verses.count > 1
           @is_disable_chapters = true
         end
+
+        # если страница с небольшим кол-вом текста (до 40 символов), то показываем её, но со статусом 404 (чтобы поисковик правильно нас понял)
+        render status: 404 if @page.is_body_empty?
       # end
     else
       # ########################################################################

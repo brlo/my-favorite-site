@@ -1,0 +1,95 @@
+<section id="page-content" class="looks-like-page text-page" itemscope="" itemtype="http://schema.org/Article">
+
+<div id="chapter-header" data-controller="menu-filter">
+  <div id="h1-title">
+    <h1
+      class="title"
+      id="current-address"
+      data-book-short-name="<%= request.path %>"
+      data-lang-ui="<%= I18n.locale %>"
+      data-lang-content="<%= @lang_to %>"
+      data-book-code=""
+      data-page-path=""
+      data-disable-chapters="<%= @is_disable_chapters ? 1 : 0 %>"
+      data-chapter="<%= @part %>"
+      itemprop="headline"
+    >
+      <%= @project.title %>
+    </h1>
+  </div>
+
+  <div id="title-sub">
+    Перевод на <strong><%= @lang_to.upcase %></strong> подготавливается пользователями сайта bibleox.com.<br>
+    Работу над переводом можно продолжить в <%= link_to 'специальном разделе', translation_project_path(@project, part: @part, lang_to: @lang_to) %>.<br>
+    Вы можете помочь улучшить этот текст! Присоединитесь к сообществу и предложите свой вариант перевода. <br>
+    Как и материалы Wikipedia, результат распространяется свободно под лицензией CC BY-SA.
+  </div>
+
+  <div class='small hint' style='text-align: center'>Часть</div>
+  <nav id='menu-chapters'>
+    <% prev_chapter = @part - 1 %>
+    <% now_chapter = @part %>
+    <% next_chapter = @part + 1 %>
+    <% @all_parts.each do |i| %>
+      <% classes = "chapter-num" %>
+      <% i == now_chapter ? classes = ' selected' : nil %>
+      <a id="ch-<%= i %>" data-chapter="<%= i %>" class="<%= classes %>" href="<%= result_translation_project_path(@project, part: i, lang_to: @lang_to) %>"><%= i %></a>
+    <% end %>
+  </nav>
+
+  <div id="text-bar-wrapper">
+    <div class='bar-description'>Перевод на язык:</div>
+    <div id='text-bar'>
+      <div class='bar-el'>
+        <div class='lang-select'
+          data-controller='choices-select'
+          data-choices-select-placeholder-value='Перевод на язык'
+          data-choices-select-search-enabled-value='false'
+          data-choices-select-position-value='down'
+          data-action='change->choices-select#selectLink'>
+
+          <select id="page-lang-select" data-page='true' class='search-select'>
+            <% ::FLAG_BY_LANG.each do |lang, flag| %>
+              <% next unless @all_langs.include?(lang) %>
+              <option value='<%= result_translation_project_path(part: @part, lang_to: lang) %>' <% if @lang_to == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
+            <% end %>
+          </select>
+        </div>
+      </div>
+
+      <div class='right-group'>
+        <div class='bar-el btn' data-controller='share-btn' data-action='click->share-btn#share'>
+          <a class='share-btn'>
+            <svg style="width: 15px;" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+  <article
+    id='page-body'
+    data-controller='share-links'
+    itemprop="articleBody"
+    class="verses <%= text_cont_classes %> <%= text_size_class %>">
+
+    <%# if @page.body_menu.present? %>
+      <%#= render(partial: 'pages/body_menu') %>
+    <%# end %>
+
+    <%= @result_html.html_safe %>
+  </article>
+
+  <% if @references_html.length > 10 %>
+    <section id='page-references' class="looks-like-page <%= text_cont_classes %>">
+      <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
+      <div id="page-references-text">
+        <%= @references_html.html_safe %>
+      </div>
+    </section>
+  <% end %>
+</section>

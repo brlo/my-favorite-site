@@ -58,9 +58,9 @@ class HtmlSegmentParser
         if name == 'a'
           a_href = extract_href(part)
           a_tag = build_tag(name, {href: a_href})
-          open_tags << build_tag(tag, {href: a_href})
+          open_tags << a_tag
         else
-          open_tags << build_tag(tag)
+          open_tags << tag
         end
 
       # тэг закрывающий
@@ -73,7 +73,16 @@ class HtmlSegmentParser
           segments << build_segment(current_text, open_tags, close_tags)
           current_text = nil; open_tags = []; close_tags = []
         else
-          segments[-1][:close_tags] << build_tag(name)
+          # Изначально было так:
+          # segments[-1][:close_tags] << build_tag(name)
+          # Но когда встречаем тэг без содержимого (служебные ссылки, например),
+          # то падаем, так как пусто в segments[-1] (нет текста внутри тэга).
+          # Решил просто пропускать такие пустые тэги:
+          if segments[-1].nil? && open_tags.any? && open_tags.last[:n] == name
+            open_tags.pop
+          else
+            segments[-1][:close_tags] << build_tag(name)
+          end
         end
 
       # тэг самозакрывающийся
@@ -152,9 +161,9 @@ class HtmlSegmentParser
   end
 
   # Разбиваем текст на части, удобные для перевода.
-  # - максимальная часть фрагмента 350 символов.
+  # - максимальная часть фрагмента 200 символов.
   # - но отрезать надо либо до конца предлоения, либо до знака препинания, либо до пробела (по приоритету).
-  def split_text(text, max_length: 450)
+  def split_text(text, max_length: 200)
     parts = []
     start_index = 0
 

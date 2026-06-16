@@ -65,6 +65,9 @@ const page = ref({
   is_published: true,
   is_search: true,
   is_show_parent: true,
+  is_past: false,
+  year_start: null,
+  year_end: null,
   parent_id: parentIdFromParam,
   menu_id: menuIdFromParam,
 });
@@ -576,6 +579,37 @@ function removeLink(index) {
 
   <div v-if="user.privs.super" class="group-fields">
     <div class="field one-line">
+      <Checkbox v-model="page.is_past" inputId="ispast" :binary="true" />
+      <label for="ispast">Это значимый текст из прошлого?</label>
+    </div>
+  </div>
+
+  <div v-if="user.privs.super" class="group-fields">
+    <div class="field">
+      <label for="period-start">Год рождения</label>
+      <InputText
+        id="period-start"
+        v-model="page.period_start"
+        placeholder="1828 / III / ~850"
+        :min="0"
+        :max="new Date().getFullYear()"
+        style="width: 100%"
+      />
+    </div>
+
+    <div class="field">
+      <label for="period-end">Год смерти</label>
+      <InputText
+        id="period-end"
+        v-model="page.period_end"
+        placeholder="1828 / III / ~850"
+        style="width: 100%"
+      />
+    </div>
+  </div>
+
+  <div v-if="user.privs.super" class="group-fields">
+    <div class="field one-line">
       <Checkbox v-model="page.is_menu_icons" inputId="ismi" :binary="true" />
       <label for="ismi">Показывать в меню мини-иконки?</label>
     </div>
@@ -755,5 +789,10 @@ h2 {
 .can-info .pi {
   margin-right: 4px;
   font-size: 1em;
+}
+.group-fields {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
 }
 </style>

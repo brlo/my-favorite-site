@@ -1,0 +1,9 @@
+<div style='max-width:450px; margin: 20px auto;'>
+  <%= form_with url: password_resets_path, local: true, method: :post do |form| %>
+    <div class="field">
+      <%= form.label :email, t('helpers.label.session.password_reset') %><br />
+      <%= form.text_field :email %>
+      <%= form.submit t('helpers.submit.session.password_reset') %>
+    </div>
+  <% end %>
+</div>

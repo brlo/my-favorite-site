@@ -1,0 +1,33 @@
+<div style='max-width:450px; margin: 20px auto;'>
+  <h1><%= t('users.titles.signup') %></h1>
+  <%= form_with model: @user, url: signup_path(locale: I18n.locale), method: :post, local: true do |f| %>
+    <%= render 'layouts/alerts', ar_object: @user %>
+
+    <div>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+    </div>
+
+    <div>
+      <%= f.label :email %>
+      <%= f.email_field :email, required: true %>
+    </div>
+
+    <div>
+      <%= f.label :password %>
+      <%= f.password_field :password, required: true %>
+    </div>
+
+    <div>
+      <%= f.label :password_confirmation %>
+      <%= f.password_field :password_confirmation, required: true %>
+    </div>
+
+    <div>
+      <%= f.submit t('users.buttons.signup') %>
+    </div>
+  <% end %>
+
+  <p><%= t('users.is_already_registred') %> <%= link_to t('users.buttons.login'), login_path %></p>
+  <p><%= t('users.is_forgot_password') %> <%= link_to t('users.buttons.password_reset'), login_path %></p>
+</div>

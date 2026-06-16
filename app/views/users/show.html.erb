@@ -1,0 +1,30 @@
+<div class="profile-section">
+  <h1><%= t('users.titles.profile') %></h1>
+  <%= render 'layouts/alerts', ar_object: current_user %>
+
+    <div class="mb-3">
+      <p><%= t('activerecord.attributes.user.name') %>:<br><strong><%= @user.name %></strong></p>
+    </div>
+
+    <div class="mb-3">
+      <p><%= t('activerecord.attributes.user.email') %>:<br><strong><%= @user.email %></strong><br>
+      <small>
+        <% if @user.activated? %>
+          <%= t('users.hints.email_confirmed') %>
+        <% else %>
+          <%= t('users.hints.email_not_confirmed') %>
+        <% end %>
+      </small>
+      </p>
+    </div>
+
+    <div class="mb-3">
+      <p><%= t('activerecord.attributes.user.username') %>:<br><strong><%= @user.username %></strong></p>
+    </div>
+
+  <ul class="profile-links">
+    <li><%= link_to "✏️ #{ t('users.links.profile_edit') }", edit_main_info_users_path %></li>
+    <li><%= link_to "🔑 #{t('users.links.password_change')}", edit_password_users_path %></li>
+    <li class="logout"><%= link_to "🚪 #{t('users.links.logout')}", logout_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: t('users.alerts.are_you_shure') } %></li>
+  </ul>
+</div>

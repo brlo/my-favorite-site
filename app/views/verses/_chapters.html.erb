@@ -1,17 +1,5 @@
 <div id='chapter-header'>
 
-  <% if @breadcrumbs.present? %>
-    <% content_for(:breadcrumbs) do %>
-    <div class='flex-wrap breadcrumbs-wrap'>
-      <div class='content'>
-        <nav class='breadcrumbs'>
-          <%= @breadcrumbs.join(' » ') %>
-        </nav>
-      </div>
-    </div>
-    <% end %>
-  <% end %>
-
   <h1
       class="title"
       id='current-address'

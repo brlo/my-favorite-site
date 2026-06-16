@@ -72,6 +72,20 @@ export default class extends Controller {
     Turbo.visit(path);
   };
 
+  // выбор языка перевода
+  selectLink(el) {
+    const langInput = el.target;
+    const fullPath = langInput.value;
+
+    // ссылку в выпадающем списке могли указать уже с query-параметрами,
+    // а вот фрагменты # никак не могли добавить, поэтому забираем их из текущей ссылки
+    const path =
+      fullPath +
+      window.location.hash;
+
+    Turbo.visit(path);
+  };
+
   // выбор языка контента (в выпыдающем списке языков возле текста)
   selectPageLang(el) {
     const langInput = el.target;

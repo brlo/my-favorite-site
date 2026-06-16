@@ -2,22 +2,22 @@
 <html lang="<%= @page&.lang || @verses&.first&.lang || ::I18n.locale.to_s %>">
   <head>
     <meta charset="UTF-8">
-    <link rel="canonical" href="<%= @canonical_url %>"/>
+    <link rel="canonical" href="<%= @canonical_url %>">
     <title><%= @page_title %> / <%= I18n.t('title') %></title>
     <% if @no_index == true %>
-    <meta name="robots" content="noindex, follow"/>
+    <meta name="robots" content="noindex, follow">
     <% end %>
-    <meta name="description" content="<%= @meta_description %>"/>
+    <meta name="description" content="<%= @meta_description %>">
     <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=0.5,maximum-scale=1.5">
-    <meta property="og:site_name" content="<%= I18n.t('title') %>"/>
-    <meta property="og:title" content="<%= @page_title %> / <%= I18n.t('title') %>"/>
-    <meta property="og:description" content="<%= @meta_description %>"/>
+    <meta property="og:site_name" content="<%= I18n.t('title') %>">
+    <meta property="og:title" content="<%= @page_title %> / <%= I18n.t('title') %>">
+    <meta property="og:description" content="<%= @meta_description %>">
 <%= content_for?(:head) ? yield(:head) : '' %>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
 
     <link rel="apple-touch-icon" sizes="180x180" href="<%= my_res_link_to('/favicons/apple-touch-icon.png') %>">
-    <link rel="icon" type="image/png" sizes="96x96" href="<%= my_res_link_to('/favicons/favicon-96x96.png') %>" />
+    <link rel="icon" type="image/png" sizes="96x96" href="<%= my_res_link_to('/favicons/favicon-96x96.png') %>">
     <link rel="icon" type="image/svg+xml" href="<%= my_res_link_to('/favicons/favicon.svg') %>">
     <link rel="shortcut icon" href="<%= my_res_link_to('/favicons/favicon.ico') %>">
 
@@ -42,34 +42,45 @@
   <body
     class="<%= 'night-mode' if @is_night_mode %>"
     data-controller="books-menu metrics"
-    data-action='click->books-menu#clickOutside'>
+    data-action="click->books-menu#clickOutside">
 
     <header>
-      <div class='container'>
+      <div class="container">
         <div class="logo">
           <a href="<%= my_bib_link_to("/") %>">
             <img src="<%= my_res_link_to("/logo/bibleox.png") %>">
           </a>
         </div>
+
         <nav>
-          <a href="<%= my_bib_link_to("/") %>" id='bible-link' data-action='books-menu#show' class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
-          <a href="<%= my_page_link_to("/links_#{current_lang()}") %>" id='quotes-link' class="<%= @current_menu_item == 'links' ? ' selected' : nil %>"><%= I18n.t('menu.links') %></a>
+          <a href="<%= my_bib_link_to("/") %>" id="bible-link" data-action="books-menu#show" class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
+          <a href="<%= my_page_link_to("/links_#{current_lang()}") %>" id="quotes-link" class="<%= @current_menu_item == 'links' ? ' selected' : nil %>"><%= I18n.t('menu.links') %></a>
+          <% if ::I18n.locale == :ru %>
+            <%= link_to t('menu.translates'), translation_projects_path(locale: ::I18n.locale), class: (@current_menu_item == 'translates' ? 'selected' : nil) %>
+          <% end %>
 
           <div id="settings-btn" data-controller="settings" data-action="click@window->settings#clickOutside">
+
+            <% if logged_in? %>
+              <%= link_to current_user.name.to_s.capitalize, profile_path, class: 'profile_link' + (@current_menu_item == 'users' ? ' selected' : '') %>
+            <% else %>
+              <%= link_to t('users.links.login'), login_path, class: 'login_link'  + (@current_menu_item == 'users' ? ' selected' : '') %>
+            <% end %>
+
             <a class="local"
               data-action="click->settings#toggleMenu"
               data-settings-target="button">
               <%= ::I18n.t('menu.settings') %>
             </a>
 
-            <div id='settings-area'
-                class='hidden'
+            <div id="settings-area"
+                class="hidden"
                 data-settings-target="menu">
               <el>
                 <label>
                   <%= ::I18n.t('settings.color_scheme') %>:
                 </label>
-                <div class='switcher'>
+                <div class="switcher">
                   <a id="night-mode-switcher"
                     class="local"
                     data-action="click->settings#toggleNightMode"
@@ -82,15 +93,15 @@
                 <label>
                   <%= ::I18n.t('settings.font_size') %>:
                 </label>
-                <div class='switcher'>
-                  <div id='text-menu'>
-                    <a id='text-small-btn'
+                <div class="switcher">
+                  <div id="text-menu">
+                    <a id="text-small-btn"
                       data-action="click->settings#textSizeClicked"
                       data-settings-target="textSmallBtn">А</a>
-                    <a id='text-medium-btn'
+                    <a id="text-medium-btn"
                       data-action="click->settings#textSizeClicked"
                       data-settings-target="textMediumBtn">А</a>
-                    <a id='text-large-btn'
+                    <a id="text-large-btn"
                       data-action="click->settings#textSizeClicked"
                       data-settings-target="textLargeBtn">А</a>
                   </div>
@@ -103,32 +114,32 @@
       </div>
     </header>
 
-    <div class='flex-wrap menu-wrap'>
-      <div class='content' style="margin: 0; padding: 0 10px;">
+    <div class="flex-wrap menu-wrap">
+      <div class="content" style="margin: 0; padding: 0 10px;">
         <% locale = I18n.locale %>
         <nav id="menu-books"
             class="menu-books hidden"
             data-books-menu-target="menu">
 
           <form action="/<%= I18n.locale %>/search"
-                class='search-form'
-                data-controller='search'
-                data-action='submit->search#submit'>
+                class="search-form"
+                data-controller="search"
+                data-action="submit->search#submit">
 
-            <input class='search-tree-input'
-                  type='text'
-                  id='filter-books'
-                  value=''
+            <input class="search-tree-input"
+                  type="text"
+                  id="filter-books"
+                  value=""
                   placeholder="<%= t('fast_search') %>"
-                  autocomplete='off'
+                  autocomplete="off"
                   minlength="1"
                   required
-                  data-books-menu-target='searchInput'
-                  data-action='input->books-menu#filter'
-                  data-search-target='input'
+                  data-books-menu-target="searchInput"
+                  data-action="input->books-menu#filter"
+                  data-search-target="input"
                   data-search-locale-value="<%= I18n.locale %>">
 
-            <button type="submit" class='search-icon'>
+            <button type="submit" class="search-icon">
               <svg width="20" height="20" viewBox="0 0 20 20">
                 <path d="M14.386 14.386l4.0877 4.0877-4.0877-4.0877c-2.9418 2.9419-7.7115 2.9419-10.6533 0-2.9419-2.9418-2.9419-7.7115 0-10.6533 2.9418-2.9419 7.7115-2.9419 10.6533 0 2.9419 2.9418 2.9419 7.7115 0 10.6533z" stroke="currentColor" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round"></path>
               </svg>
@@ -138,7 +149,7 @@
           <div class="bible-list">
             <!-- Ветхий и Новый Завет -->
             <div class="bible-column menu-tree">
-              <div class='small hint'><%= I18n.t('menu.nov_zavet') %></div>
+              <div class="small hint"><%= I18n.t('menu.nov_zavet') %></div>
               <% ::BOOKS.each do |book_code, data| %>
                 <% next if data[:zavet] == 1 %>
                 <% m_classes = [] %>
@@ -146,7 +157,7 @@
                 <% data[:desc] == 'Евангелие' ? m_classes.push('gold') : nil %>
                 <% data[:is_kanon] ? classes = 'kanon' : classes = 'non-kanon' %>
 
-                <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
+                <div class="menu-unit menu-link <%= m_classes.join(' ') %>">
                   <a class="<%= classes %>"
                     href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>"
                     title="<%= data[:desc] %>"
@@ -159,7 +170,7 @@
 
             <!-- Аналогично для Ветхого Завета -->
             <div class="bible-column menu-tree">
-              <div class='small hint'><%= I18n.t('menu.veth_zavet') %></div>
+              <div class="small hint"><%= I18n.t('menu.veth_zavet') %></div>
               <% ::BOOKS.each do |book_code, data| %>
                 <% next if data[:zavet] == 2 %>
                 <% m_classes = [] %>
@@ -167,7 +178,7 @@
                 <% book_code == 'ps' ? m_classes.push('gold') : nil %>
                 <% data[:is_kanon] ? classes = 'kanon' : classes = 'non-kanon' %>
 
-                <div class='menu-unit menu-link <%= m_classes.join(' ') %>'>
+                <div class="menu-unit menu-link <%= m_classes.join(' ') %>">
                   <a class="<%= classes %>"
                     href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>"
                     title="<%= data[:desc] %>"
@@ -184,35 +195,52 @@
       </div>
     </div>
 
-<%= content_for?(:breadcrumbs) ? yield(:breadcrumbs) : '' %>
+
+<% if @breadcrumbs.present? %>
+  <div class="flex-wrap breadcrumbs-wrap">
+    <div class="content">
+      <nav class="breadcrumbs">
+      <% @breadcrumbs.each.with_index do |(title, path), i| %>
+        <% if path.present? %>
+          <a href="<%= path %>"><%= title %></a>
+        <% else %>
+          <%= title %>
+        <% end %>
+        <%= (i+1) == @breadcrumbs.size ? '' : ' » ' %>
+      <% end %>
+      </nav>
+    </div>
+  </div>
+<% end %>
+
 <%= content_for?(:img_header) ? yield(:img_header) : '' %>
 
-    <div class='flex-wrap'>
+    <div class="flex-wrap">
       <div class="content main">
         <%= yield %>
       </div>
     </div>
 
     <footer>
-      <div class='container'>
-        <dd id='change-ui-lang-area'
-          data-controller='choices-select'
-          data-choices-select-placeholder-value='Язык сайта'
-          data-choices-select-search-enabled-value='false'
-          data-choices-select-position-value='top'
-          data-action='change->choices-select#selectUILang'>
+      <div class="container">
+        <dd id="change-ui-lang-area"
+          data-controller="choices-select"
+          data-choices-select-placeholder-value="Язык сайта"
+          data-choices-select-search-enabled-value="false"
+          data-choices-select-position-value="top"
+          data-action="change->choices-select#selectUILang">
 
-          <label for='ui-lang-select'><%= I18n.t('menu.locale') %>:</label>
-          <select id="ui-lang-select" class='search-select'>
+          <label for="ui-lang-select"><%= I18n.t('menu.locale') %>:</label>
+          <select id="ui-lang-select" class="search-select">
             <% ::FLAG_BY_LANG.each do |lang, flag| %>
               <% next if !::ALL_LOCALES.has_key?(lang) %>
-              <option value='<%= lang %>' <%= ::I18n.locale.to_s == lang ? 'selected' : '' %>><%= page_lang_string_full(lang) %></option>
+              <option value="<%= lang %>" <%= ::I18n.locale.to_s == lang ? 'selected' : '' %>><%= page_lang_string_full(lang) %></option>
             <% end %>
           </select>
         </dd>
         <dd>2022-<%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>
         <dd><%= ::I18n.t('about_site_short') %></dd>
-        <dd><a title='<%= day_visit() %>' href='<%= my_link_to('/about/') %>'><%= I18n.t('about_site') %></a></dd>
+        <dd><a title="<%= day_visit() %>" href="<%= my_link_to('/about/') %>"><%= I18n.t('about_site') %></a></dd>
       </div>
     </footer>
 

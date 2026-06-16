@@ -1,15 +1,15 @@
 <script setup>
-import Telegram from "@/components/login/Telegram.vue";
-// import PswLogin from "@/components/login/Password.vue";
+// import Telegram from "@/components/login/Telegram.vue";
+import PswLogin from "@/components/login/Password.vue";
 
 // <p>
-//   <PswLogin/>
+//   <Telegram/>
 // </p>
 </script>
 
 <template>
 <p>
-  <Telegram/>
+  <PswLogin/>
 </p>
 </template>
 

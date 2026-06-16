@@ -1,42 +1,82 @@
-# app/models/translation.rb
-class Translation
-  include Mongoid::Document
+class Translation < ApplicationRecord
+  belongs_to :translation_project
+  belongs_to :segment
+  belongs_to :user
 
-  field :t, as: :text, type: String
-  field :l, as: :lang, type: String # На какой язык переведено
-  field :sl, as: :source_lang, type: String # С какого языка переводил пользователь
-  field :vs, as: :vote_score, type: Integer, default: 0
-  field :v, as: :votes, type: Hash, default: {} # { "user_id_1" => 1, "user_id_2" => -1 }
-  field :is_a, as: :is_approved, type: Boolean, default: false # админ одобрил как лучший перевод?
+  validates :text, :lang, :source_lang, presence: true
+  validates :user_id, uniqueness: { scope: [:segment_id, :lang], message: :taken }
 
-  field :c_at, as: :created_at, type: DateTime, default: ->{ DateTime.now.utc.round }
-  field :u_at, as: :updated_at, type: DateTime, default: ->{ DateTime.now.utc.round }
+  after_save :update_segment_project_langs
+  before_destroy :remove_downvotes_from_segment
 
-  # идентификаторы
-  field :s_id, as: :segment_id, type: BSON::ObjectId, null: false
-  field :u_id, as: :user_id, type: BSON::ObjectId, null: false
+  def upvotes
+    votes.values.count { it['v'] == 1 }
+  end
 
-  belongs_to :segment, foreign_key: 's_id', primary_key: 'id'
-  belongs_to :user, foreign_key: 'u_id', primary_key: 'id'
+  def downvotes
+    votes.values.count { it['v'] == -1 }
+  end
 
-  # Индексы для быстрого поиска популярных переводов для сегмента
-  index({ segment_id: 1, lang: 1, vote_score: -1 })
-  index({ user_id: 1 })
+  # Голосование
+  def upvote(user)
+    add_vote(user, 1)
+  end
 
-  def up_vote(user); add_vote(user, 1); end
-  def down_vote(user); add_vote(user, -1); end
+  def downvote(user)
+    add_vote(user, -1)
+  end
+
+  def remove_vote(user)
+    return false unless votes.key?(user.id.to_s)
+    old_value = votes.delete(user.id.to_s)
+    self.vote_score -= old_value
+    save!
+    true
+  end
+
+  def editable_by?(user)
+    return true if user&.is_admin?
+    return true if self.user_id == user&.id && self.created_at > 15.minutes.ago
+    false
+  end
+
+  def user_vote(user)
+    return nil unless user
+    votes.dig(user.id.to_s, 'v')
+  end
 
   private
 
   def add_vote(user, value)
-    user_id_str = user.id.to_s
-    # нельзя голосовать за свои переводы
-    return false if user_id_str == self.user_id.to_s
-    # не нужно ничего делать, если ранее это уже сделано
-    return false if votes[user_id_str] == value
+    return false if user.id == user_id # нельзя голосовать за свой перевод
+    user_key = user.id.to_s
+    # Повторный клик на тот же голос, просто убирает этот голос (делает отмену голоса)
+    # поэтому, старый голос в любом случае удаляем:
+    old_vote = votes.delete(user_key)
+    # новый голос добавляем в том случае, если старого не было, или был другой
+    votes[user_key] = {'v' => value, 't' => Time.now} if old_vote.nil? || old_vote['v'] != value
+    # новая итоговая сумма голосов
+    self.vote_score = votes.map { |k,v| v['v'] }.sum
+    save!
+  end
 
-    self.votes[user_id_str] = value
-    self.vote_score = votes.values.sum
-    save
+  def update_segment_project_langs
+    project = segment.translation_project
+    unless project.source_langs.include?(source_lang)
+      project.source_langs << source_lang
+      project.save!(validate: false)
+    end
+  end
+
+  # Когда удаляется перевод, то надо удалить с соседних переводов downvote,
+  # который можно было сделать только после добавления своего перевода.
+  def remove_downvotes_from_segment
+    user_key = self.user_id.to_s
+    self.segment.translations.where(lang: self.lang).each do |tr|
+      if tr.votes.find { |k,v| k == user_key && v['v']== -1 }
+        tr.votes.delete(user_key)
+        tr.save
+      end
+    end
   end
 end

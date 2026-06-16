@@ -14,6 +14,7 @@ tr:
   bracket_start: '('
   bracket_end: ')'
   space_between_quote_and_bracket: ' '
+  colon: ':'
 
   lang_select_tip: "Bu metin diğer dillerde de mevcuttur:"
 

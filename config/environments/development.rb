@@ -1,6 +1,7 @@
 require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
+  config.web_console.permissions = '172.23.0.0/16'
   # Settings specified here will take precedence over those in config/application.rb.
   # config.logger = Logger.new(STDOUT)
   # config.log_level = :debug
@@ -26,7 +27,7 @@ Rails.application.configure do
     config.action_controller.perform_caching = true
     config.action_controller.enable_fragment_cache_logging = true
 
-    config.cache_store = :memory_store
+    config.cache_store = :memory_store, { size: 64.megabytes }
     config.public_file_server.headers = {
       "Cache-Control" => "public, max-age=#{2.days.to_i}"
     }

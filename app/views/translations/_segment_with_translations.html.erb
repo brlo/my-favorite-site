@@ -1,0 +1,62 @@
+<% lang_to = @lang_to || @translation&.lang%>
+
+<%= turbo_frame_tag "segment-with-translations-#{segment.id}" do %>
+  <div class="segment-card">
+
+    <div class="original-text">
+      <div class="translations-header">
+        <small>Оригинал</small>
+      </div>
+      <div class="segment-content">
+        <div class="segment-meta">
+          <% fragment_id = "ch#{ segment.chapter }-p#{ segment.paragraph }-l#{ segment.line }" %>
+          <span data-share-id='<%= fragment_id %>' class='fragment-number'>#<%= fragment_id %></span>
+          <div class='html-tags'>
+            <% segment.open_tags.map { it['n'] }.each do |t| %>
+              <span class="tag"><%= t %></span>
+            <% end %>
+            <% close_tags = segment.close_tags.map { it['n'] }.each do |t| %>
+              <span class="tag">/<%= t %></span>
+            <% end %>
+          </div>
+          <!-- <span class="language-badge"><%= segment.lang %></span> -->
+        </div>
+        <p class="segment-body"><%= segment.text %></p>
+      </div>
+    </div>
+
+    <div class="translations-area" data-controller="translation-form">
+      <div class="translations-header">
+        <small>Варианты переводов</small>
+      </div>
+
+      <div class="translations-list" id="translations_list_<%= segment.id %>">
+        <% if logged_in? %>
+          <% is_user_already_make_translation = !!segment.translations.to_a.find { it.user_id == current_user.id } %>
+        <% end %>
+        <% segment.translations.select { it.lang == lang_to }.sort_by { [it.is_approved? ? 0 : 1, -it.vote_score] }.each.with_index do |translation, index| %>
+          <%= render partial: "translations/translation_card",
+                     locals: { translation:, segment:, index:, is_user_already_make_translation: } %>
+        <% end %>
+      </div>
+
+      <% if logged_in? %>
+        <%= link_to "Предложить перевод",
+          new_translation_project_segment_translation_path(
+            translation_project_id: segment.translation_project_id,
+            segment_id: segment.id,
+            lang_to: lang_to
+          ),
+          data: {
+            turbo_frame: "new_translation_form_#{segment.id}",
+            turbo_prefetch: false
+          },
+          class: "btn-propose" %>
+
+        <%= turbo_frame_tag "new_translation_form_#{segment.id}" %>
+      <% else %>
+        <small>Чтобы предлагать переводы надо <%= link_to 'зарегистрироваться', login_path %></small>
+      <% end %>
+    </div>
+  </div>
+<% end %>

@@ -125,7 +125,7 @@ class BaseUploader < CarrierWave::Uploader::Base
 
   def secure_token options = {}
     length = options[:length] || 16
-    token  = options[:token]  || ::StringRandom.get(length)
+    token  = options[:token]  || ::Tools::String::Random.get(length)
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, token)
   end
