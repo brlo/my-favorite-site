@@ -1,8 +1,8 @@
 module Tools
-  module String
+  module StringUtils
     class Rubyfy
       # Пример использования:
-      # ::Tools::String::Rubyfy.call("私[わたし]")
+      # ::Tools::StringUtils::Rubyfy.call("私[わたし]")
       # => <ruby><rb>私</rb><rt>わたし</rt></ruby>
 
       def self.call(text)

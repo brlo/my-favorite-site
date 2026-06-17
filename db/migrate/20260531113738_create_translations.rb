@@ -16,7 +16,6 @@ class CreateTranslations < ActiveRecord::Migration[8.1]
       t.timestamps
     end
 
-    add_index :translations, :translation_project_id
     add_index :translations, [:segment_id, :lang]
     add_index :translations, :is_approved, where: 'is_approved = true'
   end

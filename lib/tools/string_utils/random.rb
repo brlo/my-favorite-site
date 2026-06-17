@@ -1,7 +1,7 @@
 module Tools
-  module String
+  module StringUtils
     class Random
-      # ::Tools::String::Random.get(16)
+      # ::Tools::StringUtils::Random.get(16)
 
       CHARS = [*('a'..'z'),*('A'..'Z'),*('0'..'9')].freeze
       CHARS_COUNT = CHARS.size

@@ -1,3 +1,5 @@
+require_relative '../../lib/tools/string_utils/random'
+
 class BaseUploader < CarrierWave::Uploader::Base
   include CarrierWave::MiniMagick
 
@@ -125,7 +127,7 @@ class BaseUploader < CarrierWave::Uploader::Base
 
   def secure_token options = {}
     length = options[:length] || 16
-    token  = options[:token]  || ::Tools::String::Random.get(length)
+    token  = options[:token]  || ::Tools::StringUtils::Random.get(length)
     var = :"@#{mounted_as}_secure_token"
     model.instance_variable_get(var) or model.instance_variable_set(var, token)
   end

@@ -1,6 +1,6 @@
 require 'nokogiri'
-require_relative '../tools/string/rubyfy'
-require_relative '../tools/string/date_to_int'
+require_relative '../../lib/tools/string_utils/rubyfy'
+require_relative '../../lib/tools/string_utils/date_to_int'
 
 class Page < ApplicationRecord
   self.table_name = 'pages'
@@ -195,7 +195,7 @@ class Page < ApplicationRecord
       self.references = self.class.safe_html(self.references).strip
       self.references_rendered = render_references_footnotes(self.references)
       # "私[わたし]" => "<ruby><rb>私</rb><rt>わたし</rt></ruby>"
-      self.references_rendered = ::Tools::String::Rubyfy.call(self.references_rendered)
+      self.references_rendered = ::Tools::StringUtils::Rubyfy.call(self.references_rendered)
     end
 
     # Удаляем пдф-версию страницы, если изменился заголовок или текст страницы
@@ -228,7 +228,7 @@ class Page < ApplicationRecord
       self.body_rendered = add_lazy_to_img_tags(self.body_rendered)
 
       # "私[わたし]" => "<ruby><rb>私</rb><rt>わたし</rt></ruby>"
-      self.body_rendered = ::Tools::String::Rubyfy.call(self.body_rendered)
+      self.body_rendered = ::Tools::StringUtils::Rubyfy.call(self.body_rendered)
     end
   end
 
@@ -610,7 +610,7 @@ class Page < ApplicationRecord
   end
 
   def calc_date_int
-    self.date_start_int = ::Tools::String::DateToInt.call(period_start) if period_start.present?
-    self.date_end_int = ::Tools::String::DateToInt.call(period_end) if period_end.present?
+    self.date_start_int = ::Tools::StringUtils::DateToInt.call(period_start) if period_start.present?
+    self.date_end_int = ::Tools::StringUtils::DateToInt.call(period_end) if period_end.present?
   end
 end

@@ -1,7 +1,7 @@
 module Tools
-  module String
+  module StringUtils
     class DateToInt
-      # ::Tools::String::DateToInt.call('III век до н.э')
+      # ::Tools::StringUtils::DateToInt.call('III век до н.э')
       ROMAN_CENTURIES = {
         'I' => 1, 'II' => 2, 'III' => 3, 'IV' => 4, 'V' => 5,
         'VI' => 6, 'VII' => 7, 'VIII' => 8, 'IX' => 9, 'X' => 10,
