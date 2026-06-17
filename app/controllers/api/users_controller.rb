@@ -2,8 +2,8 @@ module Api
   class UsersController < ApiApplicationController
     # skip_before_action :reject_not_admins, only: [:psw_login, :telegram_login]
 
-    rate_limit to: 2, within: 10.minutes, by: -> { request.ip }, only: [:psw_login]
-    rate_limit to: 2, within: 10.minutes, by: -> { params[username] }, only: [:psw_login]
+    rate_limit to: 2, within: 5.minutes, by: -> { request.ip }, only: [:psw_login]
+    rate_limit to: 2, within: 5.minutes, by: -> { params[:username] }, only: [:psw_login]
 
     def me
       user = ::Current.user

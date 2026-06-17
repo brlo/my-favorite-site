@@ -8,22 +8,26 @@ class ApplicationController < ActionController::Base
   before_action :require_login_and_activation
 
   def require_login_and_activation
-    require_login
+    if !logged_in?
+      return_error "Необходимо авторизоваться"
+    end
 
     if !current_user.activated?
-      redirect_to root_path, alert: "Необходимо активировать аккаунт, перейдя по ссылке в письме", status: :see_other
+      return_error "Необходимо активировать аккаунт, перейдя по ссылке в письме"
     end
 
     if current_user.is_blocked
-      redirect_to root_path, alert: "Ваш аккаунт заблокирован", status: :see_other
+      return_error "Ваш аккаунт заблокирован"
     end
   end
 
   def require_login_and_not_blocked
-    require_login
+    if !logged_in?
+      return_error "Необходимо авторизоваться"
+    end
 
     if current_user.is_blocked
-      redirect_to root_path, alert: "Ваш аккаунт заблокирован", status: :see_other
+      return_error "Ваш аккаунт заблокирован"
     end
   end
 
@@ -69,5 +73,28 @@ class ApplicationController < ActionController::Base
     return if logged_in? && current_user.is_admin?
 
     redirect_to root_path, alert: "You are not an admin", status: :see_other
+  end
+
+  def redirect_if_logged_in
+    if logged_in?
+      redirect_to profile_path, notice: t('users.notices.already_logged_in')
+    end
+  end
+
+  def return_error(msg)
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.append(
+          "flash-container",
+          partial: "shared/toast",
+          locals: { type: "alert", message: msg }
+        )
+      end
+      format.html { redirect_back fallback_location: root_path, alert: msg }
+    end
+  end
+
+  def too_many_requests
+    return_error('Слишком частые запросы к серверу. Подождите немного.')
   end
 end

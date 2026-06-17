@@ -7,13 +7,14 @@ class TranslationProjectsController < ApplicationController
 
   def index
     @breadcrumbs = [['Все переводы']]
+    @page_title = "Совместные переводы церковных текстов"
 
     @projects = TranslationProject.all # .page(params[:page])
   end
 
   def show
     @breadcrumbs = [['Все переводы', translation_projects_path(locale: I18n.locale)], [@project.title]]
-    @page_title = "Коллективный переод — #{@project.title}"
+    @page_title = "Совместный перевод — #{@project.title}"
 
     @part = params[:part]&.to_i || 1
     @lang_to = params[:lang_to] || ::I18n.locale.to_s
@@ -35,7 +36,7 @@ class TranslationProjectsController < ApplicationController
       [@project.title, translation_project_path(@project)],
       ['Результат перевода']
     ]
-    @page_title = "Коллективный переод — #{@project.title}"
+    @page_title = "Совместный перевод — #{@project.title}"
 
     @part = params[:part]&.to_i || 1
     @lang_to = params[:lang_to] || ::I18n.locale.to_s

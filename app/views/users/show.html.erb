@@ -1,6 +1,6 @@
 <div class="profile-section">
   <h1><%= t('users.titles.profile') %></h1>
-  <%= render 'layouts/alerts', ar_object: current_user %>
+  <%= render 'layouts/errors', ar_object: current_user %>
 
     <div class="mb-3">
       <p><%= t('activerecord.attributes.user.name') %>:<br><strong><%= @user.name %></strong></p>

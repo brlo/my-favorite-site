@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_16_165910) do
+ActiveRecord::Schema[8.1].define(version: 2026_06_17_055944) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -207,6 +207,17 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_165910) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "translation_reactions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.integer "reaction"
+    t.bigint "translation_id", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.index ["translation_id", "user_id"], name: "index_translation_reactions_on_translation_id_and_user_id"
+    t.index ["translation_id"], name: "index_translation_reactions_on_translation_id"
+    t.index ["user_id"], name: "index_translation_reactions_on_user_id"
+  end
+
   create_table "translations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.boolean "is_approved", default: false
@@ -300,6 +311,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_16_165910) do
   add_foreign_key "pages", "users"
   add_foreign_key "segments", "segments", column: "source_segment_id"
   add_foreign_key "segments", "translation_projects"
+  add_foreign_key "translation_reactions", "translations"
+  add_foreign_key "translation_reactions", "users"
   add_foreign_key "translations", "segments"
   add_foreign_key "translations", "translation_projects"
   add_foreign_key "translations", "users"

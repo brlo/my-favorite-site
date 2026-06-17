@@ -64,6 +64,7 @@ Rails.application.routes.draw do
             post :downvote
             patch :approve
             get :voters
+            delete :remove_vote
           end
         end
       end

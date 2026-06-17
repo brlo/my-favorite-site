@@ -2,7 +2,7 @@
   <h1><%= t('users.titles.login') %></h1>
 
   <%= form_with model: @session, url: login_path(locale: I18n.locale), method: :post, local: true do |f| %>
-    <%= render 'layouts/alerts', ar_object: @session %>
+    <%= render 'layouts/errors', ar_object: @session %>
 
     <div>
       <%= f.label :email %>

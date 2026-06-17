@@ -1,6 +1,9 @@
 <section id="page-content" class="looks-like-page text-page" itemscope="" itemtype="http://schema.org/Article">
 
 <div id="chapter-header" data-controller="menu-filter">
+  <h2 class="parent-title">
+    <%= link_to 'Перевод от сообщества bibleox', translation_project_path(@project, part: @part, lang_to: @lang_to) %>
+  </h2>
   <div id="h1-title">
     <h1
       class="title"
@@ -19,10 +22,12 @@
   </div>
 
   <div id="title-sub">
-    Перевод на <strong><%= @lang_to.upcase %></strong> подготавливается пользователями сайта bibleox.com.<br>
-    Работу над переводом можно продолжить в <%= link_to 'специальном разделе', translation_project_path(@project, part: @part, lang_to: @lang_to) %>.<br>
-    Вы можете помочь улучшить этот текст! Присоединитесь к сообществу и предложите свой вариант перевода. <br>
-    Как и материалы Wikipedia, результат распространяется свободно под лицензией CC BY-SA.
+    <strong><%= page_lang_string_full(@project.source_langs.first) %> → <%= page_lang_string_full(@lang_to) %></strong><br>
+    Этот перевод подготавливается пользователями сайта bibleox.com.<br>
+    <% if !logged_in? %> Вы можете помочь улучшить этот текст! <%= link_to 'Зарегистрируйтесь', signup_path %> и присоединяйтесь к работе над <%= link_to 'переводом', translation_project_path(@project, part: @part, lang_to: @lang_to) %>. <br><% end %>
+    Как и материалы Wikipedia,
+      <%= link_to 'результат', result_translation_project_path(part: @part, lang_to: @lang_to), data: {turbo: false} %>
+    распространяется свободно под лицензией CC BY-SA.
   </div>
 
   <div class='small hint' style='text-align: center'>Часть</div>
@@ -49,9 +54,9 @@
           data-action='change->choices-select#selectLink'>
 
           <select id="page-lang-select" data-page='true' class='search-select'>
-            <% ::FLAG_BY_LANG.each do |lang, flag| %>
+            <% langs_for_translates.each do |lang, name| %>
               <% next if !::ALL_LOCALES.has_key?(lang) %>
-              <% next unless @all_langs.include?(lang) %>
+              <% next if @project.source_langs.to_a.include?(lang) %>
               <option value='<%= result_translation_project_path(part: @part, lang_to: lang) %>' <% if @lang_to == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
             <% end %>
           </select>
@@ -77,10 +82,6 @@
     data-controller='share-links'
     itemprop="articleBody"
     class="verses <%= text_cont_classes %> <%= text_size_class %>">
-
-    <%# if @page.body_menu.present? %>
-      <%#= render(partial: 'pages/body_menu') %>
-    <%# end %>
 
     <%= @result_html.html_safe %>
     <hr>

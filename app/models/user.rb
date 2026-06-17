@@ -14,6 +14,7 @@ class User < ApplicationRecord
 
   has_many :pages, dependent: :nullify
   has_many :translations, dependent: :destroy
+  has_many :translation_reactions, dependent: :destroy
 
   validates :name, length: { minimum: 2, maximum: 50 }
   validates :provider, inclusion: { in: %w[site telegram] }
@@ -21,6 +22,7 @@ class User < ApplicationRecord
   validates :username, presence: true, uniqueness: true, length: { minimum: 2, maximum: 50 }
   validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
   validate :email_no_plus_subaddressing
+  validate :email_domain_not_in_blacklist
   validate :email_change_too_often
 
   validates :password, length: { minimum: 6, maximum: 60 }, if: -> { new_record? || changes[:crypted_password] }
@@ -136,17 +138,25 @@ class User < ApplicationRecord
     end
   end
 
-  def email_change_too_often
-    return if ::UserMailer.send(:can_fire?, 'activation_needed_email', self.id)
+  def email_domain_not_in_blacklist
+    return if email.blank?
 
-    errors.add(:email, I18n.t('activerecord.errors.email_cant_be_restored_too_often'))
+    if ::BadEmailDomainCheckerService.disposable_email?(self.email)
+      errors.add(:email, I18n.t('activerecord.errors.messages.email_in_blacklist'))
+    end
+  end
+
+  def email_change_too_often
+    return if ::SendUserEmailJob.new.send(:can_fire?, 'activation_needed_email', self.id)
+
+    errors.add(:email, I18n.t('activerecord.errors.messages.email_cant_changes_too_often'))
   end
 
   def generate_username
     return if name.blank?
     return if username.present?
 
-    base = name.strip.gsub(/\s+/, '_')
+    base = name.strip.gsub(/\s+/, '_').downcase
     candidate = base
     counter = 0
     max = 100

@@ -47,10 +47,4 @@ class SessionsController < ApplicationController
   def session_params
     params.expect(session: %w[email password remember_me])
   end
-
-  def redirect_if_logged_in
-    if logged_in?
-      redirect_to profile_path, notice: t('users.notices.already_logged_in')
-    end
-  end
 end

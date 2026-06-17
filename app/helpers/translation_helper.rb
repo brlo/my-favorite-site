@@ -31,4 +31,8 @@ module TranslationHelper
     return '' unless tag.is_a?(Hash) && tag[:n]
     "</#{tag[:n]}>"
   end
+
+  def langs_for_translates
+    ::PAGE_LANGS.reject { |k,v| v.nil? }
+  end
 end

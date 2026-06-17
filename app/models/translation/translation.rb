@@ -2,13 +2,13 @@ class Translation < ApplicationRecord
   belongs_to :translation_project
   belongs_to :segment
   belongs_to :user
+  has_many :translation_reactions
 
   validates :text, :lang, :source_lang, presence: true
-  # Разрешаем два перевода, а не 1
+  # Разрешаем два перевода, а не 1:
   # validates :user_id, uniqueness: { scope: [:segment_id, :lang], message: :taken }
   validate :limit_two_per_segment_lang
 
-  after_save :update_segment_project_langs
   before_destroy :remove_downvotes_from_segment
 
   def upvotes
@@ -20,20 +20,12 @@ class Translation < ApplicationRecord
   end
 
   # Голосование
-  def upvote(user)
-    add_vote(user, 1)
+  def upvote(u_id)
+    add_vote(u_id, 1)
   end
 
-  def downvote(user)
-    add_vote(user, -1)
-  end
-
-  def remove_vote(user)
-    return false unless votes.key?(user.id.to_s)
-    old_value = votes.delete(user.id.to_s)
-    self.vote_score -= old_value
-    save!
-    true
+  def downvote(u_id)
+    add_vote(u_id, -1)
   end
 
   def editable_by?(user)
@@ -47,38 +39,65 @@ class Translation < ApplicationRecord
     votes.dig(user.id.to_s, 'v')
   end
 
-  private
+  # ---
 
-  def add_vote(user, value)
-    return false if user.id == user_id # нельзя голосовать за свой перевод
-    user_key = user.id.to_s
-    # Повторный клик на тот же голос, просто убирает этот голос (делает отмену голоса)
-    # поэтому, старый голос в любом случае удаляем:
-    old_vote = votes.delete(user_key)
-    # новый голос добавляем в том случае, если старого не было, или был другой
-    votes[user_key] = {'v' => value, 't' => Time.now} if old_vote.nil? || old_vote['v'] != value
-    # новая итоговая сумма голосов
-    self.vote_score = votes.map { |k,v| v['v'] }.sum
-    save!
-  end
+  # Добавление голоса пользователя. Повторная передача такого же голоса приведёт к его удалению.
+  def add_vote(u_id, value)
+    return false if u_id == self.user_id # нельзя голосовать за свой перевод
 
-  def update_segment_project_langs
-    project = segment.translation_project
-    unless project.source_langs.include?(source_lang)
-      project.source_langs << source_lang
-      project.save!(validate: false)
+    self.with_lock do
+      self.reload
+      user_key = u_id.to_s
+      # Повторный клик на тот же голос, просто убирает этот голос (делает отмену голоса)
+      # поэтому, старый голос в любом случае удаляем:
+      old_vote = votes.delete(user_key)
+      # новый голос добавляем в том случае, если старого не было, или был другой
+      is_new_or_change_reaction = old_vote.nil? || old_vote['v'] != value
+      votes[user_key] = {'v' => value, 't' => Time.now} if is_new_or_change_reaction
+      # новая итоговая сумма голосов
+      self.vote_score = votes.map { |k,v| v['v'] }.sum
+      is_saved = self.save!
+
+      # создаём также настоящую реакцию
+      if is_new_or_change_reaction
+        ::TranslationReaction.toggle_reaction(self, u_id, value)
+      else
+        ::TranslationReaction.find_by(translation_id: self.id, user_id: u_id)&.delete
+      end
+
+      is_saved
     end
   end
+
+  # Удалить голос пользователя (конкретный или любой, если указан value)
+  def remove_vote(user_id, value = nil)
+    user_key = user_id.to_s
+
+    self.with_lock do
+      self.reload
+      if value
+        if self.votes.find { |k,v| k == user_key && v['v']== value }
+          self.votes.delete(user_key)
+
+          # удаляем настоящую реакцию
+          r = self.translation_reactions.where(user_id:).first
+          r.delete if r.reaction == value
+        end
+      else
+        self.votes.delete(user_key)
+        self.translation_reactions.where(user_id:).first&.delete
+      end
+      self.save!
+    end
+  end
+
+  private
 
   # Когда удаляется перевод, то надо удалить с соседних переводов downvote,
   # который можно было сделать только после добавления своего перевода.
   def remove_downvotes_from_segment
-    user_key = self.user_id.to_s
     self.segment.translations.where(lang: self.lang).each do |tr|
-      if tr.votes.find { |k,v| k == user_key && v['v']== -1 }
-        tr.votes.delete(user_key)
-        tr.save
-      end
+      tr.remove_vote(self.user_id, -1)
     end
   end
 

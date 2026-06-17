@@ -1,5 +1,5 @@
 <%= form_with model: project, local: true do |f| %>
-  <%= render 'layouts/alerts', ar_object: project %>
+  <%= render 'layouts/errors', ar_object: project %>
 
   <div>
     <%= f.label :title, 'Название проекта' %>

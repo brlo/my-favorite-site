@@ -29,12 +29,12 @@
   <h2 class="mb-0">Импортировать новую часть текста</h2>
     <%= form_with url: import_content_translation_project_path(@project), method: :post, local: true do |f| %>
 
-      <%= render 'layouts/alerts', ar_object: @project %>
+      <%= render 'layouts/errors', ar_object: @project %>
 
       <div>
         <%= f.label :lang_to, 'Язык оригинала' %>
         <%= f.select :lang_to,
-            ::ALL_LOCALES.keys.map { |lang| [page_lang_string_full(lang), lang] },
+            langs_for_translates.keys.map { |lang| [page_lang_string_full(lang), lang] },
             { selected: 'ru' },
             {
               class: 'search-select form-select'

@@ -13,6 +13,7 @@ services:
       # (появляются с задержкой, выталкиваются в видимую область, новыми логами)
       # http://tarunlalwani.com/post/why-delayed-output-python-docker/
       - 'PYTHONUNBUFFERED=1'
+      - 'SOLID_QUEUE_IN_PUMA=1'
     volumes:
       - .:/app
       - gems-volume:/usr/local/bundle

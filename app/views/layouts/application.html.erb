@@ -62,7 +62,7 @@
           <div id="settings-btn" data-controller="settings" data-action="click@window->settings#clickOutside">
 
             <% if logged_in? %>
-              <%= link_to current_user.name.to_s.capitalize, profile_path, class: 'profile_link' + (@current_menu_item == 'users' ? ' selected' : '') %>
+              <%= link_to current_user.name.to_s, profile_path, class: 'profile_link' + (@current_menu_item == 'users' ? ' selected' : '') %>
             <% else %>
               <%= link_to t('users.links.login'), login_path, class: 'login_link'  + (@current_menu_item == 'users' ? ' selected' : '') %>
             <% end %>
@@ -214,6 +214,15 @@
 <% end %>
 
 <%= content_for?(:img_header) ? yield(:img_header) : '' %>
+
+    <div id="flash-container" class="flash-messages" data-controller="flash">
+      <% if notice %>
+        <div class="flash notice"><%= notice %></div>
+      <% end %>
+      <% if alert %>
+        <div class="flash alert"><%= alert %></div>
+      <% end %>
+    </div>
 
     <div class="flex-wrap">
       <div class="content main">

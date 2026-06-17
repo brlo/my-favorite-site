@@ -68,7 +68,8 @@ ru:
         taken: 'уже занят'
         confirmation: 'не совпадает'
         email_cant_contain_plus: "не может содержать символ '+'"
-        email_cant_be_restored_too_often: 'можно изменять не более двух раз в сутки'
+        email_in_blacklist: "не может быть временным"
+        email_cant_changes_too_often: 'можно изменять не более двух раз в сутки'
       models:
         translation:
           attributes:

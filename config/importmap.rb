@@ -25,3 +25,6 @@ pin "choices.js" # @11.1.0
 # Так как с предыдущими пунктами была куча багов, упаковал всё в один локальный файл.
 # см. команды для сборки в app/javascript/tiptap_bundle.js
 pin "tiptap_bundle", to: "tiptap_bundle.js"
+
+pin "@rails/actioncable", to: "actioncable.esm.js"
+pin_all_from "app/javascript/channels", under: "channels"

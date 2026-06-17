@@ -3,6 +3,9 @@ class UsersController < ApplicationController
   before_action :require_login_and_not_blocked, except: %w[new create activate]
   before_action :require_admin, only: %w[block]
 
+  # зарегистрированный пользователь не нуждается в регистрации
+  before_action :redirect_if_logged_in, only: [:new, :create]
+
   before_action :set_user, only: %w[show edit_main_info edit_password update_main_info update_password]
   before_action :set_active_menu_item
 
@@ -29,26 +32,30 @@ class UsersController < ApplicationController
   def edit_main_info
     @breadcrumbs = [[t('bc.profile'), profile_path], [t('bc.edit_password')]]
     @user = current_user
+    @page_title = t('users.titles.profile_edit')
   end
 
   # Редактирование пароля
   def edit_password
     @breadcrumbs = [[t('bc.profile'), profile_path], [t('bc.change_password')]]
     @user = current_user
+    @page_title = t('users.titles.password_change')
   end
 
   def create
+    @page_title = t('users.titles.signup')
     @user = User.new(user_params)
 
     if @user.save
       auto_login(@user)
-      redirect_to root_path, notice: t('users.notices.registration_successful')
+      redirect_to profile_path, notice: t('users.notices.registration_successful')
     else
       render :new, status: :unprocessable_entity
     end
   end
 
   def update_main_info
+    @page_title = t('users.titles.profile_edit')
     attrs = params.expect(user: %w[email name username])
     if @user.update(attrs)
       redirect_to edit_main_info_users_path, notice: t('users.notices.profile_is_updated')
@@ -98,7 +105,7 @@ class UsersController < ApplicationController
   def block
     user = User.find(params[:id])
     translation = Translation.find(params[:translation_id]) if params[:translation_id]
-    if user.update!(is_blocked: !user.is_blocked)
+    if current_user.id != user.id && user.update!(is_blocked: !user.is_blocked)
       render partial: 'translations/translation_card',
         locals: { translation: translation }
     else

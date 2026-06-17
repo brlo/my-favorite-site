@@ -1596,7 +1596,7 @@ color: #ff8888;
 
 /* Форма нового перевода */
 .translation-form-container {
-  margin-top: 15px;
+  margin: 15px 0 5px 0;
   z-index: 2;
 }
 
@@ -2000,4 +2000,16 @@ color: #ff8888;
 .tiptap table.custom-table th {
   background-color: #f3f4f6;
   font-weight: bold;
+}
+
+.admin-translations .translation-card {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.admin-translations .sub-text, .admin-translations  .orig-text {
+  font-size: 0.8em;
+  color: grey;
 }

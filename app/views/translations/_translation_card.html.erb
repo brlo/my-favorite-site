@@ -25,7 +25,8 @@
                 turbo_confirm: 'Точно хотите удалить этот перевод?',
                 turbo_method: :delete,
                 turbo_prefetch: false
-              }  %>
+              }
+          %>
           <%= link_to 'Ред.', edit_translation_project_segment_translation_path(
                 translation_project_id: translation.translation_project_id,
                 segment_id: translation.segment_id,
@@ -34,9 +35,10 @@
               class: 'px-2',
               method: :get,
               data: {
-                turbo_frame: "translation-#{ translation.id }",
+                turbo_stream: true,
                 turbo_prefetch: false
-              }  %>
+              }
+          %>
         </div>
       <% end %>
       <div class='time-ago' title="<%= translation.created_at.strftime('%Y-%m-%d') %>">
@@ -64,7 +66,7 @@
               class: "vote-btn up #{'voted' if translation.user_vote(current_user) == 1} #{'zero' if upvotes.zero?}",
               title: 'Понравилось',
               data: {
-                turbo_frame: "translation-#{ translation.id }",
+                turbo_stream: true,
                 turbo_prefetch: false
               } do %>
             <%= ::VOTE_PLUS %>
@@ -98,7 +100,7 @@
               class: "vote-btn down #{'voted' if translation.user_vote(current_user) == -1} #{'zero' if downvotes.zero?}",
               title: '"Требуются доработки". Это голос отдать могут только те, кто уже предложил свой вариант перевода',
               data: {
-                turbo_frame: "translation_#{ translation.id }",
+                turbo_stream: true,
                 turbo_prefetch: false
               } do %>
             <%= ::VOTE_MINUS %>
@@ -138,6 +140,7 @@
                 ),
                 data: {
                   turbo_frame: "voters_list_#{translation.id}",
+                  turbo_prefetch: false,
                   action: "click->voters#toggle"
                 },
                 class: "voters-link" %>
@@ -156,7 +159,7 @@
               data: { turbo_confirm: 'Сделать этот перевод основным?' } %>
         <% end %>
 
-        <% if current_user&.is_admin? %>
+        <% if current_user&.is_admin? && current_user&.id != translation.user_id %>
           <%= button_to '⛔️ Забл.',
               block_user_path(id: translation.user_id, translation_id: translation.id),
               class: 'vote-btn',

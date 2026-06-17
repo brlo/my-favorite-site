@@ -16,7 +16,7 @@
             }  %>
       </div>
 
-      <%= render 'layouts/alerts', ar_object: translation %>
+      <%= render 'layouts/errors', ar_object: translation %>
 
       <%= form_with model: translation,
                     url: translation_project_segment_translation_path(

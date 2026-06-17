@@ -8,7 +8,30 @@
         <div class="voters-list">
           <% @upvoters.each do |user, voted_at| %>
             <div class="voter-item">
-              <span class="voter-name"><%= user.name %> (@<%= user.username %>)</span>
+              <span class="voter-name">
+                <%= user.name %> (@<%= user.username %>)
+
+                <% if current_user&.is_admin? %>
+                  <span class="actions">
+                    <%= button_to '🗑️',
+                        remove_vote_translation_project_segment_translation_path(
+                          translation_project_id: translation.translation_project_id,
+                          segment_id: translation.segment_id,
+                          id: translation.id,
+                          user_id: user.id,
+                        ),
+                        class: 'vote-btn',
+                        method: :delete,
+                        title: 'Удалить реакцию',
+                        data: {
+                          turbo_confirm: "Удалить реакцию от пользователя? #{ user.username }",
+                          turbo_frame: "translation_#{ translation.id }",
+                          turbo_prefetch: false
+                        }
+                    %>
+                  </span>
+                <% end %>
+              </span>
               <span class="voter-time"><%= time_ago_in_words(voted_at) %></span>
             </div>
           <% end %>
@@ -22,7 +45,30 @@
         <div class="voters-list">
           <% @downvoters.each do |user, voted_at| %>
             <div class="voter-item">
-              <span class="voter-name"><%= user.name %> (@<%= user.username %>)</span>
+              <span class="voter-name">
+                <%= user.name %> (@<%= user.username %>)
+
+                <% if current_user&.is_admin? %>
+                  <span class="actions">
+                    <%= button_to '🗑️',
+                        remove_vote_translation_project_segment_translation_path(
+                          translation_project_id: translation.translation_project_id,
+                          segment_id: translation.segment_id,
+                          id: translation.id,
+                          user_id: user.id,
+                        ),
+                        class: 'vote-btn',
+                        method: :delete,
+                        title: 'Удалить реакцию',
+                        data: {
+                          turbo_confirm: "Удалить реакцию от пользователя? #{ user.username }",
+                          turbo_method: :delete,
+                          turbo_prefetch: false
+                        }
+                    %>
+                  </span>
+                <% end %>
+              </span>
               <span class="voter-time"><%= time_ago_in_words(voted_at) %></span>
             </div>
           <% end %>

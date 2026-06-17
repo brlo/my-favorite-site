@@ -1,17 +1,17 @@
 class TranslationsController < ApplicationController
   skip_before_action :require_login_and_activation, only: %w[show voters]
-  before_action :require_admin, only: %w[approve]
+  before_action :require_admin, only: %w[approve remove_vote]
 
   before_action :set_segment
   before_action :set_translation, except: %w[new create]
 
   # голосование
-  rate_limit to: 2, within: 10.seconds, by: -> { request.ip }, only: %w[upvote downvote], if: -> { logged_in? && !current_user.is_admin? }
-  rate_limit to: 1, within: 10.seconds, by: -> { current_user.id }, only: %w[upvote downvote], if: -> { logged_in? && !current_user.is_admin? }
+  rate_limit to: 5, within: 20.seconds, by: -> { request.ip }, only: %w[upvote downvote], if: -> { logged_in? && !current_user.is_admin? }, with: :too_many_requests
+  rate_limit to: 5, within: 20.seconds, by: -> { current_user.id }, only: %w[upvote downvote], if: -> { logged_in? && !current_user.is_admin? }, with: :too_many_requests
 
   # работа с переводами
-  rate_limit to: 1, within: 10.seconds, by: -> { request.ip }, only: %w[create update destroy], if: -> { logged_in? && !current_user.is_admin? }
-  rate_limit to: 1, within: 10.seconds, by: -> { current_user.id }, only: %w[create update destroy], if: -> { logged_in? && !current_user.is_admin? }
+  rate_limit to: 5, within: 20.seconds, by: -> { request.ip }, only: %w[create update destroy], if: -> { logged_in? && !current_user.is_admin? }, with: :too_many_requests
+  rate_limit to: 5, within: 20.seconds, by: -> { current_user.id }, only: %w[create update destroy], if: -> { logged_in? && !current_user.is_admin? }, with: :too_many_requests
 
   def new
     @translation = Translation.new(
@@ -19,9 +19,12 @@ class TranslationsController < ApplicationController
       segment_id: params[:segment_id]
     )
 
-    render partial: "translations/new_translation_form",
-           locals: { translation: @translation },
-           layout: false
+    render turbo_stream: turbo_stream.update(
+      "new_translation_form_#{params[:segment_id]}",
+      partial: "translations/new_translation_form",
+      locals: { translation: @translation },
+      layout: false
+    )
   end
 
   def show
@@ -111,7 +114,7 @@ class TranslationsController < ApplicationController
   end
 
   def upvote
-    if @translation.upvote(current_user)
+    if @translation.upvote(current_user.id)
       render partial: 'translations/translation_card',
         locals: { translation: @translation }
     else
@@ -122,9 +125,24 @@ class TranslationsController < ApplicationController
   def downvote
     is_user_already_make_translation = @translation.segment.is_user_already_make_translation(user: current_user, lang: @translation.lang)
 
-    if is_user_already_make_translation && @translation.downvote(current_user)
+    if is_user_already_make_translation && @translation.downvote(current_user.id)
       render partial: 'translations/translation_card',
         locals: { translation: @translation }
+    else
+      head :unprocessable_entity
+    end
+  end
+
+  # Для админа: удаление чужих реакций
+  def remove_vote
+    if params[:user_id].present? && @translation.remove_vote(params[:user_id].to_i)
+      render turbo_stream: [
+        turbo_stream.update(
+          "segment-with-translations-#{@translation.segment_id}",
+          partial: "translations/segment_with_translations",
+          locals: { segment: @translation.segment }
+        )
+      ]
     else
       head :unprocessable_entity
     end

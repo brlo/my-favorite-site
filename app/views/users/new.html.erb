@@ -1,7 +1,7 @@
 <div style='max-width:450px; margin: 20px auto;'>
   <h1><%= t('users.titles.signup') %></h1>
   <%= form_with model: @user, url: signup_path(locale: I18n.locale), method: :post, local: true do |f| %>
-    <%= render 'layouts/alerts', ar_object: @user %>
+    <%= render 'layouts/errors', ar_object: @user %>
 
     <div>
       <%= f.label :name %>

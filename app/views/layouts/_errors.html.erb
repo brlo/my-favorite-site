@@ -1,0 +1,10 @@
+<% if ar_object.errors.any? %>
+  <div class="errors">
+    <div class='error-title'><%= t('errors.alert') %>:</div>
+    <ul>
+      <% ar_object.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

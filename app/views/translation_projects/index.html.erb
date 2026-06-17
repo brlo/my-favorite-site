@@ -2,7 +2,7 @@
 
 <section id="page-content" class="looks-like-page text-page" itemscope="" itemtype="http://schema.org/Article">
   <div id="h1-title">
-    <h1 class="title">Совместные переводы церковных текстов</h1>
+    <h1 class="title">Совместные переводы церковных текстов (beta)</h1>
   </div>
   <div id="title-sub">
     «слышим их нашими языками говорящих о великих делах Божиих» (<a href="https://bibleox.com/ru/ru/act/2#L11">Деян. 2:11</a>)
@@ -23,23 +23,37 @@
   </div>
 
   <% if current_user&.is_admin? %>
-    <%= link_to '＋ Создать проект', new_translation_project_path(locale: ::I18n.locale) %>
+    <%= link_to '＋ Создать проект', new_translation_project_path %>
   <% end %>
 
-  <div>Раздел переводов находится на стадии beta-тестирования. На время тестирования к переводу предлагается небольшое количество трудов.</div>
+  <div>Раздел переводов находится в стадии beta-тестирования. На время тестирования к переводу предлагается небольшое количество трудов.</div>
 
   <% if @projects.any? %>
     <%= render @projects %>
   <% end %>
 
-  <% if current_user.is_admin? %>
-    <div>
+  <% if current_user&.is_admin? %>
+    <div class='admin-translations'>
       <h2>Переводы за последние сутки</h2>
-      <% Translation.where(created_at: 1.day.ago..).each do |translation| %>
-          <div style='border-bottom: 1px solid grey;' class='py-6 my-6'>
-            <div><%= translation.user.username %></div>
-            <div><%= translation.text %></div>
-            <div><%= translation.sub_text %></div>
+      <% Translation.where(created_at: 1.day.ago..).preload(:segment).each do |translation| %>
+          <div class='translation-card'>
+            <% segment = translation.segment %>
+            <% anchor = "ch#{ segment.chapter }-p#{ segment.paragraph }-l#{ segment.line }" %>
+
+            <div class='author'>
+              <%= translation.user.name %> (@<%= translation.user.username %>)
+              (
+                <%= link_to translation.created_at.strftime('%Y-%m-%d'), translation_project_path(
+                    id: segment.translation_project_id,
+                    part: segment.part,
+                    anchor: anchor
+                  )
+                %>
+              )
+            </div>
+            <div class='orig-text'><%= segment.text %></div>
+            <div class='text'>→ <%= translation.text %></div>
+            <div class='sub-text'><%= translation.sub_text %></div>
           </div>
       <% end %>
     </div>

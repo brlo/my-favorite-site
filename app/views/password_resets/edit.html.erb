@@ -1,7 +1,7 @@
 <div style='max-width:450px; margin: 20px auto;'>
   <h1><%= t('users.titles.new_password') %></h1>
   <%= form_for @user, :url => password_reset_path(@token), :html => {:method => :put} do |f| %>
-    <%= render 'layouts/alerts', ar_object: @user %>
+    <%= render 'layouts/errors', ar_object: @user %>
 
     <div class="field">
       <%= f.label :email %>

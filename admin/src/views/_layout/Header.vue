@@ -25,7 +25,6 @@ function logout() {
     <nav>
       <router-link v-if="user.privs.pages_read" to="/">Сводка</router-link>
       <router-link v-if="user.privs.pages_read" to="/pages">Статьи</router-link>
-      <!-- <router-link to="/tp">Translations</router-link> -->
       <router-link v-if="user.privs.gallery_read" to="/images">Картинки</router-link>
       <router-link v-if="user.privs.mr_read" to="/merge_requests">Правки</router-link>
       <router-link v-if="user.privs.dict_read" to="/dict_words">Словарь</router-link>

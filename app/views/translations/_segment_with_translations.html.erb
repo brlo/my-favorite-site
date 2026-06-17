@@ -1,11 +1,10 @@
-<% lang_to = @lang_to || @translation&.lang%>
+<% lang_to = @lang_to || @translation&.lang %>
 
 <%= turbo_frame_tag "segment-with-translations-#{segment.id}" do %>
   <div class="segment-card">
-
     <div class="original-text">
       <div class="translations-header">
-        <small>Оригинал</small>
+        <small>Оригинал (<%= page_lang_string_full(segment.translation_project.source_langs.first) %>)</small>
       </div>
       <div class="segment-content">
         <div class="segment-meta">
@@ -27,7 +26,7 @@
 
     <div class="translations-area" data-controller="translation-form">
       <div class="translations-header">
-        <small>Варианты переводов</small>
+        <small>Варианты переводов → <%= page_lang_string_full(lang_to) %></small>
       </div>
 
       <div class="translations-list" id="translations_list_<%= segment.id %>">
@@ -48,12 +47,12 @@
             lang_to: lang_to
           ),
           data: {
-            turbo_frame: "new_translation_form_#{segment.id}",
+            turbo_stream: true,
             turbo_prefetch: false
           },
           class: "btn-propose" %>
 
-        <%= turbo_frame_tag "new_translation_form_#{segment.id}" %>
+        <span id="new_translation_form_<%= segment.id %>"></span>
       <% else %>
         <small>Чтобы предлагать переводы надо <%= link_to 'зарегистрироваться', login_path, data: {turbo: false} %></small>
       <% end %>
