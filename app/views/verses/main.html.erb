@@ -91,7 +91,7 @@
 
   <% if @tree_menu.present? %>
     <h2 class="title">
-      <a href="<%= my_page_link_to("/links_#{@locale_by_bib}/", page_lang: @locale_by_bib) %>"><%= t('root_page.headers.tradition') %></a>
+      <a href="<%= my_page_link_to("/links_#{@locale_by_bib}", page_lang: @locale_by_bib) %>"><%= t('root_page.headers.tradition') %></a>
     </h2>
 
     <div class='menu-tree'>
