@@ -15,7 +15,9 @@ class SessionsController < ApplicationController
     # предварительные проверки. Делаем это, чтобы подробнее отобразить ошибки в интерфейсе
     u = User.find_by(email: session_params[:email])
     @session.errors.add(:base, :invalid_credentials) if u.nil? || !u.valid_password?(session_params[:password])
-    @session.errors.add(:base, :account_activation_pending) if u && u.activation_state != 'active'
+
+    # Надо ли блокировать вход пользователей, которые ещё не авторизовались:
+    # @session.errors.add(:base, :account_activation_pending) if u && u.activation_state != 'active'
 
     if @session.errors.none?
       # тут происходит реальная авторизация
