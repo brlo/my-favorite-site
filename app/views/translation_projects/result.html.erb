@@ -54,10 +54,10 @@
           data-action='change->choices-select#selectLink'>
 
           <select id="page-lang-select" data-page='true' class='search-select'>
-            <% langs_for_translates.each do |lang, name| %>
-              <% next if !::ALL_LOCALES.has_key?(lang) %>
+            <% langs_for_translates(is_with_encient: false).each do |lang, name| %>
+              <% next if @all_langs.exclude?(lang) %>
               <% next if @project.source_langs.to_a.include?(lang) %>
-              <option value='<%= result_translation_project_path(part: @part, lang_to: lang) %>' <% if @lang_to == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
+              <option value='<%= result_translation_project_path(part: @part, lang_to: lang) %>' <% if @lang_to == lang %>selected<% end %>><%= name %></option>
             <% end %>
           </select>
         </div>

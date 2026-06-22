@@ -27,6 +27,8 @@ class TranslationProjectsController < ApplicationController
       .includes(translations: :user)
       .order(:chapter, :paragraph, :line)
 
+    @langs_from = (@project.source_langs.to_a + [@segments&.first&.lang]).compact.sort.uniq
+
     @progress_percent = @project.progress_for(part: @part, lang_to: @lang_to)
   end
 

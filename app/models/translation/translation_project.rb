@@ -101,8 +101,9 @@ class TranslationProject < ApplicationRecord
 
   # На сколько процентов завершён перевод
   def progress_for(part:, lang_to:)
-    total_segments = self.segments.where(part: part).count
-    translated_segments = self.translations.count('distinct segment_id')
+    segments_ids = self.segments.where(part: part).ids
+    total_segments = segments_ids.count
+    translated_segments = self.translations.where(segment_id: segments_ids, lang: lang_to).count('distinct segment_id')
 
     progress_percent = total_segments.zero? ? 0 : (translated_segments * 100 / total_segments)
   end

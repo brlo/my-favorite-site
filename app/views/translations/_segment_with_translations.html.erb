@@ -4,7 +4,7 @@
   <div class="segment-card">
     <div class="original-text">
       <div class="translations-header">
-        <small>Оригинал (<%= page_lang_string_full(segment.translation_project.source_langs.first) %>)</small>
+        <small>Оригинал (<%= translation_lang_by_code(segment.translation_project.source_langs.first) %>)</small>
       </div>
       <div class="segment-content">
         <div class="segment-meta">
@@ -26,7 +26,7 @@
 
     <div class="translations-area" data-controller="translation-form">
       <div class="translations-header">
-        <small>Варианты переводов → <%= page_lang_string_full(lang_to) %></small>
+        <small>Варианты переводов → <%= translation_lang_by_code(lang_to) %></small>
       </div>
 
       <div class="translations-list" id="translations_list_<%= segment.id %>">

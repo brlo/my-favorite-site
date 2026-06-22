@@ -34,7 +34,7 @@
       <div>
         <%= f.label :lang_to, 'Язык оригинала' %>
         <%= f.select :lang_to,
-            langs_for_translates.keys.map { |lang| [page_lang_string_full(lang), lang] },
+            langs_for_translates(is_with_encient: true).map {|k,v| [v,k]},
             { selected: 'ru' },
             {
               class: 'search-select form-select'

@@ -32,7 +32,25 @@ module TranslationHelper
     "</#{tag[:n]}>"
   end
 
-  def langs_for_translates
-    ::PAGE_LANGS.reject { |k,v| v.nil? }
+  def langs_for_translates(is_with_encient: true)
+    ::TRANSLATE_LANGS.map do |lang_code, params|
+      next if params[:is_encient] == true && is_with_encient != true
+
+      name = translation_lang_by_code(lang_code)
+      # значение для select
+      value = lang_code
+      [value, name]
+    end.compact
+  end
+
+  # Название языка (все названия не переведены, название языка приводится на этом же языке,
+  # но названия древних языков nil, в этом случае мы покажем название древнего языка на языке интерфейса)
+  def translation_lang_by_code(lang_code)
+    lang_params = ::TRANSLATE_LANGS[lang_code]
+
+    return if lang_params.nil?
+
+    lang_name = lang_params[:name] || I18n.t("page_translations.#{lang_code}")
+    "#{lang_params[:flag]} #{lang_name}"
   end
 end

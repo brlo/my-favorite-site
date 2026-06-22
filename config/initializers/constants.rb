@@ -195,7 +195,7 @@ FLAG_BY_LANG = {
   'frm' => '🇫🇷📜', # Средневековый французский (Medieval ~1400–1600)
   'fro' => '🇫🇷📜', # Старофранцузский (до XIV века)
   'cop' => '🇪🇬📜', # Коптский
-  'xcl' => '🇦🇲📜', # Древнеармсянский (грабар)
+  'xcl' => '🇦🇲📜', # Древнеармянский (грабар)
   # ---
   # переводы Библии
   'arab-avd' => '🇸🇦',   # Китайский
@@ -347,6 +347,62 @@ PAGE_LANGS = {
   "vi" => 'Tiếng Việt',
   "xcl" => nil,
   # ---
+}
+
+TRANSLATE_LANGS = {
+  "ar" => {name: 'العربية', flag: '🇸🇦'}, # Арабский
+  "be" => {name: 'Беларуская', flag: '🇧🇾'}, # Белорусский
+  "bg" => {name: 'Български', flag: '🇧🇬'}, # Болгарский
+  "cs" => {name: 'Čeština', flag: '🇨🇿'}, # Чешский
+  "de" => {name: 'Deutsch', flag: '🇩🇪'}, # Немецкий
+  "el" => {name: 'Ελληνικά', flag: '🇬🇷'}, # Греческий
+  "en" => {name: 'English', flag: '🇬🇧'}, # Английский
+  "es" => {name: 'Español', flag: '🇪🇸'}, # Испанский
+  "et" => {name: 'Eesti', flag: '🇪🇪'}, # Эстонский
+  "fa" => {name: 'فارسی', flag: '🇮🇷'}, # Персидский
+  "fi" => {name: 'Suomi', flag: '🇫🇮'}, # Финский
+  "fr" => {name: 'Français', flag: '🇫🇷'}, # Французский
+  "he" => {name: 'עברית', flag: '🇮🇱'}, # Иврит
+  "hi" => {name: 'हिन्दी', flag: '🇮🇳'}, # Хинди
+  "hu" => {name: 'Magyar', flag: '🇭🇺'}, # Венгерский
+  "hy" => {name: 'Հայերեն', flag: '🇦🇲'}, # Армянский
+  "id" => {name: 'Bahasa Indonesia', flag: '🇮🇩'}, # Индонезийский
+  "it" => {name: 'Italiano', flag: '🇮🇹'}, # Итальянский
+  "ja" => {name: '日本語', flag: '🇯🇵'}, # Японский
+  "ka" => {name: 'ქართული', flag: '🇬🇪'}, # Грузинский
+  "kk" => {name: 'Қазақша', flag: '🇰🇿'}, # Казахский
+  "km" => {name: 'ភាសាខ្មែរ', flag: '🇰🇭'}, # Кхмерский
+  "ko" => {name: '한국어', flag: '🇰🇷'}, # Корейский
+  "lt" => {name: 'Lietuvių', flag: '🇱🇹'}, # Литовский
+  "lv" => {name: 'Latviešu', flag: '🇱🇻'}, # Латышский
+  "mk" => {name: 'Македонски', flag: '🇲🇰'}, # Македонский
+  "ml" => {name: 'മലയാളം', flag: '🇮🇳'}, # Малаялам
+  "ms" => {name: 'Bahasa Melayu', flag: '🇲🇾'}, # Малайский
+  "nl" => {name: 'Nederlands', flag: '🇳🇱'}, # Нидерландский
+  "pl" => {name: 'Polski', flag: '🇵🇱'}, # Польский
+  "pt" => {name: 'Português', flag: '🇵🇹'}, # Португальский
+  "ro" => {name: 'Română', flag: '🇷🇴'}, # Румынский
+  "ru" => {name: 'Русский', flag: '🇷🇺'}, # Русский
+  "sk" => {name: 'Slovenčina', flag: '🇸🇰'}, # Словацкий
+  "sq" => {name: 'Shqip', flag: '🇦🇱'}, # Албанский
+  "sr" => {name: 'Српски', flag: '🇷🇸'}, # Сербский
+  "sv" => {name: 'Svenska', flag: '🇸🇪'}, # Шведский
+  "sw" => {name: 'Kiswahili', flag: '🇹🇿'}, # Суахили
+  "ta" => {name: 'தமிழ்', flag: '🇮🇳'}, # Тамильский
+  "th" => {name: 'ไทย', flag: '🇹🇭'}, # Тайский
+  "tk" => {name: 'Türkmençe', flag: '🇹🇲'}, # Туркменский
+  "tr" => {name: 'Türkçe', flag: '🇹🇷'}, # Турецкий
+  "ur" => {name: 'اردو', flag: '🇵🇰'}, # Урду
+  "uz" => {name: 'Oʻzbekcha', flag: '🇺🇿'}, # Узбекский
+  "vi" => {name: 'Tiếng Việt', flag: '🇻🇳'}, # Вьетнамский
+  "zh-Hans" => {name: '简体中文', flag: '🇨🇳'}, # Китайский упрощенный
+  "zh-Hant" => {name: '繁體中文', flag: '🇹🇼'}, # Китайский традиционный
+  # --- old ---
+  'cu' =>  {name: nil, flag: '🇷🇺📜', is_encient: true}, # Церковнославянский
+  'grc' => {name: nil, flag: '🇬🇷📜', is_encient: true}, # Древнегреческий
+  'la' =>  {name: nil, flag: '🇻🇦📜', is_encient: true}, # Латынь
+  'cop' => {name: nil, flag: '🇪🇬📜', is_encient: true}, # Коптский
+  'xcl' => {name: nil, flag: '🇦🇲📜', is_encient: true}, # Древнеармсянский (грабар)
 }
 
 # Универсальные названия языков для переводов Библии
