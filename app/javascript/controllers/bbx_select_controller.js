@@ -26,7 +26,9 @@ export default class extends Controller {
   static targets = ["select", "custom"]
   static values = {
     action: String,
-    navigatePath: String
+    navigatePath: String,
+    placeholder: { type: String, default: '' },
+    direction: { type: String, default: 'down' }
   }
 
   connect() {
@@ -46,6 +48,7 @@ export default class extends Controller {
     const hasGroups = select.querySelector('optgroup')
     const isMultiple = select.hasAttribute('multiple')
     const selectedOptions = Array.from(select.selectedOptions)
+    const directionClass = this.directionValue === 'up' ? 'bbx-dropup' : ''
 
     let optionsHTML = ''
 
@@ -66,7 +69,7 @@ export default class extends Controller {
     }
 
     this.customTarget.innerHTML = `
-      <div class="bbx-select" data-action="click->bbx-select#toggle">
+      <div class="bbx-select ${directionClass}" data-action="click->bbx-select#toggle">
         <div class="bbx-selected">
           ${this.selectedHTML(selectedOptions)}
           <span class="bbx-arrow">▾</span>
@@ -79,8 +82,19 @@ export default class extends Controller {
   }
 
   selectedHTML(options) {
-    const isMultiple = this.selectTarget.hasAttribute('multiple')
+    const select = this.selectTarget
+    const selectedOptions = Array.from(select.selectedOptions)
 
+    // Если ничего не выбрано и есть placeholder
+    if (selectedOptions.length === 0 && this.placeholderValue) {
+      return `
+        <div class="bbx-selected-content">
+          <span class="bbx-selected-label bbx-placeholder">${this.placeholderValue}</span>
+        </div>
+      `
+    }
+
+    const isMultiple = this.selectTarget.hasAttribute('multiple')
     if (isMultiple) {
       // For multiple: show all selected labels separated by comma
       // const labels = options.map(opt => opt.text).join(', ')
@@ -236,7 +250,8 @@ export default class extends Controller {
         path = `${path}${this.selectTarget.value}`
       }
 
-      window.location.href = path
+      // window.location.href = path
+      Turbo.visit(path);
     }
   }
 

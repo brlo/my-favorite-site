@@ -15,7 +15,8 @@
     <div class="langs-to-list">
       <div data-controller="bbx-select"
           data-bbx-select-action-value="navigate"
-          data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/translate/#{project.id}?part=1&lang_to=" %>">
+          data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/translate/#{project.id}?part=1&lang_to=" %>"
+          data-bbx-select-placeholder-value="Другой язык">
         <select data-bbx-select-target="select" name="locale">
           <% langs_for_translates(is_with_encient: false).sort_by { |lang, _| [-progress_for_all_langs.fetch(lang, 0), lang] }.each do |lang, name| %>
             <% next if project.source_langs.to_a.include?(lang) %>

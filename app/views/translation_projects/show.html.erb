@@ -87,7 +87,9 @@
         <optgroup label="Исходники">
           <% langs_for_translates(is_with_encient: true).each do |lang, name| %>
             <% next unless @langs_from.include?(lang) %>
-            <option value='<%= lang %>' <%= 'selected' if @langs_from.last == lang %>><%= name %></option>
+            <% is_selected = @langs_from.include?(lang) %>
+            <% is_selected = false if @params_lang_from.present? && @params_lang_from.exclude?(lang) %>
+            <option value='<%= lang %>' <%= 'selected' if is_selected %>><%= name %></option>
           <% end %>
         </optgroup>
 

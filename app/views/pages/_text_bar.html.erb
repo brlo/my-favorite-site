@@ -8,22 +8,22 @@
   <div id='text-bar'>
     <% if is_lang_show %>
       <div class='bar-el'>
-        <div class='lang-select'
-          data-controller='choices-select'
-          data-choices-select-placeholder-value='Язык статьи'
-          data-choices-select-search-enabled-value='false'
-          data-choices-select-position-value='down'
-          data-action='change->choices-select#selectPageLang'>
 
-          <select id="page-lang-select" data-page='true' class='search-select'>
+        <div class='lang-select' data-controller="bbx-select"
+             data-bbx-select-action-value="navigate"
+             data-bbx-select-navigate-path-value="/">
+          <select data-bbx-select-target="select" name="locale" id="page-lang-select" data-page='true' class='search-select'>
             <% ::FLAG_BY_LANG.each do |lang, flag| %>
               <% path = @page_langs[lang] %>
               <% next if path.nil? %>
-              <option value='<%= my_link_to("/#{lang}/w/#{path}") %>' <% if @content_lang == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
+              <option value='<%= "#{I18n.locale}/#{lang}/w/#{path}" %>' <% if @content_lang == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
             <% end %>
           </select>
+          <div data-bbx-select-target="custom"></div>
         </div>
+
       </div>
+
     <% end %>
 
     <div class='right-group'>

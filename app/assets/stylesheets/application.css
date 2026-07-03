@@ -1453,7 +1453,6 @@ color: #ff8888;
   padding: 0.75rem;
   margin-bottom: 0.75rem;
   background: var(--bg-gray);
-  transition: box-shadow 0.2s;
 }
 
 /* .translation.top {
@@ -1621,9 +1620,8 @@ color: #ff8888;
 }
 
 .translations-lang {
-  font-size: 0.9rem;
   color: gray;
-  margin: 0 5px 0 0;
+  margin: 0 0 0.8rem 0;
 }
 
 .close-btn {
@@ -1987,6 +1985,7 @@ color: #ff8888;
 
 /* app/assets/stylesheets/components/bbx_select.css */
 
+
 [data-bbx-select-target="select"] {
   display: none;
 }
@@ -1999,7 +1998,6 @@ color: #ff8888;
   background: #fdfcf1;
   cursor: pointer;
   min-width: 200px;
-  max-width: 250px;
   user-select: none;
 }
 
@@ -2019,6 +2017,7 @@ color: #ff8888;
   gap: 12px;
   flex: 1;
   min-width: 0;
+  overflow: hidden;
 }
 
 .bbx-selected-label {
@@ -2045,14 +2044,15 @@ color: #ff8888;
   top: calc(100% + 2px);
   left: -1px;
   right: -1px;
-  background: #fdfcf1;
+  background: #fff;
   border: 1px solid #d1d5db;
   border-radius: 6px;
   max-height: 350px;
-  min-width: 265px;
+  min-width: 425px;
   overflow-y: auto;
   z-index: 1000;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  font-size: 14px;
 }
 
 /* Открытый дропдаун */
@@ -2070,17 +2070,11 @@ color: #ff8888;
 }
 
 .bbx-group-label {
-  padding: 8px 14px;
-  font-size: 0.7rem;
   font-weight: 600;
-  text-transform: uppercase;
-  color: #6b7280;
-  background: #f9fafb;
-  letter-spacing: 0.05em;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  border-bottom: 1px solid #f3f4f6;
+  font-size: 12px;
+  padding: 10px;
+  color: #000000;
+  background-color: #f6f4e3;
 }
 
 /* Опции */
@@ -2088,11 +2082,8 @@ color: #ff8888;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 8px 14px;
-  padding-left: 20px;
+  padding: 8px 12px;
   gap: 12px;
-  border-bottom: 1px solid #f3f4f6;
-  transition: background 0.15s;
   cursor: pointer;
 }
 
@@ -2101,11 +2092,11 @@ color: #ff8888;
 }
 
 .bbx-option:hover {
-  background: #f9fafb;
+  background: #f2f2f266;
 }
 
 .bbx-option.selected {
-  background: #eff6ff;
+  background: #a7b77455;
   font-weight: 500;
 }
 
@@ -2136,7 +2127,6 @@ color: #ff8888;
   left: 0;
   height: 100%;
   border-radius: 2px;
-  transition: width 0.3s ease;
   width: 0%;
 }
 
@@ -2195,10 +2185,61 @@ color: #ff8888;
   }
 }
 
+/* Для раскрытия вверх */
+.bbx-select.bbx-dropup .bbx-dropdown {
+  top: auto;
+  bottom: calc(100% + 2px);
+}
+
+/* Стиль для placeholder */
+.bbx-placeholder {
+  color: #9ca3af;
+  font-style: italic;
+}
+
+#text-bar .bbx-select {
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  background-color: #f6f4e4;
+}
+
+#text-bar .bbx-selected {
+  padding: 4px 8px;
+  min-height: auto;
+}
 
 
 
 
+/* =====  night mode  ====== */
+
+.night-mode .bbx-select {
+  color: #ccc;
+  background-color: #4d41375e !important;
+  border: 1px solid #5d47345e !important;
+  font-size: 14px;
+}
+
+/* стрелочка вниз */
+.night-mode .bbx-arrow {
+  color: #696869 !important;
+}
+
+.night-mode .bbx-dropdown {
+  background-color: #4d4137;
+  border: 1px solid #5d4734;
+}
+
+.night-mode .bbx-option:hover {
+  background-color: #57493e;
+}
+.night-mode .bbx-option.selected {
+  background-color: #59b68255;
+}
+.night-mode .bbx-group-label {
+  background-color: #4d4137;
+  color: #59b682;
+}
 
 
 
@@ -2269,13 +2310,11 @@ color: #ff8888;
   pointer-events: auto;
   cursor: pointer;
   flex-shrink: 0;
-  z-index: 1;
+  z-index: 10;
   position: relative;
   padding: 12px 15px !important;
   border-radius: 5px !important;
 }
-
-
 
 
 
@@ -2293,12 +2332,6 @@ color: #ff8888;
   border-radius: 10px;
   padding: 16px 20px;
   margin-bottom: 12px;
-  transition: all 0.2s ease;
-}
-
-.admin-translation-card:hover {
-  border-color: #cbd5e1;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
 }
 
 /* Мета-информация (автор, дата) */
@@ -2332,7 +2365,6 @@ color: #ff8888;
   color: #3b82f6;
   text-decoration: none;
   font-size: 12px;
-  transition: color 0.15s;
 }
 
 .admin-date-link:hover {

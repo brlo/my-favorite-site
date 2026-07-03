@@ -1,14 +1,11 @@
 <div class='bar-description'><%= ::I18n.t('lang_select_tip') %></div>
 <div id='text-bar'>
   <div class='bar-el'>
-    <div class='lang-select'
-      data-controller='choices-select'
-      data-choices-select-placeholder-value='Язык Библии'
-      data-choices-select-search-enabled-value='false'
-      data-choices-select-position-value='down'
-      data-action='change->choices-select#selectLang'>
 
-      <select id='lang-select' class="search-select">
+    <div data-controller="bbx-select"
+          data-bbx-select-action-value="navigate"
+          data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/" %>">
+      <select data-bbx-select-target="select" name="locale" id='lang-select' class="search-select">
         <optgroup label="Переводы">
           <option value='ru' <% if @current_bib_lang == 'ru' %>selected<% end %>>            <%= bib_lang_string_full('ru', short: 'RST') %></option>
           <option value='csl-pnm' <% if @current_bib_lang == 'csl-pnm' %>selected<% end %>>  <%= bib_lang_string_full('csl-pnm', short: 'ELZ') %></option>
@@ -32,7 +29,9 @@
           <option value='heb-osm' <% if @current_bib_lang == 'heb-osm' %>selected<% end %>>  <%= bib_lang_string_full('heb-osm', short: 'OSM+DHNT', is_translate: true) %></option>
         </optgroup>
       </select>
+      <div data-bbx-select-target="custom"></div>
     </div>
+
   </div>
 
 

@@ -146,7 +146,7 @@
             </button>
           </form>
 
-          <div class="bible-list">
+          <div class="bible-list overtop">
             <!-- Ветхий и Новый Завет -->
             <div class="bible-column menu-tree">
               <div class="small hint"><%= I18n.t('menu.nov_zavet') %></div>
@@ -232,20 +232,24 @@
 
     <footer>
       <div class="container">
-        <dd id="change-ui-lang-area"
-          data-controller="choices-select"
-          data-choices-select-placeholder-value="Язык сайта"
-          data-choices-select-search-enabled-value="false"
-          data-choices-select-position-value="top"
-          data-action="change->choices-select#selectUILang">
+        <dd id="change-ui-lang-area">
 
-          <label for="ui-lang-select"><%= I18n.t('menu.locale') %>:</label>
-          <select id="ui-lang-select" class="search-select">
-            <% ::FLAG_BY_LANG.each do |lang, flag| %>
-              <% next if !::ALL_LOCALES.has_key?(lang) %>
-              <option value="<%= lang %>" <%= ::I18n.locale.to_s == lang ? 'selected' : '' %>><%= page_lang_string_full(lang) %></option>
-            <% end %>
-          </select>
+          <div data-controller="bbx-select"
+               data-bbx-select-action-value="navigate"
+               data-bbx-select-navigate-path-value="/"
+               data-bbx-select-direction-value="up">
+
+            <label for="ui-lang-select"><%= I18n.t('menu.locale') %>:</label>
+            <select data-bbx-select-target="select" name="locale" id="ui-lang-select" class="search-select">
+              <% path_end = request.path.to_s.gsub(/^[\/]+/, '').split('/')[1..-1].join('/') %>
+              <% ::FLAG_BY_LANG.each do |lang, flag| %>
+                <% next if !::ALL_LOCALES.has_key?(lang) %>
+                <option value="<%= "#{lang}/#{path_end}" %>" <%= ::I18n.locale.to_s == lang ? 'selected' : '' %>><%= page_lang_string_full(lang) %></option>
+              <% end %>
+            </select>
+            <div data-bbx-select-target="custom"></div>
+          </div>
+
         </dd>
         <dd>2022-<%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>
         <dd><%= ::I18n.t('about_site_short') %></dd>
