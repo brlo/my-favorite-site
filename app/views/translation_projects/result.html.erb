@@ -22,7 +22,7 @@
   </div>
 
   <div id="title-sub">
-    <strong><%= page_lang_string_full(@project.source_langs.first) %> → <%= page_lang_string_full(@lang_to) %></strong><br>
+    <strong><%= translation_lang_by_code(@project.source_langs.first) %> → <%= translation_lang_by_code(@lang_to) %></strong><br>
     Этот перевод подготавливается пользователями сайта bibleox.com.<br>
     <% if !logged_in? %> Вы можете помочь улучшить этот текст! <%= link_to 'Зарегистрируйтесь', signup_path %> и присоединяйтесь к работе над <%= link_to 'переводом', translation_project_path(@project, part: @part, lang_to: @lang_to) %>. <br><% end %>
     Как и материалы Wikipedia,

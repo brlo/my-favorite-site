@@ -108,6 +108,21 @@ class TranslationProject < ApplicationRecord
     progress_percent = total_segments.zero? ? 0 : (translated_segments * 100 / total_segments)
   end
 
+  # На сколько процентов завершены переводы
+  def progress_for_all_langs
+    # Сколько сегментов переведено в каждом языке
+    # {"ru" => 12}
+    translations_count = self.translations.group(:lang).count('distinct segment_id')
+    # сколько всего сегментов надо перевести
+    total_segments = self.segments.count
+
+    result = Hash.new(0)
+    translations_count.each do |lang, translated_segments|
+      result[lang] = translated_segments * 100 / total_segments
+    end
+    result
+  end
+
   # # Добавляет страницу и парсит её на сегменты
   # def add_page(page_body:, lang:, chapter: 1, paragraph: 1)
   #   parser = HtmlSegmentParser.new(page_body, lang: lang)

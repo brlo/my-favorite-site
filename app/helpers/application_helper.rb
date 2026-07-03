@@ -94,6 +94,18 @@ module ApplicationHelper
     end
   end
 
+  # <%= bbx_select_tag :locale,
+  #   [['English', 'en', { data: { progress: 100 } }],
+  #    ['Русский', 'ru', { data: { progress: 45 } }]],
+  #   I18n.locale %>
+  def bbx_select_tag(name, options, selected = nil, html_options = {})
+    content_tag(:div, data: { controller: 'bbx-select' }) do
+      select_tag(name, options_for_select(options, selected),
+                html_options.merge(data: { bbx_select_target: 'select' })) +
+      content_tag(:div, '', data: { bbx_select_target: 'custom' })
+    end
+  end
+
   # Очистка одного стиха от спец. символов в конце (для поисковой страницы)
   def verse_alone_clean text
     if text[-1] =~ /[\.\,\-\;\:]/

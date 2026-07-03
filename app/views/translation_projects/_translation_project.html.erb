@@ -1,9 +1,43 @@
+<% langs_names = langs_for_translates(is_with_encient: true).to_h %>
 <% project = translation_project %>
+<% progress_for_all_langs = project.progress_for_all_langs %>
+
 <%= turbo_frame_tag dom_id(project) do %>
-  <h5 class="card-title mb-0">
-    <% if project.source_langs.any? %>
-        <% project.source_langs.each do |lang| %><%= flag_by_lang(lang) %><% end %> → 🌐
-    <% end %>
-    <%= link_to project.title, project, data: { turbo_frame: "_top" } %>
-  </h5>
+  <div class="translation-card">
+    <h3 class="project-title"><%= project.title %></h3>
+
+    <span class="meta-label">Исходник:</span>
+    <div class="meta-row">
+      <span class="meta-value"><%= project.source_langs.map { |l| langs_names[l] }.join(' | ') %></span>
+    </div>
+
+    <span class="meta-label">Переводы:</span>
+    <div class="langs-to-list">
+      <div data-controller="bbx-select"
+          data-bbx-select-action-value="navigate"
+          data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/translate/#{project.id}?part=1&lang_to=" %>">
+        <select data-bbx-select-target="select" name="locale">
+          <% langs_for_translates(is_with_encient: false).sort_by { |lang, _| [-progress_for_all_langs.fetch(lang, 0), lang] }.each do |lang, name| %>
+            <% next if project.source_langs.to_a.include?(lang) %>
+            <option value='<%= lang %>' data-progress="<%= progress_for_all_langs[lang] %>"><%= name %></option>
+          <% end %>
+        </select>
+        <div data-bbx-select-target="custom"></div>
+      </div>
+
+      <% progress_for_all_langs.each do |lang_to, percents| %>
+        <% next if percents <= 1 %>
+
+        <%= link_to translation_project_path(project, part: 1, lang_to: lang_to),
+                    data: { turbo_frame: "_top" },
+                    class: "translation-item block-link" do %>
+          <span class='lang-name'><%= langs_names[lang_to] %></span>
+          <div class="bbx-progress">
+            <div class="bbx-bar" style="width: <%= percents %>%; background: <%= percent_color(percents) %>;"></div>
+            <span class="bbx-percent"><%= percents %>%</span>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
 <% end %>

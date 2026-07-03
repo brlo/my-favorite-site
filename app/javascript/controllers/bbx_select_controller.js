@@ -1,0 +1,248 @@
+// app/javascript/controllers/bbx_select_controller.js
+
+// EXAMPLES:
+// <div data-controller="bbx-select">
+//   <select data-bbx-select-target="select" name="locale" multiple>
+//     <optgroup label="🇪🇺 Европейские">
+//       <option value="en" data-progress="100">English</option>
+//       <option value="fr" data-progress="85">Français</option>
+//       <option value="de" data-progress="70">Deutsch</option>
+//     </optgroup>
+//     <optgroup label="🌏 Азиатские">
+//       <option value="ja" data-progress="30">日本語</option>
+//       <option value="ko" data-progress="15" selected>한국어</option>
+//     </optgroup>
+//   </select>
+//   <div data-bbx-select-target="custom"></div>
+// </div>
+
+// <div data-controller="bbx-select"
+//      data-bbx-select-action-value="navigate"
+//      data-bbx-select-navigate-path-value="<%= switch_locale_path %>">
+
+import { Controller } from "@hotwired/stimulus"
+
+export default class extends Controller {
+  static targets = ["select", "custom"]
+  static values = {
+    action: String,
+    navigatePath: String
+  }
+
+  connect() {
+    this.render()
+    this.selectTarget.addEventListener('change', this.update.bind(this))
+
+    document.addEventListener('click', this.handleOutsideClick.bind(this))
+  }
+
+  disconnect() {
+    this.selectTarget.removeEventListener('change', this.update.bind(this))
+    document.removeEventListener('click', this.handleOutsideClick.bind(this))
+  }
+
+  render() {
+    const select = this.selectTarget
+    const hasGroups = select.querySelector('optgroup')
+    const isMultiple = select.hasAttribute('multiple')
+    const selectedOptions = Array.from(select.selectedOptions)
+
+    let optionsHTML = ''
+
+    if (hasGroups) {
+      select.querySelectorAll('optgroup').forEach(group => {
+        const options = group.querySelectorAll('option')
+        optionsHTML += `
+          <div class="bbx-group">
+            <div class="bbx-group-label">${group.label}</div>
+            ${Array.from(options).map((opt) => this.optionHTML(opt, isMultiple)).join('')}
+          </div>
+        `
+      })
+    } else {
+      optionsHTML = Array.from(select.options).map((opt) =>
+        this.optionHTML(opt, isMultiple)
+      ).join('')
+    }
+
+    this.customTarget.innerHTML = `
+      <div class="bbx-select" data-action="click->bbx-select#toggle">
+        <div class="bbx-selected">
+          ${this.selectedHTML(selectedOptions)}
+          <span class="bbx-arrow">▾</span>
+        </div>
+        <div class="bbx-dropdown">
+          ${optionsHTML}
+        </div>
+      </div>
+    `
+  }
+
+  selectedHTML(options) {
+    const isMultiple = this.selectTarget.hasAttribute('multiple')
+
+    if (isMultiple) {
+      // For multiple: show all selected labels separated by comma
+      // const labels = options.map(opt => opt.text).join(', ')
+      let labels = options[0].text
+      if (options[1]) labels = labels + ', ...'
+      return `
+        <div class="bbx-selected-content">
+          <span class="bbx-selected-label">${labels || 'Select options'}</span>
+        </div>
+      `
+    } else {
+      // Original single select behavior
+      const option = options[0]
+      const progress = parseInt(option?.dataset.progress) || 0
+      const hasProgress = option?.dataset.progress !== undefined
+      const color = this.color(progress)
+      const textColor = progress > 50 ? 'dark' : ''
+
+      return `
+        <div class="bbx-selected-content">
+          <span class="bbx-selected-label">${option?.text || ''}</span>
+          ${hasProgress ? `
+            <div class="bbx-progress selected">
+              <div class="bbx-bar" style="width: ${progress}%; background: ${color};"></div>
+              <span class="bbx-percent ${textColor}">${progress}%</span>
+            </div>
+          ` : ''}
+        </div>
+      `
+    }
+  }
+
+  optionHTML(option, isMultiple) {
+    const progress = parseInt(option.dataset.progress) || 0
+    const isSelected = option.selected
+    const hasProgress = option.dataset.progress !== undefined
+    const color = this.color(progress)
+    const textColor = progress > 50 ? 'dark' : ''
+
+    return `
+      <div class="bbx-option ${isSelected ? 'selected' : ''}"
+           data-value="${option.value}"
+           data-action="click->bbx-select#select">
+        <span>${option.text}</span>
+        ${isMultiple ? `<span class="bbx-check">${isSelected ? '✓' : ''}</span>` : ''}
+        ${hasProgress ? `
+          <div class="bbx-progress">
+            <div class="bbx-bar" style="width: ${progress}%; background: ${color};"></div>
+            <span class="bbx-percent ${textColor}">${progress}%</span>
+          </div>
+        ` : ''}
+      </div>
+    `
+  }
+
+  color(progress) {
+    if (progress >= 80) return '#22c55e'
+    if (progress >= 50) return '#eab308'
+    if (progress >= 20) return '#f97316'
+    return '#ef4444'
+  }
+
+  toggle(event) {
+    event.stopPropagation()
+    const dropdown = this.customTarget.querySelector('.bbx-dropdown')
+    const select = this.customTarget.querySelector('.bbx-select')
+
+    dropdown.classList.toggle('open')
+    select.classList.toggle('open')
+  }
+
+  select(event) {
+    event.stopPropagation()
+    const value = event.currentTarget.dataset.value
+    const isMultiple = this.selectTarget.hasAttribute('multiple')
+
+    if (isMultiple) {
+      // Toggle selection for multiple
+      const option = this.selectTarget.querySelector(`option[value="${value}"]`)
+      if (option) {
+        option.selected = !option.selected
+      }
+    } else {
+      // Single select behavior
+      this.selectTarget.value = value
+    }
+
+    this.selectTarget.dispatchEvent(new Event('change', { bubbles: true }))
+
+    this.update()
+    this.handleAction()
+
+    // Only close dropdown for single select
+    if (!isMultiple) {
+      this.close()
+    }
+  }
+
+  update() {
+    const select = this.selectTarget
+    const isMultiple = select.hasAttribute('multiple')
+    const selectedOptions = Array.from(select.selectedOptions)
+
+    // Update selected display
+    const selectedEl = this.customTarget.querySelector('.bbx-selected')
+    if (selectedEl) {
+      const arrow = selectedEl.querySelector('.bbx-arrow')
+      selectedEl.innerHTML = `
+        ${this.selectedHTML(selectedOptions)}
+        ${arrow ? arrow.outerHTML : '<span class="bbx-arrow">▾</span>'}
+      `
+    }
+
+    // Update option classes and checkmarks
+    this.customTarget.querySelectorAll('.bbx-option').forEach((el) => {
+      const isSelected = selectedOptions.some(opt => opt.value === el.dataset.value)
+      el.classList.toggle('selected', isSelected)
+
+      // Update checkmark for multiple
+      if (isMultiple) {
+        let check = el.querySelector('.bbx-check')
+        if (isSelected && !check) {
+          check = document.createElement('span')
+          check.className = 'bbx-check'
+          check.textContent = '✓'
+          el.appendChild(check)
+        } else if (!isSelected && check) {
+          check.remove()
+        }
+      }
+    })
+  }
+
+  close() {
+    const dropdown = this.customTarget.querySelector('.bbx-dropdown')
+    const select = this.customTarget.querySelector('.bbx-select')
+
+    dropdown?.classList.remove('open')
+    select?.classList.remove('open')
+  }
+
+  handleAction() {
+    if (this.actionValue === 'navigate') {
+      const isMultiple = this.selectTarget.hasAttribute('multiple')
+      let path = this.navigatePathValue
+
+      if (isMultiple) {
+        const values = Array.from(this.selectTarget.selectedOptions)
+          .map(opt => opt.value)
+          .join(',')
+        path = `${path}${values}`
+      } else {
+        path = `${path}${this.selectTarget.value}`
+      }
+
+      window.location.href = path
+    }
+  }
+
+  handleOutsideClick(event) {
+    if (!this.element.contains(event.target)) {
+      this.close()
+    }
+  }
+}

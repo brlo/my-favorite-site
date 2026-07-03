@@ -32,31 +32,42 @@
     <%= render @projects %>
   <% end %>
 
-  <% if current_user&.is_admin? %>
-    <div class='admin-translations'>
-      <h2>Переводы за последние сутки</h2>
-      <% Translation.where(created_at: 1.day.ago..).preload(:segment).each do |translation| %>
-          <div class='translation-card'>
-            <% segment = translation.segment %>
-            <% anchor = "ch#{ segment.chapter }-p#{ segment.paragraph }-l#{ segment.line }" %>
+<% if current_user&.is_admin? %>
+  <div class="admin-section">
+    <h2 class="section-title">Переводы за последние сутки</h2>
 
-            <div class='author'>
-              <%= translation.user.name %> (@<%= translation.user.username %>)
-              (
-                <%= link_to translation.created_at.strftime('%Y-%m-%d'), translation_project_path(
-                    id: segment.translation_project_id,
-                    part: segment.part,
-                    anchor: anchor
-                  )
-                %>
-              )
-            </div>
-            <div class='orig-text'><%= segment.text %></div>
-            <div class='text'>→ <%= translation.text %></div>
-            <div class='sub-text'><%= translation.sub_text %></div>
+    <% Translation.where(created_at: 1.day.ago..).preload(:segment).each do |translation| %>
+      <% segment = translation.segment %>
+      <% anchor = "ch#{ segment.chapter }-p#{ segment.paragraph }-l#{ segment.line }" %>
+
+      <div class="admin-translation-card">
+        <div class="admin-meta">
+          <span class="admin-user">
+            <%= translation.user.name %>
+            <span class="admin-username">@<%= translation.user.username %></span>
+          </span>
+          <span class="admin-divider">•</span>
+          <%= link_to translation.created_at.strftime('%d.%m.%Y %H:%M'),
+                      translation_project_path(id: segment.translation_project_id, part: segment.part, anchor: anchor),
+                      class: "admin-date-link" %>
+        </div>
+
+        <div class="admin-texts">
+          <div class="admin-original">
+            <span class="admin-label">Исходник:</span>
+            <span class="admin-original-text"><%= segment.text %></span>
           </div>
-      <% end %>
-    </div>
-  <% end %>
-</section>
+
+          <div class="admin-translated">
+            <span class="admin-label">Перевод:</span>
+            <span class="admin-translated-text"><%= translation.text %></span>
+            <% if translation.sub_text.present? %>
+              <span class="admin-sub-text"><%= translation.sub_text %></span>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 

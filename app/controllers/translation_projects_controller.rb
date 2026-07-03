@@ -28,8 +28,10 @@ class TranslationProjectsController < ApplicationController
       .order(:chapter, :paragraph, :line)
 
     @langs_from = (@project.source_langs.to_a + [@segments&.first&.lang]).compact.sort.uniq
+    @params_lang_from = params[:lang_from].to_s.split(',').presence || @langs_from.first
 
-    @progress_percent = @project.progress_for(part: @part, lang_to: @lang_to)
+    # @progress_percent = @project.progress_for(part: @part, lang_to: @lang_to)
+    @progress_for_all_langs = @project.progress_for_all_langs()
   end
 
   def result

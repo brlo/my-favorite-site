@@ -975,16 +975,6 @@ a.bib-comment:hover {
     font-size: 1.05rem;
 }
 
-/* Карточка перевода */
-.translation-card {
-    transition:
-        border-color 0.2s,
-        background-color 0.2s;
-}
-.translation-card:hover {
-    border-color: var(--bs-primary) !important;
-}
-
 /* Голосование */
 .vote-row .btn-link {
     font-size: 0.9rem;
@@ -1304,10 +1294,13 @@ color: #ff8888;
 /* Карточка сегмента */
 .segment-card {
   border: 1px solid var(--border-color);
-  border-radius: 8px;
+  border-top: none;
   padding: 1.25rem;
-  margin-bottom: 1.5rem;
   background: white;
+}
+
+.segment-card {
+  border-bottom: 1px solid var(--border-color);
 }
 
 /* ============================================
@@ -1388,14 +1381,6 @@ color: #ff8888;
   font-size: 0.75rem;
 }
 
-.language-badge {
-  background: var(--bg-gray);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
 .html-tags {
   margin: 0.15rem 0;
   font-family: monospace;
@@ -1428,6 +1413,23 @@ color: #ff8888;
 }
 
 /* Область переводов */
+
+.origin-badge {
+  font-weight: italic;
+  color:#0059ff;
+}
+.translate-from .author {
+  color:#ac735b !important;
+}
+
+.translate-from {
+  background-color: #ac735b11 !important;
+}
+
+.translate-from.origin {
+  background-color: #0059ff0b !important;
+}
+
 .translations-header {
   display: flex;
   justify-content: space-between;
@@ -1464,7 +1466,6 @@ color: #ff8888;
 /* Мета-информация перевода */
 .translation .meta {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   margin-bottom: 0.5rem;
   font-size: 0.75rem;
@@ -1586,7 +1587,6 @@ color: #ff8888;
   .segment-card {
     padding: 1rem;
     margin-bottom: 1rem;
-    border-radius: 6px;
   }
 
   .segment-body {
@@ -1618,6 +1618,12 @@ color: #ff8888;
 .translation-form-card h5 {
   margin: 0;
   color: #059669;
+}
+
+.translations-lang {
+  font-size: 0.9rem;
+  color: gray;
+  margin: 0 5px 0 0;
 }
 
 .close-btn {
@@ -1670,71 +1676,8 @@ color: #ff8888;
   }
 }
 
-
-
-
-
-.translation-stats {
-  background: white;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  padding: 1rem;
-  margin-bottom: 2rem;
-}
-
-/* Прогресс-бар */
-
-.progress-label {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 0.5rem;
-  font-size: 0.875rem;
-  color: var(--text-secondary);
-}
-
-.progress-bar-container {
-  background: var(--bg-gray);
-  border-radius: 20px;
-  height: 8px;
-  overflow: hidden;
-}
-
-.progress-bar-fill {
-  background: var(--green);
-  height: 100%;
-  border-radius: 20px;
-  transition: width 0.3s ease;
-  width: 0%;
-}
-
-/* Ссылка на итоговый перевод */
-.result-link {
-  text-align: center;
-}
-
-.result-link a {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: var(--blue);
-  text-decoration: none;
-  font-size: 0.875rem;
-  font-weight: 500;
-  transition: color 0.2s;
-}
-
-.result-link a:hover {
-  color: #2563eb;
-  text-decoration: underline;
-}
-
 /* Адаптация для мобильных */
 @media (max-width: 768px) {
-  .translation-header {
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
   .project-title h1 {
     font-size: 1.5rem;
   }
@@ -1747,29 +1690,73 @@ color: #ff8888;
   .setting-item {
     justify-content: space-between;
   }
+}
 
-  .result-link {
-    text-align: left;
-    margin-top: 0.5rem;
+/* app/assets/stylesheets/components/translation_stats.css */
+
+.translation-stats {
+  padding: 1rem;
+  background: #f6f4e4;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px 6px 0 0;
+}
+
+.stats-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1rem;
+}
+
+.stats-label {
+  color: #6b7280;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.stats-arrow {
+  color: #9ca3af;
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.stats-link {
+  margin-left: auto;
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+.stats-link:hover {
+  text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .stats-row {
+    gap: 0.5rem;
+  }
+
+  .stats-link {
+    margin-left: 0;
+    width: 100%;
+    text-align: center;
+    padding-top: 0.5rem;
+    border-top: 1px solid #f3f4f6;
+  }
+
+  .translation-stats [data-controller="bbx-select"] {
+    flex: 1;
+    min-width: 120px;
   }
 }
 
-/* лоадер для прогресса */
-.progress-bar-fill.loading {
-  background: linear-gradient(90deg, var(--green) 0%, #34d399 50%, var(--green) 100%);
-  background-size: 200% 100%;
-  animation: loading 2.5s infinite;
+/* Если нужно чтобы bbx-select занимал минимум места */
+.translation-stats [data-controller="bbx-select"] {
+  display: inline-flex;
+  min-width: 140px;
 }
-
-@keyframes loading {
-  0% {
-    background-position: 200% 0;
-  }
-  100% {
-    background-position: -200% 0;
-  }
-}
-
 
 
 /* app/assets/stylesheets/voters.css */
@@ -1832,23 +1819,6 @@ color: #ff8888;
   border: 1px solid var(--border-color);
   border-radius: 6px;
   overflow: hidden;
-}
-
-.section-title {
-  background: var(--bg-gray);
-  padding: 0.5rem 0.75rem;
-  font-weight: 500;
-  font-size: 0.875rem;
-  display: flex;
-  justify-content: space-between;
-  border-bottom: 1px solid var(--border-color);
-}
-
-.section-title .count {
-  background: var(--border-color);
-  padding: 0.125rem 0.375rem;
-  border-radius: 12px;
-  font-size: 0.75rem;
 }
 
 .voters-list {
@@ -2012,4 +1982,427 @@ color: #ff8888;
 .admin-translations .sub-text, .admin-translations  .orig-text {
   font-size: 0.8em;
   color: grey;
+}
+
+
+/* app/assets/stylesheets/components/bbx_select.css */
+
+[data-bbx-select-target="select"] {
+  display: none;
+}
+
+/* Основной контейнер */
+.bbx-select {
+  position: relative;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  background: #fdfcf1;
+  cursor: pointer;
+  min-width: 200px;
+  max-width: 250px;
+  user-select: none;
+}
+
+/* Выбранный пункт (всегда видим) */
+.bbx-selected {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 14px;
+  min-height: 44px;
+  gap: 8px;
+}
+
+.bbx-selected-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+  min-width: 0;
+}
+
+.bbx-selected-label {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+.bbx-arrow {
+  transition: transform 0.2s;
+  color: #6b7280;
+  margin-left: 8px;
+  flex-shrink: 0;
+}
+
+/* При открытии стрелка поворачивается */
+.bbx-select.open .bbx-arrow {
+  transform: rotate(180deg);
+}
+
+/* Дропдаун (скрыт по умолчанию) */
+.bbx-dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 2px);
+  left: -1px;
+  right: -1px;
+  background: #fdfcf1;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  max-height: 350px;
+  min-width: 265px;
+  overflow-y: auto;
+  z-index: 1000;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Открытый дропдаун */
+.bbx-dropdown.open {
+  display: block;
+}
+
+/* Группы */
+.bbx-group {
+  border-bottom: 1px solid #f3f4f6;
+}
+
+.bbx-group:last-child {
+  border-bottom: none;
+}
+
+.bbx-group-label {
+  padding: 8px 14px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #6b7280;
+  background: #f9fafb;
+  letter-spacing: 0.05em;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  border-bottom: 1px solid #f3f4f6;
+}
+
+/* Опции */
+.bbx-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px 14px;
+  padding-left: 20px;
+  gap: 12px;
+  border-bottom: 1px solid #f3f4f6;
+  transition: background 0.15s;
+  cursor: pointer;
+}
+
+.bbx-option:last-child {
+  border-bottom: none;
+}
+
+.bbx-option:hover {
+  background: #f9fafb;
+}
+
+.bbx-option.selected {
+  background: #eff6ff;
+  font-weight: 500;
+}
+
+.bbx-option .bbx-check {
+  color: #3b82f6;
+  font-weight: bold;
+  margin-left: 4px;
+}
+
+/* Прогресс-бар в опциях - фиксированный размер */
+.bbx-progress {
+  position: relative;
+  width: 50px;
+  height: 10px;
+  background: #DDDDDD55;
+  border-radius: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.block-link .bbx-progress {
+  background: #FFFFFFCC;
+}
+
+.bbx-progress .bbx-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.3s ease;
+  width: 0%;
+}
+
+.bbx-progress .bbx-percent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #1f2937;
+  z-index: 1;
+  text-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+  white-space: nowrap;
+}
+
+/* Для темного фона прогресс-бара */
+.bbx-progress .bbx-percent.dark {
+  color: white;
+  text-shadow: 0 0 3px rgba(0, 0, 0, 0.8);
+}
+
+.bbx-progress.selected {
+  margin-left: auto;
+}
+
+/* Адаптивность */
+@media (max-width: 640px) {
+  .bbx-select {
+    min-width: 100%;
+  }
+
+  .bbx-selected-content {
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .bbx-selected-progress {
+    width: 70px;
+    height: 18px;
+  }
+
+  .bbx-option {
+    padding: 10px 12px;
+    flex-wrap: wrap;
+  }
+
+  .bbx-progress {
+    width: 70px;
+    height: 18px;
+  }
+
+  .bbx-selected-progress .bbx-percent,
+  .bbx-progress .bbx-percent {
+    font-size: 0.6rem;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.translation-card {
+  background-color: #f6f4e473;
+  border: 1px solid #e1dfd1;
+  border-radius: 4px;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.project-title {
+  display: block;
+  background-color: #f6f4e4;
+  margin: 0 !important;
+  padding: 15px !important;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.langs-to-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  padding: 15px;
+}
+
+
+.meta-row {
+  display: flex;
+  gap: 10px;
+  padding: 15px;
+  border-bottom: 1px solid #e1dfd1;
+}
+
+.meta-label {
+  display: block;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #64748b;
+  margin-bottom: -10px;
+  min-width: 70px;
+  padding: 10px 15px 0 15px;
+}
+
+.meta-value {
+  color: #1e293b;
+}
+
+.translation-item {
+  display: inline-block;
+}
+.translation-item .bbx-progress {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+.block-link {
+  display: flex-inline;
+  pointer-events: auto;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 1;
+  position: relative;
+  padding: 12px 15px !important;
+  border-radius: 5px !important;
+}
+
+
+
+
+
+
+
+/* Админская секция */
+.admin-section {
+  margin-top: 32px;
+}
+
+/* Карточка перевода для админа */
+.admin-translation-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 16px 20px;
+  margin-bottom: 12px;
+  transition: all 0.2s ease;
+}
+
+.admin-translation-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* Мета-информация (автор, дата) */
+.admin-meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  color: #64748b;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.admin-user {
+  font-weight: 500;
+  color: #1e293b;
+}
+
+.admin-username {
+  font-weight: 400;
+  color: #94a3b8;
+  font-size: 12px;
+}
+
+.admin-divider {
+  color: #cbd5e1;
+}
+
+.admin-date-link {
+  color: #3b82f6;
+  text-decoration: none;
+  font-size: 12px;
+  transition: color 0.15s;
+}
+
+.admin-date-link:hover {
+  color: #2563eb;
+  text-decoration: underline;
+}
+
+/* Тексты перевода */
+.admin-texts {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-original,
+.admin-translated {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.admin-label {
+  font-weight: 500;
+  color: #94a3b8;
+  min-width: 72px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding-top: 1px;
+}
+
+.admin-original-text {
+  color: #475569;
+  word-break: break-word;
+}
+
+.admin-translated-text {
+  color: #0f172a;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.admin-sub-text {
+  color: #64748b;
+  font-size: 13px;
+  font-style: italic;
+  margin-left: 4px;
+  word-break: break-word;
+}
+
+/* Адаптив для мобильных */
+@media (max-width: 640px) {
+  .admin-original,
+  .admin-translated {
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .admin-label {
+    min-width: auto;
+  }
+
+  .admin-translation-card {
+    padding: 14px 16px;
+  }
+
+  .admin-meta {
+    flex-wrap: wrap;
+    gap: 4px 8px;
+  }
 }

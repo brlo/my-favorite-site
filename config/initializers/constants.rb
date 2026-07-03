@@ -351,7 +351,6 @@ PAGE_LANGS = {
 
 TRANSLATE_LANGS = {
   "ar" => {name: 'العربية', flag: '🇸🇦'}, # Арабский
-  "be" => {name: 'Беларуская', flag: '🇧🇾'}, # Белорусский
   "bg" => {name: 'Български', flag: '🇧🇬'}, # Болгарский
   "cs" => {name: 'Čeština', flag: '🇨🇿'}, # Чешский
   "de" => {name: 'Deutsch', flag: '🇩🇪'}, # Немецкий

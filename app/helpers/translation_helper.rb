@@ -32,6 +32,7 @@ module TranslationHelper
     "</#{tag[:n]}>"
   end
 
+  # [[lang_code, name], ...]
   def langs_for_translates(is_with_encient: true)
     ::TRANSLATE_LANGS.map do |lang_code, params|
       next if params[:is_encient] == true && is_with_encient != true
@@ -52,5 +53,12 @@ module TranslationHelper
 
     lang_name = lang_params[:name] || I18n.t("page_translations.#{lang_code}")
     "#{lang_params[:flag]} #{lang_name}"
+  end
+
+  def percent_color percents
+    return '#22c55e' if percents >= 80
+    return '#eab308' if percents >= 50
+    return '#f97316' if percents >= 20
+    '#ef4444'
   end
 end

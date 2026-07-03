@@ -316,7 +316,7 @@
   margin-bottom: 0.5em;
 }
 
-.menu-unit {
+.menu-unit, .block-link {
   display: inline-block;
   overflow: hidden;
   border-radius: 3px;
@@ -335,19 +335,19 @@
   background-color: rgba(102, 102, 102, 0.153);
 }
 
-.menu-tree .menu-link a {
+.menu-tree .menu-link a, .block-link {
   text-decoration: none;
 }
 
-.menu-tree .menu-link span {
+.menu-tree .menu-link span, .block-link {
   display: inline-block;
   padding: 5px 10px;
   height: 100%;
   color: #4c5428;
   background-color: #204f0314;
-  z-index: -1;
+  z-index: 1;
 }
-.menu-tree .menu-link a:hover span {
+.menu-tree .menu-link a:hover span, .block-link:hover {
   color: #4c5428b8;
   background-color: #2c640a1c;
   -webkit-transition: background-color 80ms ease;
@@ -378,10 +378,10 @@
   background: #ffd70020;
 }
 
-.night-mode .menu-tree .menu-link span {
+.night-mode .menu-tree .menu-link span, .night-mode .block-link {
   color: #61afef;
 }
-.night-mode .menu-tree .menu-link a:hover span {
+.night-mode .menu-tree .menu-link a:hover span, .night-mode .block-link:hover {
   color: #7dc3ff;
 }
 
@@ -392,11 +392,11 @@
 }
 
 
-.night-mode .menu-tree span {
+.night-mode .menu-tree span, .night-mode .block-link {
   background-color: #61afef10;
 }
 
-.night-mode .menu-tree a:hover span {
+.night-mode .menu-tree a:hover span, .night-mode .block-link:hover {
   background-color: #61afef20;
 }
 
