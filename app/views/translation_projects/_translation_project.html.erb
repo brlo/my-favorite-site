@@ -26,7 +26,7 @@
       </div>
 
       <% progress_for_all_langs.each do |lang_to, percents| %>
-        <% next if percents <= 1 %>
+        <% next if percents < 1 %>
 
         <%= link_to translation_project_path(project, part: 1, lang_to: lang_to),
                     data: { turbo_frame: "_top" },
