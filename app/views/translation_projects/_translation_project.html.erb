@@ -25,7 +25,7 @@
         <div data-bbx-select-target="custom"></div>
       </div>
 
-      <% progress_for_all_langs.each do |lang_to, percents| %>
+      <% progress_for_all_langs.sort_by { |_, v| -v }.to_h.each do |lang_to, percents| %>
         <% next if percents < 1 %>
 
         <%= link_to translation_project_path(project, part: 1, lang_to: lang_to),
