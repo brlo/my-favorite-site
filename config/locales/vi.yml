@@ -1,4 +1,9 @@
 vi:
+  dropdown:
+    translates: Bản dịch
+    interliners: Bản liên hàng
+    encient_texts: Văn bản cổ
+
   title: Bibleox
   bible: Kinh Thánh
   about_site: 'Về trang web'

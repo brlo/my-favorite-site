@@ -1,4 +1,9 @@
 hi:
+  dropdown:
+    translates: अनुवाद
+    interliners: अंतररेखीय
+    encient_texts: प्राचीन ग्रंथ
+
   title: Bibleox
   bible: बाइबिल
   about_site: 'साइट के बारे में'

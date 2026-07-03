@@ -1,4 +1,9 @@
 tk:
+  dropdown:
+    translates: Terjimeler
+    interliners: Aralyk tekstler
+    encient_texts: Gadymy tekstler
+
   title: Bibloýeks
   bible: Injil
   about_site: 'Saýt hakda'

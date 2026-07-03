@@ -1,4 +1,9 @@
 hy:
+  dropdown:
+    translates: Թարգմանություններ
+    interliners: Միջգծայիններ
+    encient_texts: Հին տեքստեր
+
   title: Bibleox
   bible: Աստվածաշունչ
   about_site: 'Մեր մասին'

@@ -1,4 +1,9 @@
 he:
+  dropdown:
+    translates: תרגומים
+    interliners: בין-שורתיים
+    encient_texts: טקסטים עתיקים
+
   title: Bibleox
   bible: כִּתבֵי הַקוֹדֶשׁ
   about_site: 'על אודות'

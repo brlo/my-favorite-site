@@ -1,4 +1,9 @@
 tr:
+  dropdown:
+    translates: Çeviriler
+    interliners: Ara satırlar
+    encient_texts: Eski metinler
+
   title: Bibleox
   bible: Kutsal Kitap
   about_site: 'Site Hakkında'

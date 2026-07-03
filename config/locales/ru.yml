@@ -1,4 +1,9 @@
 ru:
+  dropdown:
+    translates: Переводы
+    interliners: Подстрочники
+    encient_texts: Древние тексты
+
   open_tags:
     h2: заголовок
     p: параграф

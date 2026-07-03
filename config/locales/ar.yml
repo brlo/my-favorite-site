@@ -1,4 +1,9 @@
 ar:
+  dropdown:
+    translates: ترجمات
+    interliners: نصوص بين السطور
+    encient_texts: نصوص قديمة
+
   title: Bibleox
   bible: الكتاب المقدس
   about_site: 'عن'

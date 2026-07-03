@@ -6,7 +6,7 @@
           data-bbx-select-action-value="navigate"
           data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/" %>">
       <select data-bbx-select-target="select" name="locale" id='lang-select' class="search-select">
-        <optgroup label="Переводы">
+        <optgroup label="<%= t('dropdown.translates') %>">
           <option value='ru' <% if @current_bib_lang == 'ru' %>selected<% end %>>            <%= bib_lang_string_full('ru', short: 'RST') %></option>
           <option value='csl-pnm' <% if @current_bib_lang == 'csl-pnm' %>selected<% end %>>  <%= bib_lang_string_full('csl-pnm', short: 'ELZ') %></option>
           <option value='csl-ru' <% if @current_bib_lang == 'csl-ru' %>selected<% end %>>    <%= bib_lang_string_full('csl-ru', short: 'ELZ-RU') %></option>
@@ -18,13 +18,13 @@
           <option value='ge-sch' <% if @current_bib_lang == 'ge-sch' %>selected<% end %>>    <%= bib_lang_string_full('ge-sch', short: 'SCH') %></option>
         </optgroup>
 
-        <optgroup label="Подстрочники">
+        <optgroup label="<%= t('dropdown.interliners') %>">
           <option value='gr-ru' <% if @current_bib_lang == 'gr-ru' %>selected<% end %>>      <%= bib_lang_string_full('gr-ru', short: 'BX') %></option>
           <option value='gr-en' <% if @current_bib_lang == 'gr-en' %>selected<% end %>>      <%= bib_lang_string_full('gr-en', short: 'BX') %></option>
           <option value='gr-jp' <% if @current_bib_lang == 'gr-jp' %>selected<% end %>>      <%= bib_lang_string_full('gr-jp', short: 'BX') %></option>
         </optgroup>
 
-        <optgroup label="Древние тексты">
+        <optgroup label="<%= t('dropdown.encient_texts') %>">
           <option value='gr-lxx-byz' <% if @current_bib_lang == 'gr-lxx-byz' %>selected<% end %>><%= bib_lang_string_full('gr-lxx-byz', short: 'LXX+Byz', is_translate: true) %></option>
           <option value='heb-osm' <% if @current_bib_lang == 'heb-osm' %>selected<% end %>>  <%= bib_lang_string_full('heb-osm', short: 'OSM+DHNT', is_translate: true) %></option>
         </optgroup>

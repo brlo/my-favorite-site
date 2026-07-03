@@ -1,4 +1,9 @@
 fa:
+  dropdown:
+    translates: ترجمه‌ها
+    interliners: میان‌خطی‌ها
+    encient_texts: متون باستانی
+
   title: 'Bibleox'
   bible: 'کتاب مقدس'
   about_site: 'درباره سایت'

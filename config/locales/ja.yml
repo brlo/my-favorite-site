@@ -1,4 +1,9 @@
 ja:
+  dropdown:
+    translates: 翻訳
+    interliners: 対訳
+    encient_texts: 古代文書
+
   title: Bibleox
   bible: 聖書
   about_site: 'このサイトについて'

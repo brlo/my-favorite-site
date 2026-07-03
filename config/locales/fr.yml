@@ -1,4 +1,9 @@
 fr:
+  dropdown:
+    translates: Traductions
+    interliners: Interlinéaires
+    encient_texts: Textes anciens
+
   title: Bibleox
   bible: Bible
   about_site: 'À propos'

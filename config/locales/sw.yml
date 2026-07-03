@@ -1,4 +1,9 @@
 sw:
+  dropdown:
+    translates: Tafsiri
+    interliners: Maandishi ya mistari kati
+    encient_texts: Maandishi ya kale
+
   title: Bibleox
   bible: Biblia
   about_site: 'Kuhusu tovuti'

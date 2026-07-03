@@ -1,5 +1,10 @@
 # традиц.
 zh-Hant:
+  dropdown:
+    translates: 譯本
+    interliners: 對譯本
+    encient_texts: 古代文本
+
   title: Bibleox
   bible: 聖經
   about_site: '關於'

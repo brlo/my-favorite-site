@@ -1,4 +1,9 @@
 ko:
+  dropdown:
+    translates: 번역
+    interliners: 대역본
+    encient_texts: 고대 문서
+
   title: Bibleox
   bible: 성경
   about_site: '사이트 소개'

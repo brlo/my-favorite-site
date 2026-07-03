@@ -1,5 +1,10 @@
 # упрощённый
 zh-Hans:
+  dropdown:
+    translates: 译本
+    interliners: 对译本
+    encient_texts: 古代文本
+
   title: Bibleox
   bible: 圣经
   about_site: '关于'

@@ -1,4 +1,9 @@
 el:
+  dropdown:
+    translates: Μεταφράσεις
+    interliners: Διαγραμμικές
+    encient_texts: Αρχαία κείμενα
+
   title: Bibleox
   bible: Αγια ΓΡΑΦΗ
   about_site: 'Σχετικά με'

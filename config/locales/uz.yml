@@ -1,4 +1,9 @@
 uz:
+  dropdown:
+    translates: Tarjimalar
+    interliners: Oraliq matnlar
+    encient_texts: Qadimiy matnlar
+
   title: Bibleox
   bible: Muqaddas Kitob (Bibliya)
   about_site: 'Sayt haqida'

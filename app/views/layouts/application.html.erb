@@ -61,10 +61,12 @@
 
           <div id="settings-btn" data-controller="settings" data-action="click@window->settings#clickOutside">
 
-            <% if logged_in? %>
-              <%= link_to current_user.name.to_s, profile_path, class: 'profile_link' + (@current_menu_item == 'users' ? ' selected' : '') %>
-            <% else %>
-              <%= link_to t('users.links.login'), login_path, class: 'login_link'  + (@current_menu_item == 'users' ? ' selected' : '') %>
+            <% if ::I18n.locale == :ru %>
+              <% if logged_in? %>
+                <%= link_to current_user.name.to_s, profile_path, class: 'profile_link' + (@current_menu_item == 'users' ? ' selected' : '') %>
+              <% else %>
+                <%= link_to t('users.links.login'), login_path, class: 'login_link'  + (@current_menu_item == 'users' ? ' selected' : '') %>
+              <% end %>
             <% end %>
 
             <a class="local"

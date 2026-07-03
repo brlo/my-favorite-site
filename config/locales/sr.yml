@@ -1,4 +1,9 @@
 sr:
+  dropdown:
+    translates: Преводи
+    interliners: Међуврсни
+    encient_texts: Древни текстови
+
   title: Библеокс
   bible: Библија
   about_site: 'О сајту'
