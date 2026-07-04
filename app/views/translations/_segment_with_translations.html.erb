@@ -21,10 +21,8 @@
           <% if @params_lang_from.include?(segment.lang) %>
             <div class='translation translate-from origin'>
               <div class='meta'>
-                <div class='author'>
-                  <div class="translations-lang">
-                    <%= translation_lang_by_code(segment.lang) %> <span class='origin-badge'>исходник</span>
-                  </div>
+                <div class="translations-lang">
+                  <%= translation_lang_by_code(segment.lang) %> <span class='origin-badge'>исходник</span>
                 </div>
               </div>
               <div class='text'>
@@ -38,7 +36,7 @@
             <div class='translation translate-from'>
               <div class='meta'>
                 <div class="translations-lang">
-                  <small><%= translation_lang_by_code(best_translation_for_lang.lang) %></small>
+                  <%= translation_lang_by_code(best_translation_for_lang.lang) %>
                 </div>
                 <div class='author'>
                   <%= best_translation_for_lang.user.name %> (@<%= best_translation_for_lang.user.username %>)
@@ -50,13 +48,12 @@
             </div>
           <% end %>
         </div>
-
       </div>
     </div>
 
     <div class="translations-area" data-controller="translation-form">
-      <div class="translations-lang">
-        <small>Переводы → <%= translation_lang_by_code(lang_to) %></small>
+      <div class="translations-meta">
+        Переводы: <%= translation_lang_by_code(lang_to) %>
       </div>
 
       <div class="translations-list" id="translations_list_<%= segment.id %>">

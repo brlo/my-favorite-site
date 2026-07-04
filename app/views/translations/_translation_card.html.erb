@@ -12,37 +12,39 @@
       <div class='author'>
         <%= translation.user.name %> (@<%= translation.user.username %>)
       </div>
-      <% if translation.editable_by?(current_user) %>
-        <div class='actions px-6 ml-auto'>
-          <%= link_to '✕', translation_project_segment_translation_path(
-                translation_project_id: translation.translation_project_id,
-                segment_id: translation.segment_id,
-                id: translation.id
-              ),
-              class: 'px-2',
-              method: :delete,
-              data: {
-                turbo_confirm: 'Точно хотите удалить этот перевод?',
-                turbo_method: :delete,
-                turbo_prefetch: false
-              }
-          %>
-          <%= link_to 'Ред.', edit_translation_project_segment_translation_path(
-                translation_project_id: translation.translation_project_id,
-                segment_id: translation.segment_id,
-                id: translation.id
-              ),
-              class: 'px-2',
-              method: :get,
-              data: {
-                turbo_stream: true,
-                turbo_prefetch: false
-              }
-          %>
+      <div class='ml-auto flex'>
+        <% if translation.editable_by?(current_user) %>
+          <div class='actions px-6'>
+            <%= link_to '✕', translation_project_segment_translation_path(
+                  translation_project_id: translation.translation_project_id,
+                  segment_id: translation.segment_id,
+                  id: translation.id
+                ),
+                class: 'px-2',
+                method: :delete,
+                data: {
+                  turbo_confirm: 'Точно хотите удалить этот перевод?',
+                  turbo_method: :delete,
+                  turbo_prefetch: false
+                }
+            %>
+            <%= link_to 'Ред.', edit_translation_project_segment_translation_path(
+                  translation_project_id: translation.translation_project_id,
+                  segment_id: translation.segment_id,
+                  id: translation.id
+                ),
+                class: 'px-2',
+                method: :get,
+                data: {
+                  turbo_stream: true,
+                  turbo_prefetch: false
+                }
+            %>
+          </div>
+        <% end %>
+        <div class='time-ago' title="<%= translation.created_at.strftime('%Y-%m-%d') %>">
+          <%= time_ago_in_words(translation.created_at) %>
         </div>
-      <% end %>
-      <div class='time-ago' title="<%= translation.created_at.strftime('%Y-%m-%d') %>">
-        <%= time_ago_in_words(translation.created_at) %>
       </div>
     </div>
 

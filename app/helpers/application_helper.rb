@@ -294,23 +294,23 @@ module ApplicationHelper
     case seconds
     when 0...60
       ::I18n.t('time_ago.just_now')
-    when 60...3600
+    when 60...3_600
       minutes = (seconds / 60).round
       "#{minutes} #{::I18n.t('time_ago.minute')}"
-    when 3600...86400
-      hours = (seconds / 3600).round
+    when 3_600...86_400
+      hours = (seconds / 3_600).round
       "#{hours} #{::I18n.t('time_ago.hour')}"
-    when 86400...604800
-      days = (seconds / 86400).round
+    when 86_400...2_592_000 # 604_800
+      days = (seconds / 86_400).round
       "#{days} #{::I18n.t('time_ago.day')}"
-    # when 604800...2592000
+    # when 604_800...2_592_000
     #   weeks = (seconds / 604800).round
     #   "#{weeks} #{::I18n.t('time_ago.week')}"
-    when 2592000...31536000
-      months = (seconds / 2592000).round
+    when 2_592_000...31_536_000
+      months = (seconds / 2_592_000).round
       "#{months} #{::I18n.t('time_ago.month')}"
     else
-      years = (seconds / 31536000).round
+      years = (seconds / 31_536_000).round
       "#{years} #{::I18n.t('time_ago.year')}"
     end
   end

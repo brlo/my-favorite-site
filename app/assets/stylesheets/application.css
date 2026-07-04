@@ -1274,14 +1274,30 @@ color: #ff8888;
 
 /* Базовые переменные */
 :root {
-  --border-color: #e5e7eb;
-  --text-primary: #111827;
-  --text-secondary: #6b7280;
-  --bg-gray: #f9fafb;
   --blue: #3b82f6;
   --green: #90b981;
   --red: #ef4444;
   --yellow: #f59e0b;
+}
+
+:root {
+  --bg-header: #f6f4e4;
+  --bg-body: #fdfcf1;
+  --bg-list: #ffffff;
+  --bg-card: #fafafa;
+  --border-main: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+}
+
+body.night-mode {
+  --bg-header: #2f3541;
+  --bg-body: #282c34;
+  --bg-list: #282c34;
+  --bg-card: #3a3d44;
+  --border-main: #4a5160;
+  --text-primary: #abb2bf;
+  --text-secondary: #6b7280;
 }
 
 /* Контейнер для всех карточек */
@@ -1293,14 +1309,14 @@ color: #ff8888;
 
 /* Карточка сегмента */
 .segment-card {
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-main);
   border-top: none;
   padding: 1.25rem;
-  background: white;
+  background: var(--bg-list);
 }
 
 .segment-card {
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-main);
 }
 
 /* ============================================
@@ -1318,7 +1334,6 @@ color: #ff8888;
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: none;
-    padding-right: 1.5rem;
   }
 
   .translations-area {
@@ -1331,12 +1346,12 @@ color: #ff8888;
   }
 
   .translations-area::-webkit-scrollbar-track {
-    background: var(--bg-gray);
+    background: var(--bg-card);
     border-radius: 3px;
   }
 
   .translations-area::-webkit-scrollbar-thumb {
-    background: var(--border-color);
+    background: var(--border-main);
     border-radius: 3px;
   }
 
@@ -1359,7 +1374,7 @@ color: #ff8888;
   .original-text {
     margin-bottom: 0;
     padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--border-color);
+    border-bottom: 2px solid var(--border-main);
   }
 
   .translations-area {
@@ -1381,13 +1396,19 @@ color: #ff8888;
   font-size: 0.75rem;
 }
 
+.translations-meta {
+  font-size: 0.8rem;
+  margin: 0.35rem 0 0.8rem 0;
+  color: gray;
+}
+
 .html-tags {
   margin: 0.15rem 0;
   font-family: monospace;
 }
 
 .html-tags .tag {
-  background: var(--bg-gray);
+  background: var(--bg-card);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-size: 0.6rem;
@@ -1415,7 +1436,6 @@ color: #ff8888;
 /* Область переводов */
 
 .origin-badge {
-  font-weight: italic;
   color:#0059ff;
 }
 .translate-from .author {
@@ -1448,11 +1468,11 @@ color: #ff8888;
 
 /* Карточка перевода */
 .translation {
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-main);
   border-radius: 6px;
   padding: 0.75rem;
   margin-bottom: 0.75rem;
-  background: var(--bg-gray);
+  background: var(--bg-card);
 }
 
 /* .translation.top {
@@ -1468,6 +1488,7 @@ color: #ff8888;
   align-items: center;
   margin-bottom: 0.5rem;
   font-size: 0.75rem;
+  gap: 4px;
 }
 
 /* Автор и теги */
@@ -1480,6 +1501,7 @@ color: #ff8888;
 }
 
 /* Время */
+
 .translation .time-ago {
   color: var(--text-secondary);
 }
@@ -1504,14 +1526,23 @@ color: #ff8888;
   flex-wrap: wrap;
 }
 
+.translation .section-title {
+  padding: 10px 15px;
+  border-bottom: 1px solid var(--border-main);
+  background-color: var(--bg-header)
+}
+
+.translation .voters-list {
+  background-color: var(--bg-body)
+}
+
 /* Формы голосования */
 .translation .button_to {
   display: inline;
 }
 
 .translation .vote-btn, .approved {
-  background: white;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-main);
   border-radius: 4px;
   padding: 0.25rem 0.5rem;
   cursor: pointer;
@@ -1543,7 +1574,6 @@ color: #ff8888;
 }
 
 .translation span.vote-btn {
-  border-color: #eee;
   background-color: transparent !important;
   cursor: default;
 }
@@ -1591,6 +1621,14 @@ color: #ff8888;
   .segment-body {
     font-size: 0.95rem;
   }
+
+  .translations-meta {
+    margin: 0;
+  }
+
+  .bbx-selected {
+    max-width: 200px;
+  }
 }
 
 /* Форма нового перевода */
@@ -1621,7 +1659,6 @@ color: #ff8888;
 
 .translations-lang {
   color: gray;
-  margin: 0 0 0.8rem 0;
 }
 
 .close-btn {
@@ -1633,7 +1670,7 @@ color: #ff8888;
 .translation-input {
   width: 100%;
   padding: 0.5rem;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-main);
   border-radius: 4px;
   font-family: inherit;
   font-size: 0.875rem;
@@ -1694,8 +1731,8 @@ color: #ff8888;
 
 .translation-stats {
   padding: 1rem;
-  background: #f6f4e4;
-  border: 1px solid #e5e7eb;
+  background: var(--bg-header);
+  border: 1px solid var(--border-main);
   border-radius: 6px 6px 0 0;
 }
 
@@ -1814,7 +1851,7 @@ color: #ff8888;
 
 .voters-section {
   background-color: white;
-  border: 1px solid var(--border-color);
+  border: 1px solid var(--border-main);
   border-radius: 6px;
   overflow: hidden;
 }
@@ -1825,7 +1862,7 @@ color: #ff8888;
 
 .voter-item {
   padding: 0.5rem 0.75rem;
-  border-bottom: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-main);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -2160,7 +2197,7 @@ color: #ff8888;
   }
 
   .bbx-selected-content {
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     gap: 6px;
   }
 
@@ -2251,8 +2288,8 @@ color: #ff8888;
 
 
 .translation-card {
-  background-color: #f6f4e473;
-  border: 1px solid #e1dfd1;
+  background-color: var(--bg-body);
+  border: 1px solid var(--border-main);
   border-radius: 4px;
   padding: 0;
   margin: 10px 0;
@@ -2260,7 +2297,7 @@ color: #ff8888;
 
 .project-title {
   display: block;
-  background-color: #f6f4e4;
+  background-color: var(--bg-header);
   margin: 0 !important;
   padding: 15px !important;
   font-size: 18px;
@@ -2280,7 +2317,7 @@ color: #ff8888;
   display: flex;
   gap: 10px;
   padding: 15px;
-  border-bottom: 1px solid #e1dfd1;
+  border-bottom: 1px solid var(--border-main);
 }
 
 .meta-label {
@@ -2291,10 +2328,6 @@ color: #ff8888;
   margin-bottom: -10px;
   min-width: 70px;
   padding: 10px 15px 0 15px;
-}
-
-.meta-value {
-  color: #1e293b;
 }
 
 .translation-item {
@@ -2331,7 +2364,7 @@ color: #ff8888;
   border: 1px solid #e2e8f0;
   border-radius: 10px;
   padding: 16px 20px;
-  margin-bottom: 12px;
+  margin: 20px 0;
 }
 
 /* Мета-информация (автор, дата) */
