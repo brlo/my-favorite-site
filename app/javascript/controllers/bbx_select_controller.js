@@ -28,7 +28,8 @@ export default class extends Controller {
     action: String,
     navigatePath: String,
     placeholder: { type: String, default: '' },
-    direction: { type: String, default: 'down' }
+    direction: { type: String, default: 'down' },
+    pathPositionReplace: Number,
   }
 
   connect() {
@@ -239,19 +240,34 @@ export default class extends Controller {
   handleAction() {
     if (this.actionValue === 'navigate') {
       const isMultiple = this.selectTarget.hasAttribute('multiple')
-      let path = this.navigatePathValue
+      let path = this.navigatePathValue;
 
+      // Собираем новое значение value из списка
+      let newPathPart = ''
       if (isMultiple) {
         const values = Array.from(this.selectTarget.selectedOptions)
           .map(opt => opt.value)
           .join(',')
-        path = `${path}${values}`
+        newPathPart = values
       } else {
-        path = `${path}${this.selectTarget.value}`
+        newPathPart = this.selectTarget.value
       }
 
+      // Если указано в каком месте path нужно поставить value, то делаем это,
+      // а иначе подставляем value в конец целевого url (navigatePathValue).
+      if (this.pathPositionReplaceValue) {
+        let pathAsArr = window.location.pathname.replace(/^\/+/, '').split('/');
+        pathAsArr[this.pathPositionReplaceValue] = newPathPart
+        path = pathAsArr.join('/') + window.location.search;
+      } else {
+        path = `${path}${newPathPart}`
+      }
+
+      // докидываем параметры и якорь
+      path = path + window.location.hash;
+
       // window.location.href = path
-      Turbo.visit(path);
+      Turbo.visit('/' + path);
     }
   }
 

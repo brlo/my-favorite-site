@@ -4,7 +4,7 @@
 
     <div data-controller="bbx-select"
           data-bbx-select-action-value="navigate"
-          data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/" %>">
+          data-bbx-select-path-position-replace-value='1'>
       <select data-bbx-select-target="select" name="locale" id='lang-select' class="search-select">
         <optgroup label="<%= t('dropdown.translates') %>">
           <option value='ru' <% if @current_bib_lang == 'ru' %>selected<% end %>>            <%= bib_lang_string_full('ru', short: 'RST') %></option>

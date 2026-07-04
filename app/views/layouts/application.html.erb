@@ -238,15 +238,14 @@
 
           <div data-controller="bbx-select"
                data-bbx-select-action-value="navigate"
-               data-bbx-select-navigate-path-value="/"
-               data-bbx-select-direction-value="up">
+               data-bbx-select-direction-value="up"
+               data-bbx-select-path-position-replace-value='0'>
 
             <label for="ui-lang-select"><%= I18n.t('menu.locale') %>:</label>
             <select data-bbx-select-target="select" name="locale" id="ui-lang-select" class="search-select">
-              <% path_end = request.path.to_s.gsub(/^[\/]+/, '').split('/')[1..-1].join('/') %>
               <% ::FLAG_BY_LANG.each do |lang, flag| %>
                 <% next if !::ALL_LOCALES.has_key?(lang) %>
-                <option value="<%= "#{lang}/#{path_end}" %>" <%= ::I18n.locale.to_s == lang ? 'selected' : '' %>><%= page_lang_string_full(lang) %></option>
+                <option value="<%= lang %>" <%= ::I18n.locale.to_s == lang ? 'selected' : '' %>><%= page_lang_string_full(lang) %></option>
               <% end %>
             </select>
             <div data-bbx-select-target="custom"></div>

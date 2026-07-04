@@ -11,12 +11,12 @@
 
         <div class='lang-select' data-controller="bbx-select"
              data-bbx-select-action-value="navigate"
-             data-bbx-select-navigate-path-value="/">
+             data-bbx-select-path-position-replace-value='1'>
           <select data-bbx-select-target="select" name="locale" id="page-lang-select" data-page='true' class='search-select'>
             <% ::FLAG_BY_LANG.each do |lang, flag| %>
               <% path = @page_langs[lang] %>
               <% next if path.nil? %>
-              <option value='<%= "#{I18n.locale}/#{lang}/w/#{path}" %>' <% if @content_lang == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
+              <option value='<%= lang %>' <% if @content_lang == lang %>selected<% end %>><%= page_lang_string_full(lang) %></option>
             <% end %>
           </select>
           <div data-bbx-select-target="custom"></div>
