@@ -28,22 +28,24 @@ class TranslationProjectsController < ApplicationController
       .order(:chapter, :paragraph, :line)
 
     @langs_from = (@project.source_langs.to_a + [@segments&.first&.lang]).compact.sort.uniq
-    @params_lang_from = params[:lang_from].to_s.split(',').presence || @langs_from.first
+    @params_lang_from = params[:lang_from].to_s.split(',').presence || @langs_from
 
     # @progress_percent = @project.progress_for(part: @part, lang_to: @lang_to)
     @progress_for_all_langs = @project.progress_for_all_langs()
   end
 
   def result
+    @part = params[:part]&.to_i || 1
+    @lang_to = params[:lang_to] || ::I18n.locale.to_s
+
+    @translated_title = @project.title_for_lang(@lang_to)
+
     @breadcrumbs = [
       ['Все переводы', translation_projects_path(locale: I18n.locale)],
       [@project.title, translation_project_path(@project)],
-      ['Результат перевода']
+      ['Итоговый перевод']
     ]
-    @page_title = "Совместный перевод — #{@project.title}"
-
-    @part = params[:part]&.to_i || 1
-    @lang_to = params[:lang_to] || ::I18n.locale.to_s
+    @page_title = "Совместный перевод — #{@translated_title.presence || @project.title}"
 
     @all_langs = @project.translations.pluck('distinct lang').sort
     @all_parts = @project.segments.pluck('distinct part').sort

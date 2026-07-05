@@ -29,7 +29,7 @@
             Исходники
           </div>
 
-          <% if @params_lang_from.include?(segment.lang) %>
+          <% if @params_lang_from&.include?(segment.lang) %>
             <div class='translation translate-from origin'>
               <div class='meta'>
                 <div class="translations-lang">
@@ -83,7 +83,8 @@
           new_translation_project_segment_translation_path(
             translation_project_id: segment.translation_project_id,
             segment_id: segment.id,
-            lang_to: lang_to
+            lang_to: lang_to,
+            lang_from: params[:lang_from]
           ),
           data: {
             turbo_stream: true,

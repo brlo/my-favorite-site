@@ -17,7 +17,7 @@
       data-chapter="<%= @part %>"
       itemprop="headline"
     >
-      <%= @project.title %>
+      <%= @translated_title.presence || @project.title %>
     </h1>
   </div>
 

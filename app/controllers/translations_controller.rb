@@ -4,6 +4,7 @@ class TranslationsController < ApplicationController
 
   before_action :set_segment
   before_action :set_translation, except: %w[new create]
+  before_action :set_langs, only: %w[create edit destroy]
 
   # голосование
   rate_limit to: 5, within: 20.seconds, by: -> { request.ip }, only: %w[upvote downvote], if: -> { logged_in? && !current_user.is_admin? }, with: :too_many_requests
@@ -36,7 +37,8 @@ class TranslationsController < ApplicationController
     @translation = @segment.translations.new(
       translation_params.merge(
         user: current_user,
-        translation_project_id: params[:translation_project_id]
+        translation_project_id: params[:translation_project_id],
+        source_lang: @params_lang_from.join(',')
       )
     )
 
@@ -190,5 +192,10 @@ class TranslationsController < ApplicationController
 
   def translation_params
     params.require(:translation).permit(:text, :sub_text, :lang, :source_lang)
+  end
+
+  def set_langs
+    @langs_from = [@segment.lang]
+    @params_lang_from = params[:lang_from].to_s.split(',').presence || @langs_from
   end
 end

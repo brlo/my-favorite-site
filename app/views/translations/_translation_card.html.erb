@@ -18,7 +18,8 @@
             <%= link_to '✕', translation_project_segment_translation_path(
                   translation_project_id: translation.translation_project_id,
                   segment_id: translation.segment_id,
-                  id: translation.id
+                  id: translation.id,
+                  lang_from: params[:lang_from]
                 ),
                 class: 'px-2',
                 method: :delete,

@@ -11,12 +11,32 @@ class TranslationProject < ApplicationRecord
     parser = ::HtmlSegmentParser.new(body, lang: lang)
     segments_data = parser.parse
 
+    # в первой части вначале добавляем перевод названия труда (line: 0)
+    create_title_segment(self.title, lang) if part == 1
+
     # Создаем сегменты
     create_segments_from_data(segments_data, part, lang)
 
     # Обновляем доступные языки
     # update_available_langs()
     part
+  end
+
+  def create_title_segment title, lang
+    # заголовок создаётся в первой части, главе 0, линии 0
+    segment = segments.new(
+      part: 1,
+      chapter: 0,
+      paragraph: 0,
+      line: 0,
+      text: title,
+      lang: lang,
+      is_original: true,
+      open_tags: [],
+      close_tags: [],
+      # document_id: id
+    )
+    segment.save!
   end
 
   def create_segments_from_data(segments_data, part, lang)
@@ -121,6 +141,14 @@ class TranslationProject < ApplicationRecord
       result[lang] = translated_segments * 100 / total_segments
     end
     result
+  end
+
+  def title_for_lang lang
+    title_segment = self.segments.find_by(part: 1, chapter: 0, paragraph: 0, line: 0)
+    return if title_segment.nil?
+
+    title_translations = self.translations.where(lang: lang).to_a
+    ::TranslationsService.sort_by_priority(title_translations)&.last&.text
   end
 
   # # Добавляет страницу и парсит её на сегменты
