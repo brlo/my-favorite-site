@@ -1362,6 +1362,7 @@ body.night-mode {
   align-items: center;
   margin: 0.15rem 0;
   font-family: monospace;
+  flex-wrap: wrap;
 }
 
 .html-tags .tag {
@@ -1372,6 +1373,7 @@ body.night-mode {
   padding: 2px 4px;
   margin: 0px 2px;
   font-size: 0.6rem;
+  text-wrap: nowrap;
 }
 
 .fragment-number {
@@ -1401,7 +1403,7 @@ body.night-mode {
 
 .translate-from {
   border-left: 2px solid var(--brown) !important;
-  border-radius: 0 4px 4px 0 !important;
+  border-radius: 0 6px 6px 0 !important;
 }
 
 .translate-from.origin {
@@ -1963,6 +1965,7 @@ body.night-mode {
   padding: 10px 14px;
   min-height: 44px;
   gap: 8px;
+  font-size: 0.9rem;
 }
 
 .bbx-selected-content {
@@ -1995,18 +1998,18 @@ body.night-mode {
 .bbx-dropdown {
   display: none;
   position: absolute;
-  top: calc(100% + 2px);
-  left: -1px;
-  right: -1px;
-  background: #fff;
+  /* top/left задаются из JS */
+  min-width: 100%;
+  width: max-content;
+  max-width: 90vw;
+  max-height: 300px;
+  overflow-y: auto;
+  background: white;
   border: 1px solid #d1d5db;
   border-radius: 6px;
-  max-height: 350px;
-  min-width: 425px;
-  overflow-y: auto;
   z-index: 1000;
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  font-size: 14px;
+  white-space: nowrap;
 }
 
 /* Открытый дропдаун */
@@ -2015,13 +2018,6 @@ body.night-mode {
 }
 
 /* Группы */
-.bbx-group {
-  border-bottom: 1px solid #f3f4f6;
-}
-
-.bbx-group:last-child {
-  border-bottom: none;
-}
 
 .bbx-group-label {
   font-weight: 600;
@@ -2029,6 +2025,7 @@ body.night-mode {
   padding: 10px;
   color: #000000;
   background-color: #f6f4e3;
+  text-align: left;
 }
 
 /* Опции */
@@ -2072,7 +2069,7 @@ body.night-mode {
 }
 
 .block-link .bbx-progress {
-  background: #FFFFFFCC;
+  background: #DDDDDD55;
 }
 
 .bbx-progress .bbx-bar {
@@ -2139,8 +2136,13 @@ body.night-mode {
   }
 }
 
-/* Для раскрытия вверх */
-.bbx-select.bbx-dropup .bbx-dropdown {
+/* Для раскрытия вниз/вверх */
+.bbx-dropdown.dropdown {
+  top: calc(100% + 2px);
+  bottom: auto;
+}
+
+.bbx-dropdown.dropup {
   top: auto;
   bottom: calc(100% + 2px);
 }

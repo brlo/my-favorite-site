@@ -165,6 +165,10 @@ export default class extends Controller {
 
     dropdown.classList.toggle('open')
     select.classList.toggle('open')
+
+    if (dropdown.classList.contains('open')) {
+      this.calculatePosition()
+    }
   }
 
   select(event) {
@@ -274,6 +278,48 @@ export default class extends Controller {
   handleOutsideClick(event) {
     if (!this.element.contains(event.target)) {
       this.close()
+    }
+  }
+
+  calculatePosition() {
+    const dropdown = this.customTarget.querySelector('.bbx-dropdown')
+    const select = this.customTarget.querySelector('.bbx-select')
+
+    if (!dropdown || !select) return
+
+    const rect = select.getBoundingClientRect()
+    const dropdownHeight = dropdown.scrollHeight || 200
+    const spaceBelow = window.innerHeight - rect.bottom
+    const spaceAbove = rect.top
+
+    // Убираем предыдущие классы
+    dropdown.classList.remove('dropup', 'dropdown')
+
+    // Если снизу меньше места, чем высота дропдауна, и сверху больше - раскрываем вверх
+    if (spaceBelow < dropdownHeight && spaceAbove > spaceBelow) {
+      dropdown.classList.add('dropup')
+      dropdown.style.top = 'auto'
+      dropdown.style.bottom = 'calc(100% + 2px)'
+    } else {
+      dropdown.classList.add('dropdown')
+      dropdown.style.top = 'calc(100% + 2px)'
+      dropdown.style.bottom = 'auto'
+    }
+
+    // Проверяем, не вылазит ли справа
+    const dropdownRect = dropdown.getBoundingClientRect()
+    if (dropdownRect.right > window.innerWidth) {
+      dropdown.style.left = 'auto'
+      dropdown.style.right = '0'
+    } else {
+      dropdown.style.left = '0'
+      dropdown.style.right = 'auto'
+    }
+
+    // Проверяем, не вылазит ли слева
+    if (dropdownRect.left < 0) {
+      dropdown.style.left = '0'
+      dropdown.style.right = 'auto'
     }
   }
 }

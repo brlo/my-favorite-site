@@ -146,7 +146,7 @@ header .container, footer .container {
   margin-left: auto;
 }
 
-#text-bar .bar-el.btn a { color: #222 }
+#text-bar .bar-el.btn a { color: #222; text-decoration: none; }
 #text-bar .bar-el.btn {
   padding: 0 10px;
   font-size: 14px;
