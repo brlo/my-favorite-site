@@ -147,7 +147,7 @@ class TranslationProject < ApplicationRecord
     title_segment = self.segments.find_by(part: 1, chapter: 0, paragraph: 0, line: 0)
     return if title_segment.nil?
 
-    title_translations = self.translations.where(lang: lang).to_a
+    title_translations = title_segment.translations.where(lang: lang).to_a
     ::TranslationsService.sort_by_priority(title_translations)&.last&.text
   end
 
