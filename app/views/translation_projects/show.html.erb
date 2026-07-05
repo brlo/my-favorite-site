@@ -27,12 +27,59 @@
   </div>
 
   <div id="title-sub">
-    <strong><%= translation_lang_by_code(@project.source_langs.first) %> → <%= translation_lang_by_code(@lang_to) %></strong><br>
-    Этот перевод подготавливается пользователями сайта bibleox.com.<br>
+    Перевод подготавливается пользователями сайта bibleox.com.<br>
     <% if !logged_in? %> Вы можете помочь улучшить этот текст! <%= link_to 'Зарегистрируйтесь', signup_path %> и присоединяйтесь к работе над <%= link_to 'переводом', translation_project_path(@project, part: @part, lang_to: @lang_to) %>. <br><% end %>
-    Как и материалы Wikipedia,
-      <%= link_to 'результат', result_translation_project_path(part: @part, lang_to: @lang_to), data: {turbo: false} %>
-    распространяется свободно под лицензией CC BY-SA.
+    Как и материалы Wikipedia, результат распространяется свободно под лицензией CC BY-SA.
+  </div>
+
+  <div class='translation-stats'>
+    <div class="stats-row">
+      <span class="stats-label">Перевод с языка:</span>
+
+      <div data-controller="bbx-select"
+          data-bbx-select-action-value="navigate"
+          data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/translate/#{@project.id}?part=#{@part}&lang_to=#{@lang_to}&lang_from=" %>">
+        <select data-bbx-select-target="select" name="locale" multiple>
+          <optgroup label="Исходники">
+            <% langs_for_translates(is_with_encient: true).each do |lang, name| %>
+              <% next unless @langs_from.include?(lang) %>
+              <% is_selected = @langs_from.include?(lang) %>
+              <% is_selected = false if @params_lang_from.present? && @params_lang_from.exclude?(lang) %>
+              <option value='<%= lang %>' <%= 'selected' if is_selected %>><%= name %></option>
+            <% end %>
+          </optgroup>
+
+          <% translates = langs_for_translates(is_with_encient: false).select { |lang, _| @progress_for_all_langs.fetch(lang, 0) > 0 && lang != @lang_to }.sort_by { |lang, _| [-@progress_for_all_langs.fetch(lang, 0), lang] } %>
+          <% if translates.any? %>
+            <optgroup label="Переводы">
+              <% translates.each do |lang, name| %>
+                <option value='<%= lang %>' <%= 'selected' if @params_lang_from.include?(lang) %> data-progress="<%= @progress_for_all_langs[lang] %>"><%= name %></option>
+              <% end %>
+            </optgroup>
+          <% end %>
+        </select>
+        <div data-bbx-select-target="custom"></div>
+      </div>
+
+      <span class="stats-arrow">→</span>
+
+      <span class="stats-label">на язык:</span>
+
+      <div data-controller="bbx-select"
+          data-bbx-select-action-value="navigate"
+          data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/translate/#{@project.id}?part=#{@part}&lang_from=#{@langs_from.first}&lang_to=" %>">
+        <select data-bbx-select-target="select" name="locale">
+          <% langs_for_translates(is_with_encient: false).sort_by { |lang, _| [-@progress_for_all_langs.fetch(lang, 0), lang] }.each do |lang, name| %>
+            <% next if @project.source_langs.to_a.include?(lang) %>
+            <option value='<%= lang %>' <%= 'selected' if @lang_to == lang %> data-progress="<%= @progress_for_all_langs[lang] %>"><%= name %></option>
+          <% end %>
+        </select>
+        <div data-bbx-select-target="custom"></div>
+      </div>
+
+      <%= link_to 'Итоговый перевод', result_translation_project_path(part: @part, lang_to: @lang_to), data: { turbo: false }, class: "stats-link" %>
+    </div>
+
   </div>
 
   <div class='small hint' style='text-align: center'>Часть</div>
@@ -49,6 +96,7 @@
 
   <div id="text-bar-wrapper">
     <div id='text-bar'>
+
       <div class='right-group'>
         <% if current_user&.is_admin? %>
           <div class='bar-el btn'>
@@ -73,59 +121,6 @@
         </div>
       </div>
     </div>
-  </div>
-
-</div>
-<div class='translation-stats'>
-  <div class="stats-row">
-    <span class="stats-label">Перевод с языка:</span>
-
-    <div data-controller="bbx-select"
-         data-bbx-select-action-value="navigate"
-         data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/translate/#{@project.id}?part=#{@part}&lang_to=#{@lang_to}&lang_from=" %>">
-      <select data-bbx-select-target="select" name="locale" multiple>
-        <optgroup label="Исходники">
-          <% langs_for_translates(is_with_encient: true).each do |lang, name| %>
-            <% next unless @langs_from.include?(lang) %>
-            <% is_selected = @langs_from.include?(lang) %>
-            <% is_selected = false if @params_lang_from.present? && @params_lang_from.exclude?(lang) %>
-            <option value='<%= lang %>' <%= 'selected' if is_selected %>><%= name %></option>
-          <% end %>
-        </optgroup>
-
-        <% translates = langs_for_translates(is_with_encient: false).select { |lang, _| @progress_for_all_langs.fetch(lang, 0) > 0 && lang != @lang_to }.sort_by { |lang, _| [-@progress_for_all_langs.fetch(lang, 0), lang] } %>
-        <% if translates.any? %>
-          <optgroup label="Переводы">
-            <% translates.each do |lang, name| %>
-              <option value='<%= lang %>' <%= 'selected' if @params_lang_from.include?(lang) %> data-progress="<%= @progress_for_all_langs[lang] %>"><%= name %></option>
-            <% end %>
-          </optgroup>
-        <% end %>
-      </select>
-      <div data-bbx-select-target="custom"></div>
-    </div>
-
-    <span class="stats-arrow">→</span>
-
-    <span class="stats-label">на язык:</span>
-
-    <div data-controller="bbx-select"
-         data-bbx-select-action-value="navigate"
-         data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/translate/#{@project.id}?part=#{@part}&lang_from=#{@langs_from.first}&lang_to=" %>">
-      <select data-bbx-select-target="select" name="locale">
-        <% langs_for_translates(is_with_encient: false).sort_by { |lang, _| [-@progress_for_all_langs.fetch(lang, 0), lang] }.each do |lang, name| %>
-          <% next if @project.source_langs.to_a.include?(lang) %>
-          <option value='<%= lang %>' <%= 'selected' if @lang_to == lang %> data-progress="<%= @progress_for_all_langs[lang] %>"><%= name %></option>
-        <% end %>
-      </select>
-      <div data-bbx-select-target="custom"></div>
-    </div>
-
-    <%= link_to result_translation_project_path(part: @part, lang_to: @lang_to),
-                data: { turbo: false },
-                class: "stats-link" do %>
-      Посмотреть результат
-    <% end %>
   </div>
 </div>
 

@@ -48,6 +48,8 @@ class TranslationProjectsController < ApplicationController
     @all_langs = @project.translations.pluck('distinct lang').sort
     @all_parts = @project.segments.pluck('distinct part').sort
 
+    @progress_for_all_langs = @project.progress_for_all_langs()
+
     @result_html, @references_html = @project.result_for(lang_to: @lang_to, part: @part)
   end
 

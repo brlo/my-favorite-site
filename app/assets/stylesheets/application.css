@@ -969,12 +969,6 @@ a.bib-comment:hover {
     gap: 1rem;
 }
 
-/* Адаптивная высота для оригинала */
-.original-text {
-    min-height: 80px;
-    font-size: 1.05rem;
-}
-
 /* Голосование */
 .vote-row .btn-link {
     font-size: 0.9rem;
@@ -1278,13 +1272,16 @@ color: #ff8888;
   --green: #90b981;
   --red: #ef4444;
   --yellow: #f59e0b;
+  --brown: #ac735b;
 }
 
 :root {
   --bg-header: #f6f4e4;
   --bg-body: #fdfcf1;
   --bg-list: #ffffff;
-  --bg-card: #fafafa;
+  --bg-card: #ffffff;
+  --bg-tag: transparent;
+  --text-tag: #a8501e;
   --border-main: #e5e7eb;
   --text-primary: #111827;
   --text-secondary: #6b7280;
@@ -1295,6 +1292,8 @@ body.night-mode {
   --bg-body: #282c34;
   --bg-list: #282c34;
   --bg-card: #3a3d44;
+  --bg-tag: transparent;
+  --text-tag: #00da7c;
   --border-main: #4a5160;
   --text-primary: #abb2bf;
   --text-secondary: #6b7280;
@@ -1308,15 +1307,9 @@ body.night-mode {
 }
 
 /* Карточка сегмента */
-.segment-card {
-  border: 1px solid var(--border-main);
-  border-top: none;
-  padding: 1.25rem;
-  background: var(--bg-list);
-}
 
 .segment-card {
-  border-bottom: 1px solid var(--border-main);
+  padding: 1.25rem 0 4rem 0;
 }
 
 /* ============================================
@@ -1328,36 +1321,6 @@ body.night-mode {
     grid-template-columns: 1fr 1.5fr;
     gap: 1.5rem;
     align-items: start;
-  }
-
-  .original-text {
-    margin-bottom: 0;
-    padding-bottom: 0;
-    border-bottom: none;
-  }
-
-  .translations-area {
-    padding-right: 0.25rem;
-  }
-
-  /* Кастомный скроллбар для переводов */
-  .translations-area::-webkit-scrollbar {
-    width: 6px;
-  }
-
-  .translations-area::-webkit-scrollbar-track {
-    background: var(--bg-card);
-    border-radius: 3px;
-  }
-
-  .translations-area::-webkit-scrollbar-thumb {
-    background: var(--border-main);
-    border-radius: 3px;
-  }
-
-  .translations-header {
-    padding-top: 0;
-    padding-bottom: 5px;
   }
 }
 
@@ -1371,16 +1334,9 @@ body.night-mode {
     gap: 1rem;
   }
 
-  .original-text {
-    margin-bottom: 0;
-    padding-bottom: 0.75rem;
-    border-bottom: 2px solid var(--border-main);
-  }
-
   .translations-area {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
   }
 }
 
@@ -1389,11 +1345,10 @@ body.night-mode {
    ============================================ */
 
 /* Оригинальный текст */
-.segment-meta {
+.fragment-header {
   display: flex;
+  font-size: 1.4rem;
   gap: 0.75rem;
-  margin-bottom: 0.75rem;
-  font-size: 0.75rem;
 }
 
 .translations-meta {
@@ -1403,14 +1358,19 @@ body.night-mode {
 }
 
 .html-tags {
+  display: flex;
+  align-items: center;
   margin: 0.15rem 0;
   font-family: monospace;
 }
 
 .html-tags .tag {
-  background: var(--bg-card);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
+  background: var(--bg-tag);
+  color: var(--text-tag);
+  border: 1px solid var(--text-tag);
+  border-radius: 5px;
+  padding: 2px 4px;
+  margin: 0px 2px;
   font-size: 0.6rem;
 }
 
@@ -1435,19 +1395,17 @@ body.night-mode {
 
 /* Область переводов */
 
-.origin-badge {
-  color:#0059ff;
-}
 .translate-from .author {
   color:#ac735b !important;
 }
 
 .translate-from {
-  background-color: #ac735b11 !important;
+  border-left: 2px solid var(--brown) !important;
+  border-radius: 0 4px 4px 0 !important;
 }
 
 .translate-from.origin {
-  background-color: #0059ff0b !important;
+  border-left: 2px solid var(--blue) !important;
 }
 
 .translations-header {
@@ -1541,13 +1499,16 @@ body.night-mode {
   display: inline;
 }
 
+.translation .vote-btn {
+  background-color: transparent;
+}
+
 .translation .vote-btn, .approved {
   border: 1px solid var(--border-main);
   border-radius: 4px;
   padding: 0.25rem 0.5rem;
   cursor: pointer;
   font-size: 0.75rem;
-  transition: all 0.2s;
 }
 
 .translation .vote-btn.voted.up {
@@ -1604,30 +1565,6 @@ body.night-mode {
     display: block;
     text-align: center;
     margin: 10px 0 0 0;
-  }
-}
-
-/* Адаптация для мобильных */
-@media (max-width: 640px) {
-  .segments-container {
-    padding: 0.5rem;
-  }
-
-  .segment-card {
-    padding: 1rem;
-    margin-bottom: 1rem;
-  }
-
-  .segment-body {
-    font-size: 0.95rem;
-  }
-
-  .translations-meta {
-    margin: 0;
-  }
-
-  .bbx-selected {
-    max-width: 200px;
   }
 }
 
@@ -1730,15 +1667,14 @@ body.night-mode {
 /* app/assets/stylesheets/components/translation_stats.css */
 
 .translation-stats {
-  padding: 1rem;
-  background: var(--bg-header);
-  border: 1px solid var(--border-main);
-  border-radius: 6px 6px 0 0;
+  text-align: center;
+  padding: 1rem 0;
 }
 
 .stats-row {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
   gap: 0.5rem 1rem;
 }
@@ -1756,40 +1692,21 @@ body.night-mode {
 }
 
 .stats-link {
-  margin-left: auto;
-  color: #3b82f6;
-  text-decoration: none;
-  font-size: 0.9rem;
-  white-space: nowrap;
-}
-
-.stats-link:hover {
-  text-decoration: underline;
+  display: inline-block;
+  padding: 10px 5px;
 }
 
 /* Адаптивность */
 @media (max-width: 768px) {
-  .stats-row {
-    gap: 0.5rem;
-  }
-
-  .stats-link {
-    margin-left: 0;
-    width: 100%;
+  .stats-row > * {
+    flex-basis: 100%;
     text-align: center;
-    padding-top: 0.5rem;
-    border-top: 1px solid #f3f4f6;
   }
 
-  .translation-stats [data-controller="bbx-select"] {
-    flex: 1;
-    min-width: 120px;
-  }
 }
 
-/* Если нужно чтобы bbx-select занимал минимум места */
 .translation-stats [data-controller="bbx-select"] {
-  display: inline-flex;
+  display: contents;
   min-width: 140px;
 }
 
@@ -2283,8 +2200,13 @@ body.night-mode {
 
 
 
-
-
+.translation-project-card {
+  background-color: var(--bg-body);
+  border: 1px solid var(--border-main);
+  border-radius: 4px;
+  padding: 0;
+  margin: 10px 0 20px 0;
+}
 
 
 .translation-card {

@@ -2,7 +2,7 @@
 
 <div id="chapter-header" data-controller="menu-filter">
   <h2 class="parent-title">
-    <%= link_to 'Перевод от сообщества bibleox', translation_project_path(@project, part: @part, lang_to: @lang_to) %>
+    <%= link_to 'Работа над переводом', translation_project_path(@project, part: @part, lang_to: @lang_to) %>
   </h2>
   <div id="h1-title">
     <h1
@@ -23,11 +23,9 @@
 
   <div id="title-sub">
     <strong><%= translation_lang_by_code(@project.source_langs.first) %> → <%= translation_lang_by_code(@lang_to) %></strong><br>
-    Этот перевод подготавливается пользователями сайта bibleox.com.<br>
+    Перевод подготавливается пользователями сайта bibleox.com.<br>
     <% if !logged_in? %> Вы можете помочь улучшить этот текст! <%= link_to 'Зарегистрируйтесь', signup_path %> и присоединяйтесь к работе над <%= link_to 'переводом', translation_project_path(@project, part: @part, lang_to: @lang_to) %>. <br><% end %>
-    Как и материалы Wikipedia,
-      <%= link_to 'результат', result_translation_project_path(part: @part, lang_to: @lang_to), data: {turbo: false} %>
-    распространяется свободно под лицензией CC BY-SA.
+    Как и материалы Wikipedia, результат распространяется свободно под лицензией CC BY-SA.
   </div>
 
   <div class='small hint' style='text-align: center'>Часть</div>
@@ -46,21 +44,20 @@
     <div class='bar-description'>Перевод на язык:</div>
     <div id='text-bar'>
       <div class='bar-el'>
-        <div class='lang-select'
-          data-controller='choices-select'
-          data-choices-select-placeholder-value='Перевод на язык'
-          data-choices-select-search-enabled-value='false'
-          data-choices-select-position-value='down'
-          data-action='change->choices-select#selectLink'>
 
-          <select id="page-lang-select" data-page='true' class='search-select'>
-            <% langs_for_translates(is_with_encient: false).each do |lang, name| %>
+        <div data-controller="bbx-select"
+            data-bbx-select-action-value="navigate"
+            data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/translate/#{@project.id}/result?part=#{@part}&lang_to=" %>">
+          <select data-bbx-select-target="select" name="locale" id="page-lang-select" data-page='true' class='search-select'>
+            <% langs_for_translates(is_with_encient: false).sort_by { |lang, _| [-@progress_for_all_langs.fetch(lang, 0), lang] }.each do |lang, name| %>
               <% next if @all_langs.exclude?(lang) %>
               <% next if @project.source_langs.to_a.include?(lang) %>
-              <option value='<%= result_translation_project_path(part: @part, lang_to: lang) %>' <% if @lang_to == lang %>selected<% end %>><%= name %></option>
+              <option value='<%= lang %>' <%= 'selected' if @lang_to == lang %> data-progress="<%= @progress_for_all_langs[lang] %>"><%= name %></option>
             <% end %>
           </select>
+          <div data-bbx-select-target="custom"></div>
         </div>
+
       </div>
 
       <div class='right-group'>

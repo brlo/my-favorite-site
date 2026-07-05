@@ -1,28 +1,39 @@
 <% lang_to = @lang_to || @translation&.lang %>
 
 <%= turbo_frame_tag "segment-with-translations-#{segment.id}" do %>
+  <div class="fragment-header">
+    <% fragment_id = "ch#{ segment.chapter }-p#{ segment.paragraph }-l#{ segment.line }" %>
+    <div class='fragment-title'>
+      Фрагмент
+      <span id='<%= fragment_id %>' data-share-id='<%= fragment_id %>' class='fragment-number'>
+        #<%= fragment_id %>
+      </span>
+    </div>
+    <div class='html-tags'>
+      <% segment.open_tags.map { it['n'] }.each do |tag| %>
+        <span class="tag"><%= t("open_tags.#{tag}", default: tag) %></span>
+      <% end %>
+      <% close_tags = segment.close_tags.map { it['n'] }.each do |tag| %>
+        <span class="tag"><%= t("close_tags.#{tag}", default: "/#{tag}") %></span>
+      <% end %>
+    </div>
+  </div>
+
   <div class="segment-card">
+
     <div class="original-text">
       <div class="segment-content">
-        <div class="segment-meta">
-          <% fragment_id = "ch#{ segment.chapter }-p#{ segment.paragraph }-l#{ segment.line }" %>
-          <span id='<%= fragment_id %>' data-share-id='<%= fragment_id %>' class='fragment-number'>#<%= fragment_id %></span>
-          <div class='html-tags'>
-            <% segment.open_tags.map { it['n'] }.each do |tag| %>
-              <span class="tag"><%= t("open_tags.#{tag}", default: tag) %></span>
-            <% end %>
-            <% close_tags = segment.close_tags.map { it['n'] }.each do |tag| %>
-              <span class="tag"><%= t("close_tags.#{tag}", default: "/#{tag}") %></span>
-            <% end %>
-          </div>
-        </div>
 
         <div class='translations-from'>
+          <div class="translations-meta">
+            Исходники
+          </div>
+
           <% if @params_lang_from.include?(segment.lang) %>
             <div class='translation translate-from origin'>
               <div class='meta'>
                 <div class="translations-lang">
-                  <%= translation_lang_by_code(segment.lang) %> <span class='origin-badge'>исходник</span>
+                  <%= translation_lang_by_code(segment.lang) %>
                 </div>
               </div>
               <div class='text'>
