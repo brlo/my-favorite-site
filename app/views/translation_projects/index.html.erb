@@ -48,7 +48,7 @@
           </span>
           <span class="admin-divider">•</span>
           <%= link_to translation.created_at.strftime('%d.%m.%Y %H:%M'),
-                      translation_project_path(id: segment.translation_project_id, part: segment.part, anchor: anchor),
+                      translation_project_path(id: segment.translation_project_id, part: segment.part, lang_to: translation.lang, anchor: anchor),
                       class: "admin-date-link" %>
         </div>
 
