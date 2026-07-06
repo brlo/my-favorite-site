@@ -32,11 +32,11 @@
     <%= render @projects %>
   <% end %>
 
-<% if current_user&.is_admin? %>
+<%# if current_user&.is_admin? %>
   <div class="admin-section">
     <h2 class="section-title">Переводы за последние сутки</h2>
 
-    <% Translation.where(created_at: 1.day.ago..).preload(:segment).each do |translation| %>
+    <% Translation.where(created_at: 1.day.ago..).preload(:segment).order(id: :desc).each do |translation| %>
       <% segment = translation.segment %>
       <% anchor = "ch#{ segment.chapter }-p#{ segment.paragraph }-l#{ segment.line }" %>
 
@@ -69,5 +69,5 @@
       </div>
     <% end %>
   </div>
-<% end %>
+<%# end %>
 
