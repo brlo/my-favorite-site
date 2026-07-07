@@ -260,7 +260,7 @@ export default class extends Controller {
 
     // Если указано в каком месте path нужно поставить value, то делаем это,
     // а иначе подставляем value в конец целевого url (navigatePathValue).
-    if (this.pathPositionReplaceValue) {
+    if (this.pathPositionReplaceValue || this.pathPositionReplaceValue == 0) {
       let pathAsArr = window.location.pathname.replace(/^\/+/, '').split('/');
       pathAsArr[this.pathPositionReplaceValue] = newPathPart
       path = '/' + pathAsArr.join('/') + window.location.search;

@@ -1,4 +1,14 @@
 class UserMailer
+  # Тест почты:
+  # ::MyMailer.send_mail(email: 'r.mk834@ya.ru', subject: 'test', body: 'TEST IT')
+  #
+  # Повторная отправка письма для активации:
+  # user = User.find(20); user
+  # SendUserEmailJob.perform("activation_needed_email", user.id)
+  #
+  # или в фоне:
+  # UserMailer.activation_needed_email(user) # в фоне
+
   class << self
     def activation_needed_email(user)
       SendUserEmailJob.perform_later("activation_needed_email", user.id)
