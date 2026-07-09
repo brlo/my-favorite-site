@@ -2,18 +2,18 @@
   display: inline-block;
 } */
 
-ruby {
+.interliner ruby {
   margin: 0;
   background: #AAAAAA11;
-  padding: 15px 5px 5px 5px;
+  padding: 20px 5px 5px 5px;
   border-radius: 4px;
   border: 1px solid #AAAAAA11;
 }
 
-ruby a {
+.interliner ruby a {
   text-decoration: none;
 }
-ruby v {
+.interliner ruby v {
   color: transparent;
 }
 

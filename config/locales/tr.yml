@@ -146,58 +146,62 @@ tr:
     gr-ru: 'Rusça'
 
   bib_word_info:
-    translation: çeviri
-    lexema: lx
-    morphology: morfoloji
-    transcription: transkripsiyon
-    more: detaylar
+    warning: Üzgünüz, bu sayfa şu anda geliştirme aşamasındadır
+    h1_title: 'Yunanca sözlüklerde İncil sözcüğü «%{word}»'
+    translations: Çeviri
+    morphology: Biçimbilim
+    statistic: İstatistik
+    all_verses_title: Ayet listesi
+    random_verses_title: Rasgele ayetler
+    random_verses_translated_title: Rasgele ayetler (çeviri)
+    lexema: Sözcükbirim
+    repeat_count: Sözcük sayısı
+    repeat_count_by_lexema: Sözcükbirim tekrarları
+    transcription: yazıçevrim
+    more: daha fazla
     morph:
-      # Kelime türü:
-      "ch-r": 'kelime türü'
-      "сущ.": isim
-      "гл.": fiil
+      "ch-r": 'sözcük türü'
+      "сущ.": ad
+      "гл.": eylem
       "прил.": sıfat
-      "нареч.": zarf
-      "мест.": zamir
+      "нареч.": belirteç
+      "мест.": adıl
       "числ.": sayı
-      "предл.": edat
+      "предл.": ilgeç
       "союз": bağlaç
-      "част.": parçacık
+      "част.": ilgeç
       "межд.": ünlem
-      # Durum:
       "p": 'durum'
-      "им. п.": yalın hal
-      "р. п.": tamlayan durumu
-      "род. п.": tamlayan durumu
-      "дат. п.": yönelme durumu
-      "вин. п.": belirtme durumu
-      "тв. п.": araç durumu
-      "пред. п.": bulunma durumu
-      "зват. п.": hitap durumu
-      "несов. вр.": "bitmemiş zaman"
-      # Cinsiyet:
+      "pd": 'durum'
+      "им. п.": yalın
+      "р. п.": tamlayan
+      "род. п.": tamlayan
+      "дат. п.": yönelme
+      "вин. п.": belirtme
+      "тв. п.": araç
+      "пред. п.": bulunma
+      "зват. п.": seslenme
+      "несов. вр.": "imperfekt"
       "r": 'cinsiyet'
       "м.": eril
       "ж.": dişil
       "ср.": nötr
-      # Sayı:
       "ch": sayı
       "ед. ч.": tekil
       "мн. ч.": çoğul
       "-":
-      # Zaman
       "t": zaman
-      "п.": geçmiş zaman
-      "перф.": perfect
-      "наст.": şimdiki zaman
-      "аор. инф.": aorist inf.
-      "наст. инф.": şimdiki zaman inf.
-      "буд.": gelecek zaman
+      "п.": geçmiş
+      "перф.": bitmiş
+      "наст.": şimdiki
+      "аор. инф.": aorist mastar
+      "наст. инф.": şimdiki mastar
+      "буд.": gelecek
       "аор.": aorist
       "аор. повел.": aorist emir
       "аор. сосл.": aorist dilek
-      "наст. повел.": şimdiki zaman emir
-      "наст. деепр.": şimdiki zaman ulaç
+      "наст. повел.": şimdiki emir
+      "наст. деепр.": şimdiki ortaç
 
   tips:
     click_on_verse: Ayet numarasına tıklayarak ayeti seçebilirsiniz.

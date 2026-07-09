@@ -146,13 +146,20 @@ it:
     gr-ru: 'Russo'
 
   bib_word_info:
-    translation: traduzione
-    lexema: lx
-    morphology: morfologia
+    warning: Ci dispiace, questa pagina è in fase di sviluppo
+    h1_title: 'Parola biblica «%{word}» nei dizionari greci'
+    translations: Traduzione
+    morphology: Morfologia
+    statistic: Statistiche
+    all_verses_title: Elenco dei versetti
+    random_verses_title: Versetti casuali
+    random_verses_translated_title: Versetti casuali (traduzione)
+    lexema: Lessema
+    repeat_count: Numero di parole
+    repeat_count_by_lexema: Ripetizioni del lessema
     transcription: trascrizione
-    more: dettagli
+    more: più
     morph:
-      # Parte del discorso:
       "ch-r": 'parte del discorso'
       "сущ.": sostantivo
       "гл.": verbo
@@ -164,28 +171,25 @@ it:
       "союз": congiunzione
       "част.": particella
       "межд.": interiezione
-      # Caso:
       "p": 'caso'
+      "pd": 'caso'
       "им. п.": nominativo
       "р. п.": genitivo
       "род. п.": genitivo
       "дат. п.": dativo
       "вин. п.": accusativo
       "тв. п.": strumentale
-      "пред. п.": prepositivo
+      "пред. п.": preposizionale
       "зват. п.": vocativo
-      "несов. вр.": "imperf."
-      # Genere:
+      "несов. вр.": "imperfetto"
       "r": 'genere'
       "м.": maschile
       "ж.": femminile
       "ср.": neutro
-      # Numero:
       "ch": numero
       "ед. ч.": singolare
       "мн. ч.": plurale
       "-":
-      # Tempo
       "t": tempo
       "п.": passato
       "перф.": perfetto
@@ -194,10 +198,10 @@ it:
       "наст. инф.": presente inf.
       "буд.": futuro
       "аор.": aoristo
-      "аор. повел.": aoristo imp.
+      "аор. повел.": aoristo imper.
       "аор. сосл.": aoristo cong.
-      "наст. повел.": presente imp.
-      "наст. деепр.": presente ger.
+      "наст. повел.": presente imper.
+      "наст. деепр.": presente part.
 
   tips:
     click_on_verse: Puoi selezionare un versetto cliccando sul suo numero.

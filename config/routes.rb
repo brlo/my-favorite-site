@@ -88,6 +88,12 @@ Rails.application.routes.draw do
           # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
         }
 
+      resources :verses, only: %w[update] do
+        member do
+          patch :update_interlinear_word
+        end
+      end
+
       get '/', to: 'verses#index'
     end
 

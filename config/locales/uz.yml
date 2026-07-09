@@ -146,58 +146,62 @@ uz:
     gr-ru: 'Ruscha'
 
   bib_word_info:
-    translation: tarjima
-    lexema: lx
-    morphology: morfologiya
+    warning: Kechirasiz, bu sahifa hozirda ishlab chiqilmoqda
+    h1_title: 'Yunoncha lugʻatlarda Bibliya soʻzi «%{word}»'
+    translations: Tarjima
+    morphology: Morfologiya
+    statistic: Statistika
+    all_verses_title: Oyatlar roʻyxati
+    random_verses_title: Tasodifiy oyatlar
+    random_verses_translated_title: Tasodifiy oyatlar (tarjima)
+    lexema: Leksema
+    repeat_count: Soʻzlar soni
+    repeat_count_by_lexema: Leksema takrorlari
     transcription: transkripsiya
     more: batafsil
     morph:
-      # So‘z turi:
-      "ch-r": 'so‘z turi'
+      "ch-r": 'soʻz turkumi'
       "сущ.": ot
-      "гл.": fe’l
+      "гл.": feʼl
       "прил.": sifat
       "нареч.": ravish
       "мест.": olmosh
       "числ.": son
-      "предл.": old qo‘shimcha
-      "союз": bog‘lovchi
-      "част.": yordamchi so‘z
+      "предл.": old koʻmakchi
+      "союз": bogʻlovchi
+      "част.": yuklama
       "межд.": undov
-      # Kelishik:
       "p": 'kelishik'
+      "pd": 'kelishik'
       "им. п.": bosh kelishik
       "р. п.": qaratqich kelishik
       "род. п.": qaratqich kelishik
-      "дат. п.": yo‘nalish kelishigi
-      "вин. п.": tushum kelishigi
-      "тв. п.": chorak kelishigi
-      "пред. п.": o‘rin-payt kelishigi
-      "зват. п.": chaqirish kelishigi
-      "несов. вр.": "tugallanmagan zamon"
-      # Jins:
+      "дат. п.": joʻnalish kelishik
+      "вин. п.": tushum kelishik
+      "тв. п.": joʻnalish kelishik
+      "пред. п.": oʻrin-payt kelishik
+      "зват. п.": undash kelishik
+      "несов. вр.": "imperfekt"
       "r": 'jins'
-      "м.": erkak jinsi
-      "ж.": ayol jinsi
-      "ср.": o‘rtacha jins
-      # Son:
+      "м.": erkak
+      "ж.": ayol
+      "ср.": jinsiz
       "ch": son
       "ед. ч.": birlik
-      "мн. ч.": ko‘plik
+      "мн. ч.": koʻplik
       "-":
-      # Zamon
       "t": zamon
-      "п.": o‘tgan zamon
+      "п.": oʻtgan
       "перф.": perfekt
-      "наст.": hozirgi zamon
+      "наст.": hozirgi
       "аор. инф.": aorist inf.
-      "наст. инф.": hozirgi zamon inf.
-      "буд.": kelajak zamon
+      "наст. инф.": hozirgi inf.
+      "буд.": kelasi
       "аор.": aorist
       "аор. повел.": aorist buyruq
       "аор. сосл.": aorist shart
-      "наст. повел.": hozirgi zamon buyruq
-      "наст. деепр.": hozirgi zamon ravishdosh
+      "наст. повел.": hozirgi buyruq
+      "наст. деепр.": hozirgi part.
 
   tips:
     click_on_verse: Oyat raqamini bosib, uni ajratib olish mumkin.

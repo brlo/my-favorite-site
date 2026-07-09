@@ -39,6 +39,11 @@ article.text-small { font-size: 1.1em; }
 article.text-medium { font-size: 1.4em; }
 article.text-large { font-size: 1.7em; }
 
+article.text-small .text-detailed { font-size: 1.15em; }
+article.text-medium .text-detailed { font-size: 1.25em; }
+article.text-large .text-detailed { font-size: 1.35em; }
+
+
 /* для подстрочника покрупнее делаем текст */
 .interliner {
   font-size: 1.5em;

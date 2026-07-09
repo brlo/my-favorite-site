@@ -146,58 +146,62 @@ tk:
     gr-ru: 'Rusça'
 
   bib_word_info:
-    translation: terjime
-    lexema: lx
-    morphology: morfologiýa
-    transcription: transkripsiya
-    more: giňişleýin
+    warning: Täzeçilik, bu sahypa häzirki wagtda işlenýär
+    h1_title: 'Grek sözlüklerinde Bibliýa sözi «%{word}»'
+    translations: Terjime
+    morphology: Morfologiýa
+    statistic: Statistika
+    all_verses_title: Aýatlaryň sanawy
+    random_verses_title: Tötänleýin aýatlar
+    random_verses_translated_title: Tötänleýin aýatlar (terjime)
+    lexema: Leksema
+    repeat_count: Söz sany
+    repeat_count_by_lexema: Leksemanyň gaýtalanmalary
+    transcription: transkripsiýa
+    more: has giňişleýin
     morph:
-      # Söz bölegi:
-      "ch-r": 'söz bölegi'
+      "ch-r": 'söz görnüşi'
       "сущ.": at
       "гл.": işlik
       "прил.": sypat
       "нареч.": hal
-      "мест.": orun ady
+      "мест.": çalyşma
       "числ.": san
-      "предл.": prepozisiýa
-      "союз": soýuz
-      "част.": bölüm
+      "предл.": öň söz
+      "союз": başlaýjy
+      "част.": bölejik
       "межд.": ünlem
-      # Kelş:
-      "p": 'kelş'
-      "им. п.": ýönekeý kelş
-      "р. п.": eýelik kelşi
-      "род. п.": eýelik kelşi
-      "дат. п.": ýöneliş kelşi
-      "вин. п.": geçiş kelşi
-      "тв. п.": gural kelşi
-      "пред. п.": ýerleýiş kelşi
-      "зват. п.": çakylyş kelşi
-      "несов. вр.": "tälimsiz wagt"
-      # Jen:
-      "r": 'jen'
-      "м.": erkek jyns
-      "ж.": aýal jyns
-      "ср.": orta jyns
-      # San:
+      "p": 'ýagdaý'
+      "pd": 'ýagdaý'
+      "им. п.": baş ýagdaý
+      "р. п.": eýelik ýagdaý
+      "род. п.": eýelik ýagdaý
+      "дат. п.": ýöneliş ýagdaý
+      "вин. п.": ýeňiş ýagdaý
+      "тв. п.": gural ýagdaý
+      "пред. п.": öň söz ýagdaý
+      "зват. п.": çagyryş ýagdaý
+      "несов. вр.": "imperfekt"
+      "r": 'rod'
+      "м.": erkek
+      "ж.": aýal
+      "ср.": orta
       "ch": san
-      "ед. ч.": ýekeje san
-      "мн. ч.": köplük san
+      "ед. ч.": ýekelik
+      "мн. ч.": köplük
       "-":
-      # Wagt
-      "t": wagt
-      "п.": öten wagt
+      "t": zaman
+      "п.": geçen zaman
       "перф.": perfekt
-      "наст.": häzirki wagt
+      "наст.": häzirki zaman
       "аор. инф.": aorist inf.
-      "наст. инф.": häzirki inf.
-      "буд.": geljek wagt
+      "наст. инф.": häzirki zaman inf.
+      "буд.": geljek zaman
       "аор.": aorist
       "аор. повел.": aorist buýruk
-      "аор. сосл.": aorist şert
-      "наст. повел.": häzirki buýruk
-      "наст. деепр.": häzirki işlik
+      "аор. сосл.": aorist subj.
+      "наст. повел.": häzirki zaman buýruk
+      "наст. деепр.": häzirki zaman part.
 
   tips:
     click_on_verse: Aýat bellemek üçin onuň nomerine basyp bilersiňiz.

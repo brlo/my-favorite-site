@@ -313,9 +313,17 @@ ru:
     gr-ru: 'Русский'
 
   bib_word_info:
-    translation: перевод
-    lexema: lx
-    morphology: морфология
+    warning: Извините, эта страница пока что находится в разработке
+    h1_title: 'Библейское слово «%{word}» в греческих словарях'
+    translations: Перевод
+    morphology: Морфология
+    statistic: Статистика
+    all_verses_title: Список стихов
+    random_verses_title: Случайные стихи
+    random_verses_translated_title: Случайные стихи (перевод)
+    lexema: Лексема
+    repeat_count: Кол-во слов
+    repeat_count_by_lexema: Повторы лексемы
     transcription: транскрипция
     more: подробнее
     morph:
@@ -333,6 +341,7 @@ ru:
       "межд.": междометье
       # Падеж:
       "p": 'падеж'
+      "pd": 'падеж'
       "им. п.": именительный падеж
       "р. п.": родительный падеж
       "род. п.": родительный падеж

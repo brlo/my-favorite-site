@@ -146,14 +146,21 @@ es:
     gr-ru: 'Ruso'
 
   bib_word_info:
-    translation: traducción
-    lexema: lx
-    morphology: morfología
+    warning: Lo sentimos, esta página está en desarrollo
+    h1_title: 'Palabra bíblica «%{word}» en diccionarios griegos'
+    translations: Traducción
+    morphology: Morfología
+    statistic: Estadísticas
+    all_verses_title: Lista de versículos
+    random_verses_title: Versículos aleatorios
+    random_verses_translated_title: Versículos aleatorios (traducción)
+    lexema: Lexema
+    repeat_count: Número de palabras
+    repeat_count_by_lexema: Repeticiones del lexema
     transcription: transcripción
-    more: más detalles
+    more: más
     morph:
-      # Parte del discurso:
-      "ch-r": 'parte del discurso'
+      "ch-r": 'categoría gramatical'
       "сущ.": sustantivo
       "гл.": verbo
       "прил.": adjetivo
@@ -164,8 +171,8 @@ es:
       "союз": conjunción
       "част.": partícula
       "межд.": interjección
-      # Caso:
       "p": 'caso'
+      "pd": 'caso'
       "им. п.": nominativo
       "р. п.": genitivo
       "род. п.": genitivo
@@ -175,29 +182,26 @@ es:
       "пред. п.": preposicional
       "зват. п.": vocativo
       "несов. вр.": "imperfecto"
-      # Género:
       "r": 'género'
       "м.": masculino
       "ж.": femenino
       "ср.": neutro
-      # Número:
       "ch": número
       "ед. ч.": singular
       "мн. ч.": plural
       "-":
-      # Tiempo
       "t": tiempo
       "п.": pasado
       "перф.": perfecto
       "наст.": presente
-      "аор. инф.": infinitivo aoristo
-      "наст. инф.": infinitivo presente
+      "аор. инф.": aoristo inf.
+      "наст. инф.": presente inf.
       "буд.": futuro
       "аор.": aoristo
-      "аор. повел.": imperativo aoristo
-      "аор. сосл.": subjuntivo aoristo
-      "наст. повел.": imperativo presente
-      "наст. деепр.": gerundio presente
+      "аор. повел.": aoristo imper.
+      "аор. сосл.": aoristo subj.
+      "наст. повел.": presente imper.
+      "наст. деепр.": presente part.
 
   tips:
     click_on_verse: Puede seleccionar un versículo haciendo clic en su número.

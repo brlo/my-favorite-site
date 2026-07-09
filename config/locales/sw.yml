@@ -146,58 +146,62 @@ sw:
     gr-ru: 'Kirusi'
 
   bib_word_info:
-    translation: tafsiri
-    lexema: lx
-    morphology: mofolojia
-    transcription: uandishi wa sauti
+    warning: Samahani, ukurasa huu bado unatengenezwa
+    h1_title: 'Neno la Biblia «%{word}» katika kamusi za Kigiriki'
+    translations: Tafsiri
+    morphology: Mofolojia
+    statistic: Takwimu
+    all_verses_title: Orodha ya mistari
+    random_verses_title: Mistari nasibu
+    random_verses_translated_title: Mistari nasibu (tafsiri)
+    lexema: Leksemu
+    repeat_count: Idadi ya maneno
+    repeat_count_by_lexema: Marudio ya leksemu
+    transcription: unukuzi
     more: zaidi
     morph:
-      # Aina ya neno:
       "ch-r": 'aina ya neno'
       "сущ.": nomino
       "гл.": kitenzi
       "прил.": kivumishi
       "нареч.": kielezi
       "мест.": kiwakilishi
-      "числ.": kionyeshi idadi
+      "числ.": nambari
       "предл.": kihusishi
       "союз": kiunganishi
-      "част.": kielezi cha mwisho
+      "част.": chembe
       "межд.": kiingizi
-      # Kihusishi:
-      "p": 'kihusishi'
-      "им. п.": nominatiivi
-      "р. п.": genetiivi
-      "род. п.": genetiivi
-      "дат. п.": datiivi
-      "вин. п.": akkusatiivi
-      "тв. п.": instrumentaali
-      "пред. п.": prepositionaali
-      "зват. п.": vokatiivi
-      "несов. вр.": "несов. вр."
-      # Jinsia:
+      "p": 'kisa'
+      "pd": 'kisa'
+      "им. п.": nominativi
+      "р. п.": genitivu
+      "род. п.": genitivu
+      "дат. п.": dativu
+      "вин. п.": akusativu
+      "тв. п.": instrumental
+      "пред. п.": prepozicionali
+      "зват. п.": vokativu
+      "несов. вр.": "imperfekti"
       "r": 'jinsia'
-      "м.": jinsia ya kiume
-      "ж.": jinsia ya kike
-      "ср.": jinsia ya wastani
-      # Nambari:
-      "ch": nambari
+      "м.": kiume
+      "ж.": kike
+      "ср.": upande
+      "ch": namba
       "ед. ч.": umoja
       "мн. ч.": wingi
       "-":
-      # Wakati
       "t": wakati
       "п.": wakati uliopita
       "перф.": perfekti
       "наст.": wakati uliopo
-      "аор. инф.": aoristi infinitiivi
-      "наст. инф.": infinitiivi ya sasa
+      "аор. инф.": aoristi inf.
+      "наст. инф.": wakati uliopo inf.
       "буд.": wakati ujao
       "аор.": aoristi
-      "аор. повел.": aoristi ya amri
-      "аор. сосл.": aoristi ya masharti
-      "наст. повел.": amri ya sasa
-      "наст. деепр.": kutendeka kwa sasa
+      "аор. повел.": aoristi amri
+      "аор. сосл.": aoristi subj.
+      "наст. повел.": wakati uliopo amri
+      "наст. деепр.": wakati uliopo part.
 
   tips:
     click_on_verse: Unaweza kuchagua mstari kwa kubonyeza nambari yake.

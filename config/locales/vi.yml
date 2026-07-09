@@ -146,58 +146,62 @@ vi:
     gr-ru: 'Tiếng Nga'
 
   bib_word_info:
-    translation: 'dịch'
-    lexema: 'lx'
-    morphology: 'hình thái học'
-    transcription: 'phiên âm'
-    more: 'chi tiết'
+    warning: Xin lỗi, trang này hiện đang được phát triển
+    h1_title: 'Từ Kinh Thánh «%{word}» trong từ điển tiếng Hy Lạp'
+    translations: Bản dịch
+    morphology: Hình thái học
+    statistic: Thống kê
+    all_verses_title: Danh sách câu Kinh Thánh
+    random_verses_title: Câu Kinh Thánh ngẫu nhiên
+    random_verses_translated_title: Câu Kinh Thánh ngẫu nhiên (bản dịch)
+    lexema: Từ vị
+    repeat_count: Số từ
+    repeat_count_by_lexema: Lặp lại từ vị
+    transcription: phiên âm
+    more: thêm
     morph:
-      # Loại từ:
-      "ch-r": 'loại từ'
-      "сущ.": 'danh từ'
-      "гл.": 'động từ'
-      "прил.": 'tính từ'
-      "нареч.": 'trạng từ'
-      "мест.": 'đại từ'
-      "числ.": 'số từ'
-      "предл.": 'giới từ'
-      "союз": 'liên từ'
-      "част.": 'phụ từ'
-      "межд.": 'thán từ'
-      # Cách:
+      "ch-r": 'từ loại'
+      "сущ.": danh từ
+      "гл.": động từ
+      "прил.": tính từ
+      "нареч.": trạng từ
+      "мест.": đại từ
+      "числ.": số từ
+      "предл.": giới từ
+      "союз": liên từ
+      "част.": tiểu từ
+      "межд.": thán từ
       "p": 'cách'
-      "им. п.": 'danh cách'
-      "р. п.": 'sinh cách'
-      "род. п.": 'sinh cách'
-      "дат. п.": 'dữ cách'
-      "вин. п.": 'đối cách'
-      "тв. п.": 'tạo cách'
-      "пред. п.": 'giới cách'
-      "зват. п.": 'hô cách'
+      "pd": 'cách'
+      "им. п.": chủ cách
+      "р. п.": sở hữu cách
+      "род. п.": sở hữu cách
+      "дат. п.": tặng cách
+      "вин. п.": đối cách
+      "тв. п.": công cụ cách
+      "пред. п.": giới cách
+      "зват. п.": hô cách
       "несов. вр.": "chưa hoàn thành"
-      # Giống:
       "r": 'giống'
-      "м.": 'giống đực'
-      "ж.": 'giống cái'
-      "ср.": 'giống trung'
-      # Số:
-      "ch": 'số'
-      "ед. ч.": 'số ít'
-      "мн. ч.": 'số nhiều'
+      "м.": giống đực
+      "ж.": giống cái
+      "ср.": giống trung
+      "ch": số
+      "ед. ч.": số ít
+      "мн. ч.": số nhiều
       "-":
-      # Thời
-      "t": 'thời'
-      "п.": 'quá khứ'
-      "перф.": 'hoàn thành'
-      "наст.": 'hiện tại'
-      "аор. инф.": 'vô định aorist'
-      "наст. инф.": 'vô định hiện tại'
-      "буд.": 'tương lai'
-      "аор.": 'aorist'
-      "аор. повел.": 'mệnh lệnh aorist'
-      "аор. сосл.": 'điều kiện aorist'
-      "наст. повел.": 'mệnh lệnh hiện tại'
-      "наст. деепр.": 'phó từ hiện tại'
+      "t": thì
+      "п.": quá khứ
+      "перф.": hoàn thành
+      "наст.": hiện tại
+      "аор. инф.": nguyên mẫu aorist
+      "наст. инф.": nguyên mẫu hiện tại
+      "буд.": tương lai
+      "аор.": aorist
+      "аор. повел.": mệnh lệnh aorist
+      "аор. сосл.": giả định aorist
+      "наст. повел.": mệnh lệnh hiện tại
+      "наст. деепр.": phân từ hiện tại
 
   tips:
     click_on_verse: 'Có thể chọn câu bằng cách nhấn vào số của nó.'

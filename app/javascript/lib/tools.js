@@ -114,3 +114,17 @@ export const arrayToSeqs = (arr) => {
 
   return(seqs);
 };
+
+export const convertToRuby = (text) => {
+  if (!text) return text
+
+  // - Иероглифы (один или более)
+  // - НЕ захватываем запятые, точки и другие знаки препинания
+  // - Затем [хирагана/катакана]
+  return text.replace(
+    /([\u4e00-\u9fff\u3400-\u4dbf]+)\[([\u3040-\u309f\u30a0-\u30ff]+)\]/g,
+    (match, kanji, furigana) => {
+      return `<ruby><rb>${kanji}</rb><rt>${furigana}</rt></ruby>`
+    }
+  )
+}

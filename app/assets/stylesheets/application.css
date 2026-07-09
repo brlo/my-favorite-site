@@ -2394,3 +2394,134 @@ body.night-mode {
     gap: 4px 8px;
   }
 }
+
+
+
+
+
+/* app/assets/stylesheets/interlinear-editor.css */
+
+.interliner ruby {
+  cursor: pointer;
+  transition: background-color 0.2s, box-shadow 0.2s;
+  border-radius: 3px;
+  padding: 0 2px;
+}
+
+.interliner ruby:hover {
+  background-color: rgba(74, 144, 217, 0.1);
+}
+
+.interliner ruby.verified {
+  background-color: #2187b034;
+}
+
+/* Состояние редактирования */
+.interliner ruby.editing {
+  background-color: rgba(74, 144, 217, 0.15);
+  box-shadow: 0 0 0 2px rgba(74, 144, 217, 0.3);
+}
+
+/* Поле ввода */
+.interliner .interlinear-edit-input {
+  text-align: center;
+  font-size: inherit;
+  font-family: inherit;
+  background: #fff;
+  border: 2px solid #4a90d9;
+  border-radius: 4px;
+  padding: 2px 6px;
+  min-width: 40px;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(74, 144, 217, 0.3);
+}
+
+/* Индикаторы обратной связи */
+.interliner .interlinear-feedback {
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 6px;
+  font-size: 16px;
+  animation: interlinear-fade 1.5s ease-out forwards;
+}
+
+.interliner .interlinear-feedback-success {
+  color: #4caf50;
+}
+
+.interliner .interlinear-feedback-error {
+  color: #f44336;
+}
+
+/* Анимация */
+@keyframes interlinear-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}
+
+
+
+
+
+
+/* app/assets/stylesheets/interlinear-editor.css */
+
+.verse-text.editing {
+  background-color: #fff;
+  padding: 8px 8px 0 8px;
+}
+
+.verse-edit-textarea {
+  width: 100%;
+  min-height: 60px;
+  font-size: inherit;
+  font-family: inherit;
+  padding: 8px;
+  border: 2px solid #4a90d9;
+  border-radius: 4px;
+  outline: none;
+  resize: vertical;
+  background: #fff;
+}
+
+.night-mode .verse-text.editing {
+  background-color: var(--bg-header);
+}
+
+.night-mode .verse-edit-textarea {
+  background: var(--bg-body);
+  color: var(--text-primary);
+}
+
+.verse-feedback {
+  display: inline-block;
+  font-weight: bold;
+  margin-left: 8px;
+  font-size: 18px;
+  animation: verse-fade 1.5s ease-out forwards;
+}
+
+.verse-feedback-success {
+  color: #4caf50;
+}
+
+.verse-feedback-error {
+  color: #f44336;
+}
+
+@keyframes verse-fade {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.2);
+  }
+}

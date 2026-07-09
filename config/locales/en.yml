@@ -146,42 +146,62 @@ en:
     gr-ru: 'Russian'
 
   bib_word_info:
-    translation: translate
-    lexema: lexema
-    morphology: morphology
+    warning: Sorry, this page is currently under development
+    h1_title: 'Biblical word «%{word}» in Greek dictionaries'
+    translations: Translation
+    morphology: Morphology
+    statistic: Statistics
+    all_verses_title: List of verses
+    random_verses_title: Random verses
+    random_verses_translated_title: Random verses (translation)
+    lexema: Lexeme
+    repeat_count: Word count
+    repeat_count_by_lexema: Lexeme repetitions
     transcription: transcription
-    more: read more
+    more: more
     morph:
-      # Часть речи:
-      "сущ.": Noun
-      "гл.": Verb
-      "прил.": Adj
-      "нареч.": Adv
-      "мест.": Pron
-      "числ.": Num
-      "предл.": Prep
-      "союз": Conj
-      "част.": Part
-      "межд.": Int
-      # Падеж:
-      "Им. п.": Nom
-      "Род. п.": Gen
-      "Дат. п.": Dat
-      "Вин. п.": Acc
-      "Тв. п.": Ins
-      "Пред. п.": Pre
-      # Род:
-      "м.": Masc
-      "ж.": Fem
-      "ср.": Neut
-      # Число:
-      "ед. ч.": Sg
-      "мн. ч.": Pl
+      "ch-r": 'part of speech'
+      "сущ.": noun
+      "гл.": verb
+      "прил.": adjective
+      "нареч.": adverb
+      "мест.": pronoun
+      "числ.": numeral
+      "предл.": preposition
+      "союз": conjunction
+      "част.": particle
+      "межд.": interjection
+      "p": 'case'
+      "pd": 'case'
+      "им. п.": nominative
+      "р. п.": genitive
+      "род. п.": genitive
+      "дат. п.": dative
+      "вин. п.": accusative
+      "тв. п.": instrumental
+      "пред. п.": prepositional
+      "зват. п.": vocative
+      "несов. вр.": "imperfect"
+      "r": 'gender'
+      "м.": masculine
+      "ж.": feminine
+      "ср.": neuter
+      "ch": number
+      "ед. ч.": singular
+      "мн. ч.": plural
       "-":
-      # Время
-      "п.": Past
-      "н.": Present
-      "б.": Future
+      "t": tense
+      "п.": past
+      "перф.": perfect
+      "наст.": present
+      "аор. инф.": aorist inf.
+      "наст. инф.": present inf.
+      "буд.": future
+      "аор.": aorist
+      "аор. повел.": aorist imper.
+      "аор. сосл.": aorist subj.
+      "наст. повел.": present imper.
+      "наст. деепр.": present part.
 
   tips:
     click_on_verse: Highlight a verse by clicking on its number.

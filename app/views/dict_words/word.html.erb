@@ -1,95 +1,42 @@
-<h1>Библейское слово «<b><%= @dict_words.first.word %></b>» в греческих словарях</h1>
+<h1><%= t('bib_word_info.h1_title', word: @dict_words&.first&.word || @bib_word&.word) %></h1>
 
-<% if @bib_word.present? %>
-
-  <div class='warning' style='font-weight: bold; color: red;'>Sorry, this page is under construction yet!</div>
-
-  <div>
-    <h2><%= @bib_word.word %> [<%= @bib_word.transcriptions.to_h.dig('en').to_a.join(', ') %>]</h2>
-
-    <p><b>translates:</b></p>
-    <% @bib_word.translations.to_h.each do |k,v| %>
-      <p><b><%= k %></b>: <%= v.to_a.join(', ') %></p>
-    <% end %>
-
-    <p><b>INFO:</b></p>
-    <% @bib_word.info.to_h.each do |k,v| %>
-      <% if v.present? %>
-        <p>
-          <%= I18n.t("bib_word_info.morph")[k.to_s.downcase.to_sym].presence || k %>:
-          <%= I18n.t("bib_word_info.morph")[v.to_s.downcase.to_sym].presence || v %>
-        </p>
-      <% end %>
-    <% end %>
-
-    <p>id: <%= @bib_word.id %></p>
-    <p>lexema: <%= @bib_word.lexema %></p>
-    <p>count: <%= @bib_word.counts %></p>
-    <p>count by lexema: <%= @bib_word.counts_by_lexema %></p>
-
-    <p>verses:
-      <% @bib_word.addrs.each.with_index do |addr, i| %>
-        <a href="<%= my_bib_link_to(::AddressConverter.addr_to_link(addr)) %>">
-          <%= ::AddressConverter.humanize(addr) %>
-        </a><%= i+1 < @bib_word.addrs.length ? ',' : '' %>
-      <% end %>
-    </p>
-    <p>random verses:</p>
-    <p>Подстрочник:</p>
-    <% ::Verse.where(address: @bib_word.addrs.sample(5), tr_code: 'gr-ru').each do |v| %>
-      <p>
-        <% line_text = highlight(v.text, @bib_word.word) %>
-        "<%= verse_alone_clean(line_text.html_safe) %>"
-        (<a href="<%= "/#{I18n.locale}/gr-ru/#{ v.book }/#{ v.chapter }#L#{ v.line }" %>"><%= ::I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %></a>)
-      </p>
-    <% end %>
-
-    <p>Перевод:</p>
-    <% ::Verse.where(address: @bib_word.addrs.sample(5), tr_code: current_bib_lang()).each do |v| %>
-      <p>
-        <% line_text = highlight(v.text.to_s, @bib_word.translations.to_h[::I18n.locale.to_s]) %>
-        "<%= verse_alone_clean(line_text.html_safe) %>"
-        (<a href="<%= my_bib_link_to("/#{ v.book }/#{ v.chapter }#L#{ v.line }") %>"><%= ::I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %></a>)
-      </p>
-    <% end %>
-  </div>
-<% end %>
-
-<% if @dict_words.any? %>
+<% if @dict_words&.any? %>
   <div class="dict-words">
-      <% @dict_words.each do |w| %>
-          <div class="dict-word">
-            <div class='dict-name'>
-              <%= ::DictWord::DICTS.dig(w.dict, 'name') %>
-              [<a href="<%= "#{::SETTINGS['admin']['url'] }/dict_words/#{ w.id }/" %>">e</a>]
-            </div>
-            <h2>
-              <%= w.word %> —
-              <%= w.translation_short %>
-            </h2>
-            <div class='transcription'>
-              <% if w.transcription.present? %>
-                [<%= w.transcription %>]
-              <% end %>
-            </div>
-            <% if w.tag.present? %>
-              <div class='tag'>Признак: <%= w.tag %></div>
+    <% @dict_words.each do |w| %>
+      <div class="dict-word">
+        <div class='dict-name'>
+          <%= ::DictWord::DICTS.dig(w.dict, 'name') %>
+          <% if current_user&.is_admin? %>
+            [<a href="<%= "#{::SETTINGS['admin']['url'] }/dict_words/#{ w.id }/" %>">e</a>]
+          <% end %>
+        </div>
+        <h2>
+          <%= w.word %> —
+          <%= w.translation_short %>
+        </h2>
+        <div class='transcription'>
+          <% if w.transcription.present? %>
+            [<%= w.transcription %>]
+          <% end %>
+        </div>
+        <% if w.tag.present? %>
+          <div class='tag'>Признак: <%= w.tag %></div>
+        <% end %>
+        <div class='translation'>
+            <% if w.translation_short.present? %>
+              <div class='single'>
+                <%= w.translation_short %>
+              </div>
             <% end %>
-            <div class='translation'>
-                <% if w.translation_short.present? %>
-                  <div class='single'>
-                    <%= w.translation_short %>
-                  </div>
-                <% end %>
-                <% if w.translation.present? %>
-                  <div class='multiple'><%= w.translation %></div>
-                <% end %>
-                <% if w.desc.present? %>
-                  <div class='desc'><%= sanitize(w.desc.to_s, tags: ::Page::ALLOW_TAGS, attributes: ::Page::ALLOW_ATTRS).html_safe %></div>
-                <% end %>
-            </div>
-          </div>
-      <% end %>
+            <% if w.translation.present? %>
+              <div class='multiple'><%= w.translation %></div>
+            <% end %>
+            <% if w.desc.present? %>
+              <div class='desc'><%= sanitize(w.desc.to_s, tags: ::Page::ALLOW_TAGS, attributes: ::Page::ALLOW_ATTRS).html_safe %></div>
+            <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 
   <div class="lexemas">
@@ -102,49 +49,188 @@
                 <% end %>
               </div>
               <% if l.present? %>
-                <div>Лексема: <%= l.lexema %></div>
+                <div><%= t('bib_word_info.lexema') %>: <%= l.lexema %></div>
               <% end %>
-              <div>Кол-во: <%= l.counts %></div>
+              <div><%= t('bib_word_info.repeat_count') %>: <%= l.counts %></div>
           </div>
       <% end %>
   </div>
+<% end %>
 
-<% else %>
-<div class='error-not-found'>
-  <div class='error-msg'>Ошибка 404 — Такое слово не найдено.</div>
-  <div class='propose'>
-    Хотите
-    <a href="<%= "#{::SETTINGS['admin']['url'] }/dict_words/new?word=#{@word_clean}" %>">создать?</a>
+<% if @bib_word.present? %>
+  <div class="construction-banner">
+    ⚠️ <%= t('bib_word_info.warning') %>
   </div>
-</div>
+
+  <!-- Заголовок -->
+  <h2>
+    <%= @bib_word.word %>
+    <span class="transcription">[<%= @bib_word.transcriptions.to_h.dig('en').to_a.join(', ') %>]</span>
+  </h2>
+
+  <!-- Основная информация -->
+  <div class="word-section">
+    <div class="info-block">
+      <h3><%= t('bib_word_info.translations') %></h3>
+      <% @bib_word.translations.to_h.each do |lang, words| %>
+        <% next if I18n.locale == :ja && lang == 'ru' %>
+        <% next if I18n.locale == :ru && lang == 'jp' %>
+        <div class="translation-item">
+          <strong><%= lang %>:</strong> <%= words.to_a.join(', ') %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="info-block">
+      <h3><%= t('bib_word_info.morphology') %></h3>
+      <% @bib_word.info.to_h.each do |key, value| %>
+        <% next if value.blank? %>
+        <div class="morph-item">
+          <strong><%= I18n.t("bib_word_info.morph")[key.to_s.downcase.to_sym].presence || key %>:</strong>
+          <%= I18n.t("bib_word_info.morph")[value.to_s.downcase.to_sym].presence || value %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="info-block stats">
+      <h3><%= t('bib_word_info.statistic') %></h3>
+      <div>ID: <strong><%= @bib_word.id %></strong></div>
+      <div><%= t('bib_word_info.repeat_count') %>: <strong><%= @bib_word.counts %></strong></div>
+      <div><%= t('bib_word_info.repeat_count_by_lexema') %>: <strong><%= @bib_word.counts_by_lexema %></strong></div>
+      <div><%= t('bib_word_info.lexema') %>: <strong><%= @bib_word.lexema %></strong></div>
+    </div>
+  </div>
+
+  <!-- Ссылки на все стихи -->
+  <div class="info-block">
+    <h3><%= t('bib_word_info.all_verses_title') %> (<%= @bib_word.addrs.size %>)</h3>
+    <div class="verses-list">
+      <% @bib_word.addrs.each_with_index do |addr, i| %>
+        <a href="<%= my_bib_link_to(::AddressConverter.addr_to_link(addr)) %>">
+          <%= ::AddressConverter.humanize(addr) %>
+        </a><%= i+1 < @bib_word.addrs.length ? ', ' : '' %>
+      <% end %>
+    </div>
+  </div>
+
+  <!-- Примеры стихов -->
+  <div class="examples">
+    <div class="info-block">
+      <h3><%= t('bib_word_info.random_verses_title') %></h3>
+      <% ::Verse.where(address: @bib_word.addrs.sample(5), tr_code: 'gr-ru').each do |v| %>
+        <div class="verse-example">
+          "<%= verse_alone_clean(highlight(v.text, @bib_word.word).html_safe) %>"
+          (<a href="/<%= I18n.locale %>/gr-ru/<%= v.book %>/<%= v.chapter %>#L<%= v.line %>"><%= I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %></a>)
+        </div>
+      <% end %>
+    </div>
+
+    <div class="info-block">
+      <h3><%= t('bib_word_info.random_verses_translated_title') %></h3>
+      <% ::Verse.where(address: @bib_word.addrs.sample(5), tr_code: current_bib_lang()).each do |v| %>
+        <div class="verse-example">
+          "<%= verse_alone_clean(highlight(v.text.to_s, @bib_word.translations.to_h[I18n.locale.to_s]).html_safe) %>"
+          (<a href="<%= my_bib_link_to("/#{ v.book }/#{ v.chapter }#L#{ v.line }") %>"><%= I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %></a>)
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if @dict_words.nil? && @bib_word.nil? %>
+  <div class='error-not-found'>
+    <div class='error-msg'>Ошибка 404 — Такое слово не найдено.</div>
+    <div class='propose'>
+      Хотите
+      <a href="<%= "#{::SETTINGS['admin']['url'] }/dict_words/new?word=#{@word_clean}" %>">создать?</a>
+    </div>
+  </div>
 <% end %>
 
 <style>
-  h1 {
-    text-align: center;
+  .construction-banner {
+    background: #fff3cd;
+    border: 1px solid #ffc107;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: bold;
+    color: #856404;
+    margin-bottom: 20px;
   }
 
   h2 {
-    margin: 10px 0;
-    padding: 5px 0;
+    margin: 10px 0 20px 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-main);
     font-size: 2em;
-    border-bottom: 1px solid #999;
   }
 
-  .dict-word {
-    margin: 20px 0 10px 0;
+  .transcription {
+    color: var(--text-secondary);
+    font-size: 0.6em;
+    font-weight: normal;
+    margin-left: 10px;
   }
 
-  .lexema {
-    margin: 10px 0;
-  }
-  .lexema .word {
-    font-weight: bold;
+  .word-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
   }
 
-  .dict-word .dict-name {
-    margin-bottom: -20px;
+  .info-block {
+    background: var(--bg-card);
+    padding: 12px 16px;
+    border-radius: 6px;
+    border: 1px solid var(--border-main);
+  }
+
+  .info-block h3 {
+    margin: 0 0 8px 0;
     font-size: 1em;
-    opacity: .5;
+    color: var(--text-secondary);
+    border-bottom: 1px solid var(--border-main);
+    padding-bottom: 5px;
+  }
+
+  .translation-item,
+  .morph-item {
+    display: block;
+    margin: 3px 0;
+  }
+
+  .stats div {
+    margin: 3px 0;
+  }
+
+  .verses-list {
+    max-height: 120px;
+    overflow-y: auto;
+    line-height: 1.6;
+    font-size: 0.9em;
+  }
+
+  .examples {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-top: 10px;
+  }
+
+  .verse-example {
+    margin: 10px 0;
+    padding: 4px 0;
+  }
+
+  @media (max-width: 768px) {
+    .word-section {
+      grid-template-columns: 1fr;
+    }
+
+    .examples {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
+

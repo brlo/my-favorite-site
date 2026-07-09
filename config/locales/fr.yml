@@ -146,14 +146,21 @@ fr:
     gr-ru: 'Russe'
 
   bib_word_info:
-    translation: traduction
-    lexema: lx
-    morphology: morphologie
+    warning: Désolé, cette page est actuellement en développement
+    h1_title: 'Mot biblique «%{word}» dans les dictionnaires grecs'
+    translations: Traduction
+    morphology: Morphologie
+    statistic: Statistiques
+    all_verses_title: Liste des versets
+    random_verses_title: Versets aléatoires
+    random_verses_translated_title: Versets aléatoires (traduction)
+    lexema: Lexème
+    repeat_count: Nombre de mots
+    repeat_count_by_lexema: Répétitions du lexème
     transcription: transcription
-    more: détails
+    more: plus
     morph:
-      # Partie du discours :
-      "ch-r": 'partie du discours'
+      "ch-r": 'nature grammaticale'
       "сущ.": nom
       "гл.": verbe
       "прил.": adjectif
@@ -164,8 +171,8 @@ fr:
       "союз": conjonction
       "част.": particule
       "межд.": interjection
-      # Cas :
       "p": 'cas'
+      "pd": 'cas'
       "им. п.": nominatif
       "р. п.": génitif
       "род. п.": génitif
@@ -174,30 +181,27 @@ fr:
       "тв. п.": instrumental
       "пред. п.": prépositionnel
       "зват. п.": vocatif
-      "несов. вр.": "imperf."
-      # Genre :
+      "несов. вр.": "imparfait"
       "r": 'genre'
       "м.": masculin
       "ж.": féminin
       "ср.": neutre
-      # Nombre :
       "ch": nombre
       "ед. ч.": singulier
       "мн. ч.": pluriel
       "-":
-      # Temps
       "t": temps
       "п.": passé
       "перф.": parfait
       "наст.": présent
-      "аор. инф.": aor. inf.
-      "наст. инф.": prés. inf.
+      "аор. инф.": aoriste inf.
+      "наст. инф.": présent inf.
       "буд.": futur
       "аор.": aoriste
-      "аор. повел.": aor. impér.
-      "аор. сосл.": aor. cond.
-      "наст. повел.": prés. impér.
-      "наст. деепр.": prés. gér.
+      "аор. повел.": aoriste impér.
+      "аор. сосл.": aoriste subj.
+      "наст. повел.": présent impér.
+      "наст. деепр.": présent part.
 
   tips:
     click_on_verse: 'Vous pouvez sélectionner un verset en cliquant sur son numéro.'

@@ -9,7 +9,10 @@ class DictWordsController < ApplicationController
       # 1. Идентификатора нет - 404.
       head 404
 
-    elsif param_id =~ /\d+/
+    elsif param_id =~ /^\d+$/
+      # СТАРЫЙ ДОСТУП К СЛОВАМ ПО DictWord.id
+      # В параметрах id передаётся как 123
+
       # 1. Идентификатор - цифра. Ищем и отдаём по этому id слово.
       # @bib_word = ::BibWord.find(param_id) # ------------------------ раскомментировать после выпуска подстрочника, и привести в порядок view
       dict_word = ::DictWord.find(param_id) # а от этого отказаться в пользу bib_word (см. строку ниже с ---- комментарием)
@@ -24,6 +27,34 @@ class DictWordsController < ApplicationController
       all_words = [dict_word.word, dict_word.lexema, word] + lex_words
       all_words.map! { |w| ::DictWord.word_clean_gr(w) }
       @dict_words = ::DictWord.where(word_simple: all_words).to_a
+
+      if @dict_words.blank?
+        render status: 404
+      end
+
+    elsif param_id =~ /bw\-\d+/
+      # Новый доступ к словам по ссылке из подстрочника через BibWord.id
+      # В параметрах id передаётся как bw-123
+
+      param_id = param_id.gsub(/^bw\-/, '')
+      # 1. Идентификатор - цифра. Ищем и отдаём по этому id слово.
+      @bib_word = ::BibWord.find(param_id) # ------------------------ раскомментировать после выпуска подстрочника, и привести в порядок view
+      # dict_word = ::DictWord.find(param_id) # а от этого отказаться в пользу bib_word (см. строку ниже с ---- комментарием)
+      # word = dict_word.word
+      word = @bib_word.word
+
+      @page_title = ::I18n.t('dict_words.title', word: word)
+      @meta_description = @page_title
+
+      @lexemas = ::Lexema.where(word: word).to_a
+      lex_words = @lexemas.pluck(:lexema_clean).compact.uniq
+      all_words = [@bib_word.word, @bib_word.lexema, word] + lex_words # ------------------------ раскомментировать после выпуска подстрочника, и привести в порядок view
+      # all_words = [dict_word.word, dict_word.lexema, word] + lex_words
+      all_words.map! { |w| ::DictWord.word_clean_gr(w) }
+
+      if I18n.locale == :ru
+        @dict_words = ::DictWord.where(word_simple: all_words).to_a
+      end
 
       if @dict_words.blank?
         render status: 404

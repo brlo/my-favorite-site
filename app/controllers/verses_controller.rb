@@ -1,6 +1,8 @@
 class VersesController < ApplicationController
   skip_before_action :require_login_and_activation
 
+  before_action :require_admin, only: %w[update update_interlinear_word]
+
   # https://github.com/rails/actionpack-page_caching
   # caches_page :index, :chapter_ajax
 
@@ -211,6 +213,71 @@ class VersesController < ApplicationController
     end
 
     redirect_to(path)
+  end
+
+  # Метод для админа, чтобы дописывать фуригану к японскому переводу
+  def update
+    verse = Verse.find(params[:id])
+    verse_params = params[:verse]
+    if verse_params[:text].present? && verse.update(text: verse_params[:text])
+      render :json => {successfull: 'ok', text: verse.reload.text}
+    else
+      render :json => {successfull: 'fail'}, status: 422
+    end
+  end
+
+  # Метод для админа, чтобы установить новое слово для подстрочника
+  def update_interlinear_word
+    verse = Verse.find(params[:id])
+    verse_data = verse.data
+    # Структура wi:
+    # {
+    #   raw: w, # слово, где сохранены большие буквы как было в тексте
+    #   w: word_info_json['w'], # тут самое правильное слово. Я просил ИИ оставить заглавные буквы только у названий и имен
+    #   bw_id: bib_word.id,
+    #   lex: word_info_json['l'], # lexema
+    #   inf: word_info_json['i'], # info: часть речи, падеж, число, род.
+    #   trl: word_info_json['tr'], # подстрочный перевод
+    #   trc: {'en': word_info_json['zv']} # транскрипция
+    # }
+
+    # Изменились названия локалей, поэтому когда обращаемся к переводу внутри стиха,
+    # ключи en и ru оставляем как есть, а ja подменяем на старый jp:
+    interliner_lang = locale_for_content_lang()
+    interliner_lang = interliner_lang == 'ja' ? 'jp' : interliner_lang
+
+    raise('no lang') if interliner_lang.blank?
+
+    # стизи без подстрочника предзаполняем пустой структурой
+    is_inerliner_was_empty = verse_data['wi'].blank?
+    if is_inerliner_was_empty
+      verse_data['wi'] = verse_data['w'].map do |word|
+        {
+          'raw' => word, # слово, где сохранены большие буквы как было в тексте
+          # w: word_info_json['w'], # тут самое правильное слово. Я просил ИИ оставить заглавные буквы только у названий и имен
+          # bw_id: bib_word.id,
+          # lex: word_info_json['l'], # lexema
+          # inf: word_info_json['i'], # info: часть речи, падеж, число, род.
+          'trl' => {} # word_info_json['tr'], # подстрочный перевод
+          # trc: {'en': word_info_json['zv']} # транскрипция
+        }
+      end
+    end
+
+    words_with_info = verse_data['wi']
+
+    wi = words_with_info[params[:word_index].to_i] if params[:word_index].present?
+    if is_inerliner_was_empty || wi.present?
+      if wi['trl'][interliner_lang] != params[:word]
+        wi['trl'][interliner_lang] = params[:word]
+        # признак того, что мы проверили этот стих и его можно показывать пользователям в проде
+        verse_data["ok_#{interliner_lang}"] = 1
+        verse.save!
+      end
+      render :json => {successfull: 'ok', verse_data: verse_data['wi']}
+    else
+      render :json => {successfull: 'fail'}, status: 422
+    end
   end
 
   private

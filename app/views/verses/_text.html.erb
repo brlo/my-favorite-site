@@ -11,6 +11,9 @@
 
     <article
       itemprop="articleBody"
+      <% if @verses.first&.lang == 'ja' %>
+        data-controller="furigana-converter"
+      <% end %>
       class="verses <%= text_size_class %>">
 
       <table>
@@ -32,10 +35,16 @@
                 <td class='verse-text <%= font_classes %> <%= text_cont_classes %>'
                     id='T<%= v.line %>'
                     data-line="<%= v.line %>"
+                    <% if current_user&.is_admin? %>
+                      data-verse-id="<%= v.id %>"
+                      data-controller="verse-editor"
+                      data-action="dblclick->verse-editor#edit"
+                      data-text="<%= v.text %>"
+                    <% end %>
                     data-action="click->verse-highlighter#lineTextClicked"
                     data-verse-highlighter-target="verseText">
 
-                  <%= sanitize(v.text, tags: %w(j e i br)) %>
+                  <%= sanitize(v.text, tags: %w(j e i br ruby rb rt)) %>
 
                   <% if @comments[v.line] %>
                     <a class='bib-comment'
@@ -50,21 +59,21 @@
                 <tr>
                   <td class='verse-interline'></td>
                   <td>
-                    <div style="font-size: 0.5em; margin-bottom: 10px;">
-                      Подстрочный перевод:
-                    </div>
                     <div class='interliner'>
                       <% if @verses_gr && @verses_gr[i] %>
-                        <%= interliner_helper(@verses_gr[i].data).html_safe %>
+                        <%= interliner_helper(@verses_gr[i]).html_safe %>
                       <% end %>
                     </div>
-                    <div style="font-size: 0.5em; margin-bottom: 10px;">
-                      Толкование:
-                      <a href="https://bible.optina.ru/new:<%= v.book %>:<%= "%02d" % v.chapter %>:<%= "%02d" % v.line %>"
-                         rel='noindex nofollow'>bible.optina.ru</a>,
-                      <a href="https://azbyka.ru/biblia/in/?<%= ::AddressConverter.book_bibleox_to_azbyka(v.book) %>.<%= v.chapter %>:<%= v.line %>&r"
-                         rel='noindex nofollow'>abyka.ru</a>
-                    </div>
+
+                    <% if v.lang == 'ru' %>
+                      <div style="font-size: 0.5em; margin: -20px 0 20px 0;">
+                        Толкование:
+                        <a href="https://bible.optina.ru/new:<%= v.book %>:<%= "%02d" % v.chapter %>:<%= "%02d" % v.line %>"
+                          rel='noindex nofollow'>bible.optina.ru</a>,
+                        <a href="https://azbyka.ru/biblia/in/?<%= ::AddressConverter.book_bibleox_to_azbyka(v.book) %>.<%= v.chapter %>:<%= v.line %>&r"
+                          rel='noindex nofollow'>abyka.ru</a>
+                      </div>
+                    <% end %>
                   </td>
                 </tr>
               <% end %>

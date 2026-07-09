@@ -227,6 +227,7 @@ class Page < ApplicationRecord
       # добавляем картинкам параметр отложенной загрузки: loading='lazy'
       self.body_rendered = add_lazy_to_img_tags(self.body_rendered)
 
+      # Add furigana:
       # "私[わたし]" => "<ruby><rb>私</rb><rt>わたし</rt></ruby>"
       self.body_rendered = ::Tools::StringUtils::Rubyfy.call(self.body_rendered)
     end

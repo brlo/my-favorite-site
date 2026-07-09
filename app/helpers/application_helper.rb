@@ -158,7 +158,16 @@ module ApplicationHelper
   end
 
   def font_classes
-    font_custom_classes ||= @current_bib_lang == 'csl-pnm' ? 'csl' : ''
+    @font_custom_classes ||= begin
+      case @current_bib_lang
+      when 'csl-pnm'
+        'csl'
+      when 'jp-ni', 'gr-jp', 'arab-avd', 'cn-ccbs', 'heb-osm'
+        'text-detailed'
+      else
+        ''
+      end
+    end
   end
 
   def text_cont_classes
@@ -169,7 +178,8 @@ module ApplicationHelper
     text_ui_direction = ['he', 'ar', 'fa'].include?(::I18n.locale.to_s) ? 't-rtl' : ''
   end
 
-  def interliner_helper(verse_data)
+  def interliner_helper(verse)
+    verse_data = verse.data
     words = verse_data['w']
     words_with_info = verse_data['wi']
 
@@ -178,10 +188,13 @@ module ApplicationHelper
     interliner_lang = locale_for_content_lang()
     interliner_lang = interliner_lang == 'ja' ? 'jp' : interliner_lang
 
+    label_of_verify = "ok_#{interliner_lang}"
+    is_verse_verified = verse_data[label_of_verify]
+
     # Если есть полная информация для построения подстрочника, то выстраиваем html целиком
     # А иначе проставим просто заглушки "-"
-    if words_with_info
-      words_with_info.map do |wi|
+    if (is_verse_verified || current_user&.is_admin?) && words_with_info
+      words_with_info.map.with_index do |wi, index|
         # Структура wi:
         # {
         #   raw: w, # слово, где сохранены большие буквы как было в тексте
@@ -196,10 +209,25 @@ module ApplicationHelper
         # ИНФОРМАЦИЯ ПОД СТРОКОЙ
         if wi['trl']
           # ЕСТЬ ПЕРЕВОД, СТРОИМ ПОДСТРОЧНИК ПО ПОЛНОЙ ПРОГРАММЕ
+          word_translation = wi.dig('trl', interliner_lang)
+          attrs = ''
+          if current_user&.is_admin?
+            attrs = "class='#{ 'verified' if is_verse_verified }' data-controller='interlinear-editor' data-verse-id='#{verse.id}' data-word-index='#{index}' data-action='dblclick->interlinear-editor#edit'"
+          end
+
           # слово
-          s  = "<ruby>&nbsp;#{ wi['raw'] }&nbsp;"
+          s  = "<ruby #{attrs} data-word='#{word_translation}'>&nbsp;#{ wi['raw'] }&nbsp;"
           # перевод
-          s += "<rt><v>(</v><a class='word-link' href='/#{I18n.locale}/words/#{ wi['bw_id'] }'>#{ wi.dig('trl', interliner_lang) }</a><v>)</v>"
+          s += "<rt>" +
+            "<v>[</v>"
+
+          if wi['bw_id'].present?
+            s += "<a class='word-link' href='/#{I18n.locale}/words/bw-#{ wi['bw_id'] }'>#{ word_translation }</a>"
+          else
+            s += word_translation.to_s
+          end
+
+          s += "<v>]</v>"
 
           # # ИНФОРМАЦИЯ ВО ВСПЛЫВАЮЩЕМ БАРЕ
           # s += "<div class='word-info'><div class='word-content'>"
@@ -218,7 +246,7 @@ module ApplicationHelper
 
           s += "</rt></ruby>"
         else
-          # ПЕРЕВОД НЕТ, СКОРЕЕ ВСЕГО ЭТО ЗНАК ПРЕПИНАНИЯ
+          # ПЕРЕВОДА НЕТ, СКОРЕЕ ВСЕГО ЭТО ЗНАК ПРЕПИНАНИЯ
           # ";" заменяем на "?"
           # остальное оставляем "как есть"
           w =
@@ -238,8 +266,13 @@ module ApplicationHelper
       end.join
 
     else
-      words.map do |w|
-        "<ruby>#{ w }<rt>-</rt></ruby>"
+      words.map.with_index do |w, index|
+        attrs = ''
+        if current_user&.is_admin?
+          attrs = "data-controller='interlinear-editor' data-verse-id='#{verse.id}' data-word-index='#{index}' data-action='dblclick->interlinear-editor#edit'"
+        end
+
+        "<ruby #{attrs}>#{ w }<rt>-</rt></ruby>"
       end.join
     end
   end

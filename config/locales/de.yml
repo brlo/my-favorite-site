@@ -146,13 +146,20 @@ de:
     gr-ru: 'Russisch'
 
   bib_word_info:
-    translation: Übersetzung
-    lexema: lx
+    warning: Entschuldigung, diese Seite befindet sich noch in der Entwicklung
+    h1_title: 'Biblisches Wort «%{word}» in griechischen Wörterbüchern'
+    translations: Übersetzung
     morphology: Morphologie
+    statistic: Statistik
+    all_verses_title: Liste der Verse
+    random_verses_title: Zufällige Verse
+    random_verses_translated_title: Zufällige Verse (Übersetzung)
+    lexema: Lexem
+    repeat_count: Anzahl Wörter
+    repeat_count_by_lexema: Lexemwiederholungen
     transcription: Transkription
     more: mehr
     morph:
-      # Wortart:
       "ch-r": 'Wortart'
       "сущ.": Substantiv
       "гл.": Verb
@@ -164,8 +171,8 @@ de:
       "союз": Konjunktion
       "част.": Partikel
       "межд.": Interjektion
-      # Fall:
-      "p": 'Fall'
+      "p": 'Kasus'
+      "pd": 'Kasus'
       "им. п.": Nominativ
       "р. п.": Genitiv
       "род. п.": Genitiv
@@ -174,30 +181,27 @@ de:
       "тв. п.": Instrumental
       "пред. п.": Präpositiv
       "зват. п.": Vokativ
-      "несов. вр.": "unvoll. Zeit"
-      # Geschlecht:
-      "r": 'Geschlecht'
-      "м.": männlich
-      "ж.": weiblich
-      "ср.": sächlich
-      # Zahl:
-      "ch": Zahl
+      "несов. вр.": "Imperfekt"
+      "r": 'Genus'
+      "м.": Maskulinum
+      "ж.": Femininum
+      "ср.": Neutrum
+      "ch": Numerus
       "ед. ч.": Singular
       "мн. ч.": Plural
       "-":
-      # Zeit
-      "t": Zeit
-      "п.": Vergangenheit
+      "t": Tempus
+      "п.": Präteritum
       "перф.": Perfekt
       "наст.": Präsens
-      "аор. инф.": Aorist Inf.
-      "наст. инф.": Präsens Inf.
+      "аор. инф.": Aorist-Inf.
+      "наст. инф.": Präsens-Inf.
       "буд.": Futur
       "аор.": Aorist
-      "аор. повел.": Aorist Imper.
-      "аор. сосл.": Aorist Konj.
-      "наст. повел.": Präsens Imper.
-      "наст. деепр.": Präsens Ger.
+      "аор. повел.": Aorist-Imperativ
+      "аор. сосл.": Aorist-Konjunktiv
+      "наст. повел.": Präsens-Imperativ
+      "наст. деепр.": Präsens-Partizip
 
   tips:
     click_on_verse: Sie können einen Vers auswählen, indem Sie auf seine Nummer klicken.

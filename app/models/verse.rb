@@ -17,6 +17,10 @@ class Verse < ApplicationRecord
     # u00AD — это SOFT HYPHEN, с которым я намучался целый день, прежде чем понял из-за чего разбиваются целые слова
     # при нормализации в лексемы, и потом в итоге не ищутся нормально. Надо эти переносы удалять обязательно. Они часто встречаются и их не видно визуально.
     self.text_search = sanitizer.sanitize(self.text, tags: []).gsub("\u00AD", '')
+    self.text_search = self.text_search.gsub(/\[([\p{Hiragana}\p{Katakana}]+)\]/, '')
+
+    # "私[わたし]" => "<ruby><rb>私</rb><rt>わたし</rt></ruby>"
+    # self.text = ::Tools::StringUtils::Rubyfy.call(self.body_rendered)
   end
 
   def set_address_if_nil
