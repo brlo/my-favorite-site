@@ -80,9 +80,8 @@ class TranslationProjectsController < ApplicationController
   end
 
   def update
-    @project = TranslationProject.new(project_params)
-    if @project.save
-      redirect_to @project, notice: 'Проект создан'
+    if @project.update(project_params)
+      redirect_to @project, notice: 'Проект обновлён'
     else
       render @project, status: :unprocessable_entity
     end
@@ -133,7 +132,13 @@ class TranslationProjectsController < ApplicationController
   end
 
   def project_params
-    params.require(:translation_project).permit(:title, :description, source_langs: [])
+    attrs = params.require(:translation_project).permit(:title, :description, :page_ids, source_langs: [])
+
+    if attrs[:page_ids].present?
+      attrs[:page_ids] = attrs[:page_ids].split(',').map(&:strip).reject(&:blank?).map(&:to_i)
+    end
+
+    attrs
   end
 
   def set_active_menu_item

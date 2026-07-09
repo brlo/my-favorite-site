@@ -8,7 +8,15 @@
 
     <span class="meta-label">Исходник:</span>
     <div class="meta-row">
-      <span class="meta-value"><%= project.source_langs.map { |l| langs_names[l] }.join(' | ') %></span>
+      <span class="meta-value">
+        <% source_langs = project.source_langs.map { |l| langs_names[l] }.join(' | ') %>
+        <% if project.page_ids.present? %>
+          <% source_page = Page.select(:id, :path).find(project.page_ids.first) %>
+          <%= link_to source_langs, my_page_link_to(source_page.path), class: "translation-item block-link", data: { turbo_frame: "_top" } %>
+        <% else %>
+          <%= source_langs %>
+        <% end %>
+      </span>
     </div>
 
     <span class="meta-label">Переводы:</span>

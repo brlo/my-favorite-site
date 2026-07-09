@@ -1025,7 +1025,7 @@ form > div {
 
 label {
   font-weight: 500;
-  color: #555;
+  color: var(--text-secondary);
   font-size: 0.9rem;
 }
 
@@ -1961,8 +1961,7 @@ body.night-mode {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 14px;
-  min-height: 44px;
+  padding: 8px 13px;
   gap: 8px;
   font-size: 0.9rem;
 }
@@ -2268,7 +2267,7 @@ body.night-mode {
   flex-shrink: 0;
   z-index: 10;
   position: relative;
-  padding: 12px 15px !important;
+  padding: 8px 13px !important;
   border-radius: 5px !important;
 }
 

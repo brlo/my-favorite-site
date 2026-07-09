@@ -12,6 +12,14 @@
   </div>
 
   <div>
+    <%= f.label :page_ids, 'ID страниц (через запятую)' %>
+    <%= f.text_field :page_ids,
+                     value: f.object.page_ids&.join(','),
+                     placeholder: 'Например: 1,3,5,7',
+                     class: 'form-control' %>
+  </div>
+
+  <div>
     <%= f.submit project.new_record? ? 'Создать проект' : 'Сохранить изменения',
         class: 'btn btn-primary',
         data: { disable_with: 'Сохранение...' } %>
