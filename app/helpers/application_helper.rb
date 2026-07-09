@@ -186,7 +186,6 @@ module ApplicationHelper
     # Изменились названия локалей, поэтому когда обращаемся к переводу внутри стиха,
     # ключи en и ru оставляем как есть, а ja подменяем на старый jp:
     interliner_lang = locale_for_content_lang()
-    interliner_lang = interliner_lang == 'ja' ? 'jp' : interliner_lang
 
     label_of_verify = "ok_#{interliner_lang}"
     is_verse_verified = verse_data[label_of_verify]

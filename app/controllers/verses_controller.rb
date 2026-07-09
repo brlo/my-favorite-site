@@ -244,7 +244,6 @@ class VersesController < ApplicationController
     # Изменились названия локалей, поэтому когда обращаемся к переводу внутри стиха,
     # ключи en и ru оставляем как есть, а ja подменяем на старый jp:
     interliner_lang = locale_for_content_lang()
-    interliner_lang = interliner_lang == 'ja' ? 'jp' : interliner_lang
 
     raise('no lang') if interliner_lang.blank?
 
