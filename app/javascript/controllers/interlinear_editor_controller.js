@@ -36,7 +36,7 @@ export default class extends Controller {
     const save = () => {
       const newValue = input.value.trim()
       // save if changed
-      if (currentText !== newValue) this.saveWord(verseId, wordIndex, newValue)
+      if (currentText !== input.value) this.saveWord(verseId, wordIndex, newValue)
       this.finishEditing(rt, newValue)
     }
 

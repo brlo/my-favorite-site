@@ -267,12 +267,14 @@ class VersesController < ApplicationController
 
     wi = words_with_info[params[:word_index].to_i] if params[:word_index].present?
     if is_inerliner_was_empty || wi.present?
-      if wi['trl'][interliner_lang] != params[:word]
-        wi['trl'][interliner_lang] = params[:word]
-        # признак того, что мы проверили этот стих и его можно показывать пользователям в проде
-        verse_data["ok_#{interliner_lang}"] = 1
-        verse.save!
+      new_word = params[:word].to_s.strip.presence
+      if wi['trl'][interliner_lang] != new_word
+        wi['trl'][interliner_lang] = new_word
       end
+      # признак того, что мы проверили этот стих и его можно показывать пользователям в проде
+      verse_data["ok_#{interliner_lang}"] = 1
+      verse.save!
+
       render :json => {successfull: 'ok', verse_data: verse_data['wi']}
     else
       render :json => {successfull: 'fail'}, status: 422
