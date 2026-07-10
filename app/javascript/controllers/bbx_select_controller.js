@@ -29,7 +29,7 @@ export default class extends Controller {
     navigatePath: String,
     placeholder: { type: String, default: '' },
     direction: { type: String, default: 'down' },
-    pathPositionReplace: Number,
+    pathPositionReplace: { type: Number, default: undefined }
   }
 
   connect() {
