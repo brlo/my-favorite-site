@@ -59,21 +59,23 @@
                 <tr>
                   <td class='verse-interline'></td>
                   <td>
-                    <div class='interliner'>
-                      <% if @verses_gr && @verses_gr[i] %>
-                        <%= interliner_helper(@verses_gr[i]).html_safe %>
+                    <div class='verse-extra-area'>
+                      <div class='interliner'>
+                        <% if @verses_gr && @verses_gr[i] %>
+                          <%= interliner_helper(@verses_gr[i]).html_safe %>
+                        <% end %>
+                      </div>
+
+                      <% if v.lang == 'ru' %>
+                        <div class='explanation'>
+                          Толкование:
+                          <a href="https://azbyka.ru/biblia/in/?<%= ::AddressConverter.book_bibleox_to_azbyka(v.book) %>.<%= v.chapter %>:<%= v.line %>&r"
+                            rel='noindex nofollow'>abyka.ru</a>,
+                          <a href="https://bible.optina.ru/new:<%= v.book %>:<%= "%02d" % v.chapter %>:<%= "%02d" % v.line %>"
+                            rel='noindex nofollow'>bible.optina.ru</a>
+                        </div>
                       <% end %>
                     </div>
-
-                    <% if v.lang == 'ru' %>
-                      <div style="font-size: 0.5em; margin: -20px 0 20px 0;">
-                        Толкование:
-                        <a href="https://bible.optina.ru/new:<%= v.book %>:<%= "%02d" % v.chapter %>:<%= "%02d" % v.line %>"
-                          rel='noindex nofollow'>bible.optina.ru</a>,
-                        <a href="https://azbyka.ru/biblia/in/?<%= ::AddressConverter.book_bibleox_to_azbyka(v.book) %>.<%= v.chapter %>:<%= v.line %>&r"
-                          rel='noindex nofollow'>abyka.ru</a>
-                      </div>
-                    <% end %>
                   </td>
                 </tr>
               <% end %>
