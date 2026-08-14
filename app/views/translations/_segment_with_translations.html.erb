@@ -30,13 +30,16 @@
           </div>
 
           <% if @params_lang_from&.include?(segment.lang) %>
-            <div class='translation translate-from origin'>
+            <div data-controller='copy-text' class='translation translate-from origin'>
               <div class='meta'>
                 <div class="translations-lang">
                   <%= translation_lang_by_code(segment.lang) %>
                 </div>
+                <div data-action='click->copy-text#copy' class='copy-btn ml-auto'>
+                  Копировать
+                </div>
               </div>
-              <div class='text'>
+              <div class='text' data-copy-text-target='content'>
                 <%= segment.text %>
               </div>
             </div>

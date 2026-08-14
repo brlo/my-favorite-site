@@ -79,6 +79,8 @@ ko:
     edit_link: 편집
     author: 작성자
     editors: 편집자
+    created_at: 페이지 생성일
+    updated_at: 업데이트
 
   page_translations:
     ar: '아랍어'

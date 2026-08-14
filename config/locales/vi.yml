@@ -79,6 +79,8 @@ vi:
     edit_link: Chỉnh sửa
     author: Được đăng bởi người dùng
     editors: Biên tập viên
+    created_at: Ngày tạo trang
+    updated_at: Cập nhật
 
   page_translations:
     ar: 'Tiếng Ả Rập'

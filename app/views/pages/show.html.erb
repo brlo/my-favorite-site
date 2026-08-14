@@ -107,6 +107,11 @@
         <% end %>
       <% end %>
 
+      <div id="page-timestamps">
+        <%= ::I18n.t('quote_page.created_at') %>: <%= @page.created_at&.strftime('%Y-%m-%d') %>,
+        <%= ::I18n.t('quote_page.updated_at') %>: <%= @page.updated_at&.strftime('%Y-%m-%d') %>
+      </div>
+
       <div id="page-edit-telegram">
         <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox_live'>https://t.me/bibleox_live</a>
       </div>

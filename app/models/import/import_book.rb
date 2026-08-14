@@ -1,4 +1,4 @@
-class ImportBook < ApplicationRecord
+class ImportBook < ImportRecord
   # Если хочешь взять названия книг на другом языке, то просто выдели столбик в SQLite и скопируй
   # а потом отнеси в config/locales
   self.table_name = 'books'

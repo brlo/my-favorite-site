@@ -6,6 +6,11 @@ class BibWord < ApplicationRecord
 
   validates :word, presence: true
 
+  # counts_by_lexema - количество повторов слова в Библии, по лексеме. Перечитывается так:
+  # BibWord.find_each do |bw|
+  #   bw.update!(counts_by_lexema: BibWord.where(lexema: bw.lexema).pluck(:counts).compact.sum )
+  # end
+
   class << self
     # Добавить новое слово.
     # Находит в базе уже существующее и дополняет его, или создаёт новое слово.
@@ -49,7 +54,9 @@ class BibWord < ApplicationRecord
       # TODO: надо бы ещё где-то определить слово, которое нужно смотреть в словаре
       # w.dict_word = ...
 
+      w.bw_id = 1_000_000_000
       w.save
+      w.update!(bw_id: w.id)
       w
     end
   end

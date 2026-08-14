@@ -2,6 +2,7 @@ class DictWord < ApplicationRecord
   DICTS = {
     'd' => {'name' => 'Дворецкий И.Х.', 'from' => 'gr', 'to' => 'ru'},
     'w' => {'name' => 'Вейсман А.Д.', 'from' => 'gr', 'to' => 'ru'},
+    'lsj' => {'name' => 'Liddell–Scott–Jones, LSJ', 'from' => 'gr', 'to' => 'en'},
     'bbx' => {'name' => 'Bibleox', 'from' => 'gr', 'to' => 'ru'},
     't' => {'name' => 'Тестовый', 'from' => 'jp', 'to' => 'ru'},
   }

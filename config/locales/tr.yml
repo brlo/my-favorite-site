@@ -79,6 +79,8 @@ tr:
     edit_link: Düzenle
     author: Kullanıcı tarafından yayınlandı
     editors: Editörler
+    created_at: Sayfa oluşturma tarihi
+    updated_at: Güncelleme
 
   page_translations:
     ar: 'Arapça'

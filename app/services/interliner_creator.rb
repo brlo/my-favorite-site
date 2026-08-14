@@ -25,7 +25,7 @@ class InterlinerCreator
   #   ...
   # ]
   def self.add_interliner book:, chapter:, start_line:, interliner_json_data:
-    verses = ::Verse.where(lang: 'gr-ru', book: book, chapter: chapter).to_a
+    verses = ::Verse.where(tr_code: 'gr-ru', book: book, chapter: chapter, line: start_line..nil).to_a.sort_by { it.line }
 
     # находим первую нужную нам строку
     verse = nil

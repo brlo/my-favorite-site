@@ -79,6 +79,8 @@ hi:
     edit_link: संपादित करें
     author: उपयोगकर्ता द्वारा प्रकाशित
     editors: संपादक
+    created_at: पृष्ठ निर्माण तिथि
+    updated_at: अद्यतन
 
   page_translations:
     ar: 'अरबी'

@@ -79,6 +79,8 @@ uz:
     edit_link: Tahrirlash
     author: Foydalanuvchi tomonidan joylashtirilgan
     editors: Tahrirlovchilar
+    created_at: Sahifa yaratilgan sana
+    updated_at: Yangilash
 
   page_translations:
     ar: 'Arabcha'

@@ -79,6 +79,8 @@ el:
     edit_link: Επεξεργασία
     author: Δημοσιεύτηκε από
     editors: συντάκτες
+    created_at: Ημερομηνία δημιουργίας σελίδας
+    updated_at: Ενημέρωση
 
   page_translations:
     # --- Переводы

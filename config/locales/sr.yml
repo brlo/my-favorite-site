@@ -79,6 +79,8 @@ sr:
     edit_link: Измени
     author: Објавио корисник
     editors: Уредници
+    created_at: Датум креирања странице
+    updated_at: Ажурирање
 
   page_translations:
     ar: 'Арапски'

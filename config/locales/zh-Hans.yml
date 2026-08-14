@@ -80,6 +80,8 @@ zh-Hans:
     edit_link: 编辑
     author: 由...出版
     editors: 编辑
+    created_at: 页面创建日期
+    updated_at: 更新
 
   page_translations:
     ar: '阿拉伯语'

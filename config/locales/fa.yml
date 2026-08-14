@@ -79,6 +79,8 @@ fa:
     edit_link: 'ویرایش'
     author: 'منتشر شده توسط کاربر'
     editors: 'ویراستاران'
+    created_at: تاریخ ایجاد صفحه
+    updated_at: به‌روزرسانی
 
   page_translations:
     ar: 'عربی'

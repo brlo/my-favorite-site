@@ -1,3 +1,3 @@
-class ImportInfo < ApplicationRecord
+class ImportInfo < ImportRecord
   self.table_name = 'info'
 end

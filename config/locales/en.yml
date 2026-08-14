@@ -79,6 +79,8 @@ en:
     edit_link: Edit
     author: Published by
     editors: Editors
+    created_at: Page creation date
+    updated_at: Update
 
   page_translations:
     ar: 'Arabic'

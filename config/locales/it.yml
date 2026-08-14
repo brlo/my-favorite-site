@@ -79,6 +79,8 @@ it:
     edit_link: Modifica
     author: Pubblicato da
     editors: Editori
+    created_at: Data di creazione della pagina
+    updated_at: Aggiornamento
 
   page_translations:
     ar: 'Arabo'

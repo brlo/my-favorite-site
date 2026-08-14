@@ -79,6 +79,8 @@ sw:
     edit_link: Hariri
     author: Ilichapishwa na mtumiaji
     editors: Wahariri
+    created_at: Tarehe ya kuunda ukurasa
+    updated_at: Sasisha
 
   page_translations:
     ar: 'Kiarabu'

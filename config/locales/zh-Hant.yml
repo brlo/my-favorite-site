@@ -80,6 +80,8 @@ zh-Hant:
     edit_link: 編輯
     author: 由...出版
     editors: 編輯
+    created_at: 頁面建立日期
+    updated_at: 更新
 
   page_translations:
     ar: '阿拉伯語'

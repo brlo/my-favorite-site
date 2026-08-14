@@ -79,6 +79,8 @@ he:
     edit_link: לַעֲרוֹך
     author: פורסם על ידי
     editors: עורכים
+    created_at: תאריך יצירת הדף
+    updated_at: עדכון
 
   page_translations:
     ar: 'ערבית'

@@ -1389,6 +1389,18 @@ body.night-mode {
   color: var(--text-primary);
 }
 
+.segment-content .copy-btn {
+  opacity: 0;
+  color: var(--text-secondary);
+  border-bottom: 1px dashed var(--text-secondary);
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+}
+
+.segment-content:hover .copy-btn {
+  opacity: 1;
+}
+
 @media (min-width: 768px) {
   .segment-body {
     font-size: 1.1rem;

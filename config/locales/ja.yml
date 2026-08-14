@@ -79,6 +79,8 @@ ja:
     edit_link: 編集
     author: 発行者
     editors: 編集者
+    created_at: ページ作成日
+    updated_at: 更新
 
   page_translations:
     ar: 'アラビア語'

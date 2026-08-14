@@ -79,6 +79,8 @@ ar:
     edit_link: يحرر
     author: نشرت من قبل
     editors: المحررين
+    created_at: تاريخ إنشاء الصفحة
+    updated_at: آخر تحديث
 
   page_translations:
     ar: 'العربية'

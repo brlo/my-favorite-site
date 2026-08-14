@@ -79,6 +79,8 @@ hy:
     edit_link: Խմբագրել
     author: Հրապարակված է
     editors: Խմբագիրներ
+    created_at: Էջի ստեղծման ամսաթիվ
+    updated_at: Թարմացում
 
   page_translations:
     ar: 'Արաբերեն'

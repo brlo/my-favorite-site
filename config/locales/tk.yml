@@ -79,6 +79,8 @@ tk:
     edit_link: Üýtgetmek
     author: Ulanyjy tarapyndan ýazyldy
     editors: Redaktorlar
+    created_at: Sahypanyň döredilen senesi
+    updated_at: Täzelenme
 
   page_translations:
     ar: 'Arapça'

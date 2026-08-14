@@ -9,7 +9,17 @@ class Translation < ApplicationRecord
   # validates :user_id, uniqueness: { scope: [:segment_id, :lang], message: :taken }
   validate :limit_two_per_segment_lang
 
+  before_validation :normalize_attributes
   before_destroy :remove_downvotes_from_segment
+
+  def normalize_attributes
+    self.text = text.to_s.strip.gsub(/[\t\s\n\r]+/, ' ').presence
+    self.text = sanitizer.sanitize(
+      self.text.to_s,
+      tags: ::Page::ALLOW_TAGS,
+      attributes: ::Page::ALLOW_ATTRS,
+    )
+  end
 
   def upvotes
     votes.values.count { it['v'] == 1 }
