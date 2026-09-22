@@ -1,19 +1,34 @@
 import { Controller } from "@hotwired/stimulus"
 
+// Состояние на уровне модуля — живёт между экземплярами контроллера
+let isMetricaFired = false
+let metricaLoaded = false
+
 export default class extends Controller {
   connect() {
     this.debug = false;
-    this.isFired = false
     this.setupScrollListener()
     this.log("Metrics controller connected")
     this.scrollDelay = 1000;
     this.yandexId = 90555809
+
+    // Подписываемся на turbo:load
+    this.turboLoadHandler = this.handleTurboLoad.bind(this)
+    document.addEventListener("turbo:load", this.turboLoadHandler)
+
+    // Если скролл уже был до этого (например, до Turbo-перехода),
+    //     но метрика ещё не загружена — загрузим сразу
+    if (isMetricaFired && !metricaLoaded) {
+      this.loadYandexMetrica()
+    }
   }
 
   disconnect() {
-    // Очищаем слушатель при удалении контроллера
     if (this.scrollHandler) {
       window.removeEventListener('scroll', this.scrollHandler)
+    }
+    if (this.turboLoadHandler) {
+      document.removeEventListener("turbo:load", this.turboLoadHandler)
     }
   }
 
@@ -23,9 +38,9 @@ export default class extends Controller {
   }
 
   handleScroll() {
-    if (this.isFired) return
+    if (isMetricaFired) return
 
-    this.isFired = true
+    isMetricaFired = true
     this.log("Scroll detected, scheduling metrics load")
 
     setTimeout(() => {
@@ -33,22 +48,41 @@ export default class extends Controller {
     }, this.scrollDelay)
   }
 
+  handleTurboLoad() {
+    this.log(`turbo:load fired. isMetricaFired=${isMetricaFired}, metricaLoaded=${metricaLoaded}`)
+
+    if (!isMetricaFired) {
+      this.log("Metrica not fired yet, skipping hit")
+      return
+    }
+
+    if (typeof window.ym === 'function') {
+      this.log(`Sending hit to Metrica for: ${window.location.href}`)
+      window.ym(this.yandexId, 'hit', window.location.href, {
+        title: document.title,
+        referer: document.referrer
+      })
+    }
+  }
+
   loadYandexMetrica() {
-    // Проверяем, не загружена ли уже метрика
-    if (document.querySelector('script[src="https://mc.yandex.ru/metrika/tag.js"]')) {
+    if (metricaLoaded) {
       this.log("Yandex Metrica already loaded")
+      return
+    }
+    if (document.querySelector('script[src="https://mc.yandex.ru/metrika/tag.js"]')) {
+      this.log("Yandex Metrica script already in DOM")
+      metricaLoaded = true
       return
     }
 
     this.log("Loading Yandex Metrica...")
 
-    // Создаем функцию ym, если её ещё нет
     window.ym = window.ym || function() {
       (window.ym.a = window.ym.a || []).push(arguments)
     }
     window.ym.l = 1 * new Date()
 
-    // Загружаем скрипт
     const script = document.createElement('script')
     script.src = 'https://mc.yandex.ru/metrika/tag.js'
     script.async = true
@@ -70,10 +104,11 @@ export default class extends Controller {
       clickmap: true,
       trackLinks: true,
       accurateTrackBounce: true,
-      webvisor: false // можно включить при необходимости
+      webvisor: false
     })
 
-    // Диспатчим событие о загрузке метрики
+    metricaLoaded = true
+
     window.dispatchEvent(new CustomEvent('metrics:loaded', {
       detail: { type: 'yandex', id: this.yandexId }
     }))
