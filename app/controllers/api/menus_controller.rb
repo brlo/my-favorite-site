@@ -5,7 +5,7 @@ module Api
     before_action :set_menu_item, only: [:update, :destroy]
     # теперь реджектим
     before_action :reject_by_read_privs, only: [:list]
-    before_action :reject_by_update_privs, only: [:create, :update]
+    before_action :reject_by_update_privs, only: [:create, :update, :destroy]
 
     # сбрасываем кэш до обновления страницы
     before_action :clear_page_cache, only: [:update, :destroy]

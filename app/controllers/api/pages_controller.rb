@@ -5,7 +5,7 @@ module Api
     # теперь реджектим
     before_action :reject_by_read_privs, only: [:list, :show]
     before_action :reject_by_create_privs, only: [:create]
-    before_action :reject_by_update_privs, only: [:update, :cover]
+    before_action :reject_by_update_privs, only: [:update, :cover, :add_pdf, :remove_pdf]
     before_action :reject_by_destroy_privs, only: [:destroy, :restore]
 
     # сбрасываем кэш до обновления страницы
@@ -210,7 +210,13 @@ module Api
     def add_pdf
       uploaded_file = params[:pdf_file]
 
-      if uploaded_file && uploaded_file.content_type == 'application/pdf'
+      # content_type присылает клиент, поэтому дополнительно проверяем сигнатуру файла
+      is_pdf = uploaded_file.respond_to?(:read) &&
+        uploaded_file.content_type == 'application/pdf' &&
+        uploaded_file.read(5) == '%PDF-'
+      uploaded_file.rewind if uploaded_file.respond_to?(:rewind)
+
+      if is_pdf
         # путь для сохранения
         save_path = Rails.root.join('public', 's', 'page_pdfs', "#{@page.id}.pdf")
 
@@ -329,8 +335,8 @@ module Api
       return if page_owner?() # хозяину страницы можно всё
 
       # удалять может человек с привелегией, или автор с привелегией удалять своё
-      ability?('pages_destroy') ||
-      (ability?('pages_self_destroy') { @page&.user_id == ::Current.user.id })
+      return if ::Current.user.ability?('pages_destroy')
+      ability?('pages_self_destroy') { ::Current.user.id.present? && @page&.user_id == ::Current.user.id }
     end
 
     def clear_page_cache
