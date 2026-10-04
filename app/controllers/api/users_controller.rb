@@ -3,7 +3,8 @@ module Api
     # skip_before_action :reject_not_admins, only: [:psw_login, :telegram_login]
 
     rate_limit to: 2, within: 5.minutes, by: -> { request.ip }, only: [:psw_login]
-    rate_limit to: 2, within: 5.minutes, by: -> { params[:username] }, only: [:psw_login]
+    # лимит по логину мягче, чтобы чужой человек не мог легко заблокировать вход известному пользователю
+    rate_limit to: 10, within: 5.minutes, by: -> { params[:username] }, only: [:psw_login]
 
     def me
       user = ::Current.user

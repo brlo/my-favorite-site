@@ -94,7 +94,8 @@ class UsersController < ApplicationController
   def unlock_account
     # находим аккаунт сначала по токену, а потом убеждаемся,
     # что свой аккаунт активирует тот, кто сейчас авторизован
-    if @user = User.load_from_unlock_token(params[:token]) && @user.id == current_user.id
+    @user = User.load_from_unlock_token(params[:token])
+    if @user && @user.id == current_user.id
       @user.login_unlock!
       redirect_to login_path, notice: t('users.notices.update_your_password_if_you_forgotten_it')
     else

@@ -20,7 +20,9 @@ class User < ApplicationRecord
   validates :provider, inclusion: { in: %w[site telegram] }
 
   validates :username, presence: true, uniqueness: true, length: { minimum: 2, maximum: 50 }
-  validates :email, presence: true, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }
+  # у пользователей из Телеграма email нет
+  validates :email, presence: true, if: -> { provider == 'site' }
+  validates :email, uniqueness: true, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   validate :email_no_plus_subaddressing
   validate :email_domain_not_in_blacklist
   validate :email_change_too_often

@@ -32,9 +32,9 @@ module Api
     def error_occurred(error)
       log_error(error)
       if ::Rails.env.production?
-        render json: {success: 'fail', errors: error.message}, status: 500
-      else
         render json: {success: 'fail', errors: 'Что-то пошло не так'}, status: 500
+      else
+        render json: {success: 'fail', errors: error.message}, status: 500
       end
     end
 
