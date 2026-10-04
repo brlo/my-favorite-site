@@ -37,26 +37,26 @@ namespace :g do
         # - удалена?
         next if p.is_del == true
 
-        add "/#{p.lang}/#{p.lang}/w/#{p.path}/", :changefreq => changefreq, :priority => 0.9
+        add "/#{p.lang}/#{p.lang}/w/#{p.path}/", :lastmod => p.updated_at # :changefreq => changefreq, :priority => 0.9
       end
 
-      # Страница: О САЙТЕ
-      locales = ::I18n.available_locales.map(&:to_s)
-      locales.each do |lang|
-        add "/#{lang}/about/", :changefreq => changefreq, :priority => 0.7
-      end
+      # # Страница: О САЙТЕ
+      # locales = ::I18n.available_locales.map(&:to_s)
+      # locales.each do |lang|
+      #   add "/#{lang}/about/", :changefreq => changefreq, :priority => 0.7
+      # end
 
-      # БИБЛИЯ
-      ::BIB_LANG_TO_LOCALE.each do |lang_content, lang_ui|
-        # некоторые языки не индексируем
-        next if ::BIB_LANGS_NOT_INDEXED.include?(lang_content)
+      # # БИБЛИЯ
+      # ::BIB_LANG_TO_LOCALE.each do |lang_content, lang_ui|
+      #   # некоторые языки не индексируем
+      #   next if ::BIB_LANGS_NOT_INDEXED.include?(lang_content)
 
-        ::BOOKS.each do |book_code, params|
-          (1..params[:chapters]).each do |chapter|
-            add "/#{lang_ui}/#{lang_content}/#{book_code}/#{chapter}/", :changefreq => changefreq, :priority => 0.9
-          end
-        end
-      end
+      #   ::BOOKS.each do |book_code, params|
+      #     (1..params[:chapters]).each do |chapter|
+      #       add "/#{lang_ui}/#{lang_content}/#{book_code}/#{chapter}/", :changefreq => changefreq, :priority => 0.9
+      #     end
+      #   end
+      # end
     end
 
     puts "Sitemap builded! ✅"

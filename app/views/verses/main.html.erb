@@ -1,7 +1,7 @@
 
 <section id="page-content" class='mainp'>
-  <h2
-    class="title"
+  <h1
+    class="title main-bible"
     id='current-address'
     data-book-short-name='lk'
     data-lang-ui='<%= I18n.locale %>'
@@ -11,10 +11,7 @@
     style='border-bottom: none;'
     itemprop="headline">
     <a id="current-book" data-action="books-menu#show"><%= t('root_page.headers.bible') %></a>
-  </h2>
-  <% if ::I18n.locale == :ru %>
-    <div id='title-sub' style='margin-top: -15px'>Библия</div>
-  <% end %>
+  </h1>
 
   <form
     action="/<%= I18n.locale %>/search"

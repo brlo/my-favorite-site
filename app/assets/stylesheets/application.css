@@ -492,6 +492,12 @@ header nav > #settings-btn {
         "Linux Libertine", "Georgia", "Times", "Source Serif Pro", serif;
 }
 
+.main-bible {
+  display: block;
+  text-align: center;
+  padding-bottom: 35px;
+}
+
 .menu-wrap {
     flex: 0 1 auto !important;
 }
