@@ -1,0 +1,103 @@
+vi:
+  menu:
+    chat: Trò chuyện
+  chat:
+    title: Trò chuyện
+    description: Câu hỏi và thảo luận về Kinh Thánh và đức tin
+    login_link: Đăng nhập
+    guest_hint: Người điều hành sẽ thấy tin nhắn của bạn và trả lời bạn. Để mọi người đều thấy tin nhắn của bạn, hãy đăng ký và xác nhận email.
+    greeting: |-
+      Chào mừng bạn! Tại đây bạn có thể đặt câu hỏi về Kinh Thánh, về đức tin và về những gì bạn đã đọc trên trang.
+
+      Hãy viết bằng bất kỳ ngôn ngữ nào: lá cờ cạnh mỗi biệt danh cho biết ngôn ngữ của người đó, và tin nhắn có thể được dịch.
+    format:
+      bold: Đậm
+      underline: Gạch chân
+      strike: Gạch ngang
+      quote: Trích dẫn
+      link: Liên kết
+    profile:
+      title: Hồ sơ trò chuyện
+      link: Hồ sơ trò chuyện của tôi
+      saved: Đã lưu hồ sơ
+      avatar: Ảnh
+      remove_avatar: Xóa ảnh
+      nickname: Biệt danh
+      bio: Giới thiệu bản thân
+      edit: Chỉnh sửa hồ sơ
+      change_avatar: Tải ảnh lên
+      avatar_hint: JPG, PNG, WebP hoặc GIF, tối đa 2 MB. Ảnh sẽ được cắt thành hình vuông.
+      too_big: Tệp lớn hơn 2 MB, hãy chọn tệp nhỏ hơn
+      nickname_hint: Chữ cái của mọi bảng chữ, chữ số, khoảng trắng và _ . -
+      bio_placeholder: 'Ví dụ: bạn đến từ đâu, nói những ngôn ngữ nào, điều gì trong Kinh Thánh khiến bạn quan tâm'
+      preview: Người khác thấy bạn trong trò chuyện như thế này
+      preview_text: Bình an cho anh em!
+      language: Ngôn ngữ
+      language_hint: Lá cờ cạnh biệt danh của bạn phụ thuộc vào ngôn ngữ giao diện của trang
+      title_hint: Danh hiệu do người điều hành trao
+      since: Tham gia trò chuyện từ
+    admin:
+      title: Dành cho người điều hành
+      kind: Loại / vai trò
+      unverified: email chưa xác nhận
+      messages: Tin nhắn
+      created: Lần đầu xuất hiện
+      muted_until: Bị cấm viết đến
+      banned_until: Bị chặn đến
+      title_label: Danh hiệu
+      role: Vai trò
+      mute_day: Cấm viết một ngày
+      ban: Chặn
+      unban: Gỡ bỏ hạn chế
+    errors:
+      forbidden: Không được phép
+      banned: Bạn đã bị chặn trong trò chuyện
+      muted: Bạn tạm thời không được viết
+      invalid_body: Tin nhắn trống hoặc không hợp lệ
+      too_long: Tin nhắn quá dài (tối đa %{count} ký tự)
+      rate_limited: Bạn có thể gửi một tin nhắn mỗi 5 phút
+      cant_edit: Tin nhắn có thể được chỉnh sửa trong vòng 24 giờ và tối đa 5 lần
+      cant_translate: Không có bản dịch
+      translate_failed: Không thể dịch tin nhắn. Vui lòng thử lại sau.
+      too_many_requests: Quá nhiều yêu cầu. Vui lòng chờ một chút.
+      login_required: Vui lòng đăng nhập
+      activation_required: Hãy xác nhận email bằng liên kết trong thư để điền hồ sơ
+      closed: Trò chuyện tạm thời đóng đối với tin nhắn mới
+    js:
+      reply: Trả lời
+      edit: Sửa
+      delete: Xóa
+      approve: Hiển thị cho mọi người
+      translate: Dịch
+      show_original: Ẩn bản dịch
+      translating: Đang dịch…
+      react: Cảm xúc
+      pending: Chỉ người điều hành thấy
+      direct: Trả lời riêng, chỉ bạn và người điều hành thấy
+      deleted_message: Tin nhắn không khả dụng
+      role_admin: quản trị
+      role_moderator: điều hành
+      role_bot: bot
+      edited: đã sửa
+      confirm_delete: Xóa tin nhắn này?
+      wait: Bạn có thể gửi tin nhắn tiếp theo sau
+      send: Gửi
+      save: Lưu
+      cancel: Hủy
+      replying_to: Trả lời
+      editing: Đang sửa tin nhắn
+      load_more: Hiển thị tin nhắn cũ hơn
+      landing: Bắt đầu truy cập trang từ
+      entry: Vào trò chuyện từ
+      ui_lang: Ngôn ngữ giao diện
+      reply_private_hint: chỉ tác giả và người điều hành sẽ thấy câu trả lời
+      open_chat: Mở trò chuyện cho mọi người
+      close_chat: Đóng trò chuyện cho mọi người
+    closed_notice: Trò chuyện tạm thời đóng đối với tin nhắn mới.
+    closed_staff_notice: 'Trò chuyện đang đóng: hiện chỉ quản trị viên và người điều hành có thể viết.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: Biệt danh
+        bio: Giới thiệu bản thân
+        avatar: Ảnh

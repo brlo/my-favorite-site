@@ -1,0 +1,103 @@
+sw:
+  menu:
+    chat: Gumzo
+  chat:
+    title: Gumzo
+    description: Maswali na mazungumzo kuhusu Biblia na imani
+    login_link: Ingia
+    guest_hint: Wasimamizi wataona ujumbe wako na kukujibu. Ili washiriki wote waone ujumbe wako, jisajili na uthibitishe barua pepe yako.
+    greeting: |-
+      Karibu! Hapa unaweza kuuliza maswali kuhusu Maandiko Matakatifu, imani na yale uliyosoma kwenye tovuti.
+
+      Andika kwa lugha yoyote unayopenda: bendera karibu na kila jina la utani inaonyesha lugha ya mtu huyo, na ujumbe unaweza kutafsiriwa.
+    format:
+      bold: Herufi nzito
+      underline: Pigia mstari
+      strike: Kata mstari
+      quote: Nukuu
+      link: Kiungo
+    profile:
+      title: Wasifu wa gumzo
+      link: Wasifu wangu wa gumzo
+      saved: Wasifu umehifadhiwa
+      avatar: Picha
+      remove_avatar: Ondoa picha
+      nickname: Jina la utani
+      bio: Kuhusu mimi
+      edit: Hariri wasifu
+      change_avatar: Pakia picha
+      avatar_hint: JPG, PNG, WebP au GIF, hadi MB 2. Picha itakatwa kuwa mraba.
+      too_big: Faili ni kubwa kuliko MB 2, chagua ndogo zaidi
+      nickname_hint: Herufi za alfabeti yoyote, tarakimu, nafasi na _ . -
+      bio_placeholder: 'Kwa mfano: unatoka wapi, unazungumza lugha gani, nini kinakuvutia katika Maandiko'
+      preview: Hivi ndivyo wengine wanavyokuona kwenye gumzo
+      preview_text: Amani iwe nanyi!
+      language: Lugha
+      language_hint: Bendera karibu na jina lako la utani inategemea lugha ya kiolesura cha tovuti
+      title_hint: Vyeo hutolewa na wasimamizi
+      since: Kwenye gumzo tangu
+    admin:
+      title: Kwa wasimamizi
+      kind: Aina / jukumu
+      unverified: barua pepe haijathibitishwa
+      messages: Ujumbe
+      created: Alionekana mara ya kwanza
+      muted_until: Amezuiwa kuandika hadi
+      banned_until: Amezuiwa hadi
+      title_label: Cheo
+      role: Jukumu
+      mute_day: Zuia kuandika kwa siku moja
+      ban: Zuia
+      unban: Ondoa vizuizi
+    errors:
+      forbidden: Hairuhusiwi
+      banned: Umezuiwa kwenye gumzo
+      muted: Kwa muda huruhusiwi kuandika
+      invalid_body: Ujumbe ni tupu au si sahihi
+      too_long: Ujumbe ni mrefu mno (herufi %{count} zaidi)
+      rate_limited: Unaweza kutuma ujumbe mmoja kila dakika 5
+      cant_edit: Ujumbe unaweza kuhaririwa ndani ya saa 24 na si zaidi ya mara 5
+      cant_translate: Tafsiri haipatikani
+      translate_failed: Imeshindikana kutafsiri ujumbe. Jaribu tena baadaye.
+      too_many_requests: Maombi mengi mno. Tafadhali subiri kidogo.
+      login_required: Tafadhali ingia
+      activation_required: Thibitisha barua pepe yako kupitia kiungo kwenye barua ili kujaza wasifu
+      closed: Gumzo limefungwa kwa muda kwa ujumbe mpya
+    js:
+      reply: Jibu
+      edit: Hariri
+      delete: Futa
+      approve: Onyesha kwa wote
+      translate: Tafsiri
+      show_original: Ficha tafsiri
+      translating: Inatafsiri…
+      react: Hisia
+      pending: Inaonekana kwa wasimamizi pekee
+      direct: Jibu la faragha, linaonekana kwako na kwa wasimamizi pekee
+      deleted_message: Ujumbe haupatikani
+      role_admin: msimamizi mkuu
+      role_moderator: msimamizi
+      role_bot: roboti
+      edited: imehaririwa
+      confirm_delete: Ufute ujumbe huu?
+      wait: Unaweza kutuma ujumbe unaofuata baada ya
+      send: Tuma
+      save: Hifadhi
+      cancel: Ghairi
+      replying_to: Jibu kwa
+      editing: Kuhariri ujumbe
+      load_more: Onyesha ujumbe wa awali
+      landing: Alianza kutembelea tovuti kutoka
+      entry: Alikuja kwenye gumzo kutoka
+      ui_lang: Lugha ya kiolesura
+      reply_private_hint: jibu litaonekana kwa mwandishi na wasimamizi pekee
+      open_chat: Fungua gumzo kwa wote
+      close_chat: Funga gumzo kwa wote
+    closed_notice: Gumzo limefungwa kwa muda kwa ujumbe mpya.
+    closed_staff_notice: 'Gumzo limefungwa: sasa ni wasimamizi pekee wanaoweza kuandika.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: Jina la utani
+        bio: Kuhusu mimi
+        avatar: Picha

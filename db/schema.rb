@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_06_17_055944) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_05_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -54,6 +54,79 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_17_055944) do
     t.decimal "book_number"
     t.text "long_name"
     t.text "short_name"
+  end
+
+  create_table "chat_members", force: :cascade do |t|
+    t.string "avatar"
+    t.datetime "banned_until"
+    t.string "bio"
+    t.string "chat_entry_url"
+    t.datetime "created_at", null: false
+    t.string "guest_token_digest"
+    t.string "ip_hash"
+    t.string "kind", null: false
+    t.datetime "landing_at"
+    t.string "landing_referrer"
+    t.string "landing_url"
+    t.datetime "last_seen_at"
+    t.datetime "muted_until"
+    t.string "nickname", null: false
+    t.string "role", null: false
+    t.string "title"
+    t.string "ui_lang", default: "en", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "user_id"
+    t.index "lower((nickname)::text)", name: "index_chat_members_on_lower_nickname", unique: true
+    t.index ["guest_token_digest"], name: "index_chat_members_on_guest_token_digest", unique: true
+    t.index ["user_id"], name: "index_chat_members_on_user_id", unique: true
+  end
+
+  create_table "chat_messages", force: :cascade do |t|
+    t.datetime "approved_at"
+    t.bigint "approved_by_id"
+    t.text "body_html"
+    t.jsonb "body_json"
+    t.text "body_text"
+    t.datetime "created_at", null: false
+    t.datetime "deleted_at"
+    t.bigint "deleted_by_id"
+    t.datetime "edited_at"
+    t.integer "edits_count", default: 0, null: false
+    t.string "kind", default: "text", null: false
+    t.string "lang", null: false
+    t.bigint "member_id", null: false
+    t.jsonb "reactions_summary", default: {}, null: false
+    t.bigint "recipient_member_id"
+    t.bigint "reply_to_id"
+    t.bigint "room_id", null: false
+    t.string "status", null: false
+    t.jsonb "translations", default: {}, null: false
+    t.datetime "updated_at", null: false
+    t.string "visibility", default: "public", null: false
+    t.index ["created_at"], name: "index_chat_messages_on_created_at"
+    t.index ["member_id"], name: "index_chat_messages_on_member_id"
+    t.index ["recipient_member_id"], name: "index_chat_messages_on_recipient_member_id", where: "(recipient_member_id IS NOT NULL)"
+    t.index ["reply_to_id"], name: "index_chat_messages_on_reply_to_id", where: "(reply_to_id IS NOT NULL)"
+    t.index ["room_id", "id"], name: "index_chat_messages_on_room_id_and_id", order: { id: :desc }
+    t.index ["room_id", "id"], name: "index_chat_messages_pending", where: "(((status)::text = 'pending'::text) AND (deleted_at IS NULL))"
+  end
+
+  create_table "chat_reactions", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.string "emoji", null: false
+    t.bigint "member_id", null: false
+    t.bigint "message_id", null: false
+    t.index ["member_id"], name: "index_chat_reactions_on_member_id"
+    t.index ["message_id", "member_id", "emoji"], name: "index_chat_reactions_on_message_id_and_member_id_and_emoji", unique: true
+  end
+
+  create_table "chat_rooms", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.jsonb "settings", default: {}, null: false
+    t.string "slug", null: false
+    t.string "title"
+    t.datetime "updated_at", null: false
+    t.index ["slug"], name: "index_chat_rooms_on_slug", unique: true
   end
 
   create_table "dict_words", force: :cascade do |t|
@@ -213,8 +286,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_17_055944) do
     t.bigint "translation_id", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id", null: false
-    t.index ["translation_id", "user_id"], name: "index_translation_reactions_on_translation_id_and_user_id"
     t.index ["translation_id"], name: "index_translation_reactions_on_translation_id"
+    t.index ["user_id", "translation_id"], name: "index_translation_reactions_on_user_id_and_translation_id", unique: true
     t.index ["user_id"], name: "index_translation_reactions_on_user_id"
   end
 
@@ -306,6 +379,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_06_17_055944) do
   end
 
   add_foreign_key "bible_references", "pages"
+  add_foreign_key "chat_members", "users", on_delete: :nullify
+  add_foreign_key "chat_messages", "chat_members", column: "approved_by_id", on_delete: :nullify
+  add_foreign_key "chat_messages", "chat_members", column: "deleted_by_id", on_delete: :nullify
+  add_foreign_key "chat_messages", "chat_members", column: "member_id", on_delete: :cascade
+  add_foreign_key "chat_messages", "chat_members", column: "recipient_member_id", on_delete: :cascade
+  add_foreign_key "chat_messages", "chat_messages", column: "reply_to_id", on_delete: :nullify
+  add_foreign_key "chat_messages", "chat_rooms", column: "room_id"
+  add_foreign_key "chat_reactions", "chat_members", column: "member_id", on_delete: :cascade
+  add_foreign_key "chat_reactions", "chat_messages", column: "message_id", on_delete: :cascade
   add_foreign_key "page_paragraphs", "pages"
   add_foreign_key "pages", "pages", column: "parent_id"
   add_foreign_key "pages", "users"

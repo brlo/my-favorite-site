@@ -1,0 +1,103 @@
+zh-Hant:
+  menu:
+    chat: 聊天
+  chat:
+    title: 聊天
+    description: 關於聖經與信仰的提問和交流
+    login_link: 登入
+    guest_hint: 管理員會看到你的訊息並回覆你。要讓所有參與者看到你的訊息，請註冊並驗證電子郵件。
+    greeting: |-
+      歡迎！在這裡你可以就聖經、信仰以及在本站讀到的內容提問。
+
+      請用你習慣的任何語言書寫：每個暱稱旁的旗幟表示對方的語言，訊息也可以翻譯。
+    format:
+      bold: 粗體
+      underline: 底線
+      strike: 刪除線
+      quote: 引用
+      link: 連結
+    profile:
+      title: 聊天資料
+      link: 我的聊天資料
+      saved: 資料已儲存
+      avatar: 照片
+      remove_avatar: 刪除照片
+      nickname: 暱稱
+      bio: 關於我
+      edit: 編輯資料
+      change_avatar: 上傳照片
+      avatar_hint: JPG、PNG、WebP 或 GIF，不超過 2 MB。照片將被裁切為正方形。
+      too_big: 檔案大於 2 MB，請選擇較小的檔案
+      nickname_hint: 任何字母、數字、空格以及 _ . -
+      bio_placeholder: 例如：你來自哪裡，會說哪些語言，對聖經中的什麼感興趣
+      preview: 其他人在聊天中看到的你
+      preview_text: 願你們平安！
+      language: 語言
+      language_hint: 暱稱旁的旗幟取決於網站介面語言
+      title_hint: 稱號由管理員授予
+      since: 加入聊天時間
+    admin:
+      title: 管理員專用
+      kind: 類型 / 角色
+      unverified: 電子郵件未驗證
+      messages: 訊息數
+      created: 首次出現
+      muted_until: 禁言至
+      banned_until: 封鎖至
+      title_label: 稱號
+      role: 角色
+      mute_day: 禁言一天
+      ban: 封鎖
+      unban: 解除限制
+    errors:
+      forbidden: 不允許
+      banned: 你已被禁止進入聊天
+      muted: 你暫時不能發言
+      invalid_body: 訊息為空或格式無效
+      too_long: 訊息太長（最多 %{count} 個字元）
+      rate_limited: 每 5 分鐘可以發送一則訊息
+      cant_edit: 訊息可在 24 小時內編輯，最多 5 次
+      cant_translate: 翻譯不可用
+      translate_failed: 無法翻譯該訊息，請稍後再試。
+      too_many_requests: 請求過多，請稍候。
+      login_required: 請登入
+      activation_required: 請透過郵件中的連結驗證電子郵件後再填寫資料
+      closed: 聊天暫時不接受新訊息
+    js:
+      reply: 回覆
+      edit: 編輯
+      delete: 刪除
+      approve: 向所有人顯示
+      translate: 翻譯
+      show_original: 隱藏翻譯
+      translating: 正在翻譯…
+      react: 表情回應
+      pending: 僅管理員可見
+      direct: 私人回覆，僅你和管理員可見
+      deleted_message: 訊息不可用
+      role_admin: 站長
+      role_moderator: 管理員
+      role_bot: 機器人
+      edited: 已編輯
+      confirm_delete: 刪除這則訊息？
+      wait: 可再次發送訊息的剩餘時間
+      send: 發送
+      save: 儲存
+      cancel: 取消
+      replying_to: 回覆給
+      editing: 正在編輯訊息
+      load_more: 顯示更早的訊息
+      landing: 首次造訪網站的頁面
+      entry: 進入聊天的頁面
+      ui_lang: 介面語言
+      reply_private_hint: 僅作者和管理員可以看到此回覆
+      open_chat: 向所有人開放聊天
+      close_chat: 對所有人關閉聊天
+    closed_notice: 聊天暫時不接受新訊息。
+    closed_staff_notice: 聊天已關閉：目前只有站長和管理員可以發言。
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: 暱稱
+        bio: 關於我
+        avatar: 照片

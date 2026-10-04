@@ -1,0 +1,68 @@
+<div class="chat-member">
+  <p><%= link_to "← #{t('chat.title')}", chat_path(locale: I18n.locale) %></p>
+
+  <div class="chat-member__card">
+    <div class="chat-member__head">
+      <%= chat_avatar(@member, size: nil) %>
+      <div>
+        <h1><%= @member.nickname %></h1>
+        <div class="chat-member__tags">
+          <%= chat_role_badge(@member, with_label: true) %>
+          <% if @member.title.present? %><span class="chat-msg__title"><%= @member.title %></span><% end %>
+        </div>
+        <div class="chat-member__lang"><%= page_lang_string_full(@member.ui_lang) %></div>
+      </div>
+    </div>
+
+    <% if @member.bio.present? %>
+      <div class="chat-member__bio"><%= simple_format(@member.bio) %></div>
+    <% end %>
+
+    <div class="chat-member__since"><%= t('chat.profile.since') %>: <%= chat_time(@member.created_at, with_time: false) %></div>
+
+    <% if current_chat_member&.id == @member.id && @member.verified? && @member.user_id %>
+      <p><%= link_to t('chat.profile.edit'), edit_chat_profile_path(locale: I18n.locale), class: 'chat-member__edit' %></p>
+    <% end %>
+  </div>
+
+  <% if @staff %>
+    <div class="chat-member__staff">
+      <h2><%= t('chat.admin.title') %></h2>
+      <dl>
+        <dt><%= t('chat.admin.kind') %></dt><dd><%= @member.kind %> / <%= @member.role %><%= " (#{t('chat.admin.unverified')})" unless @member.verified? %></dd>
+        <dt><%= t('chat.js.ui_lang') %></dt><dd><%= @member.ui_lang %></dd>
+        <dt><%= t('chat.js.landing') %></dt><dd><%= @member.landing_url %><%= " ← #{@member.landing_referrer}" if @member.landing_referrer.present? %></dd>
+        <dt><%= t('chat.js.entry') %></dt><dd><%= @member.chat_entry_url %></dd>
+        <dt><%= t('chat.admin.messages') %></dt><dd><%= @messages_count %></dd>
+        <dt><%= t('chat.admin.created') %></dt><dd><%= chat_time(@member.created_at) %></dd>
+        <% if @member.muted? %><dt><%= t('chat.admin.muted_until') %></dt><dd><%= chat_time(@member.muted_until) %></dd><% end %>
+        <% if @member.banned_until&.future? %><dt><%= t('chat.admin.banned_until') %></dt><dd><%= chat_time(@member.banned_until) %></dd><% end %>
+      </dl>
+
+      <% unless @member.admin? || (@member.staff? && !current_chat_member.admin?) %>
+        <div class="chat-member__forms" data-controller="chat-member-admin" data-chat-member-admin-url-value="<%= chat_member_path(@member, locale: I18n.locale) %>">
+          <label><%= t('chat.admin.title_label') %>
+            <input type="text" maxlength="40" value="<%= @member.title %>" data-chat-member-admin-target="title">
+          </label>
+          <button type="button" data-action="chat-member-admin#saveTitle"><%= t('chat.js.save') %></button>
+
+          <% if current_chat_member.admin? && @member.kind == 'user' %>
+            <label><%= t('chat.admin.role') %>
+              <select data-action="chat-member-admin#setRole">
+                <option value="member" <%= 'selected' if @member.role == 'member' %>>member</option>
+                <option value="moderator" <%= 'selected' if @member.role == 'moderator' %>>moderator</option>
+              </select>
+            </label>
+          <% end %>
+
+          <div class="chat-member__buttons">
+            <button type="button" data-action="chat-member-admin#send" data-param="mute_hours" data-value="24"><%= t('chat.admin.mute_day') %></button>
+            <button type="button" data-action="chat-member-admin#send" data-param="ban_days" data-value="36500"><%= t('chat.admin.ban') %></button>
+            <button type="button" data-action="chat-member-admin#send" data-param="unban" data-value="1"><%= t('chat.admin.unban') %></button>
+          </div>
+          <div class="chat-member__result" data-chat-member-admin-target="result"></div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+</div>

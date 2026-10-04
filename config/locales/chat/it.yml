@@ -1,0 +1,103 @@
+it:
+  menu:
+    chat: Chat
+  chat:
+    title: Chat
+    description: Domande e conversazioni sulla Bibbia e sulla fede
+    login_link: Accedi
+    guest_hint: I moderatori vedranno i tuoi messaggi e ti risponderanno. Perché tutti i partecipanti vedano i tuoi messaggi, registrati e conferma la tua email.
+    greeting: |-
+      Benvenuto! Qui puoi fare domande sulla Sacra Scrittura, sulla fede e su ciò che hai letto sul sito.
+
+      Scrivi nella lingua che preferisci: la bandiera accanto a ogni nickname indica la lingua della persona, e i messaggi si possono tradurre.
+    format:
+      bold: Grassetto
+      underline: Sottolineato
+      strike: Barrato
+      quote: Citazione
+      link: Link
+    profile:
+      title: Profilo della chat
+      link: Il mio profilo della chat
+      saved: Profilo salvato
+      avatar: Foto
+      remove_avatar: Rimuovi foto
+      nickname: Nickname
+      bio: Su di me
+      edit: Modifica profilo
+      change_avatar: Carica foto
+      avatar_hint: JPG, PNG, WebP o GIF, fino a 2 MB. La foto verrà ritagliata in formato quadrato.
+      too_big: Il file supera 2 MB, scegline uno più piccolo
+      nickname_hint: Lettere di qualsiasi alfabeto, cifre, spazio e _ . -
+      bio_placeholder: 'Ad esempio: da dove vieni, quali lingue parli, cosa ti interessa nella Scrittura'
+      preview: Così ti vedono gli altri nella chat
+      preview_text: La pace sia con voi!
+      language: Lingua
+      language_hint: La bandiera accanto al tuo nickname dipende dalla lingua dell’interfaccia del sito
+      title_hint: I titoli vengono assegnati dai moderatori
+      since: Nella chat dal
+    admin:
+      title: Per i moderatori
+      kind: Tipo / ruolo
+      unverified: email non confermata
+      messages: Messaggi
+      created: Visto per la prima volta
+      muted_until: Silenziato fino al
+      banned_until: Bloccato fino al
+      title_label: Titolo
+      role: Ruolo
+      mute_day: Silenzia per un giorno
+      ban: Blocca
+      unban: Rimuovi le restrizioni
+    errors:
+      forbidden: Non consentito
+      banned: Sei bloccato nella chat
+      muted: Temporaneamente non puoi scrivere
+      invalid_body: Il messaggio è vuoto o non valido
+      too_long: Il messaggio è troppo lungo (massimo %{count} caratteri)
+      rate_limited: Puoi inviare un messaggio ogni 5 minuti
+      cant_edit: Un messaggio può essere modificato entro 24 ore e non più di 5 volte
+      cant_translate: La traduzione non è disponibile
+      translate_failed: Impossibile tradurre il messaggio. Riprova più tardi.
+      too_many_requests: Troppe richieste. Attendi un momento.
+      login_required: Effettua l’accesso
+      activation_required: Conferma la tua email tramite il link nella lettera per compilare il profilo
+      closed: La chat è temporaneamente chiusa ai nuovi messaggi
+    js:
+      reply: Rispondi
+      edit: Modifica
+      delete: Elimina
+      approve: Mostra a tutti
+      translate: Traduci
+      show_original: Nascondi traduzione
+      translating: Traduzione in corso…
+      react: Reazione
+      pending: Visibile solo ai moderatori
+      direct: Risposta privata, visibile solo a te e ai moderatori
+      deleted_message: Messaggio non disponibile
+      role_admin: admin
+      role_moderator: moderatore
+      role_bot: bot
+      edited: modificato
+      confirm_delete: Eliminare questo messaggio?
+      wait: Potrai inviare il prossimo messaggio tra
+      send: Invia
+      save: Salva
+      cancel: Annulla
+      replying_to: Risposta a
+      editing: Modifica del messaggio
+      load_more: Mostra i messaggi precedenti
+      landing: Ha iniziato la visita del sito da
+      entry: È arrivato nella chat da
+      ui_lang: Lingua dell’interfaccia
+      reply_private_hint: solo l’autore e i moderatori vedranno la risposta
+      open_chat: Apri la chat a tutti
+      close_chat: Chiudi la chat a tutti
+    closed_notice: La chat è temporaneamente chiusa ai nuovi messaggi.
+    closed_staff_notice: 'La chat è chiusa: ora possono scrivere solo amministratori e moderatori.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: Nickname
+        bio: Su di me
+        avatar: Foto

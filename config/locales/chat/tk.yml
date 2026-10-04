@@ -1,0 +1,103 @@
+tk:
+  menu:
+    chat: Söhbet
+  chat:
+    title: Söhbet
+    description: Mukaddes Kitap we iman barada soraglar we söhbet
+    login_link: Giriş
+    guest_hint: Moderatorlar siziň hatlaryňyzy görerler we size jogap bererler. Hatlaryňyzy ähli gatnaşyjylar görer ýaly, hasaba duruň we e-poçtaňyzy tassyklaň.
+    greeting: |-
+      Hoş geldiňiz! Bu ýerde Mukaddes Ýazgylar, iman we saýtda okanlaryňyz barada sorag berip bilersiňiz.
+
+      Islän diliňizde ýazyň: her lakamyň ýanyndaky baýdak söhbetdeşiň dilini görkezýär, hatlary bolsa terjime edip bolýar.
+    format:
+      bold: Galyň
+      underline: Aşagy çyzylan
+      strike: Üsti çyzylan
+      quote: Sitata
+      link: Salgy
+    profile:
+      title: Söhbetdäki profil
+      link: Söhbetdäki profilim
+      saved: Profil ýatda saklandy
+      avatar: Surat
+      remove_avatar: Suraty aýyr
+      nickname: Lakam
+      bio: Özüm barada
+      edit: Profili üýtget
+      change_avatar: Surat ýükle
+      avatar_hint: JPG, PNG, WebP ýa-da GIF, 2 MB-a çenli. Surat inedördül görnüşde kesiler.
+      too_big: Faýl 2 MB-dan uly, kiçiräk faýl saýlaň
+      nickname_hint: Islendik elipbiýiň harplary, sanlar, boşluk we _ . -
+      bio_placeholder: 'Mysal üçin: nireden, haýsy dillerde gürleýärsiňiz, Mukaddes Ýazgylarda sizi näme gyzyklandyrýar'
+      preview: Söhbetde sizi şeýle görýärler
+      preview_text: Size parahatlyk bolsun!
+      language: Dil
+      language_hint: Lakamyňyzyň ýanyndaky baýdak saýtyň interfeýs diline bagly
+      title_hint: Atlary moderatorlar berýär
+      since: Söhbetde şu wagtdan bäri
+    admin:
+      title: Moderatorlar üçin
+      kind: Görnüş / rol
+      unverified: e-poçta tassyklanmadyk
+      messages: Hatlar
+      created: Ilkinji gezek
+      muted_until: Şu wagta çenli ýazyp bilmeýär
+      banned_until: Şu wagta çenli petiklendi
+      title_label: At
+      role: Rol
+      mute_day: Bir günlük ýazmagy gadagan et
+      ban: Petikle
+      unban: Çäklendirmeleri aýyr
+    errors:
+      forbidden: Rugsat berilmeýär
+      banned: Siz söhbetde petiklendiňiz
+      muted: Size wagtlaýyn ýazmak gadagan
+      invalid_body: Hat boş ýa-da nädogry
+      too_long: Hat örän uzyn (iň köp %{count} nyşan)
+      rate_limited: Her 5 minutda bir hat iberip bilersiňiz
+      cant_edit: Haty 24 sagadyň içinde we 5 gezekden köp bolmadyk üýtgedip bolýar
+      cant_translate: Terjime elýeterli däl
+      translate_failed: Haty terjime edip bolmady. Soňrak synanyşyň.
+      too_many_requests: Haýyşlar örän köp. Biraz garaşyň.
+      login_required: Giriş etmeli
+      activation_required: Profili doldurmak üçin hatdaky salgy arkaly e-poçtaňyzy tassyklaň
+      closed: Söhbet täze hatlar üçin wagtlaýyn ýapyk
+    js:
+      reply: Jogap ber
+      edit: Üýtget
+      delete: Poz
+      approve: Hemmelere görkez
+      translate: Terjime et
+      show_original: Terjimäni gizle
+      translating: Terjime edilýär…
+      react: Täsir
+      pending: Diňe moderatorlar görýär
+      direct: Şahsy jogap, diňe siz we moderatorlar görýär
+      deleted_message: Hat elýeterli däl
+      role_admin: admin
+      role_moderator: moderator
+      role_bot: bot
+      edited: üýtgedildi
+      confirm_delete: Bu haty pozmalymy?
+      wait: 'Indiki haty iberip boljak wagtyňyz:'
+      send: Iber
+      save: Ýatda sakla
+      cancel: Ýatyr
+      replying_to: 'Jogap:'
+      editing: Haty üýtgetmek
+      load_more: Öňki hatlary görkez
+      landing: Saýta ilkinji giren sahypasy
+      entry: Söhbete gelen sahypasy
+      ui_lang: Interfeýs dili
+      reply_private_hint: jogaby diňe awtor we moderatorlar görer
+      open_chat: Söhbeti hemmeler üçin aç
+      close_chat: Söhbeti hemmeler üçin ýap
+    closed_notice: Söhbet täze hatlar üçin wagtlaýyn ýapyk.
+    closed_staff_notice: 'Söhbet ýapyk: häzir diňe adminler we moderatorlar ýazyp bilýär.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: Lakam
+        bio: Özüm barada
+        avatar: Surat

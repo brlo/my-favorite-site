@@ -1,5 +1,8 @@
 development:
-  adapter: async
+  # redis, а не async: иначе рассылки из консоли и фоновых задач не доходят до браузера
+  adapter: redis
+  url: <%= ENV.fetch("REDIS_URL") { SETTINGS.dig('redis', 'url') || "redis://localhost:6379/1" } %>
+  channel_prefix: bibleox_development
 
 test:
   adapter: test

@@ -1,0 +1,92 @@
+<% member = @member %>
+<% staff = member&.staff? == true %>
+<% verified = member&.verified? == true %>
+<% can_post = !(member&.banned? || member&.muted?) %>
+<div class="chat<%= ' chat--staff' if staff %><%= ' chat--closed' if @room.posting_closed? %>"
+     data-controller="chat"
+     data-chat-room-id-value="<%= @room.id %>"
+     data-chat-member-id-value="<%= member&.id %>"
+     data-chat-staff-value="<%= staff %>"
+     data-chat-posting-closed-value="<%= @room.posting_closed? %>"
+     data-chat-room-url-value="<%= chat_room_path(locale: I18n.locale) %>"
+     data-chat-verified-value="<%= verified %>"
+     data-chat-locale-value="<%= I18n.locale %>"
+     data-chat-messages-url-value="<%= chat_messages_path(locale: I18n.locale) %>"
+     data-chat-translate-langs-value="<%= (Chat::Translator.enabled? ? Chat::Translator::LANG_CODES : {}).to_json %>"
+     data-chat-wait-seconds-value="<%= @wait_seconds %>"
+     data-chat-edit-window-value="<%= Chat::EDIT_WINDOW.to_i %>"
+     data-chat-max-edits-value="<%= Chat::MAX_EDITS %>"
+     data-chat-reactions-value="<%= Chat::REACTIONS.to_json %>"
+     data-chat-my-reactions-value="<%= @my_reactions.to_json %>"
+     data-chat-has-more-value="<%= @has_more %>"
+     data-chat-i18n-value="<%= chat_js_i18n.to_json %>">
+
+  <div class="chat__header">
+    <h1><%= t('chat.title') %></h1>
+    <div class="chat__header-links">
+      <% if member&.admin? %>
+        <button type="button" class="chat__switch" data-chat-target="postingSwitch" data-action="chat#togglePosting">
+          <%= @room.posting_closed? ? t('chat.js.open_chat') : t('chat.js.close_chat') %>
+        </button>
+      <% end %>
+      <% if verified && member&.user_id %>
+        <%= link_to t('chat.profile.link'), edit_chat_profile_path(locale: I18n.locale) %>
+      <% elsif !logged_in? %>
+        <%= link_to t('chat.login_link'), login_path(locale: I18n.locale) %>
+      <% end %>
+    </div>
+  </div>
+
+  <div class="chat__feed" data-chat-target="feed" data-action="scroll->chat#onScroll">
+    <button type="button" class="chat__more" data-chat-target="more" data-action="chat#loadMore" <%= 'hidden' unless @has_more %>><%= t('chat.js.load_more') %></button>
+    <div class="chat__list" data-chat-target="list">
+      <% @messages.each do |message| %>
+        <%= render 'chat/message', message: message %>
+      <% end %>
+    </div>
+
+    <% if member.nil? || !member.messages.exists? %>
+      <div class="chat-greeting">
+        <div class="chat-greeting__text"><%= simple_format(t('chat.greeting')) %></div>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="chat__composer" data-chat-target="composer">
+    <% if !can_post %>
+      <div class="chat__notice"><%= member&.banned? ? t('chat.errors.banned') : t('chat.errors.muted') %></div>
+    <% else %>
+      <div class="chat__notice chat__closed-notice"><%= staff ? t('chat.closed_staff_notice') : t('chat.closed_notice') %></div>
+      <% unless verified %>
+        <div class="chat__notice chat__notice--hint"><%= t('chat.guest_hint') %></div>
+      <% end %>
+
+      <div class="chat__context" data-chat-target="context" hidden>
+        <span data-chat-target="contextText"></span>
+        <button type="button" class="chat__context-cancel" data-action="chat#cancelContext" title="<%= t('chat.js.cancel') %>">✕</button>
+      </div>
+
+      <div class="chat__editor-wrap">
+        <div class="chat__toolbar">
+          <button type="button" data-action="chat#format" data-command="toggleBold" title="<%= t('chat.format.bold') %>"><b>B</b></button>
+          <button type="button" data-action="chat#format" data-command="toggleUnderline" title="<%= t('chat.format.underline') %>"><u>U</u></button>
+          <button type="button" data-action="chat#format" data-command="toggleStrike" title="<%= t('chat.format.strike') %>"><s>S</s></button>
+          <button type="button" data-action="chat#format" data-command="toggleBlockquote" title="<%= t('chat.format.quote') %>">❝</button>
+          <% if staff %>
+            <button type="button" data-action="chat#setLink" title="<%= t('chat.format.link') %>">🔗</button>
+          <% end %>
+        </div>
+        <div class="chat__editor" data-chat-target="editor"></div>
+        <button type="button" class="chat__send" data-chat-target="send" data-action="chat#submit"><%= t('chat.js.send') %></button>
+      </div>
+      <div class="chat__wait" data-chat-target="wait" hidden></div>
+      <div class="chat__error" data-chat-target="error" hidden></div>
+    <% end %>
+  </div>
+
+  <div class="chat-reaction-picker" data-chat-target="picker" hidden>
+    <% Chat::REACTIONS.each do |emoji| %>
+      <button type="button" data-emoji="<%= emoji %>" data-action="chat#pickReaction"><%= emoji %></button>
+    <% end %>
+  </div>
+</div>

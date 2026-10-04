@@ -1,0 +1,103 @@
+es:
+  menu:
+    chat: Chat
+  chat:
+    title: Chat
+    description: Preguntas y conversación sobre la Biblia y la fe
+    login_link: Iniciar sesión
+    guest_hint: Los moderadores verán sus mensajes y le responderán. Para que todos los participantes vean sus mensajes, regístrese y confirme su correo electrónico.
+    greeting: |-
+      ¡Bienvenido! Aquí puede hacer preguntas sobre la Sagrada Escritura, la fe y lo que ha leído en el sitio.
+
+      Escriba en el idioma que prefiera: la bandera junto a cada apodo muestra el idioma de la persona, y los mensajes se pueden traducir.
+    format:
+      bold: Negrita
+      underline: Subrayado
+      strike: Tachado
+      quote: Cita
+      link: Enlace
+    profile:
+      title: Perfil del chat
+      link: Mi perfil del chat
+      saved: Perfil guardado
+      avatar: Foto
+      remove_avatar: Eliminar foto
+      nickname: Apodo
+      bio: Sobre mí
+      edit: Editar perfil
+      change_avatar: Subir foto
+      avatar_hint: JPG, PNG, WebP o GIF, hasta 2 MB. La foto se recortará en forma cuadrada.
+      too_big: El archivo pesa más de 2 MB, elija uno más pequeño
+      nickname_hint: Letras de cualquier alfabeto, números, espacio y _ . -
+      bio_placeholder: 'Por ejemplo: de dónde es, qué idiomas habla, qué le interesa de la Escritura'
+      preview: Así le ven los demás en el chat
+      preview_text: "¡La paz sea con vosotros!"
+      language: Idioma
+      language_hint: La bandera junto a su apodo depende del idioma de la interfaz del sitio
+      title_hint: Los títulos los asignan los moderadores
+      since: En el chat desde
+    admin:
+      title: Para moderadores
+      kind: Tipo / rol
+      unverified: correo no confirmado
+      messages: Mensajes
+      created: Visto por primera vez
+      muted_until: Silenciado hasta
+      banned_until: Bloqueado hasta
+      title_label: Título
+      role: Rol
+      mute_day: Silenciar por un día
+      ban: Bloquear
+      unban: Quitar restricciones
+    errors:
+      forbidden: No permitido
+      banned: Usted está bloqueado en el chat
+      muted: Temporalmente no puede escribir
+      invalid_body: El mensaje está vacío o no es válido
+      too_long: El mensaje es demasiado largo (máximo %{count} caracteres)
+      rate_limited: Puede enviar un mensaje cada 5 minutos
+      cant_edit: Un mensaje se puede editar durante 24 horas y como máximo 5 veces
+      cant_translate: La traducción no está disponible
+      translate_failed: No se pudo traducir el mensaje. Inténtelo más tarde.
+      too_many_requests: Demasiadas solicitudes. Espere un poco.
+      login_required: Inicie sesión
+      activation_required: Confirme su correo con el enlace de la carta para completar su perfil
+      closed: El chat está cerrado temporalmente para nuevos mensajes
+    js:
+      reply: Responder
+      edit: Editar
+      delete: Eliminar
+      approve: Mostrar a todos
+      translate: Traducir
+      show_original: Ocultar traducción
+      translating: Traduciendo…
+      react: Reacción
+      pending: Visible solo para moderadores
+      direct: Respuesta privada, visible solo para usted y los moderadores
+      deleted_message: Mensaje no disponible
+      role_admin: admin
+      role_moderator: moderador
+      role_bot: bot
+      edited: editado
+      confirm_delete: "¿Eliminar este mensaje?"
+      wait: Podrá enviar el siguiente mensaje en
+      send: Enviar
+      save: Guardar
+      cancel: Cancelar
+      replying_to: Respuesta a
+      editing: Editando mensaje
+      load_more: Mostrar mensajes anteriores
+      landing: Empezó a visitar el sitio desde
+      entry: Llegó al chat desde
+      ui_lang: Idioma de la interfaz
+      reply_private_hint: solo el autor y los moderadores verán la respuesta
+      open_chat: Abrir el chat para todos
+      close_chat: Cerrar el chat para todos
+    closed_notice: El chat está cerrado temporalmente para nuevos mensajes.
+    closed_staff_notice: 'El chat está cerrado: ahora solo pueden escribir los administradores y moderadores.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: Apodo
+        bio: Sobre mí
+        avatar: Foto

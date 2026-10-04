@@ -1,0 +1,103 @@
+uz:
+  menu:
+    chat: Chat
+  chat:
+    title: Chat
+    description: Muqaddas Kitob va imon haqida savollar va suhbat
+    login_link: Kirish
+    guest_hint: Moderatorlar xabarlaringizni ko‘rib, sizga javob berishadi. Xabarlaringizni barcha ishtirokchilar ko‘rishi uchun ro‘yxatdan o‘ting va elektron pochtangizni tasdiqlang.
+    greeting: |-
+      Xush kelibsiz! Bu yerda Muqaddas Bitiklar, imon va saytda o‘qiganlaringiz haqida savol berishingiz mumkin.
+
+      O‘zingizga qulay tilda yozing: har bir taxallus yonidagi bayroq suhbatdoshning tilini ko‘rsatadi, xabarlarni esa tarjima qilish mumkin.
+    format:
+      bold: Qalin
+      underline: Tagiga chizilgan
+      strike: Ustiga chizilgan
+      quote: Iqtibos
+      link: Havola
+    profile:
+      title: Chat profili
+      link: Chatdagi profilim
+      saved: Profil saqlandi
+      avatar: Rasm
+      remove_avatar: Rasmni o‘chirish
+      nickname: Taxallus
+      bio: O‘zim haqimda
+      edit: Profilni tahrirlash
+      change_avatar: Rasm yuklash
+      avatar_hint: JPG, PNG, WebP yoki GIF, 2 MB gacha. Rasm kvadrat shaklida kesiladi.
+      too_big: Fayl 2 MB dan katta, kichikroq faylni tanlang
+      nickname_hint: Istalgan alifbo harflari, raqamlar, bo‘sh joy va _ . -
+      bio_placeholder: 'Masalan: qayerdansiz, qaysi tillarda gaplashasiz, Muqaddas Bitiklarda sizni nima qiziqtiradi'
+      preview: Chatda sizni shunday ko‘rishadi
+      preview_text: Sizga tinchlik bo‘lsin!
+      language: Til
+      language_hint: Taxallusingiz yonidagi bayroq sayt interfeysi tiliga bog‘liq
+      title_hint: Unvonlarni moderatorlar beradi
+      since: Chatda shu sanadan beri
+    admin:
+      title: Moderatorlar uchun
+      kind: Turi / roli
+      unverified: pochta tasdiqlanmagan
+      messages: Xabarlar
+      created: Birinchi marta
+      muted_until: Shu vaqtgacha yoza olmaydi
+      banned_until: Shu vaqtgacha bloklangan
+      title_label: Unvon
+      role: Rol
+      mute_day: Bir kunga yozishni taqiqlash
+      ban: Bloklash
+      unban: Cheklovlarni olib tashlash
+    errors:
+      forbidden: Ruxsat berilmagan
+      banned: Siz chatda bloklangansiz
+      muted: Sizga vaqtincha yozish taqiqlangan
+      invalid_body: Xabar bo‘sh yoki noto‘g‘ri
+      too_long: Xabar juda uzun (ko‘pi bilan %{count} belgi)
+      rate_limited: Har 5 daqiqada bitta xabar yuborishingiz mumkin
+      cant_edit: Xabarni 24 soat ichida va ko‘pi bilan 5 marta tahrirlash mumkin
+      cant_translate: Tarjima mavjud emas
+      translate_failed: Xabarni tarjima qilib bo‘lmadi. Keyinroq urinib ko‘ring.
+      too_many_requests: So‘rovlar juda ko‘p. Biroz kuting.
+      login_required: Tizimga kiring
+      activation_required: Profilni to‘ldirish uchun xatdagi havola orqali pochtangizni tasdiqlang
+      closed: Chat yangi xabarlar uchun vaqtincha yopiq
+    js:
+      reply: Javob berish
+      edit: Tahrirlash
+      delete: O‘chirish
+      approve: Hammaga ko‘rsatish
+      translate: Tarjima qilish
+      show_original: Tarjimani yashirish
+      translating: Tarjima qilinmoqda…
+      react: Munosabat
+      pending: Faqat moderatorlarga ko‘rinadi
+      direct: Shaxsiy javob, faqat sizga va moderatorlarga ko‘rinadi
+      deleted_message: Xabar mavjud emas
+      role_admin: admin
+      role_moderator: moderator
+      role_bot: bot
+      edited: tahrirlangan
+      confirm_delete: Bu xabar o‘chirilsinmi?
+      wait: 'Keyingi xabarni yuborishingiz mumkin bo‘lgan vaqt:'
+      send: Yuborish
+      save: Saqlash
+      cancel: Bekor qilish
+      replying_to: 'Javob:'
+      editing: Xabarni tahrirlash
+      load_more: Avvalgi xabarlarni ko‘rsatish
+      landing: Saytga ilk kirgan sahifasi
+      entry: Chatga kelgan sahifasi
+      ui_lang: Interfeys tili
+      reply_private_hint: javobni faqat muallif va moderatorlar ko‘radi
+      open_chat: Chatni hamma uchun ochish
+      close_chat: Chatni hamma uchun yopish
+    closed_notice: Chat yangi xabarlar uchun vaqtincha yopiq.
+    closed_staff_notice: 'Chat yopiq: hozir faqat adminlar va moderatorlar yoza oladi.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: Taxallus
+        bio: O‘zim haqimda
+        avatar: Rasm

@@ -1,0 +1,63 @@
+<%# Сообщение чата. Разметка одинакова для всех зрителей (рассылается по ActionCable),
+    поэтому подписи и кнопки по правам зрителя расставляет chat_controller.js.
+    Откуда пришёл человек, админ смотрит в карточке участника. %>
+<% member = message.member %>
+<article class="chat-msg<%= ' chat-msg--pending' if message.pending? %><%= ' chat-msg--direct' if message.direct? %><%= ' chat-msg--system' if message.kind == 'system' %>"
+         id="chat-msg-<%= message.id %>"
+         data-chat-target="message"
+         data-id="<%= message.id %>"
+         data-author-id="<%= member.id %>"
+         data-lang="<%= message.lang %>"
+         data-status="<%= message.status %>"
+         data-visibility="<%= message.visibility %>"
+         data-kind="<%= message.kind %>"
+         data-created-at="<%= message.created_at.to_i %>"
+         data-edits="<%= message.edits_count %>">
+  <a class="chat-msg__avatar" href="<%= chat_member_path(member, locale: I18n.locale) %>"><%= chat_avatar(member) %></a>
+  <div class="chat-msg__main">
+    <div class="chat-msg__head">
+      <%= chat_flag(member) %>
+      <a class="chat-msg__nick" href="<%= chat_member_path(member, locale: I18n.locale) %>"><%= member.nickname %></a>
+      <%= chat_role_badge(member) %>
+      <% if member.title.present? %><span class="chat-msg__title"><%= member.title %></span><% end %>
+      <time class="chat-msg__time" datetime="<%= message.created_at.iso8601 %>"></time>
+      <% if message.edited_at %><span class="chat-msg__edited" data-i18n="edited"></span><% end %>
+    </div>
+
+    <% if message.reply_to_id %>
+      <% if message.reply_preview_visible? %>
+        <a class="chat-msg__reply" href="#chat-msg-<%= message.reply_to_id %>" data-action="chat#jumpTo" data-target-id="<%= message.reply_to_id %>">
+          <b><%= message.reply_to.member.nickname %></b>
+          <span><%= truncate(message.reply_to.body_text.to_s.squish, length: 120) %></span>
+        </a>
+      <% else %>
+        <span class="chat-msg__reply chat-msg__reply--missing" data-i18n="deleted_message"></span>
+      <% end %>
+    <% end %>
+
+    <div class="chat-msg__body" lang="<%= message.lang %>"><%= message.body_html.to_s.html_safe %></div>
+    <div class="chat-msg__translation" hidden></div>
+
+    <% if message.pending? %>
+      <div class="chat-msg__status" data-i18n="pending"></div>
+    <% elsif message.direct? %>
+      <div class="chat-msg__status" data-i18n="direct"></div>
+    <% end %>
+
+    <div class="chat-msg__reactions">
+      <% message.reactions_summary.each do |emoji, count| %>
+        <button type="button" class="chat-reaction" data-emoji="<%= emoji %>" data-action="chat#react"><%= emoji %> <span><%= count %></span></button>
+      <% end %>
+    </div>
+
+    <div class="chat-msg__actions">
+      <button type="button" class="chat-act" data-act="react" data-action="chat#toggleReactionPicker" data-i18n-title="react">☺</button>
+      <button type="button" class="chat-act" data-act="reply" data-action="chat#startReply" data-i18n="reply"></button>
+      <button type="button" class="chat-act" data-act="translate" data-action="chat#translate" data-i18n="translate"></button>
+      <button type="button" class="chat-act" data-act="edit" data-action="chat#startEdit" data-i18n="edit"></button>
+      <button type="button" class="chat-act" data-act="delete" data-action="chat#destroy" data-i18n="delete"></button>
+      <button type="button" class="chat-act chat-act--approve" data-act="approve" data-action="chat#approve" data-i18n="approve"></button>
+    </div>
+
+  </div>
+</article>

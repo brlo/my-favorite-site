@@ -1,0 +1,103 @@
+he:
+  menu:
+    chat: צ׳אט
+  chat:
+    title: צ׳אט
+    description: שאלות ושיחה על כתבי הקודש והאמונה
+    login_link: התחברות
+    guest_hint: המנחים יראו את ההודעות שלך ויענו לך. כדי שכל המשתתפים יראו את ההודעות שלך, הירשם ואשר את כתובת הדוא״ל שלך.
+    greeting: |-
+      ברוכים הבאים! כאן אפשר לשאול שאלות על כתבי הקודש, על האמונה ועל מה שקראת באתר.
+
+      כתבו בכל שפה שנוחה לכם: הדגל ליד כל כינוי מראה את שפת בן השיח, ואפשר לתרגם את ההודעות.
+    format:
+      bold: מודגש
+      underline: קו תחתון
+      strike: קו חוצה
+      quote: ציטוט
+      link: קישור
+    profile:
+      title: פרופיל בצ׳אט
+      link: הפרופיל שלי בצ׳אט
+      saved: הפרופיל נשמר
+      avatar: תמונה
+      remove_avatar: הסרת תמונה
+      nickname: כינוי
+      bio: עליי
+      edit: עריכת פרופיל
+      change_avatar: העלאת תמונה
+      avatar_hint: JPG, PNG, WebP או GIF, עד 2 MB. התמונה תיחתך לריבוע.
+      too_big: הקובץ גדול מ-2 MB, בחרו קובץ קטן יותר
+      nickname_hint: אותיות מכל אלפבית, ספרות, רווח ו־_ . -
+      bio_placeholder: 'למשל: מאיפה אתם, אילו שפות אתם דוברים, מה מעניין אתכם בכתבי הקודש'
+      preview: כך אחרים רואים אותך בצ׳אט
+      preview_text: שלום לכם!
+      language: שפה
+      language_hint: הדגל ליד הכינוי שלך תלוי בשפת הממשק של האתר
+      title_hint: תארים מוענקים על ידי המנחים
+      since: בצ׳אט מאז
+    admin:
+      title: למנחים
+      kind: סוג / תפקיד
+      unverified: הדוא״ל לא אומת
+      messages: הודעות
+      created: נראה לראשונה
+      muted_until: מושתק עד
+      banned_until: חסום עד
+      title_label: תואר
+      role: תפקיד
+      mute_day: השתקה ליום אחד
+      ban: חסימה
+      unban: הסרת הגבלות
+    errors:
+      forbidden: אין הרשאה
+      banned: נחסמת בצ׳אט
+      muted: נאסר עליך זמנית לכתוב
+      invalid_body: ההודעה ריקה או לא תקינה
+      too_long: ההודעה ארוכה מדי (עד %{count} תווים)
+      rate_limited: אפשר לשלוח הודעה אחת בכל 5 דקות
+      cant_edit: אפשר לערוך הודעה במשך 24 שעות ולא יותר מ־5 פעמים
+      cant_translate: התרגום אינו זמין
+      translate_failed: לא ניתן היה לתרגם את ההודעה. נסו שוב מאוחר יותר.
+      too_many_requests: יותר מדי בקשות. המתינו מעט.
+      login_required: יש להתחבר
+      activation_required: אשרו את הדוא״ל דרך הקישור במכתב כדי למלא את הפרופיל
+      closed: הצ׳אט סגור זמנית להודעות חדשות
+    js:
+      reply: השב
+      edit: עריכה
+      delete: מחיקה
+      approve: הצג לכולם
+      translate: תרגום
+      show_original: הסתר תרגום
+      translating: מתרגם…
+      react: תגובה
+      pending: גלוי למנחים בלבד
+      direct: תשובה פרטית, גלויה רק לך ולמנחים
+      deleted_message: ההודעה אינה זמינה
+      role_admin: מנהל
+      role_moderator: מנחה
+      role_bot: בוט
+      edited: נערך
+      confirm_delete: למחוק את ההודעה?
+      wait: אפשר יהיה לשלוח את ההודעה הבאה בעוד
+      send: שליחה
+      save: שמירה
+      cancel: ביטול
+      replying_to: תשובה ל־
+      editing: עריכת הודעה
+      load_more: הצג הודעות קודמות
+      landing: התחיל את הביקור באתר בדף
+      entry: הגיע לצ׳אט מהדף
+      ui_lang: שפת הממשק
+      reply_private_hint: רק הכותב והמנחים יראו את התשובה
+      open_chat: פתיחת הצ׳אט לכולם
+      close_chat: סגירת הצ׳אט לכולם
+    closed_notice: הצ׳אט סגור זמנית להודעות חדשות.
+    closed_staff_notice: 'הצ׳אט סגור: כרגע רק מנהלים ומנחים יכולים לכתוב.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: כינוי
+        bio: עליי
+        avatar: תמונה
