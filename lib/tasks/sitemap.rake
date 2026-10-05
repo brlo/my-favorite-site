@@ -30,12 +30,12 @@ namespace :g do
       # add '/q', :changefreq => 'weekly', :priority => 0.8
 
       # СТАТЬИ
-      ::Page.each do |p|
+      ::Page.all.select(:id, :is_published, :is_deleted, :lang, :path, :updated_at).find_each do |p|
         # ПРОПУСКАЕМ, если:
         # - не опубликована?
-        next if p.is_pub == false
+        next if p.is_published == false
         # - удалена?
-        next if p.is_del == true
+        next if p.is_deleted == true
 
         add "/#{p.lang}/#{p.lang}/w/#{p.path}/", :lastmod => p.updated_at # :changefreq => changefreq, :priority => 0.9
       end
