@@ -55,7 +55,7 @@ function toggleBook(code) {
       {{ t('continue_reading') }}: {{ booksByCode[last.book]?.name || last.book }} {{ last.chapter }}
     </router-link>
 
-    <section v-for="[title, list] in [[t('ot'), ot], [t('nt'), nt]]" :key="title" class="books">
+    <section v-for="[title, list] in [[t('nt'), nt], [t('ot'), ot]]" :key="title" class="books">
       <h2>{{ title }}</h2>
       <div v-for="b in list" :key="b.code" :id="`book-${b.code}`" class="book">
         <button class="book-name" :class="{ open: openBook === b.code }" @click="toggleBook(b.code)">

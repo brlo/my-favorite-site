@@ -15,8 +15,8 @@ android {
         applicationId "com.bibleox.app"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 2
-        versionName "0.1.1"
+        versionCode 3
+        versionName "0.1.2"
         // HTTP без шифрования разрешаем только dev-сборке (локальный сервер в wi-fi сети): -PdevCleartext=true
         manifestPlaceholders = [usesCleartextTraffic: project.findProperty('devCleartext') ?: 'false']
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
