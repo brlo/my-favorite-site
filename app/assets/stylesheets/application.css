@@ -2560,3 +2560,116 @@ body.night-mode {
     transform: scale(1.2);
   }
 }
+
+/* ============================================
+   КАРТА ЦИТИРОВАНИЯ (святые отцы о стихе)
+   --heat: 0..1 — чем больше упоминаний, тем «горячее» цвет
+   ============================================ */
+.cite-bar {
+  /* от холодного синего (мало цитат) через зелёный и жёлтый к красному (много) */
+  --cite-color: hsl(calc(210 - 210 * var(--heat, 0)) 80% 52% / 0.4);
+}
+
+td.verse-cites {
+  position: relative;
+  width: 16px;
+  min-width: 16px;
+  padding: 0;
+}
+td.verse-cites .cite-bar {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 6px;
+  width: 4px;
+}
+td.verse-cites .cite-bar {
+  padding: 0;
+  border: 0;
+  background: var(--cite-color);
+  cursor: pointer;
+  font: 700 9px/1 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  color: transparent;
+  transition: left .12s, width .12s, color .12s;
+}
+td.verse-cites .cite-bar:before { content: attr(data-count); }
+td.verse-cites .cite-bar:hover,
+td.verse-cites .cite-bar:focus-visible,
+td.verse-cites .cite-bar.active {
+  left: 1px;
+  width: 14px;
+  z-index: 1;
+  color: #2b2b2b;
+  border-radius: 3px;
+}
+
+#chapter-text.cite-off td.verse-cites { display: none; }
+#text-bar .cite-toggle { padding: 0 8px; }
+#text-bar .cite-toggle.off svg { opacity: .35; }
+
+/* панель со списком цитат */
+.cite-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 900;
+  background: rgba(0, 0, 0, 0.25);
+}
+.cite-backdrop.open { display: block; }
+.cite-panel {
+  position: fixed;
+  z-index: 901;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: min(440px, 100vw);
+  overflow-y: auto;
+  padding: 0 16px 24px;
+  background: #fdfcf1;
+  color: #333;
+  box-shadow: -4px 0 16px rgba(0, 0, 0, 0.2);
+  transform: translateX(100%);
+  transition: transform .2s;
+}
+.cite-panel.open { transform: none; }
+.cite-head {
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0 10px;
+  background: inherit;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+}
+.cite-title { font-weight: 700; }
+.cite-close { border: 0; background: none; font-size: 26px; line-height: 1; cursor: pointer; color: inherit; }
+.cite-author h3 { margin: 18px 0 6px; font-size: 1.05em; }
+.cite-author h3 a { text-decoration: none; }
+.cite-total {
+  margin-left: 6px;
+  padding: 0 6px;
+  border-radius: 8px;
+  background: rgba(128, 128, 128, 0.2);
+  font-size: .8em;
+  font-weight: 400;
+}
+.cite-work { margin: 0 0 10px; }
+.cite-work-title { font-size: .85em; opacity: .65; margin-bottom: 3px; }
+.cite-snippet {
+  display: block;
+  margin: 4px 0;
+  padding: 6px 8px;
+  border-left: 3px solid #cd9765;
+  background: rgba(205, 151, 101, 0.12);
+  color: inherit;
+  text-decoration: none;
+  font-size: .92em;
+  line-height: 1.45;
+}
+.cite-snippet:hover { background: rgba(205, 151, 101, 0.25); }
+.cite-empty, .cite-loading { padding: 24px 0; opacity: .7; }
+
+.night-mode .cite-panel { background: #2f3541; color: #abb2bf; }
+.night-mode td.verse-cites .cite-bar:hover,
+.night-mode td.verse-cites .cite-bar.active { color: #1d2026; }

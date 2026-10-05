@@ -1,116 +1,124 @@
+# Ищет ссылки на Писание ("Ин. 3:16-17", "1 Кор. 13, 4", "Rom 8:28") в тексте страницы
+# и сохраняет их в bible_references. Вызывается только для страниц с is_past (труды святых отцов).
 class BibleCitationExtractor
-  # Допустимые символы до и после ссылки для снижения ложных срабатываний
-  ALLOWED_PREV_CHARS = ['(', '[', '«', "\n", "\t", ' ', ';', ',', '.', nil].freeze
-  ALLOWED_NEXT_CHARS = [')', ']', '»', "\n", "\t", ' ', ';', ',', '.', nil].freeze
+  SNIPPET_BEFORE = 160
+  SNIPPET_AFTER = 120
+  MAX_RANGE = 60 # длиннее — скорее всего, это не цитата, а ссылка на целую главу
+
+  # "1-е Кор" -> "1екор"; ключи без пробелов, точек и дефисов
+  BOOKS = ::BOOK_TO_CODE.each_with_object({}) { |(k, v), h| h[k.gsub(/[^\p{L}\d]/, '')] = v }.freeze
+  ROMAN_PREFIX = { 'I' => '1', 'II' => '2', 'III' => '3' }.freeze
+
+  # Книга (с необязательным номером: 1, 2-е, II) начинается с заглавной — так отсекаем "на 5, 3", "по 2, 3".
+  # Глава отделяется от стихов ":" или запятой, стихи: 16, 16-17, 16,18, 16а.
+  PATTERN = /
+    (?<![\p{L}\d])
+    (?<book>(?:(?:[1-4]|I{1,3})[\s.\-]*(?:[ея]\b[\s.\-]*)?)?\p{Lu}\p{L}{0,24}\.?)
+    \s*(?<chapter>\d{1,3})\s*(?::\s*|,\s+)
+    (?<verses>\d{1,3}[а-гa-d]?(?:\s*[–—\-]\s*\d{1,3}[а-гa-d]?)?(?:\s*,\s*\d{1,3}[а-гa-d]?(?:\s*[–—\-]\s*\d{1,3}[а-гa-d]?)?)*)
+    (?![\p{L}\d:])
+  /x
 
   def self.call(page)
     new(page).perform
   end
 
+  # Корневые страницы со списками авторов (ru и en)
+  def self.root_ids
+    @root_ids = nil if Rails.env.development?
+    @root_ids ||= ::Page.where(path_low: ::PAST_ROOT_PATHS).pluck(:id)
+  end
+
   def initialize(page)
     @page = page
-    @content = page.content.to_s
-    # Загружаем коды книг из вашей БД. Сортируем по длине, чтобы длинные аббревиатуры матчились раньше
-    @book_codes = Verse.pluck(:code).uniq.compact.sort_by(&:length).reverse
-    @books_regex = @book_codes.map { |b| Regexp.escape(b) }.join('|')
-
-    # Регулярка: Книга(опц. точка/пробел) + Глава(араб/рим) + разделитель + Стихи
-    @pattern = /(?<book>#{@books_regex})\s*\.?\s*(?<chapter>\d+|[IVXLCDM]+)\s*[:,]\s*(?<verses>\d+(?:\s*[–—-]\s*\d+)?(?:\s*,\s*\d+(?:\s*[–—-]\s*\d+)?)*))/i
   end
 
   def perform
-    inserted = 0
-    match_start = 0
+    @page.bible_references.delete_all
+    return 0 unless @page.is_past && @page.is_published && !@page.is_deleted
 
-    while (match = @content.match(@pattern, match_start))
-      match_start = match.end(0)
+    text = plain_text(@page.body)
+    author_id = find_author_id
+    now = Time.current
+    records = {}
 
-      next unless valid_boundaries?(match)
-      next unless plausible_values?(match)
+    text.to_enum(:scan, PATTERN).each do
+      m = Regexp.last_match
+      book_code = book_code_for(m[:book])
+      next unless book_code
+      chapter = m[:chapter].to_i
+      next unless chapter.between?(1, ::BOOKS[book_code][:chapters])
 
-      book_code = normalize_book(match[:book])
-      chapter   = to_arabic(match[:chapter])
-      verses    = parse_verse_ranges(match[:verses])
+      ranges = parse_ranges(m[:verses])
+      next if ranges.empty?
 
-      context   = extract_context(match.begin(0))
-      position  = match.begin(0)
-
-      records = verses.map do |v|
-        {
-          page_id: @page.id,
-          book_code: book_code,
-          chapter: chapter,
-          verse_start: v[:start],
-          verse_end: v[:end],
-          context_before: context,
-          position_in_page: position,
-          created_at: Time.current,
-          updated_at: Time.current
+      snippet = snippet_for(text, m.begin(0), m.end(0))
+      ranges.each do |from, to|
+        key = [m.begin(0), book_code, chapter, from, to]
+        records[key] = {
+          page_id: @page.id, author_page_id: author_id, lang: @page.lang,
+          book_code: book_code, chapter: chapter, verse_start: from, verse_end: to,
+          snippet: snippet, context_before: snippet[0, 500], position_in_page: m.begin(0),
+          created_at: now, updated_at: now,
         }
       end
-
-      # PostgreSQL upsert: пропускаем дубликаты по уникальному индексу
-      result = BibleReference.upsert_all(records, unique_by: :idx_unique_bible_ref_on_page)
-      inserted += result.rows.count
     end
 
-    Rails.logger.info("[BibleCitationExtractor] Page ##{@page.id}: found #{inserted} unique references.")
-    inserted
+    return 0 if records.empty?
+    ::BibleReference.insert_all(records.values)
+    records.size
   end
 
   private
 
-  def valid_boundaries?(match)
-    prev_char = @content[match.begin(0) - 1]
-    next_char = @content[match.end(0)]
-    ALLOWED_PREV_CHARS.include?(prev_char) && ALLOWED_NEXT_CHARS.include?(next_char)
-  end
-
-  def plausible_values?(match)
-    chapter = to_arabic(match[:chapter])
-    # В Библии не бывает глав > 150 и стихов > 200. Отсекает даты, номера телефонов и т.п.
-    return false if chapter <= 0 || chapter > 150
-
-    match[:verses].scan(/\d+/).all? { |v| v.to_i.between?(1, 200) }
-  end
-
-  def normalize_book(raw)
-    # Убираем лишние пробелы: "2 Кор" -> "2Кор", если такой код есть в БД
-    cleaned = raw.gsub(/\s+/, '')
-    @book_codes.include?(cleaned) ? cleaned : raw
-  end
-
-  def to_arabic(num_str)
-    return num_str.to_i if num_str.match?(/\A\d+\z/)
-
-    roman_map = { 'I'=>1, 'V'=>5, 'X'=>10, 'L'=>50, 'C'=>100, 'D'=>500, 'M'=>1000 }
-    total = 0
-    prev = 0
-    num_str.upcase.reverse.each_char do |char|
-      val = roman_map[char] || 0
-      total += (val < prev ? -val : val)
-      prev = val
+  def book_code_for(raw)
+    key = raw.downcase.gsub(/[^\p{L}\d]/, '')
+    BOOKS[key] || begin
+      # "II Кор" -> "2Кор"
+      roman = raw[/\A(I{1,3})(?=[\s.\-]*\p{Lu})/, 1]
+      roman && BOOKS[(ROMAN_PREFIX[roman] + raw.sub(/\AI{1,3}/, '')).downcase.gsub(/[^\p{L}\d]/, '')]
     end
-    total
   end
 
-  def parse_verse_ranges(verses_str)
-    segments = []
-    verses_str.split(',').each do |part|
-      part = part.strip
-      if part =~ /\d+\s*[–—-]\s*\d+/
-        start_s, end_s = part.split(/[-–—]/)
-        segments << { start: start_s.to_i, end: end_s.to_i }
-      else
-        segments << { start: part.to_i, end: part.to_i } if part.match?(/\A\d+\z/)
-      end
+  def parse_ranges(str)
+    str.split(',').filter_map do |part|
+      from, to = part.scan(/\d+/).map(&:to_i)
+      to ||= from
+      next unless from.between?(1, 200) && to.between?(from, from + MAX_RANGE)
+      [from, to]
     end
-    segments
   end
 
-  def extract_context(match_begin)
-    before_text = @content[0...match_begin]
-    words = before_text.scan(/\S+/).filter(&:present?)
-    words.last(20).join(' ')
+  # HTML -> текст; концы блоков превращаем в перевод строки, чтобы фрагмент не склеивал абзацы
+  def plain_text(html)
+    t = html.to_s.gsub(%r{</(?:p|h[1-6]|li|blockquote|tr|div)>|<br\s*/?>}i, "\n")
+    t = ::ActionController::Base.helpers.strip_tags(t)
+    CGI.unescapeHTML(t).gsub(/[ \t ]+/, ' ')
+  end
+
+  def snippet_for(text, from, to)
+    s = text.rindex("\n", from)
+    s = s ? s + 1 : 0
+    e = text.index("\n", to) || text.length
+    a = [from - SNIPPET_BEFORE, s].max
+    b = [to + SNIPPET_AFTER, e].min
+    a = text.index(/\s/, a).to_i + 1 if a > s && text[a - 1] =~ /\S/ && text.index(/\s/, a)
+    b = text.rindex(/\s/, b) || b if b < e && text[b] =~ /\S/ && text.rindex(/\s/, b).to_i > to
+    out = text[a...b].to_s.strip
+    out = "…#{out}" if a > s
+    out = "#{out}…" if b < e
+    out
+  end
+
+  # Автор — предок страницы, чей родитель — корень списка авторов (church_writers / q-saints-en)
+  def find_author_id
+    roots = self.class.root_ids
+    node = @page
+    8.times do
+      return node.id if roots.include?(node.parent_id)
+      return node.id unless node.parent_id
+      node = ::Page.select(:id, :parent_id).find_by(id: node.parent_id) or return @page.id
+    end
+    @page.id
   end
 end

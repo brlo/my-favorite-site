@@ -557,3 +557,6 @@ bib_langs:
     no_translation_for_this_book: 'אין תרגום כזה לספר הזה'
     messages:
       taken: "has already been taken"
+
+  citations:
+    map_hint: 'מפת ציטוטים של כותבי הכנסייה'

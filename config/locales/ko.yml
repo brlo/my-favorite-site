@@ -309,3 +309,6 @@ ko:
   backward: 뒤로
 
   years_from: 주후
+
+  citations:
+    map_hint: '교회 저술가들의 인용 지도'

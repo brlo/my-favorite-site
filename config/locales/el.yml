@@ -557,3 +557,6 @@ el:
     no_translation_for_this_book: 'Δεν υπάρχει τέτοια μετάφραση για αυτό το βιβλίο'
     messages:
       taken: "has already been taken"
+
+  citations:
+    map_hint: 'Χάρτης παραπομπών των εκκλησιαστικών συγγραφέων'

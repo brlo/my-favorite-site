@@ -309,3 +309,6 @@ es:
   backward: Atrás
 
   years_from: año desde el Nacimiento de Cristo
+
+  citations:
+    map_hint: 'Mapa de citas de los escritores eclesiásticos'

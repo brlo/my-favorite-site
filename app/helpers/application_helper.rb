@@ -1,6 +1,11 @@
 module ApplicationHelper
 
   # размер шрифта, выбранный пользователем
+  # карта цитирования отключена пользователем (кнопка в text-bar)
+  def cite_map_off?
+    cookies[:citeMap] == '0'
+  end
+
   def text_size_class
     text_size = cookies[:textSize] || '2' # default
     case text_size
@@ -113,6 +118,13 @@ module ApplicationHelper
     else
       text
     end
+  end
+
+  # Ссылка на труд святого отца с подсветкой места, где упоминается стих (text fragment)
+  def citation_page_link(page, snippet)
+    words = snippet.to_s.delete('…').split.first(6).join(' ').gsub(/[\[\]()«»]/, '')
+    link = my_page_link_to("/#{CGI.escape(page.path)}", page_lang: page.lang)
+    words.present? ? "#{link}#:~:text=#{ERB::Util.url_encode(words)}" : link
   end
 
   # Делает ссылку с указанной локалью (текущей)

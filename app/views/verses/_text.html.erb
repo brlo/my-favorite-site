@@ -6,7 +6,9 @@
   <div id='chapter-title' class='hidden' data-title='<%= @page_title %>'></div>
 
   <div id='chapter-text'
-       data-controller="verse-highlighter"
+       class='<%= 'cite-off' if cite_map_off? %>'
+       data-controller="verse-highlighter citations"
+       data-citations-url-value="<%= my_bib_link_to("/citations/#{@book_code}/#{@chapter}") %>"
        data-verse-highlighter-select-bar-outlet="#select-bar-container">
 
     <article
@@ -20,7 +22,7 @@
         <tbody>
           <% @verses.each.with_index do |v, i| %>
             <% if v.line == 0 %>
-              <tr><td colspan='2' class='zero-verse <%= font_classes %> <%= text_cont_classes %>'><%= sanitize(v.text) %></tr>
+              <tr><td colspan='3' class='zero-verse <%= font_classes %> <%= text_cont_classes %>'><%= sanitize(v.text) %></tr>
             <% else %>
               <tr>
                 <td class='verse-line'
@@ -53,6 +55,20 @@
                     </a>
                   <% end %>
                 </td>
+
+                <% cnt = @cite_counts[v.line].to_i %>
+                <% if @cite_max > 0 %>
+                  <td class='verse-cites'>
+                    <% if cnt > 0 %>
+                      <button type='button' class='cite-bar'
+                              style='--heat: <%= ::BibleReference.heat(cnt, @cite_min, @cite_max) %>'
+                              data-count='<%= cnt %>'
+                              data-line='<%= v.line %>'
+                              title='<%= t('citations.mentions', count: cnt) %>'
+                              data-action='click->citations#open'></button>
+                    <% end %>
+                  </td>
+                <% end %>
               </tr>
 
               <% if @is_interliner %>

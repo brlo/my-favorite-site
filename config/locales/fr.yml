@@ -309,3 +309,6 @@ fr:
   backward: Précédent
 
   years_from: an après la Nativité du Christ
+
+  citations:
+    map_hint: 'Carte des citations des écrivains ecclésiastiques'

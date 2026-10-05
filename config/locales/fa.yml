@@ -309,3 +309,6 @@ fa:
   backward: 'قبلی'
 
   years_from: 'سال پس از میلاد مسیح'
+
+  citations:
+    map_hint: 'نقشهٔ استناد نویسندگان کلیسایی'

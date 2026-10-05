@@ -58,6 +58,8 @@ class Page < ApplicationRecord
   before_save :calc_date_int, if: -> { period_start_changed? || period_end_changed? }
   before_save :cache_before_save_state
   after_save :sync_paragraphs, if: :is_body_rendered_changed
+  # Карта цитирования: ссылки на Писание ищем только в трудах святых отцов (is_past)
+  after_commit :sync_bible_references, on: %i[create update], if: :bible_references_stale?
   # after_save :notify_search_engines
 
   def notify_search_engines
@@ -605,6 +607,16 @@ class Page < ApplicationRecord
     chunks.each_with_index do |content, idx|
       page_paragraphs.create!(position: idx, content: content, lang: lang)
     end
+  end
+
+  def bible_references_stale?
+    saved_change_to_body? || saved_change_to_is_past? || saved_change_to_is_published? || saved_change_to_is_deleted?
+  end
+
+  def sync_bible_references
+    # без труда в is_past и без ссылок в БД делать нечего
+    return if !is_past && !bible_references.exists?
+    ::BibleCitationsJob.perform_later(id)
   end
 
   def calc_date_int
