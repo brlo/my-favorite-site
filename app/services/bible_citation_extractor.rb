@@ -53,12 +53,14 @@ class BibleCitationExtractor
       next if ranges.empty?
 
       snippet = snippet_for(text, m.begin(0), m.end(0))
+      digest = ::BibleReference.digest_for(snippet)
       ranges.each do |from, to|
-        key = [m.begin(0), book_code, chapter, from, to]
-        records[key] = {
+        # одну и ту же ссылку в одном труде запоминаем один раз (первое упоминание)
+        key = [book_code, chapter, from, to]
+        records[key] ||= {
           page_id: @page.id, author_page_id: author_id, lang: @page.lang,
           book_code: book_code, chapter: chapter, verse_start: from, verse_end: to,
-          snippet: snippet, context_before: snippet[0, 500], position_in_page: m.begin(0),
+          snippet: snippet, digest: digest, context_before: snippet[0, 500], position_in_page: m.begin(0),
           created_at: now, updated_at: now,
         }
       end

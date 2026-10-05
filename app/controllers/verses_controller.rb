@@ -107,7 +107,8 @@ class VersesController < ApplicationController
         end
 
         # Карта цитирования: сколько раз стихи упоминаются в трудах святых отцов
-        @cite_counts = ::BibleReference.verse_counts(@book_code, @chapter)
+        # показываем труды на том же языке, что и выбранный перевод Библии
+        @cite_counts = ::BibleReference.verse_counts(@book_code, @chapter, locale_for_content_lang(@content_lang))
         @cite_max = @cite_counts.values.max.to_i
         @cite_min = @cite_counts.values.min.to_i
 
@@ -152,8 +153,10 @@ class VersesController < ApplicationController
     @book_code = params[:book_code]
     @chapter = params[:chapter].to_i
     @line = params[:line].to_i
-    refs = ::BibleReference.in_context(@book_code, @chapter, @line)
-                           .order(:id).limit(400).to_a
+    refs = ::BibleReference.for_lang(locale_for_content_lang(params[:content_lang]))
+                           .in_context(@book_code, @chapter, @line)
+                           .order(:id).limit(600).to_a
+    refs = ::BibleReference.uniq_by_digest(refs).first(400)
     pages = ::Page.where(id: refs.flat_map { [_1.page_id, _1.author_page_id] }.compact.uniq)
                   .select(:id, :title, :path, :lang, :date_start_int).index_by(&:id)
 
