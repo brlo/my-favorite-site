@@ -24,7 +24,12 @@ export async function isInstalled(tr) {
 }
 
 export class NotDownloadedError extends Error {
-  constructor(kind) { super(`not downloaded: ${kind}`); this.notDownloaded = kind }
+  // cause — исходная ошибка (сеть, сервер, база), показываем её мелким текстом
+  constructor(kind, cause = null) {
+    super(`not downloaded: ${kind}`)
+    this.notDownloaded = kind
+    this.cause = cause
+  }
 }
 
 // Скачать (или обновить) перевод целиком. Повторные вызовы ждут уже идущую загрузку.
@@ -45,7 +50,9 @@ async function doInstall(tr) {
   installing[tr] = { stage: 'indexing', progress: 0 }
   const table = ftsTable(tr)
   await run('DELETE FROM verses WHERE tr = ?', [tr])
-  await exec(`DROP TABLE IF EXISTS ${table}; CREATE VIRTUAL TABLE ${table} USING fts4(norm);`)
+  // по одной команде: на Android плагин не выполняет несколько команд в одной строке
+  await exec(`DROP TABLE IF EXISTS ${table}`)
+  await exec(`CREATE VIRTUAL TABLE ${table} USING fts4(norm)`)
 
   const verses = data.verses
   const step = 5000
@@ -69,7 +76,7 @@ async function doInstall(tr) {
 
 export async function deleteBible(tr) {
   await run('DELETE FROM verses WHERE tr = ?', [tr])
-  await exec(`DROP TABLE IF EXISTS ${ftsTable(tr)};`)
+  await exec(`DROP TABLE IF EXISTS ${ftsTable(tr)}`)
   await run('DELETE FROM bibles WHERE tr = ?', [tr])
   await persist()
 }
@@ -82,7 +89,7 @@ export async function ensureBible(tr) {
     await installBible(tr)
   } catch (e) {
     console.warn('bible download failed', e)
-    throw new NotDownloadedError('bible')
+    throw new NotDownloadedError('bible', e)
   }
 }
 

@@ -17,6 +17,7 @@ function message(e) {
 <template>
   <div v-if="props.error" class="note" :class="{ error: !props.error.notDownloaded }">
     <p>{{ message(props.error) }}</p>
+    <p v-if="props.error.cause" class="small">{{ props.error.cause.message || props.error.cause }}</p>
     <button class="btn" @click="emit('retry')">{{ t('retry') }}</button>
   </div>
   <div v-else-if="props.loading || props.progress" class="note">

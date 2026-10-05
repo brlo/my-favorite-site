@@ -87,7 +87,7 @@ export async function ensureSkeleton(lang) {
     await syncSkeleton(lang)
   } catch (e) {
     console.warn('skeleton download failed', e)
-    throw new NotDownloadedError('skeleton')
+    throw new NotDownloadedError('skeleton', e)
   }
 }
 
@@ -138,7 +138,7 @@ export async function getBody(page) {
       return await getLocalBody(page.id)
     } catch (e) {
       console.warn('page download failed', e)
-      if (!local) throw new NotDownloadedError('page')
+      if (!local) throw new NotDownloadedError('page', e)
     }
   }
   if (!local) throw new NotDownloadedError('page')
