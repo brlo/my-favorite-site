@@ -1,0 +1,12 @@
+<div class="list-item">
+  <%= flag_by_lang(page.lang) %>
+  <%= link_to page.title, edit_admin_page_path(page) %>
+  <% if (parent_title = parent_titles[page.parent_id]) %>
+    <span class="muted">⬅︎ <%= parent_title %></span>
+  <% end %>
+  <%= admin_page_badges(page) %>
+  <a href="<%= admin_public_page_path(page) %>" target="_blank" title="Статья на сайте">↗</a>
+  <div class="hint">
+    <%= page.updated_at_word %> · 👁 <%= visits[page.id] %>
+  </div>
+</div>

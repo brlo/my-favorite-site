@@ -1,0 +1,13 @@
+<% @page_title = @dict_word.word %>
+
+<div class="actions-bar">
+  <%= link_to '← Словарь', admin_dict_words_path %>
+  <% if can?('dict_destroy') %>
+    <%= button_to 'Удалить слово', admin_dict_word_path(@dict_word), method: :delete, class: 'btn btn-danger btn-small',
+          form_class: 'push-right', form: { data: { turbo_confirm: "Удалить слово «#{@dict_word.word}»?" } } %>
+  <% end %>
+</div>
+
+<h1><%= @dict_word.word %></h1>
+
+<%= render 'form', dict_word: @dict_word %>

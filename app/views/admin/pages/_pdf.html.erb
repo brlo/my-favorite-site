@@ -1,0 +1,15 @@
+<section id="page_pdf" class="side-card" data-controller="auto-submit">
+  <h3>PDF-файл</h3>
+  <% if page.pdf_exists? %>
+    <p><a href="/<%= page.pdf_path %>" target="_blank">📄 Открыть PDF</a></p>
+  <% else %>
+    <p class="hint">Не прикреплён. До 100 МБ.</p>
+  <% end %>
+  <label class="btn btn-light btn-small file-btn">
+    <%= page.pdf_exists? ? 'Заменить…' : 'Загрузить…' %>
+    <input type="file" name="page[pdf]" accept="application/pdf" form="page-pdf-form" data-action="change->auto-submit#submit">
+  </label>
+  <% if page.pdf_exists? %>
+    <button type="submit" form="page-pdf-remove-form" class="btn-link danger">Удалить</button>
+  <% end %>
+</section>

@@ -1,0 +1,40 @@
+<%# Меню статьи-списка. Заменяется целиком через turbo_stream после каждого изменения. %>
+<% items = ::Menu.where(page_id: page.id).order(:priority, :id).to_a %>
+<% by_parent = items.group_by(&:parent_id) %>
+<%
+  # линейный список для выбора родителя: «— — Название»
+  line_options = []
+  add_options = ->(parent_id, depth) do
+    by_parent[parent_id].to_a.each do |m|
+      line_options << ["#{'— ' * depth}#{m.title}", m.id]
+      add_options.(m.id, depth + 1)
+    end
+  end
+  add_options.(nil, 0)
+
+  # какие ссылки меню ведут на существующие статьи
+  paths = items.filter_map { _1.path.presence&.downcase }
+  existing_paths = paths.any? ? ::Page.where(path_low: paths, lang: page.lang).pluck(:path_low).to_set : Set.new
+%>
+
+<section id="page_menu" class="box menu-editor" data-controller="reveal">
+  <div class="box-head">
+    <h2>Меню статьи <span class="muted">(<%= items.size %>)</span></h2>
+    <button type="button" class="btn btn-small" data-action="reveal#toggle" data-reveal-id-param="menu-form-new">＋ Пункт меню</button>
+  </div>
+
+  <div id="menu-form-new" class="menu-form-panel" hidden>
+    <%= render 'admin/menus/item_form', page:, item: ::Menu.new, line_options: %>
+  </div>
+
+  <% if items.empty? %>
+    <p class="muted">Меню пока пустое.</p>
+  <% else %>
+    <%= render 'admin/menus/branch', page:, by_parent:, parent_id: nil, line_options:, existing_paths: %>
+  <% end %>
+
+  <p class="hint">
+    Пункт без ссылки — заголовок раздела. Порядок внутри раздела — по приоритету (число слева).
+    «Нет статьи» — ссылка ведёт на несуществующую статью; её можно сразу создать кнопкой 📝.
+  </p>
+</section>

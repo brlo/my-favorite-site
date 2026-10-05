@@ -1,0 +1,46 @@
+<% @page_title = 'Сводка' %>
+
+<h1>Сводка</h1>
+
+<h2>Посещения за неделю</h2>
+<div class="stats">
+  <% @week_visits.each do |name, days| %>
+    <div>
+      <div class="hint"><%= name %></div>
+      <table>
+        <% days.each do |date, visits| %>
+          <tr><td class="muted"><%= date %></td><td><%= visits %></td></tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+</div>
+
+<% if @pages %>
+  <h2>Недавно изменённые статьи</h2>
+  <%= render partial: 'admin/pages/page_item', collection: @pages, as: :page, locals: { visits: @page_visits || {}, parent_titles: {} } %>
+  <p><%= link_to 'Все статьи →', admin_pages_path %></p>
+<% end %>
+
+<% if @users_total %>
+  <h2>Пользователи</h2>
+  <p>
+    Всего: <%= @users_total %>.
+    <% if @users_pending > 0 %>
+      <%= link_to "Не подтвердили почту: #{@users_pending}", admin_users_path(filter: 'not_activated') %>
+    <% end %>
+  </p>
+  <div class="table-wrap">
+    <table class="admin-table">
+      <tr><th>Новые</th><th>Почта</th><th>Создан</th><th></th></tr>
+      <% @users_new.each do |user| %>
+        <tr>
+          <td><%= link_to user.name, edit_admin_user_path(user) %></td>
+          <td><%= user.email %></td>
+          <td><%= admin_time(user.created_at) %></td>
+          <td><%= admin_user_badges(user) %></td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>

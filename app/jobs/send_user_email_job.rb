@@ -2,6 +2,17 @@ class SendUserEmailJob < ApplicationJob
   # queue_as :mailers
   include Rails.application.routes.url_helpers
 
+  DAILY_LIMIT = 10
+
+  # сколько писем этого типа отправлено пользователю за последние сутки
+  def self.sent_count(type, user_id)
+    ::RedisConnectionPool.get(mailer_redis_key(type, user_id)).to_i
+  end
+
+  def self.mailer_redis_key(type, user_id)
+    "mail:#{type}:#{user_id}"
+  end
+
   # locale - язык интерфейса, на котором пользователь работал с сайтом (письмо и ссылки будут на нём)
   def perform(email_type, user_id, locale = nil)
     user = User.find(user_id)
@@ -96,8 +107,7 @@ class SendUserEmailJob < ApplicationJob
 
   # можеим отправлять письмо?
   def can_fire?(type, user_id)
-    count = ::RedisConnectionPool.get(mailer_redis_key(type, user_id))
-    count.to_i < 10
+    self.class.sent_count(type, user_id) < DAILY_LIMIT
   end
 
   # запоминаем в редисе, что письмо отправлено
@@ -115,6 +125,6 @@ class SendUserEmailJob < ApplicationJob
   end
 
   def mailer_redis_key(type, user_id)
-    "mail:#{type}:#{user_id}"
+    self.class.mailer_redis_key(type, user_id)
   end
 end

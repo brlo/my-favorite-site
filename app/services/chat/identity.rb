@@ -37,8 +37,8 @@ module Chat
                            nickname: Member.generate_user_nickname(@user), **origin_attrs)
       end
       if m
-        # роль админа берётся из users.is_admin
-        role = @user.is_admin? ? 'admin' : (m.role == 'admin' ? 'member' : m.role)
+        # роль админа берётся из пользователя (users.is_admin или привилегия chat_admin)
+        role = @user.chat_admin? ? 'admin' : (m.role == 'admin' ? 'member' : m.role)
         m.update_column(:role, role) if m.role != role
       end
       m

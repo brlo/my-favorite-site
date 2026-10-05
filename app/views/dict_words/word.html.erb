@@ -7,7 +7,7 @@
         <div class='dict-name'>
           <%= ::DictWord::DICTS.dig(w.dict, 'name') %>
           <% if current_user&.is_admin? %>
-            [<a href="<%= "#{::SETTINGS['admin']['url'] }/dict_words/#{ w.id }/" %>">e</a>]
+            [<%= link_to 'e', edit_admin_dict_word_path(w, locale: nil) %>]
           <% end %>
         </div>
         <h2>
@@ -142,7 +142,7 @@
     <div class='error-msg'>Ошибка 404 — Такое слово не найдено.</div>
     <div class='propose'>
       Хотите
-      <a href="<%= "#{::SETTINGS['admin']['url'] }/dict_words/new?word=#{@word_clean}" %>">создать?</a>
+      <%= link_to 'создать?', new_admin_dict_word_path(word: @word_clean, locale: nil), rel: 'nofollow' %>
     </div>
   </div>
 <% end %>

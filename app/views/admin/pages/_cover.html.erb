@@ -1,0 +1,13 @@
+<section id="page_cover" class="side-card" data-controller="auto-submit">
+  <h3>Изображение для шапки</h3>
+  <% if page.cover.present? %>
+    <img class="cover-preview" src="<%= page.cover.urls[:large] || page.cover.url %>" alt="">
+  <% end %>
+  <label class="btn btn-light btn-small file-btn">
+    <%= page.cover.present? ? 'Заменить…' : 'Загрузить…' %>
+    <input type="file" name="page[cover]" accept="image/*" form="page-cover-form" data-action="change->auto-submit#submit">
+  </label>
+  <% if page.cover.present? %>
+    <button type="submit" form="page-cover-remove-form" class="btn-link danger">Удалить</button>
+  <% end %>
+</section>

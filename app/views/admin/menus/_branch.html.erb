@@ -1,0 +1,40 @@
+<ul class="menu-tree">
+  <% by_parent[parent_id].to_a.each do |item| %>
+    <% has_page = item.path.present? && existing_paths.include?(item.path.downcase) %>
+    <li>
+      <div class="menu-row <%= 'is-section' if item.path.blank? %>">
+        <span class="menu-prio" title="Приоритет"><%= item.priority %></span>
+        <span class="menu-title">
+          <%= '★ ' if item.is_gold %><%= item.title %>
+        </span>
+        <% if item.path.present? %>
+          <span class="menu-path" title="<%= item.path %>"><%= item.path %></span>
+          <% unless has_page %><i class="badge yellow">нет статьи</i><% end %>
+          <% if item.is_empty %><i class="badge yellow">пустая</i><% end %>
+        <% end %>
+
+        <span class="menu-actions">
+          <button type="button" class="icon-btn" title="Изменить" data-action="reveal#toggle" data-reveal-id-param="menu-form-<%= item.id %>">✎</button>
+          <button type="button" class="icon-btn" title="Добавить подпункт" data-action="reveal#toggle" data-reveal-id-param="menu-form-child-<%= item.id %>">＋</button>
+          <% unless has_page %>
+            <%= link_to '📝', new_admin_page_path(page_title: item.title, page_path: item.path.presence, parent_id: page.id, menu_id: item.id, lang: page.lang),
+                  class: 'icon-btn', title: 'Создать статью для этого пункта' %>
+          <% end %>
+          <%= button_to '🗑', admin_page_menu_path(page, item), method: :delete, class: 'icon-btn danger', title: 'Удалить',
+                form_class: 'inline-form', form: { data: { turbo_confirm: "Удалить пункт меню «#{item.title}»?" } } %>
+        </span>
+      </div>
+
+      <div id="menu-form-<%= item.id %>" class="menu-form-panel" hidden>
+        <%= render 'admin/menus/item_form', page:, item:, line_options: line_options.reject { _2 == item.id } %>
+      </div>
+      <div id="menu-form-child-<%= item.id %>" class="menu-form-panel" hidden>
+        <%= render 'admin/menus/item_form', page:, item: ::Menu.new(parent_id: item.id), line_options: %>
+      </div>
+
+      <% if by_parent[item.id] %>
+        <%= render 'admin/menus/branch', page:, by_parent:, parent_id: item.id, line_options:, existing_paths: %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>

@@ -115,12 +115,6 @@
       <div id="page-edit-telegram">
         <%= ::I18n.t('quote_page.whant_to_fix') %>: <a href='https://t.me/bibleox_live'>https://t.me/bibleox_live</a>
       </div>
-      <div id="page-edit">
-        <%= ::I18n.t('quote_page.or_edit_page_by_yourself') %>:
-        <a href="<%= "#{::SETTINGS['admin']['url'] }/pages/#{ @page.id.to_s }/" %>">
-          <%= I18n.t('quote_page.edit_link') %>
-        </a>
-      </div>
     </div>
   </section>
 

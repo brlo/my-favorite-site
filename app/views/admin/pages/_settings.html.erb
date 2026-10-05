@@ -1,0 +1,118 @@
+<%# Настройки статьи под текстом и меню. Поля вне тега формы, но относятся к форме статьи (атрибут form="page-form"). %>
+<% editable = page.new_record? || page_editable?(page) %>
+<% show_files = page.persisted? && editable && (super_user? || page_owner?(page)) %>
+
+<% if super_user? || show_files %>
+  <section class="page-settings" id="page-settings">
+    <h2>Настройки статьи</h2>
+
+    <div class="settings-grid">
+      <% if super_user? %>
+        <%= fields model: page, scope: :page, builder: DetachedFormBuilder, form_id: 'page-form' do |f| %>
+          <section class="side-card">
+            <h3>Размещение</h3>
+
+            <div class="field">
+              <%= f.label :page_type, 'Тип документа' %>
+              <%= f.select :page_type, AdminHelper::PAGE_TYPE_OPTIONS, {}, data: { controller: 'hint-switch', action: 'hint-switch#update', hint_switch_hints_value: AdminHelper::PAGE_TYPE_HINTS.to_json } %>
+              <div class="hint"><%= AdminHelper::PAGE_TYPE_HINTS[page.page_type.to_i] %></div>
+            </div>
+
+            <div class="field">
+              <%= f.label :lang, 'Язык' %>
+              <%= f.select :lang, admin_lang_options %>
+            </div>
+
+            <div class="field">
+              <label for="page_parent_picker">Родительская статья</label>
+              <% parent_label, parent_note = admin_parent_label(page) %>
+              <%= admin_page_picker 'page[parent_id]', page.parent_id, key: 'id', label: parent_label, note: parent_note,
+                    id: 'page_parent_picker', form: 'page-form' %>
+            </div>
+
+            <div class="field">
+              <%= f.label :path, 'Адрес в URL' %>
+              <%= f.text_field :path, placeholder: 'Из заголовка, если пусто' %>
+            </div>
+          </section>
+
+          <section class="side-card">
+            <h3>Переводы и доступ</h3>
+
+            <div class="field">
+              <label for="page_group_picker">Переводы этой статьи</label>
+              <% group_label, group_note = admin_group_label(page) %>
+              <%= admin_page_picker 'page[group_lang_id]', page.group_lang_id, key: 'group_lang_id', label: group_label, note: group_note,
+                    placeholder: 'Статья на другом языке', id: 'page_group_picker', form: 'page-form' %>
+              <div class="hint">Выберите ту же статью на другом языке — они станут переводами друг друга.</div>
+            </div>
+
+            <div class="field">
+              <%= f.label :edit_mode, 'Кто может редактировать' %>
+              <%= f.select :edit_mode, AdminHelper::EDIT_MODE_OPTIONS %>
+              <div class="hint">Хозяева страницы (pages_owner) могут редактировать всегда.</div>
+            </div>
+          </section>
+
+          <section class="side-card">
+            <h3>Отображение</h3>
+            <% { is_search: 'Поисковое поле',
+                 is_show_parent: 'Родитель над заголовком',
+                 is_menu_icons: 'Мини-иконки в меню',
+                 is_bibleox: 'Текст сообщества Bibleox',
+                 is_past: 'Значимый текст из прошлого' }.each do |attr, label| %>
+              <div class="field inline">
+                <%= f.check_box attr %>
+                <%= f.label attr, label %>
+              </div>
+            <% end %>
+            <div class="field-row">
+              <div class="field">
+                <%= f.label :period_start, 'Год рождения' %>
+                <%= f.text_field :period_start, placeholder: '1828 / III / ~850' %>
+              </div>
+              <div class="field">
+                <%= f.label :period_end, 'Год смерти' %>
+                <%= f.text_field :period_end, placeholder: '1828 / III / ~850' %>
+              </div>
+            </div>
+          </section>
+
+          <section class="side-card">
+            <h3>Поисковики и аудио</h3>
+            <div class="field">
+              <%= f.label :meta_desc, 'Описание для поисковиков' %>
+              <%= f.text_area :meta_desc, rows: 3 %>
+            </div>
+            <div class="field">
+              <%= f.label :audio, 'Аудио-файл' %>
+              <%= f.text_field :audio %>
+            </div>
+          </section>
+        <% end %>
+      <% end %>
+
+      <% if show_files %>
+        <%= render 'admin/pages/cover', page: %>
+        <%= render 'admin/pages/pdf', page: %>
+      <% end %>
+    </div>
+
+    <% if super_user? && editable %>
+      <div class="actions-bar">
+        <button type="submit" form="page-form" class="btn"><%= page.new_record? ? 'Опубликовать статью' : 'Сохранить' %></button>
+        <span class="hint">Настройки сохраняются вместе со статьёй.</span>
+      </div>
+    <% end %>
+  </section>
+<% end %>
+
+<% if page.persisted? && page_destroyable?(page) %>
+  <div class="danger-zone">
+    <button type="submit" form="page-delete-form" class="btn btn-danger btn-small">Удалить статью</button>
+  </div>
+<% end %>
+
+<% if page.persisted? %>
+  <%= render 'admin/pages/side_forms', page: %>
+<% end %>

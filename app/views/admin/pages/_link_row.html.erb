@@ -1,0 +1,5 @@
+<div class="link-row">
+  <input type="text" name="page[links][][title]" value="<%= title %>" placeholder="Название ссылки">
+  <%= admin_page_picker 'page[links][][path]', path, placeholder: 'Адрес статьи — начните вводить название' %>
+  <button type="button" class="btn-link danger" data-action="rows#remove" title="Удалить ссылку">✕</button>
+</div>

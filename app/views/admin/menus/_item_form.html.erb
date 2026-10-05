@@ -1,0 +1,29 @@
+<% form_key = item.persisted? ? item.id : "new_#{item.parent_id || 'root'}" %>
+<% panel_id = item.persisted? ? "menu-form-#{item.id}" : (item.parent_id ? "menu-form-child-#{item.parent_id}" : 'menu-form-new') %>
+<%= form_with model: item, scope: :menu_item, namespace: "menu_#{form_key}", class: 'menu-form',
+      url: (item.new_record? ? admin_page_menus_path(page) : admin_page_menu_path(page, item)) do |f| %>
+  <div class="field">
+    <%= f.label :title, 'Название' %>
+    <%= f.text_field :title, required: true %>
+  </div>
+  <div class="field">
+    <label>Ссылка на статью</label>
+    <%= admin_page_picker 'menu_item[path]', item.path, placeholder: 'Пусто — заголовок раздела' %>
+  </div>
+  <div class="field field-narrow">
+    <%= f.label :priority, 'Приоритет' %>
+    <%= f.number_field :priority %>
+  </div>
+  <div class="field">
+    <%= f.label :parent_id, 'Раздел' %>
+    <%= f.select :parent_id, line_options, include_blank: '— верхний уровень —' %>
+  </div>
+  <div class="field inline">
+    <%= f.check_box :is_gold %>
+    <%= f.label :is_gold, '★ особый' %>
+  </div>
+  <div class="menu-form-actions">
+    <%= f.submit (item.new_record? ? 'Добавить' : 'Сохранить'), class: 'btn btn-small' %>
+    <button type="button" class="btn-link" data-action="reveal#hide" data-reveal-id-param="<%= panel_id %>">Отмена</button>
+  </div>
+<% end %>

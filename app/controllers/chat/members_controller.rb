@@ -14,7 +14,7 @@ module Chat
 
     def update
       viewer = current_chat_member
-      # админа может трогать только он сам (через users.is_admin), модератор не может трогать модератора
+      # админа чата меняют только в админке сайта (users.is_admin / привилегия chat_admin), модератор не может трогать модератора
       if @member.admin? || (@member.staff? && !viewer.admin?)
         return render_json_error(:forbidden, status: :forbidden)
       end

@@ -1,0 +1,19 @@
+<% @page_title = @page.title %>
+
+<div class="page-head">
+  <div class="crumbs">
+    <%= link_to '← Статьи', admin_pages_path %>
+    <% if @page.parent %>
+      / <%= link_to @page.parent.title, edit_admin_page_path(@page.parent) %>
+    <% end %>
+  </div>
+  <h1>Редактирование статьи <%= admin_page_badges(@page) %></h1>
+</div>
+
+<%= render 'form', page: @page %>
+
+<% if @page.is_page_menu? %>
+  <%= render 'admin/menus/menu', page: @page %>
+<% end %>
+
+<%= render 'settings', page: @page %>

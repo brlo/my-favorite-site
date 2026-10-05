@@ -6,7 +6,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     #   headers: :any,
     #   methods: [:get, :post, :put, :patch, :delete, :options, :head]
 
-    origins 'https://bibleox.com', 'https://edit.bibleox.com', 'http://localhost:5173'
+    origins 'https://bibleox.com'
     resource '*',
       headers: :any,
       credentials: true,

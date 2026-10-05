@@ -1,0 +1,69 @@
+<%= form_with model: dict_word, url: (dict_word.new_record? ? admin_dict_words_path : admin_dict_word_path(dict_word)),
+      data: { turbo_confirm: (dict_word.new_record? ? 'Создать слово?' : 'Сохранить изменения в слове?') } do |f| %>
+  <% if dict_word.errors.any? %>
+    <div class="errors">
+      <div class="error-title">Не удалось сохранить:</div>
+      <ul><% dict_word.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %></ul>
+    </div>
+  <% end %>
+
+  <div class="field-row">
+    <div class="field">
+      <%= f.label :dict, 'Словарь' %>
+      <%= f.select :dict, admin_dict_options %>
+    </div>
+    <div class="field">
+      <%= f.label :word, 'Слово' %>
+      <%= admin_combobox 'dict_word[word]', dict_word.word, url: admin_autocomplete_dict_words_path, key: 'word',
+            min_length: 1, id: 'dict_word_word' %>
+      <div class="hint">Подсказки показывают уже существующие слова — чтобы не завести дубль.</div>
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <%= f.label :transcription, 'Транскрипция' %>
+      <%= f.text_field :transcription %>
+    </div>
+    <div class="field">
+      <%= f.label :transcription_lat, 'Транскрипция (латиницей)' %>
+      <%= f.text_field :transcription_lat %>
+    </div>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <%= f.label :tag, 'Главный признак' %>
+      <%= f.text_field :tag %>
+    </div>
+    <div class="field">
+      <%= f.label :translation_short, 'Перевод одним словом' %>
+      <%= f.text_field :translation_short %>
+    </div>
+  </div>
+
+  <div class="field">
+    <%= f.label :translation, 'Другие переводы' %>
+    <%= f.text_area :translation, rows: 1 %>
+  </div>
+
+  <div class="field">
+    <label>Описание</label>
+    <%= render 'shared/tiptap_editor', form: f, field_name: :desc, initial_value: dict_word.desc %>
+  </div>
+
+  <div class="field-row">
+    <div class="field">
+      <%= f.label :sinonim, 'Синоним' %>
+      <%= f.text_field :sinonim %>
+    </div>
+    <div class="field">
+      <%= f.label :lexema, 'Лексема' %>
+      <%= f.text_field :lexema %>
+    </div>
+  </div>
+
+  <div class="actions-bar">
+    <%= f.submit (dict_word.new_record? ? 'Создать слово' : 'Сохранить слово'), class: 'btn' %>
+  </div>
+<% end %>

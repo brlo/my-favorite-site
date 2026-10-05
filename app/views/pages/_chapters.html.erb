@@ -1,5 +1,12 @@
 <div id="chapter-header" data-controller="menu-filter">
 
+<%# ссылка на редактирование — только тем, кто может редактировать (страница не кэшируется целиком) %>
+<% if logged_in? && current_user.admin_area_access? && current_user.allow_ip?(request.ip) && @page.editable_by?(current_user) %>
+  <div class="page-edit-top">
+    <a rel="nofollow" href="<%= edit_admin_page_path(@page, locale: nil) %>">✎ <%= I18n.t('quote_page.edit_link') %></a>
+  </div>
+<% end %>
+
 <% if @page.cover? %>
   <% content_for(:img_header) do %>
   <div class="flex-wrap img-header-wrap">

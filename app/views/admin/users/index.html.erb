@@ -1,0 +1,55 @@
+<% @page_title = 'Пользователи' %>
+
+<h1>Пользователи</h1>
+
+<%= form_with url: admin_users_path, method: :get, class: 'search-form',
+      data: { controller: 'auto-submit', turbo_frame: 'users_list', turbo_action: 'replace' } do %>
+  <%= search_field_tag :term, @term, placeholder: 'Почта, логин, имя или ID', autofocus: true, autocomplete: 'off',
+        data: { action: 'input->auto-submit#debounced' } %>
+  <%= select_tag :filter, options_for_select(Admin::UsersController::FILTERS.invert, @filter),
+        data: { action: 'change->auto-submit#submit' } %>
+<% end %>
+
+<%= turbo_frame_tag 'users_list', target: '_top' do %>
+  <div data-controller="bulk-select">
+    <%# форма массового удаления: чекбоксы в таблице привязаны к ней через атрибут form %>
+    <%= form_with url: bulk_destroy_admin_users_path, method: :delete, id: 'bulk-delete-form', class: 'bulk-bar',
+          data: { turbo_confirm: 'Удалить отмеченных пользователей? Это необратимо: удалятся их переводы и сообщения в чате.' } do %>
+      <%= hidden_field_tag :return_to, request.fullpath, id: nil %>
+      <span class="hint">Найдено: <%= @users.total_count %></span>
+      <button type="submit" class="btn btn-danger btn-small" disabled data-bulk-select-target="button">
+        Удалить отмеченных (<span data-bulk-select-target="count">0</span>)
+      </button>
+    <% end %>
+
+    <div class="table-wrap">
+      <table class="admin-table">
+        <tr>
+          <th><input type="checkbox" title="Отметить всех на странице" data-bulk-select-target="toggle" data-action="bulk-select#toggleAll"></th>
+          <th>ID</th><th>Имя / логин</th><th>Почта</th><th>Вход</th><th>Создан</th><th>Последний вход</th><th></th>
+        </tr>
+        <% @users.each do |user| %>
+          <% reason = undeletable_reason(user) %>
+          <tr>
+            <td>
+              <input type="checkbox" name="ids[]" value="<%= user.id %>" form="bulk-delete-form"
+                     <%= 'disabled' if reason %> title="<%= reason ? "Нельзя удалить: #{reason}" : 'Отметить для удаления' %>"
+                     data-bulk-select-target="checkbox" data-action="bulk-select#update">
+            </td>
+            <td><%= user.id %></td>
+            <td>
+              <%= link_to user.name.presence || '—', edit_admin_user_path(user) %>
+              <div class="hint"><%= user.username %></div>
+            </td>
+            <td><%= user.email.presence || '—' %></td>
+            <td><%= user.provider %></td>
+            <td><%= admin_time(user.created_at) %></td>
+            <td><%= admin_time(user.last_login_at) %></td>
+            <td><%= admin_user_badges(user) %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>
+  <%= paginate @users %>
+<% end %>
