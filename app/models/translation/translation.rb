@@ -124,7 +124,7 @@ class Translation < ApplicationRecord
     count -= 1 if persisted?
 
     if count >= 2
-      errors.add(:user_id, "может создать максимум 2 варианта перевода")
+      errors.add(:user_id, :too_many_variants, count: 2)
     end
   end
 end

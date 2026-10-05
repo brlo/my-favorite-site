@@ -6,20 +6,20 @@
   <div class="translation-project-card">
     <h3 class="project-title"><%= project.title %></h3>
 
-    <span class="meta-label">Исходник:</span>
+    <span class="meta-label"><%= t('tr_projects.source_label') %></span>
     <div class="meta-row">
       <span class="meta-value">
         <% source_langs = project.source_langs.map { |l| langs_names[l] }.join(' | ') %>
         <% if project.page_ids.present? %>
-          <% source_page = Page.select(:id, :path).find(project.page_ids.first) %>
-          <%= link_to source_langs, my_page_link_to(source_page.path), class: "translation-item block-link", data: { turbo_frame: "_top" } %>
+          <% source_page = Page.select(:id, :path, :lang).find(project.page_ids.first) %>
+          <%= link_to source_langs, my_page_link_to(source_page.path, page_lang: source_page.lang), class: "translation-item block-link", data: { turbo_frame: "_top" } %>
         <% else %>
           <%= source_langs %>
         <% end %>
       </span>
     </div>
 
-    <span class="meta-label">Переводы:</span>
+    <span class="meta-label"><%= t('tr_projects.translations_label') %></span>
     <div class="langs-to-list">
       <% progress_for_all_langs.sort_by { |_, v| -v }.to_h.each do |lang_to, percents| %>
         <% next if percents < 1 %>
@@ -38,9 +38,9 @@
       <div data-controller="bbx-select"
           data-bbx-select-action-value="navigate"
           data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/translate/#{project.id}?part=1&lang_to=" %>"
-          data-bbx-select-placeholder-value="Другой язык">
+          data-bbx-select-placeholder-value="<%= t('tr_projects.other_language') %>">
         <select data-bbx-select-target="select" name="locale">
-          <option value="" disabled selected>Другие языки...</option>
+          <option value="" disabled selected><%= t('tr_projects.other_languages') %></option>
           <% langs_for_translates(is_with_encient: false).sort_by { |lang, _| [-progress_for_all_langs.fetch(lang, 0), lang] }.each do |lang, name| %>
             <% next if project.source_langs.to_a.include?(lang) %>
             <option value='<%= lang %>' data-progress="<%= progress_for_all_langs[lang] %>"><%= name %></option>

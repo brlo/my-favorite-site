@@ -1,0 +1,158 @@
+hi:
+  bc:
+    profile: प्रोफ़ाइल
+    change_password: पासवर्ड बदलें
+    edit_password: प्रोफ़ाइल संपादित करें
+
+  helpers:
+    label:
+      session:
+        email: ईमेल पता
+        password_reset: उस खाते का ईमेल पता जिसका पासवर्ड आप भूल गए हैं
+        password_reset_alert: यदि यह ईमेल पता हमारे सिस्टम में है, तो आपको निर्देशों के साथ एक ईमेल मिलेगा
+        password_reset_ok: पासवर्ड सफलतापूर्वक अपडेट किया गया
+    submit:
+      session:
+        create: लॉग इन करें
+        password_reset: पासवर्ड रीसेट करें
+      user:
+        create: पंजीकरण करें
+        update: अपडेट करें
+
+  activemodel:
+    attributes:
+      session:
+        email: ईमेल पता
+        password: पासवर्ड
+        remember_me: मुझे याद रखें
+    errors:
+      models:
+        session:
+          invalid_credentials: ईमेल या पासवर्ड गलत है
+          account_activation_pending: कृपया पहले हमारे द्वारा भेजे गए ईमेल के लिंक से अपना खाता सक्रिय करें।
+
+  activerecord:
+    models:
+      translation: अनुवाद
+    attributes:
+      translation:
+        user_id: उपयोगकर्ता
+        segment_id: अंश
+        lang: भाषा
+        text: अनुवाद का पाठ
+      user:
+        username: उपयोगकर्ता नाम
+        name: नाम
+        email: ईमेल पता
+        password: पासवर्ड
+        password_confirmation: पासवर्ड की पुष्टि
+        pages_owner: पृष्ठों के स्वामी
+        privs: अधिकार
+        failed_logins_count: असफल लॉगिन प्रयास
+        lock_expires_at: अवरोध समाप्ति
+    errors:
+      messages:
+        record_invalid: में त्रुटियाँ हैं
+        blank: खाली नहीं हो सकता
+        invalid: अमान्य है
+        too_short: बहुत छोटा है (कम से कम %{count} अक्षर)
+        too_long: बहुत लंबा है (अधिकतम %{count} अक्षर)
+        inclusion: सूची में नहीं है
+        taken: पहले से उपयोग में है
+        confirmation: मेल नहीं खाता
+        email_cant_contain_plus: में '+' चिह्न नहीं हो सकता
+        email_in_blacklist: अस्थायी पता नहीं हो सकता
+        email_cant_changes_too_often: दिन में दो बार से अधिक नहीं बदला जा सकता
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: इस अंश के लिए पहले ही अनुवाद सुझा चुके हैं
+              too_many_variants: अधिकतम %{count} अनुवाद संस्करण बना सकते हैं
+
+  users:
+    links:
+      login: लॉग इन
+      logout: लॉग आउट
+      profile_edit: प्रोफ़ाइल संपादित करें
+      password_change: पासवर्ड बदलें
+    titles:
+      signup: पंजीकरण
+      login: साइट में लॉग इन
+      password_reset: पासवर्ड पुनर्प्राप्ति
+      new_password: नया पासवर्ड सेट करें
+      profile: उपयोगकर्ता प्रोफ़ाइल
+      password_change: पासवर्ड बदलना
+      profile_edit: प्रोफ़ाइल संपादन
+    buttons:
+      signup: पंजीकरण करें
+      login: लॉग इन करें
+      password_reset: पासवर्ड रीसेट करें
+      new_password: पासवर्ड सेट करें
+      save_changes: परिवर्तन सहेजें
+      save_new_password: नया पासवर्ड सहेजें
+    notices:
+      error: त्रुटि
+      registration_successful: आपका पंजीकरण सफल रहा
+      profile_is_updated: प्रोफ़ाइल सफलतापूर्वक अपडेट की गई
+      password_is_changed: पासवर्ड सफलतापूर्वक बदला गया
+      password_confirm_is_wrong: पासवर्ड और उसकी पुष्टि मेल नहीं खाते
+      current_password_is_wrong: वर्तमान पासवर्ड गलत है
+      user_is_activated: ईमेल की पुष्टि हो गई। खाता सक्रिय है।
+      update_your_password_if_you_forgotten_it: यदि आप अपना पासवर्ड भूल गए हैं तो कृपया उसे अपडेट करें
+      already_logged_in: आप पहले से लॉग इन हैं
+      logged_out: आप लॉग आउट हो गए
+      logged_in: आप सफलतापूर्वक लॉग इन हो गए
+      login_failed: लॉग इन असफल रहा
+      loggin_failed_account_is_locked: लॉग इन असफल रहा। खाता लॉक है। ईमेल के लिंक से उसे अनलॉक करें
+    alerts:
+      are_you_shure: क्या आप सुनिश्चित हैं?
+    errors:
+      login_required: लॉग इन करना आवश्यक है
+      activation_required: ईमेल के लिंक से खाता सक्रिय करना आवश्यक है
+      account_blocked: आपका खाता अवरुद्ध है
+      not_admin: पर्याप्त अधिकार नहीं हैं
+      too_many_requests: सर्वर पर बहुत अधिक अनुरोध। कृपया थोड़ा प्रतीक्षा करें।
+    hints:
+      email_confirmed: ✅ ईमेल की पुष्टि हो चुकी है
+      email_not_confirmed: ⚠️ ईमेल की पुष्टि नहीं हुई है। ईमेल में दिए लिंक पर जाएँ।
+    fields:
+      current_password: वर्तमान पासवर्ड
+      new_password: नया पासवर्ड
+      new_password_confirmation: नए पासवर्ड की पुष्टि
+
+    is_already_registred: पहले से खाता है?
+    is_not_yet_registred: खाता नहीं है?
+    is_forgot_password: पासवर्ड भूल गए?
+    letters:
+      welcome:
+        subject: आपने bibleox.com पर पंजीकरण किया है
+        body: |
+          <p>नमस्ते, %{name}।</p><br>
+          <p>किसी ने आपके नाम से bibleox.com पर पंजीकरण किया है। लॉग इन करने के लिए इस लिंक पर जाएँ: %{url}।</p>
+          <p>यदि यह आप नहीं थे, तो इस ईमेल को अनदेखा करें।</p>
+          <p>आपका दिन शुभ हो!</p>
+      activation_needed:
+        subject: ईमेल की पुष्टि
+        body: |
+          <p>नमस्ते, %{name}।</p><br>
+          <p>इस पते का उपयोग bibleox.com पर पंजीकरण के लिए किया गया है। खाता सक्रिय करने के लिए इस लिंक पर जाएँ: %{url}।</p><br>
+          <p>यदि यह आप नहीं थे, तो इस ईमेल को अनदेखा करें।</p>
+          <p>आपका दिन शुभ हो!</p>
+      password_reset:
+        subject: पासवर्ड रीसेट
+        body: |
+          <p>नमस्ते, %{name}।</p><br>
+          <p>किसी ने bibleox.com पर इस ईमेल पते के लिए पासवर्ड रीसेट का अनुरोध किया है। नया पासवर्ड सेट करने के लिए इस लिंक पर जाएँ: %{url}।</p>
+          <p>यह लिंक 24 घंटे बाद समाप्त हो जाएगा।</p>
+          <p>यदि यह आप नहीं थे, तो इस ईमेल को अनदेखा करें।</p><br>
+          <p>आपका दिन शुभ हो!</p>
+      account_unlock:
+        subject: खाता अनलॉक करना
+        body: |
+          <p>नमस्ते, %{name}।</p><br>
+          <p>किसी ने बहुत बार गलत पासवर्ड डालकर bibleox.com पर आपके खाते में लॉग इन करने की कोशिश की। आपके खाते की सुरक्षा के लिए हमने उसे अस्थायी रूप से लॉक कर दिया है। अनलॉक करने के लिए इस लिंक पर जाएँ: %{url}।</p><br>
+          <p>आपका दिन शुभ हो!</p>
+
+  errors:
+    alert: त्रुटियाँ हुईं

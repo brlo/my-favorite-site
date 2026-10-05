@@ -1,0 +1,104 @@
+fr:
+  menu:
+    translates: Traductions
+  open_tags:
+    h2: titre
+    p: paragraphe
+    strong: texte en gras
+  close_tags:
+    h2: fin du titre
+    p: fin du paragraphe
+    strong: fin du texte en gras
+  time_ago:
+    just_now: à l'instant
+    minute: min
+    hour: h
+    day: j
+    week: sem.
+    month: mois
+    year: an
+  tr_projects:
+    all_translations: Toutes les traductions
+    index_title: Traduction collaborative des textes de l'Église
+    index_page_title: Traduction collaborative des textes de l'Église dans les langues de tous les peuples
+    index_h1: Traduction collaborative des textes de l'Église (bêta)
+    quote: nous les entendons parler dans nos langues des merveilles de Dieu
+    quote_ref: Ac 2, 11
+    beta_notice: La section des traductions est en phase de test bêta. Pendant cette période, seul un petit nombre d'ouvrages est proposé à la traduction.
+    create_project: Créer un projet
+    last_day: Traductions des dernières 24 heures
+    source_label: 'Source :'
+    translation_label: 'Traduction :'
+    translations_label: 'Traductions :'
+    other_language: Autre langue
+    other_languages: Autres langues...
+    project_page_title: Traduction collaborative — %{title}
+    show_page_title: '%{title} — Partie %{part}'
+    result: Traduction finale
+    work_on_translation: Travail sur la traduction
+    prepared_by_users: Cette traduction est préparée par les utilisateurs de bibleox.com.
+    help_cta_html: Vous pouvez aider à améliorer ce texte ! %{signup_link} et %{join_link}.
+    signup_link: Inscrivez-vous
+    join_link: participez au travail de traduction
+    license: Comme les contenus de Wikipédia, le résultat est librement diffusé sous licence CC BY-SA.
+    part: Partie
+    translate_from: 'Traduire depuis :'
+    translate_to: 'vers :'
+    result_lang: 'Traduction en :'
+    sources: Sources
+    translations: Traductions
+    continue_html: Vous pouvez poursuivre le travail de traduction dans %{link}.
+    continue_link: la section dédiée
+    not_loaded: Le texte n'est pas encore chargé. Veuillez réessayer dans 15 minutes.
+    confirm_delete_part: Supprimer la partie %{part} du projet de traduction « %{title} » ?
+    new_project: Nouveau projet de traduction
+    edit_project: Modifier le projet de traduction
+    delete: Supprimer
+    confirm_delete_project: Supprimer le projet de traduction « %{title} » ?
+    import_title: Importer une nouvelle partie du texte
+    source_lang: Langue d'origine
+    split_and_add: Découper et ajouter
+    processing: Traitement...
+    form:
+      title: Titre du projet
+      description: Description
+      description_placeholder: Brève description du projet, sources, particularités de la traduction...
+      page_ids: ID des pages (séparés par des virgules)
+      page_ids_placeholder: 'Par exemple : 1,3,5,7'
+      create: Créer le projet
+      save: Enregistrer les modifications
+      saving: Enregistrement...
+    notices:
+      created: Projet créé
+      updated: Projet mis à jour
+      part_deleted: La partie %{part} a été supprimée du projet
+      deleted: Projet supprimé
+    fragment: Fragment
+    copy: Copier
+    propose: Proposer une traduction
+    login_to_propose_html: Pour proposer des traductions, %{link}.
+    login_to_propose_link: connectez-vous ou inscrivez-vous
+    your_translation: Votre traduction
+    editing: Modification de la traduction
+    cancel: Annuler
+    text_placeholder: Écrivez votre version de la traduction...
+    sub_text_placeholder: Note de bas de page (si vous souhaitez joindre un commentaire à votre traduction)
+    submit: Envoyer la traduction
+    save: Enregistrer la traduction
+    edit_short: Modif.
+    confirm_delete: Voulez-vous vraiment supprimer cette traduction ?
+    liked: J'aime
+    needs_work: À retravailler
+    needs_work_hint: '« À retravailler ». Seuls ceux qui ont déjà proposé leur propre traduction peuvent donner ce vote'
+    approved: Approuvée comme traduction principale
+    user_blocked: Utilisateur bloqué
+    who_voted: Qui a voté
+    pin: Épingler
+    unpin: Désépingler
+    approve_title: Approuver comme traduction principale
+    approve_confirm: Faire de cette traduction la traduction principale ?
+    block_short: Bloquer
+    block_title: Bloquer l'utilisateur
+    block_confirm: Bloquer l'utilisateur %{username} ?
+    remove_reaction: Supprimer la réaction
+    remove_reaction_confirm: Supprimer la réaction de l'utilisateur %{username} ?

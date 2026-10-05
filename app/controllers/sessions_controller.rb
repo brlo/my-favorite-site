@@ -5,6 +5,7 @@ class SessionsController < ApplicationController
   rate_limit to: 30, within: 12.hours, by: -> { request.ip }, only: %w[create]
 
   def new
+    @page_title = t('users.titles.login')
     @session = Session.new
   end
 
@@ -27,7 +28,7 @@ class SessionsController < ApplicationController
           if failure == :locked
             flash.now[:alert] = t('users.notices.loggin_failed_account_is_locked')
           else
-            flash.now[:alert] = t('users.notices.loggin_failed')
+            flash.now[:alert] = t('users.notices.login_failed')
           end
           render :new, status: :unprocessable_entity
         else

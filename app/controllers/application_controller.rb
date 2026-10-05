@@ -9,25 +9,25 @@ class ApplicationController < ActionController::Base
 
   def require_login_and_activation
     if !logged_in?
-      return_error "Необходимо авторизоваться"
+      return_error t('users.errors.login_required')
     end
 
     if !current_user.activated?
-      return_error "Необходимо активировать аккаунт, перейдя по ссылке в письме"
+      return_error t('users.errors.activation_required')
     end
 
     if current_user.is_blocked
-      return_error "Ваш аккаунт заблокирован"
+      return_error t('users.errors.account_blocked')
     end
   end
 
   def require_login_and_not_blocked
     if !logged_in?
-      return_error "Необходимо авторизоваться"
+      return_error t('users.errors.login_required')
     end
 
     if current_user.is_blocked
-      return_error "Ваш аккаунт заблокирован"
+      return_error t('users.errors.account_blocked')
     end
   end
 
@@ -48,6 +48,12 @@ class ApplicationController < ActionController::Base
     # end
   end
 
+  # Без этого url-хелперы (translation_project_path и т.п.) подставляют locale из defaults
+  # в routes (:ru), а не текущую локаль интерфейса.
+  def default_url_options
+    { locale: I18n.locale }
+  end
+
   def build_canonical_url(path)
     canon_path = "https://bibleox.com"
     if params[:content_lang].present?
@@ -66,13 +72,13 @@ class ApplicationController < ActionController::Base
   end
 
   def not_authenticated
-    redirect_to login_path, alert: "Please login first", status: :see_other
+    redirect_to login_path, alert: t('users.errors.login_required'), status: :see_other
   end
 
   def require_admin
     return if logged_in? && current_user.is_admin?
 
-    redirect_to root_path, alert: "You are not an admin", status: :see_other
+    redirect_to root_path, alert: t('users.errors.not_admin'), status: :see_other
   end
 
   def redirect_if_logged_in
@@ -95,6 +101,6 @@ class ApplicationController < ActionController::Base
   end
 
   def too_many_requests
-    return_error('Слишком частые запросы к серверу. Подождите немного.')
+    return_error(t('users.errors.too_many_requests'))
   end
 end

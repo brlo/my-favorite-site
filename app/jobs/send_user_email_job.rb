@@ -2,16 +2,20 @@ class SendUserEmailJob < ApplicationJob
   # queue_as :mailers
   include Rails.application.routes.url_helpers
 
-  def perform(email_type, user_id)
+  # locale - язык интерфейса, на котором пользователь работал с сайтом (письмо и ссылки будут на нём)
+  def perform(email_type, user_id, locale = nil)
     user = User.find(user_id)
+    locale = I18n.default_locale unless I18n.available_locales.map(&:to_s).include?(locale.to_s)
 
-    case email_type
-    when "activation_needed_email"
-      send_activation_needed_email(user)
-    when "reset_password_email"
-      send_reset_password_email(user)
-    when "unlock_token_email"
-      send_unlock_token_email(user)
+    I18n.with_locale(locale) do
+      case email_type
+      when "activation_needed_email"
+        send_activation_needed_email(user)
+      when "reset_password_email"
+        send_reset_password_email(user)
+      when "unlock_token_email"
+        send_unlock_token_email(user.id)
+      end
     end
   end
 
@@ -20,7 +24,7 @@ class SendUserEmailJob < ApplicationJob
   # письмо со ссылкой на подтверждение почты
   def send_activation_needed_email(user)
     user = User.find(user.id)
-    url  = activate_user_url(id: user.activation_token, protocol: 'https', host: 'bibleox.com')
+    url  = activate_user_url(id: user.activation_token, locale: I18n.locale, protocol: 'https', host: 'bibleox.com')
 
     send_with_limits(
       type: 'activation_needed_email',
@@ -48,7 +52,7 @@ class SendUserEmailJob < ApplicationJob
   # письмо со ссылкой на сброс пароля
   def send_reset_password_email(user)
     user = User.find(user.id)
-    url  = edit_password_reset_url(id: user.reset_password_token, protocol: 'https', host: 'bibleox.com')
+    url  = edit_password_reset_url(id: user.reset_password_token, locale: I18n.locale, protocol: 'https', host: 'bibleox.com')
 
     send_with_limits(
       type: 'reset_password_email',
@@ -62,7 +66,7 @@ class SendUserEmailJob < ApplicationJob
   # письмо со ссылкой на разблокировку аккаунта после большого количества ввода неправильных паролей
   def send_unlock_token_email(user_id)
     user = User.find(user_id)
-    url  = unlock_account_users_url(token: user.unlock_token, protocol: 'https', host: 'bibleox.com')
+    url  = unlock_account_users_url(token: user.unlock_token, locale: I18n.locale, protocol: 'https', host: 'bibleox.com')
 
     send_with_limits(
       type: 'unlock_token_email',

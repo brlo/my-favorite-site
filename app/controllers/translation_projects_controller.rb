@@ -6,15 +6,15 @@ class TranslationProjectsController < ApplicationController
   before_action :require_admin, except: %w[index show result]
 
   def index
-    @breadcrumbs = [['Все переводы']]
-    @page_title = "Совместные переводы церковных текстов"
+    @breadcrumbs = [[t('tr_projects.all_translations')]]
+    @page_title = t('tr_projects.index_title')
 
     @projects = TranslationProject.all # .page(params[:page])
   end
 
   def show
-    @breadcrumbs = [['Все переводы', translation_projects_path(locale: I18n.locale)], [@project.title]]
-    @page_title = "Совместный перевод — #{@project.title}"
+    @breadcrumbs = [[t('tr_projects.all_translations'), translation_projects_path(locale: I18n.locale)], [@project.title]]
+    @page_title = t('tr_projects.project_page_title', title: @project.title)
 
     @part = params[:part]&.to_i || 1
     @lang_to = params[:lang_to] || ::I18n.locale.to_s
@@ -41,11 +41,11 @@ class TranslationProjectsController < ApplicationController
     @translated_title = @project.title_for_lang(@lang_to)
 
     @breadcrumbs = [
-      ['Все переводы', translation_projects_path(locale: I18n.locale)],
+      [t('tr_projects.all_translations'), translation_projects_path(locale: I18n.locale)],
       [@project.title, translation_project_path(@project)],
-      ['Итоговый перевод']
+      [t('tr_projects.result')]
     ]
-    @page_title = "Совместный перевод — #{@translated_title.presence || @project.title}"
+    @page_title = t('tr_projects.project_page_title', title: @translated_title.presence || @project.title)
 
     @all_langs = @project.translations.pluck('distinct lang').sort
     @all_parts = @project.segments.pluck('distinct part').sort
@@ -56,24 +56,24 @@ class TranslationProjectsController < ApplicationController
   end
 
   def new
-    @breadcrumbs = [['Все переводы', translation_projects_path(locale: I18n.locale)], "Новый проект перевода"]
-    @page_title = "Новый проект перевода"
+    @breadcrumbs = [[t('tr_projects.all_translations'), translation_projects_path(locale: I18n.locale)], [t('tr_projects.new_project')]]
+    @page_title = t('tr_projects.new_project')
     @project = TranslationProject.new
   end
 
   def edit
     @breadcrumbs = [
-      ['Все переводы', translation_projects_path(locale: I18n.locale)],
+      [t('tr_projects.all_translations'), translation_projects_path(locale: I18n.locale)],
       [@project.title, translation_project_path(@project)],
-      ['edit']
+      [t('tr_projects.edit_project')]
     ]
-    @page_title = "Редактирование проекта перевода"
+    @page_title = t('tr_projects.edit_project')
   end
 
   def create
     @project = TranslationProject.new(project_params)
     if @project.save
-      redirect_to @project, notice: 'Проект создан'
+      redirect_to @project, notice: t('tr_projects.notices.created')
     else
       render :new, status: :unprocessable_entity
     end
@@ -81,7 +81,7 @@ class TranslationProjectsController < ApplicationController
 
   def update
     if @project.update(project_params)
-      redirect_to @project, notice: 'Проект обновлён'
+      redirect_to @project, notice: t('tr_projects.notices.updated')
     else
       render @project, status: :unprocessable_entity
     end
@@ -91,9 +91,9 @@ class TranslationProjectsController < ApplicationController
     part = params[:part]
     if part.present?
       @project.segments.where(part: part).destroy_all
-      redirect_to translation_project_path(@project), notice: "В проекте удалёна часть #{part}"
+      redirect_to translation_project_path(@project), notice: t('tr_projects.notices.part_deleted', part:)
     elsif part.blank? && @project.destroy
-      redirect_to translation_projects_path, notice: 'Проект удалён'
+      redirect_to translation_projects_path, notice: t('tr_projects.notices.deleted')
     else
       render @project, status: :unprocessable_entity
     end

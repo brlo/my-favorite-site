@@ -24,12 +24,12 @@
                 class: 'px-2',
                 method: :delete,
                 data: {
-                  turbo_confirm: 'Точно хотите удалить этот перевод?',
+                  turbo_confirm: t('tr_projects.confirm_delete'),
                   turbo_method: :delete,
                   turbo_prefetch: false
                 }
             %>
-            <%= link_to 'Ред.', edit_translation_project_segment_translation_path(
+            <%= link_to t('tr_projects.edit_short'), edit_translation_project_segment_translation_path(
                   translation_project_id: translation.translation_project_id,
                   segment_id: translation.segment_id,
                   id: translation.id
@@ -67,7 +67,7 @@
               ),
               method: :post,
               class: "vote-btn up #{'voted' if translation.user_vote(current_user) == 1} #{'zero' if upvotes.zero?}",
-              title: 'Понравилось',
+              title: t('tr_projects.liked'),
               data: {
                 turbo_stream: true,
                 turbo_prefetch: false
@@ -82,7 +82,7 @@
         <% else %>
 
           <% if logged_in? || upvotes > 0 %>
-            <span class="vote-btn up <%= 'zero' if upvotes.zero? %>" title='Понравилось'>
+            <span class="vote-btn up <%= 'zero' if upvotes.zero? %>" title='<%= t('tr_projects.liked') %>'>
               <%= ::VOTE_PLUS %>
               <span class="vote-count" data-chapter-translator-target="upvoteCount">
                 <%= upvotes if upvotes > 0 %>
@@ -101,7 +101,7 @@
               ),
               method: :post,
               class: "vote-btn down #{'voted' if translation.user_vote(current_user) == -1} #{'zero' if downvotes.zero?}",
-              title: '"Требуются доработки". Это голос отдать могут только те, кто уже предложил свой вариант перевода',
+              title: t('tr_projects.needs_work_hint'),
               data: {
                 turbo_stream: true,
                 turbo_prefetch: false
@@ -116,7 +116,7 @@
         <% else %>
 
           <% if logged_in? || downvotes > 0 %>
-            <span class="vote-btn down <%= 'zero' if downvotes.zero? %>" title='"Требуются доработки". Это голос отдать могут только те, кто уже предложил свой вариант перевода'>
+            <span class="vote-btn down <%= 'zero' if downvotes.zero? %>" title="<%= t('tr_projects.needs_work_hint') %>">
               <%= ::VOTE_MINUS %>
               <span class="vote-count" data-chapter-translator-target="downvoteCount">
                 <%= downvotes if downvotes > 0 %>
@@ -127,15 +127,15 @@
         <% end %>
 
         <% if translation.is_approved %>
-          <span class='vote-btn approved' title='Одобрен как основной перевод'>✓</span>
+          <span class='vote-btn approved' title='<%= t('tr_projects.approved') %>'>✓</span>
         <% end %>
 
         <% if translation.user.is_blocked %>
-          <span class='vote-btn' title='Пользователь заблокирован'>⛔️</span>
+          <span class='vote-btn' title='<%= t('tr_projects.user_blocked') %>'>⛔️</span>
         <% end %>
 
         <% if upvotes > 0 || downvotes > 0 %>
-          <%= link_to "Кто голосовал",
+          <%= link_to t('tr_projects.who_voted'),
                 voters_translation_project_segment_translation_path(
                   translation_project_id: translation.translation_project_id,
                   segment_id: translation.segment_id,
@@ -150,7 +150,7 @@
         <% end %>
 
         <% if current_user&.is_admin? %>
-          <%= button_to translation.is_approved ? 'Открепить' : 'Закрепить',
+          <%= button_to translation.is_approved ? t('tr_projects.unpin') : t('tr_projects.pin'),
               approve_translation_project_segment_translation_path(
                 translation_project_id: translation.translation_project_id,
                 segment_id: translation.segment_id,
@@ -158,17 +158,17 @@
               ),
               class: 'vote-btn',
               method: :patch,
-              title: 'Одобрить как основной перевод',
-              data: { turbo_confirm: 'Сделать этот перевод основным?' } %>
+              title: t('tr_projects.approve_title'),
+              data: { turbo_confirm: t('tr_projects.approve_confirm') } %>
         <% end %>
 
         <% if current_user&.is_admin? && current_user&.id != translation.user_id %>
-          <%= button_to '⛔️ Забл.',
+          <%= button_to "⛔️ #{t('tr_projects.block_short')}",
               block_user_path(id: translation.user_id, translation_id: translation.id),
               class: 'vote-btn',
               method: :delete,
-              title: 'Заблокировать пользователя',
-              data: { turbo_confirm: "Заблокировать пользователя? #{ translation.user.username }" } %>
+              title: t('tr_projects.block_title'),
+              data: { turbo_confirm: t('tr_projects.block_confirm', username: translation.user.username) } %>
         <% end %>
       </div>
 

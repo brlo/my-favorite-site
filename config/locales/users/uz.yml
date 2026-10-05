@@ -1,0 +1,158 @@
+uz:
+  bc:
+    profile: Profil
+    change_password: Parolni o‘zgartirish
+    edit_password: Profilni tahrirlash
+
+  helpers:
+    label:
+      session:
+        email: Elektron pochta manzili
+        password_reset: Parolini unutgan hisobingizning elektron pochta manzili
+        password_reset_alert: Agar bu elektron pochta manzili tizimimizda bo‘lsa, siz ko‘rsatmalar bilan xat olasiz
+        password_reset_ok: Parol muvaffaqiyatli yangilandi
+    submit:
+      session:
+        create: Kirish
+        password_reset: Parolni tiklash
+      user:
+        create: Ro‘yxatdan o‘tish
+        update: Yangilash
+
+  activemodel:
+    attributes:
+      session:
+        email: Elektron pochta manzili
+        password: Parol
+        remember_me: Meni eslab qol
+    errors:
+      models:
+        session:
+          invalid_credentials: Elektron pochta yoki parol noto‘g‘ri
+          account_activation_pending: Avval xatdagi havola orqali hisobingizni faollashtiring.
+
+  activerecord:
+    models:
+      translation: Tarjima
+    attributes:
+      translation:
+        user_id: Foydalanuvchi
+        segment_id: Parcha
+        lang: Til
+        text: Tarjima matni
+      user:
+        username: Foydalanuvchi nomi
+        name: Ism
+        email: Elektron pochta manzili
+        password: Parol
+        password_confirmation: Parolni tasdiqlash
+        pages_owner: Sahifalar egasi
+        privs: Imtiyozlar
+        failed_logins_count: Muvaffaqiyatsiz kirishlar soni
+        lock_expires_at: Bloklash tugash vaqti
+    errors:
+      messages:
+        record_invalid: xatolarni o‘z ichiga oladi
+        blank: bo‘sh bo‘lishi mumkin emas
+        invalid: noto‘g‘ri formatda
+        too_short: juda qisqa (kamida %{count} belgi)
+        too_long: juda uzun (ko‘pi bilan %{count} belgi)
+        inclusion: ro‘yxatda yo‘q
+        taken: allaqachon band
+        confirmation: mos kelmaydi
+        email_cant_contain_plus: "'+' belgisini o‘z ichiga olishi mumkin emas"
+        email_in_blacklist: vaqtinchalik manzil bo‘lishi mumkin emas
+        email_cant_changes_too_often: kuniga ikki martadan ko‘p o‘zgartirib bo‘lmaydi
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: bu parcha uchun allaqachon tarjima taklif qilgan
+              too_many_variants: ko‘pi bilan %{count} ta tarjima varianti yaratishi mumkin
+
+  users:
+    links:
+      login: Kirish
+      logout: Profildan chiqish
+      profile_edit: Profil ma’lumotlarini tahrirlash
+      password_change: Parolni o‘zgartirish
+    titles:
+      signup: Ro‘yxatdan o‘tish
+      login: Saytga kirish
+      password_reset: Parolni tiklash
+      new_password: Yangi parol o‘rnatish
+      profile: Foydalanuvchi profili
+      password_change: Parolni o‘zgartirish
+      profile_edit: Profilni tahrirlash
+    buttons:
+      signup: Ro‘yxatdan o‘tish
+      login: Kirish
+      password_reset: Parolni tiklash
+      new_password: Parolni o‘rnatish
+      save_changes: O‘zgarishlarni saqlash
+      save_new_password: Yangi parolni saqlash
+    notices:
+      error: Xato
+      registration_successful: Siz muvaffaqiyatli ro‘yxatdan o‘tdingiz
+      profile_is_updated: Profil muvaffaqiyatli yangilandi
+      password_is_changed: Parol muvaffaqiyatli o‘zgartirildi
+      password_confirm_is_wrong: Parol va uning tasdig‘i mos kelmaydi
+      current_password_is_wrong: Joriy parol noto‘g‘ri
+      user_is_activated: Elektron pochta tasdiqlandi. Hisob faollashtirildi.
+      update_your_password_if_you_forgotten_it: Agar parolingizni unutgan bo‘lsangiz, uni yangilang
+      already_logged_in: Siz allaqachon tizimga kirgansiz
+      logged_out: Siz tizimdan chiqdingiz
+      logged_in: Siz muvaffaqiyatli tizimga kirdingiz
+      login_failed: Saytga kirish amalga oshmadi
+      loggin_failed_account_is_locked: Saytga kirish amalga oshmadi. Hisob bloklangan. Xatdagi havola orqali blokdan chiqaring
+    alerts:
+      are_you_shure: Ishonchingiz komilmi?
+    errors:
+      login_required: Tizimga kirish kerak
+      activation_required: Xatdagi havola orqali hisobingizni faollashtirishingiz kerak
+      account_blocked: Hisobingiz bloklangan
+      not_admin: Huquqlar yetarli emas
+      too_many_requests: Serverga juda ko‘p so‘rov yuborildi. Biroz kuting.
+    hints:
+      email_confirmed: ✅ Elektron pochta tasdiqlangan
+      email_not_confirmed: ⚠️ Elektron pochta tasdiqlanmagan. Xatdagi havolaga o‘ting.
+    fields:
+      current_password: Joriy parol
+      new_password: Yangi parol
+      new_password_confirmation: Yangi parolni tasdiqlash
+
+    is_already_registred: Avval ro‘yxatdan o‘tganmisiz?
+    is_not_yet_registred: Hisobingiz yo‘qmi?
+    is_forgot_password: Parolni unutdingizmi?
+    letters:
+      welcome:
+        subject: Siz bibleox.com saytida ro‘yxatdan o‘tdingiz
+        body: |
+          <p>Assalomu alaykum, %{name}.</p><br>
+          <p>Kimdir sizning nomingizdan bibleox.com saytida ro‘yxatdan o‘tdi. Saytga kirish uchun havolaga o‘ting: %{url}.</p>
+          <p>Agar bu siz bo‘lmasangiz, ushbu xatga e’tibor bermang.</p>
+          <p>Kuningiz xayrli o‘tsin!</p>
+      activation_needed:
+        subject: Elektron pochtani tasdiqlash
+        body: |
+          <p>Assalomu alaykum, %{name}.</p><br>
+          <p>Bu manzil bibleox.com saytida ro‘yxatdan o‘tishda ishlatilgan. Hisobni faollashtirish uchun havolaga o‘ting: %{url}.</p><br>
+          <p>Agar bu siz bo‘lmasangiz, ushbu xatga e’tibor bermang.</p>
+          <p>Kuningiz xayrli o‘tsin!</p>
+      password_reset:
+        subject: Parolni tiklash
+        body: |
+          <p>Assalomu alaykum, %{name}.</p><br>
+          <p>Kimdir bibleox.com saytida ushbu elektron pochta manzili uchun parolni tiklashni so‘radi. Yangi parol o‘rnatish uchun havolaga o‘ting: %{url}.</p>
+          <p>Bu havola 24 soatdan keyin amal qilmaydi.</p>
+          <p>Agar bu siz bo‘lmasangiz, ushbu xatga e’tibor bermang.</p><br>
+          <p>Kuningiz xayrli o‘tsin!</p>
+      account_unlock:
+        subject: Hisobni blokdan chiqarish
+        body: |
+          <p>Assalomu alaykum, %{name}.</p><br>
+          <p>Kimdir bibleox.com saytidagi hisobingizga juda ko‘p marta noto‘g‘ri parol kiritib kirishga urindi. Hisobingizni himoya qilish uchun uni vaqtincha blokladik. Blokdan chiqarish uchun havolaga o‘ting: %{url}.</p><br>
+          <p>Kuningiz xayrli o‘tsin!</p>
+
+  errors:
+    alert: Xatolar yuz berdi

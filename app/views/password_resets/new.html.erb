@@ -1,4 +1,5 @@
 <div style='max-width:450px; margin: 20px auto;'>
+  <h1><%= t('users.titles.password_reset') %></h1>
   <%= form_with url: password_resets_path, local: true, method: :post do |form| %>
     <div class="field">
       <%= form.label :email, t('helpers.label.session.password_reset') %><br />

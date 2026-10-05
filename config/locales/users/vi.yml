@@ -1,0 +1,158 @@
+vi:
+  bc:
+    profile: Hồ sơ
+    change_password: Đổi mật khẩu
+    edit_password: Chỉnh sửa hồ sơ
+
+  helpers:
+    label:
+      session:
+        email: Địa chỉ email
+        password_reset: Địa chỉ email của tài khoản bạn quên mật khẩu
+        password_reset_alert: Nếu địa chỉ email này có trong hệ thống, bạn sẽ nhận được email hướng dẫn
+        password_reset_ok: Đã cập nhật mật khẩu thành công
+    submit:
+      session:
+        create: Đăng nhập
+        password_reset: Đặt lại mật khẩu
+      user:
+        create: Đăng ký
+        update: Cập nhật
+
+  activemodel:
+    attributes:
+      session:
+        email: Địa chỉ email
+        password: Mật khẩu
+        remember_me: Ghi nhớ đăng nhập
+    errors:
+      models:
+        session:
+          invalid_credentials: Email hoặc mật khẩu không đúng
+          account_activation_pending: Vui lòng kích hoạt tài khoản trước bằng liên kết trong email chúng tôi đã gửi.
+
+  activerecord:
+    models:
+      translation: Bản dịch
+    attributes:
+      translation:
+        user_id: Người dùng
+        segment_id: Đoạn
+        lang: Ngôn ngữ
+        text: Nội dung bản dịch
+      user:
+        username: Tên người dùng
+        name: Tên
+        email: Địa chỉ email
+        password: Mật khẩu
+        password_confirmation: Xác nhận mật khẩu
+        pages_owner: Chủ sở hữu trang
+        privs: Quyền hạn
+        failed_logins_count: Số lần đăng nhập thất bại
+        lock_expires_at: Thời điểm hết khóa
+    errors:
+      messages:
+        record_invalid: có lỗi
+        blank: không được để trống
+        invalid: không hợp lệ
+        too_short: quá ngắn (tối thiểu %{count} ký tự)
+        too_long: quá dài (tối đa %{count} ký tự)
+        inclusion: không có trong danh sách
+        taken: đã được sử dụng
+        confirmation: không khớp
+        email_cant_contain_plus: không được chứa ký tự '+'
+        email_in_blacklist: không được là địa chỉ tạm thời
+        email_cant_changes_too_often: chỉ được thay đổi tối đa hai lần mỗi ngày
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: đã đề xuất bản dịch cho đoạn này
+              too_many_variants: chỉ có thể tạo tối đa %{count} phương án dịch
+
+  users:
+    links:
+      login: Đăng nhập
+      logout: Đăng xuất
+      profile_edit: Chỉnh sửa hồ sơ
+      password_change: Đổi mật khẩu
+    titles:
+      signup: Đăng ký
+      login: Đăng nhập vào trang
+      password_reset: Khôi phục mật khẩu
+      new_password: Đặt mật khẩu mới
+      profile: Hồ sơ người dùng
+      password_change: Đổi mật khẩu
+      profile_edit: Chỉnh sửa hồ sơ
+    buttons:
+      signup: Đăng ký
+      login: Đăng nhập
+      password_reset: Đặt lại mật khẩu
+      new_password: Đặt mật khẩu
+      save_changes: Lưu thay đổi
+      save_new_password: Lưu mật khẩu mới
+    notices:
+      error: Lỗi
+      registration_successful: Bạn đã đăng ký thành công
+      profile_is_updated: Đã cập nhật hồ sơ thành công
+      password_is_changed: Đã đổi mật khẩu thành công
+      password_confirm_is_wrong: Mật khẩu và xác nhận mật khẩu không khớp
+      current_password_is_wrong: Mật khẩu hiện tại không đúng
+      user_is_activated: Email đã được xác nhận. Tài khoản đã được kích hoạt.
+      update_your_password_if_you_forgotten_it: Vui lòng cập nhật mật khẩu nếu bạn đã quên
+      already_logged_in: Bạn đã đăng nhập rồi
+      logged_out: Bạn đã đăng xuất
+      logged_in: Bạn đã đăng nhập thành công
+      login_failed: Đăng nhập không thành công
+      loggin_failed_account_is_locked: Đăng nhập không thành công. Tài khoản đã bị khóa. Hãy mở khóa bằng liên kết trong email
+    alerts:
+      are_you_shure: Bạn có chắc không?
+    errors:
+      login_required: Bạn cần đăng nhập
+      activation_required: Bạn cần kích hoạt tài khoản bằng liên kết trong email
+      account_blocked: Tài khoản của bạn đã bị chặn
+      not_admin: Không đủ quyền
+      too_many_requests: Quá nhiều yêu cầu đến máy chủ. Vui lòng đợi một chút.
+    hints:
+      email_confirmed: ✅ Email đã được xác nhận
+      email_not_confirmed: ⚠️ Email chưa được xác nhận. Hãy nhấn vào liên kết trong email.
+    fields:
+      current_password: Mật khẩu hiện tại
+      new_password: Mật khẩu mới
+      new_password_confirmation: Xác nhận mật khẩu mới
+
+    is_already_registred: Đã có tài khoản?
+    is_not_yet_registred: Chưa có tài khoản?
+    is_forgot_password: Quên mật khẩu?
+    letters:
+      welcome:
+        subject: Bạn đã đăng ký trên bibleox.com
+        body: |
+          <p>Xin chào %{name},</p><br>
+          <p>Ai đó đã đăng ký trên bibleox.com bằng tên của bạn. Để đăng nhập, hãy mở liên kết: %{url}.</p>
+          <p>Nếu không phải bạn, hãy bỏ qua email này.</p>
+          <p>Chúc bạn một ngày tốt lành!</p>
+      activation_needed:
+        subject: Xác nhận email
+        body: |
+          <p>Xin chào %{name},</p><br>
+          <p>Địa chỉ này đã được dùng để đăng ký trên bibleox.com. Để kích hoạt tài khoản, hãy mở liên kết: %{url}.</p><br>
+          <p>Nếu không phải bạn, hãy bỏ qua email này.</p>
+          <p>Chúc bạn một ngày tốt lành!</p>
+      password_reset:
+        subject: Đặt lại mật khẩu
+        body: |
+          <p>Xin chào %{name},</p><br>
+          <p>Ai đó đã yêu cầu đặt lại mật khẩu cho địa chỉ email này trên bibleox.com. Để đặt mật khẩu mới, hãy mở liên kết: %{url}.</p>
+          <p>Liên kết này sẽ hết hạn sau 24 giờ.</p>
+          <p>Nếu không phải bạn, hãy bỏ qua email này.</p><br>
+          <p>Chúc bạn một ngày tốt lành!</p>
+      account_unlock:
+        subject: Mở khóa tài khoản
+        body: |
+          <p>Xin chào %{name},</p><br>
+          <p>Ai đó đã cố đăng nhập vào tài khoản của bạn trên bibleox.com bằng cách nhập sai mật khẩu quá nhiều lần. Để bảo vệ tài khoản, chúng tôi đã tạm khóa nó. Để mở khóa, hãy mở liên kết: %{url}.</p><br>
+          <p>Chúc bạn một ngày tốt lành!</p>
+
+  errors:
+    alert: Đã xảy ra lỗi

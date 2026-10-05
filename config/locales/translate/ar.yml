@@ -1,0 +1,104 @@
+ar:
+  menu:
+    translates: الترجمات
+  open_tags:
+    h2: عنوان
+    p: فقرة
+    strong: نص عريض
+  close_tags:
+    h2: نهاية العنوان
+    p: نهاية الفقرة
+    strong: نهاية النص العريض
+  time_ago:
+    just_now: الآن
+    minute: د
+    hour: س
+    day: ي
+    week: أسبوع
+    month: شهر
+    year: سنة
+  tr_projects:
+    all_translations: كل الترجمات
+    index_title: الترجمة المشتركة للنصوص الكنسية
+    index_page_title: الترجمة المشتركة للنصوص الكنسية إلى لغات جميع الشعوب
+    index_h1: الترجمة المشتركة للنصوص الكنسية (تجريبي)
+    quote: نسمعهم يتكلمون بألسنتنا بعظائم الله
+    quote_ref: أع 2:11
+    beta_notice: قسم الترجمات في مرحلة الاختبار التجريبي. خلال فترة الاختبار يُعرض للترجمة عدد قليل من المؤلفات.
+    create_project: إنشاء مشروع
+    last_day: ترجمات آخر 24 ساعة
+    source_label: 'الأصل:'
+    translation_label: 'الترجمة:'
+    translations_label: 'الترجمات:'
+    other_language: لغة أخرى
+    other_languages: لغات أخرى...
+    project_page_title: ترجمة مشتركة — %{title}
+    show_page_title: '%{title} — الجزء %{part}'
+    result: الترجمة النهائية
+    work_on_translation: العمل على الترجمة
+    prepared_by_users: يُعِدّ هذه الترجمة مستخدمو موقع bibleox.com.
+    help_cta_html: يمكنك المساعدة في تحسين هذا النص! %{signup_link} و%{join_link}.
+    signup_link: سجّل
+    join_link: انضم إلى العمل على الترجمة
+    license: مثل محتوى ويكيبيديا، تُنشر النتيجة بحرية بموجب ترخيص CC BY-SA.
+    part: الجزء
+    translate_from: 'الترجمة من:'
+    translate_to: 'إلى:'
+    result_lang: 'الترجمة إلى:'
+    sources: النصوص الأصلية
+    translations: الترجمات
+    continue_html: يمكنك متابعة العمل على الترجمة في %{link}.
+    continue_link: القسم المخصص
+    not_loaded: لم يتم تحميل النص بعد. يُرجى المحاولة مرة أخرى بعد 15 دقيقة.
+    confirm_delete_part: حذف الجزء %{part} من مشروع الترجمة «%{title}»؟
+    new_project: مشروع ترجمة جديد
+    edit_project: تعديل مشروع الترجمة
+    delete: حذف
+    confirm_delete_project: حذف مشروع الترجمة «%{title}»؟
+    import_title: استيراد جزء جديد من النص
+    source_lang: لغة الأصل
+    split_and_add: تقسيم وإضافة
+    processing: جارٍ المعالجة...
+    form:
+      title: اسم المشروع
+      description: الوصف
+      description_placeholder: وصف موجز للمشروع، المصادر، خصائص الترجمة...
+      page_ids: معرّفات الصفحات (مفصولة بفواصل)
+      page_ids_placeholder: 'مثال: 1,3,5,7'
+      create: إنشاء المشروع
+      save: حفظ التغييرات
+      saving: جارٍ الحفظ...
+    notices:
+      created: تم إنشاء المشروع
+      updated: تم تحديث المشروع
+      part_deleted: تمت إزالة الجزء %{part} من المشروع
+      deleted: تم حذف المشروع
+    fragment: مقطع
+    copy: نسخ
+    propose: اقتراح ترجمة
+    login_to_propose_html: لاقتراح الترجمات، %{link}.
+    login_to_propose_link: سجّل الدخول أو أنشئ حسابًا
+    your_translation: ترجمتك
+    editing: تعديل الترجمة
+    cancel: إلغاء
+    text_placeholder: اكتب نسختك من الترجمة...
+    sub_text_placeholder: حاشية (إذا أردت إرفاق تعليق بالترجمة)
+    submit: إرسال الترجمة
+    save: حفظ الترجمة
+    edit_short: تعديل
+    confirm_delete: هل أنت متأكد من حذف هذه الترجمة؟
+    liked: أعجبني
+    needs_work: تحتاج إلى تحسين
+    needs_work_hint: '«تحتاج إلى تحسين». لا يمكن الإدلاء بهذا الصوت إلا لمن اقترح ترجمته الخاصة بالفعل'
+    approved: معتمدة كترجمة رئيسية
+    user_blocked: المستخدم محظور
+    who_voted: من صوّت
+    pin: تثبيت
+    unpin: إلغاء التثبيت
+    approve_title: اعتماد كترجمة رئيسية
+    approve_confirm: جعل هذه الترجمة الترجمة الرئيسية؟
+    block_short: حظر
+    block_title: حظر المستخدم
+    block_confirm: حظر المستخدم %{username}؟
+    remove_reaction: إزالة التفاعل
+    remove_reaction_confirm: إزالة تفاعل المستخدم %{username}؟

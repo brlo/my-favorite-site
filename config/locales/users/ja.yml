@@ -1,0 +1,158 @@
+ja:
+  bc:
+    profile: プロフィール
+    change_password: パスワード変更
+    edit_password: プロフィール編集
+
+  helpers:
+    label:
+      session:
+        email: メールアドレス
+        password_reset: パスワードを忘れたアカウントのメールアドレス
+        password_reset_alert: このメールアドレスが登録されている場合、手順を記載したメールが届きます
+        password_reset_ok: パスワードを更新しました
+    submit:
+      session:
+        create: ログイン
+        password_reset: パスワードをリセット
+      user:
+        create: 登録する
+        update: 更新
+
+  activemodel:
+    attributes:
+      session:
+        email: メールアドレス
+        password: パスワード
+        remember_me: ログイン状態を保持する
+    errors:
+      models:
+        session:
+          invalid_credentials: メールアドレスまたはパスワードが正しくありません
+          account_activation_pending: まず、お送りしたメールのリンクからアカウントを有効化してください。
+
+  activerecord:
+    models:
+      translation: 翻訳
+    attributes:
+      translation:
+        user_id: ユーザー
+        segment_id: 断片
+        lang: 言語
+        text: 翻訳文
+      user:
+        username: ユーザー名
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        pages_owner: ページの所有者
+        privs: 権限
+        failed_logins_count: ログイン失敗回数
+        lock_expires_at: ロック解除日時
+    errors:
+      messages:
+        record_invalid: にエラーがあります
+        blank: を入力してください
+        invalid: は不正な値です
+        too_short: は%{count}文字以上で入力してください
+        too_long: は%{count}文字以内で入力してください
+        inclusion: は一覧にありません
+        taken: はすでに使用されています
+        confirmation: が一致しません
+        email_cant_contain_plus: に「+」を含めることはできません
+        email_in_blacklist: に一時的なアドレスは使用できません
+        email_cant_changes_too_often: は1日に2回までしか変更できません
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: はこの断片の翻訳をすでに提案しています
+              too_many_variants: が作成できる翻訳案は最大%{count}件です
+
+  users:
+    links:
+      login: ログイン
+      logout: ログアウト
+      profile_edit: プロフィールを編集
+      password_change: パスワードを変更
+    titles:
+      signup: 新規登録
+      login: ログイン
+      password_reset: パスワードの再設定
+      new_password: 新しいパスワードの設定
+      profile: ユーザープロフィール
+      password_change: パスワード変更
+      profile_edit: プロフィール編集
+    buttons:
+      signup: 登録する
+      login: ログイン
+      password_reset: パスワードをリセット
+      new_password: パスワードを設定
+      save_changes: 変更を保存
+      save_new_password: 新しいパスワードを保存
+    notices:
+      error: エラー
+      registration_successful: 登録が完了しました
+      profile_is_updated: プロフィールを更新しました
+      password_is_changed: パスワードを変更しました
+      password_confirm_is_wrong: パスワードと確認用パスワードが一致しません
+      current_password_is_wrong: 現在のパスワードが正しくありません
+      user_is_activated: メールアドレスが確認されました。アカウントが有効になりました。
+      update_your_password_if_you_forgotten_it: パスワードを忘れた場合は更新してください
+      already_logged_in: すでにログインしています
+      logged_out: ログアウトしました
+      logged_in: ログインしました
+      login_failed: ログインに失敗しました
+      loggin_failed_account_is_locked: ログインに失敗しました。アカウントがロックされています。メールのリンクからロックを解除してください
+    alerts:
+      are_you_shure: よろしいですか？
+    errors:
+      login_required: ログインが必要です
+      activation_required: メールのリンクからアカウントを有効化する必要があります
+      account_blocked: アカウントはブロックされています
+      not_admin: 権限がありません
+      too_many_requests: サーバーへのリクエストが多すぎます。しばらくお待ちください。
+    hints:
+      email_confirmed: ✅ メールアドレス確認済み
+      email_not_confirmed: ⚠️ メールアドレスが未確認です。メールのリンクを開いてください。
+    fields:
+      current_password: 現在のパスワード
+      new_password: 新しいパスワード
+      new_password_confirmation: 新しいパスワード（確認）
+
+    is_already_registred: すでに登録済みですか？
+    is_not_yet_registred: アカウントをお持ちでないですか？
+    is_forgot_password: パスワードをお忘れですか？
+    letters:
+      welcome:
+        subject: bibleox.com に登録しました
+        body: |
+          <p>%{name} 様</p><br>
+          <p>あなたのお名前で bibleox.com への登録が行われました。ログインするには、こちらのリンクを開いてください：%{url}</p>
+          <p>お心当たりのない場合は、このメールを無視してください。</p>
+          <p>よい一日を！</p>
+      activation_needed:
+        subject: メールアドレスの確認
+        body: |
+          <p>%{name} 様</p><br>
+          <p>このアドレスは bibleox.com の登録に使用されました。アカウントを有効にするには、こちらのリンクを開いてください：%{url}</p><br>
+          <p>お心当たりのない場合は、このメールを無視してください。</p>
+          <p>よい一日を！</p>
+      password_reset:
+        subject: パスワードのリセット
+        body: |
+          <p>%{name} 様</p><br>
+          <p>bibleox.com でこのメールアドレスのパスワードリセットが要求されました。新しいパスワードを設定するには、こちらのリンクを開いてください：%{url}</p>
+          <p>このリンクの有効期限は24時間です。</p>
+          <p>お心当たりのない場合は、このメールを無視してください。</p><br>
+          <p>よい一日を！</p>
+      account_unlock:
+        subject: アカウントのロック解除
+        body: |
+          <p>%{name} 様</p><br>
+          <p>bibleox.com のあなたのアカウントに、誤ったパスワードで何度もログインが試みられました。アカウントを保護するため、一時的にロックしました。ロックを解除するには、こちらのリンクを開いてください：%{url}</p><br>
+          <p>よい一日を！</p>
+
+  errors:
+    alert: エラーが発生しました

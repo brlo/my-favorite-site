@@ -1,0 +1,104 @@
+ja:
+  menu:
+    translates: 翻訳
+  open_tags:
+    h2: 見出し
+    p: 段落
+    strong: 太字
+  close_tags:
+    h2: 見出しの終わり
+    p: 段落の終わり
+    strong: 太字の終わり
+  time_ago:
+    just_now: たった今
+    minute: 分
+    hour: 時間
+    day: 日
+    week: 週
+    month: か月
+    year: 年
+  tr_projects:
+    all_translations: すべての翻訳
+    index_title: 教会文献の共同翻訳
+    index_page_title: 教会文献をすべての民族の言語へ — 共同翻訳
+    index_h1: 教会文献の共同翻訳（ベータ版）
+    quote: 彼らがわたしたちの言葉で神の偉大な業を語っているのを聞こうとは
+    quote_ref: 使徒言行録 2:11
+    beta_notice: 翻訳セクションはベータテスト中です。テスト期間中は、翻訳対象として少数の作品のみを提供しています。
+    create_project: プロジェクトを作成
+    last_day: 過去24時間の翻訳
+    source_label: 原文：
+    translation_label: 翻訳：
+    translations_label: 翻訳：
+    other_language: 他の言語
+    other_languages: その他の言語...
+    project_page_title: 共同翻訳 — %{title}
+    show_page_title: '%{title} — 第%{part}部'
+    result: 完成した翻訳
+    work_on_translation: 翻訳作業
+    prepared_by_users: この翻訳は bibleox.com のユーザーによって作成されています。
+    help_cta_html: このテキストの改善にご協力ください！%{signup_link}して、%{join_link}。
+    signup_link: 登録
+    join_link: 翻訳作業に参加しましょう
+    license: Wikipedia のコンテンツと同様に、成果物は CC BY-SA ライセンスのもとで自由に配布されます。
+    part: 部
+    translate_from: 翻訳元：
+    translate_to: 翻訳先：
+    result_lang: 翻訳言語：
+    sources: 原文
+    translations: 翻訳
+    continue_html: 翻訳作業は%{link}で続けることができます。
+    continue_link: 専用セクション
+    not_loaded: テキストはまだ読み込まれていません。15分後にもう一度お試しください。
+    confirm_delete_part: 翻訳プロジェクト「%{title}」の第%{part}部を削除しますか？
+    new_project: 新しい翻訳プロジェクト
+    edit_project: 翻訳プロジェクトの編集
+    delete: 削除
+    confirm_delete_project: 翻訳プロジェクト「%{title}」を削除しますか？
+    import_title: テキストの新しい部分をインポート
+    source_lang: 原文の言語
+    split_and_add: 分割して追加
+    processing: 処理中...
+    form:
+      title: プロジェクト名
+      description: 説明
+      description_placeholder: プロジェクトの簡単な説明、出典、翻訳の特徴など...
+      page_ids: ページID（カンマ区切り）
+      page_ids_placeholder: 例：1,3,5,7
+      create: プロジェクトを作成
+      save: 変更を保存
+      saving: 保存中...
+    notices:
+      created: プロジェクトを作成しました
+      updated: プロジェクトを更新しました
+      part_deleted: 第%{part}部をプロジェクトから削除しました
+      deleted: プロジェクトを削除しました
+    fragment: 断片
+    copy: コピー
+    propose: 翻訳を提案
+    login_to_propose_html: 翻訳を提案するには、%{link}。
+    login_to_propose_link: ログインまたは登録してください
+    your_translation: あなたの翻訳
+    editing: 翻訳の編集
+    cancel: キャンセル
+    text_placeholder: あなたの翻訳案を書いてください...
+    sub_text_placeholder: 脚注（翻訳にコメントを添えたい場合）
+    submit: 翻訳を送信
+    save: 翻訳を保存
+    edit_short: 編集
+    confirm_delete: この翻訳を本当に削除しますか？
+    liked: いいね
+    needs_work: 要修正
+    needs_work_hint: 「要修正」。この票を投じられるのは、すでに自分の翻訳案を提案した人だけです
+    approved: 主要な翻訳として承認済み
+    user_blocked: ユーザーはブロックされています
+    who_voted: 投票した人
+    pin: 固定
+    unpin: 固定解除
+    approve_title: 主要な翻訳として承認
+    approve_confirm: この翻訳を主要な翻訳にしますか？
+    block_short: ブロック
+    block_title: ユーザーをブロック
+    block_confirm: ユーザー %{username} をブロックしますか？
+    remove_reaction: リアクションを削除
+    remove_reaction_confirm: ユーザー %{username} のリアクションを削除しますか？

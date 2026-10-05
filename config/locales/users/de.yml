@@ -1,0 +1,158 @@
+de:
+  bc:
+    profile: Profil
+    change_password: Passwort ändern
+    edit_password: Profil bearbeiten
+
+  helpers:
+    label:
+      session:
+        email: E-Mail-Adresse
+        password_reset: E-Mail-Adresse des Kontos, dessen Passwort Sie vergessen haben
+        password_reset_alert: Wenn diese E-Mail-Adresse in unserem System vorhanden ist, erhalten Sie eine E-Mail mit Anweisungen
+        password_reset_ok: Passwort erfolgreich aktualisiert
+    submit:
+      session:
+        create: Anmelden
+        password_reset: Passwort zurücksetzen
+      user:
+        create: Registrieren
+        update: Aktualisieren
+
+  activemodel:
+    attributes:
+      session:
+        email: E-Mail-Adresse
+        password: Passwort
+        remember_me: Angemeldet bleiben
+    errors:
+      models:
+        session:
+          invalid_credentials: Falsche E-Mail-Adresse oder falsches Passwort
+          account_activation_pending: Bitte aktivieren Sie zuerst Ihr Konto über den Link in der E-Mail.
+
+  activerecord:
+    models:
+      translation: Übersetzung
+    attributes:
+      translation:
+        user_id: Benutzer
+        segment_id: Fragment
+        lang: Sprache
+        text: Übersetzungstext
+      user:
+        username: Benutzername
+        name: Name
+        email: E-Mail-Adresse
+        password: Passwort
+        password_confirmation: Passwort bestätigen
+        pages_owner: Seiteninhaber
+        privs: Berechtigungen
+        failed_logins_count: Fehlgeschlagene Anmeldeversuche
+        lock_expires_at: Sperre endet am
+    errors:
+      messages:
+        record_invalid: enthält Fehler
+        blank: darf nicht leer sein
+        invalid: ist ungültig
+        too_short: ist zu kurz (mindestens %{count} Zeichen)
+        too_long: ist zu lang (höchstens %{count} Zeichen)
+        inclusion: ist kein gültiger Wert
+        taken: ist bereits vergeben
+        confirmation: stimmt nicht überein
+        email_cant_contain_plus: darf das Zeichen '+' nicht enthalten
+        email_in_blacklist: darf keine temporäre Adresse sein
+        email_cant_changes_too_often: kann höchstens zweimal am Tag geändert werden
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: hat für dieses Fragment bereits eine Übersetzung vorgeschlagen
+              too_many_variants: kann höchstens %{count} Übersetzungsvarianten erstellen
+
+  users:
+    links:
+      login: Anmelden
+      logout: Abmelden
+      profile_edit: Profil bearbeiten
+      password_change: Passwort ändern
+    titles:
+      signup: Registrierung
+      login: Anmeldung
+      password_reset: Passwort wiederherstellen
+      new_password: Neues Passwort festlegen
+      profile: Benutzerprofil
+      password_change: Passwort ändern
+      profile_edit: Profil bearbeiten
+    buttons:
+      signup: Registrieren
+      login: Anmelden
+      password_reset: Passwort zurücksetzen
+      new_password: Passwort festlegen
+      save_changes: Änderungen speichern
+      save_new_password: Neues Passwort speichern
+    notices:
+      error: Fehler
+      registration_successful: Sie haben sich erfolgreich registriert
+      profile_is_updated: Profil erfolgreich aktualisiert
+      password_is_changed: Passwort erfolgreich geändert
+      password_confirm_is_wrong: Passwort und Passwortbestätigung stimmen nicht überein
+      current_password_is_wrong: Das aktuelle Passwort ist falsch
+      user_is_activated: E-Mail bestätigt. Ihr Konto ist aktiviert.
+      update_your_password_if_you_forgotten_it: Bitte ändern Sie Ihr Passwort, falls Sie es vergessen haben
+      already_logged_in: Sie sind bereits angemeldet
+      logged_out: Sie haben sich abgemeldet
+      logged_in: Sie haben sich erfolgreich angemeldet
+      login_failed: Anmeldung fehlgeschlagen
+      loggin_failed_account_is_locked: Anmeldung fehlgeschlagen. Das Konto ist gesperrt. Entsperren Sie es über den Link in der E-Mail
+    alerts:
+      are_you_shure: Sind Sie sicher?
+    errors:
+      login_required: Bitte melden Sie sich an
+      activation_required: Bitte aktivieren Sie Ihr Konto über den Link in der E-Mail
+      account_blocked: Ihr Konto ist gesperrt
+      not_admin: Unzureichende Berechtigungen
+      too_many_requests: Zu viele Anfragen an den Server. Bitte warten Sie einen Moment.
+    hints:
+      email_confirmed: ✅ E-Mail bestätigt
+      email_not_confirmed: ⚠️ E-Mail nicht bestätigt. Bitte folgen Sie dem Link in der E-Mail.
+    fields:
+      current_password: Aktuelles Passwort
+      new_password: Neues Passwort
+      new_password_confirmation: Neues Passwort bestätigen
+
+    is_already_registred: Bereits registriert?
+    is_not_yet_registred: Noch kein Konto?
+    is_forgot_password: Passwort vergessen?
+    letters:
+      welcome:
+        subject: Sie haben sich auf bibleox.com registriert
+        body: |
+          <p>Hallo %{name},</p><br>
+          <p>jemand hat sich in Ihrem Namen auf bibleox.com registriert. Um sich anzumelden, folgen Sie diesem Link: %{url}.</p>
+          <p>Wenn Sie das nicht waren, ignorieren Sie diese E-Mail einfach.</p>
+          <p>Einen schönen Tag!</p>
+      activation_needed:
+        subject: E-Mail-Bestätigung
+        body: |
+          <p>Hallo %{name},</p><br>
+          <p>diese Adresse wurde für eine Registrierung auf bibleox.com verwendet. Um Ihr Konto zu aktivieren, folgen Sie diesem Link: %{url}.</p><br>
+          <p>Wenn Sie das nicht waren, ignorieren Sie diese E-Mail einfach.</p>
+          <p>Einen schönen Tag!</p>
+      password_reset:
+        subject: Passwort zurücksetzen
+        body: |
+          <p>Hallo %{name},</p><br>
+          <p>jemand hat für diese E-Mail-Adresse auf bibleox.com das Zurücksetzen des Passworts angefordert. Um ein neues Passwort festzulegen, folgen Sie diesem Link: %{url}.</p>
+          <p>Dieser Link ist 24 Stunden lang gültig.</p>
+          <p>Wenn Sie das nicht waren, ignorieren Sie diese E-Mail einfach.</p><br>
+          <p>Einen schönen Tag!</p>
+      account_unlock:
+        subject: Konto entsperren
+        body: |
+          <p>Hallo %{name},</p><br>
+          <p>jemand hat versucht, sich bei Ihrem Konto auf bibleox.com anzumelden, und dabei zu oft ein falsches Passwort eingegeben. Zum Schutz Ihres Kontos haben wir es vorübergehend gesperrt. Um es zu entsperren, folgen Sie diesem Link: %{url}.</p><br>
+          <p>Einen schönen Tag!</p>
+
+  errors:
+    alert: Es sind Fehler aufgetreten

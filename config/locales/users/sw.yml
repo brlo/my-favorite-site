@@ -1,0 +1,158 @@
+sw:
+  bc:
+    profile: Wasifu
+    change_password: Badilisha nenosiri
+    edit_password: Hariri wasifu
+
+  helpers:
+    label:
+      session:
+        email: Anwani ya barua pepe
+        password_reset: Anwani ya barua pepe ya akaunti uliyosahau nenosiri lake
+        password_reset_alert: Ikiwa anwani hii ya barua pepe iko kwenye mfumo wetu, utapokea barua pepe yenye maelekezo
+        password_reset_ok: Nenosiri limesasishwa kwa mafanikio
+    submit:
+      session:
+        create: Ingia
+        password_reset: Weka upya nenosiri
+      user:
+        create: Jisajili
+        update: Sasisha
+
+  activemodel:
+    attributes:
+      session:
+        email: Anwani ya barua pepe
+        password: Nenosiri
+        remember_me: Nikumbuke
+    errors:
+      models:
+        session:
+          invalid_credentials: Barua pepe au nenosiri si sahihi
+          account_activation_pending: Kwanza wezesha akaunti yako kupitia kiungo kilicho kwenye barua pepe tuliyokutumia.
+
+  activerecord:
+    models:
+      translation: Tafsiri
+    attributes:
+      translation:
+        user_id: Mtumiaji
+        segment_id: Kipande
+        lang: Lugha
+        text: Maandishi ya tafsiri
+      user:
+        username: Jina la mtumiaji
+        name: Jina
+        email: Anwani ya barua pepe
+        password: Nenosiri
+        password_confirmation: Thibitisha nenosiri
+        pages_owner: Mmiliki wa kurasa
+        privs: Haki
+        failed_logins_count: Majaribio ya kuingia yaliyoshindwa
+        lock_expires_at: Kizuizi kinaisha
+    errors:
+      messages:
+        record_invalid: ina makosa
+        blank: haiwezi kuwa tupu
+        invalid: si sahihi
+        too_short: ni fupi mno (angalau herufi %{count})
+        too_long: ni ndefu mno (zisizozidi herufi %{count})
+        inclusion: haimo kwenye orodha
+        taken: tayari imechukuliwa
+        confirmation: hailingani
+        email_cant_contain_plus: haiwezi kuwa na alama '+'
+        email_in_blacklist: haiwezi kuwa anwani ya muda
+        email_cant_changes_too_often: inaweza kubadilishwa si zaidi ya mara mbili kwa siku
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: tayari amependekeza tafsiri kwa kipande hiki
+              too_many_variants: anaweza kuunda tafsiri zisizozidi %{count}
+
+  users:
+    links:
+      login: Ingia
+      logout: Toka
+      profile_edit: Hariri wasifu
+      password_change: Badilisha nenosiri
+    titles:
+      signup: Usajili
+      login: Kuingia kwenye tovuti
+      password_reset: Kurejesha nenosiri
+      new_password: Kuweka nenosiri jipya
+      profile: Wasifu wa mtumiaji
+      password_change: Kubadilisha nenosiri
+      profile_edit: Kuhariri wasifu
+    buttons:
+      signup: Jisajili
+      login: Ingia
+      password_reset: Weka upya nenosiri
+      new_password: Weka nenosiri
+      save_changes: Hifadhi mabadiliko
+      save_new_password: Hifadhi nenosiri jipya
+    notices:
+      error: Hitilafu
+      registration_successful: Umesajiliwa kwa mafanikio
+      profile_is_updated: Wasifu umesasishwa kwa mafanikio
+      password_is_changed: Nenosiri limebadilishwa kwa mafanikio
+      password_confirm_is_wrong: Nenosiri na uthibitisho wake havilingani
+      current_password_is_wrong: Nenosiri la sasa si sahihi
+      user_is_activated: Barua pepe imethibitishwa. Akaunti imewezeshwa.
+      update_your_password_if_you_forgotten_it: Tafadhali sasisha nenosiri lako ikiwa umelisahau
+      already_logged_in: Tayari umeingia
+      logged_out: Umetoka
+      logged_in: Umeingia kwa mafanikio
+      login_failed: Kuingia kumeshindikana
+      loggin_failed_account_is_locked: Kuingia kumeshindikana. Akaunti imefungwa. Ifungue kupitia kiungo kilicho kwenye barua pepe
+    alerts:
+      are_you_shure: Una uhakika?
+    errors:
+      login_required: Unahitaji kuingia
+      activation_required: Unahitaji kuwezesha akaunti kupitia kiungo kilicho kwenye barua pepe
+      account_blocked: Akaunti yako imezuiwa
+      not_admin: Huna haki za kutosha
+      too_many_requests: Maombi mengi mno kwa seva. Tafadhali subiri kidogo.
+    hints:
+      email_confirmed: ✅ Barua pepe imethibitishwa
+      email_not_confirmed: ⚠️ Barua pepe haijathibitishwa. Fuata kiungo kilicho kwenye barua pepe.
+    fields:
+      current_password: Nenosiri la sasa
+      new_password: Nenosiri jipya
+      new_password_confirmation: Thibitisha nenosiri jipya
+
+    is_already_registred: Tayari umesajiliwa?
+    is_not_yet_registred: Huna akaunti?
+    is_forgot_password: Umesahau nenosiri?
+    letters:
+      welcome:
+        subject: Umejisajili kwenye bibleox.com
+        body: |
+          <p>Habari, %{name}.</p><br>
+          <p>Mtu fulani amejisajili kwenye bibleox.com kwa jina lako. Ili kuingia, fuata kiungo hiki: %{url}.</p>
+          <p>Ikiwa si wewe, puuza tu barua pepe hii.</p>
+          <p>Uwe na siku njema!</p>
+      activation_needed:
+        subject: Uthibitisho wa barua pepe
+        body: |
+          <p>Habari, %{name}.</p><br>
+          <p>Anwani hii ilitumika kujisajili kwenye bibleox.com. Ili kuwezesha akaunti yako, fuata kiungo hiki: %{url}.</p><br>
+          <p>Ikiwa si wewe, puuza tu barua pepe hii.</p>
+          <p>Uwe na siku njema!</p>
+      password_reset:
+        subject: Kuweka upya nenosiri
+        body: |
+          <p>Habari, %{name}.</p><br>
+          <p>Mtu fulani ameomba kuweka upya nenosiri la anwani hii ya barua pepe kwenye bibleox.com. Ili kuweka nenosiri jipya, fuata kiungo hiki: %{url}.</p>
+          <p>Kiungo hiki kitaacha kufanya kazi baada ya saa 24.</p>
+          <p>Ikiwa si wewe, puuza tu barua pepe hii.</p><br>
+          <p>Uwe na siku njema!</p>
+      account_unlock:
+        subject: Kufungua akaunti
+        body: |
+          <p>Habari, %{name}.</p><br>
+          <p>Mtu fulani alijaribu kuingia kwenye akaunti yako ya bibleox.com kwa kuingiza nenosiri lisilo sahihi mara nyingi mno. Ili kulinda akaunti yako, tumeifunga kwa muda. Ili kuifungua, fuata kiungo hiki: %{url}.</p><br>
+          <p>Uwe na siku njema!</p>
+
+  errors:
+    alert: Kumetokea makosa

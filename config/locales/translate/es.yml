@@ -1,0 +1,104 @@
+es:
+  menu:
+    translates: Traducciones
+  open_tags:
+    h2: título
+    p: párrafo
+    strong: texto en negrita
+  close_tags:
+    h2: fin del título
+    p: fin del párrafo
+    strong: fin del texto en negrita
+  time_ago:
+    just_now: ahora mismo
+    minute: min
+    hour: h
+    day: d
+    week: sem.
+    month: mes
+    year: año
+  tr_projects:
+    all_translations: Todas las traducciones
+    index_title: Traducción colaborativa de textos eclesiásticos
+    index_page_title: Traducción colaborativa de textos eclesiásticos a las lenguas de todos los pueblos
+    index_h1: Traducción colaborativa de textos eclesiásticos (beta)
+    quote: les oímos hablar en nuestras lenguas las maravillas de Dios
+    quote_ref: Hch 2, 11
+    beta_notice: La sección de traducciones está en fase de pruebas beta. Durante este periodo se ofrece para traducir solo un pequeño número de obras.
+    create_project: Crear proyecto
+    last_day: Traducciones de las últimas 24 horas
+    source_label: 'Original:'
+    translation_label: 'Traducción:'
+    translations_label: 'Traducciones:'
+    other_language: Otro idioma
+    other_languages: Otros idiomas...
+    project_page_title: Traducción colaborativa — %{title}
+    show_page_title: '%{title} — Parte %{part}'
+    result: Traducción final
+    work_on_translation: Trabajo en la traducción
+    prepared_by_users: Esta traducción la preparan los usuarios de bibleox.com.
+    help_cta_html: ¡Puede ayudar a mejorar este texto! %{signup_link} y %{join_link}.
+    signup_link: Regístrese
+    join_link: únase al trabajo de traducción
+    license: Al igual que los contenidos de Wikipedia, el resultado se distribuye libremente bajo la licencia CC BY-SA.
+    part: Parte
+    translate_from: 'Traducir del:'
+    translate_to: 'al:'
+    result_lang: 'Traducción al:'
+    sources: Originales
+    translations: Traducciones
+    continue_html: Puede continuar el trabajo de traducción en %{link}.
+    continue_link: la sección correspondiente
+    not_loaded: El texto aún no se ha cargado. Vuelva a intentarlo en 15 minutos.
+    confirm_delete_part: ¿Eliminar la parte %{part} del proyecto de traducción «%{title}»?
+    new_project: Nuevo proyecto de traducción
+    edit_project: Editar proyecto de traducción
+    delete: Eliminar
+    confirm_delete_project: ¿Eliminar el proyecto de traducción «%{title}»?
+    import_title: Importar una nueva parte del texto
+    source_lang: Idioma original
+    split_and_add: Dividir y añadir
+    processing: Procesando...
+    form:
+      title: Título del proyecto
+      description: Descripción
+      description_placeholder: Breve descripción del proyecto, fuentes, particularidades de la traducción...
+      page_ids: ID de páginas (separados por comas)
+      page_ids_placeholder: 'Por ejemplo: 1,3,5,7'
+      create: Crear proyecto
+      save: Guardar cambios
+      saving: Guardando...
+    notices:
+      created: Proyecto creado
+      updated: Proyecto actualizado
+      part_deleted: La parte %{part} se ha eliminado del proyecto
+      deleted: Proyecto eliminado
+    fragment: Fragmento
+    copy: Copiar
+    propose: Proponer una traducción
+    login_to_propose_html: Para proponer traducciones, %{link}.
+    login_to_propose_link: inicie sesión o regístrese
+    your_translation: Su traducción
+    editing: Edición de la traducción
+    cancel: Cancelar
+    text_placeholder: Escriba su versión de la traducción...
+    sub_text_placeholder: Nota al pie (si desea añadir un comentario a su traducción)
+    submit: Enviar traducción
+    save: Guardar traducción
+    edit_short: Editar
+    confirm_delete: ¿Seguro que desea eliminar esta traducción?
+    liked: Me gusta
+    needs_work: Necesita mejoras
+    needs_work_hint: '«Necesita mejoras». Solo pueden dar este voto quienes ya han propuesto su propia traducción'
+    approved: Aprobada como traducción principal
+    user_blocked: Usuario bloqueado
+    who_voted: Quién votó
+    pin: Fijar
+    unpin: Desfijar
+    approve_title: Aprobar como traducción principal
+    approve_confirm: ¿Hacer de esta la traducción principal?
+    block_short: Bloquear
+    block_title: Bloquear usuario
+    block_confirm: ¿Bloquear al usuario %{username}?
+    remove_reaction: Eliminar reacción
+    remove_reaction_confirm: ¿Eliminar la reacción del usuario %{username}?

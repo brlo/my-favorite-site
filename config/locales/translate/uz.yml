@@ -1,0 +1,104 @@
+uz:
+  menu:
+    translates: Tarjimalar
+  open_tags:
+    h2: sarlavha
+    p: xatboshi
+    strong: qalin matn
+  close_tags:
+    h2: sarlavha oxiri
+    p: xatboshi oxiri
+    strong: qalin matn oxiri
+  time_ago:
+    just_now: hozirgina
+    minute: daq
+    hour: soat
+    day: kun
+    week: hafta
+    month: oy
+    year: yil
+  tr_projects:
+    all_translations: Barcha tarjimalar
+    index_title: Cherkov matnlarining birgalikdagi tarjimasi
+    index_page_title: Cherkov matnlarining barcha xalqlar tillariga birgalikdagi tarjimasi
+    index_h1: Cherkov matnlarining birgalikdagi tarjimasi (beta)
+    quote: ularning Xudoning buyuk ishlari haqida o‘z tillarimizda gapirayotganini eshityapmiz
+    quote_ref: Havoriylar 2:11
+    beta_notice: Tarjimalar bo‘limi beta-sinov bosqichida. Sinov davomida tarjima uchun oz sonli asarlar taklif etiladi.
+    create_project: Loyiha yaratish
+    last_day: So‘nggi 24 soatdagi tarjimalar
+    source_label: 'Asl matn:'
+    translation_label: 'Tarjima:'
+    translations_label: 'Tarjimalar:'
+    other_language: Boshqa til
+    other_languages: Boshqa tillar...
+    project_page_title: Birgalikdagi tarjima — %{title}
+    show_page_title: '%{title} — %{part}-qism'
+    result: Yakuniy tarjima
+    work_on_translation: Tarjima ustida ishlash
+    prepared_by_users: Tarjima bibleox.com sayti foydalanuvchilari tomonidan tayyorlanmoqda.
+    help_cta_html: Siz bu matnni yaxshilashga yordam bera olasiz! %{signup_link} va %{join_link}.
+    signup_link: Ro‘yxatdan o‘ting
+    join_link: tarjima ishiga qo‘shiling
+    license: Vikipediya materiallari singari, natija CC BY-SA litsenziyasi ostida erkin tarqatiladi.
+    part: Qism
+    translate_from: 'Qaysi tildan:'
+    translate_to: 'qaysi tilga:'
+    result_lang: 'Tarjima tili:'
+    sources: Asl matnlar
+    translations: Tarjimalar
+    continue_html: Tarjima ustidagi ishni %{link} davom ettirish mumkin.
+    continue_link: maxsus bo‘limda
+    not_loaded: Matn hali yuklanmagan. 15 daqiqadan keyin qayta urinib ko‘ring.
+    confirm_delete_part: '"%{title}" tarjima loyihasining %{part}-qismi o‘chirilsinmi?'
+    new_project: Yangi tarjima loyihasi
+    edit_project: Tarjima loyihasini tahrirlash
+    delete: O‘chirish
+    confirm_delete_project: '"%{title}" tarjima loyihasi o‘chirilsinmi?'
+    import_title: Matnning yangi qismini import qilish
+    source_lang: Asl til
+    split_and_add: Bo‘lish va qo‘shish
+    processing: Ishlanmoqda...
+    form:
+      title: Loyiha nomi
+      description: Tavsif
+      description_placeholder: Loyihaning qisqacha tavsifi, manbalar, tarjima xususiyatlari...
+      page_ids: Sahifalar ID (vergul bilan)
+      page_ids_placeholder: 'Masalan: 1,3,5,7'
+      create: Loyiha yaratish
+      save: O‘zgarishlarni saqlash
+      saving: Saqlanmoqda...
+    notices:
+      created: Loyiha yaratildi
+      updated: Loyiha yangilandi
+      part_deleted: '%{part}-qism loyihadan o‘chirildi'
+      deleted: Loyiha o‘chirildi
+    fragment: Parcha
+    copy: Nusxalash
+    propose: Tarjima taklif qilish
+    login_to_propose_html: Tarjima taklif qilish uchun %{link}.
+    login_to_propose_link: tizimga kiring yoki ro‘yxatdan o‘ting
+    your_translation: Sizning tarjimangiz
+    editing: Tarjimani tahrirlash
+    cancel: Bekor qilish
+    text_placeholder: Tarjimaning o‘z variantingizni yozing...
+    sub_text_placeholder: Izoh-havola (tarjimaga izoh qo‘shmoqchi bo‘lsangiz)
+    submit: Tarjimani yuborish
+    save: Tarjimani saqlash
+    edit_short: Tahr.
+    confirm_delete: Bu tarjimani rostdan ham o‘chirmoqchimisiz?
+    liked: Yoqdi
+    needs_work: Qayta ishlash kerak
+    needs_work_hint: '"Qayta ishlash kerak". Bu ovozni faqat o‘z tarjima variantini taklif qilganlar bera oladi'
+    approved: Asosiy tarjima sifatida tasdiqlangan
+    user_blocked: Foydalanuvchi bloklangan
+    who_voted: Kimlar ovoz berdi
+    pin: Biriktirish
+    unpin: Ajratish
+    approve_title: Asosiy tarjima sifatida tasdiqlash
+    approve_confirm: Bu tarjima asosiy qilinsinmi?
+    block_short: Bloklash
+    block_title: Foydalanuvchini bloklash
+    block_confirm: '%{username} foydalanuvchisi bloklansinmi?'
+    remove_reaction: Reaksiyani o‘chirish
+    remove_reaction_confirm: '%{username} foydalanuvchisining reaksiyasi o‘chirilsinmi?'

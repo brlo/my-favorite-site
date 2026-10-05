@@ -1,0 +1,158 @@
+ar:
+  bc:
+    profile: الملف الشخصي
+    change_password: تغيير كلمة المرور
+    edit_password: تعديل الملف الشخصي
+
+  helpers:
+    label:
+      session:
+        email: البريد الإلكتروني
+        password_reset: البريد الإلكتروني للحساب الذي نسيت كلمة مروره
+        password_reset_alert: إذا كان هذا البريد الإلكتروني مسجلًا لدينا، فستصلك رسالة تحتوي على التعليمات
+        password_reset_ok: تم تحديث كلمة المرور بنجاح
+    submit:
+      session:
+        create: تسجيل الدخول
+        password_reset: إعادة تعيين كلمة المرور
+      user:
+        create: إنشاء حساب
+        update: تحديث
+
+  activemodel:
+    attributes:
+      session:
+        email: البريد الإلكتروني
+        password: كلمة المرور
+        remember_me: تذكرني
+    errors:
+      models:
+        session:
+          invalid_credentials: البريد الإلكتروني أو كلمة المرور غير صحيحة
+          account_activation_pending: يُرجى أولًا تفعيل حسابك عبر الرابط الموجود في الرسالة التي أرسلناها إليك.
+
+  activerecord:
+    models:
+      translation: ترجمة
+    attributes:
+      translation:
+        user_id: المستخدم
+        segment_id: المقطع
+        lang: اللغة
+        text: نص الترجمة
+      user:
+        username: اسم المستخدم
+        name: الاسم
+        email: البريد الإلكتروني
+        password: كلمة المرور
+        password_confirmation: تأكيد كلمة المرور
+        pages_owner: مالك الصفحات
+        privs: الصلاحيات
+        failed_logins_count: عدد محاولات الدخول الفاشلة
+        lock_expires_at: ينتهي الحظر في
+    errors:
+      messages:
+        record_invalid: يحتوي على أخطاء
+        blank: لا يمكن أن يكون فارغًا
+        invalid: غير صالح
+        too_short: قصير جدًا (الحد الأدنى %{count} حرفًا)
+        too_long: طويل جدًا (الحد الأقصى %{count} حرفًا)
+        inclusion: غير موجود في القائمة
+        taken: مستخدم بالفعل
+        confirmation: غير متطابق
+        email_cant_contain_plus: لا يمكن أن يحتوي على الرمز '+'
+        email_in_blacklist: لا يمكن أن يكون عنوانًا مؤقتًا
+        email_cant_changes_too_often: لا يمكن تغييره أكثر من مرتين في اليوم
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: اقترح بالفعل ترجمة لهذا المقطع
+              too_many_variants: يمكنه إنشاء %{count} نسخ ترجمة كحد أقصى
+
+  users:
+    links:
+      login: تسجيل الدخول
+      logout: تسجيل الخروج
+      profile_edit: تعديل الملف الشخصي
+      password_change: تغيير كلمة المرور
+    titles:
+      signup: إنشاء حساب
+      login: تسجيل الدخول إلى الموقع
+      password_reset: استعادة كلمة المرور
+      new_password: تعيين كلمة مرور جديدة
+      profile: ملف المستخدم
+      password_change: تغيير كلمة المرور
+      profile_edit: تعديل الملف الشخصي
+    buttons:
+      signup: إنشاء حساب
+      login: تسجيل الدخول
+      password_reset: إعادة تعيين كلمة المرور
+      new_password: تعيين كلمة المرور
+      save_changes: حفظ التغييرات
+      save_new_password: حفظ كلمة المرور الجديدة
+    notices:
+      error: خطأ
+      registration_successful: تم إنشاء حسابك بنجاح
+      profile_is_updated: تم تحديث الملف الشخصي بنجاح
+      password_is_changed: تم تغيير كلمة المرور بنجاح
+      password_confirm_is_wrong: كلمة المرور وتأكيدها غير متطابقين
+      current_password_is_wrong: كلمة المرور الحالية غير صحيحة
+      user_is_activated: تم تأكيد البريد الإلكتروني. تم تفعيل الحساب.
+      update_your_password_if_you_forgotten_it: يُرجى تحديث كلمة المرور إذا كنت قد نسيتها
+      already_logged_in: أنت مسجل الدخول بالفعل
+      logged_out: تم تسجيل خروجك
+      logged_in: تم تسجيل دخولك بنجاح
+      login_failed: فشل تسجيل الدخول
+      loggin_failed_account_is_locked: فشل تسجيل الدخول. الحساب مقفل. افتحه عبر الرابط الموجود في الرسالة
+    alerts:
+      are_you_shure: هل أنت متأكد؟
+    errors:
+      login_required: يجب تسجيل الدخول
+      activation_required: يجب تفعيل الحساب عبر الرابط الموجود في الرسالة
+      account_blocked: حسابك محظور
+      not_admin: صلاحيات غير كافية
+      too_many_requests: طلبات كثيرة جدًا إلى الخادم. يُرجى الانتظار قليلًا.
+    hints:
+      email_confirmed: ✅ تم تأكيد البريد الإلكتروني
+      email_not_confirmed: ⚠️ لم يتم تأكيد البريد الإلكتروني. افتح الرابط الموجود في الرسالة.
+    fields:
+      current_password: كلمة المرور الحالية
+      new_password: كلمة المرور الجديدة
+      new_password_confirmation: تأكيد كلمة المرور الجديدة
+
+    is_already_registred: لديك حساب بالفعل؟
+    is_not_yet_registred: ليس لديك حساب؟
+    is_forgot_password: نسيت كلمة المرور؟
+    letters:
+      welcome:
+        subject: لقد أنشأت حسابًا على bibleox.com
+        body: |
+          <p>مرحبًا %{name}،</p><br>
+          <p>قام شخص ما بإنشاء حساب باسمك على موقع bibleox.com. لتسجيل الدخول، افتح الرابط: %{url}.</p>
+          <p>إذا لم تكن أنت، فتجاهل هذه الرسالة.</p>
+          <p>نتمنى لك يومًا سعيدًا!</p>
+      activation_needed:
+        subject: تأكيد البريد الإلكتروني
+        body: |
+          <p>مرحبًا %{name}،</p><br>
+          <p>تم استخدام هذا العنوان لإنشاء حساب على موقع bibleox.com. لتفعيل الحساب، افتح الرابط: %{url}.</p><br>
+          <p>إذا لم تكن أنت، فتجاهل هذه الرسالة.</p>
+          <p>نتمنى لك يومًا سعيدًا!</p>
+      password_reset:
+        subject: إعادة تعيين كلمة المرور
+        body: |
+          <p>مرحبًا %{name}،</p><br>
+          <p>طلب شخص ما إعادة تعيين كلمة المرور لهذا البريد الإلكتروني على موقع bibleox.com. لتعيين كلمة مرور جديدة، افتح الرابط: %{url}.</p>
+          <p>ستنتهي صلاحية هذا الرابط بعد 24 ساعة.</p>
+          <p>إذا لم تكن أنت، فتجاهل هذه الرسالة.</p><br>
+          <p>نتمنى لك يومًا سعيدًا!</p>
+      account_unlock:
+        subject: فتح الحساب
+        body: |
+          <p>مرحبًا %{name}،</p><br>
+          <p>حاول شخص ما الدخول إلى حسابك على موقع bibleox.com بإدخال كلمة مرور خاطئة مرات كثيرة جدًا. لحماية حسابك قمنا بقفله مؤقتًا. لفتحه، افتح الرابط: %{url}.</p><br>
+          <p>نتمنى لك يومًا سعيدًا!</p>
+
+  errors:
+    alert: حدثت أخطاء

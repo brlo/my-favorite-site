@@ -1,0 +1,104 @@
+vi:
+  menu:
+    translates: Bản dịch
+  open_tags:
+    h2: tiêu đề
+    p: đoạn văn
+    strong: chữ đậm
+  close_tags:
+    h2: hết tiêu đề
+    p: hết đoạn văn
+    strong: hết chữ đậm
+  time_ago:
+    just_now: vừa xong
+    minute: phút
+    hour: giờ
+    day: ngày
+    week: tuần
+    month: tháng
+    year: năm
+  tr_projects:
+    all_translations: Tất cả bản dịch
+    index_title: Cộng đồng cùng dịch các văn bản của Giáo hội
+    index_page_title: Cộng đồng cùng dịch các văn bản của Giáo hội sang ngôn ngữ của mọi dân tộc
+    index_h1: Cộng đồng cùng dịch các văn bản của Giáo hội (beta)
+    quote: chúng ta đều nghe họ dùng tiếng nói của chúng ta mà nói về những việc cao cả của Thiên Chúa
+    quote_ref: Cv 2,11
+    beta_notice: Mục dịch thuật đang trong giai đoạn thử nghiệm beta. Trong thời gian thử nghiệm, chỉ một số ít tác phẩm được đưa ra để dịch.
+    create_project: Tạo dự án
+    last_day: Bản dịch trong 24 giờ qua
+    source_label: 'Bản gốc:'
+    translation_label: 'Bản dịch:'
+    translations_label: 'Bản dịch:'
+    other_language: Ngôn ngữ khác
+    other_languages: Các ngôn ngữ khác...
+    project_page_title: Dịch cộng đồng — %{title}
+    show_page_title: '%{title} — Phần %{part}'
+    result: Bản dịch hoàn chỉnh
+    work_on_translation: Làm việc với bản dịch
+    prepared_by_users: Bản dịch này do người dùng bibleox.com thực hiện.
+    help_cta_html: Bạn có thể giúp hoàn thiện văn bản này! %{signup_link} và %{join_link}.
+    signup_link: Hãy đăng ký
+    join_link: tham gia công việc dịch thuật
+    license: Giống như nội dung của Wikipedia, kết quả được phân phối tự do theo giấy phép CC BY-SA.
+    part: Phần
+    translate_from: 'Dịch từ:'
+    translate_to: 'sang:'
+    result_lang: 'Bản dịch sang:'
+    sources: Bản gốc
+    translations: Bản dịch
+    continue_html: Bạn có thể tiếp tục công việc dịch thuật trong %{link}.
+    continue_link: mục dành riêng
+    not_loaded: Văn bản chưa được tải lên. Vui lòng thử lại sau 15 phút.
+    confirm_delete_part: Xóa phần %{part} của dự án dịch "%{title}"?
+    new_project: Dự án dịch mới
+    edit_project: Chỉnh sửa dự án dịch
+    delete: Xóa
+    confirm_delete_project: Xóa dự án dịch "%{title}"?
+    import_title: Nhập phần mới của văn bản
+    source_lang: Ngôn ngữ gốc
+    split_and_add: Chia nhỏ và thêm
+    processing: Đang xử lý...
+    form:
+      title: Tên dự án
+      description: Mô tả
+      description_placeholder: Mô tả ngắn về dự án, nguồn, đặc điểm của bản dịch...
+      page_ids: ID trang (phân cách bằng dấu phẩy)
+      page_ids_placeholder: 'Ví dụ: 1,3,5,7'
+      create: Tạo dự án
+      save: Lưu thay đổi
+      saving: Đang lưu...
+    notices:
+      created: Đã tạo dự án
+      updated: Đã cập nhật dự án
+      part_deleted: Đã xóa phần %{part} khỏi dự án
+      deleted: Đã xóa dự án
+    fragment: Đoạn
+    copy: Sao chép
+    propose: Đề xuất bản dịch
+    login_to_propose_html: Để đề xuất bản dịch, %{link}.
+    login_to_propose_link: hãy đăng nhập hoặc đăng ký
+    your_translation: Bản dịch của bạn
+    editing: Chỉnh sửa bản dịch
+    cancel: Hủy
+    text_placeholder: Viết phiên bản dịch của bạn...
+    sub_text_placeholder: Chú thích (nếu bạn muốn kèm theo nhận xét cho bản dịch)
+    submit: Gửi bản dịch
+    save: Lưu bản dịch
+    edit_short: Sửa
+    confirm_delete: Bạn có chắc muốn xóa bản dịch này?
+    liked: Thích
+    needs_work: Cần chỉnh sửa
+    needs_work_hint: '"Cần chỉnh sửa". Chỉ những người đã đề xuất bản dịch của mình mới có thể bỏ phiếu này'
+    approved: Được duyệt làm bản dịch chính
+    user_blocked: Người dùng đã bị chặn
+    who_voted: Ai đã bình chọn
+    pin: Ghim
+    unpin: Bỏ ghim
+    approve_title: Duyệt làm bản dịch chính
+    approve_confirm: Đặt bản dịch này làm bản dịch chính?
+    block_short: Chặn
+    block_title: Chặn người dùng
+    block_confirm: Chặn người dùng %{username}?
+    remove_reaction: Xóa phản hồi
+    remove_reaction_confirm: Xóa phản hồi của người dùng %{username}?

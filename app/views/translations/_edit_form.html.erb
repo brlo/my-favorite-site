@@ -2,8 +2,8 @@
   <div class="translation-form-container" data-translation-form-target="formContainer">
     <div class="translation-form-card">
       <div class="form-header flex">
-        <h5>Редактирование перевода</h5>
-        <%= link_to 'Отмена', translation_project_segment_translation_path(
+        <h5><%= t('tr_projects.editing') %></h5>
+        <%= link_to t('tr_projects.cancel'), translation_project_segment_translation_path(
               translation_project_id: translation.translation_project_id,
               segment_id: translation.segment_id,
               id: translation.id
@@ -32,18 +32,18 @@
                     class: "inline-form" do |f| %>
 
         <%= f.text_area :text,
-                        placeholder: "Напишите ваш вариант перевода...",
+                        placeholder: t('tr_projects.text_placeholder'),
                         rows: 3,
                         class: "translation-input",
                         autofocus: true %>
 
         <%= f.text_area :sub_text,
-                        placeholder: "Комментарий-сноска (если хотите приложить комментарий к переводу)",
+                        placeholder: t('tr_projects.sub_text_placeholder'),
                         rows: 1,
                         class: "translation-input" %>
 
         <div class="form-actions">
-          <%= f.submit "Сохранить перевод", class: "btn-submit" %>
+          <%= f.submit t('tr_projects.save'), class: "btn-submit" %>
         </div>
       <% end %>
     </div>

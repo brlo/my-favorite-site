@@ -1,0 +1,104 @@
+en:
+  menu:
+    translates: Translations
+  open_tags:
+    h2: heading
+    p: paragraph
+    strong: bold text
+  close_tags:
+    h2: end of heading
+    p: end of paragraph
+    strong: end of bold text
+  time_ago:
+    just_now: just now
+    minute: min
+    hour: h
+    day: d
+    week: wk
+    month: mo
+    year: y
+  tr_projects:
+    all_translations: All translations
+    index_title: Collaborative translation of Church texts
+    index_page_title: Collaborative translation of Church texts into the languages of all nations
+    index_h1: Collaborative translation of Church texts (beta)
+    quote: we do hear them speak in our tongues the wonderful works of God
+    quote_ref: Acts 2:11
+    beta_notice: The translation section is in beta testing. During testing, only a small number of works are offered for translation.
+    create_project: Create project
+    last_day: Translations in the last 24 hours
+    source_label: 'Source:'
+    translation_label: 'Translation:'
+    translations_label: 'Translations:'
+    other_language: Another language
+    other_languages: Other languages...
+    project_page_title: Collaborative translation — %{title}
+    show_page_title: '%{title} — Part %{part}'
+    result: Final translation
+    work_on_translation: Work on the translation
+    prepared_by_users: This translation is being prepared by the users of bibleox.com.
+    help_cta_html: You can help improve this text! %{signup_link} and %{join_link}.
+    signup_link: Sign up
+    join_link: join the work on the translation
+    license: Like Wikipedia content, the result is freely distributed under the CC BY-SA license.
+    part: Part
+    translate_from: 'Translate from:'
+    translate_to: 'into:'
+    result_lang: 'Translation into:'
+    sources: Sources
+    translations: Translations
+    continue_html: You can continue working on the translation in %{link}.
+    continue_link: the dedicated section
+    not_loaded: The text has not been loaded yet. Please try again in 15 minutes.
+    confirm_delete_part: Delete part %{part} of the translation project "%{title}"?
+    new_project: New translation project
+    edit_project: Edit translation project
+    delete: Delete
+    confirm_delete_project: Delete the translation project "%{title}"?
+    import_title: Import a new part of the text
+    source_lang: Source language
+    split_and_add: Split and add
+    processing: Processing...
+    form:
+      title: Project title
+      description: Description
+      description_placeholder: Short description of the project, sources, translation specifics...
+      page_ids: Page IDs (comma-separated)
+      page_ids_placeholder: 'For example: 1,3,5,7'
+      create: Create project
+      save: Save changes
+      saving: Saving...
+    notices:
+      created: Project created
+      updated: Project updated
+      part_deleted: Part %{part} has been removed from the project
+      deleted: Project deleted
+    fragment: Fragment
+    copy: Copy
+    propose: Suggest a translation
+    login_to_propose_html: To suggest translations, %{link}.
+    login_to_propose_link: log in or sign up
+    your_translation: Your translation
+    editing: Editing translation
+    cancel: Cancel
+    text_placeholder: Write your version of the translation...
+    sub_text_placeholder: Footnote (if you want to add a comment to your translation)
+    submit: Submit translation
+    save: Save translation
+    edit_short: Edit
+    confirm_delete: Are you sure you want to delete this translation?
+    liked: Like
+    needs_work: Needs work
+    needs_work_hint: '"Needs work". Only those who have already suggested their own translation can cast this vote'
+    approved: Approved as the main translation
+    user_blocked: User is blocked
+    who_voted: Who voted
+    pin: Pin
+    unpin: Unpin
+    approve_title: Approve as the main translation
+    approve_confirm: Make this translation the main one?
+    block_short: Block
+    block_title: Block user
+    block_confirm: Block user %{username}?
+    remove_reaction: Remove reaction
+    remove_reaction_confirm: Remove the reaction of user %{username}?

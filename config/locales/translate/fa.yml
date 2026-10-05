@@ -1,0 +1,104 @@
+fa:
+  menu:
+    translates: ترجمه‌ها
+  open_tags:
+    h2: عنوان
+    p: بند
+    strong: متن پررنگ
+  close_tags:
+    h2: پایان عنوان
+    p: پایان بند
+    strong: پایان متن پررنگ
+  time_ago:
+    just_now: همین الان
+    minute: دقیقه
+    hour: ساعت
+    day: روز
+    week: هفته
+    month: ماه
+    year: سال
+  tr_projects:
+    all_translations: همهٔ ترجمه‌ها
+    index_title: ترجمهٔ مشترک متون کلیسایی
+    index_page_title: ترجمهٔ مشترک متون کلیسایی به زبان‌های همهٔ اقوام
+    index_h1: ترجمهٔ مشترک متون کلیسایی (آزمایشی)
+    quote: می‌شنویم که به زبان‌های ما از کارهای عظیم خدا سخن می‌گویند
+    quote_ref: اعمال ۲:۱۱
+    beta_notice: بخش ترجمه‌ها در مرحلهٔ آزمایش (بتا) است. در دورهٔ آزمایش، تعداد کمی از آثار برای ترجمه ارائه می‌شود.
+    create_project: ایجاد پروژه
+    last_day: ترجمه‌های ۲۴ ساعت گذشته
+    source_label: 'متن اصلی:'
+    translation_label: 'ترجمه:'
+    translations_label: 'ترجمه‌ها:'
+    other_language: زبان دیگر
+    other_languages: زبان‌های دیگر...
+    project_page_title: ترجمهٔ مشترک — %{title}
+    show_page_title: '%{title} — بخش %{part}'
+    result: ترجمهٔ نهایی
+    work_on_translation: کار روی ترجمه
+    prepared_by_users: این ترجمه توسط کاربران سایت bibleox.com تهیه می‌شود.
+    help_cta_html: شما می‌توانید به بهتر شدن این متن کمک کنید! %{signup_link} و %{join_link}.
+    signup_link: ثبت‌نام کنید
+    join_link: به کار ترجمه بپیوندید
+    license: مانند مطالب ویکی‌پدیا، نتیجه به‌طور آزاد تحت مجوز CC BY-SA منتشر می‌شود.
+    part: بخش
+    translate_from: 'ترجمه از:'
+    translate_to: 'به:'
+    result_lang: 'ترجمه به:'
+    sources: متون اصلی
+    translations: ترجمه‌ها
+    continue_html: می‌توانید کار روی ترجمه را در %{link} ادامه دهید.
+    continue_link: بخش ویژه
+    not_loaded: متن هنوز بارگذاری نشده است. لطفاً ۱۵ دقیقهٔ دیگر دوباره تلاش کنید.
+    confirm_delete_part: بخش %{part} از پروژهٔ ترجمهٔ «%{title}» حذف شود؟
+    new_project: پروژهٔ ترجمهٔ جدید
+    edit_project: ویرایش پروژهٔ ترجمه
+    delete: حذف
+    confirm_delete_project: پروژهٔ ترجمهٔ «%{title}» حذف شود؟
+    import_title: وارد کردن بخش جدیدی از متن
+    source_lang: زبان اصلی
+    split_and_add: تقسیم و افزودن
+    processing: در حال پردازش...
+    form:
+      title: نام پروژه
+      description: توضیحات
+      description_placeholder: توضیح کوتاه پروژه، منابع، ویژگی‌های ترجمه...
+      page_ids: شناسهٔ صفحات (با ویرگول جدا شود)
+      page_ids_placeholder: 'برای نمونه: 1,3,5,7'
+      create: ایجاد پروژه
+      save: ذخیرهٔ تغییرات
+      saving: در حال ذخیره...
+    notices:
+      created: پروژه ایجاد شد
+      updated: پروژه به‌روزرسانی شد
+      part_deleted: بخش %{part} از پروژه حذف شد
+      deleted: پروژه حذف شد
+    fragment: قطعه
+    copy: کپی
+    propose: پیشنهاد ترجمه
+    login_to_propose_html: برای پیشنهاد ترجمه، %{link}.
+    login_to_propose_link: وارد شوید یا ثبت‌نام کنید
+    your_translation: ترجمهٔ شما
+    editing: ویرایش ترجمه
+    cancel: لغو
+    text_placeholder: نسخهٔ ترجمهٔ خود را بنویسید...
+    sub_text_placeholder: پانویس (اگر می‌خواهید توضیحی به ترجمه پیوست کنید)
+    submit: ارسال ترجمه
+    save: ذخیرهٔ ترجمه
+    edit_short: ویرایش
+    confirm_delete: آیا مطمئنید که می‌خواهید این ترجمه را حذف کنید؟
+    liked: پسندیدم
+    needs_work: نیاز به اصلاح
+    needs_work_hint: '«نیاز به اصلاح». فقط کسانی که قبلاً ترجمهٔ خود را پیشنهاد داده‌اند می‌توانند این رأی را بدهند'
+    approved: به‌عنوان ترجمهٔ اصلی تأیید شده
+    user_blocked: کاربر مسدود است
+    who_voted: چه کسانی رأی دادند
+    pin: سنجاق کردن
+    unpin: برداشتن سنجاق
+    approve_title: تأیید به‌عنوان ترجمهٔ اصلی
+    approve_confirm: این ترجمه ترجمهٔ اصلی شود؟
+    block_short: مسدود
+    block_title: مسدود کردن کاربر
+    block_confirm: کاربر %{username} مسدود شود؟
+    remove_reaction: حذف واکنش
+    remove_reaction_confirm: واکنش کاربر %{username} حذف شود؟

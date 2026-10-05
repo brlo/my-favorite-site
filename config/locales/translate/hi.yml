@@ -1,0 +1,104 @@
+hi:
+  menu:
+    translates: अनुवाद
+  open_tags:
+    h2: शीर्षक
+    p: अनुच्छेद
+    strong: मोटा पाठ
+  close_tags:
+    h2: शीर्षक का अंत
+    p: अनुच्छेद का अंत
+    strong: मोटे पाठ का अंत
+  time_ago:
+    just_now: अभी-अभी
+    minute: मि
+    hour: घं
+    day: दि
+    week: सप्ताह
+    month: माह
+    year: वर्ष
+  tr_projects:
+    all_translations: सभी अनुवाद
+    index_title: कलीसियाई ग्रंथों का सामूहिक अनुवाद
+    index_page_title: कलीसियाई ग्रंथों का सभी जातियों की भाषाओं में सामूहिक अनुवाद
+    index_h1: कलीसियाई ग्रंथों का सामूहिक अनुवाद (बीटा)
+    quote: हम उन्हें अपनी-अपनी भाषाओं में परमेश्वर के महान कामों का वर्णन करते सुनते हैं
+    quote_ref: प्रेरितों 2:11
+    beta_notice: अनुवाद अनुभाग बीटा परीक्षण में है। परीक्षण के दौरान अनुवाद के लिए केवल कुछ ही रचनाएँ उपलब्ध कराई जा रही हैं।
+    create_project: परियोजना बनाएँ
+    last_day: पिछले 24 घंटों के अनुवाद
+    source_label: 'मूल पाठ:'
+    translation_label: 'अनुवाद:'
+    translations_label: 'अनुवाद:'
+    other_language: अन्य भाषा
+    other_languages: अन्य भाषाएँ...
+    project_page_title: सामूहिक अनुवाद — %{title}
+    show_page_title: '%{title} — भाग %{part}'
+    result: अंतिम अनुवाद
+    work_on_translation: अनुवाद पर कार्य
+    prepared_by_users: यह अनुवाद bibleox.com के उपयोगकर्ताओं द्वारा तैयार किया जा रहा है।
+    help_cta_html: आप इस पाठ को बेहतर बनाने में मदद कर सकते हैं! %{signup_link} और %{join_link}।
+    signup_link: पंजीकरण करें
+    join_link: अनुवाद कार्य में शामिल हों
+    license: विकिपीडिया की सामग्री की तरह, परिणाम CC BY-SA लाइसेंस के अंतर्गत स्वतंत्र रूप से वितरित किया जाता है।
+    part: भाग
+    translate_from: 'किस भाषा से:'
+    translate_to: 'किस भाषा में:'
+    result_lang: 'अनुवाद की भाषा:'
+    sources: मूल पाठ
+    translations: अनुवाद
+    continue_html: अनुवाद का कार्य %{link} में जारी रखा जा सकता है।
+    continue_link: विशेष अनुभाग
+    not_loaded: पाठ अभी लोड नहीं हुआ है। कृपया 15 मिनट बाद फिर से प्रयास करें।
+    confirm_delete_part: अनुवाद परियोजना "%{title}" का भाग %{part} हटाएँ?
+    new_project: नई अनुवाद परियोजना
+    edit_project: अनुवाद परियोजना संपादित करें
+    delete: हटाएँ
+    confirm_delete_project: अनुवाद परियोजना "%{title}" हटाएँ?
+    import_title: पाठ का नया भाग आयात करें
+    source_lang: मूल भाषा
+    split_and_add: विभाजित करें और जोड़ें
+    processing: संसाधित हो रहा है...
+    form:
+      title: परियोजना का नाम
+      description: विवरण
+      description_placeholder: परियोजना का संक्षिप्त विवरण, स्रोत, अनुवाद की विशेषताएँ...
+      page_ids: पृष्ठ ID (अल्पविराम से अलग)
+      page_ids_placeholder: 'उदाहरण: 1,3,5,7'
+      create: परियोजना बनाएँ
+      save: परिवर्तन सहेजें
+      saving: सहेजा जा रहा है...
+    notices:
+      created: परियोजना बनाई गई
+      updated: परियोजना अपडेट की गई
+      part_deleted: भाग %{part} परियोजना से हटा दिया गया
+      deleted: परियोजना हटा दी गई
+    fragment: अंश
+    copy: कॉपी करें
+    propose: अनुवाद सुझाएँ
+    login_to_propose_html: अनुवाद सुझाने के लिए %{link}।
+    login_to_propose_link: लॉग इन करें या पंजीकरण करें
+    your_translation: आपका अनुवाद
+    editing: अनुवाद संपादन
+    cancel: रद्द करें
+    text_placeholder: अनुवाद का अपना संस्करण लिखें...
+    sub_text_placeholder: फ़ुटनोट (यदि आप अनुवाद के साथ टिप्पणी जोड़ना चाहते हैं)
+    submit: अनुवाद भेजें
+    save: अनुवाद सहेजें
+    edit_short: संपादित
+    confirm_delete: क्या आप वाकई इस अनुवाद को हटाना चाहते हैं?
+    liked: पसंद आया
+    needs_work: सुधार की आवश्यकता
+    needs_work_hint: '"सुधार की आवश्यकता"। यह मत केवल वही दे सकते हैं जिन्होंने पहले से अपना अनुवाद सुझाया है'
+    approved: मुख्य अनुवाद के रूप में स्वीकृत
+    user_blocked: उपयोगकर्ता अवरुद्ध है
+    who_voted: किसने मत दिया
+    pin: पिन करें
+    unpin: अनपिन करें
+    approve_title: मुख्य अनुवाद के रूप में स्वीकृत करें
+    approve_confirm: इस अनुवाद को मुख्य बनाएँ?
+    block_short: अवरुद्ध
+    block_title: उपयोगकर्ता को अवरुद्ध करें
+    block_confirm: उपयोगकर्ता %{username} को अवरुद्ध करें?
+    remove_reaction: प्रतिक्रिया हटाएँ
+    remove_reaction_confirm: उपयोगकर्ता %{username} की प्रतिक्रिया हटाएँ?

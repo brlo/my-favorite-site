@@ -2,26 +2,26 @@
   <%= render 'layouts/errors', ar_object: project %>
 
   <div>
-    <%= f.label :title, 'Название проекта' %>
+    <%= f.label :title, t('tr_projects.form.title') %>
     <%= f.text_field :title, required: true, maxlength: 200 %>
   </div>
 
   <div>
-    <%= f.label :description, 'Описание' %>
-    <%= f.text_area :description, rows: 4, placeholder: 'Краткое описание проекта, источники, особенности перевода...' %>
+    <%= f.label :description, t('tr_projects.form.description') %>
+    <%= f.text_area :description, rows: 4, placeholder: t('tr_projects.form.description_placeholder') %>
   </div>
 
   <div>
-    <%= f.label :page_ids, 'ID страниц (через запятую)' %>
+    <%= f.label :page_ids, t('tr_projects.form.page_ids') %>
     <%= f.text_field :page_ids,
                      value: f.object.page_ids&.join(','),
-                     placeholder: 'Например: 1,3,5,7',
+                     placeholder: t('tr_projects.form.page_ids_placeholder'),
                      class: 'form-control' %>
   </div>
 
   <div>
-    <%= f.submit project.new_record? ? 'Создать проект' : 'Сохранить изменения',
+    <%= f.submit project.new_record? ? t('tr_projects.form.create') : t('tr_projects.form.save'),
         class: 'btn btn-primary',
-        data: { disable_with: 'Сохранение...' } %>
+        data: { disable_with: t('tr_projects.form.saving') } %>
   </div>
 <% end %>

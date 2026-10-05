@@ -1,0 +1,158 @@
+ko:
+  bc:
+    profile: 프로필
+    change_password: 비밀번호 변경
+    edit_password: 프로필 편집
+
+  helpers:
+    label:
+      session:
+        email: 이메일 주소
+        password_reset: 비밀번호를 잊은 계정의 이메일 주소
+        password_reset_alert: 이 이메일 주소가 시스템에 등록되어 있다면 안내 메일을 받게 됩니다
+        password_reset_ok: 비밀번호가 업데이트되었습니다
+    submit:
+      session:
+        create: 로그인
+        password_reset: 비밀번호 재설정
+      user:
+        create: 가입하기
+        update: 업데이트
+
+  activemodel:
+    attributes:
+      session:
+        email: 이메일 주소
+        password: 비밀번호
+        remember_me: 로그인 상태 유지
+    errors:
+      models:
+        session:
+          invalid_credentials: 이메일 또는 비밀번호가 올바르지 않습니다
+          account_activation_pending: 먼저 보내 드린 이메일의 링크를 통해 계정을 활성화해 주세요.
+
+  activerecord:
+    models:
+      translation: 번역
+    attributes:
+      translation:
+        user_id: 사용자
+        segment_id: 단편
+        lang: 언어
+        text: 번역문
+      user:
+        username: 사용자 이름
+        name: 이름
+        email: 이메일 주소
+        password: 비밀번호
+        password_confirmation: 비밀번호 확인
+        pages_owner: 페이지 소유자
+        privs: 권한
+        failed_logins_count: 로그인 실패 횟수
+        lock_expires_at: 잠금 해제 시각
+    errors:
+      messages:
+        record_invalid: 에 오류가 있습니다
+        blank: 은(는) 비워 둘 수 없습니다
+        invalid: 이(가) 올바르지 않습니다
+        too_short: 이(가) 너무 짧습니다 (최소 %{count}자)
+        too_long: 이(가) 너무 깁니다 (최대 %{count}자)
+        inclusion: 은(는) 목록에 없는 값입니다
+        taken: 은(는) 이미 사용 중입니다
+        confirmation: 이(가) 일치하지 않습니다
+        email_cant_contain_plus: 에 '+' 문자를 포함할 수 없습니다
+        email_in_blacklist: 은(는) 임시 주소일 수 없습니다
+        email_cant_changes_too_often: 은(는) 하루에 두 번까지만 변경할 수 있습니다
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: 은(는) 이미 이 단편에 번역을 제안했습니다
+              too_many_variants: 은(는) 번역안을 최대 %{count}개까지 만들 수 있습니다
+
+  users:
+    links:
+      login: 로그인
+      logout: 로그아웃
+      profile_edit: 프로필 편집
+      password_change: 비밀번호 변경
+    titles:
+      signup: 회원가입
+      login: 로그인
+      password_reset: 비밀번호 찾기
+      new_password: 새 비밀번호 설정
+      profile: 사용자 프로필
+      password_change: 비밀번호 변경
+      profile_edit: 프로필 편집
+    buttons:
+      signup: 가입하기
+      login: 로그인
+      password_reset: 비밀번호 재설정
+      new_password: 비밀번호 설정
+      save_changes: 변경 사항 저장
+      save_new_password: 새 비밀번호 저장
+    notices:
+      error: 오류
+      registration_successful: 가입이 완료되었습니다
+      profile_is_updated: 프로필이 업데이트되었습니다
+      password_is_changed: 비밀번호가 변경되었습니다
+      password_confirm_is_wrong: 비밀번호와 비밀번호 확인이 일치하지 않습니다
+      current_password_is_wrong: 현재 비밀번호가 올바르지 않습니다
+      user_is_activated: 이메일이 확인되었습니다. 계정이 활성화되었습니다.
+      update_your_password_if_you_forgotten_it: 비밀번호를 잊으셨다면 변경해 주세요
+      already_logged_in: 이미 로그인되어 있습니다
+      logged_out: 로그아웃되었습니다
+      logged_in: 로그인되었습니다
+      login_failed: 로그인에 실패했습니다
+      loggin_failed_account_is_locked: 로그인에 실패했습니다. 계정이 잠겨 있습니다. 이메일의 링크를 통해 잠금을 해제하세요
+    alerts:
+      are_you_shure: 확실합니까?
+    errors:
+      login_required: 로그인이 필요합니다
+      activation_required: 이메일의 링크를 통해 계정을 활성화해야 합니다
+      account_blocked: 계정이 차단되었습니다
+      not_admin: 권한이 부족합니다
+      too_many_requests: 서버 요청이 너무 많습니다. 잠시 기다려 주세요.
+    hints:
+      email_confirmed: ✅ 이메일 확인됨
+      email_not_confirmed: ⚠️ 이메일이 확인되지 않았습니다. 이메일의 링크를 열어 주세요.
+    fields:
+      current_password: 현재 비밀번호
+      new_password: 새 비밀번호
+      new_password_confirmation: 새 비밀번호 확인
+
+    is_already_registred: 이미 계정이 있으신가요?
+    is_not_yet_registred: 계정이 없으신가요?
+    is_forgot_password: 비밀번호를 잊으셨나요?
+    letters:
+      welcome:
+        subject: bibleox.com에 가입하셨습니다
+        body: |
+          <p>%{name}님, 안녕하세요.</p><br>
+          <p>누군가 회원님의 이름으로 bibleox.com에 가입했습니다. 로그인하려면 다음 링크를 여세요: %{url}</p>
+          <p>본인이 아니라면 이 메일을 무시하세요.</p>
+          <p>좋은 하루 되세요!</p>
+      activation_needed:
+        subject: 이메일 확인
+        body: |
+          <p>%{name}님, 안녕하세요.</p><br>
+          <p>이 주소가 bibleox.com 가입에 사용되었습니다. 계정을 활성화하려면 다음 링크를 여세요: %{url}</p><br>
+          <p>본인이 아니라면 이 메일을 무시하세요.</p>
+          <p>좋은 하루 되세요!</p>
+      password_reset:
+        subject: 비밀번호 재설정
+        body: |
+          <p>%{name}님, 안녕하세요.</p><br>
+          <p>누군가 bibleox.com에서 이 이메일 주소의 비밀번호 재설정을 요청했습니다. 새 비밀번호를 설정하려면 다음 링크를 여세요: %{url}</p>
+          <p>이 링크는 24시간 후에 만료됩니다.</p>
+          <p>본인이 아니라면 이 메일을 무시하세요.</p><br>
+          <p>좋은 하루 되세요!</p>
+      account_unlock:
+        subject: 계정 잠금 해제
+        body: |
+          <p>%{name}님, 안녕하세요.</p><br>
+          <p>누군가 잘못된 비밀번호를 너무 많이 입력하여 bibleox.com의 회원님 계정에 로그인하려고 했습니다. 계정을 보호하기 위해 일시적으로 잠갔습니다. 잠금을 해제하려면 다음 링크를 여세요: %{url}</p><br>
+          <p>좋은 하루 되세요!</p>
+
+  errors:
+    alert: 오류가 발생했습니다

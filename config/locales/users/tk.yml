@@ -1,0 +1,158 @@
+tk:
+  bc:
+    profile: Profil
+    change_password: Paroly üýtgetmek
+    edit_password: Profili redaktirlemek
+
+  helpers:
+    label:
+      session:
+        email: E-poçta salgysy
+        password_reset: Parolyny unudan hasabyňyzyň e-poçta salgysy
+        password_reset_alert: Eger bu e-poçta salgysy biziň ulgamymyzda bar bolsa, size görkezmeler bilen hat geler
+        password_reset_ok: Parol üstünlikli täzelendi
+    submit:
+      session:
+        create: Gir
+        password_reset: Paroly dikelt
+      user:
+        create: Hasaba dur
+        update: Täzele
+
+  activemodel:
+    attributes:
+      session:
+        email: E-poçta salgysy
+        password: Parol
+        remember_me: Meni ýatla
+    errors:
+      models:
+        session:
+          invalid_credentials: E-poçta ýa-da parol nädogry
+          account_activation_pending: Ilki bilen hatdaky salgy arkaly hasabyňyzy işjeňleşdiriň.
+
+  activerecord:
+    models:
+      translation: Terjime
+    attributes:
+      translation:
+        user_id: Ulanyjy
+        segment_id: Bölekçe
+        lang: Dil
+        text: Terjimäniň teksti
+      user:
+        username: Ulanyjy ady
+        name: Ady
+        email: E-poçta salgysy
+        password: Parol
+        password_confirmation: Paroly tassyklamak
+        pages_owner: Sahypalaryň eýesi
+        privs: Hukuklar
+        failed_logins_count: Şowsuz girişleriň sany
+        lock_expires_at: Bloklamanyň tamamlanýan wagty
+    errors:
+      messages:
+        record_invalid: ýalňyşlyklary öz içine alýar
+        blank: boş bolup bilmez
+        invalid: nädogry formatda
+        too_short: örän gysga (iň az %{count} nyşan)
+        too_long: örän uzyn (iň köp %{count} nyşan)
+        inclusion: sanawda ýok
+        taken: eýýäm eýelenen
+        confirmation: gabat gelmeýär
+        email_cant_contain_plus: "'+' nyşanyny öz içine alyp bilmez"
+        email_in_blacklist: wagtlaýyn salgy bolup bilmez
+        email_cant_changes_too_often: günde iki gezekden köp üýtgedip bolmaýar
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: bu bölekçe üçin eýýäm terjime teklip etdi
+              too_many_variants: iň köp %{count} terjime wariantyny döredip bilýär
+
+  users:
+    links:
+      login: Giriş
+      logout: Profilden çyk
+      profile_edit: Profiliň maglumatlaryny redaktirle
+      password_change: Paroly üýtget
+    titles:
+      signup: Hasaba durmak
+      login: Saýta giriş
+      password_reset: Paroly dikeltmek
+      new_password: Täze parol bellemek
+      profile: Ulanyjynyň profili
+      password_change: Paroly üýtgetmek
+      profile_edit: Profili redaktirlemek
+    buttons:
+      signup: Hasaba dur
+      login: Gir
+      password_reset: Paroly dikelt
+      new_password: Paroly belle
+      save_changes: Üýtgetmeleri ýatda sakla
+      save_new_password: Täze paroly ýatda sakla
+    notices:
+      error: Ýalňyşlyk
+      registration_successful: Siz üstünlikli hasaba durduňyz
+      profile_is_updated: Profil üstünlikli täzelendi
+      password_is_changed: Parol üstünlikli üýtgedildi
+      password_confirm_is_wrong: Parol we onuň tassyklamasy gabat gelmeýär
+      current_password_is_wrong: Häzirki parol nädogry
+      user_is_activated: E-poçta tassyklandy. Hasap işjeňleşdirildi.
+      update_your_password_if_you_forgotten_it: Parolyňyzy unudan bolsaňyz, ony täzeläň
+      already_logged_in: Siz eýýäm girdiňiz
+      logged_out: Siz çykdyňyz
+      logged_in: Siz üstünlikli girdiňiz
+      login_failed: Saýta girip bolmady
+      loggin_failed_account_is_locked: Saýta girip bolmady. Hasap bloklandy. Hatdaky salgy arkaly blokdan çykaryň
+    alerts:
+      are_you_shure: Ynamyňyz kämilmi?
+    errors:
+      login_required: Girmek zerur
+      activation_required: Hatdaky salgy arkaly hasabyňyzy işjeňleşdirmeli
+      account_blocked: Hasabyňyz bloklandy
+      not_admin: Hukuklar ýeterlik däl
+      too_many_requests: Serwere örän köp haýyş iberildi. Biraz garaşyň.
+    hints:
+      email_confirmed: ✅ E-poçta tassyklandy
+      email_not_confirmed: ⚠️ E-poçta tassyklanmady. Hatdaky salga geçiň.
+    fields:
+      current_password: Häzirki parol
+      new_password: Täze parol
+      new_password_confirmation: Täze paroly tassyklamak
+
+    is_already_registred: Eýýäm hasaba durduňyzmy?
+    is_not_yet_registred: Hasabyňyz ýokmy?
+    is_forgot_password: Paroly unutdyňyzmy?
+    letters:
+      welcome:
+        subject: Siz bibleox.com saýtynda hasaba durduňyz
+        body: |
+          <p>Salam, %{name}.</p><br>
+          <p>Kimdir biri siziň adyňyzdan bibleox.com saýtynda hasaba durdy. Saýta girmek üçin salga geçiň: %{url}.</p>
+          <p>Eger bu siz bolmasaňyz, bu haty äsgermezlik ediň.</p>
+          <p>Günüňiz haýyrly bolsun!</p>
+      activation_needed:
+        subject: E-poçtany tassyklamak
+        body: |
+          <p>Salam, %{name}.</p><br>
+          <p>Bu salgy bibleox.com saýtynda hasaba durmak üçin ulanyldy. Hasaby işjeňleşdirmek üçin salga geçiň: %{url}.</p><br>
+          <p>Eger bu siz bolmasaňyz, bu haty äsgermezlik ediň.</p>
+          <p>Günüňiz haýyrly bolsun!</p>
+      password_reset:
+        subject: Paroly dikeltmek
+        body: |
+          <p>Salam, %{name}.</p><br>
+          <p>Kimdir biri bibleox.com saýtynda bu e-poçta salgysy üçin paroly dikeltmegi sorady. Täze parol bellemek üçin salga geçiň: %{url}.</p>
+          <p>Bu salgy 24 sagatdan soň işlemez.</p>
+          <p>Eger bu siz bolmasaňyz, bu haty äsgermezlik ediň.</p><br>
+          <p>Günüňiz haýyrly bolsun!</p>
+      account_unlock:
+        subject: Hasaby blokdan çykarmak
+        body: |
+          <p>Salam, %{name}.</p><br>
+          <p>Kimdir biri bibleox.com saýtyndaky hasabyňyza örän köp gezek nädogry parol girizip girmäge synanyşdy. Hasabyňyzy goramak üçin ony wagtlaýyn blokladyk. Blokdan çykarmak üçin salga geçiň: %{url}.</p><br>
+          <p>Günüňiz haýyrly bolsun!</p>
+
+  errors:
+    alert: Ýalňyşlyklar ýüze çykdy

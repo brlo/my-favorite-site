@@ -1,7 +1,7 @@
 <div class="translation-form-container" data-translation-form-target="formContainer">
   <div class="translation-form-card">
     <div class="form-header">
-      <h5>Ваш перевод</h5>
+      <h5><%= t('tr_projects.your_translation') %></h5>
       <%= link_to "✕", "#",
                   data: { action: "click->translation-form#hideForm" },
                   class: "close-btn" %>
@@ -21,20 +21,20 @@
                   class: "inline-form" do |f| %>
 
       <%= f.text_area :text,
-                      placeholder: "Напишите ваш вариант перевода...",
+                      placeholder: t('tr_projects.text_placeholder'),
                       rows: 3,
                       class: "translation-input",
                       autofocus: true %>
 
       <%= f.text_area :sub_text,
-                      placeholder: "Комментарий-сноска (если хотите приложить комментарий к переводу)",
+                      placeholder: t('tr_projects.sub_text_placeholder'),
                       rows: 1,
                       class: "translation-input" %>
 
       <%= f.hidden_field :lang, value: params[:lang_to] || translation.lang %>
 
       <div class="form-actions">
-        <%= f.submit "Отправить перевод", class: "btn-submit" %>
+        <%= f.submit t('tr_projects.submit'), class: "btn-submit" %>
       </div>
     <% end %>
   </div>

@@ -1,0 +1,104 @@
+sw:
+  menu:
+    translates: Tafsiri
+  open_tags:
+    h2: kichwa
+    p: aya
+    strong: maandishi mazito
+  close_tags:
+    h2: mwisho wa kichwa
+    p: mwisho wa aya
+    strong: mwisho wa maandishi mazito
+  time_ago:
+    just_now: sasa hivi
+    minute: dak
+    hour: saa
+    day: siku
+    week: wiki
+    month: mwezi
+    year: mwaka
+  tr_projects:
+    all_translations: Tafsiri zote
+    index_title: Tafsiri ya pamoja ya maandiko ya Kanisa
+    index_page_title: Tafsiri ya pamoja ya maandiko ya Kanisa katika lugha za mataifa yote
+    index_h1: Tafsiri ya pamoja ya maandiko ya Kanisa (beta)
+    quote: tunawasikia wakisema kwa lugha zetu matendo makuu ya Mungu
+    quote_ref: Mdo 2:11
+    beta_notice: Sehemu ya tafsiri iko katika majaribio ya beta. Wakati wa majaribio, idadi ndogo tu ya kazi inatolewa kwa ajili ya kutafsiriwa.
+    create_project: Unda mradi
+    last_day: Tafsiri za saa 24 zilizopita
+    source_label: 'Asili:'
+    translation_label: 'Tafsiri:'
+    translations_label: 'Tafsiri:'
+    other_language: Lugha nyingine
+    other_languages: Lugha nyingine...
+    project_page_title: Tafsiri ya pamoja — %{title}
+    show_page_title: '%{title} — Sehemu %{part}'
+    result: Tafsiri ya mwisho
+    work_on_translation: Kazi ya tafsiri
+    prepared_by_users: Tafsiri hii inaandaliwa na watumiaji wa bibleox.com.
+    help_cta_html: Unaweza kusaidia kuboresha maandishi haya! %{signup_link} na %{join_link}.
+    signup_link: Jisajili
+    join_link: ujiunge na kazi ya tafsiri
+    license: Kama maudhui ya Wikipedia, matokeo yanasambazwa bure chini ya leseni ya CC BY-SA.
+    part: Sehemu
+    translate_from: 'Tafsiri kutoka:'
+    translate_to: 'kwenda:'
+    result_lang: 'Tafsiri kwa lugha:'
+    sources: Maandishi asilia
+    translations: Tafsiri
+    continue_html: Unaweza kuendelea na kazi ya tafsiri katika %{link}.
+    continue_link: sehemu maalum
+    not_loaded: Maandishi bado hayajapakiwa. Tafadhali jaribu tena baada ya dakika 15.
+    confirm_delete_part: Futa sehemu %{part} ya mradi wa tafsiri "%{title}"?
+    new_project: Mradi mpya wa tafsiri
+    edit_project: Hariri mradi wa tafsiri
+    delete: Futa
+    confirm_delete_project: Futa mradi wa tafsiri "%{title}"?
+    import_title: Ingiza sehemu mpya ya maandishi
+    source_lang: Lugha asilia
+    split_and_add: Gawanya na ongeza
+    processing: Inachakata...
+    form:
+      title: Jina la mradi
+      description: Maelezo
+      description_placeholder: Maelezo mafupi ya mradi, vyanzo, sifa za tafsiri...
+      page_ids: ID za kurasa (zikitenganishwa kwa koma)
+      page_ids_placeholder: 'Kwa mfano: 1,3,5,7'
+      create: Unda mradi
+      save: Hifadhi mabadiliko
+      saving: Inahifadhi...
+    notices:
+      created: Mradi umeundwa
+      updated: Mradi umesasishwa
+      part_deleted: Sehemu %{part} imeondolewa kwenye mradi
+      deleted: Mradi umefutwa
+    fragment: Kipande
+    copy: Nakili
+    propose: Pendekeza tafsiri
+    login_to_propose_html: Ili kupendekeza tafsiri, %{link}.
+    login_to_propose_link: ingia au jisajili
+    your_translation: Tafsiri yako
+    editing: Kuhariri tafsiri
+    cancel: Ghairi
+    text_placeholder: Andika toleo lako la tafsiri...
+    sub_text_placeholder: Tanbihi (ikiwa unataka kuambatisha maoni kwenye tafsiri)
+    submit: Tuma tafsiri
+    save: Hifadhi tafsiri
+    edit_short: Hariri
+    confirm_delete: Una uhakika unataka kufuta tafsiri hii?
+    liked: Nimependa
+    needs_work: Inahitaji maboresho
+    needs_work_hint: '"Inahitaji maboresho". Kura hii inaweza kutolewa tu na wale ambao tayari wamependekeza tafsiri yao wenyewe'
+    approved: Imeidhinishwa kama tafsiri kuu
+    user_blocked: Mtumiaji amezuiwa
+    who_voted: Waliopiga kura
+    pin: Bandika
+    unpin: Bandua
+    approve_title: Idhinisha kama tafsiri kuu
+    approve_confirm: Ifanye tafsiri hii kuwa kuu?
+    block_short: Zuia
+    block_title: Zuia mtumiaji
+    block_confirm: Zuia mtumiaji %{username}?
+    remove_reaction: Ondoa mwitikio
+    remove_reaction_confirm: Ondoa mwitikio wa mtumiaji %{username}?

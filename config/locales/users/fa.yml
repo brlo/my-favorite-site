@@ -1,0 +1,158 @@
+fa:
+  bc:
+    profile: نمایه
+    change_password: تغییر رمز عبور
+    edit_password: ویرایش نمایه
+
+  helpers:
+    label:
+      session:
+        email: نشانی ایمیل
+        password_reset: نشانی ایمیل حسابی که رمز عبورش را فراموش کرده‌اید
+        password_reset_alert: اگر این نشانی ایمیل در سامانهٔ ما باشد، ایمیلی حاوی دستورالعمل دریافت خواهید کرد
+        password_reset_ok: رمز عبور با موفقیت به‌روزرسانی شد
+    submit:
+      session:
+        create: ورود
+        password_reset: بازنشانی رمز عبور
+      user:
+        create: ثبت‌نام
+        update: به‌روزرسانی
+
+  activemodel:
+    attributes:
+      session:
+        email: نشانی ایمیل
+        password: رمز عبور
+        remember_me: مرا به خاطر بسپار
+    errors:
+      models:
+        session:
+          invalid_credentials: ایمیل یا رمز عبور نادرست است
+          account_activation_pending: لطفاً ابتدا حساب خود را از طریق پیوندی که برایتان ایمیل کردیم فعال کنید.
+
+  activerecord:
+    models:
+      translation: ترجمه
+    attributes:
+      translation:
+        user_id: کاربر
+        segment_id: قطعه
+        lang: زبان
+        text: متن ترجمه
+      user:
+        username: نام کاربری
+        name: نام
+        email: نشانی ایمیل
+        password: رمز عبور
+        password_confirmation: تکرار رمز عبور
+        pages_owner: مالک صفحات
+        privs: دسترسی‌ها
+        failed_logins_count: تعداد ورودهای ناموفق
+        lock_expires_at: پایان مسدودیت
+    errors:
+      messages:
+        record_invalid: دارای خطاست
+        blank: نمی‌تواند خالی باشد
+        invalid: نامعتبر است
+        too_short: خیلی کوتاه است (حداقل %{count} نویسه)
+        too_long: خیلی بلند است (حداکثر %{count} نویسه)
+        inclusion: در فهرست موجود نیست
+        taken: قبلاً استفاده شده است
+        confirmation: مطابقت ندارد
+        email_cant_contain_plus: نمی‌تواند نویسهٔ '+' داشته باشد
+        email_in_blacklist: نمی‌تواند نشانی موقت باشد
+        email_cant_changes_too_often: حداکثر دو بار در روز قابل تغییر است
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: قبلاً برای این قطعه ترجمه پیشنهاد داده است
+              too_many_variants: حداکثر می‌تواند %{count} نسخهٔ ترجمه ایجاد کند
+
+  users:
+    links:
+      login: ورود
+      logout: خروج
+      profile_edit: ویرایش نمایه
+      password_change: تغییر رمز عبور
+    titles:
+      signup: ثبت‌نام
+      login: ورود به سایت
+      password_reset: بازیابی رمز عبور
+      new_password: تعیین رمز عبور جدید
+      profile: نمایهٔ کاربر
+      password_change: تغییر رمز عبور
+      profile_edit: ویرایش نمایه
+    buttons:
+      signup: ثبت‌نام
+      login: ورود
+      password_reset: بازنشانی رمز عبور
+      new_password: تعیین رمز عبور
+      save_changes: ذخیرهٔ تغییرات
+      save_new_password: ذخیرهٔ رمز عبور جدید
+    notices:
+      error: خطا
+      registration_successful: ثبت‌نام شما با موفقیت انجام شد
+      profile_is_updated: نمایه با موفقیت به‌روزرسانی شد
+      password_is_changed: رمز عبور با موفقیت تغییر کرد
+      password_confirm_is_wrong: رمز عبور و تکرار آن مطابقت ندارند
+      current_password_is_wrong: رمز عبور فعلی نادرست است
+      user_is_activated: ایمیل تأیید شد. حساب فعال شد.
+      update_your_password_if_you_forgotten_it: اگر رمز عبور خود را فراموش کرده‌اید، لطفاً آن را به‌روزرسانی کنید
+      already_logged_in: شما قبلاً وارد شده‌اید
+      logged_out: از حساب خارج شدید
+      logged_in: با موفقیت وارد شدید
+      login_failed: ورود ناموفق بود
+      loggin_failed_account_is_locked: ورود ناموفق بود. حساب قفل شده است. آن را از طریق پیوند ایمیل باز کنید
+    alerts:
+      are_you_shure: آیا مطمئنید؟
+    errors:
+      login_required: باید وارد شوید
+      activation_required: باید حساب را از طریق پیوند ایمیل فعال کنید
+      account_blocked: حساب شما مسدود شده است
+      not_admin: دسترسی کافی ندارید
+      too_many_requests: درخواست‌های زیادی به سرور ارسال شده است. لطفاً کمی صبر کنید.
+    hints:
+      email_confirmed: ✅ ایمیل تأیید شده است
+      email_not_confirmed: ⚠️ ایمیل تأیید نشده است. روی پیوند داخل ایمیل کلیک کنید.
+    fields:
+      current_password: رمز عبور فعلی
+      new_password: رمز عبور جدید
+      new_password_confirmation: تکرار رمز عبور جدید
+
+    is_already_registred: قبلاً ثبت‌نام کرده‌اید؟
+    is_not_yet_registred: حساب ندارید؟
+    is_forgot_password: رمز عبور را فراموش کرده‌اید؟
+    letters:
+      welcome:
+        subject: شما در bibleox.com ثبت‌نام کردید
+        body: |
+          <p>سلام %{name}،</p><br>
+          <p>کسی به نام شما در سایت bibleox.com ثبت‌نام کرده است. برای ورود، روی این پیوند کلیک کنید: %{url}.</p>
+          <p>اگر این کار را شما انجام نداده‌اید، این ایمیل را نادیده بگیرید.</p>
+          <p>روز خوبی داشته باشید!</p>
+      activation_needed:
+        subject: تأیید ایمیل
+        body: |
+          <p>سلام %{name}،</p><br>
+          <p>این نشانی برای ثبت‌نام در سایت bibleox.com استفاده شده است. برای فعال کردن حساب، روی این پیوند کلیک کنید: %{url}.</p><br>
+          <p>اگر این کار را شما انجام نداده‌اید، این ایمیل را نادیده بگیرید.</p>
+          <p>روز خوبی داشته باشید!</p>
+      password_reset:
+        subject: بازنشانی رمز عبور
+        body: |
+          <p>سلام %{name}،</p><br>
+          <p>کسی در سایت bibleox.com درخواست بازنشانی رمز عبور این نشانی ایمیل را داده است. برای تعیین رمز عبور جدید، روی این پیوند کلیک کنید: %{url}.</p>
+          <p>این پیوند پس از ۲۴ ساعت منقضی می‌شود.</p>
+          <p>اگر این کار را شما انجام نداده‌اید، این ایمیل را نادیده بگیرید.</p><br>
+          <p>روز خوبی داشته باشید!</p>
+      account_unlock:
+        subject: باز کردن قفل حساب
+        body: |
+          <p>سلام %{name}،</p><br>
+          <p>کسی تلاش کرده با وارد کردن رمز عبور نادرست به دفعات زیاد، وارد حساب شما در سایت bibleox.com شود. برای محافظت از حساب، آن را موقتاً قفل کردیم. برای باز کردن قفل، روی این پیوند کلیک کنید: %{url}.</p><br>
+          <p>روز خوبی داشته باشید!</p>
+
+  errors:
+    alert: خطاهایی رخ داد

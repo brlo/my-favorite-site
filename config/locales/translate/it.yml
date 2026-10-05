@@ -1,0 +1,104 @@
+it:
+  menu:
+    translates: Traduzioni
+  open_tags:
+    h2: titolo
+    p: paragrafo
+    strong: testo in grassetto
+  close_tags:
+    h2: fine del titolo
+    p: fine del paragrafo
+    strong: fine del testo in grassetto
+  time_ago:
+    just_now: proprio ora
+    minute: min
+    hour: h
+    day: g
+    week: sett.
+    month: mese
+    year: anno
+  tr_projects:
+    all_translations: Tutte le traduzioni
+    index_title: Traduzione collaborativa dei testi ecclesiastici
+    index_page_title: Traduzione collaborativa dei testi ecclesiastici nelle lingue di tutti i popoli
+    index_h1: Traduzione collaborativa dei testi ecclesiastici (beta)
+    quote: li udiamo parlare nelle nostre lingue delle grandi opere di Dio
+    quote_ref: At 2,11
+    beta_notice: La sezione delle traduzioni è in fase di test beta. Durante il periodo di prova viene proposto per la traduzione solo un piccolo numero di opere.
+    create_project: Crea progetto
+    last_day: Traduzioni delle ultime 24 ore
+    source_label: 'Originale:'
+    translation_label: 'Traduzione:'
+    translations_label: 'Traduzioni:'
+    other_language: Altra lingua
+    other_languages: Altre lingue...
+    project_page_title: Traduzione collaborativa — %{title}
+    show_page_title: '%{title} — Parte %{part}'
+    result: Traduzione finale
+    work_on_translation: Lavoro sulla traduzione
+    prepared_by_users: Questa traduzione viene preparata dagli utenti di bibleox.com.
+    help_cta_html: Puoi aiutare a migliorare questo testo! %{signup_link} e %{join_link}.
+    signup_link: Registrati
+    join_link: partecipa al lavoro di traduzione
+    license: Come i contenuti di Wikipedia, il risultato è distribuito liberamente con licenza CC BY-SA.
+    part: Parte
+    translate_from: 'Traduci da:'
+    translate_to: 'in:'
+    result_lang: 'Traduzione in:'
+    sources: Originali
+    translations: Traduzioni
+    continue_html: Puoi continuare il lavoro di traduzione nella %{link}.
+    continue_link: sezione dedicata
+    not_loaded: Il testo non è ancora stato caricato. Riprova tra 15 minuti.
+    confirm_delete_part: Eliminare la parte %{part} del progetto di traduzione «%{title}»?
+    new_project: Nuovo progetto di traduzione
+    edit_project: Modifica progetto di traduzione
+    delete: Elimina
+    confirm_delete_project: Eliminare il progetto di traduzione «%{title}»?
+    import_title: Importa una nuova parte del testo
+    source_lang: Lingua originale
+    split_and_add: Dividi e aggiungi
+    processing: Elaborazione...
+    form:
+      title: Titolo del progetto
+      description: Descrizione
+      description_placeholder: Breve descrizione del progetto, fonti, particolarità della traduzione...
+      page_ids: ID delle pagine (separati da virgola)
+      page_ids_placeholder: 'Ad esempio: 1,3,5,7'
+      create: Crea progetto
+      save: Salva modifiche
+      saving: Salvataggio...
+    notices:
+      created: Progetto creato
+      updated: Progetto aggiornato
+      part_deleted: La parte %{part} è stata rimossa dal progetto
+      deleted: Progetto eliminato
+    fragment: Frammento
+    copy: Copia
+    propose: Proponi una traduzione
+    login_to_propose_html: Per proporre traduzioni, %{link}.
+    login_to_propose_link: accedi o registrati
+    your_translation: La tua traduzione
+    editing: Modifica della traduzione
+    cancel: Annulla
+    text_placeholder: Scrivi la tua versione della traduzione...
+    sub_text_placeholder: Nota a piè di pagina (se vuoi allegare un commento alla traduzione)
+    submit: Invia traduzione
+    save: Salva traduzione
+    edit_short: Modif.
+    confirm_delete: Vuoi davvero eliminare questa traduzione?
+    liked: Mi piace
+    needs_work: Da migliorare
+    needs_work_hint: '«Da migliorare». Questo voto può essere dato solo da chi ha già proposto la propria traduzione'
+    approved: Approvata come traduzione principale
+    user_blocked: Utente bloccato
+    who_voted: Chi ha votato
+    pin: Fissa
+    unpin: Sblocca
+    approve_title: Approva come traduzione principale
+    approve_confirm: Rendere questa la traduzione principale?
+    block_short: Blocca
+    block_title: Blocca utente
+    block_confirm: Bloccare l'utente %{username}?
+    remove_reaction: Rimuovi reazione
+    remove_reaction_confirm: Rimuovere la reazione dell'utente %{username}?
