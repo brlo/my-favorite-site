@@ -89,7 +89,6 @@ class VersesController < ApplicationController
         audio_file = "#{audio_prefix}#{@book_code}/#{@book_code}#{ @chapter }.mp3"
         @audio_file = audio_file if ::File.exist?("#{Rails.root}/public#{ audio_file }")
 
-        # cache doc: https://www.mongodb.com/docs/mongoid/master/reference/queries/#query-cache
         @verses = ::Verse.where(tr_code: @int_content_lang || @content_lang, book: @book_code, chapter: @chapter).order(line: :asc).to_a
         # Статьи-комментарии к стихам
         page_comments = ::Page.comments_for_verses(@verses)

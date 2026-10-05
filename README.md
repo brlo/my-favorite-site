@@ -52,8 +52,6 @@ rm ./db/cache_search/*/*/*.json
 ```ruby
 u.can!('pages_read')
 # u.can!('pages_create')
-u.can!('mrs_read')
-u.can!('mrs_create')
 ```
 
 
@@ -85,20 +83,10 @@ u.can!('gallery_read')
 u.can!('gallery_write')
 ```
 
-# Для начала редактирования через MR:
-
-Самая база: видеть страницы и MR
+# Для редактирования:
 
 ```ruby
 u.can!('pages_read')
-u.can!('mrs_read')
-
-# может создавать MR
-u.can!('mrs_create')
-# может отклонять MR
-# u.can!('mrs_reject')
-# может отклонять свои MR
-# u.can!('mrs_self_reject')
 
 # может обновлять свои страницы
 # u.can!('pages_self_update')
@@ -118,14 +106,6 @@ u.can!('dict_create')
 u.can!('dict_update')
 u.can!('dict_destroy')
 ```
-
-# Модератор:
-
-
-```ruby
-u.can!('mrs_merge')
-```
-
 
 # Админ:
 

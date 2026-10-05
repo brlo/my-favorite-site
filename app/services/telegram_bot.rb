@@ -48,35 +48,6 @@ class TelegramBot
       msg += " статью: <b><a href=\"https://bibleox.com/ru/#{pg.lang}/w/#{pg.path}\">#{pg.title}</a></b>"
       ::TelegramBot.say(msg)
     end
-
-    # Правки созданы
-    def self.mr_create(mr:, u:, pg:)
-      msg  = "🚀 <b>#{u.name} (@#{u.username})</b> предложил(а) правки к статье: <b><a href=\"https://edit.bibleox.com/merge_requests/#{mr.id.to_s}\">#{pg.title}</a></b>."
-      if mr.comment.present?
-        msg += "\n\nПояснение:\n<b>#{mr.comment}</b>."
-      end
-      ::TelegramBot.say(msg)
-    end
-
-    # Правки приняты
-    def self.mr_merge(mr:, u:, pg:)
-      msg  = "✅ Приняты правки к статье: <b><a href=\"https://edit.bibleox.com/merge_requests/#{mr.id.to_s}\">#{pg.title}</a></b>."
-      msg += "\n\nМодератор:\n#{u.name} (@#{u.username})."
-      if mr.comment.present?
-        msg += "\n\nПояснение:\n<b>#{mr.comment}</b>."
-      end
-      ::TelegramBot.say(msg)
-    end
-
-    # Правки отклонены
-    def self.mr_reject(mr:, u:, pg:)
-      msg  = "🔴 Отклонены правки к статье: <b><a href=\"https://edit.bibleox.com/merge_requests/#{mr.id.to_s}\">#{pg.title}</a></b>."
-      msg += "\n\nМодератор:\n#{u.name} (@#{u.username})."
-      if mr.comment.present?
-        msg += "\n\nПояснение:\n<b>#{mr.comment}</b>."
-      end
-      ::TelegramBot.say(msg)
-    end
   end
 
 end

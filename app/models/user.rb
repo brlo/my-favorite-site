@@ -60,8 +60,6 @@ class User < ApplicationRecord
       pages_read pages_create pages_update pages_destroy pages_self_update pages_editor_update pages_self_destroy
                               menus_update               menus_self_update
 
-      mrs_read   mrs_create   mrs_update   mrs_destroy
-
       dict_read  dict_create  dict_update  dict_destroy
 
       gallery_read gallery_write
@@ -97,10 +95,6 @@ class User < ApplicationRecord
     return if privs.blank?
     privs.delete(action)
     save!
-  end
-
-  def max_merge_requests_count
-    (privs || {})['mr_max'] || 5
   end
 
   # email подтверждён?

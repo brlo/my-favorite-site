@@ -43,22 +43,6 @@ class Page < ApplicationRecord
   has_many :children, class_name: 'Page', foreign_key: :parent_id, inverse_of: :parent
   has_many :page_paragraphs, dependent: :destroy
   has_many :bible_references, dependent: :destroy
-  # has_many :merge_requests, foreign_key: :p_id, dependent: :destroy
-
-  # has_many :merge_requests, foreign_key: 'p_id', primary_key: 'id', dependent: :destroy
-  # belongs_to :user, foreign_key: 'u_id', primary_key: 'id'
-
-  # # Связь с родителем (использует p_id)
-  # belongs_to :parent,
-  #            class_name: 'Page',
-  #            foreign_key: :p_id,
-  #            optional: true,
-  #            inverse_of: :children
-  # # Обратная связь на дочерние страницы
-  # has_many :children,
-  #          class_name: 'Page',
-  #          foreign_key: :p_id,
-  #          inverse_of: :parent
 
   # === Валидации ===
   validates :page_type, :title, :lang, :path, presence: true
@@ -66,12 +50,8 @@ class Page < ApplicationRecord
   # === Скоупы ===
   scope :published, -> { where(is_published: true) }
   scope :deleted, -> { where(is_deleted: true) }
-  scope :published, -> { where(is_published: true) }
-  scope :deleted, -> { where(is_deleted: true) }
 
   before_validation :normalize_attributes
-
-  validates :page_type, :title, :lang, :path, presence: true
 
   # after_create :chat_notify_create
   before_update :update_menus_params

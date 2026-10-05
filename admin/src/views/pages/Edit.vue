@@ -4,7 +4,6 @@ import Tiptap from "@/components/Tiptap.vue";
 import router from "@/router/index";
 import EditMenu from "@/components/EditMenu.vue";
 import AutocompletePage from "@/components/AutocompletePage.vue";
-import IndexMergeRequests from "@/views/merge_requests/Index.vue";
 import InputSwitch from 'primevue/inputswitch';
 import Dropdown from 'primevue/dropdown';
 import InputText from 'primevue/inputtext';
@@ -418,9 +417,6 @@ function removeLink(index) {
     <div v-if="currentUser?.privs?.pages_update || isPageOwner" class="can-info can-edit">
       <i class="pi pi-check-circle"></i> Вы можете редактировать эту страницу
     </div>
-    <div v-else-if="currentUser?.privs?.mrs_create" class="can-info can-suggest">
-      <i class="pi pi-send"></i> Вы можете предлагать правки к этой странице (временно не работает)
-    </div>
     <div v-else class="can-info cannot-edit">
       <i class="pi pi-times-circle"></i> Вы не можете редактировать эту страницу
     </div>
@@ -430,7 +426,6 @@ function removeLink(index) {
 
 <h2 v-if="page.is_deleted" class="page-deleted-label">СТАТЬЯ УДАЛЕНА!</h2>
 
-<IndexMergeRequests v-if="page.id" :pageId="page.id" :isPartial="true"/>
 <div class="flex action-bar">
   <Button v-if="!page.id" @click.prevent="submit" label="Опубликовать статью" icon="pi pi-check" />
   <Button v-else-if="currentUser?.privs?.pages_update || isPageOwner" @click.prevent="submit" label="Сохранить" icon="pi pi-check" />
@@ -770,13 +765,6 @@ h2 {
   color: #22C55E;
   background-color: #f0fdf467;
   border-color: #22c55e4e;
-}
-
-.can-suggest {
-  padding: 10px;
-  color: #3B82F6;
-  background-color: #f0f9ff56;
-  border-color: #3b83f650;
 }
 
 .cannot-edit {
