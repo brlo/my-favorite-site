@@ -130,6 +130,8 @@ export async function run(sql, values = []) {
   return conn.run(sql, values, false)
 }
 
+// Одна команда за вызов: на Android плагин делит текст на команды только по ";\n",
+// а остальное после первой ";" молча не выполняется.
 export async function exec(sql) {
   return conn.execute(sql, false)
 }
