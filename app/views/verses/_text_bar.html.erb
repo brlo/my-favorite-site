@@ -52,6 +52,22 @@
 
 
   <div class='right-group'>
+    <% if @cite_max.to_i > 0 %>
+      <div class='bar-el btn cite-toggle<%= ' off' if cite_map_off? %>' id='btn-cite-map'
+           data-controller='cite-toggle'
+           data-action='click->cite-toggle#toggle'
+           role='button' aria-pressed='<%= !cite_map_off? %>'
+           title='<%= t('citations.map_hint') %>' aria-label='<%= t('citations.map_hint') %>'>
+        <svg width='14' height='14' viewBox='0 0 14 14' aria-hidden='true'>
+          <rect x='1' y='1' width='2.5' height='4' fill='hsl(210 80% 52%)'/>
+          <rect x='1' y='5' width='2.5' height='3' fill='hsl(100 80% 45%)'/>
+          <rect x='1' y='8' width='2.5' height='5' fill='hsl(0 80% 52%)'/>
+          <rect x='6' y='2' width='7' height='1.6' rx='.8' fill='currentColor' opacity='.5'/>
+          <rect x='6' y='6.2' width='7' height='1.6' rx='.8' fill='currentColor' opacity='.5'/>
+          <rect x='6' y='10.4' width='7' height='1.6' rx='.8' fill='currentColor' opacity='.5'/>
+        </svg>
+      </div>
+    <% end %>
     <% if @audio_file %>
       <div class='bar-el btn' id='btn-play-text'
         data-controller='audio-player'

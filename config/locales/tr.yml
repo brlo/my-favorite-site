@@ -309,3 +309,6 @@ tr:
   backward: Geri
 
   years_from: Mesih'ten sonra
+
+  citations:
+    map_hint: 'Kilise yazarlarının alıntı haritası'

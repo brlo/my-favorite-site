@@ -562,3 +562,6 @@ zh-Hans:
     no_translation_for_this_book: '这本书没有这样的翻译'
     messages:
       taken: "has already been taken"
+
+  citations:
+    map_hint: '教会作家引用地图'

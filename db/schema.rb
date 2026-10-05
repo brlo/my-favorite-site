@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_10_05_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_10_05_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -35,6 +35,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_05_100000) do
   end
 
   create_table "bible_references", force: :cascade do |t|
+    t.bigint "author_page_id"
     t.string "book_code", limit: 20, null: false
     t.integer "chapter", null: false
     t.text "context_before"
@@ -42,10 +43,14 @@ ActiveRecord::Schema[8.1].define(version: 2026_10_05_100000) do
     t.string "lang", limit: 10, null: false
     t.bigint "page_id", null: false
     t.integer "position_in_page", null: false
+    t.text "snippet"
     t.datetime "updated_at", null: false
     t.integer "verse_end", null: false
     t.integer "verse_start", null: false
+    t.index ["author_page_id"], name: "index_bible_references_on_author_page_id"
+    t.index ["book_code", "chapter", "verse_start", "verse_end"], name: "idx_bible_refs_on_book_chapter_verses"
     t.index ["lang", "book_code", "chapter", "verse_start", "verse_end"], name: "idx_on_lang_book_code_chapter_verse_start_verse_end_90195d0c2d"
+    t.index ["page_id", "position_in_page", "book_code", "chapter", "verse_start", "verse_end"], name: "idx_unique_bible_ref_on_page", unique: true
     t.index ["page_id"], name: "index_bible_references_on_page_id"
   end
 

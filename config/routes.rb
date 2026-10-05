@@ -112,6 +112,10 @@ Rails.application.routes.draw do
           # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
         }
 
+      # Кто из святых отцов цитирует стих: фрагменты для панели справа от текста
+      get '/citations/:book_code/:chapter/:line', to: 'verses#citations', :constraints =>
+        lambda { |req| ::BOOKS.key?(req.params[:book_code]) }
+
       resources :verses, only: %w[update] do
         member do
           patch :update_interlinear_word

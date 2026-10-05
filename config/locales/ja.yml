@@ -557,3 +557,6 @@ ja:
     no_translation_for_this_book: 'この本にはそのような翻訳はありません'
     messages:
       taken: "has already been taken"
+
+  citations:
+    map_hint: '教会著作家による引用マップ'

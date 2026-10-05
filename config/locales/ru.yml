@@ -737,3 +737,10 @@ ru:
     messages:
       taken: "has already been taken"
       mini_magick_processing_error: "Ошибка обработки изображения"
+
+  citations:
+    map_hint: 'Карта цитирования церковными писателями'
+    title: 'Святые отцы о стихе: %{address}'
+    close: 'Закрыть'
+    empty: 'Пока никто из святых отцов в нашей библиотеке не упоминает этот стих.'
+    mentions: 'Упоминаний: %{count}'

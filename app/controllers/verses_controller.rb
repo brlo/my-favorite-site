@@ -107,6 +107,11 @@ class VersesController < ApplicationController
           @verses_gr = ::Verse.where(tr_code: 'gr-ru', book: @book_code, chapter: @chapter).order(line: :asc).to_a
         end
 
+        # Карта цитирования: сколько раз стихи упоминаются в трудах святых отцов
+        @cite_counts = ::BibleReference.verse_counts(@book_code, @chapter)
+        @cite_max = @cite_counts.values.max.to_i
+        @cite_min = @cite_counts.values.min.to_i
+
         @current_menu_item = 'biblia'
         @page_title =
           ::I18n.t("books.mid.#{@book_code}") +
@@ -141,6 +146,30 @@ class VersesController < ApplicationController
         end
       # end
     end
+  end
+
+  # HTML-фрагмент со списком авторов и кусочками их трудов, где упоминается стих
+  def citations
+    @book_code = params[:book_code]
+    @chapter = params[:chapter].to_i
+    @line = params[:line].to_i
+    refs = ::BibleReference.in_context(@book_code, @chapter, @line)
+                           .order(:id).limit(400).to_a
+    pages = ::Page.where(id: refs.flat_map { [_1.page_id, _1.author_page_id] }.compact.uniq)
+                  .select(:id, :title, :path, :lang, :date_start_int).index_by(&:id)
+
+    @authors = refs.group_by(&:author_page_id).filter_map do |author_id, list|
+      author = pages[author_id]
+      next unless author
+      works = list.group_by(&:page_id).filter_map do |page_id, rs|
+        pages[page_id] && { page: pages[page_id], refs: rs.first(3) }
+      end
+      { author: author, works: works, total: list.size }
+    end
+    @authors.sort_by! { |a| [a[:author].date_start_int || 99_999, a[:author].title] }
+    @address = ::AddressConverter.humanize("#{@book_code}:#{@chapter}:#{@line}")
+
+    render partial: 'verses/citations', layout: false
   end
 
   def search

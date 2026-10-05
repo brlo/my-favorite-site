@@ -1,0 +1,24 @@
+<div class="cite-head">
+  <div class="cite-title"><%= t('citations.title', address: @address) %></div>
+  <button type="button" class="cite-close" data-action="citations#close" aria-label="<%= t('citations.close') %>">×</button>
+</div>
+<% if @authors.blank? %>
+  <div class="cite-empty"><%= t('citations.empty') %></div>
+<% else %>
+  <% @authors.each do |a| %>
+    <section class="cite-author">
+      <h3>
+        <%= link_to a[:author].title, my_page_link_to("/#{CGI.escape(a[:author].path)}", page_lang: a[:author].lang) %>
+        <span class="cite-total"><%= a[:total] %></span>
+      </h3>
+      <% a[:works].each do |w| %>
+        <div class="cite-work">
+          <div class="cite-work-title"><%= w[:page].title %></div>
+          <% w[:refs].each do |r| %>
+            <a class="cite-snippet" href="<%= citation_page_link(w[:page], r.snippet) %>"><%= r.snippet %></a>
+          <% end %>
+        </div>
+      <% end %>
+    </section>
+  <% end %>
+<% end %>

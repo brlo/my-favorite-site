@@ -561,3 +561,6 @@ de:
     no_translation_for_this_book: 'Für dieses Buch gibt es keine solche Übersetzung'
     messages:
       taken: "has already been taken"
+
+  citations:
+    map_hint: 'Zitationskarte der Kirchenväter'

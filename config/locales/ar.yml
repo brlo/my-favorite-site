@@ -558,3 +558,5 @@ ar:
     messages:
       taken: "has already been taken"
 
+  citations:
+    map_hint: 'خريطة اقتباسات الآباء الكنسيين'

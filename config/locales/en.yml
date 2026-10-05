@@ -557,3 +557,10 @@ en:
     no_translation_for_this_book: 'There is no such translation for this book'
     messages:
       taken: "has already been taken"
+
+  citations:
+    map_hint: 'Citation map of church writers'
+    title: 'Church Fathers on %{address}'
+    close: 'Close'
+    empty: 'No Church Fathers in our library mention this verse yet.'
+    mentions: 'Mentions: %{count}'
