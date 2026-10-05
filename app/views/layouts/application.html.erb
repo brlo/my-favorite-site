@@ -41,7 +41,7 @@
 
   <body
     class="<%= 'night-mode' if @is_night_mode %>"
-    data-controller="books-menu metrics"
+    data-controller="books-menu metrics landing"
     data-action="click->books-menu#clickOutside">
 
     <header>
@@ -55,6 +55,7 @@
         <nav>
           <a href="<%= my_bib_link_to("/") %>" id="bible-link" data-action="books-menu#show" class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
           <a href="<%= my_page_link_to("/links_#{current_lang()}") %>" id="quotes-link" class="<%= @current_menu_item == 'links' ? ' selected' : nil %>"><%= I18n.t('menu.links') %></a>
+          <%= link_to t('menu.chat'), chat_path(locale: ::I18n.locale), class: (@current_menu_item == 'chat' ? 'selected' : nil) %>
           <% if ::I18n.locale == :ru %>
             <%= link_to t('menu.translates'), translation_projects_path(locale: ::I18n.locale), class: (@current_menu_item == 'translates' ? 'selected' : nil) %>
           <% end %>

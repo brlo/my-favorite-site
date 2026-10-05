@@ -52,6 +52,21 @@ Rails.application.routes.draw do
     end
     resources :password_resets, only: %w[new create edit update]
 
+    # Чат
+    get 'chat', to: 'chat#show', as: :chat
+    namespace :chat do
+      resources :messages, only: %i[index show create update destroy] do
+        member do
+          post :approve
+          post :react
+          post :translate
+        end
+      end
+      resources :members, only: %i[show update]
+      resource :profile, only: %i[edit update]
+      resource :room, only: :update
+    end
+
     resources :translation_projects, path: '/translate' do
       member do
         post :import_content

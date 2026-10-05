@@ -1,0 +1,103 @@
+de:
+  menu:
+    chat: Chat
+  chat:
+    title: Chat
+    description: Fragen und Gespräche über die Bibel und den Glauben
+    login_link: Anmelden
+    guest_hint: Moderatoren sehen Ihre Nachrichten und antworten Ihnen. Damit alle Teilnehmer Ihre Nachrichten sehen, registrieren Sie sich und bestätigen Sie Ihre E-Mail-Adresse.
+    greeting: |-
+      Willkommen! Hier können Sie Fragen zur Heiligen Schrift, zum Glauben und zu dem stellen, was Sie auf der Website gelesen haben.
+
+      Schreiben Sie in jeder Sprache: Die Flagge neben jedem Nicknamen zeigt die Sprache des Gesprächspartners, und Nachrichten können übersetzt werden.
+    format:
+      bold: Fett
+      underline: Unterstrichen
+      strike: Durchgestrichen
+      quote: Zitat
+      link: Link
+    profile:
+      title: Chat-Profil
+      link: Mein Chat-Profil
+      saved: Profil gespeichert
+      avatar: Foto
+      remove_avatar: Foto entfernen
+      nickname: Nickname
+      bio: Über mich
+      edit: Profil bearbeiten
+      change_avatar: Foto hochladen
+      avatar_hint: JPG, PNG, WebP oder GIF, bis 2 MB. Das Foto wird quadratisch zugeschnitten.
+      too_big: Die Datei ist größer als 2 MB, bitte wählen Sie eine kleinere
+      nickname_hint: Buchstaben jedes Alphabets, Ziffern, Leerzeichen und _ . -
+      bio_placeholder: 'Zum Beispiel: woher Sie kommen, welche Sprachen Sie sprechen, was Sie an der Heiligen Schrift interessiert'
+      preview: So sehen andere Sie im Chat
+      preview_text: Friede sei mit euch!
+      language: Sprache
+      language_hint: Die Flagge neben Ihrem Nicknamen hängt von der Sprache der Website-Oberfläche ab
+      title_hint: Titel werden von Moderatoren vergeben
+      since: Im Chat seit
+    admin:
+      title: Für Moderatoren
+      kind: Art / Rolle
+      unverified: E-Mail nicht bestätigt
+      messages: Nachrichten
+      created: Zum ersten Mal gesehen
+      muted_until: Stummgeschaltet bis
+      banned_until: Gesperrt bis
+      title_label: Titel
+      role: Rolle
+      mute_day: Für einen Tag stummschalten
+      ban: Sperren
+      unban: Einschränkungen aufheben
+    errors:
+      forbidden: Nicht erlaubt
+      banned: Sie sind im Chat gesperrt
+      muted: Sie dürfen vorübergehend nicht schreiben
+      invalid_body: Die Nachricht ist leer oder ungültig
+      too_long: Die Nachricht ist zu lang (maximal %{count} Zeichen)
+      rate_limited: Sie können eine Nachricht alle 5 Minuten senden
+      cant_edit: Eine Nachricht kann innerhalb von 24 Stunden und höchstens 5 Mal bearbeitet werden
+      cant_translate: Übersetzung ist nicht verfügbar
+      translate_failed: Die Nachricht konnte nicht übersetzt werden. Bitte versuchen Sie es später erneut.
+      too_many_requests: Zu viele Anfragen. Bitte warten Sie einen Moment.
+      login_required: Bitte melden Sie sich an
+      activation_required: Bestätigen Sie Ihre E-Mail-Adresse über den Link im Brief, um Ihr Profil auszufüllen
+      closed: Der Chat ist vorübergehend für neue Nachrichten geschlossen
+    js:
+      reply: Antworten
+      edit: Bearbeiten
+      delete: Löschen
+      approve: Allen zeigen
+      translate: Übersetzen
+      show_original: Übersetzung ausblenden
+      translating: Wird übersetzt…
+      react: Reaktion
+      pending: Nur für Moderatoren sichtbar
+      direct: Private Antwort, nur für Sie und die Moderatoren sichtbar
+      deleted_message: Nachricht nicht verfügbar
+      role_admin: Admin
+      role_moderator: Moderator
+      role_bot: Bot
+      edited: bearbeitet
+      confirm_delete: Diese Nachricht löschen?
+      wait: Die nächste Nachricht können Sie senden in
+      send: Senden
+      save: Speichern
+      cancel: Abbrechen
+      replying_to: Antwort an
+      editing: Nachricht bearbeiten
+      load_more: Frühere Nachrichten anzeigen
+      landing: Besuch der Website begonnen auf
+      entry: In den Chat gekommen von
+      ui_lang: Sprache der Oberfläche
+      reply_private_hint: nur der Autor und die Moderatoren sehen die Antwort
+      open_chat: Chat für alle öffnen
+      close_chat: Chat für alle schließen
+    closed_notice: Der Chat ist vorübergehend für neue Nachrichten geschlossen.
+    closed_staff_notice: 'Der Chat ist geschlossen: Derzeit können nur Admins und Moderatoren schreiben.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: Nickname
+        bio: Über mich
+        avatar: Foto

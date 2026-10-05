@@ -1,0 +1,103 @@
+en:
+  menu:
+    chat: Chat
+  chat:
+    title: Chat
+    description: Questions and discussion about the Bible and faith
+    login_link: Log in
+    guest_hint: Moderators will see your messages and reply to you. To make your messages visible to everyone, sign up and confirm your email.
+    greeting: |-
+      Welcome! Here you can ask questions about the Holy Scripture, the faith, and what you have read on the site.
+
+      Write in any language you like: the flag next to each nickname shows the person's language, and messages can be translated.
+    format:
+      bold: Bold
+      underline: Underline
+      strike: Strikethrough
+      quote: Quote
+      link: Link
+    profile:
+      title: Chat profile
+      link: My chat profile
+      saved: Profile saved
+      avatar: Photo
+      remove_avatar: Remove photo
+      nickname: Nickname
+      bio: About me
+      edit: Edit profile
+      change_avatar: Upload photo
+      avatar_hint: JPG, PNG, WebP or GIF, up to 2 MB. The photo will be cropped to a square.
+      too_big: The file is larger than 2 MB, please choose a smaller one
+      nickname_hint: Letters of any alphabet, digits, space and _ . -
+      bio_placeholder: For example, where you are from, what languages you speak, what interests you in the Scripture
+      preview: How others see you in the chat
+      preview_text: Peace be with you!
+      language: Language
+      language_hint: The flag next to your nickname depends on the site interface language
+      title_hint: Titles are assigned by moderators
+      since: In the chat since
+    admin:
+      title: For moderators
+      kind: Kind / role
+      unverified: email not confirmed
+      messages: Messages
+      created: First seen
+      muted_until: Muted until
+      banned_until: Banned until
+      title_label: Title
+      role: Role
+      mute_day: Mute for a day
+      ban: Ban
+      unban: Lift restrictions
+    errors:
+      forbidden: Not allowed
+      banned: You are banned from the chat
+      muted: You are temporarily not allowed to write
+      invalid_body: The message is empty or invalid
+      too_long: The message is too long (max %{count} characters)
+      rate_limited: You can send one message every 5 minutes
+      cant_edit: A message can be edited within 24 hours, at most 5 times
+      cant_translate: Translation is not available
+      translate_failed: Could not translate the message. Please try again later.
+      too_many_requests: Too many requests. Please wait a little.
+      login_required: Please log in
+      activation_required: Confirm your email using the link in the letter to fill in your profile
+      closed: The chat is temporarily closed for new messages
+    js:
+      reply: Reply
+      edit: Edit
+      delete: Delete
+      approve: Show to everyone
+      translate: Translate
+      show_original: Hide translation
+      translating: Translating…
+      react: Reaction
+      pending: Visible to moderators only
+      direct: Private reply, visible only to you and moderators
+      deleted_message: Message unavailable
+      role_admin: admin
+      role_moderator: moderator
+      role_bot: bot
+      edited: edited
+      confirm_delete: Delete this message?
+      wait: You can send the next message in
+      send: Send
+      save: Save
+      cancel: Cancel
+      replying_to: Reply to
+      editing: Editing message
+      load_more: Show earlier messages
+      landing: Started visiting the site from
+      entry: Came to the chat from
+      ui_lang: Interface language
+      reply_private_hint: only the author and moderators will see the reply
+      open_chat: Open chat for everyone
+      close_chat: Close chat for everyone
+    closed_notice: The chat is temporarily closed for new messages.
+    closed_staff_notice: 'The chat is closed: only admins and moderators can write now.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: Nickname
+        bio: About me
+        avatar: Photo

@@ -1,0 +1,81 @@
+<% avatar_color = ChatHelper::AVATAR_COLORS[@member.id % ChatHelper::AVATAR_COLORS.size] %>
+<div class="chat-profile"
+     data-controller="chat-profile"
+     data-chat-profile-max-size-value="<%= 2.megabytes %>"
+     data-chat-profile-color-value="<%= avatar_color %>"
+     data-chat-profile-too-big-value="<%= t('chat.profile.too_big') %>">
+  <p><%= link_to "← #{t('chat.title')}", chat_path(locale: I18n.locale) %></p>
+  <h1><%= t('chat.profile.title') %></h1>
+
+  <%= render 'layouts/errors', ar_object: @member %>
+
+  <div class="chat-profile__layout">
+    <%= form_with model: @member, url: chat_profile_path(locale: I18n.locale), method: :patch, scope: :chat_member,
+                  multipart: true, class: 'chat-profile__form' do |f| %>
+
+      <div class="chat-profile__avatar-row">
+        <label class="chat-profile__avatar" title="<%= t('chat.profile.change_avatar') %>">
+          <span data-chat-profile-target="avatar"><%= chat_avatar(@member, size: nil) %></span>
+          <span class="chat-profile__avatar-overlay">📷</span>
+          <%= f.file_field :avatar, accept: 'image/png,image/jpeg,image/webp,image/gif', class: 'chat-profile__file',
+                           data: { chat_profile_target: 'file', action: 'chat-profile#pickFile' } %>
+        </label>
+        <div class="chat-profile__avatar-actions">
+          <button type="button" data-action="chat-profile#openPicker"><%= t('chat.profile.change_avatar') %></button>
+          <button type="button" class="chat-profile__link-btn" data-chat-profile-target="removeBtn"
+                  data-action="chat-profile#removeAvatar" <%= 'hidden' unless @member.avatar.present? %>><%= t('chat.profile.remove_avatar') %></button>
+          <%= f.hidden_field :remove_avatar, value: '0', data: { chat_profile_target: 'remove' } %>
+          <div class="chat-profile__hint"><%= t('chat.profile.avatar_hint') %></div>
+          <div class="chat-profile__error" data-chat-profile-target="error" hidden></div>
+        </div>
+      </div>
+
+      <div class="chat-profile__field">
+        <div class="chat-profile__label-row">
+          <%= f.label :nickname, t('chat.profile.nickname') %>
+          <span class="chat-profile__counter" data-chat-profile-target="nicknameCounter"></span>
+        </div>
+        <%= f.text_field :nickname, maxlength: 32, minlength: 2, required: true, autocomplete: 'off',
+                         pattern: '[\p{L}\p{N}_.\- ]+',
+                         data: { chat_profile_target: 'nickname', action: 'input->chat-profile#update' } %>
+        <div class="chat-profile__hint"><%= t('chat.profile.nickname_hint') %></div>
+      </div>
+
+      <div class="chat-profile__field">
+        <div class="chat-profile__label-row">
+          <%= f.label :bio, t('chat.profile.bio') %>
+          <span class="chat-profile__counter" data-chat-profile-target="bioCounter"></span>
+        </div>
+        <%= f.text_area :bio, maxlength: 500, rows: 5, placeholder: t('chat.profile.bio_placeholder'),
+                        data: { chat_profile_target: 'bio', action: 'input->chat-profile#update' } %>
+      </div>
+
+      <div class="chat-profile__submit"><%= f.submit t('chat.js.save') %></div>
+    <% end %>
+
+    <aside class="chat-profile__preview">
+      <div class="chat-profile__preview-title"><%= t('chat.profile.preview') %></div>
+      <div class="chat-profile__preview-msg">
+        <span class="chat-msg__avatar" data-chat-profile-target="previewAvatar"><%= chat_avatar(@member) %></span>
+        <div class="chat-msg__main">
+          <div class="chat-msg__head">
+            <%= chat_flag(@member) %>
+            <b class="chat-msg__nick" data-chat-profile-target="previewNick"><%= @member.nickname %></b>
+            <%= chat_role_badge(@member, with_label: true) %>
+            <% if @member.title.present? %><span class="chat-msg__title"><%= @member.title %></span><% end %>
+          </div>
+          <div class="chat-msg__body"><p><%= t('chat.profile.preview_text') %></p></div>
+        </div>
+      </div>
+
+      <dl class="chat-profile__facts">
+        <dt><%= t('chat.profile.language') %></dt>
+        <dd><%= page_lang_string_full(@member.ui_lang) %><div class="chat-profile__hint"><%= t('chat.profile.language_hint') %></div></dd>
+        <dt><%= t('chat.admin.title_label') %></dt>
+        <dd><%= @member.title.presence || '—' %><div class="chat-profile__hint"><%= t('chat.profile.title_hint') %></div></dd>
+        <dt><%= t('chat.profile.since') %></dt>
+        <dd><%= chat_time(@member.created_at, with_time: false) %></dd>
+      </dl>
+    </aside>
+  </div>
+</div>

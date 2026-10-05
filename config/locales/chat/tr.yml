@@ -1,0 +1,103 @@
+tr:
+  menu:
+    chat: Sohbet
+  chat:
+    title: Sohbet
+    description: Kutsal Kitap ve iman hakkında sorular ve sohbet
+    login_link: Giriş yap
+    guest_hint: Moderatörler mesajlarınızı görecek ve size cevap verecek. Mesajlarınızı tüm katılımcıların görmesi için kayıt olun ve e-posta adresinizi doğrulayın.
+    greeting: |-
+      Hoş geldiniz! Burada Kutsal Yazılar, iman ve sitede okuduklarınız hakkında sorular sorabilirsiniz.
+
+      İstediğiniz dilde yazın: her takma adın yanındaki bayrak kişinin dilini gösterir ve mesajlar çevrilebilir.
+    format:
+      bold: Kalın
+      underline: Altı çizili
+      strike: Üstü çizili
+      quote: Alıntı
+      link: Bağlantı
+    profile:
+      title: Sohbet profili
+      link: Sohbet profilim
+      saved: Profil kaydedildi
+      avatar: Fotoğraf
+      remove_avatar: Fotoğrafı kaldır
+      nickname: Takma ad
+      bio: Hakkımda
+      edit: Profili düzenle
+      change_avatar: Fotoğraf yükle
+      avatar_hint: JPG, PNG, WebP veya GIF, en fazla 2 MB. Fotoğraf kare olarak kırpılacak.
+      too_big: Dosya 2 MB’tan büyük, lütfen daha küçük bir dosya seçin
+      nickname_hint: Her alfabeden harfler, rakamlar, boşluk ve _ . -
+      bio_placeholder: 'Örneğin: nerelisiniz, hangi dilleri konuşuyorsunuz, Kutsal Yazılar’da sizi ne ilgilendiriyor'
+      preview: Sohbette sizi böyle görüyorlar
+      preview_text: Selam size!
+      language: Dil
+      language_hint: Takma adınızın yanındaki bayrak, sitenin arayüz diline bağlıdır
+      title_hint: Unvanları moderatörler verir
+      since: Sohbette şu tarihten beri
+    admin:
+      title: Moderatörler için
+      kind: Tür / rol
+      unverified: e-posta doğrulanmadı
+      messages: Mesajlar
+      created: İlk görülme
+      muted_until: Şu tarihe kadar susturuldu
+      banned_until: Şu tarihe kadar engellendi
+      title_label: Unvan
+      role: Rol
+      mute_day: Bir günlüğüne sustur
+      ban: Engelle
+      unban: Kısıtlamaları kaldır
+    errors:
+      forbidden: İzin verilmiyor
+      banned: Sohbette engellendiniz
+      muted: Geçici olarak yazmanıza izin verilmiyor
+      invalid_body: Mesaj boş veya geçersiz
+      too_long: Mesaj çok uzun (en fazla %{count} karakter)
+      rate_limited: Her 5 dakikada bir mesaj gönderebilirsiniz
+      cant_edit: Bir mesaj 24 saat içinde ve en fazla 5 kez düzenlenebilir
+      cant_translate: Çeviri kullanılamıyor
+      translate_failed: Mesaj çevrilemedi. Lütfen daha sonra tekrar deneyin.
+      too_many_requests: Çok fazla istek. Lütfen biraz bekleyin.
+      login_required: Lütfen giriş yapın
+      activation_required: Profilinizi doldurmak için mektuptaki bağlantıyla e-postanızı doğrulayın
+      closed: Sohbet yeni mesajlara geçici olarak kapalı
+    js:
+      reply: Cevapla
+      edit: Düzenle
+      delete: Sil
+      approve: Herkese göster
+      translate: Çevir
+      show_original: Çeviriyi gizle
+      translating: Çevriliyor…
+      react: Tepki
+      pending: Yalnızca moderatörler görebilir
+      direct: Özel cevap, yalnızca siz ve moderatörler görebilir
+      deleted_message: Mesaj kullanılamıyor
+      role_admin: yönetici
+      role_moderator: moderatör
+      role_bot: bot
+      edited: düzenlendi
+      confirm_delete: Bu mesaj silinsin mi?
+      wait: 'Sonraki mesajı gönderebileceğiniz süre:'
+      send: Gönder
+      save: Kaydet
+      cancel: İptal
+      replying_to: 'Cevap:'
+      editing: Mesaj düzenleniyor
+      load_more: Önceki mesajları göster
+      landing: Siteyi ziyarete başladığı sayfa
+      entry: Sohbete geldiği sayfa
+      ui_lang: Arayüz dili
+      reply_private_hint: cevabı yalnızca yazar ve moderatörler görecek
+      open_chat: Sohbeti herkese aç
+      close_chat: Sohbeti herkese kapat
+    closed_notice: Sohbet yeni mesajlara geçici olarak kapalı.
+    closed_staff_notice: 'Sohbet kapalı: şu anda yalnızca yöneticiler ve moderatörler yazabilir.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: Takma ad
+        bio: Hakkımda
+        avatar: Fotoğraf

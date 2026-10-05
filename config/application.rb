@@ -9,7 +9,6 @@ require "rails"
 # This list is here as documentation only - it's not used
 omitted = %w(
   active_storage/engine
-  action_cable/engine
   action_mailbox/engine
   action_text/engine
 )
@@ -21,6 +20,7 @@ omitted = %w(
   action_view/railtie
   action_mailer/railtie
   active_job/railtie
+  action_cable/engine
   rails/test_unit/railtie
   sprockets/railtie
 ).each do |railtie|
@@ -62,6 +62,7 @@ module Bibleox
 
     # Autoload lib, but do not eager load it (maybe overlooked).
     config.autoload_paths << config.root.join("lib")
-    config.autoload_paths += Dir[Rails.root.join('app', 'models', '*')]
+    # подпапки моделей — отдельные корни без namespace; кроме app/models/chat, там классы Chat::*
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '*')].reject { |p| p.end_with?('/models/chat') }
   end
 end

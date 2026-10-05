@@ -1,0 +1,103 @@
+ja:
+  menu:
+    chat: チャット
+  chat:
+    title: チャット
+    description: 聖書と信仰についての質問と対話
+    login_link: ログイン
+    guest_hint: モデレーターがあなたのメッセージを読み、返信します。すべての参加者にメッセージを表示するには、登録してメールアドレスを確認してください。
+    greeting: |-
+      ようこそ！ここでは聖書や信仰、サイトで読んだ内容について質問できます。
+
+      お好きな言語で書いてください。各ニックネームの横の旗はその人の言語を示し、メッセージは翻訳できます。
+    format:
+      bold: 太字
+      underline: 下線
+      strike: 取り消し線
+      quote: 引用
+      link: リンク
+    profile:
+      title: チャットのプロフィール
+      link: チャットのマイプロフィール
+      saved: プロフィールを保存しました
+      avatar: 写真
+      remove_avatar: 写真を削除
+      nickname: ニックネーム
+      bio: 自己紹介
+      edit: プロフィールを編集
+      change_avatar: 写真をアップロード
+      avatar_hint: JPG、PNG、WebP、GIF、2 MBまで。写真は正方形に切り抜かれます。
+      too_big: ファイルが2 MBを超えています。小さいファイルを選んでください
+      nickname_hint: 任意の文字、数字、スペース、_ . -
+      bio_placeholder: 例：出身地、話せる言語、聖書で関心のあること
+      preview: チャットでのあなたの表示
+      preview_text: あなたがたに平和があるように！
+      language: 言語
+      language_hint: ニックネームの横の旗はサイトの表示言語によって決まります
+      title_hint: 称号はモデレーターが付与します
+      since: チャット参加日
+    admin:
+      title: モデレーター向け
+      kind: 種類 / 役割
+      unverified: メール未確認
+      messages: メッセージ数
+      created: 初回訪問
+      muted_until: 書き込み禁止期限
+      banned_until: ブロック期限
+      title_label: 称号
+      role: 役割
+      mute_day: 1日間書き込み禁止
+      ban: ブロック
+      unban: 制限を解除
+    errors:
+      forbidden: 許可されていません
+      banned: あなたはチャットでブロックされています
+      muted: 一時的に書き込みが禁止されています
+      invalid_body: メッセージが空か、形式が正しくありません
+      too_long: メッセージが長すぎます（最大%{count}文字）
+      rate_limited: メッセージは5分に1回送信できます
+      cant_edit: メッセージは24時間以内に5回まで編集できます
+      cant_translate: 翻訳は利用できません
+      translate_failed: メッセージを翻訳できませんでした。後でもう一度お試しください。
+      too_many_requests: リクエストが多すぎます。少しお待ちください。
+      login_required: ログインしてください
+      activation_required: プロフィールを入力するには、メール内のリンクからアドレスを確認してください
+      closed: チャットは新しいメッセージを一時的に受け付けていません
+    js:
+      reply: 返信
+      edit: 編集
+      delete: 削除
+      approve: 全員に表示
+      translate: 翻訳
+      show_original: 翻訳を隠す
+      translating: 翻訳中…
+      react: リアクション
+      pending: モデレーターのみに表示
+      direct: 個別の返信：あなたとモデレーターのみに表示
+      deleted_message: メッセージを表示できません
+      role_admin: 管理者
+      role_moderator: モデレーター
+      role_bot: ボット
+      edited: 編集済み
+      confirm_delete: このメッセージを削除しますか？
+      wait: 次のメッセージを送信できるまで
+      send: 送信
+      save: 保存
+      cancel: キャンセル
+      replying_to: 返信先：
+      editing: メッセージを編集中
+      load_more: 以前のメッセージを表示
+      landing: サイト訪問の最初のページ
+      entry: チャットに来たページ
+      ui_lang: 表示言語
+      reply_private_hint: 返信は投稿者とモデレーターのみに表示されます
+      open_chat: 全員にチャットを開く
+      close_chat: 全員にチャットを閉じる
+    closed_notice: チャットは新しいメッセージを一時的に受け付けていません。
+    closed_staff_notice: チャットは閉じられています：現在は管理者とモデレーターのみ書き込めます。
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: ニックネーム
+        bio: 自己紹介
+        avatar: 写真

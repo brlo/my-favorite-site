@@ -1,0 +1,103 @@
+fr:
+  menu:
+    chat: Chat
+  chat:
+    title: Chat
+    description: Questions et échanges sur la Bible et la foi
+    login_link: Se connecter
+    guest_hint: Les modérateurs verront vos messages et vous répondront. Pour que tous les participants voient vos messages, inscrivez-vous et confirmez votre adresse e-mail.
+    greeting: |-
+      Bienvenue ! Ici, vous pouvez poser des questions sur la Sainte Écriture, sur la foi et sur ce que vous avez lu sur le site.
+
+      Écrivez dans la langue de votre choix : le drapeau à côté de chaque pseudo indique la langue de la personne, et les messages peuvent être traduits.
+    format:
+      bold: Gras
+      underline: Souligné
+      strike: Barré
+      quote: Citation
+      link: Lien
+    profile:
+      title: Profil du chat
+      link: Mon profil du chat
+      saved: Profil enregistré
+      avatar: Photo
+      remove_avatar: Supprimer la photo
+      nickname: Pseudo
+      bio: À propos de moi
+      edit: Modifier le profil
+      change_avatar: Téléverser une photo
+      avatar_hint: JPG, PNG, WebP ou GIF, jusqu’à 2 Mo. La photo sera recadrée en carré.
+      too_big: Le fichier dépasse 2 Mo, choisissez-en un plus petit
+      nickname_hint: Lettres de tout alphabet, chiffres, espace et _ . -
+      bio_placeholder: 'Par exemple : d’où vous venez, quelles langues vous parlez, ce qui vous intéresse dans l’Écriture'
+      preview: Voici comment les autres vous voient dans le chat
+      preview_text: La paix soit avec vous !
+      language: Langue
+      language_hint: Le drapeau à côté de votre pseudo dépend de la langue de l’interface du site
+      title_hint: Les titres sont attribués par les modérateurs
+      since: Dans le chat depuis
+    admin:
+      title: Pour les modérateurs
+      kind: Type / rôle
+      unverified: e-mail non confirmé
+      messages: Messages
+      created: Vu pour la première fois
+      muted_until: Réduit au silence jusqu’au
+      banned_until: Bloqué jusqu’au
+      title_label: Titre
+      role: Rôle
+      mute_day: Réduire au silence pour un jour
+      ban: Bloquer
+      unban: Lever les restrictions
+    errors:
+      forbidden: Non autorisé
+      banned: Vous êtes bloqué dans le chat
+      muted: Vous ne pouvez temporairement pas écrire
+      invalid_body: Le message est vide ou invalide
+      too_long: Le message est trop long (%{count} caractères maximum)
+      rate_limited: Vous pouvez envoyer un message toutes les 5 minutes
+      cant_edit: Un message peut être modifié pendant 24 heures, 5 fois au maximum
+      cant_translate: La traduction n’est pas disponible
+      translate_failed: Impossible de traduire le message. Réessayez plus tard.
+      too_many_requests: Trop de requêtes. Veuillez patienter un peu.
+      login_required: Veuillez vous connecter
+      activation_required: Confirmez votre e-mail grâce au lien reçu pour remplir votre profil
+      closed: Le chat est temporairement fermé aux nouveaux messages
+    js:
+      reply: Répondre
+      edit: Modifier
+      delete: Supprimer
+      approve: Montrer à tous
+      translate: Traduire
+      show_original: Masquer la traduction
+      translating: Traduction…
+      react: Réaction
+      pending: Visible uniquement par les modérateurs
+      direct: Réponse privée, visible uniquement par vous et les modérateurs
+      deleted_message: Message indisponible
+      role_admin: admin
+      role_moderator: modérateur
+      role_bot: bot
+      edited: modifié
+      confirm_delete: Supprimer ce message ?
+      wait: Vous pourrez envoyer le prochain message dans
+      send: Envoyer
+      save: Enregistrer
+      cancel: Annuler
+      replying_to: Réponse à
+      editing: Modification du message
+      load_more: Afficher les messages précédents
+      landing: A commencé sa visite du site par
+      entry: Est arrivé dans le chat depuis
+      ui_lang: Langue de l’interface
+      reply_private_hint: seuls l’auteur et les modérateurs verront la réponse
+      open_chat: Ouvrir le chat à tous
+      close_chat: Fermer le chat à tous
+    closed_notice: Le chat est temporairement fermé aux nouveaux messages.
+    closed_staff_notice: 'Le chat est fermé : seuls les administrateurs et les modérateurs peuvent écrire.'
+  activerecord:
+    attributes:
+      chat/member:
+        nickname: Pseudo
+        bio: À propos de moi
+        avatar: Photo
