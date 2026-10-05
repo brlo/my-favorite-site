@@ -60,3 +60,6 @@ res/docker-data/config/*/*.conf
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 /config/database.yml
+
+# дампы БД
+/backups/
