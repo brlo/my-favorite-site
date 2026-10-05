@@ -14,8 +14,12 @@ PLATFORM="--platform linux/amd64"
 VERSION=$(node -p "require('./package.json').version")
 
 DOCKER=${DOCKER:-docker}
-if ! "$DOCKER" version >/dev/null 2>&1; then
+if ! command -v "$DOCKER" >/dev/null 2>&1; then
   DOCKER=/Applications/Docker.app/Contents/Resources/bin/docker
+fi
+# Сборочный образ лежит в Docker Desktop. Другой движок можно выбрать через DOCKER_CONTEXT.
+if [ -z "$DOCKER_CONTEXT" ] && "$DOCKER" context inspect desktop-linux >/dev/null 2>&1; then
+  export DOCKER_CONTEXT=desktop-linux
 fi
 
 GRADLE_ARGS=""
