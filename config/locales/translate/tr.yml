@@ -1,0 +1,104 @@
+tr:
+  menu:
+    translates: Çeviriler
+  open_tags:
+    h2: başlık
+    p: paragraf
+    strong: kalın metin
+  close_tags:
+    h2: başlık sonu
+    p: paragraf sonu
+    strong: kalın metin sonu
+  time_ago:
+    just_now: az önce
+    minute: dk
+    hour: sa
+    day: g
+    week: hf
+    month: ay
+    year: yıl
+  tr_projects:
+    all_translations: Tüm çeviriler
+    index_title: Kilise metinlerinin ortak çevirisi
+    index_page_title: Kilise metinlerinin tüm halkların dillerine ortak çevirisi
+    index_h1: Kilise metinlerinin ortak çevirisi (beta)
+    quote: Tanrı'nın büyük işlerini kendi dillerimizde anlattıklarını duyuyoruz
+    quote_ref: Elç. 2:11
+    beta_notice: Çeviri bölümü beta test aşamasındadır. Test süresince çeviri için az sayıda eser sunulmaktadır.
+    create_project: Proje oluştur
+    last_day: Son 24 saatteki çeviriler
+    source_label: 'Kaynak:'
+    translation_label: 'Çeviri:'
+    translations_label: 'Çeviriler:'
+    other_language: Başka bir dil
+    other_languages: Diğer diller...
+    project_page_title: Ortak çeviri — %{title}
+    show_page_title: '%{title} — Bölüm %{part}'
+    result: Son çeviri
+    work_on_translation: Çeviri çalışması
+    prepared_by_users: Bu çeviri bibleox.com kullanıcıları tarafından hazırlanmaktadır.
+    help_cta_html: Bu metnin iyileştirilmesine yardımcı olabilirsiniz! %{signup_link} ve %{join_link}.
+    signup_link: Kaydolun
+    join_link: çeviri çalışmasına katılın
+    license: Vikipedi içerikleri gibi sonuç da CC BY-SA lisansı altında özgürce dağıtılır.
+    part: Bölüm
+    translate_from: 'Kaynak dil:'
+    translate_to: 'hedef dil:'
+    result_lang: 'Çeviri dili:'
+    sources: Kaynaklar
+    translations: Çeviriler
+    continue_html: Çeviri çalışmasına %{link} devam edebilirsiniz.
+    continue_link: özel bölümde
+    not_loaded: Metin henüz yüklenmedi. Lütfen 15 dakika sonra tekrar deneyin.
+    confirm_delete_part: '"%{title}" çeviri projesinin %{part}. bölümü silinsin mi?'
+    new_project: Yeni çeviri projesi
+    edit_project: Çeviri projesini düzenle
+    delete: Sil
+    confirm_delete_project: '"%{title}" çeviri projesi silinsin mi?'
+    import_title: Metnin yeni bir bölümünü içe aktar
+    source_lang: Kaynak dil
+    split_and_add: Böl ve ekle
+    processing: İşleniyor...
+    form:
+      title: Proje adı
+      description: Açıklama
+      description_placeholder: Projenin kısa açıklaması, kaynaklar, çevirinin özellikleri...
+      page_ids: Sayfa ID'leri (virgülle ayrılmış)
+      page_ids_placeholder: 'Örneğin: 1,3,5,7'
+      create: Proje oluştur
+      save: Değişiklikleri kaydet
+      saving: Kaydediliyor...
+    notices:
+      created: Proje oluşturuldu
+      updated: Proje güncellendi
+      part_deleted: '%{part}. bölüm projeden kaldırıldı'
+      deleted: Proje silindi
+    fragment: Parça
+    copy: Kopyala
+    propose: Çeviri öner
+    login_to_propose_html: Çeviri önermek için %{link}.
+    login_to_propose_link: giriş yapın veya kaydolun
+    your_translation: Çeviriniz
+    editing: Çeviriyi düzenleme
+    cancel: İptal
+    text_placeholder: Çeviri önerinizi yazın...
+    sub_text_placeholder: Dipnot (çevirinize bir yorum eklemek isterseniz)
+    submit: Çeviriyi gönder
+    save: Çeviriyi kaydet
+    edit_short: Düzenle
+    confirm_delete: Bu çeviriyi silmek istediğinizden emin misiniz?
+    liked: Beğendim
+    needs_work: Düzeltme gerekli
+    needs_work_hint: '"Düzeltme gerekli". Bu oyu yalnızca kendi çevirisini önermiş olanlar verebilir'
+    approved: Ana çeviri olarak onaylandı
+    user_blocked: Kullanıcı engellendi
+    who_voted: Kimler oy verdi
+    pin: Sabitle
+    unpin: Sabitlemeyi kaldır
+    approve_title: Ana çeviri olarak onayla
+    approve_confirm: Bu çeviri ana çeviri yapılsın mı?
+    block_short: Engelle
+    block_title: Kullanıcıyı engelle
+    block_confirm: '%{username} kullanıcısı engellensin mi?'
+    remove_reaction: Tepkiyi kaldır
+    remove_reaction_confirm: '%{username} kullanıcısının tepkisi kaldırılsın mı?'

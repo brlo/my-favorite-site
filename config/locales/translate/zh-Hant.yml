@@ -1,0 +1,104 @@
+zh-Hant:
+  menu:
+    translates: 翻譯
+  open_tags:
+    h2: 標題
+    p: 段落
+    strong: 粗體
+  close_tags:
+    h2: 標題結束
+    p: 段落結束
+    strong: 粗體結束
+  time_ago:
+    just_now: 剛剛
+    minute: 分鐘
+    hour: 小時
+    day: 天
+    week: 週
+    month: 個月
+    year: 年
+  tr_projects:
+    all_translations: 所有譯本
+    index_title: 教會文獻協作翻譯
+    index_page_title: 教會文獻協作翻譯——譯成萬民的語言
+    index_h1: 教會文獻協作翻譯（測試版）
+    quote: 我們都聽見他們用我們的鄉談，講說神的大作為
+    quote_ref: 徒 2:11
+    beta_notice: 翻譯欄目正處於測試階段。測試期間僅提供少量作品供翻譯。
+    create_project: 建立專案
+    last_day: 最近24小時的翻譯
+    source_label: 原文：
+    translation_label: 譯文：
+    translations_label: 譯文：
+    other_language: 其他語言
+    other_languages: 其他語言...
+    project_page_title: 協作翻譯——%{title}
+    show_page_title: '%{title}——第%{part}部分'
+    result: 最終譯本
+    work_on_translation: 翻譯工作
+    prepared_by_users: 本譯文由 bibleox.com 的用戶共同完成。
+    help_cta_html: 您可以幫助改進這段文字！%{signup_link}並%{join_link}。
+    signup_link: 註冊
+    join_link: 參與翻譯工作
+    license: 與維基百科的內容一樣，翻譯成果以 CC BY-SA 授權條款自由傳播。
+    part: 部分
+    translate_from: 來源語言：
+    translate_to: 目標語言：
+    result_lang: 譯文語言：
+    sources: 原文
+    translations: 譯文
+    continue_html: 您可以在%{link}繼續翻譯工作。
+    continue_link: 專門的欄目
+    not_loaded: 文本尚未載入。請15分鐘後再試。
+    confirm_delete_part: 刪除翻譯專案「%{title}」的第%{part}部分？
+    new_project: 新建翻譯專案
+    edit_project: 編輯翻譯專案
+    delete: 刪除
+    confirm_delete_project: 刪除翻譯專案「%{title}」？
+    import_title: 匯入文本的新部分
+    source_lang: 原文語言
+    split_and_add: 拆分並新增
+    processing: 處理中...
+    form:
+      title: 專案名稱
+      description: 描述
+      description_placeholder: 專案簡介、來源、翻譯特點...
+      page_ids: 頁面ID（以逗號分隔）
+      page_ids_placeholder: 例如：1,3,5,7
+      create: 建立專案
+      save: 儲存變更
+      saving: 儲存中...
+    notices:
+      created: 專案已建立
+      updated: 專案已更新
+      part_deleted: 第%{part}部分已從專案中刪除
+      deleted: 專案已刪除
+    fragment: 片段
+    copy: 複製
+    propose: 提議譯文
+    login_to_propose_html: 要提議譯文，請%{link}。
+    login_to_propose_link: 登入或註冊
+    your_translation: 您的譯文
+    editing: 編輯譯文
+    cancel: 取消
+    text_placeholder: 寫下您的譯文...
+    sub_text_placeholder: 腳註（如果您想為譯文附加說明）
+    submit: 提交譯文
+    save: 儲存譯文
+    edit_short: 編輯
+    confirm_delete: 確定要刪除這條譯文嗎？
+    liked: 讚
+    needs_work: 需要修改
+    needs_work_hint: 「需要修改」。只有已經提議過自己譯文的人才能投這一票
+    approved: 已核准為主要譯文
+    user_blocked: 用戶已被封鎖
+    who_voted: 投票者
+    pin: 置頂
+    unpin: 取消置頂
+    approve_title: 核准為主要譯文
+    approve_confirm: 將此譯文設為主要譯文？
+    block_short: 封鎖
+    block_title: 封鎖用戶
+    block_confirm: 封鎖用戶 %{username}？
+    remove_reaction: 刪除反應
+    remove_reaction_confirm: 刪除用戶 %{username} 的反應？

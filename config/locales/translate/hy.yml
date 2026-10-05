@@ -1,0 +1,104 @@
+hy:
+  menu:
+    translates: Թարգմանություններ
+  open_tags:
+    h2: վերնագիր
+    p: պարբերություն
+    strong: թավ տեքստ
+  close_tags:
+    h2: վերնագրի վերջ
+    p: պարբերության վերջ
+    strong: թավ տեքստի վերջ
+  time_ago:
+    just_now: հենց նոր
+    minute: ր
+    hour: ժ
+    day: օր
+    week: շաբ
+    month: ամս
+    year: տ
+  tr_projects:
+    all_translations: Բոլոր թարգմանությունները
+    index_title: Եկեղեցական տեքստերի համատեղ թարգմանություն
+    index_page_title: Եկեղեցական տեքստերի համատեղ թարգմանություն բոլոր ժողովուրդների լեզուներով
+    index_h1: Եկեղեցական տեքստերի համատեղ թարգմանություն (beta)
+    quote: լսում ենք, թե ինչպես են նրանք մեր լեզուներով խոսում Աստծու մեծագործությունների մասին
+    quote_ref: Գործք 2.11
+    beta_notice: Թարգմանությունների բաժինը գտնվում է beta-փորձարկման փուլում։ Փորձարկման ընթացքում թարգմանության համար առաջարկվում է փոքր թվով աշխատություններ։
+    create_project: Ստեղծել նախագիծ
+    last_day: Թարգմանություններ վերջին 24 ժամում
+    source_label: 'Բնագիր․'
+    translation_label: 'Թարգմանություն․'
+    translations_label: 'Թարգմանություններ․'
+    other_language: Այլ լեզու
+    other_languages: Այլ լեզուներ...
+    project_page_title: Համատեղ թարգմանություն — %{title}
+    show_page_title: '%{title} — Մաս %{part}'
+    result: Վերջնական թարգմանություն
+    work_on_translation: Աշխատանք թարգմանության վրա
+    prepared_by_users: Թարգմանությունը պատրաստում են bibleox.com կայքի օգտատերերը։
+    help_cta_html: Դուք կարող եք օգնել բարելավել այս տեքստը։ %{signup_link} և %{join_link}։
+    signup_link: Գրանցվեք
+    join_link: միացեք թարգմանության աշխատանքին
+    license: Ինչպես Վիքիպեդիայի նյութերը, արդյունքը տարածվում է ազատ՝ CC BY-SA լիցենզիայով։
+    part: Մաս
+    translate_from: 'Թարգմանություն լեզվից․'
+    translate_to: 'լեզվով․'
+    result_lang: 'Թարգմանություն լեզվով․'
+    sources: Բնագրեր
+    translations: Թարգմանություններ
+    continue_html: Թարգմանության աշխատանքը կարող եք շարունակել %{link}։
+    continue_link: հատուկ բաժնում
+    not_loaded: Տեքստը դեռ բեռնված չէ։ Փորձեք կրկին 15 րոպեից։
+    confirm_delete_part: Ջնջե՞լ «%{title}» թարգմանության նախագծի %{part}-րդ մասը
+    new_project: Նոր թարգմանության նախագիծ
+    edit_project: Թարգմանության նախագծի խմբագրում
+    delete: Ջնջել
+    confirm_delete_project: Ջնջե՞լ «%{title}» թարգմանության նախագիծը
+    import_title: Ներմուծել տեքստի նոր մաս
+    source_lang: Բնագրի լեզու
+    split_and_add: Բաժանել և ավելացնել
+    processing: Մշակում...
+    form:
+      title: Նախագծի անվանում
+      description: Նկարագրություն
+      description_placeholder: Նախագծի համառոտ նկարագրություն, աղբյուրներ, թարգմանության առանձնահատկություններ...
+      page_ids: Էջերի ID (ստորակետով)
+      page_ids_placeholder: 'Օրինակ՝ 1,3,5,7'
+      create: Ստեղծել նախագիծ
+      save: Պահպանել փոփոխությունները
+      saving: Պահպանում...
+    notices:
+      created: Նախագիծը ստեղծված է
+      updated: Նախագիծը թարմացված է
+      part_deleted: '%{part}-րդ մասը հեռացված է նախագծից'
+      deleted: Նախագիծը ջնջված է
+    fragment: Հատված
+    copy: Պատճենել
+    propose: Առաջարկել թարգմանություն
+    login_to_propose_html: Թարգմանություններ առաջարկելու համար %{link}։
+    login_to_propose_link: մուտք գործեք կամ գրանցվեք
+    your_translation: Ձեր թարգմանությունը
+    editing: Թարգմանության խմբագրում
+    cancel: Չեղարկել
+    text_placeholder: Գրեք թարգմանության ձեր տարբերակը...
+    sub_text_placeholder: Ծանոթագրություն (եթե ցանկանում եք մեկնաբանություն կցել թարգմանությանը)
+    submit: Ուղարկել թարգմանությունը
+    save: Պահպանել թարգմանությունը
+    edit_short: Խմբ.
+    confirm_delete: Իսկապե՞ս ցանկանում եք ջնջել այս թարգմանությունը
+    liked: Հավանեցի
+    needs_work: Պահանջում է լրամշակում
+    needs_work_hint: '«Պահանջում է լրամշակում»։ Այս ձայնը կարող են տալ միայն նրանք, ովքեր արդեն առաջարկել են իրենց թարգմանությունը'
+    approved: Հաստատված է որպես հիմնական թարգմանություն
+    user_blocked: Օգտատերը արգելափակված է
+    who_voted: Ովքեր են քվեարկել
+    pin: Ամրացնել
+    unpin: Ապամրացնել
+    approve_title: Հաստատել որպես հիմնական թարգմանություն
+    approve_confirm: Դարձնե՞լ այս թարգմանությունը հիմնական
+    block_short: Արգել.
+    block_title: Արգելափակել օգտատիրոջը
+    block_confirm: Արգելափակե՞լ %{username} օգտատիրոջը
+    remove_reaction: Հեռացնել արձագանքը
+    remove_reaction_confirm: Հեռացնե՞լ %{username} օգտատիրոջ արձագանքը

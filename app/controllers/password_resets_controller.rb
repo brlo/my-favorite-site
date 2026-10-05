@@ -6,6 +6,7 @@ class PasswordResetsController < ApplicationController
 
   # просим указать email для сброса пароля
   def new
+    @page_title = t('users.titles.password_reset')
   end
 
   # сюда отправляем email для сброса пароля
@@ -23,6 +24,7 @@ class PasswordResetsController < ApplicationController
 
   # Форма для установки нового пароля
   def edit
+    @page_title = t('users.titles.new_password')
     @token = params[:id]
     @user = User.load_from_reset_password_token(params[:id])
 

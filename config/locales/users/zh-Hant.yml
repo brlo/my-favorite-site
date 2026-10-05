@@ -1,0 +1,158 @@
+zh-Hant:
+  bc:
+    profile: 個人資料
+    change_password: 修改密碼
+    edit_password: 編輯個人資料
+
+  helpers:
+    label:
+      session:
+        email: 電子郵件
+        password_reset: 忘記密碼的帳戶所用的電子郵件
+        password_reset_alert: 如果該電子郵件存在於我們的系統中，您將收到一封包含操作說明的郵件
+        password_reset_ok: 密碼已成功更新
+    submit:
+      session:
+        create: 登入
+        password_reset: 重設密碼
+      user:
+        create: 註冊
+        update: 更新
+
+  activemodel:
+    attributes:
+      session:
+        email: 電子郵件
+        password: 密碼
+        remember_me: 記住我
+    errors:
+      models:
+        session:
+          invalid_credentials: 電子郵件或密碼錯誤
+          account_activation_pending: 請先透過我們寄出的郵件中的連結啟用帳戶。
+
+  activerecord:
+    models:
+      translation: 譯文
+    attributes:
+      translation:
+        user_id: 用戶
+        segment_id: 片段
+        lang: 語言
+        text: 譯文內容
+      user:
+        username: 用戶名
+        name: 名字
+        email: 電子郵件
+        password: 密碼
+        password_confirmation: 確認密碼
+        pages_owner: 頁面擁有者
+        privs: 權限
+        failed_logins_count: 登入失敗次數
+        lock_expires_at: 鎖定到期時間
+    errors:
+      messages:
+        record_invalid: 包含錯誤
+        blank: 不能為空
+        invalid: 無效
+        too_short: 過短（至少%{count}個字元）
+        too_long: 過長（最多%{count}個字元）
+        inclusion: 不在清單中
+        taken: 已被使用
+        confirmation: 不相符
+        email_cant_contain_plus: 不能包含「+」字元
+        email_in_blacklist: 不能是臨時信箱
+        email_cant_changes_too_often: 每天最多只能修改兩次
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: 已經為該片段提議過譯文
+              too_many_variants: 最多只能建立%{count}個譯文版本
+
+  users:
+    links:
+      login: 登入
+      logout: 登出
+      profile_edit: 編輯個人資料
+      password_change: 修改密碼
+    titles:
+      signup: 註冊
+      login: 登入網站
+      password_reset: 找回密碼
+      new_password: 設定新密碼
+      profile: 用戶資料
+      password_change: 修改密碼
+      profile_edit: 編輯個人資料
+    buttons:
+      signup: 註冊
+      login: 登入
+      password_reset: 重設密碼
+      new_password: 設定密碼
+      save_changes: 儲存變更
+      save_new_password: 儲存新密碼
+    notices:
+      error: 錯誤
+      registration_successful: 註冊成功
+      profile_is_updated: 個人資料已更新
+      password_is_changed: 密碼已修改
+      password_confirm_is_wrong: 密碼與確認密碼不一致
+      current_password_is_wrong: 目前密碼錯誤
+      user_is_activated: 電子郵件已確認，帳戶已啟用。
+      update_your_password_if_you_forgotten_it: 如果您忘記了密碼，請更新密碼
+      already_logged_in: 您已登入
+      logged_out: 您已登出
+      logged_in: 登入成功
+      login_failed: 登入失敗
+      loggin_failed_account_is_locked: 登入失敗。帳戶已被鎖定，請透過郵件中的連結解鎖
+    alerts:
+      are_you_shure: 您確定嗎？
+    errors:
+      login_required: 請先登入
+      activation_required: 請透過郵件中的連結啟用帳戶
+      account_blocked: 您的帳戶已被封鎖
+      not_admin: 權限不足
+      too_many_requests: 對伺服器的請求過於頻繁，請稍候。
+    hints:
+      email_confirmed: ✅ 電子郵件已確認
+      email_not_confirmed: ⚠️ 電子郵件未確認。請點擊郵件中的連結。
+    fields:
+      current_password: 目前密碼
+      new_password: 新密碼
+      new_password_confirmation: 確認新密碼
+
+    is_already_registred: 已有帳戶？
+    is_not_yet_registred: 還沒有帳戶？
+    is_forgot_password: 忘記密碼？
+    letters:
+      welcome:
+        subject: 您已在 bibleox.com 註冊
+        body: |
+          <p>%{name}，您好！</p><br>
+          <p>有人以您的名義在 bibleox.com 註冊了帳戶。要登入網站，請開啟連結：%{url}。</p>
+          <p>如果這不是您本人操作，請忽略此郵件。</p>
+          <p>祝您愉快！</p>
+      activation_needed:
+        subject: 電子郵件確認
+        body: |
+          <p>%{name}，您好！</p><br>
+          <p>此電子郵件已被用於在 bibleox.com 註冊。要啟用帳戶，請開啟連結：%{url}。</p><br>
+          <p>如果這不是您本人操作，請忽略此郵件。</p>
+          <p>祝您愉快！</p>
+      password_reset:
+        subject: 重設密碼
+        body: |
+          <p>%{name}，您好！</p><br>
+          <p>有人在 bibleox.com 請求重設此電子郵件對應帳戶的密碼。要設定新密碼，請開啟連結：%{url}。</p>
+          <p>該連結將在24小時後失效。</p>
+          <p>如果這不是您本人操作，請忽略此郵件。</p><br>
+          <p>祝您愉快！</p>
+      account_unlock:
+        subject: 帳戶解鎖
+        body: |
+          <p>%{name}，您好！</p><br>
+          <p>有人多次輸入錯誤密碼，試圖登入您在 bibleox.com 的帳戶。為保護您的帳戶，我們已將其暫時鎖定。要解鎖，請開啟連結：%{url}。</p><br>
+          <p>祝您愉快！</p>
+
+  errors:
+    alert: 發生錯誤

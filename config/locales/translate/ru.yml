@@ -1,0 +1,86 @@
+ru:
+  tr_projects:
+    all_translations: Все переводы
+    index_title: Совместные переводы церковных текстов
+    index_page_title: Совместные переводы церковных текстов на языки всех народов
+    index_h1: Совместные переводы церковных текстов (beta)
+    quote: слышим их нашими языками говорящих о великих делах Божиих
+    quote_ref: Деян. 2:11
+    beta_notice: Раздел переводов находится в стадии beta-тестирования. На время тестирования к переводу предлагается небольшое количество трудов.
+    create_project: Создать проект
+    last_day: Переводы за последние сутки
+    source_label: 'Исходник:'
+    translation_label: 'Перевод:'
+    translations_label: 'Переводы:'
+    other_language: Другой язык
+    other_languages: Другие языки...
+    project_page_title: Совместный перевод — %{title}
+    show_page_title: '%{title} — Часть %{part}'
+    result: Итоговый перевод
+    work_on_translation: Работа над переводом
+    prepared_by_users: Перевод подготавливается пользователями сайта bibleox.com.
+    help_cta_html: Вы можете помочь улучшить этот текст! %{signup_link} и %{join_link}.
+    signup_link: Зарегистрируйтесь
+    join_link: присоединяйтесь к работе над переводом
+    license: Как и материалы Wikipedia, результат распространяется свободно под лицензией CC BY-SA.
+    part: Часть
+    translate_from: 'Перевод с языка:'
+    translate_to: 'на язык:'
+    result_lang: 'Перевод на язык:'
+    sources: Исходники
+    translations: Переводы
+    continue_html: Работу над переводом можно продолжить в %{link}.
+    continue_link: специальном разделе
+    not_loaded: Текст ещё не загружен. Попробуйте зайти через 15 минут.
+    confirm_delete_part: Удалить часть %{part} проекта перевода «%{title}»?
+    new_project: Новый проект перевода
+    edit_project: Редактирование проекта перевода
+    delete: Удалить
+    confirm_delete_project: Удалить проект перевода «%{title}»?
+    import_title: Импортировать новую часть текста
+    source_lang: Язык оригинала
+    split_and_add: Разбить и добавить
+    processing: Обработка...
+    form:
+      title: Название проекта
+      description: Описание
+      description_placeholder: Краткое описание проекта, источники, особенности перевода...
+      page_ids: ID страниц (через запятую)
+      page_ids_placeholder: 'Например: 1,3,5,7'
+      create: Создать проект
+      save: Сохранить изменения
+      saving: Сохранение...
+    notices:
+      created: Проект создан
+      updated: Проект обновлён
+      part_deleted: Часть %{part} удалена из проекта
+      deleted: Проект удалён
+    fragment: Фрагмент
+    copy: Копировать
+    propose: Предложить перевод
+    login_to_propose_html: Чтобы предлагать переводы, %{link}.
+    login_to_propose_link: войдите или зарегистрируйтесь
+    your_translation: Ваш перевод
+    editing: Редактирование перевода
+    cancel: Отмена
+    text_placeholder: Напишите ваш вариант перевода...
+    sub_text_placeholder: Комментарий-сноска (если хотите приложить комментарий к переводу)
+    submit: Отправить перевод
+    save: Сохранить перевод
+    edit_short: Ред.
+    confirm_delete: Точно хотите удалить этот перевод?
+    liked: Понравилось
+    needs_work: Требуются доработки
+    needs_work_hint: '«Требуются доработки». Этот голос могут отдать только те, кто уже предложил свой вариант перевода'
+    approved: Одобрен как основной перевод
+    user_blocked: Пользователь заблокирован
+    who_voted: Кто голосовал
+    pin: Закрепить
+    unpin: Открепить
+    approve_title: Одобрить как основной перевод
+    approve_confirm: Сделать этот перевод основным?
+    block_short: Забл.
+    block_title: Заблокировать пользователя
+    block_confirm: Заблокировать пользователя %{username}?
+    remove_reaction: Удалить реакцию
+    remove_reaction_confirm: Удалить реакцию пользователя %{username}?

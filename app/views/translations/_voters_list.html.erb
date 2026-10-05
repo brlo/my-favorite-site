@@ -3,7 +3,7 @@
     <div class="voters-sections">
       <div class="voters-section">
         <div class="section-title">
-          <span><%= ::VOTE_PLUS %> Понравилось</span>
+          <span><%= ::VOTE_PLUS %> <%= t('tr_projects.liked') %></span>
         </div>
         <div class="voters-list">
           <% @upvoters.each do |user, voted_at| %>
@@ -22,9 +22,9 @@
                         ),
                         class: 'vote-btn',
                         method: :delete,
-                        title: 'Удалить реакцию',
+                        title: t('tr_projects.remove_reaction'),
                         data: {
-                          turbo_confirm: "Удалить реакцию от пользователя? #{ user.username }",
+                          turbo_confirm: t('tr_projects.remove_reaction_confirm', username: user.username),
                           turbo_frame: "translation_#{ translation.id }",
                           turbo_prefetch: false
                         }
@@ -40,7 +40,7 @@
 
       <div class="voters-section">
         <div class="section-title">
-          <span><%= ::VOTE_MINUS %> Требуются доработки</span>
+          <span><%= ::VOTE_MINUS %> <%= t('tr_projects.needs_work') %></span>
         </div>
         <div class="voters-list">
           <% @downvoters.each do |user, voted_at| %>
@@ -59,9 +59,9 @@
                         ),
                         class: 'vote-btn',
                         method: :delete,
-                        title: 'Удалить реакцию',
+                        title: t('tr_projects.remove_reaction'),
                         data: {
-                          turbo_confirm: "Удалить реакцию от пользователя? #{ user.username }",
+                          turbo_confirm: t('tr_projects.remove_reaction_confirm', username: user.username),
                           turbo_method: :delete,
                           turbo_prefetch: false
                         }

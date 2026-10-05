@@ -1,0 +1,158 @@
+he:
+  bc:
+    profile: פרופיל
+    change_password: שינוי סיסמה
+    edit_password: עריכת פרופיל
+
+  helpers:
+    label:
+      session:
+        email: כתובת דוא״ל
+        password_reset: כתובת הדוא״ל של החשבון שאת סיסמתו שכחתם
+        password_reset_alert: אם כתובת הדוא״ל הזו קיימת במערכת שלנו, תקבלו הודעה עם הוראות
+        password_reset_ok: הסיסמה עודכנה בהצלחה
+    submit:
+      session:
+        create: התחברות
+        password_reset: איפוס סיסמה
+      user:
+        create: הרשמה
+        update: עדכון
+
+  activemodel:
+    attributes:
+      session:
+        email: כתובת דוא״ל
+        password: סיסמה
+        remember_me: זכור אותי
+    errors:
+      models:
+        session:
+          invalid_credentials: דוא״ל או סיסמה שגויים
+          account_activation_pending: יש להפעיל קודם את החשבון באמצעות הקישור בהודעה ששלחנו אליכם.
+
+  activerecord:
+    models:
+      translation: תרגום
+    attributes:
+      translation:
+        user_id: משתמש
+        segment_id: קטע
+        lang: שפה
+        text: טקסט התרגום
+      user:
+        username: שם משתמש
+        name: שם
+        email: כתובת דוא״ל
+        password: סיסמה
+        password_confirmation: אימות סיסמה
+        pages_owner: בעל העמודים
+        privs: הרשאות
+        failed_logins_count: ניסיונות התחברות כושלים
+        lock_expires_at: החסימה מסתיימת ב
+    errors:
+      messages:
+        record_invalid: מכיל שגיאות
+        blank: לא יכול להיות ריק
+        invalid: אינו תקין
+        too_short: קצר מדי (לפחות %{count} תווים)
+        too_long: ארוך מדי (לכל היותר %{count} תווים)
+        inclusion: אינו כלול ברשימה
+        taken: כבר תפוס
+        confirmation: אינו תואם
+        email_cant_contain_plus: לא יכול להכיל את התו '+'
+        email_in_blacklist: לא יכול להיות כתובת זמנית
+        email_cant_changes_too_often: ניתן לשנות לכל היותר פעמיים ביום
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: כבר הציע תרגום לקטע הזה
+              too_many_variants: יכול ליצור לכל היותר %{count} גרסאות תרגום
+
+  users:
+    links:
+      login: התחברות
+      logout: התנתקות
+      profile_edit: עריכת פרופיל
+      password_change: שינוי סיסמה
+    titles:
+      signup: הרשמה
+      login: כניסה לאתר
+      password_reset: שחזור סיסמה
+      new_password: הגדרת סיסמה חדשה
+      profile: פרופיל משתמש
+      password_change: שינוי סיסמה
+      profile_edit: עריכת פרופיל
+    buttons:
+      signup: הרשמה
+      login: התחברות
+      password_reset: איפוס סיסמה
+      new_password: הגדרת סיסמה
+      save_changes: שמירת שינויים
+      save_new_password: שמירת הסיסמה החדשה
+    notices:
+      error: שגיאה
+      registration_successful: נרשמתם בהצלחה
+      profile_is_updated: הפרופיל עודכן בהצלחה
+      password_is_changed: הסיסמה שונתה בהצלחה
+      password_confirm_is_wrong: הסיסמה ואימות הסיסמה אינם תואמים
+      current_password_is_wrong: הסיסמה הנוכחית שגויה
+      user_is_activated: הדוא״ל אומת. החשבון הופעל.
+      update_your_password_if_you_forgotten_it: אנא עדכנו את הסיסמה אם שכחתם אותה
+      already_logged_in: אתם כבר מחוברים
+      logged_out: התנתקתם
+      logged_in: התחברתם בהצלחה
+      login_failed: ההתחברות נכשלה
+      loggin_failed_account_is_locked: ההתחברות נכשלה. החשבון נעול. שחררו אותו באמצעות הקישור בהודעה
+    alerts:
+      are_you_shure: האם אתם בטוחים?
+    errors:
+      login_required: יש להתחבר
+      activation_required: יש להפעיל את החשבון באמצעות הקישור בהודעה
+      account_blocked: החשבון שלכם חסום
+      not_admin: אין מספיק הרשאות
+      too_many_requests: יותר מדי בקשות לשרת. אנא המתינו מעט.
+    hints:
+      email_confirmed: ✅ הדוא״ל אומת
+      email_not_confirmed: ⚠️ הדוא״ל לא אומת. היכנסו לקישור שבהודעה.
+    fields:
+      current_password: סיסמה נוכחית
+      new_password: סיסמה חדשה
+      new_password_confirmation: אימות סיסמה חדשה
+
+    is_already_registred: כבר רשומים?
+    is_not_yet_registred: אין לכם חשבון?
+    is_forgot_password: שכחתם סיסמה?
+    letters:
+      welcome:
+        subject: נרשמתם לאתר bibleox.com
+        body: |
+          <p>שלום %{name},</p><br>
+          <p>מישהו נרשם בשמכם לאתר bibleox.com. כדי להתחבר, היכנסו לקישור: %{url}.</p>
+          <p>אם לא אתם עשיתם זאת, פשוט התעלמו מהודעה זו.</p>
+          <p>יום טוב!</p>
+      activation_needed:
+        subject: אימות כתובת דוא״ל
+        body: |
+          <p>שלום %{name},</p><br>
+          <p>כתובת זו שימשה להרשמה לאתר bibleox.com. כדי להפעיל את החשבון, היכנסו לקישור: %{url}.</p><br>
+          <p>אם לא אתם עשיתם זאת, פשוט התעלמו מהודעה זו.</p>
+          <p>יום טוב!</p>
+      password_reset:
+        subject: איפוס סיסמה
+        body: |
+          <p>שלום %{name},</p><br>
+          <p>מישהו ביקש לאפס את הסיסמה עבור כתובת דוא״ל זו באתר bibleox.com. כדי להגדיר סיסמה חדשה, היכנסו לקישור: %{url}.</p>
+          <p>הקישור יפוג בעוד 24 שעות.</p>
+          <p>אם לא אתם עשיתם זאת, פשוט התעלמו מהודעה זו.</p><br>
+          <p>יום טוב!</p>
+      account_unlock:
+        subject: שחרור נעילת החשבון
+        body: |
+          <p>שלום %{name},</p><br>
+          <p>מישהו ניסה להתחבר לחשבון שלכם באתר bibleox.com והזין סיסמה שגויה פעמים רבות מדי. כדי להגן על החשבון, נעלנו אותו זמנית. כדי לשחרר את הנעילה, היכנסו לקישור: %{url}.</p><br>
+          <p>יום טוב!</p>
+
+  errors:
+    alert: אירעו שגיאות

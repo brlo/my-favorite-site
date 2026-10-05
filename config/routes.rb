@@ -23,8 +23,9 @@ Rails.application.routes.draw do
     "/#{params[:loc_ui]}/#{lang}/#{encoded_rest}"
   }, constraints: { loc_cont: /cn|gr|il|jp/ }
 
-  # default locale добавлено ради сложных ссылок link_to для админки
-  scope '/:locale', :locale => /#{::R_LOCALES}/, defaults: {locale: :ru} do
+  # locale не задаём через defaults: дефолты маршрута перекрывают default_url_options,
+  # и хелперы всегда подставляли бы :ru. Текущая локаль подставляется в ApplicationController#default_url_options.
+  scope '/:locale', :locale => /#{::R_LOCALES}/ do
     # Сессии (логин/логаут)
     get 'login', to: 'sessions#new', as: :login
     post 'login', to: 'sessions#create'

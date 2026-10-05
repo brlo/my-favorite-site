@@ -1,0 +1,104 @@
+de:
+  menu:
+    translates: Übersetzungen
+  open_tags:
+    h2: Überschrift
+    p: Absatz
+    strong: Fettdruck
+  close_tags:
+    h2: Ende der Überschrift
+    p: Ende des Absatzes
+    strong: Ende des Fettdrucks
+  time_ago:
+    just_now: gerade eben
+    minute: Min.
+    hour: Std.
+    day: T.
+    week: Wo.
+    month: Mon.
+    year: J.
+  tr_projects:
+    all_translations: Alle Übersetzungen
+    index_title: Gemeinsame Übersetzung kirchlicher Texte
+    index_page_title: Gemeinsame Übersetzung kirchlicher Texte in die Sprachen aller Völker
+    index_h1: Gemeinsame Übersetzung kirchlicher Texte (Beta)
+    quote: wir hören sie in unseren Sprachen die großen Taten Gottes verkünden
+    quote_ref: Apg 2,11
+    beta_notice: Der Übersetzungsbereich befindet sich im Beta-Test. Während der Testphase wird nur eine kleine Anzahl von Werken zur Übersetzung angeboten.
+    create_project: Projekt erstellen
+    last_day: Übersetzungen der letzten 24 Stunden
+    source_label: 'Quelle:'
+    translation_label: 'Übersetzung:'
+    translations_label: 'Übersetzungen:'
+    other_language: Andere Sprache
+    other_languages: Weitere Sprachen...
+    project_page_title: Gemeinsame Übersetzung — %{title}
+    show_page_title: '%{title} — Teil %{part}'
+    result: Endgültige Übersetzung
+    work_on_translation: Arbeit an der Übersetzung
+    prepared_by_users: Diese Übersetzung wird von den Nutzern von bibleox.com erstellt.
+    help_cta_html: Sie können helfen, diesen Text zu verbessern! %{signup_link} und %{join_link}.
+    signup_link: Registrieren Sie sich
+    join_link: beteiligen Sie sich an der Übersetzung
+    license: Wie die Inhalte der Wikipedia wird das Ergebnis frei unter der Lizenz CC BY-SA verbreitet.
+    part: Teil
+    translate_from: 'Übersetzen aus:'
+    translate_to: 'in:'
+    result_lang: 'Übersetzung in:'
+    sources: Quellen
+    translations: Übersetzungen
+    continue_html: Die Arbeit an der Übersetzung kann im %{link} fortgesetzt werden.
+    continue_link: entsprechenden Bereich
+    not_loaded: Der Text wurde noch nicht geladen. Bitte versuchen Sie es in 15 Minuten erneut.
+    confirm_delete_part: Teil %{part} des Übersetzungsprojekts „%{title}“ löschen?
+    new_project: Neues Übersetzungsprojekt
+    edit_project: Übersetzungsprojekt bearbeiten
+    delete: Löschen
+    confirm_delete_project: Übersetzungsprojekt „%{title}“ löschen?
+    import_title: Neuen Textteil importieren
+    source_lang: Originalsprache
+    split_and_add: Aufteilen und hinzufügen
+    processing: Verarbeitung...
+    form:
+      title: Projekttitel
+      description: Beschreibung
+      description_placeholder: Kurze Beschreibung des Projekts, Quellen, Besonderheiten der Übersetzung...
+      page_ids: Seiten-IDs (durch Komma getrennt)
+      page_ids_placeholder: 'Zum Beispiel: 1,3,5,7'
+      create: Projekt erstellen
+      save: Änderungen speichern
+      saving: Speichern...
+    notices:
+      created: Projekt erstellt
+      updated: Projekt aktualisiert
+      part_deleted: Teil %{part} wurde aus dem Projekt entfernt
+      deleted: Projekt gelöscht
+    fragment: Fragment
+    copy: Kopieren
+    propose: Übersetzung vorschlagen
+    login_to_propose_html: Um Übersetzungen vorzuschlagen, %{link}.
+    login_to_propose_link: melden Sie sich an oder registrieren Sie sich
+    your_translation: Ihre Übersetzung
+    editing: Übersetzung bearbeiten
+    cancel: Abbrechen
+    text_placeholder: Schreiben Sie Ihre Version der Übersetzung...
+    sub_text_placeholder: Fußnote (falls Sie Ihrer Übersetzung einen Kommentar beifügen möchten)
+    submit: Übersetzung senden
+    save: Übersetzung speichern
+    edit_short: Bearb.
+    confirm_delete: Möchten Sie diese Übersetzung wirklich löschen?
+    liked: Gefällt mir
+    needs_work: Überarbeitung nötig
+    needs_work_hint: '„Überarbeitung nötig“. Diese Stimme können nur diejenigen abgeben, die bereits eine eigene Übersetzung vorgeschlagen haben'
+    approved: Als Hauptübersetzung bestätigt
+    user_blocked: Benutzer ist gesperrt
+    who_voted: Wer hat abgestimmt
+    pin: Anheften
+    unpin: Lösen
+    approve_title: Als Hauptübersetzung bestätigen
+    approve_confirm: Diese Übersetzung zur Hauptübersetzung machen?
+    block_short: Sperren
+    block_title: Benutzer sperren
+    block_confirm: Benutzer %{username} sperren?
+    remove_reaction: Reaktion entfernen
+    remove_reaction_confirm: Reaktion des Benutzers %{username} entfernen?

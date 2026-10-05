@@ -1,0 +1,104 @@
+sr:
+  menu:
+    translates: Преводи
+  open_tags:
+    h2: наслов
+    p: пасус
+    strong: подебљан текст
+  close_tags:
+    h2: крај наслова
+    p: крај пасуса
+    strong: крај подебљаног текста
+  time_ago:
+    just_now: управо сада
+    minute: мин
+    hour: ч
+    day: д
+    week: нед
+    month: мес
+    year: г
+  tr_projects:
+    all_translations: Сви преводи
+    index_title: Заједнички преводи црквених текстова
+    index_page_title: Заједнички преводи црквених текстова на језике свих народа
+    index_h1: Заједнички преводи црквених текстова (beta)
+    quote: чујемо их где говоре нашим језицима о величанственим делима Божијим
+    quote_ref: Дап 2,11
+    beta_notice: Одељак превода је у фази бета тестирања. Током тестирања за превод се нуди мали број дела.
+    create_project: Направи пројекат
+    last_day: Преводи у последња 24 сата
+    source_label: 'Изворник:'
+    translation_label: 'Превод:'
+    translations_label: 'Преводи:'
+    other_language: Други језик
+    other_languages: Други језици...
+    project_page_title: Заједнички превод — %{title}
+    show_page_title: '%{title} — Део %{part}'
+    result: Коначни превод
+    work_on_translation: Рад на преводу
+    prepared_by_users: Превод припремају корисници сајта bibleox.com.
+    help_cta_html: Можете помоћи да се овај текст побољша! %{signup_link} и %{join_link}.
+    signup_link: Региструјте се
+    join_link: придружите се раду на преводу
+    license: Као и садржај Википедије, резултат се слободно дистрибуира под лиценцом CC BY-SA.
+    part: Део
+    translate_from: 'Превод са језика:'
+    translate_to: 'на језик:'
+    result_lang: 'Превод на језик:'
+    sources: Изворници
+    translations: Преводи
+    continue_html: Рад на преводу можете наставити у %{link}.
+    continue_link: посебном одељку
+    not_loaded: Текст још није учитан. Покушајте поново за 15 минута.
+    confirm_delete_part: Обрисати део %{part} пројекта превода „%{title}“?
+    new_project: Нови пројекат превода
+    edit_project: Уређивање пројекта превода
+    delete: Обриши
+    confirm_delete_project: Обрисати пројекат превода „%{title}“?
+    import_title: Увоз новог дела текста
+    source_lang: Језик оригинала
+    split_and_add: Подели и додај
+    processing: Обрада...
+    form:
+      title: Назив пројекта
+      description: Опис
+      description_placeholder: Кратак опис пројекта, извори, особености превода...
+      page_ids: ID страница (раздвојени зарезом)
+      page_ids_placeholder: 'На пример: 1,3,5,7'
+      create: Направи пројекат
+      save: Сачувај измене
+      saving: Чување...
+    notices:
+      created: Пројекат је направљен
+      updated: Пројекат је ажуриран
+      part_deleted: Део %{part} је уклоњен из пројекта
+      deleted: Пројекат је обрисан
+    fragment: Одломак
+    copy: Копирај
+    propose: Предложи превод
+    login_to_propose_html: Да бисте предлагали преводе, %{link}.
+    login_to_propose_link: пријавите се или се региструјте
+    your_translation: Ваш превод
+    editing: Уређивање превода
+    cancel: Откажи
+    text_placeholder: Напишите своју верзију превода...
+    sub_text_placeholder: Фуснота (ако желите да приложите коментар уз превод)
+    submit: Пошаљи превод
+    save: Сачувај превод
+    edit_short: Уреди
+    confirm_delete: Да ли сигурно желите да обришете овај превод?
+    liked: Свиђа ми се
+    needs_work: Потребна дорада
+    needs_work_hint: '„Потребна дорада“. Овај глас могу дати само они који су већ предложили свој превод'
+    approved: Одобрен као главни превод
+    user_blocked: Корисник је блокиран
+    who_voted: Ко је гласао
+    pin: Закачи
+    unpin: Откачи
+    approve_title: Одобри као главни превод
+    approve_confirm: Да овај превод постане главни?
+    block_short: Блокирај
+    block_title: Блокирај корисника
+    block_confirm: Блокирати корисника %{username}?
+    remove_reaction: Уклони реакцију
+    remove_reaction_confirm: Уклонити реакцију корисника %{username}?

@@ -1,7 +1,7 @@
-<%= content_for :title, 'Новый проект' %>
+<%= content_for :title, t('tr_projects.new_project') %>
 
 <div>
-  <h2>Создать проект перевода</h2>
+  <h2><%= t('tr_projects.new_project') %></h2>
 </div>
 <div>
   <%= render 'form', project: @project %>

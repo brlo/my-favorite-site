@@ -1,0 +1,158 @@
+sr:
+  bc:
+    profile: Профил
+    change_password: Промена лозинке
+    edit_password: Уређивање профила
+
+  helpers:
+    label:
+      session:
+        email: Имејл адреса
+        password_reset: Имејл адреса налога чију сте лозинку заборавили
+        password_reset_alert: Ако је ова имејл адреса у нашем систему, добићете имејл са упутствима
+        password_reset_ok: Лозинка је успешно ажурирана
+    submit:
+      session:
+        create: Пријави се
+        password_reset: Ресетуј лозинку
+      user:
+        create: Региструј се
+        update: Ажурирај
+
+  activemodel:
+    attributes:
+      session:
+        email: Имејл адреса
+        password: Лозинка
+        remember_me: Запамти ме
+    errors:
+      models:
+        session:
+          invalid_credentials: Погрешан имејл или лозинка
+          account_activation_pending: Најпре активирајте налог преко линка из имејла који смо вам послали.
+
+  activerecord:
+    models:
+      translation: Превод
+    attributes:
+      translation:
+        user_id: Корисник
+        segment_id: Одломак
+        lang: Језик
+        text: Текст превода
+      user:
+        username: Корисничко име
+        name: Име
+        email: Имејл адреса
+        password: Лозинка
+        password_confirmation: Потврда лозинке
+        pages_owner: Власник страница
+        privs: Привилегије
+        failed_logins_count: Број неуспелих пријава
+        lock_expires_at: Блокада истиче
+    errors:
+      messages:
+        record_invalid: садржи грешке
+        blank: не може бити празно
+        invalid: није исправно
+        too_short: је прекратко (најмање %{count} знакова)
+        too_long: је предугачко (највише %{count} знакова)
+        inclusion: није на листи дозвољених вредности
+        taken: је већ заузето
+        confirmation: се не поклапа
+        email_cant_contain_plus: не може садржати знак '+'
+        email_in_blacklist: не може бити привремена адреса
+        email_cant_changes_too_often: може се мењати највише два пута дневно
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: је већ предложио превод за овај одломак
+              too_many_variants: може направити највише %{count} варијанте превода
+
+  users:
+    links:
+      login: Пријава
+      logout: Одјави се
+      profile_edit: Уреди профил
+      password_change: Промени лозинку
+    titles:
+      signup: Регистрација
+      login: Пријава на сајт
+      password_reset: Опоравак лозинке
+      new_password: Постављање нове лозинке
+      profile: Кориснички профил
+      password_change: Промена лозинке
+      profile_edit: Уређивање профила
+    buttons:
+      signup: Региструј се
+      login: Пријави се
+      password_reset: Ресетуј лозинку
+      new_password: Постави лозинку
+      save_changes: Сачувај измене
+      save_new_password: Сачувај нову лозинку
+    notices:
+      error: Грешка
+      registration_successful: Успешно сте се регистровали
+      profile_is_updated: Профил је успешно ажуриран
+      password_is_changed: Лозинка је успешно промењена
+      password_confirm_is_wrong: Лозинка и потврда лозинке се не поклапају
+      current_password_is_wrong: Тренутна лозинка није тачна
+      user_is_activated: Имејл је потврђен. Налог је активиран.
+      update_your_password_if_you_forgotten_it: Молимо вас да ажурирате лозинку ако сте је заборавили
+      already_logged_in: Већ сте пријављени
+      logged_out: Одјавили сте се
+      logged_in: Успешно сте се пријавили
+      login_failed: Пријава није успела
+      loggin_failed_account_is_locked: Пријава није успела. Налог је закључан. Откључајте га преко линка из имејла
+    alerts:
+      are_you_shure: Да ли сте сигурни?
+    errors:
+      login_required: Потребно је да се пријавите
+      activation_required: Активирајте налог преко линка из имејла
+      account_blocked: Ваш налог је блокиран
+      not_admin: Немате довољно права
+      too_many_requests: Превише захтева ка серверу. Сачекајте мало.
+    hints:
+      email_confirmed: ✅ Имејл је потврђен
+      email_not_confirmed: ⚠️ Имејл није потврђен. Пратите линк из имејла.
+    fields:
+      current_password: Тренутна лозинка
+      new_password: Нова лозинка
+      new_password_confirmation: Потврда нове лозинке
+
+    is_already_registred: Већ имате налог?
+    is_not_yet_registred: Немате налог?
+    is_forgot_password: Заборавили сте лозинку?
+    letters:
+      welcome:
+        subject: Регистровали сте се на сајту bibleox.com
+        body: |
+          <p>Здраво, %{name}.</p><br>
+          <p>Неко се у ваше име регистровао на сајту bibleox.com. За пријаву пратите линк: %{url}.</p>
+          <p>Ако то нисте били ви, само занемарите овај имејл.</p>
+          <p>Пријатан дан!</p>
+      activation_needed:
+        subject: Потврда имејла
+        body: |
+          <p>Здраво, %{name}.</p><br>
+          <p>Ова адреса је коришћена за регистрацију на сајту bibleox.com. Да бисте активирали налог, пратите линк: %{url}.</p><br>
+          <p>Ако то нисте били ви, само занемарите овај имејл.</p>
+          <p>Пријатан дан!</p>
+      password_reset:
+        subject: Ресетовање лозинке
+        body: |
+          <p>Здраво, %{name}.</p><br>
+          <p>Неко је затражио ресетовање лозинке за ову имејл адресу на сајту bibleox.com. Да бисте поставили нову лозинку, пратите линк: %{url}.</p>
+          <p>Овај линк престаје да важи за 24 сата.</p>
+          <p>Ако то нисте били ви, само занемарите овај имејл.</p><br>
+          <p>Пријатан дан!</p>
+      account_unlock:
+        subject: Откључавање налога
+        body: |
+          <p>Здраво, %{name}.</p><br>
+          <p>Неко је покушао да се пријави на ваш налог на сајту bibleox.com уносећи погрешну лозинку превише пута. Да бисмо заштитили ваш налог, привремено смо га закључали. За откључавање пратите линк: %{url}.</p><br>
+          <p>Пријатан дан!</p>
+
+  errors:
+    alert: Дошло је до грешака

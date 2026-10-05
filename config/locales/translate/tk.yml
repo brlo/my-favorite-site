@@ -1,0 +1,104 @@
+tk:
+  menu:
+    translates: Terjimeler
+  open_tags:
+    h2: sözbaşy
+    p: abzas
+    strong: galyň tekst
+  close_tags:
+    h2: sözbaşynyň soňy
+    p: abzasyň soňy
+    strong: galyň tekstiň soňy
+  time_ago:
+    just_now: ýaňy
+    minute: min
+    hour: sag
+    day: gün
+    week: hep
+    month: aý
+    year: ý
+  tr_projects:
+    all_translations: Ähli terjimeler
+    index_title: Ybadathana tekstleriniň bilelikdäki terjimesi
+    index_page_title: Ybadathana tekstleriniň ähli halklaryň dillerine bilelikdäki terjimesi
+    index_h1: Ybadathana tekstleriniň bilelikdäki terjimesi (beta)
+    quote: olaryň Hudaýyň beýik işleri barada öz dillerimizde gürleýändigini eşidýäris
+    quote_ref: Res. 2:11
+    beta_notice: Terjimeler bölümi beta-synag tapgyrynda. Synag döwründe terjime üçin az sanly eserler hödürlenýär.
+    create_project: Taslama döret
+    last_day: Soňky 24 sagadyň terjimeleri
+    source_label: 'Asyl tekst:'
+    translation_label: 'Terjime:'
+    translations_label: 'Terjimeler:'
+    other_language: Başga dil
+    other_languages: Başga diller...
+    project_page_title: Bilelikdäki terjime — %{title}
+    show_page_title: '%{title} — %{part}-nji bölek'
+    result: Jemleýji terjime
+    work_on_translation: Terjimäniň üstünde iş
+    prepared_by_users: Terjimäni bibleox.com saýtynyň ulanyjylary taýýarlaýar.
+    help_cta_html: Siz bu teksti gowulandyrmaga kömek edip bilersiňiz! %{signup_link} we %{join_link}.
+    signup_link: Hasaba duruň
+    join_link: terjime işine goşulyň
+    license: Wikipediýanyň materiallary ýaly, netije CC BY-SA ygtyýarnamasy boýunça erkin ýaýradylýar.
+    part: Bölek
+    translate_from: 'Haýsy dilden:'
+    translate_to: 'haýsy dile:'
+    result_lang: 'Terjime dili:'
+    sources: Asyl tekstler
+    translations: Terjimeler
+    continue_html: Terjimäniň üstündäki işi %{link} dowam etdirip bolýar.
+    continue_link: ýörite bölümde
+    not_loaded: Tekst entek ýüklenmedi. 15 minutdan soň gaýtadan synanyşyň.
+    confirm_delete_part: '"%{title}" terjime taslamasynyň %{part}-nji bölegi pozulsynmy?'
+    new_project: Täze terjime taslamasy
+    edit_project: Terjime taslamasyny redaktirlemek
+    delete: Poz
+    confirm_delete_project: '"%{title}" terjime taslamasy pozulsynmy?'
+    import_title: Tekstiň täze bölegini import et
+    source_lang: Asyl dil
+    split_and_add: Böl we goş
+    processing: Işlenýär...
+    form:
+      title: Taslamanyň ady
+      description: Beýany
+      description_placeholder: Taslamanyň gysga beýany, çeşmeler, terjimäniň aýratynlyklary...
+      page_ids: Sahypalaryň ID-leri (otur bilen)
+      page_ids_placeholder: 'Mysal üçin: 1,3,5,7'
+      create: Taslama döret
+      save: Üýtgetmeleri ýatda sakla
+      saving: Ýatda saklanýar...
+    notices:
+      created: Taslama döredildi
+      updated: Taslama täzelendi
+      part_deleted: '%{part}-nji bölek taslamadan aýryldy'
+      deleted: Taslama pozuldy
+    fragment: Bölekçe
+    copy: Göçür
+    propose: Terjime teklip et
+    login_to_propose_html: Terjime teklip etmek üçin %{link}.
+    login_to_propose_link: giriň ýa-da hasaba duruň
+    your_translation: Siziň terjimäňiz
+    editing: Terjimäni redaktirlemek
+    cancel: Ýatyr
+    text_placeholder: Terjimäniň öz wariantyňyzy ýazyň...
+    sub_text_placeholder: Bellik (terjimä teswir goşmak isleseňiz)
+    submit: Terjimäni iber
+    save: Terjimäni ýatda sakla
+    edit_short: Red.
+    confirm_delete: Bu terjimäni hakykatdan hem pozmak isleýärsiňizmi?
+    liked: Halady
+    needs_work: Kämilleşdirmek gerek
+    needs_work_hint: '"Kämilleşdirmek gerek". Bu sesi diňe öz terjimesini eýýäm teklip edenler berip bilýär'
+    approved: Esasy terjime hökmünde tassyklandy
+    user_blocked: Ulanyjy bloklandy
+    who_voted: Kimler ses berdi
+    pin: Berkit
+    unpin: Aýyr
+    approve_title: Esasy terjime hökmünde tassykla
+    approve_confirm: Bu terjime esasy edilsinmi?
+    block_short: Blokla
+    block_title: Ulanyjyny blokla
+    block_confirm: '%{username} ulanyjysy bloklansynmy?'
+    remove_reaction: Reaksiýany aýyr
+    remove_reaction_confirm: '%{username} ulanyjysynyň reaksiýasy aýrylsynmy?'

@@ -1,0 +1,104 @@
+el:
+  menu:
+    translates: Μεταφράσεις
+  open_tags:
+    h2: επικεφαλίδα
+    p: παράγραφος
+    strong: έντονο κείμενο
+  close_tags:
+    h2: τέλος επικεφαλίδας
+    p: τέλος παραγράφου
+    strong: τέλος έντονου κειμένου
+  time_ago:
+    just_now: μόλις τώρα
+    minute: λ.
+    hour: ώ.
+    day: ημ.
+    week: εβδ.
+    month: μήν.
+    year: έτ.
+  tr_projects:
+    all_translations: Όλες οι μεταφράσεις
+    index_title: Συλλογική μετάφραση εκκλησιαστικών κειμένων
+    index_page_title: Συλλογική μετάφραση εκκλησιαστικών κειμένων στις γλώσσες όλων των λαών
+    index_h1: Συλλογική μετάφραση εκκλησιαστικών κειμένων (beta)
+    quote: ἀκούομεν λαλούντων αὐτῶν ταῖς ἡμετέραις γλώσσαις τὰ μεγαλεῖα τοῦ Θεοῦ
+    quote_ref: Πράξ. 2,11
+    beta_notice: Η ενότητα των μεταφράσεων βρίσκεται σε δοκιμαστική φάση (beta). Κατά τη διάρκεια των δοκιμών προτείνεται για μετάφραση μικρός αριθμός έργων.
+    create_project: Δημιουργία έργου
+    last_day: Μεταφράσεις του τελευταίου 24ώρου
+    source_label: 'Πρωτότυπο:'
+    translation_label: 'Μετάφραση:'
+    translations_label: 'Μεταφράσεις:'
+    other_language: Άλλη γλώσσα
+    other_languages: Άλλες γλώσσες...
+    project_page_title: Συλλογική μετάφραση — %{title}
+    show_page_title: '%{title} — Μέρος %{part}'
+    result: Τελική μετάφραση
+    work_on_translation: Εργασία στη μετάφραση
+    prepared_by_users: Η μετάφραση ετοιμάζεται από τους χρήστες του bibleox.com.
+    help_cta_html: Μπορείτε να βοηθήσετε να βελτιωθεί αυτό το κείμενο! %{signup_link} και %{join_link}.
+    signup_link: Εγγραφείτε
+    join_link: συμμετέχετε στη μετάφραση
+    license: Όπως το περιεχόμενο της Wikipedia, το αποτέλεσμα διανέμεται ελεύθερα με την άδεια CC BY-SA.
+    part: Μέρος
+    translate_from: 'Μετάφραση από:'
+    translate_to: 'σε:'
+    result_lang: 'Μετάφραση στα:'
+    sources: Πρωτότυπα
+    translations: Μεταφράσεις
+    continue_html: Μπορείτε να συνεχίσετε την εργασία στη μετάφραση στην %{link}.
+    continue_link: ειδική ενότητα
+    not_loaded: Το κείμενο δεν έχει φορτωθεί ακόμη. Δοκιμάστε ξανά σε 15 λεπτά.
+    confirm_delete_part: Διαγραφή του μέρους %{part} του έργου μετάφρασης «%{title}»;
+    new_project: Νέο έργο μετάφρασης
+    edit_project: Επεξεργασία έργου μετάφρασης
+    delete: Διαγραφή
+    confirm_delete_project: Διαγραφή του έργου μετάφρασης «%{title}»;
+    import_title: Εισαγωγή νέου μέρους του κειμένου
+    source_lang: Γλώσσα πρωτοτύπου
+    split_and_add: Διαχωρισμός και προσθήκη
+    processing: Επεξεργασία...
+    form:
+      title: Τίτλος έργου
+      description: Περιγραφή
+      description_placeholder: Σύντομη περιγραφή του έργου, πηγές, ιδιαιτερότητες της μετάφρασης...
+      page_ids: ID σελίδων (χωρισμένα με κόμμα)
+      page_ids_placeholder: 'Για παράδειγμα: 1,3,5,7'
+      create: Δημιουργία έργου
+      save: Αποθήκευση αλλαγών
+      saving: Αποθήκευση...
+    notices:
+      created: Το έργο δημιουργήθηκε
+      updated: Το έργο ενημερώθηκε
+      part_deleted: Το μέρος %{part} αφαιρέθηκε από το έργο
+      deleted: Το έργο διαγράφηκε
+    fragment: Απόσπασμα
+    copy: Αντιγραφή
+    propose: Πρόταση μετάφρασης
+    login_to_propose_html: Για να προτείνετε μεταφράσεις, %{link}.
+    login_to_propose_link: συνδεθείτε ή εγγραφείτε
+    your_translation: Η μετάφρασή σας
+    editing: Επεξεργασία μετάφρασης
+    cancel: Ακύρωση
+    text_placeholder: Γράψτε τη δική σας εκδοχή της μετάφρασης...
+    sub_text_placeholder: Υποσημείωση (αν θέλετε να προσθέσετε σχόλιο στη μετάφραση)
+    submit: Αποστολή μετάφρασης
+    save: Αποθήκευση μετάφρασης
+    edit_short: Επεξ.
+    confirm_delete: Θέλετε σίγουρα να διαγράψετε αυτή τη μετάφραση;
+    liked: Μου αρέσει
+    needs_work: Χρειάζεται βελτίωση
+    needs_work_hint: '«Χρειάζεται βελτίωση». Αυτή την ψήφο μπορούν να δώσουν μόνο όσοι έχουν ήδη προτείνει τη δική τους μετάφραση'
+    approved: Εγκρίθηκε ως κύρια μετάφραση
+    user_blocked: Ο χρήστης είναι αποκλεισμένος
+    who_voted: Ποιοι ψήφισαν
+    pin: Καρφίτσωμα
+    unpin: Ξεκαρφίτσωμα
+    approve_title: Έγκριση ως κύρια μετάφραση
+    approve_confirm: Να γίνει αυτή η μετάφραση κύρια;
+    block_short: Αποκλ.
+    block_title: Αποκλεισμός χρήστη
+    block_confirm: Αποκλεισμός του χρήστη %{username};
+    remove_reaction: Αφαίρεση αντίδρασης
+    remove_reaction_confirm: Αφαίρεση της αντίδρασης του χρήστη %{username};

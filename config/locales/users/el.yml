@@ -1,0 +1,158 @@
+el:
+  bc:
+    profile: Προφίλ
+    change_password: Αλλαγή κωδικού
+    edit_password: Επεξεργασία προφίλ
+
+  helpers:
+    label:
+      session:
+        email: Διεύθυνση email
+        password_reset: Διεύθυνση email του λογαριασμού του οποίου ξεχάσατε τον κωδικό
+        password_reset_alert: Αν αυτή η διεύθυνση email υπάρχει στο σύστημά μας, θα λάβετε ένα email με οδηγίες
+        password_reset_ok: Ο κωδικός ενημερώθηκε επιτυχώς
+    submit:
+      session:
+        create: Σύνδεση
+        password_reset: Επαναφορά κωδικού
+      user:
+        create: Εγγραφή
+        update: Ενημέρωση
+
+  activemodel:
+    attributes:
+      session:
+        email: Διεύθυνση email
+        password: Κωδικός
+        remember_me: Να με θυμάσαι
+    errors:
+      models:
+        session:
+          invalid_credentials: Λάθος email ή κωδικός
+          account_activation_pending: Πρώτα ενεργοποιήστε τον λογαριασμό σας μέσω του συνδέσμου στο email που σας στείλαμε.
+
+  activerecord:
+    models:
+      translation: Μετάφραση
+    attributes:
+      translation:
+        user_id: Χρήστης
+        segment_id: Απόσπασμα
+        lang: Γλώσσα
+        text: Κείμενο μετάφρασης
+      user:
+        username: Όνομα χρήστη
+        name: Όνομα
+        email: Διεύθυνση email
+        password: Κωδικός
+        password_confirmation: Επιβεβαίωση κωδικού
+        pages_owner: Κάτοχος σελίδων
+        privs: Δικαιώματα
+        failed_logins_count: Αποτυχημένες προσπάθειες σύνδεσης
+        lock_expires_at: Λήξη αποκλεισμού
+    errors:
+      messages:
+        record_invalid: περιέχει σφάλματα
+        blank: δεν μπορεί να είναι κενό
+        invalid: δεν είναι έγκυρο
+        too_short: είναι πολύ σύντομο (ελάχιστο %{count} χαρακτήρες)
+        too_long: είναι πολύ μεγάλο (μέγιστο %{count} χαρακτήρες)
+        inclusion: δεν περιλαμβάνεται στη λίστα
+        taken: χρησιμοποιείται ήδη
+        confirmation: δεν ταιριάζει
+        email_cant_contain_plus: δεν μπορεί να περιέχει τον χαρακτήρα '+'
+        email_in_blacklist: δεν μπορεί να είναι προσωρινή διεύθυνση
+        email_cant_changes_too_often: μπορεί να αλλάξει έως δύο φορές την ημέρα
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: έχει ήδη προτείνει μετάφραση για αυτό το απόσπασμα
+              too_many_variants: μπορεί να δημιουργήσει έως %{count} εκδοχές μετάφρασης
+
+  users:
+    links:
+      login: Σύνδεση
+      logout: Αποσύνδεση
+      profile_edit: Επεξεργασία προφίλ
+      password_change: Αλλαγή κωδικού
+    titles:
+      signup: Εγγραφή
+      login: Σύνδεση στον ιστότοπο
+      password_reset: Ανάκτηση κωδικού
+      new_password: Ορισμός νέου κωδικού
+      profile: Προφίλ χρήστη
+      password_change: Αλλαγή κωδικού
+      profile_edit: Επεξεργασία προφίλ
+    buttons:
+      signup: Εγγραφή
+      login: Σύνδεση
+      password_reset: Επαναφορά κωδικού
+      new_password: Ορισμός κωδικού
+      save_changes: Αποθήκευση αλλαγών
+      save_new_password: Αποθήκευση νέου κωδικού
+    notices:
+      error: Σφάλμα
+      registration_successful: Η εγγραφή ολοκληρώθηκε επιτυχώς
+      profile_is_updated: Το προφίλ ενημερώθηκε επιτυχώς
+      password_is_changed: Ο κωδικός άλλαξε επιτυχώς
+      password_confirm_is_wrong: Ο κωδικός και η επιβεβαίωσή του δεν ταιριάζουν
+      current_password_is_wrong: Ο τρέχων κωδικός είναι λάθος
+      user_is_activated: Το email επιβεβαιώθηκε. Ο λογαριασμός ενεργοποιήθηκε.
+      update_your_password_if_you_forgotten_it: Παρακαλούμε ενημερώστε τον κωδικό σας αν τον έχετε ξεχάσει
+      already_logged_in: Είστε ήδη συνδεδεμένοι
+      logged_out: Αποσυνδεθήκατε
+      logged_in: Συνδεθήκατε επιτυχώς
+      login_failed: Η σύνδεση απέτυχε
+      loggin_failed_account_is_locked: Η σύνδεση απέτυχε. Ο λογαριασμός είναι κλειδωμένος. Ξεκλειδώστε τον μέσω του συνδέσμου στο email
+    alerts:
+      are_you_shure: Είστε σίγουροι;
+    errors:
+      login_required: Πρέπει να συνδεθείτε
+      activation_required: Ενεργοποιήστε τον λογαριασμό σας μέσω του συνδέσμου στο email
+      account_blocked: Ο λογαριασμός σας είναι αποκλεισμένος
+      not_admin: Ανεπαρκή δικαιώματα
+      too_many_requests: Πάρα πολλά αιτήματα προς τον διακομιστή. Περιμένετε λίγο.
+    hints:
+      email_confirmed: ✅ Το email επιβεβαιώθηκε
+      email_not_confirmed: ⚠️ Το email δεν έχει επιβεβαιωθεί. Ακολουθήστε τον σύνδεσμο στο email.
+    fields:
+      current_password: Τρέχων κωδικός
+      new_password: Νέος κωδικός
+      new_password_confirmation: Επιβεβαίωση νέου κωδικού
+
+    is_already_registred: Έχετε ήδη λογαριασμό;
+    is_not_yet_registred: Δεν έχετε λογαριασμό;
+    is_forgot_password: Ξεχάσατε τον κωδικό;
+    letters:
+      welcome:
+        subject: Εγγραφήκατε στο bibleox.com
+        body: |
+          <p>Γεια σας, %{name}.</p><br>
+          <p>Κάποιος έκανε εγγραφή στο bibleox.com με το όνομά σας. Για να συνδεθείτε, ακολουθήστε τον σύνδεσμο: %{url}.</p>
+          <p>Αν δεν ήσασταν εσείς, απλώς αγνοήστε αυτό το email.</p>
+          <p>Καλή σας μέρα!</p>
+      activation_needed:
+        subject: Επιβεβαίωση email
+        body: |
+          <p>Γεια σας, %{name}.</p><br>
+          <p>Αυτή η διεύθυνση χρησιμοποιήθηκε για εγγραφή στο bibleox.com. Για να ενεργοποιήσετε τον λογαριασμό, ακολουθήστε τον σύνδεσμο: %{url}.</p><br>
+          <p>Αν δεν ήσασταν εσείς, απλώς αγνοήστε αυτό το email.</p>
+          <p>Καλή σας μέρα!</p>
+      password_reset:
+        subject: Επαναφορά κωδικού
+        body: |
+          <p>Γεια σας, %{name}.</p><br>
+          <p>Κάποιος ζήτησε επαναφορά κωδικού για αυτή τη διεύθυνση email στο bibleox.com. Για να ορίσετε νέο κωδικό, ακολουθήστε τον σύνδεσμο: %{url}.</p>
+          <p>Ο σύνδεσμος θα λήξει σε 24 ώρες.</p>
+          <p>Αν δεν ήσασταν εσείς, απλώς αγνοήστε αυτό το email.</p><br>
+          <p>Καλή σας μέρα!</p>
+      account_unlock:
+        subject: Ξεκλείδωμα λογαριασμού
+        body: |
+          <p>Γεια σας, %{name}.</p><br>
+          <p>Κάποιος προσπάθησε να συνδεθεί στον λογαριασμό σας στο bibleox.com εισάγοντας λάθος κωδικό πάρα πολλές φορές. Για την προστασία του λογαριασμού σας τον κλειδώσαμε προσωρινά. Για να τον ξεκλειδώσετε, ακολουθήστε τον σύνδεσμο: %{url}.</p><br>
+          <p>Καλή σας μέρα!</p>
+
+  errors:
+    alert: Παρουσιάστηκαν σφάλματα

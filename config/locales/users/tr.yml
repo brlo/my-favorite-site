@@ -1,0 +1,158 @@
+tr:
+  bc:
+    profile: Profil
+    change_password: Şifre değiştir
+    edit_password: Profili düzenle
+
+  helpers:
+    label:
+      session:
+        email: E-posta adresi
+        password_reset: Şifresini unuttuğunuz hesabın e-posta adresi
+        password_reset_alert: Bu e-posta adresi sistemimizde kayıtlıysa, talimatları içeren bir e-posta alacaksınız
+        password_reset_ok: Şifre başarıyla güncellendi
+    submit:
+      session:
+        create: Giriş yap
+        password_reset: Şifreyi sıfırla
+      user:
+        create: Kaydol
+        update: Güncelle
+
+  activemodel:
+    attributes:
+      session:
+        email: E-posta adresi
+        password: Şifre
+        remember_me: Beni hatırla
+    errors:
+      models:
+        session:
+          invalid_credentials: E-posta veya şifre hatalı
+          account_activation_pending: Lütfen önce size gönderilen e-postadaki bağlantıyla hesabınızı etkinleştirin.
+
+  activerecord:
+    models:
+      translation: Çeviri
+    attributes:
+      translation:
+        user_id: Kullanıcı
+        segment_id: Parça
+        lang: Dil
+        text: Çeviri metni
+      user:
+        username: Kullanıcı adı
+        name: Ad
+        email: E-posta adresi
+        password: Şifre
+        password_confirmation: Şifre tekrarı
+        pages_owner: Sayfaların sahibi
+        privs: Yetkiler
+        failed_logins_count: Başarısız giriş sayısı
+        lock_expires_at: Engelin bitiş zamanı
+    errors:
+      messages:
+        record_invalid: hatalar içeriyor
+        blank: boş bırakılamaz
+        invalid: geçersiz
+        too_short: çok kısa (en az %{count} karakter)
+        too_long: çok uzun (en fazla %{count} karakter)
+        inclusion: listede yok
+        taken: zaten kullanılıyor
+        confirmation: eşleşmiyor
+        email_cant_contain_plus: "'+' karakterini içeremez"
+        email_in_blacklist: geçici bir adres olamaz
+        email_cant_changes_too_often: günde en fazla iki kez değiştirilebilir
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: bu parça için zaten bir çeviri önerdi
+              too_many_variants: en fazla %{count} çeviri seçeneği oluşturabilir
+
+  users:
+    links:
+      login: Giriş
+      logout: Çıkış yap
+      profile_edit: Profili düzenle
+      password_change: Şifreyi değiştir
+    titles:
+      signup: Kayıt
+      login: Siteye giriş
+      password_reset: Şifre kurtarma
+      new_password: Yeni şifre belirleme
+      profile: Kullanıcı profili
+      password_change: Şifre değişikliği
+      profile_edit: Profil düzenleme
+    buttons:
+      signup: Kaydol
+      login: Giriş yap
+      password_reset: Şifreyi sıfırla
+      new_password: Şifreyi belirle
+      save_changes: Değişiklikleri kaydet
+      save_new_password: Yeni şifreyi kaydet
+    notices:
+      error: Hata
+      registration_successful: Başarıyla kaydoldunuz
+      profile_is_updated: Profil başarıyla güncellendi
+      password_is_changed: Şifre başarıyla değiştirildi
+      password_confirm_is_wrong: Şifre ve şifre tekrarı eşleşmiyor
+      current_password_is_wrong: Mevcut şifre hatalı
+      user_is_activated: E-posta onaylandı. Hesap etkinleştirildi.
+      update_your_password_if_you_forgotten_it: Şifrenizi unuttuysanız lütfen güncelleyin
+      already_logged_in: Zaten giriş yaptınız
+      logged_out: Çıkış yaptınız
+      logged_in: Başarıyla giriş yaptınız
+      login_failed: Giriş başarısız
+      loggin_failed_account_is_locked: Giriş başarısız. Hesap kilitli. E-postadaki bağlantıyla kilidi açın
+    alerts:
+      are_you_shure: Emin misiniz?
+    errors:
+      login_required: Giriş yapmanız gerekiyor
+      activation_required: E-postadaki bağlantıyla hesabınızı etkinleştirmeniz gerekiyor
+      account_blocked: Hesabınız engellendi
+      not_admin: Yetersiz yetki
+      too_many_requests: Sunucuya çok fazla istek gönderildi. Lütfen biraz bekleyin.
+    hints:
+      email_confirmed: ✅ E-posta onaylandı
+      email_not_confirmed: ⚠️ E-posta onaylanmadı. E-postadaki bağlantıya tıklayın.
+    fields:
+      current_password: Mevcut şifre
+      new_password: Yeni şifre
+      new_password_confirmation: Yeni şifre tekrarı
+
+    is_already_registred: Zaten hesabınız var mı?
+    is_not_yet_registred: Hesabınız yok mu?
+    is_forgot_password: Şifrenizi mi unuttunuz?
+    letters:
+      welcome:
+        subject: bibleox.com sitesine kaydoldunuz
+        body: |
+          <p>Merhaba %{name},</p><br>
+          <p>Birisi sizin adınıza bibleox.com sitesine kaydoldu. Giriş yapmak için şu bağlantıya gidin: %{url}.</p>
+          <p>Bu siz değilseniz, bu e-postayı dikkate almayın.</p>
+          <p>İyi günler!</p>
+      activation_needed:
+        subject: E-posta onayı
+        body: |
+          <p>Merhaba %{name},</p><br>
+          <p>Bu adres bibleox.com sitesine kayıt için kullanıldı. Hesabınızı etkinleştirmek için şu bağlantıya gidin: %{url}.</p><br>
+          <p>Bu siz değilseniz, bu e-postayı dikkate almayın.</p>
+          <p>İyi günler!</p>
+      password_reset:
+        subject: Şifre sıfırlama
+        body: |
+          <p>Merhaba %{name},</p><br>
+          <p>Birisi bibleox.com sitesinde bu e-posta adresi için şifre sıfırlama talep etti. Yeni şifre belirlemek için şu bağlantıya gidin: %{url}.</p>
+          <p>Bu bağlantı 24 saat sonra geçersiz olacaktır.</p>
+          <p>Bu siz değilseniz, bu e-postayı dikkate almayın.</p><br>
+          <p>İyi günler!</p>
+      account_unlock:
+        subject: Hesap kilidini açma
+        body: |
+          <p>Merhaba %{name},</p><br>
+          <p>Birisi bibleox.com sitesindeki hesabınıza çok fazla kez yanlış şifre girerek giriş yapmaya çalıştı. Hesabınızı korumak için onu geçici olarak kilitledik. Kilidi açmak için şu bağlantıya gidin: %{url}.</p><br>
+          <p>İyi günler!</p>
+
+  errors:
+    alert: Hatalar oluştu

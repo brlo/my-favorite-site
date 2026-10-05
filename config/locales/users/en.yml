@@ -1,0 +1,158 @@
+en:
+  bc:
+    profile: Profile
+    change_password: Change password
+    edit_password: Edit profile
+
+  helpers:
+    label:
+      session:
+        email: Email address
+        password_reset: Email address of the account you forgot the password for
+        password_reset_alert: If this email address is in our system, you will receive an email with instructions
+        password_reset_ok: Password updated successfully
+    submit:
+      session:
+        create: Log in
+        password_reset: Reset password
+      user:
+        create: Sign up
+        update: Update
+
+  activemodel:
+    attributes:
+      session:
+        email: Email address
+        password: Password
+        remember_me: Remember me
+    errors:
+      models:
+        session:
+          invalid_credentials: Invalid email or password
+          account_activation_pending: Please activate your account first by following the link in the email we sent you.
+
+  activerecord:
+    models:
+      translation: Translation
+    attributes:
+      translation:
+        user_id: User
+        segment_id: Fragment
+        lang: Language
+        text: Translation text
+      user:
+        username: Username
+        name: Name
+        email: Email address
+        password: Password
+        password_confirmation: Password confirmation
+        pages_owner: Pages owner
+        privs: Privileges
+        failed_logins_count: Failed login attempts
+        lock_expires_at: Lock expires at
+    errors:
+      messages:
+        record_invalid: contains errors
+        blank: can't be blank
+        invalid: is invalid
+        too_short: is too short (minimum is %{count} characters)
+        too_long: is too long (maximum is %{count} characters)
+        inclusion: is not included in the list
+        taken: has already been taken
+        confirmation: doesn't match
+        email_cant_contain_plus: can't contain the '+' character
+        email_in_blacklist: can't be a temporary address
+        email_cant_changes_too_often: can be changed no more than twice a day
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: has already suggested a translation for this fragment
+              too_many_variants: can create at most %{count} translation variants
+
+  users:
+    links:
+      login: Log in
+      logout: Log out
+      profile_edit: Edit profile
+      password_change: Change password
+    titles:
+      signup: Sign up
+      login: Log in
+      password_reset: Password recovery
+      new_password: Set a new password
+      profile: User profile
+      password_change: Change password
+      profile_edit: Edit profile
+    buttons:
+      signup: Sign up
+      login: Log in
+      password_reset: Reset password
+      new_password: Set password
+      save_changes: Save changes
+      save_new_password: Save new password
+    notices:
+      error: Error
+      registration_successful: You have signed up successfully
+      profile_is_updated: Profile updated successfully
+      password_is_changed: Password changed successfully
+      password_confirm_is_wrong: Password and password confirmation do not match
+      current_password_is_wrong: Current password is incorrect
+      user_is_activated: Email confirmed. Your account is activated.
+      update_your_password_if_you_forgotten_it: Please update your password if you have forgotten it
+      already_logged_in: You are already logged in
+      logged_out: You have logged out
+      logged_in: You have logged in successfully
+      login_failed: Login failed
+      loggin_failed_account_is_locked: Login failed. The account is locked. Unlock it by following the link in the email we sent you
+    alerts:
+      are_you_shure: Are you sure?
+    errors:
+      login_required: Please log in
+      activation_required: Please activate your account by following the link in the email
+      account_blocked: Your account is blocked
+      not_admin: Insufficient permissions
+      too_many_requests: Too many requests to the server. Please wait a moment.
+    hints:
+      email_confirmed: ✅ Email confirmed
+      email_not_confirmed: ⚠️ Email not confirmed. Please follow the link in the email.
+    fields:
+      current_password: Current password
+      new_password: New password
+      new_password_confirmation: New password confirmation
+
+    is_already_registred: Already have an account?
+    is_not_yet_registred: Don't have an account?
+    is_forgot_password: Forgot your password?
+    letters:
+      welcome:
+        subject: You have signed up on bibleox.com
+        body: |
+          <p>Hello, %{name}.</p><br>
+          <p>Someone has signed up on bibleox.com using your name. To log in, follow this link: %{url}.</p>
+          <p>If it wasn't you, just ignore this email.</p>
+          <p>Have a nice day!</p>
+      activation_needed:
+        subject: Email confirmation
+        body: |
+          <p>Hello, %{name}.</p><br>
+          <p>This address was used to sign up on bibleox.com. To activate your account, follow this link: %{url}.</p><br>
+          <p>If it wasn't you, just ignore this email.</p>
+          <p>Have a nice day!</p>
+      password_reset:
+        subject: Password reset
+        body: |
+          <p>Hello, %{name}.</p><br>
+          <p>Someone requested a password reset for this email address on bibleox.com. To set a new password, follow this link: %{url}.</p>
+          <p>This link will expire in 24 hours.</p>
+          <p>If it wasn't you, just ignore this email.</p><br>
+          <p>Have a nice day!</p>
+      account_unlock:
+        subject: Account unlock
+        body: |
+          <p>Hello, %{name}.</p><br>
+          <p>Someone tried to log in to your account on bibleox.com by entering a wrong password too many times. To protect your account, we have temporarily locked it. To unlock it, follow this link: %{url}.</p><br>
+          <p>Have a nice day!</p>
+
+  errors:
+    alert: Errors occurred

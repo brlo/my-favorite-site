@@ -1,0 +1,158 @@
+fr:
+  bc:
+    profile: Profil
+    change_password: Changer le mot de passe
+    edit_password: Modifier le profil
+
+  helpers:
+    label:
+      session:
+        email: Adresse e-mail
+        password_reset: Adresse e-mail du compte dont vous avez oublié le mot de passe
+        password_reset_alert: Si cette adresse e-mail figure dans notre système, vous recevrez un e-mail contenant des instructions
+        password_reset_ok: Mot de passe mis à jour avec succès
+    submit:
+      session:
+        create: Se connecter
+        password_reset: Réinitialiser le mot de passe
+      user:
+        create: S'inscrire
+        update: Mettre à jour
+
+  activemodel:
+    attributes:
+      session:
+        email: Adresse e-mail
+        password: Mot de passe
+        remember_me: Se souvenir de moi
+    errors:
+      models:
+        session:
+          invalid_credentials: E-mail ou mot de passe incorrect
+          account_activation_pending: Veuillez d'abord activer votre compte en suivant le lien reçu par e-mail.
+
+  activerecord:
+    models:
+      translation: Traduction
+    attributes:
+      translation:
+        user_id: Utilisateur
+        segment_id: Fragment
+        lang: Langue
+        text: Texte de la traduction
+      user:
+        username: Nom d'utilisateur
+        name: Nom
+        email: Adresse e-mail
+        password: Mot de passe
+        password_confirmation: Confirmation du mot de passe
+        pages_owner: Propriétaire des pages
+        privs: Privilèges
+        failed_logins_count: Tentatives de connexion échouées
+        lock_expires_at: Fin du blocage
+    errors:
+      messages:
+        record_invalid: contient des erreurs
+        blank: doit être rempli(e)
+        invalid: n'est pas valide
+        too_short: est trop court (au moins %{count} caractères)
+        too_long: est trop long (pas plus de %{count} caractères)
+        inclusion: n'est pas inclus(e) dans la liste
+        taken: est déjà utilisé(e)
+        confirmation: ne correspond pas
+        email_cant_contain_plus: ne peut pas contenir le caractère '+'
+        email_in_blacklist: ne peut pas être une adresse temporaire
+        email_cant_changes_too_often: ne peut être modifiée plus de deux fois par jour
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: a déjà proposé une traduction pour ce fragment
+              too_many_variants: peut créer au maximum %{count} variantes de traduction
+
+  users:
+    links:
+      login: Connexion
+      logout: Se déconnecter
+      profile_edit: Modifier le profil
+      password_change: Changer le mot de passe
+    titles:
+      signup: Inscription
+      login: Connexion au site
+      password_reset: Récupération du mot de passe
+      new_password: Définir un nouveau mot de passe
+      profile: Profil utilisateur
+      password_change: Changement du mot de passe
+      profile_edit: Modification du profil
+    buttons:
+      signup: S'inscrire
+      login: Se connecter
+      password_reset: Réinitialiser le mot de passe
+      new_password: Définir le mot de passe
+      save_changes: Enregistrer les modifications
+      save_new_password: Enregistrer le nouveau mot de passe
+    notices:
+      error: Erreur
+      registration_successful: Vous êtes inscrit avec succès
+      profile_is_updated: Profil mis à jour avec succès
+      password_is_changed: Mot de passe modifié avec succès
+      password_confirm_is_wrong: Le mot de passe et sa confirmation ne correspondent pas
+      current_password_is_wrong: Le mot de passe actuel est incorrect
+      user_is_activated: E-mail confirmé. Le compte est activé.
+      update_your_password_if_you_forgotten_it: Veuillez mettre à jour votre mot de passe si vous l'avez oublié
+      already_logged_in: Vous êtes déjà connecté
+      logged_out: Vous êtes déconnecté
+      logged_in: Vous êtes connecté avec succès
+      login_failed: Échec de la connexion
+      loggin_failed_account_is_locked: Échec de la connexion. Le compte est bloqué. Débloquez-le en suivant le lien reçu par e-mail
+    alerts:
+      are_you_shure: Êtes-vous sûr ?
+    errors:
+      login_required: Veuillez vous connecter
+      activation_required: Veuillez activer votre compte en suivant le lien reçu par e-mail
+      account_blocked: Votre compte est bloqué
+      not_admin: Droits insuffisants
+      too_many_requests: Trop de requêtes vers le serveur. Veuillez patienter un instant.
+    hints:
+      email_confirmed: ✅ E-mail confirmé
+      email_not_confirmed: ⚠️ E-mail non confirmé. Suivez le lien reçu par e-mail.
+    fields:
+      current_password: Mot de passe actuel
+      new_password: Nouveau mot de passe
+      new_password_confirmation: Confirmation du nouveau mot de passe
+
+    is_already_registred: Déjà inscrit ?
+    is_not_yet_registred: Pas encore de compte ?
+    is_forgot_password: Mot de passe oublié ?
+    letters:
+      welcome:
+        subject: Vous vous êtes inscrit sur bibleox.com
+        body: |
+          <p>Bonjour %{name},</p><br>
+          <p>Quelqu'un s'est inscrit sur bibleox.com en votre nom. Pour vous connecter, suivez ce lien : %{url}.</p>
+          <p>Si ce n'était pas vous, ignorez simplement cet e-mail.</p>
+          <p>Bonne journée !</p>
+      activation_needed:
+        subject: Confirmation de l'adresse e-mail
+        body: |
+          <p>Bonjour %{name},</p><br>
+          <p>Cette adresse a été utilisée pour une inscription sur bibleox.com. Pour activer votre compte, suivez ce lien : %{url}.</p><br>
+          <p>Si ce n'était pas vous, ignorez simplement cet e-mail.</p>
+          <p>Bonne journée !</p>
+      password_reset:
+        subject: Réinitialisation du mot de passe
+        body: |
+          <p>Bonjour %{name},</p><br>
+          <p>Quelqu'un a demandé la réinitialisation du mot de passe pour cette adresse e-mail sur bibleox.com. Pour définir un nouveau mot de passe, suivez ce lien : %{url}.</p>
+          <p>Ce lien expirera dans 24 heures.</p>
+          <p>Si ce n'était pas vous, ignorez simplement cet e-mail.</p><br>
+          <p>Bonne journée !</p>
+      account_unlock:
+        subject: Déblocage du compte
+        body: |
+          <p>Bonjour %{name},</p><br>
+          <p>Quelqu'un a tenté de se connecter à votre compte sur bibleox.com en saisissant un mot de passe incorrect trop de fois. Pour protéger votre compte, nous l'avons temporairement bloqué. Pour le débloquer, suivez ce lien : %{url}.</p><br>
+          <p>Bonne journée !</p>
+
+  errors:
+    alert: Des erreurs sont survenues

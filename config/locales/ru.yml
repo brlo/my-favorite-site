@@ -78,7 +78,9 @@ ru:
         record_invalid: 'содержит ошибки'
         blank: 'не может быть пустым'
         invalid: 'имеет недопустимый формат'
-        too_short: 'слишком короткий. Минимум 6 символов.'
+        too_short: 'слишком короткий (минимум %{count} символов)'
+        too_long: 'слишком длинный (максимум %{count} символов)'
+        inclusion: 'имеет недопустимое значение'
         taken: 'уже занят'
         confirmation: 'не совпадает'
         email_cant_contain_plus: "не может содержать символ '+'"
@@ -89,6 +91,7 @@ ru:
           attributes:
             user_id:
               taken: "уже предложил перевод для этого фрагмента"
+              too_many_variants: "может создать максимум %{count} варианта перевода"
   users:
     links:
       login: 'Вход'
@@ -126,6 +129,12 @@ ru:
       loggin_failed_account_is_locked: 'Вход на сайт не удался. Аккаунт заблокирован. Активируйте, перейдя по ссылке из письма на почте'
     alerts:
       are_you_shure: 'Вы уверены?'
+    errors:
+      login_required: 'Необходимо авторизоваться'
+      activation_required: 'Необходимо активировать аккаунт, перейдя по ссылке в письме'
+      account_blocked: 'Ваш аккаунт заблокирован'
+      not_admin: 'Недостаточно прав'
+      too_many_requests: 'Слишком частые запросы к серверу. Подождите немного.'
     hints:
       email_confirmed: '✅ Email подтвержден'
       email_not_confirmed: '⚠️ Email не подтвержден. Перейдите по ссылке из письма.'

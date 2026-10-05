@@ -1,0 +1,104 @@
+zh-Hans:
+  menu:
+    translates: 翻译
+  open_tags:
+    h2: 标题
+    p: 段落
+    strong: 粗体
+  close_tags:
+    h2: 标题结束
+    p: 段落结束
+    strong: 粗体结束
+  time_ago:
+    just_now: 刚刚
+    minute: 分钟
+    hour: 小时
+    day: 天
+    week: 周
+    month: 个月
+    year: 年
+  tr_projects:
+    all_translations: 所有译本
+    index_title: 教会文献协作翻译
+    index_page_title: 教会文献协作翻译——译成万民的语言
+    index_h1: 教会文献协作翻译（测试版）
+    quote: 我们都听见他们用我们的乡谈，讲说神的大作为
+    quote_ref: 徒 2:11
+    beta_notice: 翻译栏目正处于测试阶段。测试期间仅提供少量作品供翻译。
+    create_project: 创建项目
+    last_day: 最近24小时的翻译
+    source_label: 原文：
+    translation_label: 译文：
+    translations_label: 译文：
+    other_language: 其他语言
+    other_languages: 其他语言...
+    project_page_title: 协作翻译——%{title}
+    show_page_title: '%{title}——第%{part}部分'
+    result: 最终译本
+    work_on_translation: 翻译工作
+    prepared_by_users: 本译文由 bibleox.com 的用户共同完成。
+    help_cta_html: 您可以帮助改进这段文字！%{signup_link}并%{join_link}。
+    signup_link: 注册
+    join_link: 参与翻译工作
+    license: 与维基百科的内容一样，翻译成果以 CC BY-SA 许可证自由传播。
+    part: 部分
+    translate_from: 源语言：
+    translate_to: 目标语言：
+    result_lang: 译文语言：
+    sources: 原文
+    translations: 译文
+    continue_html: 您可以在%{link}继续翻译工作。
+    continue_link: 专门的栏目
+    not_loaded: 文本尚未加载。请15分钟后再试。
+    confirm_delete_part: 删除翻译项目“%{title}”的第%{part}部分？
+    new_project: 新建翻译项目
+    edit_project: 编辑翻译项目
+    delete: 删除
+    confirm_delete_project: 删除翻译项目“%{title}”？
+    import_title: 导入文本的新部分
+    source_lang: 原文语言
+    split_and_add: 拆分并添加
+    processing: 处理中...
+    form:
+      title: 项目名称
+      description: 描述
+      description_placeholder: 项目简介、来源、翻译特点...
+      page_ids: 页面ID（用逗号分隔）
+      page_ids_placeholder: 例如：1,3,5,7
+      create: 创建项目
+      save: 保存更改
+      saving: 保存中...
+    notices:
+      created: 项目已创建
+      updated: 项目已更新
+      part_deleted: 第%{part}部分已从项目中删除
+      deleted: 项目已删除
+    fragment: 片段
+    copy: 复制
+    propose: 提议译文
+    login_to_propose_html: 要提议译文，请%{link}。
+    login_to_propose_link: 登录或注册
+    your_translation: 您的译文
+    editing: 编辑译文
+    cancel: 取消
+    text_placeholder: 写下您的译文...
+    sub_text_placeholder: 脚注（如果您想为译文附加说明）
+    submit: 提交译文
+    save: 保存译文
+    edit_short: 编辑
+    confirm_delete: 确定要删除这条译文吗？
+    liked: 赞
+    needs_work: 需要修改
+    needs_work_hint: “需要修改”。只有已经提议过自己译文的人才能投这一票
+    approved: 已批准为主要译文
+    user_blocked: 用户已被封禁
+    who_voted: 投票者
+    pin: 置顶
+    unpin: 取消置顶
+    approve_title: 批准为主要译文
+    approve_confirm: 将此译文设为主要译文？
+    block_short: 封禁
+    block_title: 封禁用户
+    block_confirm: 封禁用户 %{username}？
+    remove_reaction: 删除反应
+    remove_reaction_confirm: 删除用户 %{username} 的反应？

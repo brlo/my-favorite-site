@@ -1,0 +1,158 @@
+hy:
+  bc:
+    profile: Պրոֆիլ
+    change_password: Գաղտնաբառի փոփոխում
+    edit_password: Պրոֆիլի խմբագրում
+
+  helpers:
+    label:
+      session:
+        email: Էլ. փոստի հասցե
+        password_reset: Այն հաշվի էլ. փոստի հասցեն, որի գաղտնաբառը մոռացել եք
+        password_reset_alert: Եթե այս էլ. հասցեն առկա է մեր համակարգում, դուք կստանաք նամակ՝ հրահանգներով
+        password_reset_ok: Գաղտնաբառը հաջողությամբ թարմացվեց
+    submit:
+      session:
+        create: Մուտք
+        password_reset: Վերականգնել գաղտնաբառը
+      user:
+        create: Գրանցվել
+        update: Թարմացնել
+
+  activemodel:
+    attributes:
+      session:
+        email: Էլ. փոստի հասցե
+        password: Գաղտնաբառ
+        remember_me: Հիշել ինձ
+    errors:
+      models:
+        session:
+          invalid_credentials: Սխալ էլ. հասցե կամ գաղտնաբառ
+          account_activation_pending: Նախ ակտիվացրեք հաշիվը՝ անցնելով նամակում ուղարկված հղումով։
+
+  activerecord:
+    models:
+      translation: Թարգմանություն
+    attributes:
+      translation:
+        user_id: Օգտատեր
+        segment_id: Հատված
+        lang: Լեզու
+        text: Թարգմանության տեքստ
+      user:
+        username: Օգտանուն
+        name: Անուն
+        email: Էլ. փոստի հասցե
+        password: Գաղտնաբառ
+        password_confirmation: Գաղտնաբառի հաստատում
+        pages_owner: Էջերի սեփականատեր
+        privs: Արտոնություններ
+        failed_logins_count: Անհաջող մուտքերի քանակ
+        lock_expires_at: Արգելափակումն ավարտվում է
+    errors:
+      messages:
+        record_invalid: պարունակում է սխալներ
+        blank: չի կարող դատարկ լինել
+        invalid: անվավեր է
+        too_short: շատ կարճ է (նվազագույնը %{count} նիշ)
+        too_long: շատ երկար է (առավելագույնը %{count} նիշ)
+        inclusion: ցանկում չէ
+        taken: արդեն զբաղված է
+        confirmation: չի համընկնում
+        email_cant_contain_plus: չի կարող պարունակել '+' նիշը
+        email_in_blacklist: չի կարող լինել ժամանակավոր հասցե
+        email_cant_changes_too_often: կարելի է փոխել օրական ոչ ավելի, քան երկու անգամ
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: արդեն առաջարկել է թարգմանություն այս հատվածի համար
+              too_many_variants: կարող է ստեղծել առավելագույնը %{count} թարգմանության տարբերակ
+
+  users:
+    links:
+      login: Մուտք
+      logout: Ելք
+      profile_edit: Խմբագրել պրոֆիլը
+      password_change: Փոխել գաղտնաբառը
+    titles:
+      signup: Գրանցում
+      login: Մուտք կայք
+      password_reset: Գաղտնաբառի վերականգնում
+      new_password: Նոր գաղտնաբառի սահմանում
+      profile: Օգտատիրոջ պրոֆիլ
+      password_change: Գաղտնաբառի փոփոխում
+      profile_edit: Պրոֆիլի խմբագրում
+    buttons:
+      signup: Գրանցվել
+      login: Մուտք գործել
+      password_reset: Վերականգնել գաղտնաբառը
+      new_password: Սահմանել գաղտնաբառ
+      save_changes: Պահպանել փոփոխությունները
+      save_new_password: Պահպանել նոր գաղտնաբառը
+    notices:
+      error: Սխալ
+      registration_successful: Դուք հաջողությամբ գրանցվեցիք
+      profile_is_updated: Պրոֆիլը հաջողությամբ թարմացվեց
+      password_is_changed: Գաղտնաբառը հաջողությամբ փոխվեց
+      password_confirm_is_wrong: Գաղտնաբառը և դրա հաստատումը չեն համընկնում
+      current_password_is_wrong: Ընթացիկ գաղտնաբառը սխալ է
+      user_is_activated: Էլ. հասցեն հաստատված է։ Հաշիվը ակտիվացված է։
+      update_your_password_if_you_forgotten_it: Խնդրում ենք թարմացնել գաղտնաբառը, եթե մոռացել եք այն
+      already_logged_in: Դուք արդեն մուտք եք գործել
+      logged_out: Դուք դուրս եկաք
+      logged_in: Դուք հաջողությամբ մուտք գործեցիք
+      login_failed: Մուտքը ձախողվեց
+      loggin_failed_account_is_locked: Մուտքը ձախողվեց։ Հաշիվը արգելափակված է։ Ապաարգելափակեք այն՝ անցնելով նամակի հղումով
+    alerts:
+      are_you_shure: Համոզվա՞ծ եք
+    errors:
+      login_required: Անհրաժեշտ է մուտք գործել
+      activation_required: Անհրաժեշտ է ակտիվացնել հաշիվը՝ անցնելով նամակի հղումով
+      account_blocked: Ձեր հաշիվը արգելափակված է
+      not_admin: Անբավարար իրավունքներ
+      too_many_requests: Չափազանց շատ հարցումներ սերվերին։ Մի փոքր սպասեք։
+    hints:
+      email_confirmed: ✅ Էլ. հասցեն հաստատված է
+      email_not_confirmed: ⚠️ Էլ. հասցեն հաստատված չէ։ Անցեք նամակի հղումով։
+    fields:
+      current_password: Ընթացիկ գաղտնաբառ
+      new_password: Նոր գաղտնաբառ
+      new_password_confirmation: Նոր գաղտնաբառի հաստատում
+
+    is_already_registred: Արդեն գրանցվա՞ծ եք
+    is_not_yet_registred: Հաշիվ չունե՞ք
+    is_forgot_password: Մոռացե՞լ եք գաղտնաբառը
+    letters:
+      welcome:
+        subject: Դուք գրանցվել եք bibleox.com կայքում
+        body: |
+          <p>Բարև Ձեզ, %{name}։</p><br>
+          <p>Ինչ-որ մեկը Ձեր անունից գրանցվել է bibleox.com կայքում։ Մուտք գործելու համար անցեք հղումով՝ %{url}։</p>
+          <p>Եթե դա Դուք չէիք, պարզապես անտեսեք այս նամակը։</p>
+          <p>Բարի օր։</p>
+      activation_needed:
+        subject: Էլ. հասցեի հաստատում
+        body: |
+          <p>Բարև Ձեզ, %{name}։</p><br>
+          <p>Այս հասցեն օգտագործվել է bibleox.com կայքում գրանցվելիս։ Հաշիվը ակտիվացնելու համար անցեք հղումով՝ %{url}։</p><br>
+          <p>Եթե դա Դուք չէիք, պարզապես անտեսեք այս նամակը։</p>
+          <p>Բարի օր։</p>
+      password_reset:
+        subject: Գաղտնաբառի վերականգնում
+        body: |
+          <p>Բարև Ձեզ, %{name}։</p><br>
+          <p>Ինչ-որ մեկը bibleox.com կայքում հայցել է այս էլ. հասցեի գաղտնաբառի վերականգնում։ Նոր գաղտնաբառ սահմանելու համար անցեք հղումով՝ %{url}։</p>
+          <p>Հղումը կդադարի գործել 24 ժամից։</p>
+          <p>Եթե դա Դուք չէիք, պարզապես անտեսեք այս նամակը։</p><br>
+          <p>Բարի օր։</p>
+      account_unlock:
+        subject: Հաշվի ապաարգելափակում
+        body: |
+          <p>Բարև Ձեզ, %{name}։</p><br>
+          <p>Ինչ-որ մեկը փորձել է մուտք գործել Ձեր հաշիվ bibleox.com կայքում՝ չափազանց շատ անգամ մուտքագրելով սխալ գաղտնաբառ։ Ձեր հաշիվը պաշտպանելու համար մենք ժամանակավորապես արգելափակել ենք այն։ Ապաարգելափակելու համար անցեք հղումով՝ %{url}։</p><br>
+          <p>Բարի օր։</p>
+
+  errors:
+    alert: Առաջացել են սխալներ

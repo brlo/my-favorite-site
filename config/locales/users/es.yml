@@ -1,0 +1,158 @@
+es:
+  bc:
+    profile: Perfil
+    change_password: Cambiar contraseña
+    edit_password: Editar perfil
+
+  helpers:
+    label:
+      session:
+        email: Correo electrónico
+        password_reset: Correo electrónico de la cuenta cuya contraseña olvidó
+        password_reset_alert: Si este correo electrónico está en nuestro sistema, recibirá un mensaje con instrucciones
+        password_reset_ok: Contraseña actualizada correctamente
+    submit:
+      session:
+        create: Iniciar sesión
+        password_reset: Restablecer contraseña
+      user:
+        create: Registrarse
+        update: Actualizar
+
+  activemodel:
+    attributes:
+      session:
+        email: Correo electrónico
+        password: Contraseña
+        remember_me: Recordarme
+    errors:
+      models:
+        session:
+          invalid_credentials: Correo electrónico o contraseña incorrectos
+          account_activation_pending: Primero active su cuenta mediante el enlace del correo que le enviamos.
+
+  activerecord:
+    models:
+      translation: Traducción
+    attributes:
+      translation:
+        user_id: Usuario
+        segment_id: Fragmento
+        lang: Idioma
+        text: Texto de la traducción
+      user:
+        username: Nombre de usuario
+        name: Nombre
+        email: Correo electrónico
+        password: Contraseña
+        password_confirmation: Confirmación de contraseña
+        pages_owner: Propietario de páginas
+        privs: Privilegios
+        failed_logins_count: Intentos de acceso fallidos
+        lock_expires_at: El bloqueo termina el
+    errors:
+      messages:
+        record_invalid: contiene errores
+        blank: no puede estar en blanco
+        invalid: no es válido
+        too_short: es demasiado corto (mínimo %{count} caracteres)
+        too_long: es demasiado largo (máximo %{count} caracteres)
+        inclusion: no está incluido en la lista
+        taken: ya está en uso
+        confirmation: no coincide
+        email_cant_contain_plus: no puede contener el carácter '+'
+        email_in_blacklist: no puede ser una dirección temporal
+        email_cant_changes_too_often: no se puede cambiar más de dos veces al día
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: ya ha propuesto una traducción para este fragmento
+              too_many_variants: puede crear como máximo %{count} variantes de traducción
+
+  users:
+    links:
+      login: Iniciar sesión
+      logout: Cerrar sesión
+      profile_edit: Editar perfil
+      password_change: Cambiar contraseña
+    titles:
+      signup: Registro
+      login: Inicio de sesión
+      password_reset: Recuperación de contraseña
+      new_password: Establecer nueva contraseña
+      profile: Perfil de usuario
+      password_change: Cambio de contraseña
+      profile_edit: Edición del perfil
+    buttons:
+      signup: Registrarse
+      login: Iniciar sesión
+      password_reset: Restablecer contraseña
+      new_password: Establecer contraseña
+      save_changes: Guardar cambios
+      save_new_password: Guardar nueva contraseña
+    notices:
+      error: Error
+      registration_successful: Se ha registrado correctamente
+      profile_is_updated: Perfil actualizado correctamente
+      password_is_changed: Contraseña cambiada correctamente
+      password_confirm_is_wrong: La contraseña y su confirmación no coinciden
+      current_password_is_wrong: La contraseña actual es incorrecta
+      user_is_activated: Correo confirmado. La cuenta está activada.
+      update_your_password_if_you_forgotten_it: Actualice su contraseña si la ha olvidado
+      already_logged_in: Ya ha iniciado sesión
+      logged_out: Ha cerrado sesión
+      logged_in: Ha iniciado sesión correctamente
+      login_failed: No se pudo iniciar sesión
+      loggin_failed_account_is_locked: No se pudo iniciar sesión. La cuenta está bloqueada. Desbloquéela mediante el enlace del correo que le enviamos
+    alerts:
+      are_you_shure: ¿Está seguro?
+    errors:
+      login_required: Debe iniciar sesión
+      activation_required: Active su cuenta mediante el enlace del correo
+      account_blocked: Su cuenta está bloqueada
+      not_admin: Permisos insuficientes
+      too_many_requests: Demasiadas solicitudes al servidor. Espere un momento.
+    hints:
+      email_confirmed: ✅ Correo confirmado
+      email_not_confirmed: ⚠️ Correo no confirmado. Siga el enlace del mensaje.
+    fields:
+      current_password: Contraseña actual
+      new_password: Nueva contraseña
+      new_password_confirmation: Confirmación de la nueva contraseña
+
+    is_already_registred: ¿Ya está registrado?
+    is_not_yet_registred: ¿No tiene cuenta?
+    is_forgot_password: ¿Olvidó su contraseña?
+    letters:
+      welcome:
+        subject: Se ha registrado en bibleox.com
+        body: |
+          <p>Hola, %{name}.</p><br>
+          <p>Alguien se ha registrado en bibleox.com en su nombre. Para iniciar sesión, siga este enlace: %{url}.</p>
+          <p>Si no fue usted, simplemente ignore este correo.</p>
+          <p>¡Que tenga un buen día!</p>
+      activation_needed:
+        subject: Confirmación del correo electrónico
+        body: |
+          <p>Hola, %{name}.</p><br>
+          <p>Esta dirección se utilizó para registrarse en bibleox.com. Para activar su cuenta, siga este enlace: %{url}.</p><br>
+          <p>Si no fue usted, simplemente ignore este correo.</p>
+          <p>¡Que tenga un buen día!</p>
+      password_reset:
+        subject: Restablecimiento de contraseña
+        body: |
+          <p>Hola, %{name}.</p><br>
+          <p>Alguien ha solicitado restablecer la contraseña de este correo electrónico en bibleox.com. Para establecer una nueva contraseña, siga este enlace: %{url}.</p>
+          <p>Este enlace caducará en 24 horas.</p>
+          <p>Si no fue usted, simplemente ignore este correo.</p><br>
+          <p>¡Que tenga un buen día!</p>
+      account_unlock:
+        subject: Desbloqueo de la cuenta
+        body: |
+          <p>Hola, %{name}.</p><br>
+          <p>Alguien intentó iniciar sesión en su cuenta de bibleox.com introduciendo una contraseña incorrecta demasiadas veces. Para proteger su cuenta, la hemos bloqueado temporalmente. Para desbloquearla, siga este enlace: %{url}.</p><br>
+          <p>¡Que tenga un buen día!</p>
+
+  errors:
+    alert: Se han producido errores

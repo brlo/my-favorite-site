@@ -1,0 +1,158 @@
+it:
+  bc:
+    profile: Profilo
+    change_password: Cambia password
+    edit_password: Modifica profilo
+
+  helpers:
+    label:
+      session:
+        email: Indirizzo email
+        password_reset: Indirizzo email dell'account di cui hai dimenticato la password
+        password_reset_alert: Se questo indirizzo email è presente nel nostro sistema, riceverai un'email con le istruzioni
+        password_reset_ok: Password aggiornata con successo
+    submit:
+      session:
+        create: Accedi
+        password_reset: Reimposta password
+      user:
+        create: Registrati
+        update: Aggiorna
+
+  activemodel:
+    attributes:
+      session:
+        email: Indirizzo email
+        password: Password
+        remember_me: Ricordami
+    errors:
+      models:
+        session:
+          invalid_credentials: Email o password non corretti
+          account_activation_pending: Prima attiva il tuo account tramite il link nell'email che ti abbiamo inviato.
+
+  activerecord:
+    models:
+      translation: Traduzione
+    attributes:
+      translation:
+        user_id: Utente
+        segment_id: Frammento
+        lang: Lingua
+        text: Testo della traduzione
+      user:
+        username: Nome utente
+        name: Nome
+        email: Indirizzo email
+        password: Password
+        password_confirmation: Conferma password
+        pages_owner: Proprietario delle pagine
+        privs: Privilegi
+        failed_logins_count: Tentativi di accesso falliti
+        lock_expires_at: Il blocco scade il
+    errors:
+      messages:
+        record_invalid: contiene errori
+        blank: non può essere vuoto
+        invalid: non è valido
+        too_short: è troppo corto (minimo %{count} caratteri)
+        too_long: è troppo lungo (massimo %{count} caratteri)
+        inclusion: non è incluso nella lista
+        taken: è già in uso
+        confirmation: non coincide
+        email_cant_contain_plus: non può contenere il carattere '+'
+        email_in_blacklist: non può essere un indirizzo temporaneo
+        email_cant_changes_too_often: può essere modificato al massimo due volte al giorno
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: ha già proposto una traduzione per questo frammento
+              too_many_variants: può creare al massimo %{count} varianti di traduzione
+
+  users:
+    links:
+      login: Accedi
+      logout: Esci
+      profile_edit: Modifica profilo
+      password_change: Cambia password
+    titles:
+      signup: Registrazione
+      login: Accesso al sito
+      password_reset: Recupero password
+      new_password: Imposta una nuova password
+      profile: Profilo utente
+      password_change: Cambio password
+      profile_edit: Modifica profilo
+    buttons:
+      signup: Registrati
+      login: Accedi
+      password_reset: Reimposta password
+      new_password: Imposta password
+      save_changes: Salva modifiche
+      save_new_password: Salva nuova password
+    notices:
+      error: Errore
+      registration_successful: Registrazione completata con successo
+      profile_is_updated: Profilo aggiornato con successo
+      password_is_changed: Password modificata con successo
+      password_confirm_is_wrong: La password e la conferma non coincidono
+      current_password_is_wrong: La password attuale non è corretta
+      user_is_activated: Email confermata. Account attivato.
+      update_your_password_if_you_forgotten_it: Aggiorna la tua password se l'hai dimenticata
+      already_logged_in: Hai già effettuato l'accesso
+      logged_out: Sei uscito
+      logged_in: Accesso effettuato con successo
+      login_failed: Accesso non riuscito
+      loggin_failed_account_is_locked: Accesso non riuscito. L'account è bloccato. Sbloccalo tramite il link nell'email che ti abbiamo inviato
+    alerts:
+      are_you_shure: Sei sicuro?
+    errors:
+      login_required: Devi effettuare l'accesso
+      activation_required: Attiva il tuo account tramite il link nell'email
+      account_blocked: Il tuo account è bloccato
+      not_admin: Permessi insufficienti
+      too_many_requests: Troppe richieste al server. Attendi un momento.
+    hints:
+      email_confirmed: ✅ Email confermata
+      email_not_confirmed: ⚠️ Email non confermata. Segui il link nell'email.
+    fields:
+      current_password: Password attuale
+      new_password: Nuova password
+      new_password_confirmation: Conferma nuova password
+
+    is_already_registred: Sei già registrato?
+    is_not_yet_registred: Non hai un account?
+    is_forgot_password: Password dimenticata?
+    letters:
+      welcome:
+        subject: Ti sei registrato su bibleox.com
+        body: |
+          <p>Ciao %{name},</p><br>
+          <p>qualcuno si è registrato su bibleox.com a tuo nome. Per accedere, segui questo link: %{url}.</p>
+          <p>Se non sei stato tu, ignora semplicemente questa email.</p>
+          <p>Buona giornata!</p>
+      activation_needed:
+        subject: Conferma dell'indirizzo email
+        body: |
+          <p>Ciao %{name},</p><br>
+          <p>questo indirizzo è stato usato per registrarsi su bibleox.com. Per attivare il tuo account, segui questo link: %{url}.</p><br>
+          <p>Se non sei stato tu, ignora semplicemente questa email.</p>
+          <p>Buona giornata!</p>
+      password_reset:
+        subject: Reimpostazione della password
+        body: |
+          <p>Ciao %{name},</p><br>
+          <p>qualcuno ha richiesto la reimpostazione della password per questo indirizzo email su bibleox.com. Per impostare una nuova password, segui questo link: %{url}.</p>
+          <p>Questo link scadrà tra 24 ore.</p>
+          <p>Se non sei stato tu, ignora semplicemente questa email.</p><br>
+          <p>Buona giornata!</p>
+      account_unlock:
+        subject: Sblocco dell'account
+        body: |
+          <p>Ciao %{name},</p><br>
+          <p>qualcuno ha cercato di accedere al tuo account su bibleox.com inserendo una password errata troppe volte. Per proteggere il tuo account, lo abbiamo bloccato temporaneamente. Per sbloccarlo, segui questo link: %{url}.</p><br>
+          <p>Buona giornata!</p>
+
+  errors:
+    alert: Si sono verificati errori

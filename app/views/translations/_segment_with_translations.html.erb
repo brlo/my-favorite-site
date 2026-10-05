@@ -4,7 +4,7 @@
   <div class="fragment-header">
     <% fragment_id = "ch#{ segment.chapter }-p#{ segment.paragraph }-l#{ segment.line }" %>
     <div class='fragment-title'>
-      Фрагмент
+      <%= t('tr_projects.fragment') %>
       <span id='<%= fragment_id %>' data-share-id='<%= fragment_id %>' class='fragment-number'>
         #<%= fragment_id %>
       </span>
@@ -26,7 +26,7 @@
 
         <div class='translations-from'>
           <div class="translations-meta">
-            Исходники
+            <%= t('tr_projects.sources') %>
           </div>
 
           <% if @params_lang_from&.include?(segment.lang) %>
@@ -36,7 +36,7 @@
                   <%= translation_lang_by_code(segment.lang) %>
                 </div>
                 <div data-action='click->copy-text#copy' class='copy-btn ml-auto'>
-                  Копировать
+                  <%= t('tr_projects.copy') %>
                 </div>
               </div>
               <div class='text' data-copy-text-target='content'>
@@ -67,7 +67,7 @@
 
     <div class="translations-area" data-controller="translation-form">
       <div class="translations-meta">
-        Переводы: <%= translation_lang_by_code(lang_to) %>
+        <%= t('tr_projects.translations_label') %> <%= translation_lang_by_code(lang_to) %>
       </div>
 
       <div class="translations-list" id="translations_list_<%= segment.id %>">
@@ -82,7 +82,7 @@
       </div>
 
       <% if logged_in? %>
-        <%= link_to "Предложить перевод",
+        <%= link_to t('tr_projects.propose'),
           new_translation_project_segment_translation_path(
             translation_project_id: segment.translation_project_id,
             segment_id: segment.id,
@@ -97,7 +97,7 @@
 
         <span id="new_translation_form_<%= segment.id %>"></span>
       <% else %>
-        <small>Чтобы предлагать переводы надо <%= link_to 'зарегистрироваться', login_path, data: {turbo: false} %></small>
+        <small><%= t('tr_projects.login_to_propose_html', link: link_to(t('tr_projects.login_to_propose_link'), login_path, data: {turbo: false})) %></small>
       <% end %>
     </div>
   </div>

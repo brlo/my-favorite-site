@@ -1,0 +1,158 @@
+zh-Hans:
+  bc:
+    profile: 个人资料
+    change_password: 修改密码
+    edit_password: 编辑个人资料
+
+  helpers:
+    label:
+      session:
+        email: 电子邮箱
+        password_reset: 忘记密码的账户所用的电子邮箱
+        password_reset_alert: 如果该邮箱存在于我们的系统中，您将收到一封包含操作说明的邮件
+        password_reset_ok: 密码已成功更新
+    submit:
+      session:
+        create: 登录
+        password_reset: 重置密码
+      user:
+        create: 注册
+        update: 更新
+
+  activemodel:
+    attributes:
+      session:
+        email: 电子邮箱
+        password: 密码
+        remember_me: 记住我
+    errors:
+      models:
+        session:
+          invalid_credentials: 邮箱或密码错误
+          account_activation_pending: 请先通过我们发送的邮件中的链接激活账户。
+
+  activerecord:
+    models:
+      translation: 译文
+    attributes:
+      translation:
+        user_id: 用户
+        segment_id: 片段
+        lang: 语言
+        text: 译文内容
+      user:
+        username: 用户名
+        name: 名字
+        email: 电子邮箱
+        password: 密码
+        password_confirmation: 确认密码
+        pages_owner: 页面所有者
+        privs: 权限
+        failed_logins_count: 登录失败次数
+        lock_expires_at: 锁定到期时间
+    errors:
+      messages:
+        record_invalid: 包含错误
+        blank: 不能为空
+        invalid: 无效
+        too_short: 过短（至少%{count}个字符）
+        too_long: 过长（最多%{count}个字符）
+        inclusion: 不在列表中
+        taken: 已被占用
+        confirmation: 不匹配
+        email_cant_contain_plus: 不能包含“+”字符
+        email_in_blacklist: 不能是临时邮箱
+        email_cant_changes_too_often: 每天最多只能修改两次
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: 已经为该片段提议过译文
+              too_many_variants: 最多只能创建%{count}个译文版本
+
+  users:
+    links:
+      login: 登录
+      logout: 退出登录
+      profile_edit: 编辑个人资料
+      password_change: 修改密码
+    titles:
+      signup: 注册
+      login: 登录网站
+      password_reset: 找回密码
+      new_password: 设置新密码
+      profile: 用户资料
+      password_change: 修改密码
+      profile_edit: 编辑个人资料
+    buttons:
+      signup: 注册
+      login: 登录
+      password_reset: 重置密码
+      new_password: 设置密码
+      save_changes: 保存更改
+      save_new_password: 保存新密码
+    notices:
+      error: 错误
+      registration_successful: 注册成功
+      profile_is_updated: 个人资料已更新
+      password_is_changed: 密码已修改
+      password_confirm_is_wrong: 密码与确认密码不一致
+      current_password_is_wrong: 当前密码错误
+      user_is_activated: 邮箱已确认，账户已激活。
+      update_your_password_if_you_forgotten_it: 如果您忘记了密码，请更新密码
+      already_logged_in: 您已登录
+      logged_out: 您已退出登录
+      logged_in: 登录成功
+      login_failed: 登录失败
+      loggin_failed_account_is_locked: 登录失败。账户已被锁定，请通过邮件中的链接解锁
+    alerts:
+      are_you_shure: 您确定吗？
+    errors:
+      login_required: 请先登录
+      activation_required: 请通过邮件中的链接激活账户
+      account_blocked: 您的账户已被封禁
+      not_admin: 权限不足
+      too_many_requests: 对服务器的请求过于频繁，请稍候。
+    hints:
+      email_confirmed: ✅ 邮箱已确认
+      email_not_confirmed: ⚠️ 邮箱未确认。请点击邮件中的链接。
+    fields:
+      current_password: 当前密码
+      new_password: 新密码
+      new_password_confirmation: 确认新密码
+
+    is_already_registred: 已有账户？
+    is_not_yet_registred: 还没有账户？
+    is_forgot_password: 忘记密码？
+    letters:
+      welcome:
+        subject: 您已在 bibleox.com 注册
+        body: |
+          <p>%{name}，您好！</p><br>
+          <p>有人以您的名义在 bibleox.com 注册了账户。要登录网站，请打开链接：%{url}。</p>
+          <p>如果这不是您本人操作，请忽略此邮件。</p>
+          <p>祝您愉快！</p>
+      activation_needed:
+        subject: 邮箱确认
+        body: |
+          <p>%{name}，您好！</p><br>
+          <p>此邮箱已被用于在 bibleox.com 注册。要激活账户，请打开链接：%{url}。</p><br>
+          <p>如果这不是您本人操作，请忽略此邮件。</p>
+          <p>祝您愉快！</p>
+      password_reset:
+        subject: 重置密码
+        body: |
+          <p>%{name}，您好！</p><br>
+          <p>有人在 bibleox.com 请求重置此邮箱对应账户的密码。要设置新密码，请打开链接：%{url}。</p>
+          <p>该链接将在24小时后失效。</p>
+          <p>如果这不是您本人操作，请忽略此邮件。</p><br>
+          <p>祝您愉快！</p>
+      account_unlock:
+        subject: 账户解锁
+        body: |
+          <p>%{name}，您好！</p><br>
+          <p>有人多次输入错误密码，试图登录您在 bibleox.com 的账户。为保护您的账户，我们已将其暂时锁定。要解锁，请打开链接：%{url}。</p><br>
+          <p>祝您愉快！</p>
+
+  errors:
+    alert: 发生错误

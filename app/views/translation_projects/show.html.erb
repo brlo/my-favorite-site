@@ -1,4 +1,4 @@
-<%= content_for :title, "#{@project.title} — Часть #{@part}" %>
+<%= content_for :title, t('tr_projects.show_page_title', title: @project.title, part: @part) %>
 
 
 
@@ -6,7 +6,7 @@
 
 <div id="chapter-header" data-controller="menu-filter">
   <h2 class="parent-title">
-    <%= link_to 'Совместные переводы церковных текстов', translation_projects_path %>
+    <%= link_to t('tr_projects.index_title'), translation_projects_path %>
   </h2>
 
   <div id="h1-title">
@@ -27,20 +27,24 @@
   </div>
 
   <div id="title-sub">
-    Перевод подготавливается пользователями сайта bibleox.com.<br>
-    <% if !logged_in? %> Вы можете помочь улучшить этот текст! <%= link_to 'Зарегистрируйтесь', signup_path %> и присоединяйтесь к работе над <%= link_to 'переводом', translation_project_path(@project, part: @part, lang_to: @lang_to) %>. <br><% end %>
-    Как и материалы Wikipedia, результат распространяется свободно под лицензией CC BY-SA.
+    <%= t('tr_projects.prepared_by_users') %><br>
+    <% if !logged_in? %>
+      <%= t('tr_projects.help_cta_html',
+            signup_link: link_to(t('tr_projects.signup_link'), signup_path),
+            join_link: link_to(t('tr_projects.join_link'), translation_project_path(@project, part: @part, lang_to: @lang_to))) %><br>
+    <% end %>
+    <%= t('tr_projects.license') %>
   </div>
 
   <div class='translation-stats'>
     <div class="stats-row">
-      <span class="stats-label">Перевод с языка:</span>
+      <span class="stats-label"><%= t('tr_projects.translate_from') %></span>
 
       <div data-controller="bbx-select"
           data-bbx-select-action-value="navigate"
           data-bbx-select-navigate-path-value="<%= "/#{I18n.locale}/translate/#{@project.id}?part=#{@part}&lang_to=#{@lang_to}&lang_from=" %>">
         <select data-bbx-select-target="select" name="locale" multiple>
-          <optgroup label="Исходники">
+          <optgroup label="<%= t('tr_projects.sources') %>">
             <% langs_for_translates(is_with_encient: true).each do |lang, name| %>
               <% next unless @langs_from.include?(lang) %>
               <% is_selected = @langs_from.include?(lang) %>
@@ -51,7 +55,7 @@
 
           <% translates = langs_for_translates(is_with_encient: false).select { |lang, _| @progress_for_all_langs.fetch(lang, 0) > 0 && lang != @lang_to }.sort_by { |lang, _| [-@progress_for_all_langs.fetch(lang, 0), lang] } %>
           <% if translates.any? %>
-            <optgroup label="Переводы">
+            <optgroup label="<%= t('tr_projects.translations') %>">
               <% translates.each do |lang, name| %>
                 <option value='<%= lang %>' <%= 'selected' if @params_lang_from.include?(lang) %> data-progress="<%= @progress_for_all_langs[lang] %>"><%= name %></option>
               <% end %>
@@ -63,7 +67,7 @@
 
       <span class="stats-arrow">→</span>
 
-      <span class="stats-label">на язык:</span>
+      <span class="stats-label"><%= t('tr_projects.translate_to') %></span>
 
       <div data-controller="bbx-select"
           data-bbx-select-action-value="navigate"
@@ -77,12 +81,12 @@
         <div data-bbx-select-target="custom"></div>
       </div>
 
-      <%= link_to 'Итоговый перевод', result_translation_project_path(part: @part, lang_to: @lang_to), data: { turbo: false }, class: "stats-link" %>
+      <%= link_to t('tr_projects.result'), result_translation_project_path(part: @part, lang_to: @lang_to), data: { turbo: false }, class: "stats-link" %>
     </div>
 
   </div>
 
-  <div class='small hint' style='text-align: center'>Часть</div>
+  <div class='small hint' style='text-align: center'><%= t('tr_projects.part') %></div>
   <nav id='menu-chapters'>
     <% prev_chapter = @part - 1 %>
     <% now_chapter = @part %>
@@ -104,7 +108,7 @@
               method: :delete,
               data: {
                 turbo_method: :delete,
-                turbo_confirm: "Уверен, что хочешь удалить часть #{ @part } проекта перевода? '#{@project.title}'"
+                turbo_confirm: t('tr_projects.confirm_delete_part', part: @part, title: @project.title)
             } %>
           </div>
           <div class='bar-el btn'>
@@ -136,7 +140,7 @@
   <% end %>
 </div>
 <% else %>
-  <div>Текст ещё не загружен. Попробуйте зайти через 15 минут.</div>
+  <div><%= t('tr_projects.not_loaded') %></div>
 <% end %>
 
 <%= render(partial: 'shared/arrow_to_top') %>

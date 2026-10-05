@@ -1,0 +1,104 @@
+he:
+  menu:
+    translates: תרגומים
+  open_tags:
+    h2: כותרת
+    p: פסקה
+    strong: טקסט מודגש
+  close_tags:
+    h2: סוף כותרת
+    p: סוף פסקה
+    strong: סוף טקסט מודגש
+  time_ago:
+    just_now: עכשיו
+    minute: דק׳
+    hour: שע׳
+    day: ימ׳
+    week: שב׳
+    month: חו׳
+    year: שנ׳
+  tr_projects:
+    all_translations: כל התרגומים
+    index_title: תרגום משותף של טקסטים כנסייתיים
+    index_page_title: תרגום משותף של טקסטים כנסייתיים לשפות כל העמים
+    index_h1: תרגום משותף של טקסטים כנסייתיים (בטא)
+    quote: שומעים אותם מדברים בלשונותינו את גדולות האלוהים
+    quote_ref: מעשי השליחים 2:11
+    beta_notice: מדור התרגומים נמצא בשלב בדיקות בטא. בתקופת הבדיקות מוצע לתרגום מספר קטן של חיבורים.
+    create_project: יצירת פרויקט
+    last_day: תרגומים מ-24 השעות האחרונות
+    source_label: 'מקור:'
+    translation_label: 'תרגום:'
+    translations_label: 'תרגומים:'
+    other_language: שפה אחרת
+    other_languages: שפות נוספות...
+    project_page_title: תרגום משותף — %{title}
+    show_page_title: '%{title} — חלק %{part}'
+    result: תרגום סופי
+    work_on_translation: עבודה על התרגום
+    prepared_by_users: התרגום מוכן על ידי משתמשי האתר bibleox.com.
+    help_cta_html: אתם יכולים לעזור לשפר את הטקסט הזה! %{signup_link} ו%{join_link}.
+    signup_link: הירשמו
+    join_link: הצטרפו לעבודת התרגום
+    license: בדומה לתוכן ויקיפדיה, התוצאה מופצת באופן חופשי תחת רישיון CC BY-SA.
+    part: חלק
+    translate_from: 'תרגום משפה:'
+    translate_to: 'לשפה:'
+    result_lang: 'תרגום לשפה:'
+    sources: מקורות
+    translations: תרגומים
+    continue_html: ניתן להמשיך את העבודה על התרגום ב%{link}.
+    continue_link: מדור המיוחד
+    not_loaded: הטקסט עדיין לא נטען. נסו שוב בעוד 15 דקות.
+    confirm_delete_part: למחוק את חלק %{part} של פרויקט התרגום "%{title}"?
+    new_project: פרויקט תרגום חדש
+    edit_project: עריכת פרויקט תרגום
+    delete: מחיקה
+    confirm_delete_project: למחוק את פרויקט התרגום "%{title}"?
+    import_title: ייבוא חלק חדש של הטקסט
+    source_lang: שפת המקור
+    split_and_add: פיצול והוספה
+    processing: מעבד...
+    form:
+      title: שם הפרויקט
+      description: תיאור
+      description_placeholder: תיאור קצר של הפרויקט, מקורות, מאפייני התרגום...
+      page_ids: מזהי עמודים (מופרדים בפסיקים)
+      page_ids_placeholder: 'לדוגמה: 1,3,5,7'
+      create: יצירת פרויקט
+      save: שמירת שינויים
+      saving: שומר...
+    notices:
+      created: הפרויקט נוצר
+      updated: הפרויקט עודכן
+      part_deleted: חלק %{part} הוסר מהפרויקט
+      deleted: הפרויקט נמחק
+    fragment: קטע
+    copy: העתקה
+    propose: הצעת תרגום
+    login_to_propose_html: כדי להציע תרגומים, %{link}.
+    login_to_propose_link: התחברו או הירשמו
+    your_translation: התרגום שלך
+    editing: עריכת תרגום
+    cancel: ביטול
+    text_placeholder: כתבו את גרסת התרגום שלכם...
+    sub_text_placeholder: הערת שוליים (אם תרצו לצרף הערה לתרגום)
+    submit: שליחת תרגום
+    save: שמירת תרגום
+    edit_short: עריכה
+    confirm_delete: האם אתם בטוחים שברצונכם למחוק את התרגום הזה?
+    liked: אהבתי
+    needs_work: דורש שיפור
+    needs_work_hint: '"דורש שיפור". רק מי שכבר הציע תרגום משלו יכול להצביע כך'
+    approved: אושר כתרגום הראשי
+    user_blocked: המשתמש חסום
+    who_voted: מי הצביע
+    pin: הצמדה
+    unpin: ביטול הצמדה
+    approve_title: אישור כתרגום הראשי
+    approve_confirm: להפוך את התרגום הזה לראשי?
+    block_short: חסימה
+    block_title: חסימת משתמש
+    block_confirm: לחסום את המשתמש %{username}?
+    remove_reaction: הסרת תגובה
+    remove_reaction_confirm: להסיר את התגובה של המשתמש %{username}?
