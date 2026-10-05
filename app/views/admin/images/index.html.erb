@@ -1,0 +1,62 @@
+<% @page_title = 'Картинки' %>
+
+<h1>Картинки</h1>
+
+<% if can?('gallery_write') %>
+  <%= form_with scope: :image, url: admin_images_path, class: 'box' do |f| %>
+    <div class="field-row">
+      <div class="field">
+        <%= f.label :title, 'Название новой картинки' %>
+        <%= f.text_field :title %>
+      </div>
+      <div class="field">
+        <%= f.label :file, 'Файл' %>
+        <%= f.file_field :file, accept: 'image/*', required: true %>
+      </div>
+    </div>
+    <%= f.submit 'Загрузить', class: 'btn' %>
+  <% end %>
+<% end %>
+
+<%= form_with url: admin_images_path, method: :get, class: 'search-form',
+      data: { controller: 'auto-submit', turbo_frame: 'images_list', turbo_action: 'replace' } do %>
+  <%= search_field_tag :term, @term, placeholder: 'Поиск по названию (от 3 букв)', autocomplete: 'off',
+        data: { action: 'input->auto-submit#debounced' } %>
+<% end %>
+
+<%= turbo_frame_tag 'images_list', target: '_top' do %>
+  <% if @images.empty? %>
+    <p class="muted">Ничего не найдено</p>
+  <% end %>
+
+  <div class="images-grid">
+    <% @images.each do |image| %>
+      <% urls = image.simple.urls %>
+      <div class="image-card" id="<%= dom_id(image) %>">
+        <a href="<%= urls[:m] %>" target="_blank"><img src="<%= urls[:s] %>" loading="lazy" alt=""></a>
+
+        <% if can?('gallery_write') %>
+          <%= form_with scope: :image, url: admin_image_path(image), method: :patch, namespace: dom_id(image) do |f| %>
+            <%= f.text_field :title, value: image.title, placeholder: 'Название', autocomplete: 'off' %>
+          <% end %>
+        <% else %>
+          <div><%= image.title %></div>
+        <% end %>
+
+        <div class="image-actions">
+          <button type="button" class="btn-link" data-controller="copy-html"
+                  data-copy-html-content-value="<%= %(<a href="#{urls[:m]}"><img src="#{urls[:s]}" loading="lazy"/></a>[<a href="#{urls[:m]}">крупнее</a>]) %>"
+                  data-action="copy-html#copy">Копировать HTML</button>
+          <% if can?('gallery_write') %>
+            <%= button_to 'Удалить', admin_image_path(image), method: :delete, class: 'btn-link danger',
+                  form: { data: { turbo_confirm: "Удалить картинку ##{image.id}?" } } %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+
+  <%= paginate @images %>
+<% end %>
+
+<p class="hint">Название сохраняется по Enter.</p>

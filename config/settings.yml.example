@@ -3,8 +3,6 @@ test:
     url:
 
 development:
-  admin:
-    url: "http://localhost:5173"
   redis:
     url: "redis://:psw@bibredis:6379/0"
   telegram_bot:
@@ -14,8 +12,6 @@ development:
     key: 'sample_key'
 
 production:
-  admin:
-    url: "https://edit.bibleox.com"
   redis:
     url:
   telegram_bot:

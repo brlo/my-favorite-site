@@ -1,0 +1,41 @@
+<% @page_title = 'Словарь' %>
+
+<div class="actions-bar">
+  <h1 style="margin: 0">Словарь</h1>
+  <% if can?('dict_create') %>
+    <%= link_to '＋ Новое слово', new_admin_dict_word_path(dict: @dict), class: 'btn push-right' %>
+  <% end %>
+</div>
+
+<%= form_with url: admin_dict_words_path, method: :get, class: 'search-form',
+      data: { controller: 'auto-submit', turbo_frame: 'dict_words_list', turbo_action: 'replace' } do %>
+  <%= search_field_tag :term, @term, placeholder: 'Слово, перевод, транскрипция…', autofocus: true, autocomplete: 'off',
+        data: { action: 'input->auto-submit#debounced' } %>
+  <%= select_tag :dict, options_for_select(admin_dict_options, @dict), include_blank: 'Все словари',
+        data: { action: 'change->auto-submit#submit' } %>
+<% end %>
+
+<%= turbo_frame_tag 'dict_words_list', target: '_top' do %>
+  <% if @dict_words.empty? %>
+    <p class="muted">Ничего не найдено</p>
+  <% end %>
+
+  <% @dict_words.each do |w| %>
+    <div class="list-item">
+      <%= flag_by_lang(::DictWord::DICTS.dig(w.dict, 'from')) %>
+      <% if can?('dict_update') %>
+        <%= link_to w.word, edit_admin_dict_word_path(w) %>
+      <% else %>
+        <b><%= w.word %></b>
+      <% end %>
+      <span class="muted"><%= [w.transcription, w.transcription_lat].compact.join(', ') %></span>
+      <% if w.translation_short.present? %> — <b><%= w.translation_short %></b><% end %>
+      <i class="badge"><%= ::DictWord::DICTS.dig(w.dict, 'name') %></i>
+      <% if w.desc.present? %>
+        <div class="word-desc"><%= sanitize(w.desc, tags: ::Page::ALLOW_TAGS, attributes: ::Page::ALLOW_ATTRS) %></div>
+      <% end %>
+    </div>
+  <% end %>
+
+  <%= paginate @dict_words %>
+<% end %>

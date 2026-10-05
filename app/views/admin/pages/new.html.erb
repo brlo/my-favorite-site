@@ -1,0 +1,10 @@
+<% @page_title = 'Новая статья' %>
+
+<div class="page-head">
+  <div class="crumbs"><%= link_to '← Статьи', admin_pages_path %></div>
+  <h1>Новая статья</h1>
+</div>
+
+<%= render 'form', page: @page %>
+
+<%= render 'settings', page: @page %>

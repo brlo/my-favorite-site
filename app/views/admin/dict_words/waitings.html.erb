@@ -1,0 +1,14 @@
+<%= turbo_frame_tag 'dict_waitings', target: '_top' do %>
+  <div class="waitings">
+    <% { 'Слова' => @words, 'Лексемы' => @lexemas }.each do |title, list| %>
+      <div>
+        <div class="hint"><%= title %></div>
+        <ol>
+          <% list.each do |w| %>
+            <li><%= link_to w[:word], new_admin_dict_word_path(word: w[:word], dict: @dict || 'w') %><i><%= w[:counts] %></i></li>
+          <% end %>
+        </ol>
+      </div>
+    <% end %>
+  </div>
+<% end %>

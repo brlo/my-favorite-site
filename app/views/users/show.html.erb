@@ -25,6 +25,9 @@
   <ul class="profile-links">
     <li><%= link_to "✏️ #{ t('users.links.profile_edit') }", edit_main_info_users_path %></li>
     <li><%= link_to "🔑 #{t('users.links.password_change')}", edit_password_users_path %></li>
+    <% if @user.admin_area_access? %>
+      <li><%= link_to "🛠 #{t('users.links.admin', default: 'Админка')}", admin_root_path(locale: nil) %></li>
+    <% end %>
     <li class="logout"><%= link_to "🚪 #{t('users.links.logout')}", logout_path, method: :delete, data: { turbo_method: :delete, turbo_confirm: t('users.alerts.are_you_shure') } %></li>
   </ul>
 </div>

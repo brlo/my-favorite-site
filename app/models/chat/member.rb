@@ -55,8 +55,8 @@ module Chat
 
     def guest? = kind == 'guest'
     def bot? = kind == 'bot'
-    def staff? = STAFF_ROLES.include?(role) || (user&.is_admin? == true)
-    def admin? = role == 'admin' || (user&.is_admin? == true)
+    def staff? = STAFF_ROLES.include?(role) || (user&.chat_admin? == true)
+    def admin? = role == 'admin' || (user&.chat_admin? == true)
 
     # Подтверждённый участник пишет сразу для всех.
     # Гость и пользователь без подтверждённой почты пишут "в скрытую" (видно только админам).

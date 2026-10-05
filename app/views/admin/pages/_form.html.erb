@@ -1,0 +1,83 @@
+<%# Форма статьи: текст. Настройки — ниже меню (_settings), их поля привязаны к этой форме атрибутом form. %>
+<% editable = page.new_record? || page_editable?(page) %>
+<% submit_label = page.new_record? ? 'Опубликовать статью' : 'Сохранить' %>
+
+<%# подтверждение срабатывает и для кнопки «Сохранить» под настройками (она привязана к форме атрибутом form) %>
+<%= form_with model: page, url: (page.new_record? ? admin_pages_path : admin_page_path(page)), id: 'page-form', class: 'page-editor',
+      data: { turbo_confirm: (page.new_record? ? 'Опубликовать новую статью?' : 'Сохранить изменения в статье?') } do |f| %>
+  <% if page.errors.any? %>
+    <div class="errors">
+      <div class="error-title">Не удалось сохранить:</div>
+      <ul><% page.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %></ul>
+    </div>
+  <% end %>
+
+  <div class="publish-bar">
+    <% if editable %>
+      <%= f.submit submit_label, class: 'btn' %>
+    <% else %>
+      <span class="access-info cannot">✕ Только просмотр</span>
+    <% end %>
+    <div class="field inline">
+      <%= f.check_box :is_published %>
+      <%= f.label :is_published, 'Доступна для чтения' %>
+    </div>
+    <% if page.persisted? %>
+      <span class="hint push-right">
+        Изменена <%= page.updated_at_word.downcase %><%= " · #{page.user.name}" if page.user %> ·
+        <a href="<%= admin_public_page_path(page) %>" target="_blank">на сайте ↗</a>
+      </span>
+    <% end %>
+  </div>
+
+  <% if page.new_record? && @menu_id.present? %>
+    <%= hidden_field_tag 'page[menu_id]', @menu_id %>
+    <p class="hint">Статья будет привязана к пункту меню #<%= @menu_id %>.</p>
+  <% end %>
+
+  <% if !super_user? && page.new_record? %>
+    <%# предзаполненные значения из ссылки «создать страницу» %>
+    <%= f.hidden_field :path %>
+    <%= f.hidden_field :parent_id %>
+    <%= f.hidden_field :lang %>
+  <% end %>
+
+  <div class="field">
+    <%= f.text_area :title, rows: 1, class: 'input-title', required: true, placeholder: 'Заголовок', 'aria-label': 'Заголовок' %>
+  </div>
+  <div class="field">
+    <%= f.text_area :title_sub, rows: 1, class: 'input-subtitle', placeholder: 'Подзаголовок (не обязательно)', 'aria-label': 'Подзаголовок' %>
+  </div>
+
+  <div class="field editor-body">
+    <label>Текст статьи</label>
+    <%= render 'shared/tiptap_editor', form: f, field_name: :body, initial_value: page.body %>
+  </div>
+
+  <div class="field editor-refs">
+    <label>Примечания</label>
+    <%= render 'shared/tiptap_editor', form: f, field_name: :references, initial_value: page.references %>
+    <div class="hint">Сноска [1] в тексте ссылается на первый пункт нумерованного списка в примечаниях.</div>
+  </div>
+
+  <div class="field">
+    <label>Ссылки под заголовком</label>
+    <div data-controller="rows">
+      <div data-rows-target="list">
+        <% page.links.to_a.each do |(title, path)| %>
+          <%= render 'admin/pages/link_row', title:, path: %>
+        <% end %>
+      </div>
+      <template data-rows-target="template">
+        <%= render 'admin/pages/link_row', title: nil, path: nil %>
+      </template>
+      <button type="button" class="btn btn-light btn-small" data-action="rows#add">＋ Добавить ссылку</button>
+    </div>
+  </div>
+
+  <% if editable %>
+    <div class="actions-bar">
+      <%= f.submit submit_label, class: 'btn' %>
+    </div>
+  <% end %>
+<% end %>

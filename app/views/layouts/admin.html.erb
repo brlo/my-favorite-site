@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8">
+    <title><%= [@page_title, 'Админка Bibleox'].compact.join(' / ') %></title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="icon" type="image/svg+xml" href="<%= my_res_link_to('/favicons/favicon.svg') %>">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body class="admin-ui">
+    <% section = controller_name %>
+    <header class="admin-header">
+      <div class="admin-container">
+        <a class="admin-logo" href="/ru">
+          <img src="<%= my_res_link_to("/logo/bibleox.png") %>" alt="Bibleox">
+        </a>
+
+        <nav class="admin-nav">
+          <%= link_to 'Сводка', admin_root_path, class: ('selected' if section == 'dashboard') %>
+          <% if can?('pages_read') || current_user.pages_owner.present? %>
+            <%= link_to 'Статьи', admin_pages_path, class: ('selected' if section == 'pages') %>
+          <% end %>
+          <% if can?('gallery_read') %>
+            <%= link_to 'Картинки', admin_images_path, class: ('selected' if section == 'images') %>
+          <% end %>
+          <% if can?('dict_read') %>
+            <%= link_to 'Словарь', admin_dict_words_path, class: ('selected' if section == 'dict_words') %>
+          <% end %>
+          <% if current_user.is_admin? %>
+            <%= link_to 'Пользователи', admin_users_path, class: ('selected' if section == 'users') %>
+          <% end %>
+        </nav>
+
+        <div class="admin-me">
+          <span title="<%= current_user.username %>"><%= current_user.name %></span>
+          <%= button_to 'Выйти', logout_path(locale: :ru), method: :delete, class: 'btn-link',
+                form: { data: { turbo_confirm: 'Выйти из профиля?' } } %>
+        </div>
+      </div>
+    </header>
+
+    <div id="flash-container" class="flash-messages" data-controller="flash">
+      <% if notice %>
+        <%= render 'shared/toast', type: 'notice', message: notice %>
+      <% end %>
+      <% if alert %>
+        <div class="flash alert"><%= alert %></div>
+      <% end %>
+    </div>
+
+    <main class="admin-container">
+      <%= yield %>
+    </main>
+  </body>
+</html>

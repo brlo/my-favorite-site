@@ -6,11 +6,7 @@
 
 docker compose up -d
 
-запуск разработки админки:
-
-cd admin && npm run dev
-
-потом переходи по адресу: http://localhost:5173/
+Админка: http://localhost/admin (вход обычным пользователем сайта с привилегиями или is_admin)
 
 Консоль и разработчика:
 

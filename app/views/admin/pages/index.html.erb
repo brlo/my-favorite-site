@@ -1,0 +1,23 @@
+<% @page_title = 'Статьи' %>
+
+<div class="actions-bar">
+  <h1 style="margin: 0">Статьи</h1>
+  <% if can?('pages_create') %>
+    <%= link_to '＋ Новая статья', new_admin_page_path, class: 'btn push-right' %>
+  <% end %>
+</div>
+
+<%= form_with url: admin_pages_path, method: :get, class: 'search-form',
+      data: { controller: 'auto-submit', turbo_frame: 'pages_list', turbo_action: 'replace' } do %>
+  <%= search_field_tag :term, @term, placeholder: 'Поиск по заголовку (от 3 букв)', autofocus: true,
+        autocomplete: 'off', data: { action: 'input->auto-submit#debounced' } %>
+<% end %>
+
+<%= turbo_frame_tag 'pages_list', target: '_top' do %>
+  <% if @pages.empty? %>
+    <p class="muted">Ничего не найдено</p>
+  <% end %>
+  <%= render partial: 'admin/pages/page_item', collection: @pages, as: :page,
+        locals: { visits: @page_visits, parent_titles: @parent_titles } %>
+  <%= paginate @pages %>
+<% end %>

@@ -1,0 +1,9 @@
+<%# Формы без полей: их кнопки и поля стоят в правой колонке редактора (атрибут form), т.к. формы нельзя вкладывать друг в друга %>
+<%= form_with url: admin_page_path(page), method: :delete, id: 'page-delete-form', class: 'detached-form',
+      data: { turbo_confirm: "Точно удалить статью «#{page.title}»?" } do %><% end %>
+<%= form_with url: cover_admin_page_path(page), method: :patch, id: 'page-cover-form', class: 'detached-form', multipart: true do %><% end %>
+<%= form_with url: cover_admin_page_path(page), method: :delete, id: 'page-cover-remove-form', class: 'detached-form',
+      data: { turbo_confirm: 'Удалить изображение для шапки?' } do %><% end %>
+<%= form_with url: pdf_admin_page_path(page), method: :patch, id: 'page-pdf-form', class: 'detached-form', multipart: true do %><% end %>
+<%= form_with url: pdf_admin_page_path(page), method: :delete, id: 'page-pdf-remove-form', class: 'detached-form',
+      data: { turbo_confirm: 'Удалить прикреплённый PDF-файл?' } do %><% end %>

@@ -1,0 +1,12 @@
+<% @page_title = 'Новое слово' %>
+
+<p><%= link_to '← Словарь', admin_dict_words_path %></p>
+<h1>Новое слово</h1>
+
+<%= render 'form', dict_word: @dict_word %>
+
+<h2>Недостающие слова</h2>
+<p class="hint">Самые частые слова и лексемы текста Библии, которых ещё нет в словаре. Клик — начать новое слово.</p>
+<%= turbo_frame_tag 'dict_waitings', src: waitings_admin_dict_words_path(dict: @dict_word.dict), loading: :lazy, target: '_top' do %>
+  <p class="muted">Загрузка…</p>
+<% end %>

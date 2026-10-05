@@ -1,0 +1,166 @@
+<% @page_title = @user.name %>
+<% is_me = @user == current_user %>
+
+<p><%= link_to '← Пользователи', admin_users_path %></p>
+<h1><%= @user.name %> <%= admin_user_badges(@user) %></h1>
+
+<div class="box">
+  <dl class="props">
+    <dt>ID</dt><dd><%= @user.id %></dd>
+    <dt>Способ входа</dt><dd><%= @user.provider %><%= " (uid #{@user.uid})" if @user.uid.present? %></dd>
+    <dt>Зарегистрирован</dt><dd><%= admin_time(@user.created_at) %></dd>
+    <dt>Последний вход</dt><dd><%= admin_time(@user.last_login_at) %><%= " с IP #{@user.last_login_from_ip_address}" if @user.last_login_from_ip_address %></dd>
+    <dt>Последняя активность</dt><dd><%= admin_time(@user.last_activity_at) %></dd>
+    <dt>Подтверждение почты</dt>
+    <dd>
+      <%= { 'active' => 'подтверждена', 'pending' => 'ожидает подтверждения' }.fetch(@user.activation_state.to_s, 'не запрашивалось') %>
+      <% if @user.activation_token_expires_at %>
+        <span class="muted">(ссылка действует до <%= admin_time(@user.activation_token_expires_at) %>)</span>
+      <% end %>
+    </dd>
+    <dt>Неудачных входов подряд</dt>
+    <dd>
+      <%= @user.failed_logins_count.to_i %>
+      <% if @user.lock_expires_at %>
+        <span class="badge red">вход заморожен до <%= admin_time(@user.lock_expires_at) %></span>
+      <% end %>
+    </dd>
+    <dt>Писем за сутки</dt>
+    <dd>
+      <% %w[activation_needed_email reset_password_email unlock_token_email].each do |type| %>
+        <%= { 'activation_needed_email' => 'подтверждение', 'reset_password_email' => 'сброс пароля', 'unlock_token_email' => 'разморозка' }[type] %>:
+        <%= ::SendUserEmailJob.sent_count(type, @user.id) %>/<%= ::SendUserEmailJob::DAILY_LIMIT %><%= ';' unless type == 'unlock_token_email' %>
+      <% end %>
+    </dd>
+    <dt>Статей</dt><dd><%= @user.pages.count %></dd>
+  </dl>
+</div>
+
+<% if @user.email.present? && !@user.activated? %>
+  <div class="box box-warning">
+    <h2>Почта не подтверждена</h2>
+    <p class="hint">Если письмо не доходит, подтвердите почту вручную — пользователь получит те же права, что и после перехода по ссылке.</p>
+    <div class="actions-bar">
+      <%= button_to '✓ Подтвердить почту', activate_admin_user_path(@user), class: 'btn',
+            form: { data: { turbo_confirm: "Отметить #{@user.email} как подтверждённую без письма?" } } %>
+      <%= form_with url: resend_activation_admin_user_path(@user), class: 'flex', data: { turbo_confirm: "Отправить письмо для подтверждения на #{@user.email}?" } do %>
+        <%= submit_tag 'Отправить письмо ещё раз', class: 'btn btn-light' %>
+        <%= select_tag :email_locale, options_for_select(I18n.available_locales.map(&:to_s), 'ru'), title: 'Язык письма', style: 'width: auto' %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<h2>Действия</h2>
+<div class="actions-bar">
+  <% if @user.email.present? %>
+    <%= form_with url: send_password_reset_admin_user_path(@user), class: 'flex', data: { turbo_confirm: "Отправить письмо для сброса пароля на #{@user.email}?" } do %>
+      <%= submit_tag 'Отправить сброс пароля', class: 'btn btn-light' %>
+      <%= select_tag :email_locale, options_for_select(I18n.available_locales.map(&:to_s), 'ru'), title: 'Язык письма', style: 'width: auto' %>
+    <% end %>
+  <% end %>
+  <% if @user.lock_expires_at.present? || @user.failed_logins_count.to_i > 0 %>
+    <%= button_to 'Разморозить вход', unlock_admin_user_path(@user), class: 'btn btn-light' %>
+  <% end %>
+  <% unless is_me %>
+    <%= button_to (@user.is_blocked ? 'Разблокировать' : 'Заблокировать'), toggle_block_admin_user_path(@user),
+          class: (@user.is_blocked ? 'btn btn-light' : 'btn btn-danger'),
+          form: { data: { turbo_confirm: (@user.is_blocked ? 'Разблокировать пользователя?' : 'Заблокировать пользователя?') } } %>
+  <% end %>
+</div>
+
+<h2>Профиль и права</h2>
+<%= form_with model: @user, url: admin_user_path(@user), data: { turbo_confirm: 'Сохранить изменения пользователя?' } do |f| %>
+  <% if @user.errors.any? %>
+    <div class="errors">
+      <div class="error-title">Не удалось сохранить:</div>
+      <ul><% @user.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %></ul>
+    </div>
+  <% end %>
+
+  <div class="field-row">
+    <div class="field">
+      <%= f.label :name, 'Имя' %>
+      <%= f.text_field :name %>
+    </div>
+    <div class="field">
+      <%= f.label :username, 'Логин' %>
+      <%= f.text_field :username %>
+    </div>
+    <div class="field">
+      <%= f.label :email, 'Почта' %>
+      <%= f.email_field :email %>
+      <div class="hint">При смене почты пользователю уйдёт письмо для её подтверждения.</div>
+    </div>
+  </div>
+
+  <% if is_me %>
+    <p class="hint">Это вы: снять с себя права админа или заблокировать себя нельзя.</p>
+  <% else %>
+    <div class="field inline">
+      <%= f.check_box :is_admin %>
+      <%= f.label :is_admin, 'Админ (может всё, включая модерацию пользователей)' %>
+    </div>
+    <div class="field inline">
+      <%= f.check_box :is_blocked %>
+      <%= f.label :is_blocked, 'Заблокирован' %>
+    </div>
+  <% end %>
+
+  <h3>Чат</h3>
+  <div class="field" style="max-width: 360px">
+    <%= label_tag 'user_chat_role', 'Роль в чате' %>
+    <% if @user.is_admin %>
+      <div class="hint">Админ сайта — всегда администратор чата.</div>
+    <% else %>
+      <%= select_tag 'user[chat_role]', options_for_select(Admin::UsersController::CHAT_ROLES.invert, chat_role_of(@user)), id: 'user_chat_role' %>
+      <div class="hint">
+        Модератор видит и одобряет скрытые сообщения, мьютит и банит участников (кроме других модераторов).
+        Администратор чата может то же самое, а ещё назначает модераторов и закрывает чат для сообщений.
+      </div>
+    <% end %>
+  </div>
+
+  <h3>Привилегии</h3>
+  <div class="privs-grid">
+    <% ::User::PRIVS.each do |priv, desc| %>
+      <div class="field inline">
+        <%= check_box_tag "user[privs][#{priv}]", '1', @user.privs.to_h[priv] == true, id: "priv_#{priv}" %>
+        <label for="priv_<%= priv %>"><%= desc %> <span class="muted">(<%= priv %>)</span></label>
+      </div>
+    <% end %>
+  </div>
+  <% if (unknown = @user.privs.to_h.keys - ::User::PRIVS.keys - ['chat_admin']).any? %>
+    <p class="hint">Устаревшие привилегии будут удалены при сохранении: <%= unknown.join(', ') %></p>
+  <% end %>
+
+  <div class="field-row">
+    <div class="field">
+      <%= f.label :pages_owner, 'Хозяин страниц (ID через запятую)' %>
+      <%= f.text_field :pages_owner, value: @user.pages_owner.to_a.join(', ') %>
+      <div class="hint">Хозяин может всё со своими страницами и их дочерними страницами.</div>
+    </div>
+    <div class="field">
+      <%= f.label :allow_ips, 'Вход в админку только с IP (через запятую)' %>
+      <%= f.text_field :allow_ips, value: @user.allow_ips.to_a.join(', ') %>
+      <div class="hint">Пусто — с любого IP.</div>
+    </div>
+  </div>
+
+  <div class="actions-bar">
+    <%= f.submit 'Сохранить', class: 'btn' %>
+  </div>
+<% end %>
+
+<% unless is_me %>
+  <div class="box box-danger">
+    <h2>Удаление</h2>
+    <% if (reason = undeletable_reason(@user)) %>
+      <p class="hint">Удалить нельзя: <%= reason %>.</p>
+    <% else %>
+      <p class="hint">Удалятся пользователь, его переводы, реакции и профиль в чате со всеми сообщениями. Это необратимо.</p>
+      <%= button_to 'Удалить пользователя', admin_user_path(@user), method: :delete, class: 'btn btn-danger',
+            form: { data: { turbo_confirm: "Удалить пользователя #{@user.email || @user.username} навсегда?" } } %>
+    <% end %>
+  </div>
+<% end %>

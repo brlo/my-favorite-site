@@ -93,6 +93,23 @@ class Page < ApplicationRecord
   end
 
   # просто текст
+  # Хозяин страницы (users.pages_owner) может всё с ней и с её дочерними страницами
+  def owned_by?(user)
+    user.present? && (user.pages_owner.to_a & [id, parent_id].compact).any?
+  end
+
+  # Может ли пользователь редактировать статью (режим edit_mode)
+  def editable_by?(user)
+    return false if user.nil? || user.is_blocked
+    return true if owned_by?(user)
+
+    case edit_mode.to_i
+    when EDIT_MODES['admins']     then user.is_admin?
+    when EDIT_MODES['moderators'] then user.ability?('pages_update')
+    else false # «автор и редакторы» пока никому не открыт
+    end
+  end
+
   def is_page_simple?; self.page_type.to_i == 1; end
   # книга
   def is_page_book?; self.page_type.to_i == 2; end

@@ -9,6 +9,45 @@ Rails.application.routes.draw do
     get 'pages'
   end
 
+  # Админка (без локали в адресе, интерфейс только на русском)
+  namespace :admin do
+    root 'dashboard#show'
+
+    resources :pages, except: :show do
+      member do
+        patch :cover
+        delete :cover, action: :remove_cover
+        patch :pdf
+        delete :pdf, action: :remove_pdf
+      end
+      resources :menus, only: %i[create update destroy]
+    end
+
+    resources :images, only: %i[index create update destroy]
+
+    resources :dict_words, except: :show do
+      collection do
+        get :waitings
+      end
+    end
+
+    resources :users, only: %i[index edit update destroy] do
+      collection do
+        delete :bulk_destroy
+      end
+      member do
+        post :resend_activation
+        post :activate
+        post :send_password_reset
+        post :unlock
+        post :toggle_block
+      end
+    end
+
+    get 'autocomplete/pages', to: 'autocomplete#pages', as: :autocomplete_pages
+    get 'autocomplete/dict_words', to: 'autocomplete#dict_words', as: :autocomplete_dict_words
+  end
+
   # редиректим /jp (без слеша и дополнительных частей)
   get '/:loc_ui', to: redirect(status: 301) { |params, req|
     lang = ::COUNTRY_TO_LANG[params[:loc_ui]] || 'en' # fallback на английский
@@ -156,63 +195,6 @@ Rails.application.routes.draw do
     # post '/login_site', to: 'users#handle_login_site', as: 'handle_login_site'
     # post '/login_telegram', to: 'users#handle_telegram_login', as: 'handle_login_telegram'
     # delete '/logout', to: 'users#logout'
-
-    # API
-    namespace 'api', defaults: {format: :json} do
-
-      scope 'images' do
-        get  'list', to: 'images#list'
-        post '/', to: 'images#create'
-        put '/:id', to: 'images#update'
-        delete '/:id', to: 'images#destroy'
-      end
-
-      scope 'pages' do
-        get    'list', to: 'pages#list'
-        post   '/',    to: 'pages#create'
-
-        scope ':id' do
-          get    '/',  to: 'pages#show'
-          put    '/',  to: 'pages#update'
-          delete '/',  to: 'pages#destroy'
-          post   '/restore', to: 'pages#restore'
-          post   '/cover', to: 'pages#cover'
-          post   '/pdf', to: 'pages#add_pdf'
-          delete '/pdf', to: 'pages#remove_pdf'
-
-           # меню
-          scope 'menus' do
-            get    '/list', to: 'menus#list'
-            post   '/',     to: 'menus#create'
-            put    ':menu_item_id', to: 'menus#update'
-            delete ':menu_item_id', to: 'menus#destroy'
-          end
-        end
-      end
-
-      scope 'dict_words' do
-        get    'list', to: 'dict_words#list'
-        get    'list_waitings', to: 'dict_words#list_top_waitings'
-        post   '/',    to: 'dict_words#create'
-
-        scope ':id' do
-          get    '/',        to: 'dict_words#show'
-          put    '/',        to: 'dict_words#update'
-          delete '/',        to: 'dict_words#destroy'
-        end
-      end
-
-      scope 'stats' do
-        get 'visits', to: 'stats#visits'
-      end
-
-      scope 'users' do
-        get 'me', to: 'users#me'
-      end
-
-      post '/login/psw', to: 'users#psw_login'
-      post '/login/telegram', to: 'users#telegram_login'
-    end
 
     get '/', to: 'verses#index'
   end

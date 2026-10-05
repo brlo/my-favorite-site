@@ -1,0 +1,855 @@
+/* ============================================
+   АДМИНКА (/admin). Все правила под .admin-ui, чтобы не влиять на сайт.
+   ============================================ */
+
+.admin-ui {
+  display: block; /* на сайте body — flex-контейнер */
+  background: var(--bg-body);
+  color: var(--text-primary);
+}
+
+.admin-ui .admin-header {
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border-main);
+}
+
+.admin-ui .admin-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 16px;
+}
+
+.admin-ui .admin-header .admin-container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 20px;
+}
+
+.admin-ui .admin-logo img {
+  width: 150px;
+  display: block;
+}
+
+.admin-ui .admin-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 14px;
+}
+
+.admin-ui .admin-nav a {
+  color: var(--text-primary);
+  text-decoration: none;
+  padding: 4px 0;
+  border-bottom: 2px solid transparent;
+}
+
+.admin-ui .admin-nav a.selected {
+  border-bottom-color: var(--brown);
+}
+
+.admin-ui .admin-me {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 0.9rem;
+}
+
+.admin-ui .admin-me form {
+  display: inline;
+}
+
+.admin-ui main {
+  padding-top: 20px;
+  padding-bottom: 60px;
+}
+
+.admin-ui h1 {
+  font-size: 1.6rem;
+  margin: 10px 0 15px;
+}
+
+.admin-ui h2 {
+  font-size: 1.2rem;
+  margin: 25px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid var(--border-main);
+}
+
+.admin-ui .hint {
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+}
+
+.admin-ui .muted {
+  color: var(--text-secondary);
+}
+
+/* ---------- кнопки ---------- */
+
+.admin-ui .btn,
+.admin-ui input[type="submit"].btn,
+.admin-ui button.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 7px 14px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  line-height: 1.2;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  background: #3498db;
+  color: #fff;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+/* формы сайта — flex-колонки, не растягиваем кнопки на всю ширину */
+.admin-ui form > .btn {
+  align-self: flex-start;
+}
+
+.admin-ui .btn:hover {
+  filter: brightness(0.93);
+}
+
+.admin-ui .btn.btn-light {
+  background: transparent;
+  border-color: var(--border-main);
+  color: var(--text-primary);
+}
+
+.admin-ui .btn.btn-danger {
+  background: transparent;
+  border-color: #f1b0b0;
+  color: var(--red);
+}
+
+.admin-ui .btn.btn-small {
+  padding: 3px 8px;
+  font-size: 0.8rem;
+}
+
+.admin-ui .btn-link {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  color: #3498db;
+  cursor: pointer;
+  font-size: inherit;
+}
+
+.admin-ui .btn-link.danger {
+  color: var(--red);
+}
+
+.admin-ui .actions-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.admin-ui .actions-bar .push-right {
+  margin-left: auto;
+}
+
+/* ---------- формы ---------- */
+
+.admin-ui .field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin: 0 0 14px;
+  min-width: 0;
+}
+
+.admin-ui .field.inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-ui .field-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 16px;
+}
+
+.admin-ui .field-row > .field {
+  flex: 1 1 220px;
+}
+
+.admin-ui input[type="text"],
+.admin-ui input[type="email"],
+.admin-ui input[type="number"],
+.admin-ui input[type="search"],
+.admin-ui select,
+.admin-ui textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0.45rem 0.65rem;
+  font-size: 1rem;
+  font-family: inherit;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background: var(--bg-card);
+  color: var(--text-primary);
+}
+
+.admin-ui textarea {
+  resize: vertical;
+  field-sizing: content;
+  min-height: 2.4em;
+}
+
+.admin-ui .input-title {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+/* на сайте у form и form > div стоит flex-direction: column */
+.admin-ui .search-form,
+.admin-ui form.flex,
+.admin-ui .field-row,
+.admin-ui .actions-bar,
+.admin-ui .link-row,
+.admin-ui .image-actions {
+  flex-direction: row;
+  align-items: center;
+}
+
+.admin-ui form.flex {
+  gap: 6px;
+}
+
+.admin-ui .search-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 20px;
+}
+
+.admin-ui .search-form input[type="search"] {
+  flex: 1 1 260px;
+  max-width: 420px;
+}
+
+.admin-ui .search-form select {
+  width: auto;
+}
+
+.admin-ui .box {
+  border: 1px solid var(--border-main);
+  border-radius: 8px;
+  padding: 14px 16px;
+  margin: 16px 0;
+  background: var(--bg-card);
+}
+
+.admin-ui .box > h2:first-child,
+.admin-ui .box > h3:first-child {
+  margin-top: 0;
+}
+
+.admin-ui .access-info {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  border: 1px solid;
+}
+
+.admin-ui .access-info.can {
+  color: #15803d;
+  border-color: #86efac;
+  background: #f0fdf4;
+}
+
+.admin-ui .access-info.cannot {
+  color: #b91c1c;
+  border-color: #fca5a5;
+  background: #fef2f2;
+}
+
+/* ---------- списки и таблицы ---------- */
+
+.admin-ui .list-item {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-main);
+}
+
+.admin-ui .list-item .hint {
+  margin-top: 3px;
+}
+
+.admin-ui .badge {
+  display: inline-block;
+  padding: 1px 7px;
+  border-radius: 10px;
+  font-size: 0.75rem;
+  font-style: normal;
+  background: #e5e7eb;
+  color: #374151;
+  vertical-align: middle;
+}
+
+.admin-ui .badge.red { background: #fee2e2; color: #b91c1c; }
+.admin-ui .badge.green { background: #dcfce7; color: #15803d; }
+.admin-ui .badge.yellow { background: #fef3c7; color: #92400e; }
+.admin-ui .badge.blue { background: #dbeafe; color: #1d4ed8; }
+
+.admin-ui .table-wrap {
+  overflow-x: auto;
+}
+
+.admin-ui table.admin-table {
+  width: 100%;
+  font-size: 0.9rem;
+}
+
+.admin-ui table.admin-table th,
+.admin-ui table.admin-table td {
+  text-align: left;
+  padding: 7px 8px;
+  border-bottom: 1px solid var(--border-main);
+  vertical-align: top;
+}
+
+.admin-ui table.admin-table th {
+  font-weight: 500;
+  color: var(--text-secondary);
+  white-space: nowrap;
+}
+
+.admin-ui dl.props {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 4px 16px;
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.admin-ui dl.props dt {
+  color: var(--text-secondary);
+}
+
+.admin-ui dl.props dd {
+  margin: 0;
+  word-break: break-word;
+}
+
+.admin-ui .privs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0 16px;
+}
+
+.admin-ui .privs-grid .field {
+  margin: 4px 0;
+}
+
+/* ---------- статистика ---------- */
+
+.admin-ui .stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.admin-ui .stats table {
+  width: auto;
+  font-size: 0.85rem;
+}
+
+.admin-ui .stats td {
+  padding: 1px 10px 1px 0;
+}
+
+/* ---------- ссылки статьи ---------- */
+
+.admin-ui .link-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.admin-ui .link-row input {
+  flex: 1 1 220px;
+}
+
+/* ---------- картинки ---------- */
+
+.admin-ui .images-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+  gap: 12px;
+}
+
+.admin-ui .image-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-main);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 0.85rem;
+}
+
+.admin-ui .image-card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+}
+
+.admin-ui .image-card form {
+  margin: 6px 0;
+}
+
+.admin-ui .image-card .image-actions {
+  display: flex;
+  gap: 10px;
+}
+
+/* ---------- словарь ---------- */
+
+.admin-ui .word-desc {
+  font-size: 0.85rem;
+  margin: 6px 0 0 20px;
+  color: var(--text-secondary);
+}
+
+.admin-ui .waitings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+}
+
+.admin-ui .waitings ol {
+  margin: 0;
+  padding-left: 1.6em;
+  columns: 2;
+}
+
+.admin-ui .waitings li {
+  font-size: 1.2rem;
+}
+
+.admin-ui .waitings li i {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  margin-left: 6px;
+}
+
+/* ---------- пагинация (kaminari) ---------- */
+
+.admin-ui nav.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 20px 0;
+}
+
+.admin-ui nav.pagination .current {
+  font-weight: bold;
+}
+
+/* ---------- общие мелочи ---------- */
+
+.admin-ui .btn.btn-block {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-self: stretch;
+}
+
+.admin-ui .inline-form,
+.admin-ui .detached-form {
+  display: inline;
+}
+
+.admin-ui .detached-form {
+  display: none;
+}
+
+.admin-ui .icon-btn {
+  background: none;
+  border: 1px solid transparent;
+  border-radius: 5px;
+  padding: 1px 6px;
+  margin: 0;
+  cursor: pointer;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.admin-ui .icon-btn:hover {
+  border-color: var(--border-main);
+  background: var(--bg-body);
+  color: var(--text-primary);
+}
+
+.admin-ui .icon-btn.danger:hover {
+  color: var(--red);
+}
+
+.admin-ui .box-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.admin-ui .box-head h2 {
+  margin: 0;
+  padding: 0;
+  border: none;
+}
+
+.admin-ui .box-warning {
+  border-color: #fcd34d;
+  background: #fffbeb;
+}
+
+.admin-ui .box-danger {
+  border-color: #fca5a5;
+}
+
+.admin-ui .bulk-bar {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 8px;
+}
+
+.admin-ui .file-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-ui .file-btn input[type="file"] {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* ---------- комбобокс (поле с подсказками) ---------- */
+
+.admin-ui .combobox {
+  position: relative;
+  min-width: 0;
+}
+
+.admin-ui .link-row .combobox {
+  flex: 1 1 220px;
+}
+
+.admin-ui .combobox input[type="text"] {
+  padding-right: 28px;
+}
+
+.admin-ui .combobox-clear {
+  position: absolute;
+  top: 5px;
+  right: 6px;
+  border: none;
+  background: none;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 2px 4px;
+  margin: 0;
+}
+
+.admin-ui .combobox-list {
+  position: absolute;
+  z-index: 50;
+  top: calc(100% + 2px);
+  left: 0;
+  right: 0;
+  max-height: 320px;
+  overflow-y: auto;
+  margin: 0;
+  padding: 4px 0;
+  list-style: none;
+  background: var(--bg-card);
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.admin-ui .combobox-list[hidden] {
+  display: none;
+}
+
+.admin-ui .combobox-list li {
+  padding: 6px 10px;
+  cursor: pointer;
+}
+
+.admin-ui .combobox-list li.active {
+  background: #e8f1fb;
+}
+
+.admin-ui .combobox-hint {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+  word-break: break-all;
+}
+
+.admin-ui .combobox-empty {
+  color: var(--text-secondary);
+  cursor: default;
+}
+
+.admin-ui .combobox .hint {
+  margin-top: 3px;
+  word-break: break-all;
+}
+
+/* ---------- редактор статьи ---------- */
+
+.admin-ui .page-head .crumbs {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.admin-ui .page-head h1 {
+  margin: 4px 0 14px;
+}
+
+.admin-ui .publish-bar {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 16px;
+  padding: 10px 0 14px;
+  margin-bottom: 6px;
+  border-bottom: 1px solid var(--border-main);
+}
+
+.admin-ui .publish-bar .field.inline {
+  margin: 0;
+}
+
+.admin-ui .publish-bar .push-right {
+  margin-left: auto;
+}
+
+.admin-ui .page-settings {
+  margin-top: 28px;
+}
+
+.admin-ui .settings-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 14px;
+  align-items: start;
+}
+
+.admin-ui .danger-zone {
+  margin: 30px 0 0;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border-main);
+}
+
+.admin-ui .side-card {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid var(--border-main);
+  border-radius: 8px;
+  padding: 12px 14px;
+  background: var(--bg-card);
+}
+
+.admin-ui .side-card h3 {
+  margin: 0 0 2px;
+  font-size: 0.95rem;
+}
+
+.admin-ui .side-card .field {
+  margin-bottom: 6px;
+}
+
+.admin-ui .side-card .field.inline {
+  margin: 0;
+}
+
+.admin-ui .side-card .field-row > .field {
+  flex: 1 1 100px;
+}
+
+.admin-ui .side-card dl.props {
+  font-size: 0.82rem;
+}
+
+.admin-ui .page-editor .input-title {
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-color: transparent;
+  background: transparent;
+  padding-left: 2px;
+}
+
+.admin-ui .page-editor .input-subtitle {
+  font-size: 1.1rem;
+  border-color: transparent;
+  background: transparent;
+  padding-left: 2px;
+}
+
+.admin-ui .page-editor .input-title:hover,
+.admin-ui .page-editor .input-subtitle:hover,
+.admin-ui .page-editor .input-title:focus,
+.admin-ui .page-editor .input-subtitle:focus {
+  border-color: #ccc;
+  background: var(--bg-card);
+}
+
+.admin-ui .editor-body .tiptap {
+  min-height: 420px;
+  max-height: 70vh;
+}
+
+.admin-ui .editor-refs .tiptap {
+  min-height: 120px;
+}
+
+.admin-ui .cover-preview {
+  width: 100%;
+  border-radius: 6px;
+  display: block;
+}
+
+/* ---------- меню статьи ---------- */
+
+.admin-ui .menu-editor {
+  margin-top: 28px;
+}
+
+.admin-ui .menu-tree {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.admin-ui .menu-tree .menu-tree {
+  margin-left: 22px;
+  border-left: 1px dashed var(--border-main);
+  padding-left: 8px;
+}
+
+.admin-ui .menu-row {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+  padding: 5px 6px;
+  border-radius: 6px;
+  min-height: 32px;
+}
+
+.admin-ui .menu-row:hover {
+  background: var(--bg-body);
+}
+
+.admin-ui .menu-row.is-section .menu-title {
+  font-weight: 600;
+}
+
+.admin-ui .menu-prio {
+  min-width: 24px;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  background: var(--bg-body);
+  border-radius: 10px;
+  padding: 0 6px;
+}
+
+.admin-ui .menu-path {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  max-width: 260px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-ui .menu-actions {
+  margin-left: auto;
+  display: flex;
+  gap: 2px;
+  opacity: 0.35;
+  white-space: nowrap;
+}
+
+.admin-ui .menu-row:hover .menu-actions,
+.admin-ui .menu-actions:focus-within {
+  opacity: 1;
+}
+
+.admin-ui .menu-form-panel {
+  margin: 4px 0 10px 32px;
+  padding: 10px 12px;
+  border: 1px solid var(--border-main);
+  border-radius: 8px;
+  background: var(--bg-body);
+}
+
+.admin-ui form.menu-form {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 8px 12px;
+}
+
+.admin-ui form.menu-form > .field {
+  flex: 1 1 180px;
+  margin: 0;
+}
+
+.admin-ui form.menu-form > .field.field-narrow {
+  flex: 0 0 90px;
+}
+
+.admin-ui form.menu-form > .field.inline {
+  flex: 0 0 auto;
+  margin-bottom: 8px;
+}
+
+.admin-ui .menu-form-actions {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 2px;
+}
+
+@media (max-width: 900px) {
+  .admin-ui .menu-actions {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .admin-ui .admin-me {
+    margin-left: 0;
+  }
+}

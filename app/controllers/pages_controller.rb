@@ -45,15 +45,13 @@ class PagesController < ApplicationController
         # Пояснение: когда мы хотим создавать страницы, мы сначала добавляем в меню родительской страницы
         # элемент без path. Потом из меню переходим по этой ссылке и попадаем на 404, где предлагается создать страницу.
         # В этот момент у нас в path есть необходимые параметры для предзаполнения полей, которые мы сейчас вот тут и обрабываем.
-        page_t = CGI.escape(params[:page_path].to_s.gsub(/[^\p{L}0-9_\-\s\(\)\,]/, ''))
-        params_link = {
-          page_title: page_t,
+        @link_to_create = new_admin_page_path(
+          locale: nil,
+          page_title: params[:page_path].to_s.gsub(/[^\p{L}0-9_\-\s\(\)\,]/, ''),
           lang: @content_lang,
-          menu_id: params[:menu_id],
-          parent_id: params[:parent_id]
-        }.compact
-
-        @link_to_create = "#{::SETTINGS['admin']['url'] }/pages/new?" + params_link.map{ |k,v| "#{k}=#{v}" }.join('&').to_s
+          menu_id: params[:menu_id].presence,
+          parent_id: params[:parent_id].presence,
+        )
         render status: 404
       end
 
