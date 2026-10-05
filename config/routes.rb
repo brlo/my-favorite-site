@@ -1,6 +1,14 @@
 # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
 Rails.application.routes.draw do
+  # API оффлайн-приложения (без локали в адресе)
+  scope '/api/offline', module: 'api', controller: 'offline', defaults: { format: :json } do
+    get 'manifest'
+    get 'bible/:tr_code', action: :bible, constraints: { tr_code: /[a-z\-]+/ }
+    get 'skeleton'
+    get 'pages'
+  end
+
   # редиректим /jp (без слеша и дополнительных частей)
   get '/:loc_ui', to: redirect(status: 301) { |params, req|
     lang = ::COUNTRY_TO_LANG[params[:loc_ui]] || 'en' # fallback на английский

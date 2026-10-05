@@ -1,0 +1,12 @@
+node_modules/
+dist/
+public/assets/sql-wasm.wasm
+android/app/build/
+android/build/
+android/.gradle/
+android/local.properties
+android/app/release/
+*.apk
+*.keystore
+.env.local
+apk/

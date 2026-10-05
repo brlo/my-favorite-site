@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Bibleox</string>
+    <string name="title_activity_main">Bibleox</string>
+    <string name="package_name">com.bibleox.app</string>
+    <string name="custom_url_scheme">com.bibleox.app</string>
+</resources>
