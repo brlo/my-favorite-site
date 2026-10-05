@@ -16,9 +16,6 @@ gem 'concurrent-ruby', require: 'concurrent' # нужен для MyMailer (фу�
 gem 'concurrent-ruby-edge', require: 'concurrent-edge'
 gem 'sanitize' # чистит html в письме
 
-# gem 'mongoid'
-# gem 'ostruct'
-
 gem 'pg'
 # gem 'pg_search'
 
@@ -60,7 +57,6 @@ gem 'rmagick'
 gem 'nokogiri'
 
 gem 'carrierwave'
-# gem 'carrierwave-mongoid', require: 'carrierwave/mongoid'
 
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"

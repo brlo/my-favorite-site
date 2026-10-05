@@ -18,8 +18,6 @@ const routes = [
   { path: "/dict_words", name: "DictWords", component: ()=>import("@/views/dict_words/Index.vue")},
   { path: "/dict_words/new", name: "NewDictWord", component: ()=>import("@/views/dict_words/Edit.vue")},
   { path: "/dict_words/:id([a-f0-9]+)", name: "EditDictWord", component: ()=>import("@/views/dict_words/Edit.vue"), props: true},
-  { path: "/merge_requests", name: "MergeRequests", component: ()=>import("@/views/merge_requests/Index.vue")},
-  { path: "/merge_requests/:id([a-f0-9]+)", name: "ShowMergeRequest", component: ()=>import("@/views/merge_requests/Show.vue"), props: true},
 ]
 
 // docs: https://router.vuejs.org/guide/essentials/named-routes.html

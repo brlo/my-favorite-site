@@ -21,8 +21,6 @@ services:
       - '80:3000'
     depends_on:
       - redis
-    # depends_on:
-    #   - mongo
     dns:
       - 77.88.8.8
       - 77.88.8.1
@@ -54,24 +52,6 @@ services:
         max-file: '2'
     networks:
       - bib_network
-
-  # mongo:
-  #   container_name: 'mongo'
-  #   image: 'brlo/mongo:4.2'
-  #   # command: 'mongod --auth --storageEngine wiredTiger -f /etc/mongod.conf'
-  #   ports:
-  #     - '27017:27017'
-  #   volumes:
-  #    - /etc/bibleox/config/mongo/mongod.conf:/etc/mongod.conf
-  #    - /srv/warehouse/mongodb:/data/db
-  #    - /var/log/mongo:/var/log/mongo
-  #   logging:
-  #     driver: 'json-file'
-  #     options:
-  #       max-size: '200k'
-  #       max-file: '2'
-  #   networks:
-  #     - bib_network
 
   # Контейнер для сборк кода в проде
   #
