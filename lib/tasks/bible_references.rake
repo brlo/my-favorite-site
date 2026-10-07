@@ -17,7 +17,7 @@ namespace :bible_refs do
   task rebuild: :environment do
     ::BibleReference.where.not(page_id: ::Page.where(is_past: true).select(:id)).delete_all
     total = 0
-    ::Page.where(is_past: true).find_each do |page|
+    ::Page.where(is_past: true).find_each(batch_size: 5) do |page|
       total += ::BibleCitationExtractor.call(page)
     end
     ::Rails.cache.delete_matched('bible_refs/*')

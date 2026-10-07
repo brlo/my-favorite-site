@@ -10,11 +10,24 @@ class BibleReference < ApplicationRecord
     where(book_code: book, chapter: chapter, verse_start: ..verse, verse_end: verse..)
   end
 
-  # { номер_стиха => сколько раз упомянут } для главы
-  def self.verse_counts(book, chapter)
-    Rails.cache.fetch("bible_refs/verses/#{book}/#{chapter}", expires_in: 1.hour) do
+  scope :for_lang, ->(lang) { where(lang: lang) }
+
+  # Одинаковый текст фрагмента (например, один труд лежит в двух местах) — одна цитата
+  def self.digest_for(snippet)
+    Digest::MD5.hexdigest(snippet.to_s.downcase.gsub(/[^\p{L}\p{N}]/, ''))
+  end
+
+  # Оставляет по одной записи на уникальный фрагмент (для записей без digest — сама запись)
+  def self.uniq_by_digest(refs)
+    refs.uniq { |r| r.digest || r.id }
+  end
+
+  # { номер_стиха => сколько раз упомянут } для главы, только труды на языке lang
+  def self.verse_counts(book, chapter, lang)
+    Rails.cache.fetch("bible_refs/verses/#{lang}/#{book}/#{chapter}", expires_in: 1.hour) do
       counts = Hash.new(0)
-      where(book_code: book, chapter: chapter).pluck(:verse_start, :verse_end).each do |from, to|
+      rows = for_lang(lang).where(book_code: book, chapter: chapter).pluck(:verse_start, :verse_end, :digest, :id)
+      rows.uniq { |from, to, digest, id| [from, to, digest || id] }.each do |from, to, _, _|
         (from..to).each { |v| counts[v] += 1 }
       end
       counts
