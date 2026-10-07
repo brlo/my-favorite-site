@@ -4,7 +4,7 @@ class VersesController < ApplicationController
   before_action :require_admin, only: %w[update update_interlinear_word]
 
   # https://github.com/rails/actionpack-page_caching
-  # caches_page :index, :chapter_ajax
+  # caches_page :index
 
   def index_redirect
     path  = "/#{I18n.locale}/#{current_bib_lang()}"
@@ -28,123 +28,9 @@ class VersesController < ApplicationController
 
   def index
     if params[:book_code].blank? || params[:chapter].blank?
-      # ГЛАВНАЯ СТРАНИЦА
-
-      # redirect_to "/#{I18n.locale}/#{current_bib_lang()}/gen/1/"
-
-      # для работы переключателя языка
-      @current_bib_lang = current_bib_lang()
-      @locale_by_bib = locale_for_content_lang(@current_bib_lang)
-
-      @page = ::Page.where(path_low: "links_#{@locale_by_bib.downcase}").first
-      # @page = ::Page.find_by(path_low: "links_#{::I18n.locale}")
-      if @page&.page_type.to_i == ::Page::PAGE_TYPES['список']
-        @tree_menu = @page.tree_menu
-      end
-
-      # Первые три стиха из 1ИН, для главной страницы
-      @main_verses = ::Verse.where(tr_code: @current_bib_lang, book: '1in', chapter: 1, line: [1,2,3]).order(line: :asc).to_a
-
-      @page_title = ::I18n.t('root_page.title')
-      @meta_description = ::I18n.t('about_site_short')
-      @canonical_url = "https://bibleox.com/#{I18n.locale}/"
-
-      render 'main'
+      show_main_page
     else
-      @content_lang = current_bib_lang()
-
-      # Запрошен подстрочник
-      @is_interliner = ['gr-ru', 'gr-en', 'gr-jp'].include?(@content_lang)
-      if @is_interliner
-        @int_content_lang =
-        if @content_lang == 'gr-ru'
-          'ru'
-        elsif @content_lang == 'gr-en'
-          'eng-nkjv'
-        elsif @content_lang == 'gr-jp'
-          'jp-ni'
-        end
-      end
-
-      # не индексировать, где текст UI не совпадает с текстом контента
-      if locale_for_content_lang(@content_lang) != ::I18n.locale.to_s
-        @no_index = true
-      end
-      # не индексировать переводы: csl-pnm, en-nrsv
-      if ::BIB_LANGS_NOT_INDEXED.include?(@content_lang)
-        @no_index = true
-      end
-
-      @book_code ||= params[:book_code] || 'gen'
-      @chapter = (params[:chapter] || 1).to_i
-
-      # # ключ для кэширования
-      @bible_path = "#{@content_lang}--#{@book_code}--#{@chapter}"
-
-      # if stale?(last_modified: ::Time.now.beginning_of_week.utc, etag: @bible_path)
-        @is_psalm = @book_code == 'ps'
-
-        # AUDIO
-        audio_prefix = "/s/audio/bib/#{@content_lang}/"
-        audio_file = "#{audio_prefix}#{@book_code}/#{@book_code}#{ @chapter }.mp3"
-        @audio_file = audio_file if ::File.exist?("#{Rails.root}/public#{ audio_file }")
-
-        @verses = ::Verse.where(tr_code: @int_content_lang || @content_lang, book: @book_code, chapter: @chapter).order(line: :asc).to_a
-        # Статьи-комментарии к стихам
-        page_comments = ::Page.comments_for_verses(@verses)
-        # индексируем по номерам стихов для быстрого доступа
-        @comments = page_comments.map { [_1.path_low.split(':').last.to_i, _1] }.to_h
-
-        # Запрошен подстрочник
-        if @is_interliner
-          # Раньше было так:
-          # @dict = preload_dict_for_verses(@verses)
-
-          # Теперь переделал полностью всё
-          # 1. Надо отобразить сначалу строчку из нормального перевода.
-          # 2. Потом греческие слова с подстрочным переводом.
-          @verses_gr = ::Verse.where(tr_code: 'gr-ru', book: @book_code, chapter: @chapter).order(line: :asc).to_a
-        end
-
-        # Карта цитирования: сколько раз стихи упоминаются в трудах святых отцов
-        # показываем труды на том же языке, что и выбранный перевод Библии
-        @cite_counts = ::BibleReference.verse_counts(@book_code, @chapter, locale_for_content_lang(@content_lang))
-        @cite_max = @cite_counts.values.max.to_i
-        @cite_min = @cite_counts.values.min.to_i
-
-        @current_menu_item = 'biblia'
-        @page_title =
-          ::I18n.t("books.mid.#{@book_code}") +
-          ", #{ @is_psalm ? I18n.t('psalm') : I18n.t('chapter') }" +
-          " #{@chapter} / " +
-          ::I18n.t('bible')
-
-        # чтобы поисковики не жаловались на одинаковые заголовки в разных русских языках
-        @page_title += " / ЦСЯ" if ['csl-ru', 'csl-pnm'].include?(@content_lang)
-
-        @meta_description = ::I18n.t("books.full.#{@book_code}")
-        @canonical_url = build_canonical_url("/#{@book_code}/#{@chapter}/")
-
-        # ХЛЕБНЫЕ КРОШКИ
-        @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
-        if ::BOOKS[@book_code][:zavet] == 1
-          @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
-          @breadcrumbs.push(::I18n.t("breadcrumbs.bib_langs.vz.#{@content_lang}"))
-        else
-          @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
-          @breadcrumbs.push(::I18n.t("breadcrumbs.bib_langs.nz.#{@content_lang}"))
-        end
-
-        # META-description
-        if @verses.any?
-          @meta_description += ': ' + @verses.first(4).pluck(:text).join(' ')[0..200]
-        end
-        @meta_book_tags = [*@breadcrumbs, ::I18n.t("books.mid.#{@book_code}")]
-
-        respond_to do |format|
-          format.html { render 'index' }
-        end
-      # end
+      show_chapter
     end
   end
 
@@ -153,22 +39,9 @@ class VersesController < ApplicationController
     @book_code = params[:book_code]
     @chapter = params[:chapter].to_i
     @line = params[:line].to_i
-    refs = ::BibleReference.for_lang(locale_for_content_lang(params[:content_lang]))
-                           .in_context(@book_code, @chapter, @line)
-                           .order(:id).limit(600).to_a
-    refs = ::BibleReference.uniq_by_digest(refs).first(400)
-    pages = ::Page.where(id: refs.flat_map { [_1.page_id, _1.author_page_id] }.compact.uniq)
-                  .select(:id, :title, :path, :lang, :date_start_int).index_by(&:id)
-
-    @authors = refs.group_by(&:author_page_id).filter_map do |author_id, list|
-      author = pages[author_id]
-      next unless author
-      works = list.group_by(&:page_id).filter_map do |page_id, rs|
-        pages[page_id] && { page: pages[page_id], refs: rs.first(3) }
-      end
-      { author: author, works: works, total: list.size }
-    end
-    @authors.sort_by! { |a| [a[:author].date_start_int || 99_999, a[:author].title] }
+    @authors = ::BibleCitations.new(
+      lang: locale_for_content_lang(params[:content_lang]), book_code: @book_code, chapter: @chapter, line: @line
+    ).authors
     @address = ::AddressConverter.humanize("#{@book_code}:#{@chapter}:#{@line}")
 
     render partial: 'verses/citations', layout: false
@@ -182,41 +55,15 @@ class VersesController < ApplicationController
     # не индексировать
     @no_index = true
 
-    posibleAddr = params[:t].to_s
-    # заменяем длинные тире на обычный дефис
-    posibleAddr = posibleAddr.gsub(/[–—]/, '-')
-    # Сначала пробуем перевести: быт 1 1 -> быт 1:1
-    # этот алгоритм нужен только тут, а метод human_to_link универсальный, используется везде
-    if posibleAddr =~ /[\d]+\s[\d\-,]+$/
-      posibleAddr = posibleAddr.sub(/([\d]+)\s([\d\-,]+)$/, '\1:\2')
-    end
-
     # если это ссылка, то просто найдём её
-    if link = ::AddressConverter.human_to_link(posibleAddr)
+    if link = ::AddressConverter.search_text_to_link(params[:t])
       redirect_to("/#{I18n.locale}/#{@search_lang}#{link}")
-    elsif params[:t].present?
-      @search_text = params[:t]
-
-      # Запрашиваем результаты из БД
-      searcher = if @search_lang.in?(%w[jp-ni cn-ccbs arab-avd heb-osm gr-lxx-byz]) || @search_accuracy == 'exact'
-        ::VerseSearchPgroonga
-      else
-        ::VerseSearch
-      end
-
-      @verses = searcher.new(
-        text: @search_text,
-        tr_code: @search_lang,
-        book: @search_books,
-        accuracy: @search_accuracy,
-      ).fetch_objects(3_000)
-      @matches_count = @verses.count
-    else
-      @search_text = params[:t]
-
-      @verses = []
-      @matches_count = 0
+      return
     end
+
+    @search_text = params[:t]
+    @verses = params[:t].present? ? fetch_search_results : []
+    @matches_count = @verses.count
 
     @current_menu_item = 'biblia'
     @page_title = ::I18n.t('search_page.title')
@@ -262,53 +109,11 @@ class VersesController < ApplicationController
   # Метод для админа, чтобы установить новое слово для подстрочника
   def update_interlinear_word
     verse = Verse.find(params[:id])
-    verse_data = verse.data
-    # Структура wi:
-    # {
-    #   raw: w, # слово, где сохранены большие буквы как было в тексте
-    #   w: word_info_json['w'], # тут самое правильное слово. Я просил ИИ оставить заглавные буквы только у названий и имен
-    #   bw_id: bib_word.id,
-    #   lex: word_info_json['l'], # lexema
-    #   inf: word_info_json['i'], # info: часть речи, падеж, число, род.
-    #   trl: word_info_json['tr'], # подстрочный перевод
-    #   trc: {'en': word_info_json['zv']} # транскрипция
-    # }
 
     # Изменились названия локалей, поэтому когда обращаемся к переводу внутри стиха,
     # ключи en и ru оставляем как есть, а ja подменяем на старый jp:
-    interliner_lang = locale_for_content_lang()
-
-    raise('no lang') if interliner_lang.blank?
-
-    # стизи без подстрочника предзаполняем пустой структурой
-    is_inerliner_was_empty = verse_data['wi'].blank?
-    if is_inerliner_was_empty
-      verse_data['wi'] = verse_data['w'].map do |word|
-        {
-          'raw' => word, # слово, где сохранены большие буквы как было в тексте
-          # w: word_info_json['w'], # тут самое правильное слово. Я просил ИИ оставить заглавные буквы только у названий и имен
-          # bw_id: bib_word.id,
-          # lex: word_info_json['l'], # lexema
-          # inf: word_info_json['i'], # info: часть речи, падеж, число, род.
-          'trl' => {} # word_info_json['tr'], # подстрочный перевод
-          # trc: {'en': word_info_json['zv']} # транскрипция
-        }
-      end
-    end
-
-    words_with_info = verse_data['wi']
-
-    wi = words_with_info[params[:word_index].to_i] if params[:word_index].present?
-    if is_inerliner_was_empty || wi.present?
-      new_word = params[:word].to_s.strip.presence
-      if wi['trl'][interliner_lang] != new_word
-        wi['trl'][interliner_lang] = new_word
-      end
-      # признак того, что мы проверили этот стих и его можно показывать пользователям в проде
-      verse_data["ok_#{interliner_lang}"] = 1
-      verse.save!
-
-      render :json => {successfull: 'ok', verse_data: verse_data['wi']}
+    if verse.update_interlinear_word!(locale_for_content_lang(), params[:word_index], params[:word])
+      render :json => {successfull: 'ok', verse_data: verse.data['wi']}
     else
       render :json => {successfull: 'fail'}, status: 422
     end
@@ -316,158 +121,77 @@ class VersesController < ApplicationController
 
   private
 
-  # # Построение словаря для подстановки перевода в текст на лету
-  # # {lexema => translation}
-  # def preload_dict_for_verses verses
-  #   words = verses.map { |v| v.data['w'] }.flatten.compact.sort.uniq
-  #   words = words.map { |w| w.unicode_normalize(:nfd).downcase.strip }
-  #   return {} if words.blank?
+  # ГЛАВНАЯ СТРАНИЦА
+  def show_main_page
+    # для работы переключателя языка
+    @current_bib_lang = current_bib_lang()
+    @locale_by_bib = locale_for_content_lang(@current_bib_lang)
 
-  #   words_clean = words.map { |w| ::DictWord.word_clean_gr(w).to_s }.uniq.sort
+    @page = ::Page.where(path_low: "links_#{@locale_by_bib.downcase}").first
+    if @page&.page_type.to_i == ::Page::PAGE_TYPES['список']
+      @tree_menu = @page.tree_menu
+    end
 
-  #   # ЛЕКСЕМЫ И ТРАНСЛИТ для страницы
+    # Первые три стиха из 1ИН, для главной страницы
+    @main_verses = ::Verse.where(tr_code: @current_bib_lang, book: '1in', chapter: 1, line: [1,2,3]).order(line: :asc).to_a
 
-  #   lexemas = ::Lexema.where(:word.in => words_clean).pluck(:word, :lexema_clean, :transcription)
-  #   # {word => lexema}
-  #   w_lexemas = lexemas.map {|(w,l,t)| [w, l] }.to_h
-  #   # {word => transcription}
-  #   dict_transcriptions = lexemas.map {|(w,l,t)| [w, t] }.to_h
+    @page_title = ::I18n.t('root_page.title')
+    @meta_description = ::I18n.t('about_site_short')
+    @canonical_url = "https://bibleox.com/#{I18n.locale}/"
 
-  #   # ПЕРЕВОД ЛЕКСЕМ и СЛОВ со страницы
-  #   # -------------------------------
-  #   words_and_lexemas = (w_lexemas.values + words_clean).compact.uniq
+    render 'main'
+  end
 
-  #   r={
-  #     dict: build_dict(words),
-  #     dict_simple: build_dict_simple(words, words_and_lexemas, w_lexemas),
-  #     dict_simple_no_endings: build_dict_simple_no_endings(words_and_lexemas),
-  #     dict_transcriptions: dict_transcriptions,
-  #   }
-  #   # r.each { |k,v| puts(k); puts(v); puts }
-  #   r
-  # end
+  # Страница главы Библии. Данные собирает BibleChapterPage, тут раскладываем их по переменным шаблона
+  def show_chapter
+    chapter = ::BibleChapterPage.new(
+      content_lang: current_bib_lang(),
+      book_code: params[:book_code] || 'gen',
+      chapter: params[:chapter] || 1,
+      ui_locale: ::I18n.locale,
+    )
 
-  # def build_dict words
-  #   dicts = ::DictWord.where(:word.in => words).pluck(
-  #     :word, :translation_short, :dict
-  #   )
+    @content_lang = chapter.content_lang
+    @is_interliner = chapter.is_interliner?
+    @int_content_lang = chapter.interliner_tr_code
+    @no_index = true if chapter.no_index?
+    @book_code = chapter.book_code
+    @chapter = chapter.chapter
+    @bible_path = chapter.cache_key
+    @is_psalm = chapter.is_psalm?
+    @audio_file = chapter.audio_file
+    @verses = chapter.verses
+    @verses_gr = chapter.verses_gr
+    @comments = chapter.comments
+    @cite_counts = chapter.cite_counts
+    @cite_max = chapter.cite_max
+    @cite_min = chapter.cite_min
+    @current_menu_item = 'biblia'
+    @page_title = chapter.title
+    @meta_description = chapter.meta_description
+    @canonical_url = build_canonical_url("/#{@book_code}/#{@chapter}/")
+    @breadcrumbs = chapter.breadcrumbs
+    @meta_book_tags = chapter.meta_book_tags
 
-  #   # Вейсман
-  #   w_dicts = {}
-  #   # Дворецкий
-  #   d_dicts = {}
-  #   # Другие словари
-  #   all_dicts = {}
+    respond_to do |format|
+      format.html { render 'index' }
+    end
+  end
 
-  #   # в этих словарях перевод для слов и лексем
-  #   dicts.each do |(word,transl,dict)|
-  #     next unless transl.present?
+  # Результаты поиска по Писанию (до 3000 стихов)
+  def fetch_search_results
+    searcher =
+      if @search_lang.in?(%w[jp-ni cn-ccbs arab-avd heb-osm gr-lxx-byz]) || @search_accuracy == 'exact'
+        ::VerseSearchPgroonga
+      else
+        ::VerseSearch
+      end
 
-  #     if dict == 'w'
-  #       w_dicts[word] = transl
-  #     elsif dict == 'd'
-  #       d_dicts[word] = transl
-  #     else
-  #       all_dicts[word] = transl
-  #     end
-  #   end
-
-  #   result = {}
-  #   words.each do |w|
-  #     # перевод слова или лексемы (приоритет: Вейсман, Дворецкий, прочие словари)
-  #     transl = w_dicts[w] || d_dicts[w] || all_dicts[w]
-  #     # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
-  #     result[w] = transl if transl
-  #   end
-  #   result
-  # end
-
-  # def build_dict_simple words, words_and_lexemas, w_lexemas
-  #   # подготовим также запасной словарик для поиска по упрощённому слову
-  #   words_simple = words_and_lexemas.map do |w|
-  #     ::DictWord.word_clean_gr(w)
-  #   end
-
-  #   # ищем в словаре по simple-полю
-  #   dicts_simple =
-  #   ::DictWord.where(:word_simple.in => words_simple).pluck(
-  #     :word_simple, :translation_short, :dict
-  #   )
-
-  #   # Вейсман
-  #   w_dicts = {}
-  #   # Дворецкий
-  #   d_dicts = {}
-  #   # Другие словари
-  #   all_dicts = {}
-
-  #   # в этих словарях перевод для слов и лексем
-  #   dicts_simple.each do |(word_simple,transl,dict)|
-  #     next unless transl.present?
-
-  #     if dict == 'w'
-  #       w_dicts[word_simple] = transl
-  #     elsif dict == 'd'
-  #       d_dicts[word_simple] = transl
-  #     else
-  #       all_dicts[word_simple] = transl
-  #     end
-  #   end
-
-  #   result = {}
-  #   words.each do |w|
-  #     _w = ::DictWord.word_clean_gr(w)
-  #     # лексема слова
-  #     l = w_lexemas[_w]
-  #     # перевод слова или лексемы (приоритет: Вейсман, Дворецкий, прочие словари)
-  #     transl = w_dicts[_w] || d_dicts[_w] || all_dicts[_w] || w_dicts[l] || d_dicts[l] || all_dicts[l]
-  #     # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
-  #     result[_w] = transl if transl
-  #   end
-  #   result
-  # end
-
-  # def build_dict_simple_no_endings words_and_lexemas
-  #   # подготовим также запасной словарик для подбора соответствия без учёта окончаний
-  #   # убираем кокончания у искомых слов
-  #   words_simple_no_endings = words_and_lexemas.map do |w|
-  #     _w = ::DictWord.word_clean_gr(w)
-  #     _w = ::DictWord.remove_greek_ending(_w)
-  #     _w
-  #   end
-
-  #   # ищем в словаре без окончаний
-  #   dicts_simple_no_endings =
-  #   ::DictWord.where(:word_simple_no_endings.in => words_simple_no_endings).pluck(
-  #     :word_simple, :word_simple_no_endings, :translation_short, :dict
-  #   )
-  #   # Вайсман
-  #   w_dicts = {}
-  #   # Дворецкий
-  #   d_dicts = {}
-  #   # Другие словари
-  #   all_dicts = {}
-
-  #   # в этих словарях перевод для слов и лексем
-  #   dicts_simple_no_endings.each do |(word,word_simple_no_endings,transl,dict)|
-  #     next unless transl.present?
-
-  #     if dict == 'w'
-  #       w_dicts[word_simple_no_endings] = [transl,word]
-  #     elsif dict == 'd'
-  #       d_dicts[word_simple_no_endings] = [transl,word]
-  #     else
-  #       all_dicts[word_simple_no_endings] = [transl,word]
-  #     end
-  #   end
-
-  #   result = {}
-  #   words_simple_no_endings.each do |w|
-  #     # перевод слова без окончания (приоритет: Вейсман, Дворецкий, прочие словари)
-  #     transl = w_dicts[w] || d_dicts[w] || all_dicts[w]
-  #     # перевод записываем в dict (ключ - просто w, без downcase, так как так будут искать во view)
-  #     result[w] = transl if transl && transl[0]
-  #   end
-  #   result
-  # end
+    searcher.new(
+      text: @search_text,
+      tr_code: @search_lang,
+      book: @search_books,
+      accuracy: @search_accuracy,
+    ).fetch_objects(3_000)
+  end
 end

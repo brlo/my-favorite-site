@@ -8,6 +8,28 @@ class Verse < ApplicationRecord
 
   after_save :update_text_tsvector
 
+  # Подстрочный перевод слова (для админа). Структура data['wi'] — список слов:
+  #   raw - слово, как было в тексте (с заглавными буквами)
+  #   trl - подстрочный перевод {язык => перевод}
+  #   (бывают ещё w, bw_id, lex, inf, trc — их проставляет импорт)
+  #
+  # Стихи без подстрочника предзаполняются пустой структурой из data['w'].
+  # Возвращает false, если слова с таким индексом нет. lang - язык перевода (ru, en, ja...)
+  def update_interlinear_word!(lang, word_index, word)
+    raise ArgumentError, 'no lang' if lang.blank?
+
+    was_empty = data['wi'].blank?
+    data['wi'] = data['w'].map { |w| { 'raw' => w, 'trl' => {} } } if was_empty
+
+    wi = data['wi'][word_index.to_i] if word_index.present?
+    return false if wi.blank?
+
+    wi['trl'][lang] = word.to_s.strip.presence
+    # признак того, что мы проверили этот стих и его можно показывать пользователям в проде
+    data["ok_#{lang}"] = 1
+    save!
+  end
+
   private
 
   def normalize_attributes

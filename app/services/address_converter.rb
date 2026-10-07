@@ -16,6 +16,16 @@ class AddressConverter
     "/#{book}/#{ch}/#L#{l}"
   end
 
+  # Текст из строки поиска -> ссылка на стих или nil.
+  # Сначала пробуем перевести "быт 1 1" в "быт 1:1" (только для поиска, human_to_link универсален)
+  # ::AddressConverter.search_text_to_link("Быт 1 1") # => "/gen/1/#L1"
+  def self.search_text_to_link text
+    # заменяем длинные тире на обычный дефис
+    text = text.to_s.gsub(/[–—]/, '-')
+    text = text.sub(/([\d]+)\s([\d\-,]+)$/, '\1:\2') if text =~ /[\d]+\s[\d\-,]+$/
+    human_to_link(text)
+  end
+
   # ::AddressConverter.human_to_link("Зах. 1:1,2-3,8")
   # Переводит Зах. 1:1,2-3,8 -> /zah/1/#L1,2-3,8
   # Переводит Зах. 1 -> /zah/1/

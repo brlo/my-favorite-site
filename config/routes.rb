@@ -143,14 +143,6 @@ Rails.application.routes.draw do
         },
         as: 'chapter'
 
-      get '/chapters/:book_code/:chapter', to: 'verses#chapter_ajax', :constraints =>
-        lambda { |req|
-          book_code = req.params[:book_code]
-          book = ::BOOKS[book_code]
-          book && req.params[:chapter].to_i.between?(1, book[:chapters])
-          # :link => /[0-9a-z]{2,5}\:[0-9]{1,3}/
-        }
-
       # Кто из святых отцов цитирует стих: фрагменты для панели справа от текста
       get '/citations/:book_code/:chapter/:line', to: 'verses#citations', :constraints =>
         lambda { |req| ::BOOKS.key?(req.params[:book_code]) }

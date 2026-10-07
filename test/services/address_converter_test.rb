@@ -23,4 +23,15 @@ class AddressConverterTest < ActiveSupport::TestCase
     assert_equal '1Cor', AddressConverter.book_bibleox_to_azbyka('1kor')
     assert_nil AddressConverter.book_bibleox_to_azbyka('unknown')
   end
+
+  test "search_text_to_link accepts spaces instead of a colon and long dashes" do
+    assert_equal '/gen/1/#L1', AddressConverter.search_text_to_link('Быт 1 1')
+    assert_equal '/gen/1/#L1-3', AddressConverter.search_text_to_link('Быт. 1:1–3')
+    assert_equal '/gen/1/#L1,3', AddressConverter.search_text_to_link('быт 1 1,3')
+  end
+
+  test "search_text_to_link returns nil for ordinary words" do
+    assert_nil AddressConverter.search_text_to_link('любовь')
+    assert_nil AddressConverter.search_text_to_link(nil)
+  end
 end
