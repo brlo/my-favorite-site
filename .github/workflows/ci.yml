@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+      - name: Brakeman (статический анализ)
+        run: bundle exec brakeman --no-pager -w2
+      - name: bundler-audit (уязвимости в гемах)
+        run: bundle exec bundle-audit check --update
+
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: groonga/pgroonga:latest-debian-18
+        env:
+          POSTGRES_USER: bibleox
+          POSTGRES_PASSWORD: bibleox
+        ports: ["5432:5432"]
+        options: >-
+          --health-cmd "pg_isready -U bibleox"
+          --health-interval 10s --health-timeout 5s --health-retries 5
+      redis:
+        image: redis:8
+        ports: ["6379:6379"]
+    env:
+      RAILS_ENV: test
+      DB_HOST: localhost
+      REDIS_URL: redis://localhost:6379/0
+    steps:
+      - uses: actions/checkout@v4
+      - name: Системные библиотеки (pg, ImageMagick для rmagick)
+        run: sudo apt-get update && sudo apt-get install -y libpq-dev libmagickwand-dev
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: .ruby-version
+          bundler-cache: true
+      - name: Конфиги из примеров
+        run: |
+          cp config/database.yml.example config/database.yml
+          cp config/settings.yml.example config/settings.yml
+      - name: Подготовка БД
+        run: bin/rails db:create db:schema:load
+      - name: Тесты
+        run: bin/rails test

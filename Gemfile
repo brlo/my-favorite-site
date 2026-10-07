@@ -85,6 +85,10 @@ gem 'sitemap_generator', require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
+
+  # Статический анализ безопасности и проверка гемов на уязвимости
+  gem "brakeman", require: false
+  gem "bundler-audit", require: false
 end
 
 group :development do
