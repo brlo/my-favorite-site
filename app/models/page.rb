@@ -161,7 +161,8 @@ class Page < ApplicationRecord
     self.edit_mode = self.edit_mode.to_i
 
     self.lang = self.lang.to_s.strip.presence if self.lang.present?
-    self.group_lang_id = self.group_lang_id || generate_string(10)
+    # из формы админки приходит пустая строка, а она не должна объединять страницы в одну группу переводов
+    self.group_lang_id = self.group_lang_id.presence || generate_string(10)
 
     render_references if self.references_changed?
     render_body if self.body_changed?

@@ -22,6 +22,19 @@ class PageTest < ActiveSupport::TestCase
     assert_equal page.group_lang_id, Page.find(page.id).group_lang_id
   end
 
+  test "blank group_lang_id from a form does not join pages into one group of translations" do
+    a = create_page(group_lang_id: '')
+    b = create_page(group_lang_id: '')
+    assert_equal 10, a.group_lang_id.length
+    assert_not_equal a.group_lang_id, b.group_lang_id
+  end
+
+  test "an explicit group_lang_id makes pages translations of each other" do
+    a = create_page(lang: 'ru')
+    b = create_page(lang: 'en', group_lang_id: a.group_lang_id)
+    assert_equal a.group_lang_id, b.group_lang_id
+  end
+
   test "changing the path remembers the old one in redirect_from" do
     page = create_page(path: 'old_path')
     page.update!(path: 'new_path')
