@@ -1,0 +1,142 @@
+{
+  "ignored_warnings": [
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "0d45562405cc926f7f0ec6288f4a2e6d0b5dde00363daf83af17eb05a238b572",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/pages/show.html.erb",
+      "line": 80,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "::Page.where(:path_low => params[:page_path].to_s.downcase).first.references_rendered.to_s",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "PagesController",
+          "method": "show",
+          "line": 271,
+          "file": "app/controllers/pages_controller.rb",
+          "rendered": {
+            "name": "pages/show",
+            "file": "app/views/pages/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "pages/show"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        79
+      ],
+      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / sanitizer в Page#normalize_attributes); в шаблон попадает уже безопасный HTML."
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "5ed1568959d836789d7bcaf01e7d6895f0e6c7e3daa1a07e635beac0d42b9c96",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/pages/show.html.erb",
+      "line": 82,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "::Page.where(:path_low => params[:page_path].to_s.downcase).first.references.to_s",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "PagesController",
+          "method": "show",
+          "line": 271,
+          "file": "app/controllers/pages_controller.rb",
+          "rendered": {
+            "name": "pages/show",
+            "file": "app/views/pages/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "pages/show"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        79
+      ],
+      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / sanitizer в Page#normalize_attributes); в шаблон попадает уже безопасный HTML."
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "630a0b9751583785d485a9fd62f7ea6ac3402751bc4bf599392f2ca012ffef5f",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/pages/show.html.erb",
+      "line": 47,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "::Page.where(:path_low => params[:page_path].to_s.downcase).first.body_rendered",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "PagesController",
+          "method": "show",
+          "line": 271,
+          "file": "app/controllers/pages_controller.rb",
+          "rendered": {
+            "name": "pages/show",
+            "file": "app/views/pages/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "pages/show"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        79
+      ],
+      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / sanitizer в Page#normalize_attributes); в шаблон попадает уже безопасный HTML."
+    },
+    {
+      "warning_type": "Cross-Site Scripting",
+      "warning_code": 2,
+      "fingerprint": "b89708378add4644006a2d144fa93d28c2ce9a84a05e939f05886e86e5fc05df",
+      "check_name": "CrossSiteScripting",
+      "message": "Unescaped model attribute",
+      "file": "app/views/pages/show.html.erb",
+      "line": 49,
+      "link": "https://brakemanscanner.org/docs/warning_types/cross_site_scripting",
+      "code": "::Page.where(:path_low => params[:page_path].to_s.downcase).first.body.to_s",
+      "render_path": [
+        {
+          "type": "controller",
+          "class": "PagesController",
+          "method": "show",
+          "line": 271,
+          "file": "app/controllers/pages_controller.rb",
+          "rendered": {
+            "name": "pages/show",
+            "file": "app/views/pages/show.html.erb"
+          }
+        }
+      ],
+      "location": {
+        "type": "template",
+        "template": "pages/show"
+      },
+      "user_input": null,
+      "confidence": "High",
+      "cwe_id": [
+        79
+      ],
+      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / sanitizer в Page#normalize_attributes); в шаблон попадает уже безопасный HTML."
+    }
+  ],
+  "updated": "2026-10-07 07:07:26 UTC",
+  "brakeman_version": "8.1.0"
+}

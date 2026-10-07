@@ -1,0 +1,44 @@
+# Скопируй в config/database.yml (он в .gitignore).
+# Хост и пароль можно переопределить переменными окружения (используется в CI).
+#
+# бэкап:
+# docker exec bibpostgres pg_dump -U bibleox bibleox_production > backup_$(date +%F).sql
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV.fetch('DB_HOST', 'postgres') %>
+  pool: 8
+  username: bibleox
+  password: <%= ENV.fetch('DB_PASSWORD', 'bibleox') %>
+
+development:
+  primary: &primary_development
+    <<: *default
+    database: bibleox_development
+  queue:
+    # bin/rails db:schema:load:queue
+    <<: *primary_development
+    database: bib_dev_queue
+    migrations_paths: db/queue_migrate
+
+test:
+  <<: *default
+  database: bibleox_test
+
+production:
+  primary: &primary_production
+    <<: *default
+    pool: 25  # <= max_connections в PostgreSQL
+    database: bibleox_production
+  queue:
+    # bin/rails db:schema:load:queue
+    <<: *primary_production
+    database: bib_prod_queue
+    migrations_paths: db/queue_migrate
+
+# Только для скриптов импорта словарей из SQLite (res/ruby/*), в работе сайта не участвует
+import_source:
+  adapter: sqlite3
+  database: <%= Rails.root.join('db', 'LSJ.dict.SQLite3') %>
+  pool: 5
+  timeout: 5000

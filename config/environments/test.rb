@@ -57,4 +57,7 @@ Rails.application.configure do
 
   # Annotate rendered view with file names.
   # config.action_view.annotate_rendered_view_with_filenames = true
+
+  # Тесты ходят на www.example.com — разрешаем любой хост (в config/application.rb он ограничен доменами bibleox)
+  config.hosts.clear
 end
