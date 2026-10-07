@@ -56,7 +56,7 @@ module RedisConnectionPool
 
     def create_connection!
       Redis.new(
-        url: SETTINGS['redis']['url'],
+        url: SETTINGS['redis']['url'].presence || ENV['REDIS_URL'],
         connect_timeout: 2.0,
         read_timeout: 2.0,
         write_timeout: 2.0
