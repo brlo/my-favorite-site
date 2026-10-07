@@ -231,7 +231,9 @@ class VersesController < ApplicationController
   end
 
   def redirect_to_new_address
-    redirect_to "/#{I18n.locale}/#{current_bib_lang()}/#{params[:book_code]}/#{params[:chapter]}/", status: 301
+    # в старых адресах нет ни языка интерфейса, ни языка контента: берём язык Библии по текущей локали
+    bib_lang = current_bib_lang().presence || ::LOCALE_TO_BIB_LANG[I18n.locale.to_s]
+    redirect_to "/#{I18n.locale}/#{bib_lang}/#{params[:book_code]}/#{params[:chapter]}/", status: 301
   end
 
   # Redirect: /ru/f/Дан. 1:2 -> /ru/ru/dan/1/#L2
