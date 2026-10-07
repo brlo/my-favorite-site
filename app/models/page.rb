@@ -1,13 +1,14 @@
-require 'nokogiri'
-require_relative '../../lib/tools/string_utils/rubyfy'
 require_relative '../../lib/tools/string_utils/date_to_int'
 
 class Page < ApplicationRecord
   self.table_name = 'pages'
 
+  include Paragraphs
+  include Permissions
+  include Files
+
   mount_uploader :cover, CoverUploader
 
-  attr_reader :is_body_rendered_changed
   # period_start
   # period_end
   # is_past
@@ -41,7 +42,6 @@ class Page < ApplicationRecord
     select(:id, :h_id, :title, :cover, :parent_id, :path)
   }, class_name: 'Page', optional: true, foreign_key: :parent_id
   has_many :children, class_name: 'Page', foreign_key: :parent_id, inverse_of: :parent
-  has_many :page_paragraphs, dependent: :destroy
   has_many :bible_references, dependent: :destroy
 
   # === Валидации ===
@@ -53,14 +53,16 @@ class Page < ApplicationRecord
 
   before_validation :normalize_attributes
 
-  # after_create :chat_notify_create
   before_update :update_menus_params
   before_save :calc_date_int, if: -> { period_start_changed? || period_end_changed? }
-  before_save :cache_before_save_state
-  after_save :sync_paragraphs, if: -> { is_body_rendered_changed || saved_change_to_is_published? || saved_change_to_is_deleted? }
   # Карта цитирования: ссылки на Писание ищем только в трудах святых отцов (is_past)
   after_commit :sync_bible_references, on: %i[create update], if: :bible_references_stale?
   # after_save :notify_search_engines
+
+  # Разметка текста — в Page::HtmlRenderer
+  def self.safe_html(html_text)
+    ::Page::HtmlRenderer.safe_html(html_text)
+  end
 
   def notify_search_engines
     if Rails.env.production?
@@ -83,33 +85,6 @@ class Page < ApplicationRecord
     book_code, chapter, line = addr.split(':')
     # -> "mf/1/#L2"
     "#{book_code}/#{chapter}/#L#{line}"
-  end
-
-  # у статьи есть автор и редакторы
-  # тут добавляем редактора
-  def add_editor _user
-    return self.editors.to_a if _user.id == self.user_id
-    # добавляем user_id к текущему списку, если его там ещё нет,
-    # а потом убираем от туда автора статьи (вдруг случайно попал)
-    self.editors = (self.editors.to_a | [_user.id]) - [self.user_id]
-  end
-
-  # просто текст
-  # Хозяин страницы (users.pages_owner) может всё с ней и с её дочерними страницами
-  def owned_by?(user)
-    user.present? && (user.pages_owner.to_a & [id, parent_id].compact).any?
-  end
-
-  # Может ли пользователь редактировать статью (режим edit_mode)
-  def editable_by?(user)
-    return false if user.nil? || user.is_blocked
-    return true if owned_by?(user)
-
-    case edit_mode.to_i
-    when EDIT_MODES['admins']     then user.is_admin?
-    when EDIT_MODES['moderators'] then user.ability?('pages_update')
-    else false # «автор и редакторы» пока никому не открыт
-    end
   end
 
   def is_page_simple?; self.page_type.to_i == 1; end
@@ -140,13 +115,8 @@ class Page < ApplicationRecord
     end
   end
 
-  # текст в виде строк в массиве
-  def references_as_arr
-    self.class.html_to_arr(self.references)
-  end
-
   def generate_string(cnt = 8)
-    random_str = (('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a).sample(cnt).join
+    (('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a).sample(cnt).join
   end
 
   def generate_path
@@ -155,10 +125,33 @@ class Page < ApplicationRecord
     "#{random_str}_#{clean_path}"
   end
 
+  def is_body_empty?
+    body.to_s.length < 40
+  end
+
+  private
+
   def normalize_attributes
     self.title = self.title.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')
     self.meta_desc = self.meta_desc.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')
 
+    normalize_path
+
+    # раз изменился title, значит изменилась превьюшка
+    # а если изменился путь, значит изменилось имя картинки
+    self.generate_img() if self.title_changed?
+
+    self.page_type = self.page_type.to_i
+    self.edit_mode = self.edit_mode.to_i
+
+    self.lang = self.lang.to_s.strip.presence if self.lang.present?
+    self.group_lang_id = self.group_lang_id || generate_string(10)
+
+    render_references if self.references_changed?
+    render_body if self.body_changed?
+  end
+
+  def normalize_path
     # Доработки, если статья — комментарий на библейский стих
     if self.path.blank? && self.is_page_bib_comment?
       # 'Быт. 1:14' -> '/zah/1/#L6'
@@ -173,378 +166,19 @@ class Page < ApplicationRecord
     end
 
     self.path_low = self.path.downcase
-    if self.path_low_changed?
-      self.redirect_from = self.path_low_was
-    end
-
-    # раз изменился title, значит изменилась превьюшка
-    # а если изменился путь, значит изменилось имя картинки
-    if self.title_changed?
-      self.generate_img()
-    end
-
-    self.page_type = self.page_type.to_i
-
-    self.edit_mode = self.edit_mode.to_i
-
-    self.lang = self.lang.to_s.strip.presence if self.lang.present?
-    self.group_lang_id = self.group_lang_id || generate_string(10)
-
-    if self.references_changed?
-      self.references = self.class.safe_html(self.references).strip
-      self.references_rendered = render_references_footnotes(self.references)
-      # "私[わたし]" => "<ruby><rb>私</rb><rt>わたし</rt></ruby>"
-      self.references_rendered = ::Tools::StringUtils::Rubyfy.call(self.references_rendered)
-    end
-
-    # Удаляем пдф-версию страницы, если изменился заголовок или текст страницы
-    # if self.title_changed? || self.body_changed?
-    #   ::PdfGenerator.page_pdf_remove(self)
-    # end
-
-    if self.body_changed?
-      # приводим в порядок body
-      # u00AD — это SOFT HYPHEN, с которым я намучался целый день, прежде чем понял из-за чего разбиваются целые слова
-      # при нормализации в лексемы, и потом в итоге не ищутся нормально. Надо эти переносы удалять обязательно. Они часто встречаются и их не видно визуально.
-      self.body = self.class.safe_html(self.body).strip.gsub("\u00AD", '')
-      # body мы будем редактировать в админке, а отображать для клиента body_rendered,
-      # поэтому чтоб в админке не мешать админку, мы сноски не будем ему показыват как ссылки,
-      # сделаем их обычным текстом:
-      self.body = remove_footnote_links(self.body)
-
-      # построение перекрестных ссылок на сноски
-      self.body_rendered = render_body_footnotes(self.body)
-
-      # построение оглавления и необходимых ссылок
-      rendered_data = render_body_and_menu(self.body_rendered)
-      self.body_rendered = rendered_data[:text]
-      self.body_menu = rendered_data[:menu]
-
-      # найти источники под цитатами
-      self.body_rendered = render_body_quotes_sources(self.body_rendered)
-
-      # добавляем картинкам параметр отложенной загрузки: loading='lazy'
-      self.body_rendered = add_lazy_to_img_tags(self.body_rendered)
-
-      # Add furigana:
-      # "私[わたし]" => "<ruby><rb>私</rb><rt>わたし</rt></ruby>"
-      self.body_rendered = ::Tools::StringUtils::Rubyfy.call(self.body_rendered)
-    end
+    self.redirect_from = self.path_low_was if self.path_low_changed?
   end
 
-  # ПЕРВИЧНАЯ Разбивка сплошного текста на стихи с нумерацией, когда =%= ещё нет
-  def split_to_verses text
-    min_len = 85
-    mid_len = 250
-    max_len = 300
-
-    _text = sanitizer.sanitize(
-      text.to_s,
-      tags: %w(h2 a sup),
-      attributes: %w(id href class)
-    )
-    _text = _text.gsub("\n", '')
-
-    # главы
-    # [ [ЗАГОЛОВОК, ТЕКСТ], ...]
-    chapters = []
-
-    doc = ::Nokogiri.HTML(text)
-    current_title = ''
-    current_chapter_text = ''
-    doc.at_css('body').children.each do |el|
-      if el.name == 'h2'
-        # встретился заголовок главы
-        # значит старая глава закончилась
-        if current_chapter_text.present?
-          chapters << [
-            current_title,
-            current_chapter_text.gsub('\n', '')
-          ]
-        end
-
-        # начинаем новый набор главы
-        current_title = el.inner_html
-        current_chapter_text = ''
-      else
-        current_chapter_text += el.to_s
-      end
-    end
-    # Забираем остатки
-    if current_chapter_text.present?
-      chapters << [
-        current_title,
-        current_chapter_text.gsub('\n', '')
-      ]
-    end
-
-    # делим тексты на строки
-    chapter__verses =
-    chapters.map.with_index do |(_chapter_title, _chapter_text), i|
-      _verses = []
-
-      current_verse = ''
-      # разделяем строку по пробелам, которые не находятся внутри тегов
-      _chapter_text.split(/\s(?![^<]*>)/).each do |word|
-        current_verse += ' ' if current_verse.length > 0
-        current_verse += word
-
-        len = current_verse.length
-        is_full =
-        case len
-        when min_len..mid_len
-          # Если набрали минимальную длинну, то отрубаем по ближайшей точке
-          true if word[-1] == '.'
-        when mid_len..max_len
-          # Если превысили средний размер, то отрубаем по любому знаку преминания (не букве)
-          true if word[-1] =~ /[^[:alnum:]]/
-        when max_len..nil
-          # Если превысили максимум, то отрубаем по ближайшему пробелу
-          true
-        end
-
-        # закидываем стих в массив и готовимся загружать следующий стих
-        if is_full
-          _verses.push(current_verse)
-          current_verse = ''
-        end
-      end
-
-      # закидываем остаточный стих в массив
-      if current_verse.present?
-        _verses.push(current_verse)
-      end
-
-      {
-        title: _chapter_title,
-        lines: _verses,
-      }
-    end
-
-    chapter__verses
+  def render_references
+    self.references, self.references_rendered = ::Page::HtmlRenderer.render_references(self.references)
   end
 
-  # текст в виде строк в массиве
-  def self.html_to_arr html_text
-    # добавляем после каждого тэга, который приводит к переносу строки, символ "=%=",
-    # чтобы по нему потом разделить на строки
-    html_text = safe_html(html_text)
-    html_text = html_text.to_s.gsub(/<\/(p|h1|h2|h3|h4|hr)>/, '\0=%=').split('=%=')
-    html_text
-  end
-
-  def self.safe_html html_text
-    # Заменяем неразрывные пробелы (&nbsp;) на обычные. Иначе строки не рвутся, выглядит очень странно
-    # приходят эти пробелы, походу, через редактор Pell. В базе выглядит уже не как &nbsp;, а как обычный пробел,
-    # поэтому сразу и не распознаешь, а вот в VSCode он выделяется жёлтым прямоугольником.
-
-    # tiptap в пустой строке внутрь <p></p> засовывает вот этот странный br:
-    html_text = html_text.to_s.gsub('<br class="ProseMirror-trailingBreak">', '')
-    html_text = html_text.to_s.gsub('<p></p>', '')
-    html_text = html_text.to_s.gsub(' ', ' ')
-    html_text = html_text.to_s.gsub('&nbsp;', ' ')
-
-    # избавяемся от лишних тэгов, аттрибут и пустых строк
-    html_text = sanitizer.sanitize(
-      html_text,
-      tags: ALLOW_TAGS,
-      attributes: ALLOW_ATTRS,
-    ).gsub('<p></p>', '')
-  end
-
-  # Строим из body меню, заголовки текста body делаем якорями
-  def render_body_and_menu text
-    text = text.to_s
-    doc = ::Nokogiri.HTML(text)
-
-    # счётчик индексов для повторяющихся заголовков
-    counters = Hash.new(0)
-
-    _menu = []
-    doc.css('h2, h3, h4').each do |el|
-      # Удаляем теги strong из текста перед обработкой
-      el.css('strong').each { |e| e.replace(e.content) }
-      # из текста удаляем всё, кроме букв, цифр, пробела и "-". Меняем " " на "-"
-      title = el.text.gsub(/[^[[:alnum:]]\s\-]/, '').gsub(' ', '-')
-      # добываем порядковый номер повторяющегося заголовка
-      idx = (counters[title] += 1)
-      # если такой заголовок встречается первый раз - номер не указываем
-      idx = nil if idx == 1
-      anchor = "HH#{idx}-#{title}"
-      el['id'] = anchor
-      el['name'] = anchor
-
-      _menu.push([el.name, anchor, el.text])
-    end
-
-    {
-      # nokogiri добавляем html, body, которые нам не нужны
-      text: doc.at_css('body').inner_html.gsub("\n", ""),
-      menu: _menu,
-    }
-  end
-
-  # ищем сноски в body, делаем якоря
-  def render_body_footnotes text
-    # Для поисков нельзя допускать, чтобы в документе были элементы с одинаковым id,
-    # поэтому для повторяющихся сносок, добавляем индекс, чтобы id отличались.
-    indexes = Hash.new(0)
-
-    # более точное нахождение сносок:
-    # (?<=[[[:alpha:]]»\)\]\"])(\[)(\d+)(\])(?=[^>])
-    #
-    # Сейчас используем простой способ:
-    # Цифра в квадратных скобках: [1]
-    text =
-    text.to_s.gsub(/(\[)(\d+)(\])/i) do |match|
-      # который раз встречается номер такой сноски?
-      i = (indexes[$2] += 1)
-      # какой индекс мы добавим к id? Если первая сноска, то индекс не добавляем
-      ix = (i == 1) ? '' : "-#{i}"
-      # $1 - квадратная скобка [
-      # $2 - номер сноски
-      # $3 - закрывающая скобка ]
-      "<sup class='foot-ref'><a id='cite_ref-#{$2}#{ix}' href='#cite_note-#{$2}'>#{$1}#{$2}#{$3}</a></sup>"
-    end
-
-    text
-  end
-
-  # находим источники под цитатами:
-  # ищем под blockquote параграфы, в которых на первом месте стоит три элемента:
-  # - (
-  # - ссылка
-  # - )
-  def render_body_quotes_sources(text)
-    text = text.to_s
-    doc = ::Nokogiri.HTML(text)
-
-    doc.css('blockquote + p').each do |par|
-      is_ch1_ok = par.children[0]&.text? && par.children[0].text.strip == '('
-      is_ch2_ok = par.children[1]&.name == 'a'
-      is_ch3_ok = par.children[2]&.text? && par.children[2].text.strip[0] == ')'
-
-      # Если в найенном параграфе есть только тэги a, то добавить параграфу класс source-link
-      if is_ch1_ok && is_ch2_ok && is_ch3_ok
-        par['class'] = 'source-link'
-      end
-    end
-
-    doc.at_css('body').inner_html.gsub("\n", "")
-  end
-
-  # продолжение render_body_footnotes
-  # теперь делаем обратные ссылки из references к прежнему месту в тексте
-  def render_references_footnotes text
-    text = text.to_s
-
-    return '' if text.blank?
-
-    doc = ::Nokogiri.HTML(text)
-
-    ol = doc.css('ol').first
-    if ol
-      # указано начальная цифра списка?
-      i = ol['start'].present? ? ol['start'].to_i : 1
-      ol.css('li').each do |li|
-        par = li.css('p').first
-        if par
-          # в начале каждого элемента ставим символ-ссылку для возвращения назад
-          par['id'] = "cite_note-#{i}"
-          back_link = "<a class='foot-note' href='#cite_ref-#{i}'>↑ </a>"
-          par.inner_html = back_link + par.inner_html
-        end
-        i+=1
-      end
-    end
-
-    # nokogiri убираем html, body, которые нам не нужны
-    doc.at_css('body').inner_html.gsub("\n", "")
-  end
-
-  def remove_footnote_links text
-    text = text.to_s
-
-    return '' if text.blank?
-
-    doc = ::Nokogiri.HTML(text)
-
-    # Находим все ссылки, у которых href начинается с "cite_note"
-    links_footnote = doc.css("a[href^='#cite_note']")
-    # links_back = doc.css("a[href^='#cite_ref']")
-
-    # Удаляем их из документа ссылки
-    links_footnote.each { |l| l.replace(l.content) }
-    # links_back.each { |l| l.replace(l.content) }
-
-    # nokogiri убираем html, body, которые нам не нужны
-    doc.at_css('body').inner_html.gsub("\n", "")
-  end
-
-  # IN:
-  # "<img src='a'>"
-  # OUT:
-  # "<img src='a' loading='lazy'>
-  def add_lazy_to_img_tags html_content
-    doc = Nokogiri::HTML(html_content)
-    doc.css('img').each do |img|
-      unless img['loading']
-        img['loading'] = 'lazy'
-      end
-    end
-
-    # nokogiri убираем html, body, которые нам не нужны
-    doc.at_css('body').inner_html.gsub("\n", "")
-  end
-
-  # Ссылка на превьюшку страницы, для использования в html-meta
-  # TODO: Перед удалением page, обязательно удали и картинку
-  def img_preview_file_path
-    page_img_path = "/s/page_previews/#{self.id.to_s}.jpeg"
-    if ::File.exist?("public/#{page_img_path}")
-      # Или автоматически сгенерированная картинка (название статьи на зелёном фоне)
-      page_img_path
-    else
-      # Или логотип сайта
-      "/favicons/bibleox-for-social-#{ ::I18n.locale == :ru ? 'ru' : 'en' }.png"
-    end
-  end
-
-  def generate_img
-    ::ImgTextWrap.page_generate_img(self)
-  end
-
-  def pdf_path
-    if self.h_id.present?
-      p = "s/page_pdfs/#{self.h_id}.pdf"
-      full_path = Rails.root.join('public', p)
-      return p if File.exist?(full_path)
-    end
-
-    "s/page_pdfs/#{self.id}.pdf"
-  end
-
-  def pdf_exists?
-    full_path = Rails.root.join('public', pdf_path)
-    File.exist?(full_path)
-  end
-
-  def remove_pdf!
-    if pdf_exists?
-      full_path = Rails.root.join('public', pdf_path)
-      ::File.delete(full_path)
-    end
-  end
-
-  def is_body_empty?
-    body.to_s.length < 40
-  end
-
-  private
-
-  # уведомить чат:
-  def chat_notify_create
-    # ::TelegramBot::Notifiers.page_create(u: self.user, pg: self)
+  # body редактируется в админке, а читателю показываем body_rendered
+  def render_body
+    result = ::Page::HtmlRenderer.render_body(self.body)
+    self.body = result.body
+    self.body_rendered = result.rendered
+    self.body_menu = result.menu
   end
 
   # Запускается в колбэке:
@@ -569,43 +203,6 @@ class Page < ApplicationRecord
       if _page&.lang == self.lang
         m.update(is_empty: is_body_empty)
       end
-    end
-  end
-
-  def cache_before_save_state
-    @is_body_rendered_changed = self.body_rendered_changed?
-  end
-
-  def sync_paragraphs
-    if is_deleted? || !is_published?
-      page_paragraphs.destroy_all
-      return
-    end
-
-    # 1. Разбиваем на параграфы, заголовки и цитаты
-    parts = body.to_s.split(/<\s*\/?\s*(?:h[2-4]|p|blockquote)\b[^>]*>/i).map(&:strip).select { _1.to_s.length > 10 }
-
-    # 2. Склеиваем, пока не наберётся 250 символов
-    chunks = []
-    buffer = ''
-
-    parts.each do |part|
-      # Считаем длину ДО добавления
-      future_len = buffer.length + part.length
-
-      if future_len > 250
-        chunks << buffer if buffer.present?
-        buffer = part  # Длинный кусок пойдёт в новый блок
-      else
-        buffer << (buffer.empty? ? part : " #{part}")
-      end
-    end
-    chunks << buffer if buffer.present?
-
-    # 3. Пересоздаём параграфы
-    page_paragraphs.destroy_all
-    chunks.each_with_index do |content, idx|
-      page_paragraphs.create!(position: idx, content: content, lang: lang)
     end
   end
 
