@@ -12,275 +12,25 @@ class PagesController < ApplicationController
   def show
     # Название (path) страницы, который ищет клиент
     path = params[:page_path].to_s
-    path_downcased = path.downcase
     @content_lang = params[:content_lang]
 
     # Ищем в БД страницу. Клиент мог неправильно ввести регистр, поэтому ищем
     # в спец поле, где всё в нижнем регистре.
-    @page = ::Page.where(path_low: path_downcased).first
+    @page = ::Page.where(path_low: path.downcase).first
 
+    return show_missing_page(path.downcase) if @page.nil?
     # 404 - документ скрыт или удалён
-    if @page
-      if @page.is_deleted || @page.is_published != true
-        render_not_found()
-      end
-    end
+    return render_not_found() if @page.is_deleted || @page.is_published != true
+    return redirect_to_translation if @page.lang != @content_lang
 
-    if @page.nil?
-      # ########################################################################
-      # СТРАНИЦА НЕ НАЙДЕНА — пытаемся найти редирект
-      # ########################################################################
-      #
-      # Если страница не найдена, то попробовать найти страницу,
-      # у которой указан наш адрес в качестве её старого адреса
-      @page = ::Page.where(redirect_from: path_downcased).first
+    # перенаправляем на путь с правильным регистром
+    # (canonical_url абсолютный, Rails не пустит на другой хост, поэтому ссылка локальная)
+    return redirect_to(page_path_link(@page), status: :found) if @page.path != path
 
-      if @page
-        redirect_to my_page_link_to("/#{::CGI.escape(@page.path)}")
-      else
-        # Если страницу всё равно не нашли, то отдаём 404 с предложением создать страницу
-        # render_not_found()
+    prepare_page_view
 
-        # Собираем ссылка на админку, для быстрого заполнения полей при создании страницы.
-        # Пояснение: когда мы хотим создавать страницы, мы сначала добавляем в меню родительской страницы
-        # элемент без path. Потом из меню переходим по этой ссылке и попадаем на 404, где предлагается создать страницу.
-        # В этот момент у нас в path есть необходимые параметры для предзаполнения полей, которые мы сейчас вот тут и обрабываем.
-        @link_to_create = new_admin_page_path(
-          locale: nil,
-          page_title: params[:page_path].to_s.gsub(/[^\p{L}0-9_\-\s\(\)\,]/, ''),
-          lang: @content_lang,
-          menu_id: params[:menu_id].presence,
-          parent_id: params[:parent_id].presence,
-        )
-        render status: 404
-      end
-
-    elsif @page.lang == @content_lang
-      # ########################################################################
-      # СТРАНИЦА НАЙДЕНА и язык совпадает - РЕНДЕРИМ
-      # ########################################################################
-
-      # if stale?(last_modified: @page.u_at.utc, etag: @page)
-        @canonical_url = build_canonical_url("/w/#{::CGI.escape(@page.path)}")
-
-        @author_name = @page.user&.name
-        if @page.editors&.any?
-          @editors_names = ::User.where(id: @page.editors).pluck(:name)
-        end
-
-        # не индексировать, где текст UI не совпадает с текстом контента
-        if params[:locale] != params[:content_lang]
-          @no_index = true
-        end
-
-        # AUDIO: /public/s/audio/pages/ru/fathers/01_ign_ant/ef
-        # В статье указать только это: fathers/01_ign_ant/ef
-        audio_file = "/s/audio/pages/#{@content_lang}/#{@page.audio}"
-        if ::File.exist?("#{Rails.root}/public#{ audio_file }.mp3")
-          @audio_link = audio_file
-        end
-
-        # В адресе указывается язык UI и отдельно язык контента /:ui/:content/...
-        # если язык контента не совпадает с языком статьи, то надо сделать редирект
-        # на правильную статью, если она есть, или отдать 404
-        if @page.path != path
-          # перенаправляем на путь с правильным регистром (canonical_url абсолютный, Rails не пустит на другой хост)
-          redirect_to my_page_link_to("/#{::CGI.escape(@page.path)}"), status: :found # :status => :moved_permanently
-          return
-        end
-
-        # Доступные языки статьи
-        @page_langs = ::Page.where(group_lang_id: @page.group_lang_id).pluck(:lang, :path).to_h
-
-        # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
-        if @page.parent_id
-          @parent_page = ::Page.select(:id, :h_id, :parent_id, :title, :path, :page_type, :lang).find_by!(id: @page.parent_id)
-        end
-
-        if @parent_page
-          if @parent_page.page_type.to_i == ::Page::PAGE_TYPES['список']
-            # МЕНЮ: все элементы меню родителя
-            menus = ::Menu.where(page_id: @parent_page.id).to_a
-            menus_by_id = {}
-            menus_by_path = {}
-            parent_ids_with_links = ::Hash.new([])
-
-            menus.each do |menu|
-              # индексация по ID
-              menus_by_id[menu.id] = menu
-              # индексация по PATH
-              menus_by_path[menu.path] = menu
-              # поиск всех parent_id, имеющих детей с path
-              if menu.path.present? && menu.parent_id.present?
-                parent_ids_with_links[menu.parent_id] += [menu]
-              end
-            end
-
-            # сортируем
-            parent_ids_with_links.each do |p_id, group|
-              parent_ids_with_links[p_id] =
-              parent_ids_with_links[p_id].sort_by { |m| m.priority.to_i }
-            end
-
-            # Здесь отрисовывали меню при клике на заголвоок статьи h1.
-            # От которого решили избавиться, чтобы упростить восприятие UI.
-            # Посчитали, что нормальных хлебных крошек достаточно.
-            #
-            # # ТРУДЫ АВТОРА: корневые элементы меню (будем считать, что это труды автора)
-            # @parent_books =
-            # parent_ids_with_links.map do |p_id, children_with_links|
-            #   parent = menus_by_id[p_id]
-            #   # next if el.nil?
-
-            #   # ссылка из первого вложенного элемента
-            #   first_child_with_link = children_with_links.first.path
-            #   # next if first_child_with_link.nil?
-
-            #   # название от родителя, а ссылка от первого потомка
-            #   # Перейдя по такой ссылке, мы окажемся на странице потомка,
-            #   # а под его заголовком будут отрисованы все дочерние элементы родителя,
-            #   # при этом в меню, которое вызывается при клике на заголовок потомка,
-            #   # отрисовываются все родители, имеющие потомков, переходя к которым
-            #   # увидим возможность также переключаться между соседнимипотомками.
-            #   [ parent.title, first_child_with_link ]
-            # end
-
-            # ЭТА СТРАНИЦА. элемент текущей страницы в меню
-            @page_in_menu = menus_by_path[@page.path]
-
-            # ГЛАВЫ. все соседи данной страницы в меню (будем считать, что это главы)
-            if @page_in_menu
-              siblings_and_me = parent_ids_with_links[@page_in_menu.parent_id]
-              siblings_and_me = siblings_and_me.select { |m| m.is_empty != true }
-
-              # соседи из меню (одинаковый родитель)
-              @chapters = siblings_and_me.map { |m| [m.title, m.path, m.is_gold] }
-
-              # сохраняем индексы глав в массиве с главами
-              my_ix_in_menu = siblings_and_me.index(@page_in_menu)
-              if my_ix_in_menu
-                @chapter_current = my_ix_in_menu + 1
-              end
-              # @chapter_prev = @chapter_current - 1
-              # @chapter_next = @chapter_current + 1
-            end
-          end
-        end
-
-        # !!!!!!!!!!!!!! TREE MENU !!!!!!!!!!!!!!!!
-        if @page.page_type.to_i == ::Page::PAGE_TYPES['список']
-          @tree_menu = @page.tree_menu
-
-          # ПОДГРУЗКА КАРТИНОК И ПРОСМОТРОВ К МЕНЮШКАМ! ТЯЖЕЛЫЙ ЗАПРОС (хотя я ускорил индексом, но всё равно получается 300мс, поэтому добавил кэш)
-          # запрошен показ мини-иконок у пунктов меню, надо заранее подгрузить эти картинки
-          # if @page.is_menu_icons
-          page_menu_paths = ::Menu.where(page_id: @page.id).pluck(:path)
-          cache_key = "pg_m_inf_#{@page.id}}"
-          @menus_info =
-          ::Rails.cache.fetch(cache_key, expires_in: 24.hours) do
-            info = nil
-            pgs = ::Page.where(lang: @page.lang, path: page_menu_paths).select(:id, :h_id, :path, :cover).to_a
-            if pgs.any?
-              pgs_visits = PageVisits.visits(pgs.map{|p| p.id.to_s })
-              info = {}
-              pgs.each do |p|
-                info[p.path] = {}
-                info[p.path][:icon] = p.cover.micro.url if @page.is_menu_icons
-                info[p.path][:visits] = pgs_visits[p.id.to_s]
-              end
-            end
-            info
-          end
-        end
-
-        # ХЛЕБНЫЕ КРОШКИ
-        @breadcrumbs = []
-        if @parent_page
-          # родитель родителя статьи
-          if @parent_page.parent_id
-            @pg1 = ::Page.select(:id, :h_id, :parent_id, :title, :path, :lang).find_by!(id: @parent_page.parent_id)
-
-            # родитель родителя родителя статьи
-            if @pg1.parent_id
-              @pg2 = ::Page.select(:id, :h_id, :parent_id, :title, :path, :lang).find_by!(id: @pg1.parent_id)
-              @breadcrumbs << [@pg2.title, my_page_link_to(@pg2.path, page_lang: @pg2.lang)]
-            end
-
-            @breadcrumbs << [@pg1.title, my_page_link_to(@pg1.path, page_lang: @pg1.lang)]
-          end
-
-          # родитель статьи
-          @breadcrumbs << [@parent_page.title, my_page_link_to(@parent_page.path, page_lang: @parent_page.lang)]
-        end
-
-        @breadcrumbs << [@page.title]
-
-        # Стихи страницы (как в Библии), если есть
-        @verses = @page.verses
-
-        @page_title = ::I18n.t('page.title', term: @page.title)
-        if (@page_title.length < 30) && @parent_page.present?
-          # добавить в заголовок несколько слов из заголовка родителя, сколько поместится в 25 символов
-          # если слово уже не помещается, то ставим три точки и выходим из цикла
-          p_title = ''
-          @parent_page.title.split(' ').each do |word|
-            if (p_title.length + word.length) < 25
-              p_title += " #{word}"
-            else
-              p_title += '...'
-              break
-            end
-          end
-          @page_title += " / #{p_title}"
-        end
-
-        @meta_description = @page.meta_desc
-        @current_menu_item = 'links'
-
-        # Если это коммент к библейскому стиху, то надо переделать хлеб. крошки и родителя и активное меню
-        if @page.is_page_bib_comment?
-          # активное меню
-          @current_menu_item = 'biblia'
-
-          # ХЛЕБНЫЕ КРОШКИ
-          book_code, chapter, line = @page.path_low.split(':')
-          lang, book_code = book_code.split('-')
-          @breadcrumbs = [::I18n.t('breadcrumbs.bible')]
-          if ::BOOKS[book_code][:zavet] == 1
-            @breadcrumbs.push(::I18n.t('breadcrumbs.VZ'))
-          else
-            @breadcrumbs.push(::I18n.t('breadcrumbs.NZ'))
-          end
-          @breadcrumbs.push(@page.title)
-
-          # TITLE
-          @page_title = "#{@page.title} / #{::I18n.t('bible_page.comment_title')}"
-        end
-
-        @chapter_current ||= 1
-
-        # Если текст этой статьи разбит на несколько глав,
-        # то имеем такую ситуацию на странице:
-        # есть много маленьких глав со сплошной нумерацией (стихи пронумерованы подряд от первой до последней главы)
-        # и если выделить стихи из разных глав, то как при копировании указывать главу? Никак.
-        # вот и прячем тогда главу вообще. Указываем только номер стиха.
-        if @verses.present? && @verses.count > 1
-          @is_disable_chapters = true
-        end
-
-        # если страница с небольшим кол-вом текста (до 40 символов), то показываем её, но со статусом 404 (чтобы поисковик правильно нас понял)
-        render status: 404 if @page.is_body_empty?
-      # end
-    else
-      # ########################################################################
-      # СТРАНИЦА НЕ НАЙДЕНА но возможно получится найти подходящую к этому языку страницу
-      # ########################################################################
-      #
-      # Страницу нашли, но язык не тот, поэтому пытаемся отправить
-      # пользователя на параллельную страницу с тем языком, который он искал
-      @page = ::Page.find_by!(group_lang_id: @page.group_lang_id, lang: @content_lang)
-      redirect_to my_page_link_to("/#{::CGI.escape(@page.path)}")
-    end
+    # если страница с небольшим кол-вом текста (до 40 символов), то показываем её, но со статусом 404 (чтобы поисковик правильно нас понял)
+    render status: 404 if @page.is_body_empty?
   end
 
   def search
@@ -370,5 +120,124 @@ class PagesController < ApplicationController
     @page_title = I18n.t('about_site')
     @meta_description = I18n.t('about_site_description')
     @canonical_url = build_canonical_url('/about/')
+  end
+
+  private
+
+  def page_path_link(page)
+    my_page_link_to("/#{::CGI.escape(page.path)}")
+  end
+
+  # Страницы нет: ищем, не переехала ли она (старый адрес), или предлагаем создать
+  def show_missing_page(path_downcased)
+    # Если страница не найдена, то попробовать найти страницу,
+    # у которой указан наш адрес в качестве её старого адреса
+    @page = ::Page.where(redirect_from: path_downcased).first
+    return redirect_to(page_path_link(@page)) if @page
+
+    # Собираем ссылка на админку, для быстрого заполнения полей при создании страницы.
+    # Пояснение: когда мы хотим создавать страницы, мы сначала добавляем в меню родительской страницы
+    # элемент без path. Потом из меню переходим по этой ссылке и попадаем на 404, где предлагается создать страницу.
+    # В этот момент у нас в path есть необходимые параметры для предзаполнения полей, которые мы сейчас вот тут и обрабываем.
+    @link_to_create = new_admin_page_path(
+      locale: nil,
+      page_title: params[:page_path].to_s.gsub(/[^\p{L}0-9_\-\s\(\)\,]/, ''),
+      lang: @content_lang,
+      menu_id: params[:menu_id].presence,
+      parent_id: params[:parent_id].presence,
+    )
+    render status: 404
+  end
+
+  # Страницу нашли, но язык не тот: отправляем на параллельную страницу с тем языком, который искал пользователь
+  def redirect_to_translation
+    @page = ::Page.find_by!(group_lang_id: @page.group_lang_id, lang: @content_lang)
+    redirect_to page_path_link(@page)
+  end
+
+  # Раскладываем данные страницы по переменным шаблона
+  def prepare_page_view
+    @canonical_url = build_canonical_url("/w/#{::CGI.escape(@page.path)}")
+
+    @author_name = @page.user&.name
+    @editors_names = ::User.where(id: @page.editors).pluck(:name) if @page.editors&.any?
+
+    # не индексировать, где текст UI не совпадает с текстом контента
+    @no_index = true if params[:locale] != params[:content_lang]
+
+    @audio_link = @page.audio_link(@content_lang)
+
+    # Доступные языки статьи
+    @page_langs = ::Page.where(group_lang_id: @page.group_lang_id).pluck(:lang, :path).to_h
+
+    prepare_navigation
+
+    if @page.page_type.to_i == ::Page::PAGE_TYPES['список']
+      @tree_menu = @page.tree_menu
+      @menus_info = @page.menus_info
+    end
+
+    # Стихи страницы (как в Библии), если есть
+    @verses = @page.verses
+
+    @page_title = build_page_title
+    @meta_description = @page.meta_desc
+    @current_menu_item = 'links'
+
+    prepare_bible_comment if @page.is_page_bib_comment?
+
+    # Если текст этой статьи разбит на несколько глав,
+    # то имеем такую ситуацию на странице:
+    # есть много маленьких глав со сплошной нумерацией (стихи пронумерованы подряд от первой до последней главы)
+    # и если выделить стихи из разных глав, то как при копировании указывать главу? Никак.
+    # вот и прячем тогда главу вообще. Указываем только номер стиха.
+    @is_disable_chapters = true if @verses.present? && @verses.count > 1
+  end
+
+  # РОДИТЕЛЬ и всё, что мы можем построить, имея родителя: главы из меню и хлебные крошки
+  def prepare_navigation
+    navigation = ::PageNavigation.new(@page)
+    @parent_page = navigation.parent_page
+
+    if (chapters = navigation.chapters)
+      @page_in_menu = chapters.page_in_menu
+      @chapters = chapters.items
+      @chapter_current = chapters.current
+    end
+    @chapter_current ||= 1
+
+    @breadcrumbs = navigation.ancestors.map { |pg| [pg.title, my_page_link_to(pg.path, page_lang: pg.lang)] }
+    @breadcrumbs << [@page.title]
+  end
+
+  def build_page_title
+    title = ::I18n.t('page.title', term: @page.title)
+    return title unless title.length < 30 && @parent_page.present?
+
+    # добавить в заголовок несколько слов из заголовка родителя, сколько поместится в 25 символов
+    # если слово уже не помещается, то ставим три точки и выходим из цикла
+    parent_part = ''
+    @parent_page.title.split(' ').each do |word|
+      if (parent_part.length + word.length) < 25
+        parent_part += " #{word}"
+      else
+        parent_part += '...'
+        break
+      end
+    end
+    "#{title} / #{parent_part}"
+  end
+
+  # Если это коммент к библейскому стиху, то надо переделать хлеб. крошки, заголовок и активное меню
+  def prepare_bible_comment
+    @current_menu_item = 'biblia'
+
+    book_code = @page.path_low.split(':').first.split('-').last
+    @breadcrumbs = [
+      ::I18n.t('breadcrumbs.bible'),
+      ::I18n.t(::BOOKS[book_code][:zavet] == 1 ? 'breadcrumbs.VZ' : 'breadcrumbs.NZ'),
+      @page.title,
+    ]
+    @page_title = "#{@page.title} / #{::I18n.t('bible_page.comment_title')}"
   end
 end

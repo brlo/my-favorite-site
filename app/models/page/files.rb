@@ -15,6 +15,13 @@ module Page::Files
     end
   end
 
+  # Аудио к странице: /public/s/audio/pages/ru/fathers/01_ign_ant/ef.mp3
+  # В статье указывается только это: fathers/01_ign_ant/ef
+  def audio_link(content_lang)
+    file = "/s/audio/pages/#{content_lang}/#{self.audio}"
+    file if ::File.exist?("#{Rails.root}/public#{file}.mp3")
+  end
+
   def generate_img
     ::ImgTextWrap.page_generate_img(self)
   end

@@ -115,6 +115,22 @@ class Page < ApplicationRecord
     end
   end
 
+  # Иконки и счётчики посещений для пунктов меню страницы-списка: {path => {icon:, visits:}}.
+  # Тяжёлый запрос (около 300 мс даже с индексом), поэтому кэшируем.
+  def menus_info
+    ::Rails.cache.fetch("pg_m_inf_#{id}", expires_in: 24.hours) do
+      pages = ::Page.where(lang: lang, path: ::Menu.where(page_id: id).pluck(:path)).select(:id, :h_id, :path, :cover).to_a
+      if pages.any?
+        visits = ::PageVisits.visits(pages.map { |p| p.id.to_s })
+        pages.to_h do |p|
+          info = { visits: visits[p.id.to_s] }
+          info[:icon] = p.cover.micro.url if is_menu_icons
+          [p.path, info]
+        end
+      end
+    end
+  end
+
   def generate_string(cnt = 8)
     (('A'..'Z').to_a + ('a'..'z').to_a + (0..9).to_a).sample(cnt).join
   end

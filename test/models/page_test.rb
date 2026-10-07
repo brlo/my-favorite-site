@@ -247,4 +247,28 @@ class PageTest < ActiveSupport::TestCase
     assert_equal '<p>a</p>', Page.safe_html('<p>a</p><iframe></iframe>')
     assert_equal 'a b', Page.safe_html("a b")
   end
+
+  test "menus_info is nil when menu items have no pages" do
+    list = create_page(page_type: 4)
+    Menu.create!(page_id: list.id, title: 'x', path: 'missing_page')
+    Rails.cache.clear
+    assert_nil list.menus_info
+  end
+
+  test "menus_info collects visits per menu path" do
+    list = create_page(page_type: 4)
+    target = create_page(path: 'menu_target')
+    Menu.create!(page_id: list.id, title: 'x', path: 'menu_target')
+    Rails.cache.clear
+    info = list.menus_info
+    assert_equal ['menu_target'], info.keys
+    assert info['menu_target'].key?(:visits)
+    assert_not info['menu_target'].key?(:icon)
+    assert target.persisted?
+  end
+
+  test "audio_link is present only when the mp3 exists" do
+    page = create_page(audio: 'tests/no_such_file')
+    assert_nil page.audio_link('ru')
+  end
 end
