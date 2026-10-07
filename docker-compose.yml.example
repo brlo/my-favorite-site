@@ -1,8 +1,6 @@
-version: '3.9'
-
+# Скопируй в docker-compose.yml (он в .gitignore) и запусти: docker compose up -d
 services:
   bibleox:
-    # image: 'ruby:3.1.2'
     build: .
     container_name: 'bibleox'
     entrypoint: '/bin/bash /app/start.sh dev'
@@ -10,10 +8,7 @@ services:
     stop_grace_period: 2s # SIGKILL after 2s
     environment:
       # без этой переменной в docker.app логи застревают
-      # (появляются с задержкой, выталкиваются в видимую область, новыми логами)
-      # http://tarunlalwani.com/post/why-delayed-output-python-docker/
       - 'PYTHONUNBUFFERED=1'
-      - 'SOLID_QUEUE_IN_PUMA=1'
     volumes:
       - .:/app
       - gems-volume:/usr/local/bundle
@@ -21,9 +16,7 @@ services:
       - '80:3000'
     depends_on:
       - redis
-    dns:
-      - 77.88.8.8
-      - 77.88.8.1
+      - postgres
     extra_hosts:
       # обращение из докера к хосту через адрес host.docker.internal
       - 'host.docker.internal:host-gateway'
@@ -35,26 +28,44 @@ services:
     networks:
       - bib_network
 
+  # перед первым запуском: cp res/docker-data/config/redis/redis.conf.example res/docker-data/config/redis/redis.conf
   redis:
     container_name: 'bibredis'
-    image: 'brlo/redis:5.0.0'
+    image: 'redis:8'
     command: 'redis-server /usr/local/etc/redis/redis.conf'
     ports:
       - '6379:6379'
     volumes:
      - ./res/docker-data/config/redis/redis.conf:/usr/local/etc/redis/redis.conf
      - ./res/docker-data/store/redis:/data
-     - ./res/docker-data/log/redis:/var/log/redis
-    logging:
-      driver: 'json-file'
-      options:
-        max-size: '200k'
-        max-file: '2'
+    networks:
+      - bib_network
+
+  # PostgreSQL с расширением PGroonga: полнотекстовый поиск по Писанию и статьям
+  # https://pgroonga.github.io/
+  postgres:
+    container_name: bibpostgres
+    image: groonga/pgroonga:latest-debian-18
+    shm_size: 1g
+    environment:
+      POSTGRES_USER: bibleox
+      POSTGRES_PASSWORD: bibleox
+      POSTGRES_DB: bibleox_development
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./res/docker-data/store/postgres:/var/lib/postgresql/
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U bibleox -d bibleox_development"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
     networks:
       - bib_network
 
 networks:
   bib_network:
+    name: bib_network
     driver: bridge
 
 volumes:

@@ -12,8 +12,8 @@ RUN groupadd -g 1001 app && useradd -r -u 1000 -g app -m -d /home/app app
 
 # Extend shell by custom moiprofi bash-config
 RUN echo                                               >> /home/app/.bashrc && \
-    echo "if [ -f /app/res/bash/.bash_config ]; then " >> /home/app/.bashrc && \
-    echo ". /app/res/bash/.bash_config               " >> /home/app/.bashrc && \
+    echo "if [ -f /app/res/bash/bash_config ]; then " >> /home/app/.bashrc && \
+    echo ". /app/res/bash/bash_config               " >> /home/app/.bashrc && \
     echo "fi                                         " >> /home/app/.bashrc && \
     echo                                               >> /home/app/.bashrc
 
