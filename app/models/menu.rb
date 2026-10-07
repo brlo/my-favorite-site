@@ -66,6 +66,7 @@ class Menu < ApplicationRecord
     end
 
     # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
+    return [] if page.parent_id.blank?
     parent_page = ::Page.select(:id, :h_id, :parent_id, :title, :path, :page_type).find_by!(id: page.parent_id)
 
     # =========================================================================
@@ -98,10 +99,14 @@ class Menu < ApplicationRecord
     end
 
     # =========================================================================
-    menus = collect_all_children(parent_ids_with_links, page.id)
+    # пункт этой страницы в меню родителя; все его потомки — подстраницы
+    page_item = menus_by_path[page.path]
+    return [] unless page_item
+
+    menus = collect_all_children(parent_ids_with_links, page_item.id)
 
     sub_pages_paths = menus.pluck(:path).compact
-    sub_pages = ::Page.where(path_low: sub_pages_paths.map(&:downcase), lang: lang).limit(count).ids
+    ::Page.where(path_low: sub_pages_paths.map(&:downcase), lang: page.lang).ids
   end
 
   private

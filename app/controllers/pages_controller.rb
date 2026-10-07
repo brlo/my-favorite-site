@@ -84,8 +84,9 @@ class PagesController < ApplicationController
         # если язык контента не совпадает с языком статьи, то надо сделать редирект
         # на правильную статью, если она есть, или отдать 404
         if @page.path != path
-          # перенаправляем на путь с правильным регистром
-          redirect_to @canonical_url, status: :found # :status => :moved_permanently
+          # перенаправляем на путь с правильным регистром (canonical_url абсолютный, Rails не пустит на другой хост)
+          redirect_to my_page_link_to("/#{::CGI.escape(@page.path)}"), status: :found # :status => :moved_permanently
+          return
         end
 
         # Доступные языки статьи
@@ -313,6 +314,7 @@ class PagesController < ApplicationController
       @matches_count = search_service.count if @page_number == 1
     else
       @search_text = params[:t]
+      @matches = []
       @matches_count = 0
     end
 
