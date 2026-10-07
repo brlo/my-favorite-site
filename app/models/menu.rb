@@ -30,6 +30,28 @@ class Menu < ApplicationRecord
     }
   end
 
+  # Пункты меню страницы, проиндексированные для быстрого доступа:
+  #   by_id           - {id => пункт}
+  #   by_path         - {path => пункт}
+  #   linked_children - {id родителя => дочерние пункты со ссылкой, по приоритету}
+  Index = Struct.new(:by_id, :by_path, :linked_children, keyword_init: true)
+
+  def self.index_for(page_id)
+    by_id = {}
+    by_path = {}
+    linked_children = ::Hash.new([].freeze)
+
+    where(page_id: page_id).each do |menu|
+      by_id[menu.id] = menu
+      by_path[menu.path] = menu
+      # родители, имеющие детей с path
+      linked_children[menu.parent_id] += [menu] if menu.path.present? && menu.parent_id.present?
+    end
+    linked_children.transform_values! { |group| group.sort_by { |m| m.priority.to_i } }
+
+    Index.new(by_id: by_id, by_path: by_path, linked_children: linked_children)
+  end
+
   def self.tree(page_id)
     records = self.where(page_id: page_id).to_a
   end
@@ -37,76 +59,41 @@ class Menu < ApplicationRecord
   def self.subpages_ids_of_page(page)
     # если у страницы нет родителя, то она сама и есть родитель, надо просто отдать все её менюшки
     if page.page_type.to_i == ::Page::PAGE_TYPES['список']
-      # 1. Достаём все страницы из меню текущей страницы
-      menus = ::Menu.where(page_id: page.id).to_a.compact
-      if menus.any?
-        sub_pages_paths = menus.pluck(:path).compact
-        sub_pages_1lvl = ::Page.where(path_low: sub_pages_paths.map(&:downcase), lang: page.lang).ids if sub_pages_paths.any?
-      end
-
-      # 2. Достаём все страницы из меню полученных страниц (если у них есть меню)
-      if sub_pages_1lvl&.any?
-        menus = ::Menu.where(page_id: sub_pages_1lvl).to_a.compact
-        if menus.any?
-          sub_pages_paths = menus.pluck(:path).compact
-          sub_pages_2lvl = ::Page.where(path_low: sub_pages_paths.map(&:downcase), lang: page.lang).ids if sub_pages_paths.any?
-        end
-      end
-
-      # 3. Достаём все страницы из меню дважды вложенных страниц
-      if sub_pages_2lvl&.any?
-        menus = ::Menu.where(page_id: sub_pages_2lvl).to_a.compact
-        if menus.any?
-          sub_pages_paths = menus.pluck(:path).compact
-          sub_pages_3lvl = ::Page.where(path_low: sub_pages_paths.map(&:downcase), lang: page.lang).ids if sub_pages_paths.any?
-        end
-      end
-
-      return sub_pages_1lvl.to_a + sub_pages_2lvl.to_a + sub_pages_3lvl.to_a
+      return subpages_ids_through_menus(page)
     end
 
     # РОДИТЕЛЬ: и всё, что мы можем построить, имея родителя
     return [] if page.parent_id.blank?
     parent_page = ::Page.select(:id, :h_id, :parent_id, :title, :path, :page_type).find_by!(id: page.parent_id)
 
-    # =========================================================================
-    # сначала добываем все элементы меню родительской страницы,
-    # необходимым образом их сортируем и индексируем в разных списках
-    # чтобы потом быстро доставать нужные наборы менюшек
-    menus = ::Menu.where(page_id: parent_page.id).to_a
-    # индекс по id
-    menus_by_id = {}
-    # индекс по path
-    menus_by_path = {}
-    # группировка менюшек по родителю (в списке будут только те родители, у которых есть дочерние элементы)
-    parent_ids_with_links = ::Hash.new([])
-
-    menus.each do |menu|
-      # индексация по ID
-      menus_by_id[menu.id] = menu
-      # индексация по PATH
-      menus_by_path[menu.path] = menu
-      # поиск всех parent_id, имеющих детей с path
-      if menu.path.present? && menu.parent_id.present?
-        parent_ids_with_links[menu.parent_id] += [menu]
-      end
-    end
-
-    # сортируем
-    parent_ids_with_links.each do |p_id, group|
-      parent_ids_with_links[p_id] =
-      parent_ids_with_links[p_id].sort_by { |m| m.priority.to_i }
-    end
-
-    # =========================================================================
+    # элементы меню родительской страницы
+    index = index_for(parent_page.id)
     # пункт этой страницы в меню родителя; все его потомки — подстраницы
-    page_item = menus_by_path[page.path]
+    page_item = index.by_path[page.path]
     return [] unless page_item
 
-    menus = collect_all_children(parent_ids_with_links, page_item.id)
+    menus = collect_all_children(index.linked_children, page_item.id)
 
     sub_pages_paths = menus.pluck(:path).compact
     ::Page.where(path_low: sub_pages_paths.map(&:downcase), lang: page.lang).ids
+  end
+
+  # Страницы из меню страницы, потом из меню этих страниц и ещё раз (всего три уровня вложенности)
+  def self.subpages_ids_through_menus(page, levels: 3)
+    all_ids = []
+    current_ids = [page.id]
+
+    levels.times do
+      paths = where(page_id: current_ids).pluck(:path).compact
+      break if paths.empty?
+
+      current_ids = ::Page.where(path_low: paths.map(&:downcase), lang: page.lang).ids
+      break if current_ids.empty?
+
+      all_ids += current_ids
+    end
+
+    all_ids
   end
 
   private
