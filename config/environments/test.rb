@@ -60,4 +60,7 @@ Rails.application.configure do
 
   # Тесты ходят на www.example.com — разрешаем любой хост (в config/application.rb он ограничен доменами bibleox)
   config.hosts.clear
+
+  # Параллельные воркеры тестов не должны писать общий файловый кэш Sprockets (гонки, I/O-ошибки на смонтированных томах)
+  config.assets.configure { |env| env.cache = Sprockets::Cache::MemoryStore.new }
 end

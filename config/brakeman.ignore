@@ -32,7 +32,7 @@
       "cwe_id": [
         79
       ],
-      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / sanitizer в Page#normalize_attributes); в шаблон попадает уже безопасный HTML."
+      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / Page::HtmlRenderer при сохранении); в шаблон попадает уже безопасный HTML."
     },
     {
       "warning_type": "Cross-Site Scripting",
@@ -66,7 +66,7 @@
       "cwe_id": [
         79
       ],
-      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / sanitizer в Page#normalize_attributes); в шаблон попадает уже безопасный HTML."
+      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / Page::HtmlRenderer при сохранении); в шаблон попадает уже безопасный HTML."
     },
     {
       "warning_type": "Cross-Site Scripting",
@@ -100,7 +100,7 @@
       "cwe_id": [
         79
       ],
-      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / sanitizer в Page#normalize_attributes); в шаблон попадает уже безопасный HTML."
+      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / Page::HtmlRenderer при сохранении); в шаблон попадает уже безопасный HTML."
     },
     {
       "warning_type": "Cross-Site Scripting",
@@ -134,7 +134,7 @@
       "cwe_id": [
         79
       ],
-      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / sanitizer в Page#normalize_attributes); в шаблон попадает уже безопасный HTML."
+      "note": "HTML статьи фильтруется allowlist-ом при сохранении (Page.safe_html / Page::HtmlRenderer при сохранении); в шаблон попадает уже безопасный HTML."
     }
   ],
   "updated": "2026-10-07 07:07:26 UTC",

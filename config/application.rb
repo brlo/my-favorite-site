@@ -62,7 +62,8 @@ module Bibleox
 
     # Autoload lib, but do not eager load it (maybe overlooked).
     config.autoload_paths << config.root.join("lib")
-    # подпапки моделей — отдельные корни без namespace; кроме app/models/chat, там классы Chat::*
-    config.autoload_paths += Dir[Rails.root.join('app', 'models', '*')].reject { |p| p.end_with?('/models/chat') }
+    # подпапки моделей — отдельные корни без namespace; кроме chat и page, там классы Chat::* и Page::*
+    namespaced_model_dirs = %w[chat page]
+    config.autoload_paths += Dir[Rails.root.join('app', 'models', '*')].reject { |p| namespaced_model_dirs.include?(File.basename(p)) }
   end
 end

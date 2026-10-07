@@ -2,6 +2,9 @@ ENV["RAILS_ENV"] ||= "test"
 require_relative "../config/environment"
 require "rails/test_help"
 
+# Генерация превью-картинок (RMagick) пишет файлы в public/ — в тестах она не нужна
+ImgTextWrap.singleton_class.prepend(Module.new { def page_generate_img(_page) = nil })
+
 class ActiveSupport::TestCase
   # Run tests in parallel with specified workers
   parallelize(workers: :number_of_processors)
@@ -19,6 +22,29 @@ class ActiveSupport::TestCase
     }.merge(overrides)
     user = User.create!(attrs)
     user.update_columns(activation_state: 'active') unless overrides.key?(:activation_state)
+    user
+  end
+
+  # Страница; overrides перекрывают значения по умолчанию
+  def create_page(overrides = {})
+    @page_seq = (@page_seq || 0) + 1
+    Page.create!({
+      title: "Страница #{@page_seq}", lang: 'ru', path: "page_#{@page_seq}_#{SecureRandom.hex(3)}", page_type: 1,
+    }.merge(overrides))
+  end
+
+  # Стих; overrides перекрывают значения по умолчанию
+  def create_verse(overrides = {})
+    attrs = {
+      tr_code: 'ru', lang: 'ru', book: 'gen', book_id: 1, chapter: 1, line: 1, zavet: true,
+      text: 'В начале сотворил Бог небо и землю.',
+    }.merge(overrides)
+    Verse.create!(attrs)
+  end
+
+  # Вход через форму; возвращает пользователя
+  def sign_in(user, password: 'secret123')
+    post login_path(locale: 'ru'), params: { session: { email: user.email, password: password } }
     user
   end
 end
