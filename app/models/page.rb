@@ -57,7 +57,7 @@ class Page < ApplicationRecord
   before_update :update_menus_params
   before_save :calc_date_int, if: -> { period_start_changed? || period_end_changed? }
   before_save :cache_before_save_state
-  after_save :sync_paragraphs, if: :is_body_rendered_changed
+  after_save :sync_paragraphs, if: -> { is_body_rendered_changed || saved_change_to_is_published? || saved_change_to_is_deleted? }
   # Карта цитирования: ссылки на Писание ищем только в трудах святых отцов (is_past)
   after_commit :sync_bible_references, on: %i[create update], if: :bible_references_stale?
   # after_save :notify_search_engines
