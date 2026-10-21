@@ -74,12 +74,14 @@
            src: my_res_link_to(@audio_file),
            title: @audio_title,
            href: request.path,
+           kind: 'bible',
            credit: '© материал православного портала «Иисус»',
            creditUrl: 'https://jesus-portal.ru/life/video/audiobibliya/',
            next: (@audio_next_file && {
              src: my_res_link_to(@audio_next_file),
              title: @audio_next_title,
              href: my_bib_link_to("/#{@book_code}/#{@chapter + 1}"),
+             kind: 'bible',
            }),
          } %>
       <div class='bar-el btn' id='btn-play-text'

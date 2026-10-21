@@ -4,8 +4,9 @@
 // <audio> не вставлен в DOM (new Audio()): браузеры не ставят такой элемент на паузу при смене body,
 // и он продолжает играть при заблокированном экране.
 //
-// Трек: { src, title, href, credit?, creditUrl?, next?: { src, title, href } }
+// Трек: { src, title, href, kind?, credit?, creditUrl?, next?: { src, title, href, kind? } }
 //   href - страница, к которой относится трек (на неё переходим, когда читатель слушает «свою» страницу)
+//   kind - 'bible' для глав Библии: между главами звук идёт за текстом
 //   next - трек, на который переключаемся по окончании (следующая глава)
 const RATES = [1, 1.25, 1.5, 2, 0.75]
 const SEEK_STEP = 15
@@ -163,12 +164,18 @@ class AudioEngine extends EventTarget {
     this.changed('close')
   }
 
-  // Страница загрузилась и описывает трек. Если он сейчас играет, обновляем сведения о следующем треке
+  // Страница загрузилась и описывает свой трек
   sync(pageTrack) {
-    if (this.track && this.track.src === pageTrack.src) {
+    if (!this.track) return
+
+    if (this.track.src === pageTrack.src) {
+      // это та самая глава, что звучит: обновляем сведения о следующей
       this.track = { ...pageTrack }
       this.setupMediaSession()
       this.changed('sync')
+    } else if (this.state.isPlaying && this.track.kind === 'bible' && pageTrack.kind === 'bible') {
+      // читатель открыл другую главу, пока звучит глава Библии: звук идёт за текстом
+      this.load(pageTrack)
     }
   }
 
