@@ -10,11 +10,25 @@ export default class extends Controller {
     this.isSeeking = false
     this.render = this.render.bind(this)
     engine.addEventListener("change", this.render)
+    // высота панели меняется (перенос названия, safe-area): остальные плавающие элементы страницы
+    // (панель выделения стиха, кнопки) поднимаются над ней через css-переменную --audio-player-h
+    this.resizeObserver = new ResizeObserver(() => this.publishHeight())
+    this.resizeObserver.observe(this.element)
     this.render()
   }
 
   disconnect() {
     engine.removeEventListener("change", this.render)
+    this.resizeObserver.disconnect()
+  }
+
+  publishHeight() {
+    const root = document.documentElement
+    if (this.element.hidden) {
+      root.style.removeProperty("--audio-player-h")
+    } else {
+      root.style.setProperty("--audio-player-h", `${this.element.offsetHeight}px`)
+    }
   }
 
   toggle() { engine.toggle() }
@@ -41,6 +55,7 @@ export default class extends Controller {
 
     this.element.hidden = !has
     document.documentElement.classList.toggle("has-audio-player", has)
+    this.publishHeight()
     if (!has) return
 
     this.element.classList.toggle("is-playing", s.isPlaying)

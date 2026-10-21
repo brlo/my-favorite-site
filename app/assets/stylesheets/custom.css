@@ -326,9 +326,13 @@ header .container, footer .container {
 }
 
 /* пока играет, освобождаем место под панелью и поднимаем плавающие кнопки */
-html.has-audio-player body { padding-bottom: 104px; }
-html.has-audio-player #scroll-to-top-btn { bottom: 124px; }
-html.has-audio-player #call-minimap-btn { bottom: 184px; }
+/* --audio-player-h (высота панели) выставляет audio_player_controller.js */
+html.has-audio-player body { padding-bottom: calc(var(--audio-player-h, 90px) + 14px); }
+html.has-audio-player #scroll-to-top-btn { bottom: calc(var(--audio-player-h, 90px) + 20px); }
+html.has-audio-player #call-minimap-btn { bottom: calc(var(--audio-player-h, 90px) + 80px); }
+/* панель выделения стиха (копировать и т.п.) и её всплывающее сообщение - над плеером, а не под ним */
+html.has-audio-player #select-bar { bottom: var(--audio-player-h, 90px); }
+html.has-audio-player #popup-notif { bottom: calc(var(--audio-player-h, 90px) + 130px); }
 
 /* на очень узких экранах прячем подпись-ссылку, остаётся название */
 @media (max-width: 360px) {
