@@ -174,7 +174,8 @@ header .container, footer .container {
   right: 0;
   bottom: 0;
   z-index: 998;
-  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  /* внизу запас: у самого края экрана жест «свернуть приложение», ползунок там не нужен */
+  padding: 4px 12px calc(16px + env(safe-area-inset-bottom));
   background: #f6f4e4;
   color: #4a4535;
   border-top: 1px solid #aca08f;
@@ -192,7 +193,7 @@ header .container, footer .container {
   align-items: center;
   gap: 6px;
 }
-#audio-player .ap-progress { margin-top: 2px; }
+#audio-player .ap-progress { margin-bottom: 2px; }
 
 #audio-player .ap-controls {
   display: flex;

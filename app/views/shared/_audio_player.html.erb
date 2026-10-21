@@ -1,8 +1,16 @@
-<%# Плеер внизу экрана. Один на сайт: переживает переходы Turbo (data-turbo-permanent), наполняется из JS (lib/audio_engine.js) %>
+<%# Плеер внизу экрана. Ползунок наверху, кнопки под ним, внизу запас: у нижнего края экрана жест «свернуть приложение». Один на сайт: переживает переходы Turbo (data-turbo-permanent), наполняется из JS (lib/audio_engine.js) %>
 <div id="audio-player" data-turbo-permanent data-controller="audio-player" hidden
      data-audio-player-label-play-value="<%= t('audio.play', default: 'Play') %>"
      data-audio-player-label-pause-value="<%= t('audio.pause', default: 'Pause') %>">
   <div class="ap-inner">
+    <div class="ap-row ap-progress">
+      <span class="ap-time" data-audio-player-target="current">0:00</span>
+      <input type="range" class="ap-seek" min="0" max="0" step="1" value="0"
+             data-audio-player-target="seek"
+             data-action="input->audio-player#seeking change->audio-player#seek"
+             aria-label="<%= t('audio.seek', default: 'Position') %>">
+      <span class="ap-time" data-audio-player-target="duration">0:00</span>
+    </div>
     <div class="ap-row">
       <div class="ap-controls">
         <button type="button" class="ap-btn ap-skip" data-action="audio-player#back" aria-label="<%= t('audio.back', default: '-15 s') %>">
@@ -31,13 +39,5 @@
       </button>
     </div>
 
-    <div class="ap-row ap-progress">
-      <span class="ap-time" data-audio-player-target="current">0:00</span>
-      <input type="range" class="ap-seek" min="0" max="0" step="1" value="0"
-             data-audio-player-target="seek"
-             data-action="input->audio-player#seeking change->audio-player#seek"
-             aria-label="<%= t('audio.seek', default: 'Position') %>">
-      <span class="ap-time" data-audio-player-target="duration">0:00</span>
-    </div>
   </div>
 </div>
