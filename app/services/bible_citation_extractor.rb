@@ -29,6 +29,26 @@ class BibleCitationExtractor
     @root_ids ||= ::Page.where(path_low: ::PAST_ROOT_PATHS).pluck(:id)
   end
 
+  # "Ин." -> "in", "II Кор" -> "2kor"; неизвестная книга -> nil
+  def self.book_code_for(raw)
+    key = raw.downcase.gsub(/[^\p{L}\d]/, '')
+    BOOKS[key] || begin
+      # "II Кор" -> "2Кор"
+      roman = raw[/\A(I{1,3})(?=[\s.\-]*\p{Lu})/, 1]
+      roman && BOOKS[(ROMAN_PREFIX[roman] + raw.sub(/\AI{1,3}/, '')).downcase.gsub(/[^\p{L}\d]/, '')]
+    end
+  end
+
+  # "13-17,19" -> [[13, 17], [19, 19]]; неправдоподобные диапазоны отбрасываем
+  def self.parse_ranges(str)
+    str.split(',').filter_map do |part|
+      from, to = part.scan(/\d+/).map(&:to_i)
+      to ||= from
+      next unless from.between?(1, 200) && to.between?(from, from + MAX_RANGE)
+      [from, to]
+    end
+  end
+
   def initialize(page)
     @page = page
   end
@@ -73,23 +93,9 @@ class BibleCitationExtractor
 
   private
 
-  def book_code_for(raw)
-    key = raw.downcase.gsub(/[^\p{L}\d]/, '')
-    BOOKS[key] || begin
-      # "II Кор" -> "2Кор"
-      roman = raw[/\A(I{1,3})(?=[\s.\-]*\p{Lu})/, 1]
-      roman && BOOKS[(ROMAN_PREFIX[roman] + raw.sub(/\AI{1,3}/, '')).downcase.gsub(/[^\p{L}\d]/, '')]
-    end
-  end
+  def book_code_for(raw) = self.class.book_code_for(raw)
 
-  def parse_ranges(str)
-    str.split(',').filter_map do |part|
-      from, to = part.scan(/\d+/).map(&:to_i)
-      to ||= from
-      next unless from.between?(1, 200) && to.between?(from, from + MAX_RANGE)
-      [from, to]
-    end
-  end
+  def parse_ranges(str) = self.class.parse_ranges(str)
 
   # HTML -> текст; концы блоков превращаем в перевод строки, чтобы фрагмент не склеивал абзацы
   def plain_text(html)

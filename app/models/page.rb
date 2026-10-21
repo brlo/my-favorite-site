@@ -164,8 +164,9 @@ class Page < ApplicationRecord
     # из формы админки приходит пустая строка, а она не должна объединять страницы в одну группу переводов
     self.group_lang_id = self.group_lang_id.presence || generate_string(10)
 
-    render_references if self.references_changed?
-    render_body if self.body_changed?
+    render_references if self.references_changed? || (self.lang_changed? && self.references.present?)
+    # при смене языка ссылки на Писание надо пересобрать под Библию нового языка
+    render_body if self.body_changed? || (self.lang_changed? && self.body.present?)
   end
 
   def normalize_path
@@ -187,12 +188,12 @@ class Page < ApplicationRecord
   end
 
   def render_references
-    self.references, self.references_rendered = ::Page::HtmlRenderer.render_references(self.references)
+    self.references, self.references_rendered = ::Page::HtmlRenderer.render_references(self.references, self.lang)
   end
 
   # body редактируется в админке, а читателю показываем body_rendered
   def render_body
-    result = ::Page::HtmlRenderer.render_body(self.body)
+    result = ::Page::HtmlRenderer.render_body(self.body, self.lang)
     self.body = result.body
     self.body_rendered = result.rendered
     self.body_menu = result.menu

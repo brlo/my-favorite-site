@@ -34,7 +34,7 @@ module Page::HtmlRenderer
   end
 
   # Основной текст статьи: очистка, сноски, оглавление, источники, lazy-картинки, фуригана
-  def render_body(html)
+  def render_body(html, lang = nil)
     # u00AD — это SOFT HYPHEN, с которым я намучался целый день, прежде чем понял из-за чего разбиваются целые слова
     # при нормализации в лексемы, и потом в итоге не ищутся нормально. Надо эти переносы удалять обязательно. Они часто встречаются и их не видно визуально.
     body = safe_html(html).strip.gsub("­", '')
@@ -45,6 +45,8 @@ module Page::HtmlRenderer
 
     # построение перекрестных ссылок на сноски
     rendered = footnote_anchors(body)
+    # ссылки на Писание ("Мф. 20:13") -> гиперссылки на Библию. До mark_quote_sources: источник под цитатой
+    rendered = ::BibleLinker.link_html(rendered, lang)
     # построение оглавления и необходимых ссылок
     rendered, menu = menu_and_anchors(rendered)
     # найти источники под цитатами
@@ -58,9 +60,10 @@ module Page::HtmlRenderer
   end
 
   # Примечания внизу статьи: (html для редактора, html для читателя)
-  def render_references(html)
+  def render_references(html, lang = nil)
     references = safe_html(html).strip
-    rendered = ::Tools::StringUtils::Rubyfy.call(references_back_links(references))
+    rendered = ::BibleLinker.link_html(references_back_links(references), lang)
+    rendered = ::Tools::StringUtils::Rubyfy.call(rendered)
     [references, rendered]
   end
 

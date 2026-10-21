@@ -1061,6 +1061,32 @@ BOOK_TO_CODE = {
   'апокалипсис' => 'otkr',
   'rev' => 'otkr',
   'revelation' => 'otkr',
+
+  # Английские сокращения в стиле NRSV (нужны для автоссылок в английских статьях)
+  'exod' => 'ish',
+  'josh' => 'nav',
+  '1kgs' => '3ts',
+  '2kgs' => '4ts',
+  '1chr' => '1par',
+  '2chr' => '2par',
+  'neh' => 'neem',
+  'esth' => 'esf',
+  'psalm' => 'ps',
+  'eccles' => 'ekl',
+  'qoh' => 'ekl',
+  'isa' => 'is',
+  'obad' => 'av',
+  'zeph' => 'sof',
+  'zech' => 'zah',
+  'nah' => 'naum',
+  'hab' => 'avm',
+  'matt' => 'mf',
+  'mat' => 'mf',
+  'heb' => 'evr',
+  '1thess' => '1sol',
+  '2thess' => '2sol',
+  'phm' => 'fm',
+  'php' => 'fil',
 }
 
 # Корневые страницы со списками авторов — святых отцов (русские и английские).
