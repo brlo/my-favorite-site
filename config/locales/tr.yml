@@ -74,7 +74,7 @@ tr:
   quote_page:
     title: "%{term} / alıntılar / Kutsal Kitap"
     addresses_list_title: 'Sadece referanslar:'
-    whant_to_fix: 'Düzeltmek veya eklemek mi istiyorsunuz? Bize yazın'
+    whant_to_fix: 'Düzeltmek veya yorum yapmak mı istiyorsunuz? Bize sohbette anlatın'
     or_edit_page_by_yourself: Veya sayfayı kendiniz düzenleyin
     edit_link: Düzenle
     author: Kullanıcı tarafından yayınlandı

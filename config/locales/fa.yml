@@ -74,7 +74,7 @@ fa:
   quote_page:
     title: '%{term} / نقل‌قول‌ها / کتاب مقدس'
     addresses_list_title: 'فقط لینک‌ها:'
-    whant_to_fix: 'می‌خواهید اصلاح یا تکمیل کنید؟ به ما بنویسید'
+    whant_to_fix: 'می‌خواهید اصلاح یا نظر بدهید؟ در چت به ما بگویید'
     or_edit_page_by_yourself: 'یا خودتان مقاله را ویرایش کنید'
     edit_link: 'ویرایش'
     author: 'منتشر شده توسط کاربر'

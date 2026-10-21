@@ -74,7 +74,7 @@ de:
   quote_page:
     title: "%{term} / Zitate / Bibel"
     addresses_list_title: 'Nur Links:'
-    whant_to_fix: 'Möchten Sie korrigieren oder ergänzen? Schreiben Sie uns'
+    whant_to_fix: 'Möchten Sie etwas korrigieren oder kommentieren? Sagen Sie es uns im Chat'
     or_edit_page_by_yourself: Oder bearbeiten Sie den Artikel selbst
     edit_link: Bearbeiten
     author: Veröffentlicht von

@@ -74,7 +74,7 @@ hi:
   quote_page:
     title: "%{term} / उद्धरण / बाइबिल"
     addresses_list_title: 'केवल संदर्भ:'
-    whant_to_fix: 'सुधारना या जोड़ना चाहते हैं? हमें लिखें'
+    whant_to_fix: 'सुधारना या टिप्पणी करना चाहते हैं? चैट में हमें बताएं'
     or_edit_page_by_yourself: या स्वयं लेख संपादित करें
     edit_link: संपादित करें
     author: उपयोगकर्ता द्वारा प्रकाशित

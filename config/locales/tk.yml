@@ -74,7 +74,7 @@ tk:
   quote_page:
     title: "%{term} / sitatalar / Injil"
     addresses_list_title: 'Diňe çykgytlar:'
-    whant_to_fix: 'Üýtgetmek ýa-da goşmak isleýärsiňizmi? Biz ýazyn'
+    whant_to_fix: 'Düzetmek ýa-da teswir bermek isleýärsiňizmi? Çatda bize aýdyň'
     or_edit_page_by_yourself: Ýa-da makalany özüňiz üýtgediň
     edit_link: Üýtgetmek
     author: Ulanyjy tarapyndan ýazyldy

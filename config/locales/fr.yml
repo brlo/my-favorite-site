@@ -74,7 +74,7 @@ fr:
   quote_page:
     title: '%{term} / citations / Bible'
     addresses_list_title: 'Références uniquement :'
-    whant_to_fix: 'Vous souhaitez corriger ou compléter ? Contactez-nous'
+    whant_to_fix: 'Vous souhaitez corriger ou commenter ? Dites-le-nous dans le chat'
     or_edit_page_by_yourself: "Ou éditez l'article vous-même"
     edit_link: Éditer
     author: Publié par

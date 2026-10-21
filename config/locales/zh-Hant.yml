@@ -75,7 +75,7 @@ zh-Hant:
   quote_page:
     title: "%{term} / 引號 / 聖經"
     addresses_list_title: '僅參考:'
-    whant_to_fix: 想要修復或添加一些東西嗎？ 告訴我們
+    whant_to_fix: '想要修正或評論嗎？ 請到聊天室告訴我們'
     or_edit_page_by_yourself: 或者自己編輯這篇文章
     edit_link: 編輯
     author: 由...出版

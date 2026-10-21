@@ -74,7 +74,7 @@ it:
   quote_page:
     title: "%{term} / citazioni / Bibbia"
     addresses_list_title: 'Solo riferimenti:'
-    whant_to_fix: 'Vuoi correggere o integrare? Scrivici'
+    whant_to_fix: 'Vuoi correggere o commentare? Raccontacelo nella chat'
     or_edit_page_by_yourself: Oppure modifica tu stesso l'articolo
     edit_link: Modifica
     author: Pubblicato da

@@ -74,7 +74,7 @@ ja:
   quote_page:
     title: "%{term} / 引用 / 聖書"
     addresses_list_title: '参照のみ:'
-    whant_to_fix: '何かを修正または追加したいですか。教えて'
+    whant_to_fix: '修正やコメントをしたいですか。チャットでお知らせください'
     or_edit_page_by_yourself: または、この記事を自分で編集してください
     edit_link: 編集
     author: 発行者

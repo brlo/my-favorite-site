@@ -74,7 +74,7 @@ sr:
   quote_page:
     title: "%{term} / цитати / Библија"
     addresses_list_title: 'Само референце:'
-    whant_to_fix: 'Желите да исправите или допуните? Пишите нам'
+    whant_to_fix: 'Желите да исправите или прокоментаришете? Реците нам у чету'
     or_edit_page_by_yourself: Или сами измените чланак
     edit_link: Измени
     author: Објавио корисник

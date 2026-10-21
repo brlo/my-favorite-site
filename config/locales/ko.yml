@@ -74,7 +74,7 @@ ko:
   quote_page:
     title: "%{term} / 인용문 / 성경"
     addresses_list_title: '참조 구절:'
-    whant_to_fix: '수정 또는 추가할 내용이 있나요? 저희에게 연락하세요.'
+    whant_to_fix: '수정하거나 의견을 남기고 싶으신가요? 채팅에서 알려 주세요'
     or_edit_page_by_yourself: '또는 직접 글을 편집하세요.'
     edit_link: 편집
     author: 작성자

@@ -74,7 +74,7 @@ es:
   quote_page:
     title: "%{term} / citas / Biblia"
     addresses_list_title: 'Solo referencias:'
-    whant_to_fix: '¿Desea corregir o ampliar? Escríbanos'
+    whant_to_fix: '¿Desea corregir o comentar? Cuéntenoslo en el chat'
     or_edit_page_by_yourself: O edite el artículo usted mismo
     edit_link: Editar
     author: Publicado por el usuario
