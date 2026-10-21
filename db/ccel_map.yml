@@ -1,0 +1,636 @@
+# Берём только тексты самих древних авторов: вступления и пояснения составителей сборника не нужны.
+# Карта импорта трудов из CCEL (ANF, NPNF) в английскую библиотеку святых отцов (q-saints-en).
+# Запуск: bin/rails ccel:import [ONLY=anf01] [DRY_RUN=1]; оглавления томов: bin/rails ccel:inventory
+#
+# # skip_titles: заголовки подразделов, которые в этом томе написаны составителями (по тому)
+skip_titles:
+  npnf109: [Introduction, Preface]
+  npnf114: [Introduction, Preface]
+  npnf201: [Preface]
+  npnf204: [Introduction]
+  npnf207: [Introduction, Preface]
+  npnf209: [Introduction]
+  npnf210: [Introduction, Prefatory Note]
+  npnf211: [Introduction]
+  npnf212: [Introduction]
+  npnf213: [Introduction, Preface]
+  npnf214: [Introduction, Preface]
+
+# cut_after: абзац, после которого до конца раздела идут комментарии составителей (в каноны - толкования к правилу)
+cut_after:
+  npnf214: Notes.
+
+volumes: название тома, если в XML оно неверное
+# authors: ключ -> en-страница автора
+#   path       - en-страница (если её нет - создаётся)
+#   ru         - ru-страница автора: для связи языков
+#   title, title_sub, menu_title, century - для новой страницы и пункта в меню q-saints-en
+#   categories - категории трудов в меню новой страницы, по порядку
+#   parent, parent_menu - для раздела вне q-saints-en: родительская страница и категория в её меню (вместо century)
+# works: труды
+#   src      - "том id-раздела" из оглавления
+#   author   - ключ из authors
+#   title    - название страницы
+#   category - категория в меню автора (по умолчанию Works)
+#   menu     - вместо category: название готового пункта в меню автора (заготовки без ссылки), куда вписать адрес
+#   skip     - id подразделов, которые не берём (вступления составителей отсеиваются и так, по заголовку)
+#   parts    - each: страница на каждый подраздел; число: подразделы подряд до N кб на страницу
+#   part_titles - названия частей по порядку (вместо заголовков из CCEL)
+#   ru       - ru-страница труда (для частей - список по порядку)
+#   path     - адрес страницы (по умолчанию <author>-<title>)
+
+# skip_titles: заголовки подразделов, которые в этом томе написаны составителями (по тому)
+skip_titles:
+  npnf109: [Introduction, Preface]
+  npnf114: [Introduction, Preface]
+  npnf201: [Preface]
+  npnf204: [Introduction]
+  npnf207: [Introduction, Preface]
+  npnf209: [Introduction]
+  npnf210: [Introduction, Prefatory Note]
+  npnf211: [Introduction]
+  npnf212: [Introduction]
+  npnf213: [Introduction, Preface]
+  npnf214: [Introduction, Preface]
+
+# cut_after: абзац, после которого до конца раздела идут комментарии составителей (в каноны - толкования к правилу)
+cut_after:
+  npnf214: Notes.
+
+volumes:
+  anf05: 'Fathers of the Third Century: Hippolytus, Cyprian, Caius, Novatian, Appendix'
+  anf06: 'Fathers of the Third Century: Gregory Thaumaturgus, Dionysius the Great, Julius Africanus, Anatolius and Minor Writers, Methodius, Arnobius'
+  anf09: 'Recently Discovered Additions to Early Christian Literature; Commentaries of Origen'
+
+authors:
+  unknown_1c:
+    path: 1st_century-unknown_authors
+  justin:
+    path: Justin-the-Philosopher-Martyr
+  papias:
+    path: Papias_of_Hierapolis
+    ru: Папий_Иерапольский
+    title: Papias of Hierapolis, 2nd c.
+    title_sub: hieromartyr, early Church writer, one of the Apostolic Fathers (~70-155)
+    menu_title: Papias of Hierapolis, hieromartyr (~70-155)
+    century: 2nd century
+    categories: [Commentaries]
+  tatian:
+    path: Tatian_the_Assyrian
+    title: Tatian the Assyrian, 2nd c.
+    title_sub: Christian apologist, disciple of Justin Martyr (~120-180)
+    menu_title: Tatian the Assyrian, apologist (~120-180)
+    century: 2nd century
+    categories: [Works]
+  theophilus:
+    path: Theophilus_of_Antioch
+    ru: Феофил_Антиохийский
+    title: Theophilus of Antioch, 2nd c.
+    title_sub: saint, Christian writer, apologist and polemicist (†183)
+    menu_title: Theophilus of Antioch, saint (†183)
+    century: 2nd century
+    categories: [Epistles]
+  athenagoras:
+    path: Athenagoras_of_Athens
+    title: Athenagoras of Athens, 2nd c.
+    title_sub: Christian philosopher and apologist (~133-190)
+    menu_title: Athenagoras of Athens, apologist (~133-190)
+    century: 2nd century
+    categories: [Works]
+
+  clement_alex:
+    path: Ur42_Clement_of_Alexandria_2nd_c
+  tertullian:
+    path: 6Frm_Tertullian_II_c
+  minucius:
+    path: Minucius_Felix
+    ru: Марк_Минуций_Феликс
+    title: Marcus Minucius Felix, 3rd c.
+    title_sub: (†~250)
+    menu_title: Marcus Minucius Felix, apologist (†~250)
+    century: 3rd century
+    categories: [Apologetics]
+
+  hippolytus:
+    path: Fhbk_Hippolytus_of_Rome_2nd3rd_cent
+  dionysius_alex:
+    path: z0BN_Dionysius_of_Alexandria_3rd_century
+  cyprian:
+    path: Cyprian_of_Carthage
+    ru: Киприан_Карфагенский_III_век
+    title: Cyprian of Carthage, 3rd c.
+    title_sub: hieromartyr (~200-258), bishop of Carthage
+    menu_title: Cyprian of Carthage, hieromartyr (~200-258)
+    century: 3rd century
+    categories: [Epistles, Treatises]
+  gregory_thaum:
+    path: Gregory_Thaumaturgus
+    ru: oJSu_Григорий_Чудотворец_III_век
+    title: Gregory Thaumaturgus (the Wonderworker), 3rd c.
+    title_sub: saint (~213-270), bishop of Neocaesarea, disciple of Origen
+    menu_title: Gregory Thaumaturgus, saint (~213-270)
+    century: 3rd century
+    categories: [Works, Dubious or Spurious Writings]
+  peter_alex:
+    path: Peter_of_Alexandria
+    ru: koN0_Петр_Александрийский_священномученик_311
+    title: Peter of Alexandria, 3rd-4th c.
+    title_sub: hieromartyr (†311), archbishop of Alexandria
+    menu_title: Peter of Alexandria, hieromartyr (†311)
+    century: 3rd century
+    categories: [Works, About the Saint]
+  methodius:
+    path: Methodius_of_Olympus
+    ru: n2QN_Мефодий_Олимпийский_IIIIV_вв
+    title: Methodius of Olympus, 3rd c.
+    title_sub: hieromartyr (†~311), bishop of Olympus
+    menu_title: Methodius of Olympus, hieromartyr (†~311)
+    century: 3rd century
+    categories: [Moral and Ascetic Works, Dogmatic and Polemical Works, Homilies, Fragments]
+  alexander_alex:
+    path: Alexander_of_Alexandria
+    ru: B4ds_Александр_Александрийский_III_век
+    title: Alexander of Alexandria, 4th c.
+    title_sub: saint (†328), archbishop of Alexandria
+    menu_title: Alexander of Alexandria, saint (†328)
+    century: 4th century
+    categories: [Dogmatic and Polemical Works, Homilies]
+
+  melito:
+    path: Melito_of_Sardis
+    ru: Мелитон_Сардийский
+    title: Melito of Sardis, 2nd c.
+    title_sub: saint (~100-180), bishop of Sardis, Church writer, apologist
+    menu_title: Melito of Sardis, saint (~100-180)
+    century: 2nd century
+    categories: [Writings]
+  hegesippus:
+    path: Hegesippus
+    ru: 1HDX_Егезипп_II_век
+    title: Hegesippus, 2nd c.
+    title_sub: (~100-180), Church chronicler
+    menu_title: Hegesippus, chronicler (~100-180)
+    century: 2nd century
+    categories: [Works]
+  aristides:
+    path: Aristides_of_Athens
+    ru: Аристид_Афинский
+    title: Aristides of Athens, 1st-2nd c.
+    title_sub: philosopher, one of the first Christian apologists
+    menu_title: Aristides of Athens, apologist
+    century: 2nd century
+    categories: [Apologies]
+
+  augustine:
+    path: VP7D_Aurelius_Augustine_5th_c
+
+  chrysostom:
+    path: BsGu_John_Chrysostom_Saint_4th_century
+
+  athanasius:
+    path: ljCQ_Athanasius_the_Great_4th_c
+  gregory_nyssa:
+    path: AkuQ_Gregory_of_Nyssa_4th_century
+  eusebius:
+    path: Eusebius_of_Caesarea
+    ru: Евсевий_Кесарийский_(Памфил),_IV_век
+    title: Eusebius of Caesarea (Pamphili), 4th c.
+    title_sub: (~258-339) bishop of Caesarea in Palestine, Church historian and writer, theologian, apologist, interpreter of Holy Scripture
+    menu_title: Eusebius of Caesarea, Church historian (~258-339)
+    century: 4th century
+    categories: [History]
+  theodoret:
+    path: Theodoret_of_Cyrus
+    ru: FmY5_Феодорит_Кирский_блаженный_386457
+    title: Theodoret of Cyrus, 4th-5th c.
+    title_sub: blessed (~386-457), bishop of Cyrus, exegete, dogmatist, apologist and Church historian
+    menu_title: Theodoret of Cyrus, blessed (~386-457)
+    century: 5th century
+    categories: [History, Dogmatic and Polemical Works, Letters]
+
+  jerome:
+    path: 3v5Z_Jerome_of_Stridon_4th_c
+  ambrose:
+    path: tN1B_Ambrose_of_Milan_4th_century
+  cassian:
+    path: PJ5e_John_Cassian_the_Roman_4th5th_centuries
+  cyril_jer:
+    path: Cyril_of_Jerusalem
+    ru: rXYx_Кирилл_Иерусалимский_IV_век
+    title: Cyril of Jerusalem, 4th c.
+    title_sub: saint (~315-386), archbishop of Jerusalem
+    menu_title: Cyril of Jerusalem, saint (~315-386)
+    century: 4th century
+    categories: [Lectures and Epistles]
+  gregory_naz:
+    path: Gregory_the_Theologian
+    ru: uSyc_Григорий_Богослов_IV_век
+    title: Gregory the Theologian (Nazianzen), 4th c.
+    title_sub: saint (~329-390), archbishop of Constantinople
+    menu_title: Gregory the Theologian (Nazianzen), saint (~329-390)
+    century: 4th century
+    categories: [Orations, Letters]
+  hilary:
+    path: Hilary_of_Poitiers
+    ru: 97nZ_Иларий_Пиктавийский_святитель_315367
+    title: Hilary of Poitiers, 4th c.
+    title_sub: saint (~315-367), bishop of Poitiers
+    menu_title: Hilary of Poitiers, saint (~315-367)
+    century: 4th century
+    categories: [Dogmatic Theology, Old Testament]
+  leo:
+    path: Leo_the_Great
+    title: Leo the Great, 5th c.
+    title_sub: saint (~400-461), bishop of Rome
+    menu_title: Leo the Great, saint (~400-461)
+    century: 5th century
+    categories: [Letters, Sermons]
+  gregory_great:
+    path: Gregory_the_Great
+    title: Gregory the Great (the Dialogist), 6th c.
+    title_sub: saint (~540-604), bishop of Rome
+    menu_title: Gregory the Great (the Dialogist), saint (~540-604)
+    century: 6th century
+    categories: [Pastoral Works, Letters]
+  aphrahat:
+    path: Aphrahat
+    title: Aphrahat the Persian Sage, 4th c.
+    title_sub: Syriac Church writer (~270-345)
+    menu_title: Aphrahat the Persian Sage (~270-345)
+    century: 4th century
+    categories: [Demonstrations]
+
+  councils:
+    path: Ecumenical_Councils
+    ru: Вселенские_Соборы
+    title: Ecumenical Councils
+    parent: links_en
+    parent_menu: Library
+    menu_title: 📃 Councils
+    categories: [Acts (Minutes), Canons]
+
+# Не берём: Игнатия Антиохийского (решено пропустить целиком); Коммодиана, Юлия Африкана, Архелая,
+# Арнобия, Лактанция, Викторина Петавского, послания Климента «О девстве»; мелких писателей III века и труды, у которых уже есть
+# английская страница, сделанная вручную (импорт их и так пропускает, если указан ru).
+works:
+  # === ANF01 ===
+  - { src: anf01 iii.ii, author: unknown_1c, category: Other, title: Epistle of Mathetes to Diognetus, ru: Псл_Дгнт }
+  - { src: anf01 vii.ii, author: papias, category: Commentaries, title: Fragments of Papias }
+  - { src: anf01 viii.v, author: justin, title: The Discourse to the Greeks }
+  - { src: anf01 viii.vi, author: justin, title: Hortatory Address to the Greeks }
+  - { src: anf01 viii.vii, author: justin, title: On the Sole Government of God }
+  - { src: anf01 viii.viii, author: justin, title: "On the Resurrection, Fragments" }
+  - { src: anf01 viii.ix, author: justin, title: Other Fragments from the Lost Writings of Justin }
+  - { src: anf01 viii.xi, author: justin, category: About the Saint, title: The Martyrdom of Justin Martyr }
+
+  # === ANF02 ===
+  - { src: anf02 iii.ii, author: tatian, title: Address to the Greeks }
+  - { src: anf02 iii.iii, author: tatian, title: Fragments }
+  - { src: anf02 iv.ii, author: theophilus, category: Epistles, title: Theophilus to Autolycus, ru: Феофил-послание_к_Автолику }
+  - { src: anf02 v.ii, author: athenagoras, title: A Plea for the Christians }
+  - { src: anf02 v.iii, author: athenagoras, title: The Resurrection of the Dead }
+  - { src: anf02 vi.ii, author: clement_alex, title: Exhortation to the Heathen, ru: gXk5_Увещевание_к_язычникам }
+  - { src: anf02 vi.iii, author: clement_alex, title: The Instructor, parts: each, ru: [rP2Q_Педагог_1, cKan_Педагог_2, vITM_Педагог_3] }
+  - { src: anf02 vi.v, author: clement_alex, title: Who is the Rich Man that shall be saved?, ru: yS7V_Кто_из_богатых_спасется }
+  - { src: anf02 vi.iv.ix, author: clement_alex, title: Fragments }
+
+  # === ANF03: Тертуллиан (пункты меню у en-автора уже есть - заполняем их) ===
+  - { src: anf03 iv.iii, author: tertullian, title: Apology, menu: Apologeticus (Apologeticus) (197), ru: cjtQ_Апологетик }
+  - { src: anf03 iv.iv, author: tertullian, title: On Idolatry, menu: On Idolatry (De Idolatria) (213), ru: cVDs_Об_идолопоклонстве }
+  - { src: anf03 iv.v, author: tertullian, title: "The Shows, or De Spectaculis", menu: On the Spectacles (De Spectaculis) (197-200), ru: Vyit_О_зрелищах }
+  - { src: anf03 iv.vi, author: tertullian, title: "The Chaplet, or De Corona", menu: "On the Soldier’s Crown (De Corona militis) (211)", ru: iPSC_О_венце_воина }
+  - { src: anf03 iv.vii, author: tertullian, title: To Scapula, menu: To Scapula (Ad Scapulam) (212), ru: wb6X_К_Скапуле }
+  - { src: anf03 iv.viii, author: tertullian, title: Ad Nationes, menu: To the Nations (Ad nationes) (197), ru: kV92_К_язычникам_две_книги }
+  - { src: anf03 iv.ix, author: tertullian, title: An Answer to the Jews, menu: Against the Jews (Adversus Iudaeos) (197-200), ru: oZSL_Против_иудеев }
+  - { src: anf03 iv.x, author: tertullian, title: "The Soul's Testimony", menu: On the Testimony of the Soul (De Testimonio animae) (197-200), ru: JYEk_О_свидетельстве_души }
+  - { src: anf03 iv.xi, author: tertullian, title: A Treatise on the Soul, menu: On the Soul (De Anima) (210-213), ru: XyG2_О_душе_1 }
+  - { src: anf03 v.iii, author: tertullian, title: The Prescription Against Heretics, menu: On Prescription Against Heretics (De praescriptione haereticorum) (200-203), ru: 37Jr_О_прескрипции_против_еретиков_1 }
+  - src: anf03 v.iv
+    author: tertullian
+    title: The Five Books Against Marcion
+    menu: Against Marcion, Books I-V, second edition (Adversus Marcionem) (212-213)
+    parts: each
+    ru: [kyCR_Против_Маркиона_в_пяти_книгах_1, 9qTi_Против_Маркиона_2, ueyY_Против_Маркиона_3, qExH_Против_Маркиона_в_пяти_книгах_2, y5bE_Против_Маркиона_5]
+  - { src: anf03 v.v, author: tertullian, title: Against Hermogenes, menu: Against Hermogenes (Adversus Hermogenem) (200-205), ru: dINv_Против_Гермогена_1 }
+  - { src: anf03 v.vi, author: tertullian, title: Against the Valentinians, menu: Against the Valentinians (Adversus Valentinianos) (207-212), ru: n4PQ_Против_Валентиниан }
+  - { src: anf03 v.vii, author: tertullian, title: On the Flesh of Christ, menu: On the Flesh of Christ (De Carne Christi) (208-210), ru: aI3W_О_плоти_Христа }
+  - { src: anf03 v.viii, author: tertullian, title: On the Resurrection of the Flesh, menu: On the Resurrection of the Flesh (De Resurrectione carnis) (209-212), ru: pdqe_О_воскресении_плоти }
+  - { src: anf03 v.ix, author: tertullian, title: Against Praxeas, menu: Against Praxeas (Adversus Praxeam) (213), ru: Enzr_Против_Праксея }
+  - { src: anf03 v.x, author: tertullian, title: Scorpiace, menu: "Scorpiace, or Antidote to the Scorpion’s Sting (Scorpiace) (212-213)", ru: QvjN_Скорпиак_или_противоядие_от_угрызения_скорпионов }
+  - { src: anf03 vi.ii, author: tertullian, title: On Repentance, menu: "On Repentance (De Poenitentia) (203) (important: here he still allows for a second repentance, unlike in his later period)", ru: JqFh_О_покаянии }
+  - { src: anf03 vi.iii, author: tertullian, title: On Baptism, menu: On Baptism (De Baptismo) (198-200), ru: 9JXy_О_крещении }
+  - { src: anf03 vi.iv, author: tertullian, title: On Prayer, menu: On Prayer (De Oratione) (198-200), ru: S9zX_О_молитве }
+  - { src: anf03 vi.vii, author: tertullian, title: On Patience, menu: On Patience (De Patientia) (203), ru: NdP5_О_терпении }
+  - { src: anf03 v.xi, author: tertullian, category: Attributed Works, title: Against All Heresies }
+  - { src: anf03 vi.vi, author: tertullian, category: Attributed Works, title: The Passion of the Holy Martyrs Perpetua and Felicitas }
+
+  # === ANF04 ===
+  - { src: anf04 iii.ii, author: tertullian, title: On the Pallium, menu: On the Pallium (De Pallio) (210), ru: XOpx_О_плаще }
+  - { src: anf04 iii.iii, author: tertullian, title: On the Apparel of Women, menu: On Female Adornment (De Cultu Feminarum) (200-202) }
+  - { src: anf04 iii.iv, author: tertullian, title: On the Veiling of Virgins, menu: On the Veiling of Virgins (De Virginibus Velandis) (213), ru: 2dNZ_О_покрывале_девственниц }
+  - { src: anf04 iii.v, author: tertullian, title: To His Wife, menu: To His Wife (Ad uxorem) (200-202), ru: wUzN_Послание_к_жене }
+  - { src: anf04 iii.vi, author: tertullian, title: On Exhortation to Chastity, menu: Exhortation to Chastity (De Exhortatione Castitatis) (214), ru: yTgS_О_целомудрии }
+  - { src: anf04 iii.vii, author: tertullian, title: On Monogamy, menu: On Monogamy (De Monogamia) (217), ru: 4xbT_О_единоженстве }
+  - { src: anf04 iii.viii, author: tertullian, title: On Modesty, menu: "On Modesty (De Pudicitia) (~220) (most likely directed against Pope Callistus around 218-222 AD, who permitted absolution for grave sins)", ru: wvx9_О_стыдливости_De_Pudicitia }
+  - { src: anf04 iii.ix, author: tertullian, title: On Fasting, menu: On Fasting (De Ieiunio) (213-220), ru: NqoW_О_посте }
+  - { src: anf04 iii.x.i, author: tertullian, title: De Fuga in Persecutione, menu: On Flight in Persecution (De Fuga in Persecutione) (212-213), ru: iRVv_О_бегстве_во_время_гонений }
+  - { src: anf04 iv.iii, author: minucius, category: Apologetics, title: The Octavius of Minucius Felix, ru: Марк_Минуций_Феликс-Октавий }
+
+  # === ANF05 (Новациан, анонимные трактаты и мелкие писатели III века не берём; Refutation of All Heresies у Ипполита уже есть) ===
+  - { src: anf05 iii.iv.i, author: hippolytus, category: Exegetical Works, title: Exegetical Fragments, skip: [iii.iv.i.x] }
+  - { src: anf05 iii.iv.i.x, author: hippolytus, category: Exegetical Works, title: On Daniel, ru: fOtu_Толкования_на_книгу_пророка_Даниила_203205_гг }
+  - { src: anf05 iii.iv.ii.i, author: hippolytus, category: Exegetical Works, title: Treatise on Christ and Antichrist, ru: QtfU_Слово_о_Христе_и_антихристе }
+  - { src: anf05 iii.iv.ii.iii, author: hippolytus, category: Polemical Works, title: "Against Plato, on the Cause of the Universe", ru: xNZw_Фрагмент_из_Слова_против_эллинов_или_о_Всеобщей_причине_против_Платона }
+  - { src: anf05 iii.iv.ii.iv, author: hippolytus, category: Polemical Works, title: Against the Heresy of One Noetus, ru: 0s8i_Против_ереси_некоего_Ноэта }
+  - { src: anf05 iii.iv.ii.vii, author: hippolytus, category: Polemical Works, title: Fragments of Discourses or Homilies }
+  - { src: anf05 iii.iv.ii.viii, author: hippolytus, category: Polemical Works, title: Fragments from Other Writings of Hippolytus }
+  - { src: anf05 iii.iv.ii.ii, author: hippolytus, category: Pseudepigraphal Works, title: Expository Treatise Against the Jews, ru: DnmL_Обличение_на_иудеев }
+  - { src: anf05 iii.iv.ii.vi, author: hippolytus, category: Pseudepigraphal Works, title: The Discourse on the Holy Theophany, ru: Q9He_Слово_на_Богоявление }
+  - { src: anf05 iii.iv.ii.v, author: hippolytus, category: Pseudepigraphal Works, title: Against Beron and Helix }
+  - { src: anf05 iii.v, author: hippolytus, category: Pseudepigraphal Works, title: Dubious and Spurious Pieces }
+  - { src: anf05 iv.iv, author: cyprian, category: Epistles, title: The Epistles of Cyprian, parts: 250 }
+  - { src: anf05 iv.v.i, author: cyprian, category: Treatises, title: On the Unity of the Church, ru: fqde5EZK_О_единстве_Церкви_De_unitate__Киприан_Карфагенский }
+  - { src: anf05 iv.v.ii, author: cyprian, category: Treatises, title: On the Dress of Virgins, ru: qEs7HBOd_Книга_об_одежде_девствениц__Киприан_Карфагенский }
+  - { src: anf05 iv.v.iii, author: cyprian, category: Treatises, title: On the Lapsed, ru: 02jQL1xq_Книга_о_падших__Киприан_Карфагенский }
+  - { src: anf05 iv.v.iv, author: cyprian, category: Treatises, title: "On the Lord's Prayer", ru: hag3Fns9_О_молитве_Господней__Киприан_Карфагенский }
+  - { src: anf05 iv.v.v, author: cyprian, category: Treatises, title: An Address to Demetrianus, ru: GPb0Tnh8_Книга_к_Деметриану__Киприан_Карфагенский }
+  - { src: anf05 iv.v.vi, author: cyprian, category: Treatises, title: On the Vanity of Idols, ru: klIgxFRU_Книга_о_суете_идолов__Киприан_Карфагенский }
+  - { src: anf05 iv.v.vii, author: cyprian, category: Treatises, title: On the Mortality, ru: sTfINaYq_Книга_о_смертности__Киприан_Карфагенский }
+  - { src: anf05 iv.v.viii, author: cyprian, category: Treatises, title: On Works and Alms, ru: sgL9EHzT_Книга_о_благотворении_и_милостынях__Киприан_Карфагенский }
+  - { src: anf05 iv.v.ix, author: cyprian, category: Treatises, title: On the Advantage of Patience, ru: nMFHuImz_Книга_о_благе_терпения__Киприан_Карфагенский }
+  - { src: anf05 iv.v.x, author: cyprian, category: Treatises, title: On Jealousy and Envy, ru: Vvl2JTrw_Книга_о_ревности_и_зависти__Киприан_Карфагенский }
+  - { src: anf05 iv.v.xi, author: cyprian, category: Treatises, title: "Exhortation to Martyrdom, Addressed to Fortunatus", ru: WKFCHz6i_Письмо_к_Фортунату_об_увещании_к_мученичеству__Киприан_Карфагенский }
+  - { src: anf05 iv.v.xii, author: cyprian, category: Treatises, title: Three Books of Testimonies Against the Jews, ru: 5ywJduVD_К_Квирину_3_книги_свидетельств_против_иудеев__Киприан_Карфагенский }
+  - { src: anf05 iv.vi.i, author: cyprian, category: Councils, title: The Seventh Council of Carthage under Cyprian }
+  - { src: anf05 iv.vii.ii, author: cyprian, category: Attributed Works, title: On the Public Shows }
+  - { src: anf05 iv.vii.iii, author: cyprian, category: Attributed Works, title: On the Glory of Martyrdom, ru: lWfiQjSC_Книга_о_похвале_мученичеству_к_Моисею_Максиму_и_другим_исповедникам__Киприан_Карфагенский }
+  - { src: anf05 iv.vii.iv, author: cyprian, category: Attributed Works, title: Of the Discipline and Advantage of Chastity }
+  - { src: anf05 iv.vii.v, author: cyprian, category: Attributed Works, title: Exhortation to Repentance }
+  - { src: anf05 iv.iii, author: cyprian, category: About the Saint, title: "The Life and Passion of Cyprian, by Pontius the Deacon" }
+
+  # === ANF06 (Александра Ликопольского не берём) ===
+  - { src: anf06 iii.iii.i, author: gregory_thaum, title: A Declaration of Faith, ru: RW7Q_Изложение_веры }
+  - { src: anf06 iii.iii.ii, author: gregory_thaum, title: A Metaphrase of the Book of Ecclesiastes, ru: 476x_Переложение_Екклезиаста }
+  - { src: anf06 iii.iii.iii, author: gregory_thaum, title: Canonical Epistle }
+  - { src: anf06 iii.iii.iv, author: gregory_thaum, title: The Oration and Panegyric Addressed to Origen, ru: AT7w_Благодарственная_речь_Оригену }
+  - { src: anf06 iii.iv.i, author: gregory_thaum, category: Dubious or Spurious Writings, title: A Sectional Confession of Faith }
+  - { src: anf06 iii.iv.ii, author: gregory_thaum, category: Dubious or Spurious Writings, title: On the Trinity }
+  - { src: anf06 iii.iv.iii, author: gregory_thaum, category: Dubious or Spurious Writings, title: Twelve Topics on the Faith }
+  - { src: anf06 iii.iv.iv, author: gregory_thaum, category: Dubious or Spurious Writings, title: On the Subject of the Soul }
+  - { src: anf06 iii.iv.v, author: gregory_thaum, category: Dubious or Spurious Writings, title: Four Homilies }
+  - { src: anf06 iii.iv.vi, author: gregory_thaum, category: Dubious or Spurious Writings, title: On All the Saints }
+  - { src: anf06 iii.iv.vii, author: gregory_thaum, category: Dubious or Spurious Writings, title: On the Gospel According to Matthew }
+  - { src: anf06 iv.iii.i.i, author: dionysius_alex, category: Dogmatic and Polemical Works, title: From the Two Books on the Promises, ru: JoxG_Об_обетованиях_против_Непота }
+  - { src: anf06 iv.iii.i.ii, author: dionysius_alex, category: Dogmatic and Polemical Works, title: From the Books on Nature, ru: Np3F_О_природе_против_эпикурейцев }
+  - { src: anf06 iv.iii.i.iii, author: dionysius_alex, category: Dogmatic and Polemical Works, title: From the Books Against Sabellius }
+  - { src: anf06 iv.iii.i.iv, author: dionysius_alex, category: Dogmatic and Polemical Works, title: Epistle to Dionysius Bishop of Rome, ru: 5tes_Обличение_и_оправдание_к_Дионисию_римскому_против_Савелия }
+  - { src: anf06 iv.iii.i.v, author: dionysius_alex, category: Epistles, title: The Epistle to Bishop Basilides, ru: deiq_Каноническое_Послание_к_еп_Василиду }
+  - { src: anf06 iv.iii.ii.i, author: dionysius_alex, category: Epistles, title: To Domitius and Didymus, ru: DZqc_К_Домицию_и_Дидиму }
+  - { src: anf06 iv.iii.ii.ii, author: dionysius_alex, category: Epistles, title: To Novatus, ru: lD84_К_Новациану_наследие }
+  - { src: anf06 iv.iii.ii.iii, author: dionysius_alex, category: Epistles, title: "To Fabius, Bishop of Antioch", ru: J68H_К_Фабию_епископу_Антиохийскому }
+  - { src: anf06 iv.iii.ii.v, author: dionysius_alex, category: Epistles, title: "To Stephen, Bishop of Rome, on Baptism", ru: yq1H_К_папе_Стефану }
+  - { src: anf06 iv.iii.ii.vi, author: dionysius_alex, category: Epistles, title: "To Sixtus, Bishop", ru: nugO_К_папе_Сиксту_II_1е }
+  - { src: anf06 iv.iii.ii.vii, author: dionysius_alex, category: Epistles, title: "To Philemon, a Presbyter", ru: Kq40_К_Филимону_пресвитеру_Сикста }
+  - { src: anf06 iv.iii.ii.ix, author: dionysius_alex, category: Epistles, title: To Sixtus II, ru: MQBD_К_папе_Сиксту_II_2е }
+  - { src: anf06 iv.iii.ii.x, author: dionysius_alex, category: Epistles, title: Against Bishop Germanus, ru: Y4zJ_Против_епископа_Германа }
+  - { src: anf06 iv.iii.ii.xi, author: dionysius_alex, category: Epistles, title: To Hermammon, ru: ad0G_К_Эрмаммону }
+  - { src: anf06 iv.iii.ii.xii, author: dionysius_alex, category: Epistles, title: To the Alexandrians, ru: Xx3B_К_александрийцам }
+  - { src: anf06 iv.iii.ii.xiii, author: dionysius_alex, category: Epistles, title: "To Hierax, a Bishop in Egypt", ru: HDvB_К_епископу_Иераксу }
+  - { src: anf06 iv.iii.ii.xiv, author: dionysius_alex, category: Epistles, title: From His Fourth Festival Epistle, ru: 3r2N_Из_4го_пасхального_послания }
+  - { src: anf06 iv.iv.i, author: dionysius_alex, category: Old Testament, title: A Commentary on the Beginning of Ecclesiastes, ru: mZR4_Толкование_на_начало_книги_Екклесиаста }
+  - { src: anf06 iv.iv.ii, author: dionysius_alex, category: New Testament, title: The Gospel According to Luke. An Interpretation, ru: 5Jil_Фрагменты_с_толкованием_на_евангельские_повествования_в_саду_Гефсиманском }
+  - { src: anf06 iv.iv.iii, author: dionysius_alex, category: New Testament, title: "On Luke 22:42, etc." }
+  - { src: anf06 iv.iv.iv, author: dionysius_alex, category: New Testament, title: "An Exposition of Luke 22:46, etc." }
+  - { src: anf06 iv.iv.v, author: dionysius_alex, category: New Testament, title: "On John 8:12" }
+  - { src: anf06 iv.iv.vii, author: dionysius_alex, category: Epistles, title: On the Reception of the Lapsed to Penitence }
+  - { src: anf06 ix.iv, author: peter_alex, title: The Canonical Epistle, ru: uInf_Правила_из_слова_о_покаянии }
+  - { src: anf06 ix.vi, author: peter_alex, title: Fragments from the Writings of Peter }
+  - { src: anf06 ix.iii, author: peter_alex, category: About the Saint, title: The Genuine Acts of Peter }
+  - { src: anf06 x.iii.i, author: alexander_alex, category: Dogmatic and Polemical Works, title: "To Alexander, Bishop of Constantinople", ru: RyoH_Послание_Александру }
+  - { src: anf06 x.iii.ii, author: alexander_alex, category: Dogmatic and Polemical Works, title: Epistle Catholic, ru: QofG_Окружное_послание }
+  - { src: anf06 x.iii.iii, author: alexander_alex, category: Dogmatic and Polemical Works, title: Epistle to Alexandria and Mareotis, ru: 8Xgl_Краткая_речь_к_пресвитерам_и_диаконам_Александрийским_и_Мареотским_о_низложении_Ария_и_его_последователей }
+  - { src: anf06 x.iii.iv, author: alexander_alex, category: Dogmatic and Polemical Works, title: "Epistle to Aeglon, Bishop of Cynopolis, Against the Arians" }
+  - { src: anf06 x.iii.v, author: alexander_alex, category: Homilies, title: On the Soul and Body and the Passion of the Lord }
+  - { src: anf06 xi.iii, author: methodius, category: Moral and Ascetic Works, title: "The Banquet of the Ten Virgins; or Concerning Chastity", ru: pw9T_Пир_десяти_дев_или_о_девстве }
+  - { src: anf06 xi.iv, author: methodius, category: Dogmatic and Polemical Works, title: Concerning Free-Will, ru: jbxO_О_свободе_воли_против_Валентиниан }
+  - { src: anf06 xi.v, author: methodius, category: Dogmatic and Polemical Works, title: From the Discourse on the Resurrection, ru: Btag_О_Воскресении_против_Оригена }
+  - { src: anf06 xi.vi.ii, author: methodius, category: Dogmatic and Polemical Works, title: Extracts from the Work on Things Created, ru: LoqP_О_сотворенном }
+  - { src: anf06 xi.viii, author: methodius, category: Homilies, title: Oration Concerning Simeon and Anna }
+  - { src: anf06 xi.ix.i, author: methodius, category: Homilies, title: Oration on the Palms }
+  - { src: anf06 xi.x, author: methodius, category: Fragments, title: Three Fragments from the Homily on the Cross and Passion of Christ }
+  - { src: anf06 xi.xi, author: methodius, category: Fragments, title: Some Other Fragments of Methodius }
+
+  
+  # === ANF08 (апокрифы, псевдо-Климентины, лжедекреталии, сирийские документы и мелкие фрагменты II века не берём) ===
+  - { src: anf08 x.v.ii, author: melito, category: Writings, title: A Discourse in the Presence of Antoninus Caesar }
+  - { src: anf08 x.v, author: melito, category: Writings, title: Fragments, skip: [x.v.i, x.v.ii], ru: Мелитон_Сардийский-Фрагменты }
+  - { src: anf08 x.vi.ii, author: hegesippus, title: Fragments from His Five Books of Commentaries on the Acts of the Church }
+
+  # === ANF09 (апокрифы и Ориген не берём; послания Климента к Коринфянам уже есть) ===
+  - { src: anf09 iv.iii, author: tatian, title: The Diatessaron, parts: 250 }
+  - { src: anf09 xiii.iv, author: aristides, category: Apologies, title: The Apology of Aristides the Philosopher (from the Syriac), ru: Аристид-апология }
+  - { src: anf09 xiii.iii, author: aristides, category: Apologies, title: The Apology of Aristides (from the Greek) }
+
+  # === NPNF1-01..08: Августин («Исповедь», «О граде Божием», «О Троице», «Трактаты на Евангелие от Иоанна» уже есть) ===
+  - { src: npnf101 vii.1, author: augustine, category: Letters, title: Letters, parts: 300 }
+  - src: npnf102 v
+    author: augustine
+    category: Exegetical Works
+    title: On Christian Doctrine
+    parts: each
+    part_titles: [Preface, Book I, Book II, Book III, Book IV]
+    ru: [29CP_Христианская_наука_или_Основания_Герменевтики_и_Церковного_красноречия]
+  - { src: npnf103 iv.ii, author: augustine, category: Dogmatic Works, title: The Enchiridion, ru: h7gm_Энхиридион_Лаврентию_о_вере_надежде_и_любви }
+  - { src: npnf103 iv.iv, author: augustine, category: Dogmatic Works, title: A Treatise on Faith and the Creed }
+  - { src: npnf103 iv.v, author: augustine, category: Dogmatic Works, title: Concerning Faith of Things Not Seen }
+  - { src: npnf103 iv.vi, author: augustine, category: Dogmatic Works, title: On the Profit of Believing }
+  - { src: npnf103 iv.vii, author: augustine, category: Dogmatic Works, title: On the Creed }
+  - { src: npnf103 iv.iii, author: augustine, category: Pastoral Works, title: On the Catechising of the Uninstructed, ru: 2IVd_Об_обучении_оглашаемых }
+  - { src: npnf103 v.i, author: augustine, category: Moral Works, title: On Continence }
+  - { src: npnf103 v.ii, author: augustine, category: Moral Works, title: On the Good of Marriage }
+  - { src: npnf103 v.iii, author: augustine, category: Moral Works, title: Of Holy Virginity }
+  - { src: npnf103 v.iv, author: augustine, category: Moral Works, title: On the Good of Widowhood }
+  - { src: npnf103 v.v, author: augustine, category: Moral Works, title: On Lying }
+  - { src: npnf103 v.vi, author: augustine, category: Moral Works, title: Against Lying }
+  - { src: npnf103 v.vii, author: augustine, category: Moral Works, title: Of the Work of Monks }
+  - { src: npnf103 v.viii, author: augustine, category: Moral Works, title: On Patience }
+  - { src: npnf103 v.ix, author: augustine, category: Moral Works, title: On Care to Be Had for the Dead }
+  - { src: npnf104 iv.iv, author: augustine, category: Polemical Works, title: On the Morals of the Catholic Church }
+  - { src: npnf104 iv.v, author: augustine, category: Polemical Works, title: On the Morals of the Manichaeans }
+  - { src: npnf104 iv.vi, author: augustine, category: Polemical Works, title: "On Two Souls, Against the Manichaeans" }
+  - { src: npnf104 iv.vii, author: augustine, category: Polemical Works, title: Acts or Disputation Against Fortunatus the Manichaean }
+  - { src: npnf104 iv.viii, author: augustine, category: Polemical Works, title: "Against the Epistle of Manichaeus, Called Fundamental" }
+  - { src: npnf104 iv.ix, author: augustine, category: Polemical Works, title: Reply to Faustus the Manichaean, parts: 300 }
+  - { src: npnf104 iv.x, author: augustine, category: Polemical Works, title: "Concerning the Nature of Good, Against the Manichaeans", ru: lt2c_О_природе_блага_против_манихеев }
+  - { src: npnf104 v.iv, author: augustine, category: Polemical Works, title: "On Baptism, Against the Donatists", parts: 300 }
+  - { src: npnf104 v.v, author: augustine, category: Polemical Works, title: "Answer to the Letters of Petilian, the Donatist", parts: 300 }
+  - { src: npnf104 v.vi, author: augustine, category: Polemical Works, title: The Correction of the Donatists }
+  - { src: npnf105 x, author: augustine, category: Polemical Works, title: "On the Merits and Forgiveness of Sins, and on the Baptism of Infants", parts: 250 }
+  - { src: npnf105 xi, author: augustine, category: Polemical Works, title: On the Spirit and the Letter }
+  - { src: npnf105 xii, author: augustine, category: Polemical Works, title: On Nature and Grace }
+  - { src: npnf105 xiii, author: augustine, category: Polemical Works, title: "Concerning Man's Perfection in Righteousness" }
+  - { src: npnf105 xiv, author: augustine, category: Polemical Works, title: On the Proceedings of Pelagius }
+  - { src: npnf105 xv, author: augustine, category: Polemical Works, title: "On the Grace of Christ, and on Original Sin" }
+  - { src: npnf105 xvi, author: augustine, category: Polemical Works, title: On Marriage and Concupiscence, ru: NS5G_О_супружестве_и_похоти }
+  - { src: npnf105 xvii, author: augustine, category: Polemical Works, title: On the Soul and its Origin, parts: 250 }
+  - { src: npnf105 xviii, author: augustine, category: Polemical Works, title: Against Two Letters of the Pelagians, parts: 250 }
+  - { src: npnf105 xix, author: augustine, category: Polemical Works, title: On Grace and Free Will, ru: jW3L_О_благодати_и_свободном_решении }
+  - { src: npnf105 xx, author: augustine, category: Polemical Works, title: On Rebuke and Grace, ru: j74N_Об_упреке_и_благодатиDe_correptione_et_Gratiaк_Валентину_и_с_ним_монахам_адруметским_в_одной_книге }
+  - { src: npnf105 xxi.ii, author: augustine, category: Polemical Works, title: On the Predestination of the Saints, ru: s0bL_О_предопределении_святых }
+  - { src: npnf105 xxi.iii, author: augustine, category: Polemical Works, title: On the Gift of Perseverance, ru: tgcu_О_даре_пребыванияDe_dono_perseverantiaeвторая_книга_к_Просперу_и_Иларию }
+  - { src: npnf106 v, author: augustine, category: Exegetical Works, title: "Our Lord's Sermon on the Mount", parts: each, part_titles: [Book I, Book II] }
+  - { src: npnf106 vi, author: augustine, category: Exegetical Works, title: The Harmony of the Gospels, parts: 300, ru: [c74k_О_согласии_евангелистов_1] }
+  - { src: npnf106 vii, author: augustine, category: Pastoral Works, title: Sermons on Selected Lessons of the New Testament, parts: 300 }
+  - { src: npnf107 iv, author: augustine, category: Exegetical Works, title: Ten Homilies on the First Epistle of John, ru: 2eAt_Толкование_на_послание_Иоанна_к_Парфянам }
+  - { src: npnf107 v, author: augustine, category: Philosophical and Literary Works, title: Soliloquies, ru: gYDZ_Монологи }
+  - { src: npnf108 ii, author: augustine, category: Exegetical Works, title: Expositions on the Book of Psalms, parts: 300 }
+
+  # === NPNF1-09..14: Иоанн Златоуст («Огласительные слова», письма к Олимпиаде, беседы на Иоанна уже есть) ===
+  - { src: npnf109 iv, author: chrysostom, category: Pastoral and Catechetical Works, title: Treatise Concerning the Christian Priesthood, ru: wpDj_Шесть_слов_о_священстве }
+  - { src: npnf109 v, author: chrysostom, category: Moral and Ascetic Works, title: An Exhortation to Theodore After His Fall, ru: tzcr_К_Феодору_падшему_увещания }
+  - { src: npnf109 vi, author: chrysostom, category: Moral and Ascetic Works, title: Letter to a Young Widow, ru: wW5s_К_молодой_вдове }
+  - { src: npnf109 vii.iii, author: chrysostom, category: Encomia, title: Eulogy of St. Ignatius, ru: 0ClH_Похвала_святому_священномученику_Игнатию_Богоносцу }
+  - { src: npnf109 vii.iv, author: chrysostom, category: Encomia, title: On the Holy Martyr St. Babylas }
+  - { src: npnf109 viii, author: chrysostom, category: Moral and Ascetic Works, title: Homily Concerning Lowliness of Mind }
+  - { src: npnf109 x, author: chrysostom, category: Moral and Ascetic Works, title: Three Homilies Concerning the Power of Demons, ru: GqXJ_Беседы_о_бессилии_дьявола }
+  - { src: npnf109 xi, author: chrysostom, category: Dogmatic Works, title: "Homily on 'Father, If It Be Possible, Let This Cup Pass from Me'", ru: HUo3_Беседа_на_слова_Отче_Мой_если_возможно_да_минует_Меня_чаша_сия_впрочем_не_как_Я_хочу_но_как_Ты_Мф_2639 }
+  - { src: npnf109 xii, author: chrysostom, category: Dogmatic Works, title: Homily on the Paralytic Let Down Through the Roof }
+  - { src: npnf109 xiii, author: chrysostom, category: Moral and Ascetic Works, title: Homily to Those Who Had Not Attended the Assembly }
+  - { src: npnf109 xiv, author: chrysostom, category: Moral and Ascetic Works, title: "Homily Against Publishing the Errors of the Brethren, and Uttering Imprecations upon Enemies", ru: Fj05_Беседа_о_том_что_не_должно_разглашать_грехов_братий_и_молиться_о_вреде_врагам }
+  - { src: npnf109 xv.iii, author: chrysostom, category: Homilies on Various Occasions, title: First Homily on Eutropius, ru: am3D_Беседа_на_Евтропия_евнуха_патриция_и_консула }
+  - { src: npnf109 xv.iv, author: chrysostom, category: Homilies on Various Occasions, title: Second Homily on Eutropius, ru: 6lR8_Беседа_когда_Евтропий_найденный_вне_церкви_был_схвачен_и_о_садах_и_писаниях_и_на_слова_Стала_царицаодеснуюТебя_Пс4410 }
+  - { src: npnf109 xvi, author: chrysostom, category: Dogmatic Works, title: A Treatise to Prove that No One Can Harm the Man Who Does Not Injure Himself, ru: VpgQ_Слово_о_том_что_кто_сам_себе_не_вредит_тому_никто_вредить_не_может }
+  - { src: npnf109 xviii, author: chrysostom, category: Letters, title: Correspondence of St. Chrysostom with the Bishop of Rome }
+  - { src: npnf109 xix, author: chrysostom, category: Homilies on Various Occasions, title: The Homilies on the Statues to the People of Antioch, parts: 300, ru: [1Eh4_Беседы_о_статуях_1] }
+  - { src: npnf110 iii, author: chrysostom, category: New Testament Commentaries, title: Homilies on the Gospel of Saint Matthew, parts: 300, ru: [hLPm_Беседы_на_Евангелие_от_Матфея_1] }
+  - { src: npnf111 vi, author: chrysostom, category: New Testament Commentaries, title: Homilies on the Acts of the Apostles, parts: 300, ru: [iIAL_Беседы_на_Деяния_Апостольские_1] }
+  - { src: npnf111 vii, author: chrysostom, category: New Testament Commentaries, title: Homilies on the Epistle to the Romans, parts: 300, ru: [bRp3_Беседы_на_Послание_к_Римлянам_1] }
+  - { src: npnf112 iv, author: chrysostom, category: New Testament Commentaries, title: Homilies on First Corinthians, parts: 300, ru: [zieK_Беседы_на_1е_послание_к_Коринфянам_1] }
+  - { src: npnf112 v, author: chrysostom, category: New Testament Commentaries, title: Homilies on Second Corinthians, parts: 300, ru: [RqhH_Толкование_на_2е_послание_к_Коринфянам_1] }
+  - { src: npnf113 iii.iii, author: chrysostom, category: New Testament Commentaries, title: Commentary on Galatians, ru: nbi7_Толкование_на_послание_к_Галатам }
+  - { src: npnf113 iii.iv, author: chrysostom, category: New Testament Commentaries, title: Homilies on Ephesians, parts: 300, ru: [vW84_Беседы_на_послание_к_Ефесянам_1] }
+  - { src: npnf113 iv.iii, author: chrysostom, category: New Testament Commentaries, title: Homilies on Philippians, parts: 300, ru: [weSI_Беседы_на_послание_к_Филиппийцам] }
+  - { src: npnf113 iv.iv, author: chrysostom, category: New Testament Commentaries, title: Homilies on Colossians, parts: 300, ru: [LkdZ_Толкование_на_послание_к_Колоссянам] }
+  - { src: npnf113 iv.v, author: chrysostom, category: New Testament Commentaries, title: Homilies on First Thessalonians, ru: anSH_Толкование_на_1е_послание_к_Фессалоникийцам }
+  - { src: npnf113 iv.vi, author: chrysostom, category: New Testament Commentaries, title: Homilies on Second Thessalonians, ru: ws14_Толкование_на_второе_послание_к_Фессалоникийцам }
+  - { src: npnf113 v.iii, author: chrysostom, category: New Testament Commentaries, title: Homilies on First Timothy, parts: 300, ru: [Vq7D_Толкование_на_1е_послание_к_Тимофею] }
+  - { src: npnf113 v.iv, author: chrysostom, category: New Testament Commentaries, title: Homilies on Second Timothy, ru: F9RE_Толкование_на_2е_послание_к_Тимофею }
+  - { src: npnf113 v.v, author: chrysostom, category: New Testament Commentaries, title: Homilies on Titus, ru: jedG_Толкование_на_послание_к_Титу }
+  - { src: npnf113 v.vi, author: chrysostom, category: New Testament Commentaries, title: Homilies on Philemon, ru: b3GF_Толкование_на_послание_к_Филимону }
+  - { src: npnf114 v, author: chrysostom, category: New Testament Commentaries, title: Homilies on the Epistle to the Hebrews, parts: 300, ru: [yHrs_Толкование_на_послание_к_Евреям_1] }
+
+  # === NPNF2-01: Евсевий (Речь Константина не берём) ===
+  - src: npnf201 iii
+    author: eusebius
+    category: History
+    title: The Church History
+    parts: each
+    ru: [Церковная_история_книга_1_—_Евсевий_Кесарийский, Церковная_история_книга_2_—_Евсевий_Кесарийский, Церковная_история_книга_3_—_Евсевий_Кесарийский, Церковная_история_книга_4_—_Евсевий_Кесарийский, Церковная_история_книга_5_—_Евсевий_Кесарийский, Церковная_история_книга_6_—_Евсевий_Кесарийский, Церковная_история_книга_7_—_Евсевий_Кесарийский, Церковная_история_книга_8_—_Евсевий_Кесарийский, null, Церковная_история_книга_9_—_Евсевий_Кесарийский, Церковная_история_книга_10_—_Евсевий_Кесарийский]
+  - { src: npnf201 iv.vi, author: eusebius, category: History, title: The Life of Constantine, parts: 250 }
+  - { src: npnf201 iv.viii, author: eusebius, category: History, title: The Oration of Eusebius in Praise of Constantine }
+
+  # === NPNF2-03: Феодорит (Сократа, Созомена, Руфина, Геннадия не берём; «О знаменитых мужах» Иеронима уже есть) ===
+  - { src: npnf203 iv.viii, author: theodoret, category: History, title: The Ecclesiastical History, parts: each, ru: [tSRv_Церковная_история] }
+  - { src: npnf203 iv.ix, author: theodoret, category: Dogmatic and Polemical Works, title: "Dialogues: Eranistes", parts: 250, ru: [A1EI_ЕРАНИСТ] }
+  - { src: npnf203 iv.vii, author: theodoret, category: Dogmatic and Polemical Works, title: Counter-statements of Theodoret to the Anathemas of Cyril }
+  - { src: npnf203 iv.x, author: theodoret, category: Letters, title: Letters, parts: 300, ru: [OpRv_Письма_1, dQOz_Письма_2] }
+
+  # === NPNF2-04: Афанасий («О воплощении», «Житие Антония», «Изложение веры», «На Лк. 10:22» уже есть) ===
+  - { src: npnf204 vi.ii, author: athanasius, category: Apologetic Works, title: Against the Heathen (Contra Gentes), ru: 8vHZ_Слово_на_язычников }
+  - src: npnf204 xxi.ii
+    author: athanasius
+    category: Dogmatic and Polemical Works
+    title: Four Discourses Against the Arians
+    parts: each
+    ru: [fPGX_Послание_на_ариан_слово_1е, ZBHs_Послание_на_арианСлово_2е, PYBT_Послание_на_ариан_слово_3е, E2KX_Послание_на_ариан_слово_4е]
+  - { src: npnf204 xiv.ii, author: athanasius, category: Dogmatic and Polemical Works, title: Defence of the Nicene Definition (De Decretis) }
+  - { src: npnf204 xv.ii, author: athanasius, category: Dogmatic and Polemical Works, title: Defence of Dionysius (De Sententia Dionysii) }
+  - { src: npnf204 xxii.ii, author: athanasius, category: Dogmatic and Polemical Works, title: On the Councils of Ariminum and Seleucia (De Synodis) }
+  - { src: npnf204 xiii.ii, author: athanasius, category: Historical and Polemical Works, title: Defence Against the Arians (Apologia Contra Arianos), ru: tm9D_Защитительное_слово_против_ариан }
+  - { src: npnf204 xviii.ii, author: athanasius, category: Historical and Polemical Works, title: Apology to the Emperor Constantius, ru: 94wo_Защитительное_слово_Афанасия_архиепископа_александрийского_перед_царем_Констанцием }
+  - { src: npnf204 xix.ii, author: athanasius, category: Historical and Polemical Works, title: Defence of His Flight (Apologia de Fuga), ru: RyeG_Защитительное_слово_в_котором_Свт_Афанасий_оправдывает_бегство_свое_во_время_гонения_произведенного_дуком_Сирианом }
+  - { src: npnf204 xx.ii, author: athanasius, category: Historical and Polemical Works, title: Arian History (Historia Arianorum), ru: 1wPr_История_ариан }
+  - { src: npnf204 viii.ii, author: athanasius, category: Epistles, title: Deposition of Arius }
+  - { src: npnf204 xii.ii, author: athanasius, category: Epistles, title: Encyclical Letter (Epistola Encyclica) }
+  - { src: npnf204 xvii.ii, author: athanasius, category: Epistles, title: Circular to the Bishops of Egypt and Libya }
+  - { src: npnf204 xxiii.ii, author: athanasius, category: Epistles, title: Synodal Letter to the People of Antioch (Tomus ad Antiochenos) }
+  - { src: npnf204 xxiv.ii, author: athanasius, category: Epistles, title: Synodal Letter to the Bishops of Africa }
+  - { src: npnf204 xxv.iii, author: athanasius, category: Easter epistles, title: The Festal Letters, parts: 300 }
+
+  # === NPNF2-05: Григорий Нисский («Об устроении человека», «О душе и воскресении», «На день Светов», письма уже есть) ===
+  - { src: npnf205 viii.i, author: gregory_nyssa, category: Dogmatic and Polemical Works, title: Against Eunomius, parts: 300, ru: [Mbw2_Опровержение_Евномия_1] }
+  - { src: npnf205 viii.ii, author: gregory_nyssa, category: Dogmatic and Polemical Works, title: "Answer to Eunomius' Second Book", parts: 250 }
+  - { src: npnf205 viii.iii, author: gregory_nyssa, category: Dogmatic and Polemical Works, title: On the Holy Spirit, ru: rgvl_Слово_о_Святом_Духе_против_македонян_духоборцев }
+  - { src: npnf205 viii.iv, author: gregory_nyssa, category: Dogmatic and Polemical Works, title: "On the Holy Trinity, and of the Godhead of the Holy Spirit" }
+  - { src: npnf205 viii.v, author: gregory_nyssa, category: Dogmatic and Polemical Works, title: "On 'Not Three Gods'", ru: LUOE_11_К_Авлавию_о_том_что_не_три_Бога }
+  - { src: npnf205 viii.vi, author: gregory_nyssa, category: Dogmatic and Polemical Works, title: On the Faith, ru: CkAF_12_К_Симпликию_о_вере }
+  - { src: npnf205 xi.ii, author: gregory_nyssa, category: Dogmatic and Polemical Works, title: The Great Catechism, ru: L4vk_Большое_огласительное_слово }
+  - { src: npnf205 ix.ii, author: gregory_nyssa, category: Moral and Ascetic Works, title: On Virginity, ru: WfDV_О_девстве }
+  - { src: npnf205 ix.iii, author: gregory_nyssa, category: Moral and Ascetic Works, title: "On Infants' Early Deaths", ru: MlI2_О_младенцах_преждевременно_похищаемых_смертью_К_Иерию }
+  - { src: npnf205 ix.iv, author: gregory_nyssa, category: Moral and Ascetic Works, title: On Pilgrimages }
+  - { src: npnf205 xii.ii, author: gregory_nyssa, category: Sermons, title: Funeral Oration on Meletius, ru: qJW9_Надгробное_слово_Мелетию_Великому_епископу_Антиохийскому }
+
+  # === NPNF2-03, 06: Иероним («О знаменитых мужах» уже есть) ===
+  - { src: npnf206 v, author: jerome, category: Letters, title: The Letters of St. Jerome, parts: 300, ru: [uA9f_Письма_143_1] }
+  - { src: npnf206 vi.i, author: jerome, category: Hagiographical Works, title: The Life of Paulus the First Hermit, ru: g76K_Жизнь_Павла_Пустынника }
+  - { src: npnf206 vi.ii, author: jerome, category: Hagiographical Works, title: The Life of S. Hilarion, ru: 9ofy_Жизнь_святого_Илариона }
+  - { src: npnf206 vi.iii, author: jerome, category: Hagiographical Works, title: "The Life of Malchus, the Captive Monk", ru: K3RD_Жизнь_пленного_монаха_Малха }
+  - { src: npnf206 vi.iv, author: jerome, category: Dogmatic and Polemical Works, title: The Dialogue Against the Luciferians, ru: H5qb_Разговор_против_люцифериан }
+  - { src: npnf206 vi.v, author: jerome, category: Dogmatic and Polemical Works, title: The Perpetual Virginity of Blessed Mary, ru: sWy9_О_Приснодевстве_блаженной_Марии }
+  - { src: npnf206 vi.vi, author: jerome, category: Dogmatic and Polemical Works, title: Against Jovinianus, parts: 250, ru: [AQN4_Две_книги_против_Иовиниана] }
+  - { src: npnf206 vi.vii, author: jerome, category: Dogmatic and Polemical Works, title: Against Vigilantius, ru: rKmV_Книга_против_Вигилянция }
+  - { src: npnf206 vi.viii, author: jerome, category: Dogmatic and Polemical Works, title: To Pammachius Against John of Jerusalem, ru: kRca_Книга_против_Иоанна_Иерусалимского_к_Паммахию }
+  - { src: npnf206 vi.ix, author: jerome, category: Dogmatic and Polemical Works, title: Against the Pelagians, ru: 2PqO_Разговор_против_пелагиан }
+  - { src: npnf203 vi.xii, author: jerome, category: Dogmatic and Polemical Works, title: "Apology for Himself Against the Books of Rufinus", parts: 250, ru: [l6Sa_Апология_против_книг_Руфина_посланная_к_Паммахию_и_Марцелле] }
+  - { src: npnf206 vii.ii, author: jerome, category: Exegetical Works, title: "Prefaces to Jerome's Early Works" }
+  - { src: npnf206 vii.iii, author: jerome, category: Exegetical Works, title: Prefaces to the Books of the Vulgate Version of the Old Testament, ru: GoYP_Прологи_к_книгам_Ветхого_Завета }
+  - { src: npnf206 vii.iv, author: jerome, category: Exegetical Works, title: Prefaces to the Commentaries }
+
+  # === NPNF2-07: Кирилл Иерусалимский, Григорий Богослов ===
+  - { src: npnf207 ii, author: cyril_jer, category: Lectures and Epistles, title: The Catechetical Lectures, parts: 300, ru: [5jNp_Слова_огласительные_и_тайноводственные_1] }
+  - { src: npnf207 iii, author: gregory_naz, category: Orations, title: Select Orations, parts: 300, skip: [iii.xii], ru: [BaX0_Слова_изд_2007_г_1] }
+  - { src: npnf207 iv, author: gregory_naz, category: Letters, title: Select Letters, ru: 0GSk_Письма }
+
+  # === NPNF2-08: Василий Великий - всё уже есть ===
+  # === NPNF2-09: Иларий Пиктавийский («Точное изложение» Дамаскина уже есть) ===
+  - { src: npnf209 ii.iv, author: hilary, category: Dogmatic Theology, title: De Synodis or On the Councils }
+  - { src: npnf209 ii.v.ii, author: hilary, category: Dogmatic Theology, title: On the Trinity, parts: each }
+  - { src: npnf209 ii.vi, author: hilary, category: Old Testament, title: "Homilies on Psalms I, LIII, CXXX" }
+
+  # === NPNF2-10: Амвросий (по отдельным трудам; прежние «Selected Works and Letters #1-5» остаются) ===
+  - { src: npnf210 iv.i, author: ambrose, category: Moral and Ascetic Works, title: On the Duties of the Clergy, parts: each, ru: [5xQB_Об_обязанностях_священнослужителей_1] }
+  - { src: npnf210 iv.ii, author: ambrose, category: Dogmatic Theology, title: On the Holy Spirit, parts: each, ru: [ER4J_О_Святом_Духе] }
+  - { src: npnf210 iv.iii, author: ambrose, category: Dogmatic Theology, title: On the Decease of His Brother Satyrus, ru: VaoB_О_смерти_брата_две_книги }
+  - { src: npnf210 iv.iv, author: ambrose, category: Dogmatic Theology, title: Exposition of the Christian Faith, parts: each, part_titles: [Preface, Book I, Book II, Book III, Book IV, Book V], ru: [FN2q_О_вере] }
+  - { src: npnf210 iv.v, author: ambrose, category: Works, title: On the Mysteries, ru: Амвросий_Медиоланский-О_тайнах }
+  - { src: npnf210 iv.vi, author: ambrose, category: Dogmatic Theology, title: Concerning Repentance, ru: hRFw_О_покаянии_две_книги }
+  - { src: npnf210 iv.vii, author: ambrose, category: Moral and Ascetic Works, title: Concerning Virgins, ru: FIyd_О_девственницах }
+  - { src: npnf210 iv.viii, author: ambrose, category: Moral and Ascetic Works, title: Concerning Widows, ru: gB8v_О_вдовицах }
+  - { src: npnf210 v, author: ambrose, category: Letters, title: Selections from the Letters }
+
+  # === NPNF2-11: Кассиан (Сульпиция Севера не берём; Commonitory Викентия и Conferences уже есть) ===
+  - { src: npnf211 iv.iii, author: cassian, category: Moral and Ascetic Works, title: The Institutes of the Coenobia, parts: 300, ru: [W2qj_О_постановлениях_монастырских] }
+  - { src: npnf211 iv.vii, author: cassian, category: Moral and Ascetic Works, title: "On the Incarnation of the Lord, Against Nestorius", parts: 250, ru: [xhIX_О_Воплощении_Господа_против_Нестория_Семь_книг] }
+
+  # === NPNF2-12, 13: Лев Великий, Григорий Двоеслов, Афраат (гимны и беседы Ефрема уже есть) ===
+  - { src: npnf212 ii.iv, author: leo, category: Letters, title: Letters, parts: 300 }
+  - { src: npnf212 ii.v, author: leo, category: Sermons, title: Sermons, parts: 300 }
+  - { src: npnf212 iii.iv, author: gregory_great, category: Pastoral Works, title: The Book of Pastoral Rule, parts: each, part_titles: [Preface, Part I, Part II, Part III, Part IV] }
+  - { src: npnf212 iii.v, author: gregory_great, category: Letters, title: "Register of the Epistles, Books I-VIII", parts: 300 }
+  - { src: npnf213 ii, author: gregory_great, category: Letters, title: "Register of the Epistles, Books IX-XIV", parts: 300 }
+  - { src: npnf213 iii.ix, author: aphrahat, category: Demonstrations, title: Select Demonstrations, parts: 300 }
+
+  # === NPNF2-14: Вселенские соборы (исторические введения, экскурсы и толкования к правилам не берём) ===
+  - { src: npnf214 vii, author: councils, category: Acts (Minutes), title: "The First Ecumenical Council: The First Council of Nicaea (325)", ru: IxNW_I_Вселенский_Собор }
+  - { src: npnf214 ix, author: councils, category: Acts (Minutes), title: "The Second Ecumenical Council: The First Council of Constantinople (381)", ru: lNjD_II_Вселенский_Собор }
+  - { src: npnf214 x, author: councils, category: Acts (Minutes), title: "The Third Ecumenical Council: The Council of Ephesus (431)", ru: III_Вселенский_Собор }
+  - { src: npnf214 xi, author: councils, category: Acts (Minutes), title: "The Fourth Ecumenical Council: The Council of Chalcedon (451)", ru: Usqu_IV_Вселенский_Собор }
+  - { src: npnf214 xii, author: councils, category: Acts (Minutes), title: "The Fifth Ecumenical Council: The Second Council of Constantinople (553)", ru: xpJh_V_Вселенский_Собор }
+  - { src: npnf214 xiii, author: councils, category: Acts (Minutes), title: "The Sixth Ecumenical Council: The Third Council of Constantinople (680)", ru: bthw_VI_Вселенский_Собор }
+  - { src: npnf214 xvi, author: councils, category: Acts (Minutes), title: "The Seventh Ecumenical Council: The Second Council of Nicaea (787)", ru: VII_Вселенский_Собор }
+  - { src: npnf214 xvii.iv, author: councils, category: Canons, title: The Canons of the Holy Apostles, ru: Правила_святых_апостолов }
+  - { src: npnf214 viii, author: councils, category: Canons, title: "The Canons of the Councils of Ancyra, Neocaesarea, Gangra, Antioch and Laodicea", parts: each }
+  - { src: npnf214 xiv.iii, author: councils, category: Canons, title: The Canons of the Council in Trullo (Quinisext) }
+  - { src: npnf214 xv, author: councils, category: Canons, title: "The Canons of the Synods of Sardica, Carthage and Constantinople", parts: each }
+  - { src: npnf214 xvii, author: councils, category: Canons, title: The Canons of the Holy Fathers, skip: [xvii.iii, xvii.iv] }
+
