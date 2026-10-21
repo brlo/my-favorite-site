@@ -26,13 +26,7 @@ case "$RUN_MOD" in
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     bundle exec rake assets:clean
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
-    # JS
-    find public/assets/**/* -type f \
-        -name "*.js" ! -name "*.min.*" \
-        -exec echo {} \; \
-        -exec ./bin/bib_minify_js.rb -i {} -o {}.min \; \
-        -exec rm {} \; \
-        -exec mv {}.min {} \;
+    # JS не минифицируем (гем terser не подключён): сжатием занимается nginx (gzip)
     # CSS
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     find public/assets/**/* -type f \
