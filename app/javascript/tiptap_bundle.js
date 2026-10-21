@@ -2,7 +2,7 @@
 // Подготовка:
 // npm install @tiptap/core @tiptap/starter-kit @tiptap/extension-typography @tiptap/extension-underline @tiptap/extension-link @tiptap/extension-highlight @tiptap/extension-image @tiptap/extension-table @tiptap/extension-ordered-list
 // Сборка:
-// npx esbuild app/javascript/tiptap_bundle.js --bundle --outfile=app/javascript/tiptap/tiptap_bundle.js --format=esm
+// npx esbuild app/javascript/tiptap_bundle.js --bundle --outfile=app/javascript/tiptap/tiptap_bundle.js --format=esm --minify
 // Итоговый бандл здесь:
 // app/javascript/tiptap/tiptap_bundle.js
 
