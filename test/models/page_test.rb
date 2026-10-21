@@ -283,5 +283,16 @@ class PageTest < ActiveSupport::TestCase
   test "audio_link is present only when the mp3 exists" do
     page = create_page(audio: 'tests/no_such_file')
     assert_nil page.audio_link('ru')
+    assert_nil create_page(audio: '').audio_link('ru')
+  end
+
+  test "audio_link returns the path of the mp3 file with its extension" do
+    dir = Rails.root.join('public/s/audio/pages/ru/tests_audio_link')
+    FileUtils.mkdir_p(dir)
+    File.write(dir.join('chapter.mp3'), 'x')
+    page = create_page(audio: 'tests_audio_link/chapter')
+    assert_equal '/s/audio/pages/ru/tests_audio_link/chapter.mp3', page.audio_link('ru')
+  ensure
+    FileUtils.rm_rf(dir)
   end
 end

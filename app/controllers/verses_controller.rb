@@ -160,6 +160,9 @@ class VersesController < ApplicationController
     @bible_path = chapter.cache_key
     @is_psalm = chapter.is_psalm?
     @audio_file = chapter.audio_file
+    @audio_title = chapter.audio_title
+    @audio_next_file = chapter.audio_file(chapter.chapter + 1)
+    @audio_next_title = chapter.audio_title(chapter.chapter + 1)
     @verses = chapter.verses
     @verses_gr = chapter.verses_gr
     @comments = chapter.comments

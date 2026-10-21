@@ -28,8 +28,6 @@
 
     <%= render(partial: 'pages/chapters') %>
 
-    <%= render(partial: 'pages/audio_player') %>
-
     <% if @page.is_page_verses? && @verses.present? %>
       <%= render(partial: 'pages/text') %>
     <% else %>

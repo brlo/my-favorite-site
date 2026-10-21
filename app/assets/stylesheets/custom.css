@@ -165,39 +165,195 @@ header .container, footer .container {
 .night-mode #text-bar .bar-el.btn:active { background-color: #5b4d41aa; }
 
 /* ==================================================== */
-/* АУДИО-ПЛЕЕР */
+/* АУДИО-ПЛЕЕР: панель внизу экрана (lib/audio_engine.js) */
 /* ==================================================== */
 
 #audio-player {
-  position: sticky;
-  top: 0;
-  margin-bottom: 10px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 998;
+  padding: 8px 12px calc(8px + env(safe-area-inset-bottom));
+  background: #f6f4e4;
+  color: #4a4535;
+  border-top: 1px solid #aca08f;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, .12);
+}
+#audio-player[hidden] { display: none; }
+
+#audio-player .ap-inner {
+  max-width: 760px;
+  margin: 0 auto;
 }
 
-#audio-player audio {
-  width: 100%;
+#audio-player .ap-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+#audio-player .ap-progress { margin-top: 2px; }
+
+#audio-player .ap-controls {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  flex: none;
 }
 
-#audio-player a.copy {
-  font-size: 8px;
-  display: block;
+#audio-player button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+#audio-player .ap-btn { min-width: 40px; height: 40px; border-radius: 50%; }
+#audio-player .ap-btn:active { background: rgba(128, 118, 90, .22); }
+#audio-player .ap-btn svg { width: 24px; height: 24px; }
+
+/* перемотка на 15 секунд: стрелка с цифрой */
+#audio-player .ap-skip { position: relative; }
+#audio-player .ap-skip svg { width: 30px; height: 30px; }
+#audio-player .ap-skip span {
   position: absolute;
-  bottom: 7px;
-  right: 2px;
-  color:#b7b5a6;
+  font-size: 9px;
+  font-weight: bold;
+  line-height: 1;
+  top: 15px;
 }
 
-#audio-player audio::-webkit-media-controls-enclosure {
-  border-radius: 0;
-  background-color: #f6f4e4;
+#audio-player .ap-play {
+  width: 46px;
+  height: 46px;
+  background: #8a7f5f;
+  color: #fff;
+}
+#audio-player .ap-play:active { background: #6f6649; }
+#audio-player .ap-play svg { width: 28px; height: 28px; }
+#audio-player .ap-icon-pause,
+#audio-player .ap-icon-wait { display: none; }
+#audio-player.is-playing .ap-icon-play { display: none; }
+#audio-player.is-playing .ap-icon-pause { display: block; }
+#audio-player.is-waiting .ap-icon-pause { display: none; }
+#audio-player.is-waiting .ap-icon-wait { display: block; animation: ap-spin 1s linear infinite; }
+@keyframes ap-spin { to { transform: rotate(360deg); } }
+
+#audio-player .ap-info {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+#audio-player .ap-title {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.2;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+#audio-player.has-error .ap-title { color: #c0392b; }
+#audio-player .ap-credit {
+  font-size: 10px;
+  line-height: 1.2;
+  color: #8f8b78;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.night-mode #audio-player a.copy {
-  color:#1e1e1e;
+#audio-player .ap-rate {
+  font-size: 14px;
+  font-weight: bold;
+  min-width: 46px;
+  border-radius: 8px;
 }
-.night-mode #audio-player audio::-webkit-media-controls-enclosure {
-  background-color: #444;
+
+#audio-player .ap-time {
+  flex: none;
+  min-width: 38px;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  color: #8f8b78;
 }
+#audio-player .ap-time:last-child { text-align: right; }
+
+/* полоска перемотки: большая зона нажатия, тонкая линия */
+#audio-player .ap-seek {
+  flex: 1;
+  min-width: 0;
+  height: 28px;
+  margin: 0;
+  background: transparent;
+  -webkit-appearance: none;
+  appearance: none;
+  cursor: pointer;
+  touch-action: pan-y;
+  --ap-progress: 0%;
+}
+#audio-player .ap-seek::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #8a7f5f var(--ap-progress), #d6d1b7 var(--ap-progress));
+}
+#audio-player .ap-seek::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #8a7f5f var(--ap-progress), #d6d1b7 var(--ap-progress));
+}
+#audio-player .ap-seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 16px;
+  height: 16px;
+  margin-top: -6px;
+  border: 0;
+  border-radius: 50%;
+  background: #8a7f5f;
+}
+#audio-player .ap-seek::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  border: 0;
+  border-radius: 50%;
+  background: #8a7f5f;
+}
+
+/* пока играет, освобождаем место под панелью и поднимаем плавающие кнопки */
+html.has-audio-player body { padding-bottom: 104px; }
+html.has-audio-player #scroll-to-top-btn { bottom: 124px; }
+html.has-audio-player #call-minimap-btn { bottom: 184px; }
+
+/* на очень узких экранах прячем подпись-ссылку, остаётся название */
+@media (max-width: 360px) {
+  #audio-player .ap-credit { display: none; }
+}
+
+.night-mode #audio-player {
+  background: #2f3541;
+  color: #abb2bf;
+  border-top-color: #555;
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, .4);
+}
+.night-mode #audio-player .ap-btn:active { background: rgba(171, 178, 191, .2); }
+.night-mode #audio-player .ap-play { background: #61afef; color: #1e222a; }
+.night-mode #audio-player .ap-time,
+.night-mode #audio-player .ap-credit { color: #7f8794; }
+.night-mode #audio-player.has-error .ap-title { color: #e06c75; }
+.night-mode #audio-player .ap-seek::-webkit-slider-runnable-track {
+  background: linear-gradient(to right, #61afef var(--ap-progress), #4b5263 var(--ap-progress));
+}
+.night-mode #audio-player .ap-seek::-moz-range-track {
+  background: linear-gradient(to right, #61afef var(--ap-progress), #4b5263 var(--ap-progress));
+}
+.night-mode #audio-player .ap-seek::-webkit-slider-thumb { background: #61afef; }
+.night-mode #audio-player .ap-seek::-moz-range-thumb { background: #61afef; }
 
 /* ЯЗЫК КОНТЕНТА: выбор языка на главной */
 .lang-select {

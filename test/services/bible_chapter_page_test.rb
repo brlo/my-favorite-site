@@ -20,6 +20,26 @@ class BibleChapterPageTest < ActiveSupport::TestCase
     assert_equal %w[первый второй], chapter_page.verses.map(&:text)
   end
 
+  test "audio_file knows only existing chapters and files" do
+    dir = Rails.root.join('public/s/audio/bib/ru/gen')
+    existed = dir.exist?
+    FileUtils.mkdir_p(dir)
+    File.write(dir.join('gen7.mp3'), 'x')
+    page = chapter_page(chapter: 7)
+    assert_equal '/s/audio/bib/ru/gen/gen7.mp3', page.audio_file
+    assert_equal '/s/audio/bib/ru/gen/gen7.mp3', chapter_page.audio_file(7)
+    assert_nil page.audio_file(0)
+    assert_nil page.audio_file(51) # в Бытии 50 глав
+  ensure
+    File.delete(dir.join('gen7.mp3')) if File.exist?(dir.join('gen7.mp3'))
+    FileUtils.rm_rf(dir) unless existed
+  end
+
+  test "audio_title names the book and the chapter or the psalm" do
+    assert_equal "#{I18n.t('books.mid.gen')}, #{I18n.t('chapter')} 3", chapter_page(chapter: 1).audio_title(3)
+    assert_equal "#{I18n.t('books.mid.ps')}, #{I18n.t('psalm')} 22", chapter_page(book_code: 'ps', chapter: 22).audio_title
+  end
+
   test "greek verses are loaded only for interlinear" do
     create_verse(tr_code: 'gr-ru', lang: 'gr', text: 'Ἐν ἀρχῇ')
     assert_nil chapter_page.verses_gr

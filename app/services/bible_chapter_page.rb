@@ -38,9 +38,17 @@ class BibleChapterPage
     "#{content_lang}--#{book_code}--#{chapter}"
   end
 
-  def audio_file
-    file = "/s/audio/bib/#{content_lang}/#{book_code}/#{book_code}#{chapter}.mp3"
+  # Аудио главы (по умолчанию текущей) или nil, если такой главы или файла нет
+  def audio_file(chapter_number = chapter)
+    return unless chapter_number.between?(1, ::BOOKS[book_code][:chapters])
+
+    file = "/s/audio/bib/#{content_lang}/#{book_code}/#{book_code}#{chapter_number}.mp3"
     file if ::File.exist?("#{Rails.root}/public#{file}")
+  end
+
+  # Название для плеера: "Бытие, глава 1"
+  def audio_title(chapter_number = chapter)
+    "#{::I18n.t("books.mid.#{book_code}")}, #{is_psalm? ? ::I18n.t('psalm') : ::I18n.t('chapter')} #{chapter_number}"
   end
 
   def verses

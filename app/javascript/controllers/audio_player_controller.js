@@ -1,98 +1,85 @@
 import { Controller } from "@hotwired/stimulus"
-import Cookies from "lib/cookies"
+import engine from "lib/audio_engine"
 
+// Панель плеера внизу экрана. Звуком управляет lib/audio_engine.js, здесь только интерфейс.
 export default class extends Controller {
-  static values = {
-    audioLink: String,
-  }
+  static targets = ["play", "title", "credit", "rate", "current", "duration", "seek"]
+  static values = { labelPlay: String, labelPause: String }
 
   connect() {
-    this.audioContainer = document.getElementById('audio-player');
-    this.isShown = false;
-    this.isPlaing = false;
-
-    if (Cookies.get('autoplay') == '1') {
-      this.showAndPlay()
-    }
+    this.isSeeking = false
+    this.render = this.render.bind(this)
+    engine.addEventListener("change", this.render)
+    this.render()
   }
 
-  play() {
-    // ничего не делаем, если нет плеера
-    if (!this.audioEl) return;
-    this.isPlaing = true;
-    Cookies.set('autoplay', '1')
-  };
-
-  stop() {
-    // ничего не делаем, если нет плеера
-    if (!this.audioEl) return;
-    this.isPlaing = false;
-    Cookies.set('autoplay', '0')
-  };
-
-  // toggle: Play/Stop
-  toggle() {
-    if (this.isPlaing == true) {
-      this.stop();
-    } else {
-      this.play();
-    };
-  };
-
-  showAndPlay() {
-    // если элемент уже показан, то ничего не делаем
-    if (this.audioEl) return;
-
-    // создали элемент
-    if (this.audioLinkValue) {
-      this.audioContainer.innerHTML = "<audio controls>test</audio><a class='copy' href='https://jesus-portal.ru/life/video/audiobibliya/'>© материал православного портала \"Иисус\"</a>";
-    } else {
-      this.audioContainer.innerHTML = "<audio controls>test</audio>";
-    }
-    // запомнили html-элемент плеера
-    this.audioEl = this.audioContainer.querySelector('audio');
-    this.audioEl.src = this.audioLinkValue;
-
-    // КОГДА АУДИО КОНЧИЛОСЬ - ЧТО ДЕЛАТЬ:
-    this.audioEl.onplay = this.play.bind(this);
-    this.audioEl.onpause = this.stop.bind(this);
-    this.audioEl.onended = this.playNext.bind(this);
-
-    // показали
-    this.isShown = true;
-
-    // воспроизвели
-    this.audioEl.play();
-  };
-
-  hide() {
-    // остановили воспроизведение
-    this.stop();
-    // скрыли элемент
-    this.audioEl = undefined;
-    this.audioContainer.innerHTML = '';
-    this.isShown = false;
-  };
-
-  // Переключить видимость audio-тэга
-  playNext() {
-    if (this.isShown == true) {
-      const nextPage = document.getElementById('next-page-link');
-      if (nextPage && nextPage.href) {
-        Cookies.set('autoplay', '1');
-        Turbo.visit(nextPage.href);
-      } else {
-        this.hide();
-      }
-    }
+  disconnect() {
+    engine.removeEventListener("change", this.render)
   }
 
-  // Переключить видимость audio-тэга
-  toggleVision() {
-    if (this.isShown == true) {
-      this.hide();
-    } else {
-      this.showAndPlay();
-    };
-  };
+  toggle() { engine.toggle() }
+  back() { engine.skip(-15) }
+  forward() { engine.skip(15) }
+  cycleRate() { engine.cycleRate() }
+  close() { engine.close() }
+
+  // тянут ползунок: показываем время, звук перематываем, когда отпустили
+  seeking() {
+    this.isSeeking = true
+    this.showTimes(Number(this.seekTarget.value), engine.state.duration)
+    this.paintSeek()
+  }
+
+  seek() {
+    this.isSeeking = false
+    engine.seek(Number(this.seekTarget.value))
+  }
+
+  render() {
+    const s = engine.state
+    const has = !!s.track
+
+    this.element.hidden = !has
+    document.documentElement.classList.toggle("has-audio-player", has)
+    if (!has) return
+
+    this.element.classList.toggle("is-playing", s.isPlaying)
+    this.element.classList.toggle("is-waiting", s.isWaiting)
+    this.element.classList.toggle("has-error", s.hasError)
+    this.playTarget.setAttribute("aria-label", s.isPlaying ? this.labelPauseValue : this.labelPlayValue)
+
+    this.titleTarget.textContent = s.track.title
+    this.creditTarget.hidden = !s.track.credit
+    if (s.track.credit) {
+      this.creditTarget.textContent = s.track.credit
+      this.creditTarget.href = s.track.creditUrl || "#"
+    }
+    this.rateTarget.textContent = `${s.rate}×`
+
+    this.seekTarget.max = Math.floor(s.duration)
+    if (!this.isSeeking) {
+      this.seekTarget.value = Math.floor(s.current)
+      this.showTimes(s.current, s.duration)
+    }
+    this.paintSeek()
+  }
+
+  showTimes(current, duration) {
+    this.currentTarget.textContent = this.format(current)
+    this.durationTarget.textContent = this.format(duration)
+  }
+
+  // закрашенная часть полоски: через css-переменную
+  paintSeek() {
+    const max = Number(this.seekTarget.max) || 1
+    this.seekTarget.style.setProperty("--ap-progress", `${(Number(this.seekTarget.value) / max) * 100}%`)
+  }
+
+  format(seconds) {
+    const s = Math.max(0, Math.floor(seconds || 0))
+    const h = Math.floor(s / 3600)
+    const m = Math.floor((s % 3600) / 60)
+    const sec = String(s % 60).padStart(2, "0")
+    return h > 0 ? `${h}:${String(m).padStart(2, "0")}:${sec}` : `${m}:${sec}`
+  }
 }

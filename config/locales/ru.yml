@@ -190,6 +190,14 @@ ru:
   about_contact: Контакт с разработчиком
   fast_search: 'Поиск фразы или Иак 2 16'
   voice: Озвучить
+  audio:
+    play: Воспроизвести
+    pause: Пауза
+    back: Назад на 15 секунд
+    forward: Вперёд на 15 секунд
+    speed: Скорость воспроизведения
+    seek: Позиция в записи
+    close: Закрыть плеер
   quote_start: '«'
   quote_end: '»'
   bracket_start: '('
