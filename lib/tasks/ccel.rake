@@ -57,4 +57,18 @@ namespace :pages do
     is_dry_run = ENV['DRY_RUN'].present?
     puts ::LangLinker.call(pairs, is_dry_run:).map { "#{'[DRY RUN] ' if is_dry_run}#{_1}" }
   end
+
+  desc 'Загрузить переводы статей (только новые): FILE=db/translations/en/q_pilot.yml [PUBLISH=1] [DRY_RUN=1]'
+  task import_translations: :environment do
+    data = ::YAML.load_file(ENV.fetch('FILE'))
+    puts ::TranslationImporter.call(data, is_dry_run: ENV['DRY_RUN'].present?, is_published: ENV['PUBLISH'].present?)
+  end
+
+  desc 'В переводах раздела заменить ссылки на оригиналы ссылками на переводы: LANG=en LIST=en-q [DRY_RUN=1]'
+  task relink_translations: :environment do
+    is_dry_run = ENV['DRY_RUN'].present?
+    log = ::TranslationRelinker.call(lang: ENV.fetch('LANG'), list: ENV.fetch('LIST'), is_dry_run:)
+    puts log.map { "#{'[DRY RUN] ' if is_dry_run}#{_1}" }
+    puts "#{'[DRY RUN] ' if is_dry_run}Заменено ссылок: #{log.size}"
+  end
 end
