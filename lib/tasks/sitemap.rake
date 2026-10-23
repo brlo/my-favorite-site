@@ -1,64 +1,18 @@
 namespace :g do
-  # RACK_ENV=production bundle exec rake g:sitemap
+  # Ежедневно собирается задачей SitemapJob (config/recurring.yml); руками: bin/rails g:sitemap
   desc "Generate sitemap"
   task :sitemap => :environment do
-    require 'sitemap_generator'
-
-    site_url = 'https://bibleox.com'
-    # будет в public
-    path = 'sitemaps/'
-    changefreq = 'monthly'
-
     puts "Start generating sitemap..."
+    count = ::SitemapBuilder.call
+    puts "Sitemap builded: #{count} urls ✅"
+  end
 
-    # Записываем карту карт сайта для Google. Он упорно не хочет парсить архивированную версию напрямую.
-    ::File.open('public/sitemaps/sitemap.xml', 'w') do |file|
-      file.write('<?xml version="1.0" encoding="UTF-8"?>')
-      file.write('<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">')
-      file.write('<sitemap>')
-      file.write('<loc>https://bibleox.com/sitemap.xml.gz</loc>')
-      file.write('</sitemap>')
-      file.write('</sitemapindex>')
-    end
-
-    # А теперь и сама карта сайта
-    SitemapGenerator::Sitemap.sitemaps_path = path
-    SitemapGenerator::Sitemap.default_host = site_url
-    SitemapGenerator::Sitemap.create do
-      # Добавляется автоматически:
-      # add "/", :priority => 1.0
-      # add '/q', :changefreq => 'weekly', :priority => 0.8
-
-      # СТАТЬИ
-      ::Page.all.select(:id, :is_published, :is_deleted, :lang, :path, :updated_at).find_each do |p|
-        # ПРОПУСКАЕМ, если:
-        # - не опубликована?
-        next if p.is_published == false
-        # - удалена?
-        next if p.is_deleted == true
-
-        add "/#{p.lang}/#{p.lang}/w/#{p.path}/", :lastmod => p.updated_at # :changefreq => changefreq, :priority => 0.9
-      end
-
-      # # Страница: О САЙТЕ
-      # locales = ::I18n.available_locales.map(&:to_s)
-      # locales.each do |lang|
-      #   add "/#{lang}/about/", :changefreq => changefreq, :priority => 0.7
-      # end
-
-      # # БИБЛИЯ
-      # ::BIB_LANG_TO_LOCALE.each do |lang_content, lang_ui|
-      #   # некоторые языки не индексируем
-      #   next if ::BIB_LANGS_NOT_INDEXED.include?(lang_content)
-
-      #   ::BOOKS.each do |book_code, params|
-      #     (1..params[:chapters]).each do |chapter|
-      #       add "/#{lang_ui}/#{lang_content}/#{book_code}/#{chapter}/", :changefreq => changefreq, :priority => 0.9
-      #     end
-      #   end
-      # end
-    end
-
-    puts "Sitemap builded! ✅"
+  # Отправить поисковикам (IndexNow) адреса опубликованных статей раздела: bin/rails g:index_now LIST=en-q LANG=en
+  desc "Send IndexNow notification for published pages of a list"
+  task :index_now => :environment do
+    list = ::Page.find_by!(lang: ENV.fetch('LANG'), path: ENV.fetch('LIST'))
+    urls = ::Page.published.where(parent_id: list.id, is_deleted: [nil, false]).map(&:canonical_url)
+    puts "urls: #{urls.size}"
+    puts ::IndexNowService.notify_batch(urls).inspect
   end
 end

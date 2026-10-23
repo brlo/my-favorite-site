@@ -295,4 +295,31 @@ class PageTest < ActiveSupport::TestCase
   ensure
     FileUtils.rm_rf(dir)
   end
+
+  # --- канонический адрес и IndexNow ---
+
+  test "canonical url uses the page language as ui locale, and the fallback locale for ancient languages" do
+    assert_equal 'https://bibleox.com/en/en/w/Lv1e_Love', create_page(lang: 'en', path: 'Lv1e_Love').canonical_url
+    assert_equal '/el/grc/w/x', Page.path_for('grc', 'x')
+    assert_equal '/en/la/w/x', Page.path_for('la', 'x')
+    assert_equal '/ru/cu/w/x', Page.path_for('cu', 'x')
+    assert_equal '/ru/ru/w/%D0%BB%D1%8E%D0%B1%D0%BE%D0%B2%D1%8C', Page.path_for('ru', 'любовь')
+  end
+
+  test "search engines are notified about a published page, not about a draft or inside without_index_now" do
+    sent = []
+    stubbing(Page, :index_now_enabled?, true) do
+      stubbing(IndexNowJob, :perform_later, ->(urls) { sent << urls }) do
+        draft = create_page(lang: 'en', path: 'draft_page')
+        assert_empty sent
+        draft.update!(is_published: true)
+        assert_equal [['https://bibleox.com/en/en/w/draft_page']], sent
+        draft.update!(meta_desc: 'only meta')
+        assert_equal 1, sent.size
+        Page.without_index_now { create_page(is_published: true) }
+        assert_equal 1, sent.size
+      end
+    end
+  end
+
 end

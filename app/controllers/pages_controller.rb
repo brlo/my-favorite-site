@@ -157,7 +157,7 @@ class PagesController < ApplicationController
 
   # Раскладываем данные страницы по переменным шаблона
   def prepare_page_view
-    @canonical_url = build_canonical_url("/w/#{::CGI.escape(@page.path)}")
+    @canonical_url = @page.canonical_url
 
     @author_name = @page.user&.name
     @editors_names = ::User.where(id: @page.editors).pluck(:name) if @page.editors&.any?

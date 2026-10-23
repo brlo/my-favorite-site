@@ -57,7 +57,8 @@ class ApplicationController < ActionController::Base
   def build_canonical_url(path)
     canon_path = "https://bibleox.com"
     if params[:content_lang].present?
-      canon_locale = locale_for_content_lang(params[:content_lang])
+      # у переводов Библии своя локаль (eng-nkjv -> en), у языка статьи — по Page.ui_locale_for (en -> en, grc -> el)
+      canon_locale = locale_for_content_lang(params[:content_lang]) || ::Page.ui_locale_for(params[:content_lang])
       canon_path += "/#{canon_locale}/#{params[:content_lang]}"
     else
       canon_path += "/#{::I18n.locale}"

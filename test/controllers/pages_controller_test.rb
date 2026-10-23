@@ -214,4 +214,14 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     get '/'
     assert_redirected_to '/ru/'
   end
+
+  test "english page has a canonical url and hreflang links that open" do
+    ru = create_published(path: 'lyubov')
+    create_published(path: 'Love_en', lang: 'en', group_lang_id: ru.group_lang_id)
+    get '/en/en/w/Love_en'
+    assert_response :success
+    assert_includes response.body, '<link rel="canonical" href="https://bibleox.com/en/en/w/Love_en">'
+    assert_includes response.body, 'hreflang="ru" href="https://bibleox.com/ru/ru/w/lyubov"'
+  end
+
 end

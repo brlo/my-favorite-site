@@ -67,4 +67,16 @@ class TranslationImporterTest < ActiveSupport::TestCase
     TranslationImporter.call(data, is_dry_run: true)
     assert_not Page.exists?(lang: 'en', group_lang_id: @ru.group_lang_id)
   end
+
+  test "published import notifies search engines once, with all created pages" do
+    sent = []
+    stubbing(Page, :index_now_enabled?, true) do
+      stubbing(IndexNowJob, :perform_later, ->(urls) { sent << urls }) do
+        d = data
+        TranslationImporter.call(d, is_published: true)
+        assert_equal [[Page.find_by!(path: d['pages'][0]['path']).canonical_url]], sent
+      end
+    end
+  end
+
 end

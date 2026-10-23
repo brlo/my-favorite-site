@@ -31,8 +31,27 @@ class IndexNowService
   end
 
   def self.notify_about_page(page)
-    canon_url = "https://bibleox.com/#{page.lang}/#{page.lang}/w/#{page.path}"
-    notify(canon_url)
+    notify(page.canonical_url)
+  end
+
+  BATCH = 10_000 # предел протокола на один запрос
+
+  # Пачка адресов одним POST-запросом (адреса одного хоста)
+  # IndexNowService.notify_batch(["https://bibleox.com/en/en/w/Lv1e_Love"])
+  def self.notify_batch(urls)
+    uri = URI(YANDEX_ENDPOINT)
+    urls.each_slice(BATCH).map do |slice|
+      payload = {
+        host: URI(::Page::SITE_URL).host, key: INDEXNOW_KEY,
+        keyLocation: "#{::Page::SITE_URL}/#{INDEXNOW_KEY}.txt", urlList: slice,
+      }
+      begin
+        response = Net::HTTP.post(uri, payload.to_json, 'Content-Type' => 'application/json; charset=utf-8')
+        parse_response(response)
+      rescue => e
+        { success: false, error: e.message }
+      end
+    end
   end
 
   private

@@ -34,7 +34,11 @@ class TranslationImporter
     return ["нет страницы-списка: #{@data['list']}"] unless list
 
     log = @data.fetch('folders', []).filter_map { ensure_folder(list, _1) }
-    log + @data.fetch('pages').map { import_page(_1, list) }
+    @created = []
+    log += ::Page.without_index_now { @data.fetch('pages').map { import_page(_1, list) } }
+    # поисковикам — одной пачкой, а не запросом на каждую статью
+    ::Page.notify_search_engines_about(@created)
+    log
   end
 
   private
@@ -78,6 +82,7 @@ class TranslationImporter
         body: item['body'], references: item['references'], page_type: src.page_type, edit_mode: src.edit_mode, user_id: src.user_id,
         is_published: @is_published,
       )
+      @created << page
       if item['menu']
         ::Menu.create!(
           page_id: list.id, parent_id: menu_parent&.id, path: page.path,

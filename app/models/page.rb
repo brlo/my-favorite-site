@@ -34,6 +34,30 @@ class Page < ApplicationRecord
     'contributors' => 3,
   }
 
+  SITE_URL = 'https://bibleox.com'.freeze
+  # Языки без своего интерфейса: статью на них открываем под локалью из LANG_FALLBACKS (grc -> /el/grc/...)
+  LANGS_WITHOUT_UI = (%w[la grc] + ::LANGS_CONTENT_ONLY.keys).freeze
+
+  # Локаль интерфейса, под которой статья на языке lang считается основной
+  def self.ui_locale_for(lang)
+    lang = lang.to_s
+    LANGS_WITHOUT_UI.include?(lang) ? ::LANG_FALLBACKS.fetch(lang.to_sym, :en).to_s : lang
+  end
+
+  # "/el/grc/w/..." — адрес статьи от корня сайта
+  def self.path_for(lang, path)
+    "/#{ui_locale_for(lang)}/#{lang}/w/#{::CGI.escape(path.to_s)}"
+  end
+
+  def self.url_for(lang, path)
+    "#{SITE_URL}#{path_for(lang, path)}"
+  end
+
+  # Канонический адрес: его отдаём в <link rel="canonical">, sitemap и IndexNow
+  def canonical_url
+    self.class.url_for(lang, path)
+  end
+
   # === Ассоциации ===
   belongs_to :user, optional: true
   belongs_to :parent, class_name: 'Page', optional: true, inverse_of: :children
@@ -57,17 +81,41 @@ class Page < ApplicationRecord
   before_save :calc_date_int, if: -> { period_start_changed? || period_end_changed? }
   # Карта цитирования: ссылки на Писание ищем только в трудах святых отцов (is_past)
   after_commit :sync_bible_references, on: %i[create update], if: :bible_references_stale?
-  # after_save :notify_search_engines
+  # Поисковикам (IndexNow) сообщаем только о заметных правках опубликованной статьи
+  after_commit :notify_search_engines, on: %i[create update], if: :index_now_due?
 
   # Разметка текста — в Page::HtmlRenderer
   def self.safe_html(html_text)
     ::Page::HtmlRenderer.safe_html(html_text)
   end
 
+  def self.index_now_enabled?
+    Rails.env.production? && ::IndexNowService::INDEXNOW_KEY.present?
+  end
+
+  # Массовые операции (импорт) отключают уведомление по одной статье и отправляют адреса пачкой
+  def self.without_index_now
+    was = Thread.current[:page_index_now_off]
+    Thread.current[:page_index_now_off] = true
+    yield
+  ensure
+    Thread.current[:page_index_now_off] = was
+  end
+
+  def self.notify_search_engines_about(pages)
+    urls = Array(pages).select { _1.is_published && !_1.is_deleted }.map(&:canonical_url)
+    ::IndexNowJob.perform_later(urls) if urls.any? && index_now_enabled?
+  end
+
   def notify_search_engines
-    if Rails.env.production?
-      ::IndexNowService.notify_about_page(self)
-    end
+    self.class.notify_search_engines_about([self])
+  end
+
+  def index_now_due?
+    return false if Thread.current[:page_index_now_off]
+    return false unless is_published && !is_deleted
+
+    %w[is_published title body path].any? { saved_change_to_attribute?(_1) }
   end
 
   # Получить комментарии к библейским стихам

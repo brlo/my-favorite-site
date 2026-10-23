@@ -42,6 +42,15 @@ class ActiveSupport::TestCase
     Verse.create!(attrs)
   end
 
+  # Подменяет метод объекта на время блока (minitest 6 без minitest/mock); impl — значение или lambda
+  def stubbing(obj, name, impl)
+    orig = obj.method(name)
+    obj.define_singleton_method(name) { |*args, **kw| impl.respond_to?(:call) ? impl.call(*args, **kw) : impl }
+    yield
+  ensure
+    obj.define_singleton_method(name, orig)
+  end
+
   # Вход через форму; возвращает пользователя
   def sign_in(user, password: 'secret123')
     post login_path(locale: 'ru'), params: { session: { email: user.email, password: password } }
