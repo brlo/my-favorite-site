@@ -13,6 +13,24 @@ class BibleLinkerTest < ActiveSupport::TestCase
     assert_includes link('<p>(Мф. 20:13–15)</p>'), 'href="/ru/ru/mf/20#L13-15"'
   end
 
+  test "links other chapters of the same book after a comma or semicolon" do
+    html = link('<p>(Матф.16:19,18:18)</p>')
+    assert_includes html, '<a href="/ru/ru/mf/16#L19">Матф.16:19</a>,<a href="/ru/ru/mf/18#L18">18:18</a>'
+    assert_includes link('<p>(Ин. 3:16; 4:7-8)</p>'), '<a href="/ru/ru/in/4#L7-8">4:7-8</a>'
+    # продолжение не мешает следующей ссылке с названием книги
+    html = link('<p>(Ин. 3:16; Лук. 6:29)</p>')
+    assert_includes html, 'href="/ru/ru/in/3#L16"'
+    assert_includes html, 'href="/ru/ru/lk/6#L29"'
+  end
+
+  test "does not invent a continuation when the chapter does not exist" do
+    # в Евангелии от Матфея 28 глав: "39:40" - опечатка вместо "39-40", оставляем текстом
+    html = link('<p>(Матф.5:21,39:40)</p>')
+    assert_includes html, 'href="/ru/ru/mf/5#L21"'
+    assert_not_includes html, 'mf/39'
+    assert_includes html, ',39:40'
+  end
+
   test "understands numbered books" do
     assert_includes link('<p>(1 Кор. 13:4)</p>'), 'href="/ru/ru/1kor/13#L4"'
   end

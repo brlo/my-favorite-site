@@ -14,6 +14,13 @@ class BibleLinker
   VERSE = "\\d{1,3}(?:#{DASH}\\d{1,3})?"
   JA_VERSES = "(?<verses>#{VERSE}(?:\\s*[,、]\\s*#{VERSE})*)"
 
+  # Продолжение ссылки той же книги другой главой: "Мф. 16:19, 18:18" -> ", 18:18" (или "; 6:3")
+  CONTINUATION = /
+    \G\s*[,;，、；]\s*(?<chapter>[0-9０-９]{1,3})\s*[:：]\s*
+    (?<verses>[0-9０-９]{1,3}[а-гa-d]?(?:#{DASH}[0-9０-９]{1,3}[а-гa-d]?)?(?:\s*[,、]\s*[0-9０-９]{1,3}[а-гa-d]?(?:#{DASH}[0-9０-９]{1,3}[а-гa-d]?)?)*)
+    (?![\p{L}\d:])
+  /x
+
   # Внутри этих тегов ссылки не ставим
   SKIP_TAGS = %w[a h1 h2 h3 h4 h5 h6 code script style].freeze
 
@@ -70,21 +77,32 @@ class BibleLinker
     locale = ::BIB_LANG_TO_LOCALE[bible]
     pattern = lang == 'ja' ? ja_pattern : ::BibleCitationExtractor::PATTERN
 
-    text.to_enum(:scan, pattern).filter_map do
+    text.to_enum(:scan, pattern).flat_map do
       m = ::Regexp.last_match
-      href = href_for(m, lang, bible, locale)
-      Match.new(m.begin(0), m.end(0), href) if href
+      book_code = lang == 'ja' ? ja_books[m[:book]] : ::BibleCitationExtractor.book_code_for(m[:book])
+      next [] unless book_code
+
+      matches = []
+      href = href_for(book_code, m[:chapter], m[:verses], bible, locale)
+      matches << Match.new(m.begin(0), m.end(0), href) if href
+      # "Мф. 5:21, 39:40": дальше идут другие главы той же книги
+      pos = m.end(0)
+      while (c = CONTINUATION.match(text, pos))
+        href = href_for(book_code, c[:chapter], c[:verses], bible, locale)
+        break unless href
+
+        matches << Match.new(c.begin(:chapter), c.end(0), href)
+        pos = c.end(0)
+      end
+      matches
     end
   end
 
-  def self.href_for(m, lang, bible, locale)
-    book_code = lang == 'ja' ? ja_books[m[:book]] : ::BibleCitationExtractor.book_code_for(m[:book])
-    return unless book_code
-
-    chapter = to_ascii(m[:chapter]).to_i
+  def self.href_for(book_code, chapter, verses, bible, locale)
+    chapter = to_ascii(chapter).to_i
     return unless chapter.between?(1, ::BOOKS[book_code][:chapters])
 
-    ranges = ::BibleCitationExtractor.parse_ranges(to_ascii(m[:verses]).gsub(/#{DASH}/, '-').gsub('、', ','))
+    ranges = ::BibleCitationExtractor.parse_ranges(to_ascii(verses).gsub(/#{DASH}/, '-').gsub('、', ','))
     return if ranges.empty?
 
     lines = ranges.map { |from, to| from == to ? from : "#{from}-#{to}" }.join(',')
