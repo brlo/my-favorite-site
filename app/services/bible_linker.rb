@@ -7,7 +7,9 @@ class BibleLinker
     'en'      => 'en-nrsv',
     'ja'      => 'jp-ni',
     'de'      => 'ge-sch',
-    'zh-Hans' => 'cn-ccbs',
+    'zh-Hans' => 'cn-sb',
+    'ko'      => 'ko-ctb',
+    'hi'      => 'hi-ov',
   }.freeze
 
   DASH = '[–—−\-－]'

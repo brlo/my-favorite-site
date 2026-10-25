@@ -133,6 +133,11 @@ Rails.application.routes.draw do
       end
     end
 
+    # китайский перевод CCBS заменён на 思高 (cn-sb), старые ссылки ведут на новый перевод
+    get '/cn-ccbs(/*rest)', to: redirect { |_params, req|
+      req.path.sub('/cn-ccbs', '/cn-sb') + (req.query_string.present? ? "?#{req.query_string}" : '')
+    }
+
     scope '/:content_lang', :content_lang => /#{::R_BIB_LANGS}/ do
       get '/:book_code/:chapter', to: 'verses#index', :constraints =>
         lambda { |req|

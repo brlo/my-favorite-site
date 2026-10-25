@@ -12,6 +12,10 @@ de:
   about_text: Die Website wurde 2022 in der Stadt Sewastopol mit dem Segen eines orthodoxen Geistlichen erstellt.
   about_news: Neuigkeiten über die Entwicklung von Bibleox
   about_contact: Kontakt zum Entwickler
+  about_funding: "Bibleox wird von niemandem finanziert und besteht ausschließlich aus den eigenen Mitteln des Entwicklers."
+  about_prayer: "Wenn Ihnen Bibleox gefällt und Sie den Fortbestand und die Entwicklung dieses Projekts unterstützen möchten, freuen wir uns über Ihr Gebet."
+  about_donate_html: "Sie können Bibleox auch finanziell unterstützen, indem Sie einen beliebigen Betrag auf die russische Bankkarte %{bank} %{card} (Rodion Vlasov) spenden."
+  about_translations: "Übersetzungen der Heiligen Schrift"
   fast_search: 'Phrase suchen oder Jak 2 16'
   voice: Vorlesen
   quote_start: '„'
@@ -118,7 +122,9 @@ de:
     # --- Переводы
     translates: Übersetzungen
     arab-avd: 'Arabisch'
-    cn-ccbs: 'Vereinfachtes Chinesisch'
+    cn-sb: 'Vereinfachtes Chinesisch'
+    hi-ov: 'Hindi'
+    ko-ctb: 'Koreanisch'
     csl-pnm: 'Kirchenslawisch'
     csl-ru: 'Kirchenslawisch'
     el: 'Neugriechisch'
@@ -244,7 +250,9 @@ de:
         gr-jp: 'japanische Interlinearübersetzung (bibleox, 2025)'
 
         jp-ni: 'japanische Übersetzung (JP-NI)'
-        cn-ccbs: 'chinesische Übersetzung (CCBS)'
+        cn-sb: 'chinesische Übersetzung (SB)'
+        hi-ov: 'Hindi-Übersetzung (O.V.)'
+        ko-ctb: 'koreanische Übersetzung (CTB)'
         ge-sch: 'deutsche Übersetzung (SCH)'
         arab-avd: 'arabische Übersetzung (AVD)'
       nz:
@@ -261,7 +269,9 @@ de:
         gr-jp: 'japanische Interlinearübersetzung (bibleox, 2025)'
 
         jp-ni: 'japanische Übersetzung (JP-NI, 1987)'
-        cn-ccbs: 'chinesische Übersetzung (CCBS, 2012)'
+        cn-sb: 'chinesische Übersetzung (SB, 1968)'
+        hi-ov: 'Hindi-Übersetzung (O.V., 2016)'
+        ko-ctb: 'koreanische Übersetzung (CTB, 1977)'
         ge-sch: 'deutsche Übersetzung (SCH, 1951)'
         arab-avd: 'arabische Übersetzung (AVD, 1999)'
 

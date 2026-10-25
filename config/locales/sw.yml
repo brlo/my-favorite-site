@@ -12,6 +12,10 @@ sw:
   about_text: Tovuti hii ilianzishwa mwaka 2022 jijini Sevastopol kwa baraka ya kuhani wa Kiorthodoksi.
   about_news: Habari kuhusu maendeleo ya Biblia
   about_contact: Mawasiliano na mtaalamu wa maendeleo
+  about_funding: "Bibleox haifadhiliwi na mtu yeyote na inaendeshwa tu kwa fedha binafsi za msanidi programu."
+  about_prayer: "Ikiwa unaipenda Bibleox na unataka kusaidia kuwepo na kukua kwa mradi huu, tutafurahi kwa msaada wako wa maombi."
+  about_donate_html: "Unaweza pia kuisaidia Bibleox kifedha kwa kuchangia kiasi chochote kwenye kadi ya benki ya Urusi %{bank} %{card} (Rodion Vlasov)."
+  about_translations: "Tafsiri za Maandiko Matakatifu"
   fast_search: 'Tafuta maneno au Yak 2 16'
   voice: Sauti
   quote_start: '“'
@@ -118,7 +122,9 @@ sw:
     # --- Переводы
     translates: Tafsiri
     arab-avd: 'Kiarabu'
-    cn-ccbs: 'Kichina Rahisi'
+    cn-sb: 'Kichina Rahisi'
+    hi-ov: 'Kihindi'
+    ko-ctb: 'Kikorea'
     csl-pnm: 'Kislovakia'
     csl-ru: 'Kislovakia'
     el: 'Kigiriki cha Kisasa'
@@ -244,7 +250,9 @@ sw:
         gr-jp: 'tafsiri ya Kijapani ya mstari (bibleox, 2025)'
 
         jp-ni: 'tafsiri ya Kijapani (JP-NI)'
-        cn-ccbs: 'tafsiri ya Kichina (CCBS)'
+        cn-sb: 'tafsiri ya Kichina (SB)'
+        hi-ov: 'tafsiri ya Kihindi (O.V.)'
+        ko-ctb: 'tafsiri ya Kikorea (CTB)'
         ge-sch: 'tafsiri ya Kijerumani (SCH)'
         arab-avd: 'tafsiri ya Kiarabu (AVD)'
       nz:
@@ -261,7 +269,9 @@ sw:
         gr-jp: 'tafsiri ya Kijapani ya mstari (bibleox, 2025)'
 
         jp-ni: 'tafsiri ya Kijapani (JP-NI, 1987)'
-        cn-ccbs: 'tafsiri ya Kichina (CCBS, 2012)'
+        cn-sb: 'tafsiri ya Kichina (SB, 1968)'
+        hi-ov: 'tafsiri ya Kihindi (O.V., 2016)'
+        ko-ctb: 'tafsiri ya Kikorea (CTB, 1977)'
         ge-sch: 'tafsiri ya Kijerumani (SCH, 1951)'
         arab-avd: 'tafsiri ya Kiarabu (AVD, 1999)'
 

@@ -12,6 +12,10 @@ tr:
   about_text: Bu site 2022 yılında Sivastopol şehrinde bir Ortodoks rahibin takdisiyle oluşturulmuştur.
   about_news: Biblox gelişmeleri hakkında haberler
   about_contact: Geliştirici ile iletişim
+  about_funding: "Bibleox kimse tarafından finanse edilmiyor ve yalnızca geliştiricinin kendi imkânlarıyla varlığını sürdürüyor."
+  about_prayer: "Bibleox'u beğeniyor ve bu projenin varlığını ve gelişimini desteklemek istiyorsanız, dualarınızla destek olmanızdan mutluluk duyarız."
+  about_donate_html: "Bibleox'u dilediğiniz miktarı %{bank} %{card} numaralı Rus banka kartına (Rodion Vlasov) bağışlayarak maddi olarak da destekleyebilirsiniz."
+  about_translations: "Kutsal Yazı çevirileri"
   fast_search: 'İfade ara ya da Yak 2 16'
   voice: Seslendir
   quote_start: '“'
@@ -118,7 +122,9 @@ tr:
     # --- Переводы
     translates: Çeviriler
     arab-avd: 'Arapça'
-    cn-ccbs: 'Basitleştirilmiş Çince'
+    cn-sb: 'Basitleştirilmiş Çince'
+    hi-ov: 'Hintçe'
+    ko-ctb: 'Korece'
     csl-pnm: 'Kilise Slavcası'
     csl-ru: 'Kilise Slavcası'
     el: 'Modern Yunanca'
@@ -244,7 +250,9 @@ tr:
         gr-jp: 'Japonca satır altı çeviri (bibleox, 2025)'
 
         jp-ni: 'Japonca çeviri (JP-NI)'
-        cn-ccbs: 'Çince çeviri (CCBS)'
+        cn-sb: 'Çince çeviri (SB)'
+        hi-ov: 'Hintçe çeviri (O.V.)'
+        ko-ctb: 'Korece çeviri (CTB)'
         ge-sch: 'Almanca çeviri (SCH)'
         arab-avd: 'Arapça çeviri (AVD)'
       nz:
@@ -261,7 +269,9 @@ tr:
         gr-jp: 'Japonca satır altı çeviri (bibleox, 2025)'
 
         jp-ni: 'Japonca çeviri (JP-NI, 1987)'
-        cn-ccbs: 'Çince çeviri (CCBS, 2012)'
+        cn-sb: 'Çince çeviri (SB, 1968)'
+        hi-ov: 'Hintçe çeviri (O.V., 2016)'
+        ko-ctb: 'Korece çeviri (CTB, 1977)'
         ge-sch: 'Almanca çeviri (SCH, 1951)'
         arab-avd: 'Arapça çeviri (AVD, 1999)'
 

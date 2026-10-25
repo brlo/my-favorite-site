@@ -14,15 +14,16 @@ export const SYNC_INTERVAL = 10 * 60 * 1000
 const LOCALE_TO_BIB = {
   ru: 'ru', sr: 'ru', tk: 'ru', uz: 'ru', uk: 'ru', be: 'ru', kk: 'ru',
   en: 'eng-nkjv', he: 'heb-osm', el: 'gr-lxx-byz', grc: 'gr-lxx-byz',
-  ja: 'jp-ni', 'zh-Hans': 'cn-ccbs', 'zh-Hant': 'cn-ccbs', de: 'ge-sch', ar: 'arab-avd',
+  ja: 'jp-ni', 'zh-Hans': 'cn-sb', 'zh-Hant': 'cn-sb', de: 'ge-sch', ar: 'arab-avd',
+  ko: 'ko-ctb', hi: 'hi-ov',
 }
 export const bibForLocale = (loc) => LOCALE_TO_BIB[loc] || 'eng-nkjv'
 
 // Язык статей-комментариев к стихам для перевода (как BIB_LANG_TO_LOCALE на сервере)
 const BIB_TO_LOCALE = {
   ru: 'ru', 'csl-ru': 'ru', 'csl-pnm': 'ru', 'en-nrsv': 'en', 'eng-nkjv': 'en',
-  'heb-osm': 'he', 'gr-lxx-byz': 'el', 'jp-ni': 'ja', 'cn-ccbs': 'zh-Hans',
-  'ge-sch': 'de', 'arab-avd': 'ar',
+  'heb-osm': 'he', 'gr-lxx-byz': 'el', 'jp-ni': 'ja', 'cn-sb': 'zh-Hans',
+  'ge-sch': 'de', 'arab-avd': 'ar', 'ko-ctb': 'ko', 'hi-ov': 'hi',
 }
 export const localeForBib = (tr) => BIB_TO_LOCALE[tr] || 'en'
 
@@ -35,6 +36,6 @@ export const RTL_LANGS = ['he', 'ar', 'fa']
 // CSS-класс шрифта для перевода (как font_classes на сервере)
 export function bibFontClass(tr) {
   if (tr === 'csl-pnm') return 'csl'
-  if (['jp-ni', 'arab-avd', 'cn-ccbs', 'heb-osm'].includes(tr)) return 'text-detailed'
+  if (['jp-ni', 'arab-avd', 'cn-sb', 'ko-ctb', 'heb-osm'].includes(tr)) return 'text-detailed'
   return ''
 }

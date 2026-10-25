@@ -21,6 +21,8 @@ docker exec bibleox bash -lc 'cd /app && bin/rails runner "puts 1"'
 
 Для тестов и `runner` нужны контейнеры `bibpostgres` и `bibredis`. Если они остановлены: `docker compose up -d postgres redis` и подождать несколько секунд.
 
+Тесты ходят в Redis по адресу из `config/settings.yml` (раздел `test`, база 15 в `bibredis`, с паролем как у development; образец в `config/settings.yml.example`). Если адрес пустой, клиент стучится на localhost:6379 и десятки тестов падают с `Redis::CannotConnectError`.
+
 Тесты лежат в `test/` (minitest). Новую логику покрывать тестами рядом с существующими (`test/services`, `test/models`).
 
 ## Прод и деплой

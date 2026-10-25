@@ -12,6 +12,10 @@ fr:
   about_text: Le site a été créé en 2022 dans la ville de Sébastopol avec la bénédiction d'un clergé orthodoxe.
   about_news: Actualités sur le développement de Bibléox
   about_contact: Contact avec le développeur
+  about_funding: "Bibleox n'est financé par personne et n'existe que grâce aux fonds propres du développeur."
+  about_prayer: "Si vous aimez Bibleox et souhaitez soutenir l'existence et le développement de ce projet, nous serons heureux de votre soutien dans la prière."
+  about_donate_html: "Vous pouvez aussi soutenir Bibleox financièrement en faisant un don du montant de votre choix sur la carte bancaire russe %{bank} %{card} (Rodion Vlasov)."
+  about_translations: "Traductions de l'Écriture sainte"
   fast_search: 'Rechercher une phrase ou Jac 2 16'
   voice: Écouter
   quote_start: '«'
@@ -118,7 +122,9 @@ fr:
     # --- Переводы
     translates: Traductions
     arab-avd: 'Arabe'
-    cn-ccbs: 'Chinois simplifié'
+    cn-sb: 'Chinois simplifié'
+    hi-ov: 'Hindi'
+    ko-ctb: 'Coréen'
     csl-pnm: "Slavon d'église"
     csl-ru: "Slavon d'église"
     el: 'Grec moderne'
@@ -244,7 +250,9 @@ fr:
         gr-jp: 'traduction interlinéaire japonaise (bibleox, 2025)'
 
         jp-ni: 'traduction japonaise (JP-NI)'
-        cn-ccbs: 'traduction chinoise (CCBS)'
+        cn-sb: 'traduction chinoise (SB)'
+        hi-ov: 'traduction hindie (O.V.)'
+        ko-ctb: 'traduction coréenne (CTB)'
         ge-sch: 'traduction allemande (SCH)'
         arab-avd: 'traduction arabe (AVD)'
       nz:
@@ -261,7 +269,9 @@ fr:
         gr-jp: 'traduction interlinéaire japonaise (bibleox, 2025)'
 
         jp-ni: 'traduction japonaise (JP-NI, 1987)'
-        cn-ccbs: 'traduction chinoise (CCBS, 2012)'
+        cn-sb: 'traduction chinoise (SB, 1968)'
+        hi-ov: 'traduction hindie (O.V., 2016)'
+        ko-ctb: 'traduction coréenne (CTB, 1977)'
         ge-sch: 'traduction allemande (SCH, 1951)'
         arab-avd: 'traduction arabe (AVD, 1999)'
 

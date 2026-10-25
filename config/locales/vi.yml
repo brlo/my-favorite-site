@@ -12,6 +12,10 @@ vi:
   about_text: Trang web được tạo vào năm 2022 tại thành phố Sevastopol với sự chúc phúc của một giáo sĩ Chính thống.
   about_news: Tin tức về sự phát triển của Bibleox
   about_contact: Liên hệ với nhà phát triển
+  about_funding: "Dự án Bibleox không được ai tài trợ và chỉ tồn tại bằng kinh phí riêng của nhà phát triển."
+  about_prayer: "Nếu bạn yêu thích Bibleox và muốn ủng hộ sự tồn tại và phát triển của dự án này, chúng tôi sẽ rất vui khi được bạn hỗ trợ bằng lời cầu nguyện."
+  about_donate_html: "Bạn cũng có thể ủng hộ Bibleox về tài chính bằng cách quyên góp số tiền tùy ý vào thẻ ngân hàng Nga %{bank} %{card} (Rodion Vlasov)."
+  about_translations: "Các bản dịch Kinh Thánh"
   fast_search: 'Tìm cụm từ hoặc Gc 2 16'
   voice: Đọc thành tiếng
   quote_start: '“'
@@ -118,7 +122,9 @@ vi:
     # --- Переводы
     translates: Bản dịch
     arab-avd: 'Tiếng Ả Rập'
-    cn-ccbs: 'Tiếng Trung giản thể'
+    cn-sb: 'Tiếng Trung giản thể'
+    hi-ov: 'Tiếng Hindi'
+    ko-ctb: 'Tiếng Hàn'
     csl-pnm: 'Tiếng Slavơ nhà thờ'
     csl-ru: 'Tiếng Slavơ nhà thờ'
     el: 'Tiếng Hy Lạp hiện đại'
@@ -244,7 +250,9 @@ vi:
         gr-jp: 'bản dịch sát nghĩa tiếng Nhật (bibleox, 2025)'
 
         jp-ni: 'bản dịch tiếng Nhật (JP-NI)'
-        cn-ccbs: 'bản dịch tiếng Trung (CCBS)'
+        cn-sb: 'bản dịch tiếng Trung (SB)'
+        hi-ov: 'bản dịch tiếng Hindi (O.V.)'
+        ko-ctb: 'bản dịch tiếng Hàn (CTB)'
         ge-sch: 'bản dịch tiếng Đức (SCH)'
         arab-avd: 'bản dịch tiếng Ả Rập (AVD)'
       nz:
@@ -261,7 +269,9 @@ vi:
         gr-jp: 'bản dịch sát nghĩa tiếng Nhật (bibleox, 2025)'
 
         jp-ni: 'bản dịch tiếng Nhật (JP-NI, 1987)'
-        cn-ccbs: 'bản dịch tiếng Trung (CCBS, 2012)'
+        cn-sb: 'bản dịch tiếng Trung (SB, 1968)'
+        hi-ov: 'bản dịch tiếng Hindi (O.V., 2016)'
+        ko-ctb: 'bản dịch tiếng Hàn (CTB, 1977)'
         ge-sch: 'bản dịch tiếng Đức (SCH, 1951)'
         arab-avd: 'bản dịch tiếng Ả Rập (AVD, 1999)'
 

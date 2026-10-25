@@ -12,6 +12,10 @@ ko:
   about_text: 이 사이트는 2022년 세바스토폴에서 정교회 성직자의 축복으로 만들어졌습니다.
   about_news: 빌레옥스 개발 소식
   about_contact: 개발자 연락처
+  about_funding: "Bibleox는 누구의 재정 지원도 받지 않으며 오직 개발자의 자비로 운영됩니다."
+  about_prayer: "Bibleox가 마음에 드시고 이 프로젝트의 존속과 발전을 돕고 싶으시다면, 기도로 함께해 주시면 감사하겠습니다."
+  about_donate_html: "또한 러시아 은행 카드 %{bank} %{card} (로디온 블라소프)로 원하시는 금액을 기부하여 Bibleox를 재정적으로 후원하실 수도 있습니다."
+  about_translations: "성경 번역본"
   fast_search: '구절 검색 또는 약 2:16'
   voice: 음성으로 듣기
   quote_start: '“'
@@ -118,7 +122,9 @@ ko:
     # --- Переводы
     translates: 번역본
     arab-avd: '아랍어'
-    cn-ccbs: '중국어(간체)'
+    cn-sb: '중국어(간체)'
+    hi-ov: '힌디어'
+    ko-ctb: '한국어'
     csl-pnm: '교회 슬라브어'
     csl-ru: '교회 슬라브어'
     el: '현대 그리스어'
@@ -244,7 +250,9 @@ ko:
         gr-jp: '일본어 직역 (bibleox, 2025)'
 
         jp-ni: '일본어 번역 (JP-NI)'
-        cn-ccbs: '중국어 번역 (CCBS)'
+        cn-sb: '중국어 번역 (SB)'
+        hi-ov: '힌디어 번역 (O.V.)'
+        ko-ctb: '한국어 번역 (CTB)'
         ge-sch: '독일어 번역 (SCH)'
         arab-avd: '아랍어 번역 (AVD)'
       nz:
@@ -261,7 +269,9 @@ ko:
         gr-jp: '일본어 직역 (bibleox, 2025)'
 
         jp-ni: '일본어 번역 (JP-NI, 1987)'
-        cn-ccbs: '중국어 번역 (CCBS, 2012)'
+        cn-sb: '중국어 번역 (SB, 1968)'
+        hi-ov: '힌디어 번역 (O.V., 2016)'
+        ko-ctb: '한국어 번역 (CTB, 1977)'
         ge-sch: '독일어 번역 (SCH, 1951)'
         arab-avd: '아랍어 번역 (AVD, 1999)'
 
@@ -312,3 +322,239 @@ ko:
 
   citations:
     map_hint: '교회 저술가들의 인용 지도'
+
+  books:
+    short:
+      gen: 창
+      ish: 출
+      lev: 레
+      chis: 민
+      vtor: 신
+      nav: 여호
+      sud: 판관
+      ruf: 룻
+      1ts: 삼상
+      2ts: 삼하
+      3ts: 열상
+      4ts: 열하
+      1par: 역상
+      2par: 역하
+      ezd: 에즈
+      neem: 느헤
+      esf: 에스
+      iov: 욥
+      ps: 시편
+      pr: 잠언
+      ekl: 전도
+      pp: 아가
+      is: 이사
+      ier: 예레
+      pier: 애가
+      iez: 에제
+      dan: 다니
+      os: 호세
+      iol: 요엘
+      am: 아모
+      av: 오바
+      ion: 요나
+      mih: 미가
+      naum: 나훔
+      avm: 하바
+      sof: 스바
+      ag: 하깨
+      zah: 즈가
+      mal: 말라
+      1mak: 1마카
+      2mak: 2마카
+      3mak: 3마카
+      3ezd: 3에스
+      pos: 예편
+      var: 바룩
+      2ezd: 1에스
+      tov: 토비
+      iudf: 유딧
+      prs: 지혜
+      prsir: 집회
+      mf: 마태
+      mk: 마르
+      lk: 루가
+      in: 요한
+      act: 사도
+      rim: 로마
+      1kor: 1고린
+      2kor: 2고린
+      gal: 갈라
+      ef: 에페
+      fil: 필립
+      kol: 골로
+      1sol: 1데살
+      2sol: 2데살
+      1tim: 1디모
+      2tim: 2디모
+      tit: 디도
+      fm: 필레
+      evr: 히브
+      iak: 야고
+      1pet: 1베드
+      2pet: 2베드
+      1in: 1요한
+      2in: 2요한
+      3in: 3요한
+      iud: 유다
+      otkr: 묵시
+    mid:
+      gen: 창세기
+      ish: 출애굽기
+      lev: 레위기
+      chis: 민수기
+      vtor: 신명기
+      nav: 여호수아
+      sud: 판관기
+      ruf: 룻기
+      1ts: 사무엘상
+      2ts: 사무엘하
+      3ts: 열왕기상
+      4ts: 열왕기하
+      1par: 역대기상
+      2par: 역대기하
+      ezd: 에즈라
+      neem: 느헤미야
+      esf: 에스델
+      iov: 욥기
+      ps: 시편
+      pr: 잠언
+      ekl: 전도서
+      pp: 아가
+      is: 이사야
+      ier: 예레미야
+      pier: 애가
+      iez: 에제키엘
+      dan: 다니엘
+      os: 호세아
+      iol: 요엘
+      am: 아모스
+      av: 오바디야
+      ion: 요나
+      mih: 미가
+      naum: 나훔
+      avm: 하바꾹
+      sof: 스바니야
+      ag: 하깨
+      zah: 즈가리야
+      mal: 말라기
+      1mak: 마카베오상
+      2mak: 마카베오하
+      3mak: 마카베오 3서
+      3ezd: 에스드라 2서
+      pos: 예레미야의 편지
+      var: 바룩
+      2ezd: 에스드라 1서
+      tov: 토비트
+      iudf: 유딧
+      prs: 지혜서
+      prsir: 집회서
+      mf: 마태오의 복음서
+      mk: 마르코의 복음서
+      lk: 루가의 복음서
+      in: 요한의 복음서
+      act: 사도행전
+      rim: 로마인들에게 보낸 편지
+      1kor: 고린토인들에게 보낸 첫째 편지
+      2kor: 고린토인들에게 보낸 둘째 편지
+      gal: 갈라디아인들에게 보낸 편지
+      ef: 에페소인들에게 보낸 편지
+      fil: 필립비인들에게 보낸 편지
+      kol: 골로사이인들에게 보낸 편지
+      1sol: 데살로니카인들에게 보낸 첫째 편지
+      2sol: 데살로니카인들에게 보낸 둘째 편지
+      1tim: 디모테오에게 보낸 첫째 편지
+      2tim: 디모테오에게 보낸 둘째 편지
+      tit: 디도에게 보낸 편지
+      fm: 필레몬에게 보낸 편지
+      evr: 히브리인들에게 보낸 편지
+      iak: 야고보의 편지
+      1pet: 베드로의 첫째 편지
+      2pet: 베드로의 둘째 편지
+      1in: 요한의 첫째 편지
+      2in: 요한의 둘째 편지
+      3in: 요한의 셋째 편지
+      iud: 유다의 편지
+      otkr: 요한의 묵시록
+    full:
+      gen: 창세기
+      ish: 출애굽기
+      lev: 레위기
+      chis: 민수기
+      vtor: 신명기
+      nav: 여호수아
+      sud: 판관기
+      ruf: 룻기
+      1ts: 사무엘상
+      2ts: 사무엘하
+      3ts: 열왕기상
+      4ts: 열왕기하
+      1par: 역대기상
+      2par: 역대기하
+      ezd: 에즈라
+      neem: 느헤미야
+      esf: 에스델
+      iov: 욥기
+      ps: 시편
+      pr: 잠언
+      ekl: 전도서
+      pp: 아가
+      is: 이사야
+      ier: 예레미야
+      pier: 애가
+      iez: 에제키엘
+      dan: 다니엘
+      os: 호세아
+      iol: 요엘
+      am: 아모스
+      av: 오바디야
+      ion: 요나
+      mih: 미가
+      naum: 나훔
+      avm: 하바꾹
+      sof: 스바니야
+      ag: 하깨
+      zah: 즈가리야
+      mal: 말라기
+      1mak: 마카베오상
+      2mak: 마카베오하
+      3mak: 마카베오 3서
+      3ezd: 에스드라 2서
+      pos: 예레미야의 편지
+      var: 바룩
+      2ezd: 에스드라 1서
+      tov: 토비트
+      iudf: 유딧
+      prs: 지혜서
+      prsir: 집회서
+      mf: 마태오의 복음서
+      mk: 마르코의 복음서
+      lk: 루가의 복음서
+      in: 요한의 복음서
+      act: 사도행전
+      rim: 로마인들에게 보낸 편지
+      1kor: 고린토인들에게 보낸 첫째 편지
+      2kor: 고린토인들에게 보낸 둘째 편지
+      gal: 갈라디아인들에게 보낸 편지
+      ef: 에페소인들에게 보낸 편지
+      fil: 필립비인들에게 보낸 편지
+      kol: 골로사이인들에게 보낸 편지
+      1sol: 데살로니카인들에게 보낸 첫째 편지
+      2sol: 데살로니카인들에게 보낸 둘째 편지
+      1tim: 디모테오에게 보낸 첫째 편지
+      2tim: 디모테오에게 보낸 둘째 편지
+      tit: 디도에게 보낸 편지
+      fm: 필레몬에게 보낸 편지
+      evr: 히브리인들에게 보낸 편지
+      iak: 야고보의 편지
+      1pet: 베드로의 첫째 편지
+      2pet: 베드로의 둘째 편지
+      1in: 요한의 첫째 편지
+      2in: 요한의 둘째 편지
+      3in: 요한의 셋째 편지
+      iud: 유다의 편지
+      otkr: 요한의 묵시록

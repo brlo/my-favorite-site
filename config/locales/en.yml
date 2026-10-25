@@ -12,6 +12,10 @@ en:
   about_text: The site was created in 2022 in the city of Sevastopol with blessing of an orthodox priest.
   about_news: Bibleox news
   about_contact: Contact with developer
+  about_funding: "Bibleox is not funded by anyone and exists only at the developer's own expense."
+  about_prayer: "If you like Bibleox and want to support the existence and development of this project, we will be glad of your prayers."
+  about_donate_html: "You can also support Bibleox financially by donating any amount to the Russian bank card %{bank} %{card} (Rodion Vlasov)."
+  about_translations: "Translations of Holy Scripture"
   fast_search: Fast search
   voice: Voice
   audio:
@@ -126,7 +130,9 @@ en:
     # --- Переводы
     translates: Translations
     arab-avd: 'Arabic'
-    cn-ccbs: 'Simplified Chinese'
+    cn-sb: 'Simplified Chinese'
+    hi-ov: 'Hindi'
+    ko-ctb: 'Korean'
     csl-pnm: 'Church Slavonic'
     csl-ru: 'Church Slavonic'
     el: 'Modern Greek'
@@ -254,7 +260,9 @@ en:
         gr-en: 'English Interlinear Translation (bibleox, 2025)'
         gr-jp: 'Japanese Interlinear Translation (bibleox, 2025)'
         jp-ni: 'Japanese Translation (JP-NI)'
-        cn-ccbs: 'Chinese Translation (CCBS)'
+        cn-sb: 'Chinese Translation (SB)'
+        hi-ov: 'Hindi Translation (O.V.)'
+        ko-ctb: 'Korean Translation (CTB)'
         ge-sch: 'German Translation (SCH)'
         arab-avd: 'Arabic Translation (AVD)'
       nz:
@@ -269,7 +277,9 @@ en:
         gr-en: 'English Interlinear Translation (bibleox, 2025)'
         gr-jp: 'Japanese Interlinear Translation (bibleox, 2025)'
         jp-ni: 'Japanese Translation (JP-NI, 1987)'
-        cn-ccbs: 'Chinese Translation (CCBS, 2012)'
+        cn-sb: 'Chinese Translation (SB, 1968)'
+        hi-ov: 'Hindi Translation (O.V., 2016)'
+        ko-ctb: 'Korean Translation (CTB, 1977)'
         ge-sch: 'German Translation (SCH, 1951)'
         arab-avd: 'Arabic Translation (AVD, 1999)'
 

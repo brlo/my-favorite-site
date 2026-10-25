@@ -13,6 +13,10 @@ zh-Hans:
   about_text: 该遗址于 2022 年在东正教牧师的祝福下在塞瓦斯托波尔市创建。
   about_news: 圣经乐克斯新闻
   about_contact: 联系开发商
+  about_funding: "Bibleox 项目没有任何资助，完全依靠开发者自费维持。"
+  about_prayer: "如果您喜欢 Bibleox，并愿意支持这个项目的存续与发展，我们将为您的祈祷支持而欣喜。"
+  about_donate_html: "您也可以向俄罗斯银行卡 %{bank} %{card}（罗季翁·弗拉索夫）捐赠任意金额，以经济方式支持 Bibleox。"
+  about_translations: "圣经译本"
   fast_search: 快速搜索
   voice: 嗓音
   quote_start: '“'
@@ -119,7 +123,9 @@ zh-Hans:
     # --- Переводы
     translates: 译本
     arab-avd: '阿拉伯语'
-    cn-ccbs: '简体中文'
+    cn-sb: '简体中文'
+    hi-ov: '印地语'
+    ko-ctb: '韩语'
     csl-pnm: '教会斯拉夫语'
     csl-ru: '教会斯拉夫语'
     el: '现代希腊语'
@@ -245,7 +251,9 @@ zh-Hans:
         gr-jp: '日语逐词译本 (bibleox, 2025)'
 
         jp-ni: '日语译本 (JP-NI)'
-        cn-ccbs: '中文译本 (CCBS)'
+        cn-sb: '中文译本 (SB)'
+        hi-ov: '印地语译本 (O.V.)'
+        ko-ctb: '韩语译本 (CTB)'
         ge-sch: '德语译本 (SCH)'
         arab-avd: '阿拉伯语译本 (AVD)'
       nz:
@@ -262,7 +270,9 @@ zh-Hans:
         gr-jp: '日语逐词译本 (bibleox, 2025)'
 
         jp-ni: '日语译本 (JP-NI, 1987)'
-        cn-ccbs: '中文译本 (CCBS, 2012)'
+        cn-sb: '中文译本 (SB, 1968)'
+        hi-ov: '印地语译本 (O.V., 2016)'
+        ko-ctb: '韩语译本 (CTB, 1977)'
         ge-sch: '德语译本 (SCH, 1951)'
         arab-avd: '阿拉伯语译本 (AVD, 1999)'
 
@@ -315,248 +325,237 @@ zh-Hans:
     short:
       gen: 创
       ish: 出
-      lev: 利
-      chis: 民
+      lev: 肋
+      chis: 户
       vtor: 申
-      nav: 书
-      sud: 士
-      ruf: 得
+      nav: 苏
+      sud: 民
+      ruf: 卢
       1ts: 撒上
       2ts: 撒下
-      3ts: 王上
-      4ts: 王下
-      1par: 代上
-      2par: 代下
-      ezd: 拉
-      neem: 尼
-      esf: 斯
-      iov: 伯
-      ps: 诗
+      3ts: 列上
+      4ts: 列下
+      1par: 编上
+      2par: 编下
+      ezd: 厄上
+      neem: 厄下
+      esf: 艾
+      iov: 约
+      ps: 咏
       pr: 箴
-      ekl: 传
+      ekl: 训
       pp: 歌
-      is: 赛
+      is: 依
       ier: 耶
       pier: 哀
-      iez: 结
-      dan: 但
-      os: 何
-      iol: 珥
-      am: 摩
-      av: 俄
-      ion: 拿
-      mih: 弥
+      iez: 则
+      dan: 达
+      os: 欧
+      iol: 岳
+      am: 亚
+      av: 北
+      ion: 纳
+      mih: 米
       naum: 鸿
       avm: 哈
-      sof: 番
-      ag: 该
-      zah: 亚
-      mal: 玛
-
-      # Книги, которыйх обычно нет в MyBible
-      1mak: 1Mac
-      2mak: 2Mac
-      3mak: 3Mac
-      3ezd: 3Ezr
-      pos: lJer
-      var: Bar
-      2ezd: 2Ezr
-      tov: Tov
-      iudf: Judf
-      prs: pSolom
-      prsir: pSir
-
-      mf: 太
-      mk: 可
+      sof: 索
+      ag: 盖
+      zah: 匝
+      mal: 拉
+      1mak: 加上
+      2mak: 加下
+      3mak: 加三
+      3ezd: 厄四
+      pos: 耶函
+      var: 巴
+      2ezd: 厄三
+      tov: 多
+      iudf: 友
+      prs: 智
+      prsir: 德
+      mf: 玛
+      mk: 谷
       lk: 路
-      in: 约
-      act: 徒
+      in: 若
+      act: 宗
       rim: 罗
-      1kor: 林前
-      2kor: 林后
-      gal: 加
+      1kor: 格前
+      2kor: 格后
+      gal: 迦
       ef: 弗
-      fil: 腓
-      kol: 西
-      1sol: 帖前
-      2sol: 帖后
-      1tim: 提前
-      2tim: 提后
-      tit: 多
-      fm: 门
-      evr: 来
+      fil: 斐
+      kol: 哥
+      1sol: 得前
+      2sol: 得后
+      1tim: 弟前
+      2tim: 弟后
+      tit: 铎
+      fm: 费
+      evr: 希
       iak: 雅
-      1pet: 彼前
-      2pet: 彼后
-      1in: 约一
-      2in: 约二
-      3in: 约三
+      1pet: 伯前
+      2pet: 伯后
+      1in: 若一
+      2in: 若二
+      3in: 若三
       iud: 犹
-      otkr: 启
-
+      otkr: 默
     mid:
-      gen: 创世记
-      ish: 出埃及记
-      lev: 利未记
-      chis: 民数记
-      vtor: 申命记
-      nav: 约书亚记
-      sud: 士师记
-      ruf: 路得记
-      1ts: 撒母耳记上
-      2ts: 撒母耳记下
+      gen: 创世纪
+      ish: 出谷纪
+      lev: 肋未纪
+      chis: 户籍纪
+      vtor: 申命纪
+      nav: 若苏厄书
+      sud: 民长纪
+      ruf: 卢德传
+      1ts: 撒慕尔纪上
+      2ts: 撒慕尔纪下
       3ts: 列王纪上
       4ts: 列王纪下
-      1par: 历代志上
-      2par: 历代志下
-      ezd: 以斯拉记
-      neem: 尼希米记
-      esf: 以斯帖记
-      iov: 约伯记
-      ps: 诗篇
+      1par: 编年纪上
+      2par: 编年纪下
+      ezd: 厄斯德拉上
+      neem: 厄斯德拉下
+      esf: 艾斯德尔传
+      iov: 约伯传
+      ps: 圣咏集
       pr: 箴言
-      ekl: 传道书
+      ekl: 训道篇
       pp: 雅歌
-      is: 以赛亚书
-      ier: 耶利米书
-      pier: 耶利米哀歌
-      iez: 以西结书
-      dan: 但以理书
-      os: 何西阿书
-      iol: 约珥书
-      am: 阿摩司书
-      av: 俄巴底亚书
-      ion: 约拿书
-      mih: 弥迦书
-      naum: 那鸿书
-      avm: 哈巴谷书
-      sof: 西番雅书
-      ag: 哈该书
-      zah: 撒迦利亚书
-      mal: 玛拉基书
-
-      # книги которых обычно нет в MyBible
-      1mak: 1 Maccabees
-      2mak: 2 Maccabees
-      3mak: 3 Maccabees
-      3ezd: 3 Esdras
-      pos: Letter of Jeremiah
-      var: Baruch
-      2ezd: II Esdras
-      tov: Tobit
-      iudf: Judith
-      prs: Wisdom
-      prsir: Sirah
-
-      mf: 马太福音
-      mk: 马可福音
+      is: 依撒依亚
+      ier: 耶肋米亚
+      pier: 耶肋米亚哀歌
+      iez: 厄则克耳
+      dan: 达尼尔
+      os: 欧瑟亚
+      iol: 岳厄尔
+      am: 亚毛斯
+      av: 亚北底亚
+      ion: 约纳
+      mih: 米该亚
+      naum: 纳鸿
+      avm: 哈巴谷
+      sof: 索福尼亚
+      ag: 哈盖
+      zah: 匝加利亚
+      mal: 马拉基亚
+      1mak: 马加伯上
+      2mak: 马加伯下
+      3mak: 马加伯三书
+      3ezd: 厄斯德拉四书
+      pos: 耶肋米亚书信
+      var: 巴路克
+      2ezd: 厄斯德拉三书
+      tov: 多俾亚传
+      iudf: 友弟德传
+      prs: 智慧篇
+      prsir: 德训篇
+      mf: 玛窦福音
+      mk: 马尔谷福音
       lk: 路加福音
-      in: 约翰福音
-      act: 使徒行传
+      in: 若望福音
+      act: 宗徒大事录
       rim: 罗马书
-      1kor: 哥林多前书
-      2kor: 哥林多后书
-      gal: 加拉太书
-      ef: 以弗所书
-      fil: 腓立比书
-      kol: 歌罗西书
-      1sol: 帖撒罗尼迦前书
-      2sol: 帖撒罗尼迦后书
-      1tim: 提摩太前书
-      2tim: 提摩太后书
-      tit: 提多书
-      fm: 腓利门书
+      1kor: 格林多前书
+      2kor: 格林多后书
+      gal: 迦拉达书
+      ef: 厄弗所书
+      fil: 斐理伯书
+      kol: 哥罗森书
+      1sol: 得撒洛尼前书
+      2sol: 得撒洛尼后书
+      1tim: 弟茂德前书
+      2tim: 弟茂德后书
+      tit: 弟铎书
+      fm: 费肋孟书
       evr: 希伯来书
-      iak: 雅各书
-      1pet: 彼得前书
-      2pet: 彼得后书
-      1in: 约翰壹书
-      2in: 约翰贰书
-      3in: 约翰参书
-      iud: 犹大书
-      otkr: 启示录
-
+      iak: 雅各伯书
+      1pet: 伯多禄前书
+      2pet: 伯多禄后书
+      1in: 若望一书
+      2in: 若望二书
+      3in: 若望三书
+      iud: 犹达书
+      otkr: 默示录
     full:
-      gen: 创世记
-      ish: 出埃及记
-      lev: 利未记
-      chis: 民数记
-      vtor: 申命记
-      nav: 约书亚记
-      sud: 士师记
-      ruf: 路得记
-      1ts: 撒母耳记上
-      2ts: 撒母耳记下
+      gen: 创世纪
+      ish: 出谷纪
+      lev: 肋未纪
+      chis: 户籍纪
+      vtor: 申命纪
+      nav: 若苏厄书
+      sud: 民长纪
+      ruf: 卢德传
+      1ts: 撒慕尔纪上
+      2ts: 撒慕尔纪下
       3ts: 列王纪上
       4ts: 列王纪下
-      1par: 历代志上
-      2par: 历代志下
-      ezd: 以斯拉记
-      neem: 尼希米记
-      esf: 以斯帖记
-      iov: 约伯记
-      ps: 诗篇
+      1par: 编年纪上
+      2par: 编年纪下
+      ezd: 厄斯德拉上
+      neem: 厄斯德拉下
+      esf: 艾斯德尔传
+      iov: 约伯传
+      ps: 圣咏集
       pr: 箴言
-      ekl: 传道书
+      ekl: 训道篇
       pp: 雅歌
-      is: 以赛亚书
-      ier: 耶利米书
-      pier: 耶利米哀歌
-      iez: 以西结书
-      dan: 但以理书
-      os: 何西阿书
-      iol: 约珥书
-      am: 阿摩司书
-      av: 俄巴底亚书
-      ion: 约拿书
-      mih: 弥迦书
-      naum: 那鸿书
-      avm: 哈巴谷书
-      sof: 西番雅书
-      ag: 哈该书
-      zah: 撒迦利亚书
-      mal: 玛拉基书
-
-      # книги которых обычно нет в MyBible
-      1mak: '1Mac'
-      2mak: '2Mac'
-      3mak: '3Mac'
-      3ezd: 'The Third Book of EZRA'
-      pos: Letter of JEREMIAH
-      var: The Book of BARUCH
-      2ezd: 'The Second Book of EZRA'
-      tov: 'Tov'
-      iudf: 'Judf'
-      prs: 'P. Solom'
-      prsir: 'P. Sir'
-
-      mf: 马太福音
-      mk: 马可福音
+      is: 依撒依亚
+      ier: 耶肋米亚
+      pier: 耶肋米亚哀歌
+      iez: 厄则克耳
+      dan: 达尼尔
+      os: 欧瑟亚
+      iol: 岳厄尔
+      am: 亚毛斯
+      av: 亚北底亚
+      ion: 约纳
+      mih: 米该亚
+      naum: 纳鸿
+      avm: 哈巴谷
+      sof: 索福尼亚
+      ag: 哈盖
+      zah: 匝加利亚
+      mal: 马拉基亚
+      1mak: 马加伯上
+      2mak: 马加伯下
+      3mak: 马加伯三书
+      3ezd: 厄斯德拉四书
+      pos: 耶肋米亚书信
+      var: 巴路克
+      2ezd: 厄斯德拉三书
+      tov: 多俾亚传
+      iudf: 友弟德传
+      prs: 智慧篇
+      prsir: 德训篇
+      mf: 玛窦福音
+      mk: 马尔谷福音
       lk: 路加福音
-      in: 约翰福音
-      act: 使徒行传
+      in: 若望福音
+      act: 宗徒大事录
       rim: 罗马书
-      1kor: 哥林多前书
-      2kor: 哥林多后书
-      gal: 加拉太书
-      ef: 以弗所书
-      fil: 腓立比书
-      kol: 歌罗西书
-      1sol: 帖撒罗尼迦前书
-      2sol: 帖撒罗尼迦后书
-      1tim: 提摩太前书
-      2tim: 提摩太后书
-      tit: 提多书
-      fm: 腓利门书
+      1kor: 格林多前书
+      2kor: 格林多后书
+      gal: 迦拉达书
+      ef: 厄弗所书
+      fil: 斐理伯书
+      kol: 哥罗森书
+      1sol: 得撒洛尼前书
+      2sol: 得撒洛尼后书
+      1tim: 弟茂德前书
+      2tim: 弟茂德后书
+      tit: 弟铎书
+      fm: 费肋孟书
       evr: 希伯来书
-      iak: 雅各书
-      1pet: 彼得前书
-      2pet: 彼得后书
-      1in: 约翰壹书
-      2in: 约翰贰书
-      3in: 约翰参书
-      iud: 犹大书
-      otkr: 启示录
+      iak: 雅各伯书
+      1pet: 伯多禄前书
+      2pet: 伯多禄后书
+      1in: 若望一书
+      2in: 若望二书
+      3in: 若望三书
+      iud: 犹达书
+      otkr: 默示录
 
   errors:
     no_translation_for_this_book: '这本书没有这样的翻译'

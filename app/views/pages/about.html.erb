@@ -11,7 +11,7 @@
 
   <% ::ALL_LOCALES.each do |lang,_| %>
     <% next if ::I18n.locale.to_s == lang.to_s %>
-    <link rel="alternate" hreflang="<%= lang %>" href="<%= "https://bibleox.com/#{lang}/w/about" %>" />
+    <link rel="alternate" hreflang="<%= lang %>" href="<%= "https://bibleox.com/#{lang}/about/" %>" />
   <% end %>
 <% end %>
 
@@ -33,20 +33,32 @@
 <p><%= I18n.t('about_news') %>: <a href="https://t.me/bibleox">https://t.me/bibleox</a></p>
 <p><%= I18n.t('about_contact') %>: <a href="https://t.me/rodion_orthodox">https://t.me/rodion_orthodox</a>, <a href="https://bibleox.com/ru/ru/w/родион-власов">https://bibleox.com/ru/ru/w/родион-власов</a></p>
 <br>
-<p>Проект Библеокс никем не финансируется и существует только за собственные средства разработчика.</p>
-<p>Если вам нравится Библеокс и вы хотите поддержать существование и развитие этого проекта, мы будем рады молитвенной поддержке.</p>
-<p>Также, вы можете способствовать развитию Библеокс финансово, пожертвовав желаемую сумму на карту <span style="color: #0D8523">СБЕР</span> <strong>2202 2082 9863 8306</strong> (Родион Власов)</p>
+<p><%= t('about_funding') %></p>
+<p><%= t('about_prayer') %></p>
+<p><%= t('about_donate_html', bank: tag.span('СБЕР', style: 'color: #0D8523'), card: tag.strong('2202 2082 9863 8306')) %></p>
 <br><br>
-<h2>Переводы Священного Писания:</h2>
+<%# Названия изданий не переводим: показываем их так, как они называются на языке перевода %>
+<% editions = {
+  'ru'         => 'Синодальный перевод, 1876',
+  'csl-pnm'    => 'Елизаветинская Библия, 1751',
+  'csl-ru'     => 'Елизаветинская Библия, 1751',
+  'heb-osm'    => 'Codex Leningradensis (OSM) + Delitzsch Hebrew New Testament, 1885',
+  'gr-lxx-byz' => 'Septuaginta (LXX) + Ἡ Καινὴ Διαθήκη',
+  'eng-nkjv'   => 'New King James Version, 1982',
+  'en-nrsv'    => 'New Revised Standard Version, 1989',
+  'ge-sch'     => 'Schlachter-Bibel, 1951',
+  'arab-avd'   => 'الكتاب المقدس — New Van Dyck, Bible Society of Egypt, 1999',
+  'jp-ni'      => '聖書 新共同訳, 日本聖書協会, 1987',
+  'cn-sb'      => '思高圣经 (Studium Biblicum), 1968',
+  'ko-ctb'     => '공동번역 성서, 1977',
+  'hi-ov'      => 'पवित्र बाइबिल (Hindi O.V., re-edited), Bible Society of India, 2016',
+  'gr-ru'      => nil,
+  'gr-en'      => nil,
+  'gr-jp'      => nil,
+} %>
+<h2><%= t('about_translations') %></h2>
 <ul>
-<li>русский (Синодальный, современный перевод Русской Православной Церкви на русский язык)</li>
-<li>церковнославянский (Елизаветинская Библия, 1751)</li>
-<li>церковнославянский перевод, русскими буквами</li>
-<li>иврит (Ленинградский кодекс OSM + Delitzsch's Hebrew New Testament (DHNT) - Franz Delitzsch, 1885)</li>
-<li>греческий (Септуагинта, перевод 70 толковников, LXX, Septuagint, koine greek)</li>
-<li>английский, English (New King James Version, 1982)</li>
-<li>немецкий (Schlachter 1951г)</li>
-<li>арабский (New Van Dyck Bible – الكتاب المقدس 1999 Bible Society of Egypt)</li>
-<li>японский (出典先:日本聖書協会　新共同訳 — Japanese New Interconfessional Translation Bible — Shinkyodo-yaku, 1987)</li>
-<li>китайский (当代译本修订版 - Chinese Contemporary Bible, 2012)</li>
+  <% editions.each do |code, edition| %>
+    <li><%= t("breadcrumbs.bib_langs.vz.#{code}") %><% if edition %> — <span dir="auto"><%= edition %></span><% end %></li>
+  <% end %>
 </ul>

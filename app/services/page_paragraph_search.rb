@@ -1,7 +1,7 @@
 class PageParagraphSearch
   # Конфигурация
   MAX_TEXT_LENGTH = 250
-  MIN_LEN_BY_LANG = { 'jp-ni' => 2, 'cn-ccbs' => 2 }.freeze
+  MIN_LEN_BY_LANG = { 'jp-ni' => 2, 'cn-sb' => 2, 'ko-ctb' => 2 }.freeze
   DEFAULT_MIN_LEN = 3
 
   PAGE_PARAGRAPH_MODEL = ::PageParagraph

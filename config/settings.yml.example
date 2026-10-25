@@ -1,6 +1,7 @@
 test:
   redis:
-    url:
+    # отдельная база, чтобы тесты не трогали данные development
+    url: "redis://:psw@bibredis:6379/15"
 
 development:
   redis:

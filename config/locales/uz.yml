@@ -12,6 +12,10 @@ uz:
   about_text: Sayt 2022-yilda Sevastopol shahrida pravoslav ruhoniyning barakoti bilan yaratilgan.
   about_news: Biblеoks rivoji haqida yangiliklar
   about_contact: Dasturchi bilan aloqa
+  about_funding: "Bibleox loyihasini hech kim moliyalashtirmaydi, u faqat dasturchining shaxsiy mablag'i hisobiga mavjud."
+  about_prayer: "Agar sizga Bibleox yoqsa va ushbu loyihaning mavjudligi va rivojlanishini qo'llab-quvvatlamoqchi bo'lsangiz, ibodatingiz bilan qo'llab-quvvatlashingizdan xursand bo'lamiz."
+  about_donate_html: "Shuningdek, Bibleox'ni moliyaviy qo'llab-quvvatlash uchun istalgan miqdorni Rossiya bank kartasi %{bank} %{card} (Rodion Vlasov) ga xayriya qilishingiz mumkin."
+  about_translations: "Muqaddas Bitik tarjimalari"
   fast_search: 'Ibora yoki Yoqub 2:16 qidirish'
   voice: Ovozli o‘qish
   quote_start: '«'
@@ -118,7 +122,9 @@ uz:
     # --- Переводы
     translates: Tarjimalar
     arab-avd: 'Arabcha'
-    cn-ccbs: 'Soddalashtirilgan Xitoycha'
+    cn-sb: 'Soddalashtirilgan Xitoycha'
+    hi-ov: 'Hindcha'
+    ko-ctb: 'Koreyscha'
     csl-pnm: 'Cherkov Slavyanchasi'
     csl-ru: 'Cherkov Slavyanchasi'
     el: 'Zamonaviy Yunoncha'
@@ -244,7 +250,9 @@ uz:
         gr-jp: 'yaponcha satrma-satr tarjima (bibleox, 2025)'
 
         jp-ni: 'yaponcha tarjima (JP-NI)'
-        cn-ccbs: 'xitoycha tarjima (CCBS)'
+        cn-sb: 'xitoycha tarjima (SB)'
+        hi-ov: 'hindcha tarjima (O.V.)'
+        ko-ctb: 'koreyscha tarjima (CTB)'
         ge-sch: 'nemischa tarjima (SCH)'
         arab-avd: 'arabcha tarjima (AVD)'
       nz:
@@ -261,7 +269,9 @@ uz:
         gr-jp: 'yaponcha satrma-satr tarjima (bibleox, 2025)'
 
         jp-ni: 'yaponcha tarjima (JP-NI, 1987)'
-        cn-ccbs: 'xitoycha tarjima (CCBS, 2012)'
+        cn-sb: 'xitoycha tarjima (SB, 1968)'
+        hi-ov: 'hindcha tarjima (O.V., 2016)'
+        ko-ctb: 'koreyscha tarjima (CTB, 1977)'
         ge-sch: 'nemischa tarjima (SCH, 1951)'
         arab-avd: 'arabcha tarjima (AVD, 1999)'
 

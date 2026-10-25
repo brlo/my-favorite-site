@@ -12,6 +12,10 @@ tk:
   about_text: Saýt 2022-nji ýylda Pravoslav din adamynyň bereketi bilen Sewastopol şäherinde döredildi.
   about_news: Bibloýeksiň ösüşi hakda täzelikler
   about_contact: Developer bilen habarlaşmak
+  about_funding: "Bibleox taslamasyny hiç kim maliýeleşdirmeýär, ol diňe döredijiniň öz serişdeleriniň hasabyna bar."
+  about_prayer: "Eger Bibleox size ýarasa we bu taslamanyň dowam etmegine we ösmegine goldaw bermek isleseňiz, doga bilen goldawyňyza begeneris."
+  about_donate_html: "Şeýle hem Bibleox-y maliýe taýdan goldap, islän möçberiňizi rus bank kartyna %{bank} %{card} (Rodion Wlasow) bagyşlap bilersiňiz."
+  about_translations: "Mukaddes Ýazgylaryň terjimeleri"
   fast_search: 'Sözlem ýa-da Ýak 2 16 gözleg'
   voice: Seslendir
   quote_start: '«'
@@ -118,7 +122,9 @@ tk:
     # --- Переводы
     translates: 'Terjimeler'
     arab-avd: 'Arapça'
-    cn-ccbs: 'Ýönekeýleşdirilen Hytaýça'
+    cn-sb: 'Ýönekeýleşdirilen Hytaýça'
+    hi-ov: 'Hindi'
+    ko-ctb: 'Koreýçe'
     csl-pnm: 'Sobor Slawýan dili'
     csl-ru: 'Sobor Slawýan dili'
     el: 'Täze Grek dili'
@@ -244,7 +250,9 @@ tk:
         gr-jp: 'ýapon setirli terjime (bibleox, 2025)'
 
         jp-ni: 'ýapon terjime (JP-NI)'
-        cn-ccbs: 'hytaý terjime (CCBS)'
+        cn-sb: 'hytaý terjime (SB)'
+        hi-ov: 'hindi terjime (O.V.)'
+        ko-ctb: 'koreý terjime (CTB)'
         ge-sch: 'nemes terjime (SCH)'
         arab-avd: 'arap terjime (AVD)'
       nz:
@@ -261,7 +269,9 @@ tk:
         gr-jp: 'ýapon setirli terjime (bibleox, 2025)'
 
         jp-ni: 'ýapon terjime (JP-NI, 1987)'
-        cn-ccbs: 'hytaý terjime (CCBS, 2012)'
+        cn-sb: 'hytaý terjime (SB, 1968)'
+        hi-ov: 'hindi terjime (O.V., 2016)'
+        ko-ctb: 'koreý terjime (CTB, 1977)'
         ge-sch: 'nemes terjime (SCH, 1951)'
         arab-avd: 'arap terjime (AVD, 1999)'
 

@@ -12,6 +12,10 @@ ja:
   about_text: このサイトは、正教会の司祭の祝福を受けて、2022 年にセヴァストポリ市に設立されました。
   about_news: Bibleoxのニュース
   about_contact: 開発者との連絡
+  about_funding: "Bibleox はどこからも資金提供を受けておらず、開発者の自己資金だけで運営されています。"
+  about_prayer: "Bibleox を気に入っていただき、このプロジェクトの存続と発展を支えたいとお考えでしたら、お祈りによるご支援をいただければ幸いです。"
+  about_donate_html: "また、ロシアの銀行カード %{bank} %{card}（ロジオン・ヴラソフ）へ任意の金額をご寄付いただくことで、Bibleox を経済的に支援することもできます。"
+  about_translations: "聖書の翻訳"
   fast_search: 高速検索
   voice: 声
   quote_start: '「'
@@ -118,7 +122,9 @@ ja:
     # --- Переводы
     translates: 翻訳
     arab-avd: 'アラビア語'
-    cn-ccbs: '簡体字中国語'
+    cn-sb: '簡体字中国語'
+    hi-ov: 'ヒンディー語'
+    ko-ctb: '韓国語'
     csl-pnm: '教会スラヴ語'
     csl-ru: '教会スラヴ語'
     el: '現代ギリシャ語'
@@ -246,7 +252,9 @@ ja:
         gr-en: '英語逐語訳 (bibleox, 2025)'
         gr-jp: '日本語逐語訳 (bibleox, 2025)'
         jp-ni: '日本語訳 (JP-NI)'
-        cn-ccbs: '中国語訳 (CCBS)'
+        cn-sb: '中国語訳 (SB)'
+        hi-ov: 'ヒンディー語訳 (O.V.)'
+        ko-ctb: '韓国語訳 (CTB)'
         ge-sch: 'ドイツ語訳 (SCH)'
         arab-avd: 'アラビア語訳 (AVD)'
       nz:
@@ -261,7 +269,9 @@ ja:
         gr-en: '英語逐語訳 (bibleox, 2025)'
         gr-jp: '日本語逐語訳 (bibleox, 2025)'
         jp-ni: '日本語訳 (JP-NI, 1987)'
-        cn-ccbs: '中国語訳 (CCBS, 2012)'
+        cn-sb: '中国語訳 (SB, 1968)'
+        hi-ov: 'ヒンディー語訳 (O.V., 2016)'
+        ko-ctb: '韓国語訳 (CTB, 1977)'
         ge-sch: 'ドイツ語訳 (SCH, 1951)'
         arab-avd: 'アラビア語訳 (AVD, 1999)'
 

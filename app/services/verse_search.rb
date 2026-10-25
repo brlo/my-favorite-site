@@ -2,7 +2,7 @@ class VerseSearch
   # возвращает минимальную длинную слова для поиска, с учётом языка
   def self.min_len(tr_code)
     # японские иероглифы разрешаем искать в кол-ве 2 шт.
-    (tr_code == 'jp-ni' || tr_code == 'cn-ccbs') ? 2 : 3
+    %w[jp-ni cn-sb ko-ctb].include?(tr_code) ? 2 : 3
   end
 
   attr_reader :text, :tr_code, :book, :accuracy

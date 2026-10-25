@@ -199,7 +199,9 @@ FLAG_BY_LANG = {
   # ---
   # переводы Библии
   'arab-avd' => '🇸🇦',   # Китайский
-  'cn-ccbs' => '🇨🇳',    # Китайский
+  'cn-sb' => '🇨🇳',      # Китайский
+  'hi-ov' => '🇮🇳',      # Хинди
+  'ko-ctb' => '🇰🇷',     # Корейский
   'csl-pnm' => '🇷🇺📜',    # Церковнославянский
   'csl-ru' => '🇷🇺📜',     # Церковнославянский
   'ge-sch' => '🇩🇪',     # Немецкий
@@ -228,9 +230,11 @@ BIB_LANG_TO_LOCALE = {
   'gr-jp'      => 'ja',
 
   'jp-ni'      => 'ja',
-  'cn-ccbs'    => 'zh-Hans',
+  'cn-sb'      => 'zh-Hans',
   'ge-sch'     => 'de',
   'arab-avd'   => 'ar',
+  'hi-ov'      => 'hi',
+  'ko-ctb'     => 'ko',
 }
 
 # Код языка, которому соответствует перевод Библии (для SEO)
@@ -246,9 +250,11 @@ LANG_FOR_BIB_LANG = {
   'gr-lxx-byz' => 'grc',
 
   'jp-ni'      => 'ja',
-  'cn-ccbs'    => 'zh-Hans',
+  'cn-sb'      => 'zh-Hans',
   'ge-sch'     => 'de',
   'arab-avd'   => 'ar',
+  'hi-ov'      => 'hi',
+  'ko-ctb'     => 'ko',
 }
 
 # Какой язык Библии включать для локали
@@ -261,19 +267,19 @@ LOCALE_TO_BIB_LANG = {
   'el' => 'gr-lxx-byz',
   'grc' => 'gr-lxx-byz',
   'ja' => 'jp-ni',
-  'zh-Hans' => 'cn-ccbs',
-  'zh-Hant' => 'cn-ccbs',
+  'zh-Hans' => 'cn-sb',
+  'zh-Hant' => 'cn-sb',
   'de' => 'ge-sch',
   'ar' => 'arab-avd',
 
   'la' => 'eng-nkjv',
   'es' => 'eng-nkjv',
   'fr' => 'eng-nkjv',
-  'hi' => 'eng-nkjv',
+  'hi' => 'hi-ov',
   'fa' => 'eng-nkjv',
   'it' => 'eng-nkjv',
   'sw' => 'eng-nkjv',
-  'ko' => 'eng-nkjv',
+  'ko' => 'ko-ctb',
   'sr' => 'ru',
   'tk' => 'ru',
   'tr' => 'eng-nkjv',
@@ -409,7 +415,9 @@ TRANSLATE_LANGS = {
 BIB_LANGS = {
   # --- Переводы
   "arab-avd" => 'العربية',
-  "cn-ccbs" => '简体中文',
+  "cn-sb" => '简体中文',
+  "hi-ov" => 'हिन्दी',
+  "ko-ctb" => '한국어',
   "csl-pnm" => 'Церковнославянский',
   "csl-ru" => 'Церковнославянский',
   "el" => 'Νέα Ελληνική',
