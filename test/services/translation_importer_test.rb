@@ -89,4 +89,23 @@ class TranslationImporterTest < ActiveSupport::TestCase
     assert_equal 1, Menu.where(page_id: @list.id, parent_id: @son.id, title: 'In Heaven').count
   end
 
+
+  test "update: rewrites the existing translation, moves its address and the menu items pointing to it" do
+    old = create_page(lang: 'en', group_lang_id: @ru.group_lang_id, parent_id: @list.id, path: "old_#{SecureRandom.hex(3)}", title: 'Old')
+    item = Menu.create!(page_id: @list.id, parent_id: @son.id, title: 'Old', path: old.path)
+    d = data('update' => true, 'title' => 'New', 'menu' => { 'title' => 'New title' })
+    log = TranslationImporter.call(d)
+
+    assert_match(/обновлено/, log.first)
+    old.reload
+    assert_equal [d['pages'][0]['path'], 'New', '<p>note</p>'], [old.path, old.title, old.references]
+    assert_equal [old.path, 'New title'], [item.reload.path, item.title]
+  end
+
+  test "update: dry run changes nothing" do
+    old = create_page(lang: 'en', group_lang_id: @ru.group_lang_id, title: 'Old')
+    log = TranslationImporter.call(data('update' => true, 'title' => 'New'), is_dry_run: true)
+    assert_match(/\[DRY RUN\] обновлено/, log.first)
+    assert_equal 'Old', old.reload.title
+  end
 end

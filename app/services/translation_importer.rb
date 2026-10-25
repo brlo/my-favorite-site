@@ -18,6 +18,7 @@
 #       menu: { parent: God/Son, title: Christ in Heaven, priority: 6 }
 #       body: <html>
 #       references: <html>      # примечания внизу статьи (необязательно)
+#       update: true              # перевод уже есть: обновить его (адрес, заголовки, текст), а не пропускать
 class TranslationImporter
   def self.call(data, is_dry_run: false, is_published: false) = new(data, is_dry_run:, is_published:).perform
 
@@ -63,6 +64,7 @@ class TranslationImporter
     return "нет оригинала: #{item['src']}" unless src
 
     existing = ::Page.find_by(lang: @lang, group_lang_id: src.group_lang_id)
+    return update_page(existing, item, list) if existing && item['update']
     return "пропуск #{item['src']}: перевод уже есть (#{existing.path})" if existing
     return "пропуск #{item['src']}: путь занят (#{item['path']})" if ::Page.exists?(path_low: item.fetch('path').downcase)
 
@@ -98,6 +100,24 @@ class TranslationImporter
       end
     end
     "создано: #{@lang}:#{item['path']} (#{item['title']})"
+  end
+
+  # Перевод переписан заново: меняем страницу на месте, пункты меню со старым адресом ведём на новый
+  def update_page(page, item, list)
+    attrs = item.slice('path', 'title', 'title_sub', 'meta_desc', 'body', 'references')
+    if attrs['path'] && attrs['path'] != page.path && ::Page.where.not(id: page.id).exists?(path_low: attrs['path'].downcase)
+      return "пропуск #{item['src']}: путь занят (#{attrs['path']})"
+    end
+    return "[DRY RUN] обновлено: #{@lang}:#{page.path} -> #{attrs['path'] || page.path}" if @is_dry_run
+
+    old_path = page.path
+    ::Page.transaction do
+      page.update!(attrs)
+      ::Menu.where(path: old_path).update_all(path: page.path) if page.path != old_path
+      menu_title = item.dig('menu', 'title')
+      ::Menu.where(page_id: list.id, path: page.path).update_all(title: menu_title) if menu_title
+    end
+    "обновлено: #{@lang}:#{page.path} (#{page.title})"
   end
 
   # "God/Son" -> пункт меню "Son" внутри "God"; nil - корень меню; false - раздел не найден
