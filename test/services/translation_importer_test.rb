@@ -79,4 +79,14 @@ class TranslationImporterTest < ActiveSupport::TestCase
     end
   end
 
+
+  test "fills an empty menu item with the same title instead of adding a second one" do
+    stub = Menu.create!(page_id: @list.id, parent_id: @son.id, title: 'In Heaven', priority: 3)
+    d = data
+    TranslationImporter.call(d)
+    assert_equal d['pages'][0]['path'], stub.reload.path
+    assert_equal 3, stub.priority
+    assert_equal 1, Menu.where(page_id: @list.id, parent_id: @son.id, title: 'In Heaven').count
+  end
+
 end

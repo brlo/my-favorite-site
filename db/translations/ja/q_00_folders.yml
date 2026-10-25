@@ -1,0 +1,35 @@
+# Папки (разделы без ссылки) японского меню раздела «聖書の引用» (jp_q). Загружать первым:
+# bin/rails pages:import_translations FILE=db/translations/ja/q_00_folders.yml
+lang: ja
+list: jp_q
+folders:
+  - { path: "神", priority: 1 }
+  - { path: "神/父", priority: 18 }
+  - { path: "神/子", priority: 19 }
+  - { path: "神/聖霊", priority: 20 }
+  - { path: "教会", priority: 5 }
+  - { path: "教会/信仰", priority: 2 }
+  - { path: "教会/聖人", priority: 3 }
+  - { path: "教会/祈り", priority: 4 }
+  - { path: "教会/機密", priority: 7 }
+  - { path: "教会/宣教", priority: 10 }
+  - { path: "教会/修行", priority: 12 }
+  - { path: "教会/救い", priority: 20 }
+  - { path: "教会/賜物", priority: 20 }
+  - { path: "教会/聖書", priority: 21 }
+  - { path: "教会/奉神礼", priority: 25 }
+  - { path: "人間", priority: 10 }
+  - { path: "人間/死後", priority: 0 }
+  - { path: "人間/罪", priority: 1 }
+  - { path: "人間/徳", priority: 2 }
+  - { path: "世界", priority: 20 }
+  - { path: "旧約", priority: 100 }
+  - { path: "旧約/予型", priority: 1 }
+  - { path: "旧約/律法", priority: 2 }
+  - { path: "旧約/礼拝", priority: 3 }
+  - { path: "たとえ話", priority: 110 }
+  - { path: "天使", priority: 120 }
+  - { path: "天使/聖なる天使", priority: 1 }
+  - { path: "天使/堕落した天使", priority: 2 }
+  - { path: "預言", priority: 130 }
+pages: []

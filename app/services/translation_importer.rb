@@ -84,10 +84,17 @@ class TranslationImporter
       )
       @created << page
       if item['menu']
-        ::Menu.create!(
-          page_id: list.id, parent_id: menu_parent&.id, path: page.path,
-          title: item.dig('menu', 'title') || page.title, priority: item.dig('menu', 'priority'),
-        )
+        title = item.dig('menu', 'title') || page.title
+        # пункт-заготовка без ссылки с тем же названием (так готовят меню заранее) — заполняем его
+        stub = ::Menu.where(page_id: list.id, parent_id: menu_parent&.id, title: title, path: [nil, '']).first
+        if stub
+          stub.update!(path: page.path)
+        else
+          ::Menu.create!(
+            page_id: list.id, parent_id: menu_parent&.id, path: page.path,
+            title: title, priority: item.dig('menu', 'priority'),
+          )
+        end
       end
     end
     "создано: #{@lang}:#{item['path']} (#{item['title']})"
