@@ -69,15 +69,18 @@ class DictWordsController < ApplicationController
   # Все стихи, в которых встречается лексема (в любой форме): /ru/lexemas/λόγος
   def lexema
     @lexema = params[:lexema].to_s
-    words = ::BibWord.where(lexema: @lexema).pluck(:word, :addrs)
+    @lexemas = [@lexema]
+    words = ::BibWord.where(lexema: @lexemas).pluck(:word, :addrs)
     if words.empty?
       # в таблице lexemas лексема бывает записана с другими ударениями - сравниваем без диакритики
       clean = ::DictWord.word_clean_gr(@lexema)
-      lexemas = ::BibWord.distinct.pluck(:lexema).compact.select { ::DictWord.word_clean_gr(_1) == clean }
-      words = ::BibWord.where(lexema: lexemas).pluck(:word, :addrs) if clean && lexemas.any?
+      @lexemas = ::BibWord.distinct.pluck(:lexema).compact.select { ::DictWord.word_clean_gr(_1) == clean }
+      words = ::BibWord.where(lexema: @lexemas).pluck(:word, :addrs) if clean && @lexemas.any?
     end
     return head(404) if words.empty?
 
+    # в подстрочнике стихов ударения лексемы бывают записаны другими символами - сравниваем в NFC
+    @lexemas_nfc = @lexemas.map { _1.unicode_normalize(:nfc) }.to_set
     @forms = words.map(&:first).uniq
     book_order = ::BOOKS.keys.each_with_index.to_h
     addrs = words.flat_map(&:last).uniq.sort_by do |addr|

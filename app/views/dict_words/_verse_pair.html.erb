@@ -1,0 +1,11 @@
+<%# Стих на греческом и под ним перевод; слово подсвечено в обоих (см. DictWordsHelper#verse_pair_highlights).
+    Ударения в текстах и в подстрочнике записаны по-разному (ό, ό, ό), поэтому сравниваем в NFC %>
+<div class="lexema-verse">
+  <a class="address" href="<%= my_bib_link_to(::AddressConverter.addr_to_link(addr)) %>"><%= ::AddressConverter.humanize(addr) %></a>
+  <% if greek %>
+    <div class="greek"><%= verse_alone_clean(highlight(greek.text.to_s.unicode_normalize(:nfc), greek_re).html_safe) %></div>
+  <% end %>
+  <% if translated %>
+    <div class="translated"><%= verse_alone_clean(highlight(translated.text.to_s.unicode_normalize(:nfc), translated_re).html_safe) %></div>
+  <% end %>
+</div>

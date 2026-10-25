@@ -70,6 +70,10 @@ body.select-bar-enabled .word-info {
   background: var(--bg-card);
 }
 
+.dict-word h2 {
+  margin-top: 40px;
+}
+
 .dict-word h2 .dict-name {
   margin-left: 6px;
   font-size: 0.45em;
@@ -80,5 +84,23 @@ body.select-bar-enabled .word-info {
 .dict-word .desc .dict-source {
   margin-left: 4px;
   font-size: 0.85em;
+  color: var(--text-secondary);
+}
+
+/* Стих на греческом и перевод под ним (страница слова и страница лексемы) */
+.lexema-summary {
+  color: var(--text-secondary);
+}
+
+.lexema-verse {
+  padding: 10px 0;
+  border-bottom: 1px solid var(--border-main);
+}
+
+.lexema-verse .address {
+  font-weight: bold;
+}
+
+.lexema-verse .translated {
   color: var(--text-secondary);
 }

@@ -56,27 +56,17 @@
     </div>
   </div>
 
-  <!-- Примеры стихов -->
-  <div class="examples">
-    <div class="info-block">
-      <h3><%= t('bib_word_info.random_verses_title') %></h3>
-      <% ::Verse.where(address: @bib_word.addrs.sample(5), tr_code: 'gr-ru').each do |v| %>
-        <div class="verse-example">
-          "<%= verse_alone_clean(highlight(v.text, @bib_word.word).html_safe) %>"
-          (<a href="/<%= I18n.locale %>/gr-ru/<%= v.book %>/<%= v.chapter %>#L<%= v.line %>"><%= I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %></a>)
-        </div>
-      <% end %>
-    </div>
-
-    <div class="info-block">
-      <h3><%= t('bib_word_info.random_verses_translated_title') %></h3>
-      <% ::Verse.where(address: @bib_word.addrs.sample(5), tr_code: current_bib_lang()).each do |v| %>
-        <div class="verse-example">
-          "<%= verse_alone_clean(highlight(v.text.to_s, @bib_word.translations.to_h[I18n.locale.to_s]).html_safe) %>"
-          (<a href="<%= my_bib_link_to("/#{ v.book }/#{ v.chapter }#L#{ v.line }") %>"><%= I18n.t("books.short.#{ v.book }") %>. <%= v.chapter %>:<%= v.line %></a>)
-        </div>
-      <% end %>
-    </div>
+  <!-- Примеры стихов: одни и те же стихи на греческом и в переводе -->
+  <div class="info-block">
+    <h3><%= t('bib_word_info.random_verses_title') %></h3>
+    <% addrs = @bib_word.addrs.sample(5) %>
+    <% verses = ::Verse.where(address: addrs, tr_code: ['gr-ru', current_bib_lang()]).to_a %>
+    <% addrs.each do |addr| %>
+      <% greek = verses.find { _1.address == addr && _1.tr_code == 'gr-ru' } %>
+      <% translated = verses.find { _1.address == addr && _1.tr_code != 'gr-ru' } %>
+      <% greek_re, translated_re = verse_pair_highlights(greek, translated, greek_fallback: [@bib_word.word]) { |wi| wi['bw_id'] == @bib_word.id } %>
+      <%= render 'verse_pair', addr:, greek:, translated:, greek_re:, translated_re: %>
+    <% end %>
   </div>
 <% end %>
 
@@ -220,24 +210,16 @@
     font-size: 0.9em;
   }
 
-  .examples {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-    margin-top: 10px;
+  .info-block + .info-block {
+    margin-top: 20px;
   }
 
-  .verse-example {
-    margin: 10px 0;
-    padding: 4px 0;
+  .info-block .lexema-verse:last-child {
+    border-bottom: none;
   }
 
   @media (max-width: 768px) {
     .word-section {
-      grid-template-columns: 1fr;
-    }
-
-    .examples {
       grid-template-columns: 1fr;
     }
   }
