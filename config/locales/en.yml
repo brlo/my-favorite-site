@@ -157,6 +157,10 @@ en:
 
   bib_word_info:
     warning: Sorry, this page is currently under development
+    dict_source: Source
+    lexema_title: 'Lexeme «%{lexema}» in the Bible'
+    lexema_forms: Forms
+    lexema_verses_count: 'Verses: %{count}'
     h1_title: 'Biblical word «%{word}» in Greek dictionaries'
     translations: Translation
     morphology: Morphology

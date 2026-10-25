@@ -149,6 +149,10 @@ ja:
 
   bib_word_info:
     warning: 申し訳ございませんが、このページは現在開発中です
+    dict_source: 出典
+    lexema_title: '聖書における語彙素「%{lexema}」'
+    lexema_forms: 語形
+    lexema_verses_count: '節数：%{count}'
     h1_title: 'ギリシャ語辞典における聖書の語「%{word}」'
     translations: 翻訳
     morphology: 形態論

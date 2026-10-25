@@ -2,10 +2,19 @@ class DictWord < ApplicationRecord
   DICTS = {
     'd' => {'name' => 'Дворецкий И.Х.', 'from' => 'gr', 'to' => 'ru'},
     'w' => {'name' => 'Вейсман А.Д.', 'from' => 'gr', 'to' => 'ru'},
-    'lsj' => {'name' => 'Liddell–Scott–Jones, LSJ', 'from' => 'gr', 'to' => 'en'},
     'bbx' => {'name' => 'Bibleox', 'from' => 'gr', 'to' => 'ru'},
+    # as и lsj загружает StepLexiconImporter из лексиконов STEPBible (bin/rails dict:import_step)
+    'as' => {'name' => 'Abbott-Smith, Manual Greek Lexicon of the NT', 'from' => 'gr', 'to' => 'en'},
+    'lsj' => {'name' => 'Liddell–Scott–Jones, LSJ', 'from' => 'gr', 'to' => 'en'},
     't' => {'name' => 'Тестовый', 'from' => 'jp', 'to' => 'ru'},
   }
+
+  # Английские словари STEPBible показываем во всех локалях, русские - только в русской
+  STEP_DICTS = %w[as lsj].freeze
+
+  # В статьях STEPBible есть сноски <abbr title="..."> и переносы строк
+  ALLOW_TAGS = (::Page::ALLOW_TAGS + %w[abbr br]).freeze
+  ALLOW_ATTRS = (::Page::ALLOW_ATTRS + %w[title]).freeze
 
   self.table_name = 'dict_words'
 
@@ -69,8 +78,8 @@ class DictWord < ApplicationRecord
 
     self.desc = sanitizer.sanitize(
       self.desc.to_s,
-      tags: ::Page::ALLOW_TAGS,
-      attributes: ::Page::ALLOW_ATTRS,
+      tags: ALLOW_TAGS,
+      attributes: ALLOW_ATTRS,
     )
   end
 
@@ -94,6 +103,26 @@ class DictWord < ApplicationRecord
     _w = w.to_s.gsub(/(ματος|ματων|ματα|ιους|ιου|ιων|ιας|ιες|ιων|ιοι|ους|οι|ου|ον|μα|ων|ης|ος|ας|ες|ια|ι|α|η|ο|ε|υ)$/i, '~').strip
     # отдаём слово без окончания только если остаток от слова: 3 и более символов
     _w.length >= 3 ? _w.presence : w
+  end
+
+  # Другие написания той же леммы в словарях (word_simple на входе):
+  # аттическое γιγν- вместо γιν- (γινώσκω -> γιγνώσκω), актив вместо медия и наоборот (ἀποκρίνομαι -> ἀποκρίνω)
+  def self.spelling_variants(w)
+    w = w.to_s
+    base = [w, w.sub('γιν', 'γιγν')].uniq
+    (base + base.flat_map { [_1.sub(/ομαι\z/, 'ω'), _1.sub(/ω\z/, 'ομαι'), _1.sub(/υμι\z/, 'υω'), _1.sub(/υω\z/, 'υμι')] }).uniq - ['']
+  end
+
+  # Статьи словарей dicts для слов (форма, лемма...): сначала точное совпадение word_simple,
+  # а для словарей, где ничего не нашлось, - другие написания. Порядок - как в DICTS.
+  def self.lookup(words, dicts: DICTS.keys)
+    words = words.filter_map { word_clean_gr(_1) }.uniq
+    found = where(dict: dicts, word_simple: words).to_a
+    missing = dicts - found.map(&:dict)
+    variants = words.flat_map { spelling_variants(_1) } - words
+    found += where(dict: missing, word_simple: variants).to_a if missing.any? && variants.any?
+
+    found.sort_by { [DICTS.keys.index(_1.dict), _1.word_simple.to_s, _1.id.to_i] }
   end
 
   def self.find_simple(word)

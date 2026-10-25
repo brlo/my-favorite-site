@@ -50,11 +50,10 @@ class DictWordsController < ApplicationController
       lex_words = @lexemas.pluck(:lexema_clean).compact.uniq
       all_words = [@bib_word.word, @bib_word.lexema, word] + lex_words # ------------------------ раскомментировать после выпуска подстрочника, и привести в порядок view
       # all_words = [dict_word.word, dict_word.lexema, word] + lex_words
-      all_words.map! { |w| ::DictWord.word_clean_gr(w) }
 
-      if I18n.locale == :ru
-        @dict_words = ::DictWord.where(word_simple: all_words).to_a
-      end
+      # русские словари - только в русской локали, английские словари STEPBible - во всех
+      dicts = I18n.locale == :ru ? ::DictWord::DICTS.keys : ::DictWord::STEP_DICTS
+      @dict_words = ::DictWord.lookup(all_words, dicts:)
 
       if @dict_words.blank?
         render status: 404
@@ -65,6 +64,36 @@ class DictWordsController < ApplicationController
       # редирект со слова на ID слова
       redicrect_from_word_to_word_id(param_id)
     end
+  end
+
+  # Все стихи, в которых встречается лексема (в любой форме): /ru/lexemas/λόγος
+  def lexema
+    @lexema = params[:lexema].to_s
+    words = ::BibWord.where(lexema: @lexema).pluck(:word, :addrs)
+    if words.empty?
+      # в таблице lexemas лексема бывает записана с другими ударениями - сравниваем без диакритики
+      clean = ::DictWord.word_clean_gr(@lexema)
+      lexemas = ::BibWord.distinct.pluck(:lexema).compact.select { ::DictWord.word_clean_gr(_1) == clean }
+      words = ::BibWord.where(lexema: lexemas).pluck(:word, :addrs) if clean && lexemas.any?
+    end
+    return head(404) if words.empty?
+
+    @forms = words.map(&:first).uniq
+    book_order = ::BOOKS.keys.each_with_index.to_h
+    addrs = words.flat_map(&:last).uniq.sort_by do |addr|
+      book, ch, line = addr.split(':')
+      [book_order.fetch(book, book_order.size), ch.to_i, line.to_i]
+    end
+    @addrs = ::Kaminari.paginate_array(addrs).page(params[:page]).per(100)
+
+    # греческий текст и перевод, который сейчас читает пользователь
+    verses = ::Verse.where(address: @addrs.to_a, tr_code: ['gr-ru', helpers.current_bib_lang]).to_a
+    @greek = verses.select { _1.tr_code == 'gr-ru' }.index_by(&:address)
+    @translated = verses.reject { _1.tr_code == 'gr-ru' }.index_by(&:address)
+
+    @page_title = ::I18n.t('bib_word_info.lexema_title', lexema: @lexema)
+    @meta_description = @page_title
+    @no_index = true if params[:page].to_i > 1
   end
 
   private

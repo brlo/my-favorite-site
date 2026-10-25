@@ -1,0 +1,41 @@
+<h1><%= t('bib_word_info.lexema_title', lexema: @lexema) %></h1>
+
+<p class="lexema-summary">
+  <%= t('bib_word_info.lexema_verses_count', count: @addrs.total_count) %>.
+  <%= t('bib_word_info.lexema_forms') %>: <%= @forms.join(', ') %>
+</p>
+
+<div class="lexema-verses">
+  <% @addrs.each do |addr| %>
+    <div class="lexema-verse">
+      <a class="address" href="<%= my_bib_link_to(::AddressConverter.addr_to_link(addr)) %>"><%= ::AddressConverter.humanize(addr) %></a>
+      <% if (v = @greek[addr]) %>
+        <div class="greek"><%= verse_alone_clean(highlight(v.text, @forms).html_safe) %></div>
+      <% end %>
+      <% if (v = @translated[addr]) %>
+        <div class="translated"><%= verse_alone_clean(v.text.to_s.html_safe) %></div>
+      <% end %>
+    </div>
+  <% end %>
+</div>
+
+<%= paginate @addrs %>
+
+<style>
+  .lexema-summary {
+    color: var(--text-secondary);
+  }
+
+  .lexema-verse {
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border-main);
+  }
+
+  .lexema-verse .address {
+    font-weight: bold;
+  }
+
+  .lexema-verse .translated {
+    color: var(--text-secondary);
+  }
+</style>

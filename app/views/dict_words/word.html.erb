@@ -1,62 +1,5 @@
 <h1><%= t('bib_word_info.h1_title', word: @dict_words&.first&.word || @bib_word&.word) %></h1>
 
-<% if @dict_words&.any? %>
-  <div class="dict-words">
-    <% @dict_words.each do |w| %>
-      <div class="dict-word">
-        <div class='dict-name'>
-          <%= ::DictWord::DICTS.dig(w.dict, 'name') %>
-          <% if current_user&.is_admin? %>
-            [<%= link_to 'e', edit_admin_dict_word_path(w, locale: nil) %>]
-          <% end %>
-        </div>
-        <h2>
-          <%= w.word %> —
-          <%= w.translation_short %>
-        </h2>
-        <div class='transcription'>
-          <% if w.transcription.present? %>
-            [<%= w.transcription %>]
-          <% end %>
-        </div>
-        <% if w.tag.present? %>
-          <div class='tag'>Признак: <%= w.tag %></div>
-        <% end %>
-        <div class='translation'>
-            <% if w.translation_short.present? %>
-              <div class='single'>
-                <%= w.translation_short %>
-              </div>
-            <% end %>
-            <% if w.translation.present? %>
-              <div class='multiple'><%= w.translation %></div>
-            <% end %>
-            <% if w.desc.present? %>
-              <div class='desc'><%= sanitize(w.desc.to_s, tags: ::Page::ALLOW_TAGS, attributes: ::Page::ALLOW_ATTRS).html_safe %></div>
-            <% end %>
-        </div>
-      </div>
-    <% end %>
-  </div>
-
-  <div class="lexemas">
-      <% @lexemas.each do |l| %>
-          <div class="lexema">
-              <div class='word'>
-                <%= l.word %>
-                <% if l.transcription.present? %>
-                  [<%= l.transcription %>]
-                <% end %>
-              </div>
-              <% if l.present? %>
-                <div><%= t('bib_word_info.lexema') %>: <%= l.lexema %></div>
-              <% end %>
-              <div><%= t('bib_word_info.repeat_count') %>: <%= l.counts %></div>
-          </div>
-      <% end %>
-  </div>
-<% end %>
-
 <% if @bib_word.present? %>
   <div class="construction-banner">
     ⚠️ <%= t('bib_word_info.warning') %>
@@ -97,7 +40,7 @@
       <div>ID: <strong><%= @bib_word.id %></strong></div>
       <div><%= t('bib_word_info.repeat_count') %>: <strong><%= @bib_word.counts %></strong></div>
       <div><%= t('bib_word_info.repeat_count_by_lexema') %>: <strong><%= @bib_word.counts_by_lexema %></strong></div>
-      <div><%= t('bib_word_info.lexema') %>: <strong><%= @bib_word.lexema %></strong></div>
+      <div><%= t('bib_word_info.lexema') %>: <strong><%= @bib_word.lexema.present? ? link_to(@bib_word.lexema, lexema_verses_path(lexema: @bib_word.lexema)) : '' %></strong></div>
     </div>
   </div>
 
@@ -134,6 +77,72 @@
         </div>
       <% end %>
     </div>
+  </div>
+<% end %>
+
+<% if @lexemas&.any? %>
+  <div class="lexemas">
+      <% @lexemas.each do |l| %>
+          <div class="lexema">
+              <div class='word'>
+                <%= l.word %>
+                <% if l.transcription.present? %>
+                  [<%= l.transcription %>]
+                <% end %>
+              </div>
+              <% if l.lexema.present? %>
+                <div><%= t('bib_word_info.lexema') %>: <%= link_to l.lexema, lexema_verses_path(lexema: l.lexema) %></div>
+              <% end %>
+              <div><%= t('bib_word_info.repeat_count') %>: <%= l.counts %></div>
+          </div>
+      <% end %>
+  </div>
+<% end %>
+
+<%# Словарные статьи - в конце страницы %>
+<% if @dict_words&.any? %>
+  <div class="dict-words">
+    <% @dict_words.each do |w| %>
+      <% is_step = w.dict.in?(::DictWord::STEP_DICTS) %>
+      <div class="dict-word">
+        <h2>
+          <%= w.word %>
+          <% if w.transcription.present? %>
+            [<%= w.transcription %>]
+          <% elsif is_step && w.transcription_lat.present? %>
+            [<%= w.transcription_lat %>]
+          <% end %>
+          <% if w.translation_short.present? %>— <%= w.translation_short %><% end %>
+          <span class="dict-name">
+            <%= ::DictWord::DICTS.dig(w.dict, 'name') %>
+            <% if current_user&.is_admin? %>
+              [<%= link_to 'e', edit_admin_dict_word_path(w, locale: nil) %>]
+            <% end %>
+          </span>
+        </h2>
+        <% if w.tag.present? && !is_step %>
+          <div class='tag'>Признак: <%= w.tag %></div>
+        <% end %>
+        <div class='translation'>
+            <% if w.translation_short.present? && !is_step %>
+              <div class='single'>
+                <%= w.translation_short %>
+              </div>
+            <% end %>
+            <% if w.translation.present? %>
+              <div class='multiple'><%= w.translation %></div>
+            <% end %>
+            <% if w.desc.present? %>
+              <div class='desc' data-controller='dict-refs' data-action='click->dict-refs#toggle'>
+                <%= dict_word_desc_html(w) %>
+                <% if is_step %>
+                  <span class='dict-source'><%= t('bib_word_info.dict_source') %>: STEPBible.org (Tyndale House, Cambridge), CC BY 4.0</span>
+                <% end %>
+              </div>
+            <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
 <% end %>
 

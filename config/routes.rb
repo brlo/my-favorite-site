@@ -177,6 +177,7 @@ Rails.application.routes.draw do
     get '/q/:page_path', to: 'verses#q_redirect'
 
     get '/words/:bib_word_id', to: 'dict_words#word'
+    get '/lexemas/:lexema', to: 'dict_words#lexema', as: :lexema_verses
 
     get '/about', to: 'pages#about'
     get '/search', to: 'verses#search'

@@ -333,6 +333,10 @@ ru:
 
   bib_word_info:
     warning: Извините, эта страница пока что находится в разработке
+    dict_source: Источник
+    lexema_title: 'Лексема «%{lexema}» в Библии'
+    lexema_forms: Формы
+    lexema_verses_count: 'Стихов: %{count}'
     h1_title: 'Библейское слово «%{word}» в греческих словарях'
     translations: Перевод
     morphology: Морфология

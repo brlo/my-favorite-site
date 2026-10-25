@@ -53,3 +53,32 @@ body.select-bar-enabled .word-info {
   color: #cdd1db;
   background-color: #3e4759;
 }
+
+/* Статьи словарей STEPBible (Abbott-Smith, LSJ) на странице слова */
+.dict-word .desc abbr[title] {
+  text-decoration: underline dotted;
+  cursor: pointer;
+  color: var(--text-secondary);
+}
+
+.dict-word .desc .abbr-text {
+  margin: 0 4px;
+  padding: 0 4px;
+  border-radius: 4px;
+  font-size: 0.9em;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+}
+
+.dict-word h2 .dict-name {
+  margin-left: 6px;
+  font-size: 0.45em;
+  font-weight: normal;
+  color: var(--text-secondary);
+}
+
+.dict-word .desc .dict-source {
+  margin-left: 4px;
+  font-size: 0.85em;
+  color: var(--text-secondary);
+}
