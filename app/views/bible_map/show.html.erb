@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title><%= @page_title %> / <%= I18n.t('title') %></title>
+  <link rel="canonical" href="<%= @canonical_url %>">
+  <% if @no_index %>
+  <meta name="robots" content="noindex, follow">
+  <% end %>
+  <meta name="description" content="<%= @meta_description %>">
+  <meta property="og:site_name" content="<%= I18n.t('title') %>">
+  <meta property="og:title" content="<%= @page_title %>">
+  <meta property="og:description" content="<%= @meta_description %>">
+  <meta name="theme-color" content="#04060b">
+  <link rel="icon" type="image/svg+xml" href="<%= my_res_link_to('/favicons/favicon.svg') %>">
+  <link rel="shortcut icon" href="<%= my_res_link_to('/favicons/favicon.ico') %>">
+  <%= stylesheet_link_tag "bible_map" %>
+  <%= javascript_inline_importmap_tag %>
+  <%= javascript_import_module_tag "bible_map/app" %>
+</head>
+<body
+  data-bible-url="/<%= ::I18n.locale %>/ru/"
+  data-earth-day="<%= my_res_link_to('/bible_map/earth_day.jpg') %>"
+  data-earth-relief="<%= my_res_link_to('/bible_map/earth_relief.jpg') %>"
+  data-clouds="<%= my_res_link_to('/bible_map/clouds.jpg') %>"
+  data-moon="<%= my_res_link_to('/bible_map/moon.jpg') %>">
+
+  <div id="scene"></div>
+  <div id="labels"></div>
+
+  <aside id="card" aria-live="polite"></aside>
+
+  <div id="legend">
+    <a id="home" href="<%= my_bib_link_to('/') %>">Bibleox</a>
+    <span><i class="l-solid"></i>путь</span>
+    <span><i class="l-dash"></i>предположительно</span>
+    <span class="hint">перетаскивайте глобус · ← → события · пробел — показ</span>
+  </div>
+
+  <footer id="timeline">
+    <div class="tl-buttons">
+      <button id="prev" aria-label="Предыдущее событие">‹</button>
+      <button id="play" aria-label="Показ по порядку"><span class="i-play">▶</span><span class="i-pause">❚❚</span></button>
+      <button id="next" aria-label="Следующее событие">›</button>
+    </div>
+    <div class="tl-track" id="track"></div>
+  </footer>
+
+  <div id="loader"><div><span>Сотворение мира…</span><b><i></i></b></div></div>
+
+  <noscript><p class="noscript">Для глобуса нужен JavaScript и WebGL.</p></noscript>
+</body>
+</html>

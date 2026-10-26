@@ -28,3 +28,15 @@ pin "tiptap_bundle", to: "tiptap_bundle.js"
 
 pin "@rails/actioncable", to: "actioncable.esm.js"
 pin_all_from "app/javascript/channels", under: "channels"
+
+# Библейская история на глобусе (/:locale/bible-map). Подключается только на своей странице, поэтому без preload.
+# three@0.160.0 скачан с jsdelivr (build/three.module.min.js и нужные examples/jsm),
+# в аддонах относительные импорты заменены на имена из importmap: с дайджестами в именах файлов относительные пути не работают.
+pin "three", to: "three.js", preload: false
+pin "three/addons/controls/OrbitControls.js", to: "three-addons/OrbitControls.js", preload: false
+pin "three/addons/lines/Line2.js", to: "three-addons/Line2.js", preload: false
+pin "three/addons/lines/LineSegments2.js", to: "three-addons/LineSegments2.js", preload: false
+pin "three/addons/lines/LineMaterial.js", to: "three-addons/LineMaterial.js", preload: false
+pin "three/addons/lines/LineGeometry.js", to: "three-addons/LineGeometry.js", preload: false
+pin "three/addons/lines/LineSegmentsGeometry.js", to: "three-addons/LineSegmentsGeometry.js", preload: false
+pin_all_from "app/javascript/bible_map", under: "bible_map", preload: false

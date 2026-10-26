@@ -185,6 +185,8 @@ Rails.application.routes.draw do
     get '/lexemas/:lexema', to: 'dict_words#lexema', as: :lexema_verses
 
     get '/about', to: 'pages#about'
+    # Библейская история на 3D-глобусе
+    get '/bible-map', to: 'bible_map#show', as: :bible_map
     get '/search', to: 'verses#search'
 
     # ищем по человеческому адресу стих и редиректим на правильный адрес
