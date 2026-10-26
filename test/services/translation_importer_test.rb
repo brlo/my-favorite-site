@@ -108,4 +108,12 @@ class TranslationImporterTest < ActiveSupport::TestCase
     assert_match(/\[DRY RUN\] обновлено/, log.first)
     assert_equal 'Old', old.reload.title
   end
+
+  test "menu.replace fills a stub item with another title and renames it" do
+    stub = Menu.create!(page_id: @list.id, parent_id: @son.id, title: 'Calque name')
+    d = data('menu' => { 'parent' => 'God/Son', 'title' => 'Proper name', 'replace' => 'Calque name' })
+    TranslationImporter.call(d)
+    assert_equal [d['pages'][0]['path'], 'Proper name'], [stub.reload.path, stub.title]
+    assert_equal 1, Menu.where(page_id: @list.id, parent_id: @son.id).count
+  end
 end

@@ -15,10 +15,11 @@
 #       title: Christ in Heaven
 #       title_sub:
 #       meta_desc: ...
-#       menu: { parent: God/Son, title: Christ in Heaven, priority: 6 }
+#       menu: { parent: God/Son, title: Christ in Heaven, priority: 6 }   # replace: "..." - название пустой заготовки, если отличается
 #       body: <html>
 #       references: <html>      # примечания внизу статьи (необязательно)
 #       update: true              # перевод уже есть: обновить его (адрес, заголовки, текст), а не пропускать
+#       copy_cover: true          # взять обложку (картинку над заголовком) у оригинала
 class TranslationImporter
   def self.call(data, is_dry_run: false, is_published: false) = new(data, is_dry_run:, is_published:).perform
 
@@ -84,13 +85,16 @@ class TranslationImporter
         body: item['body'], references: item['references'], page_type: src.page_type, edit_mode: src.edit_mode, user_id: src.user_id,
         is_published: @is_published,
       )
+      copy_cover(src, page) if item['copy_cover']
       @created << page
       if item['menu']
         title = item.dig('menu', 'title') || page.title
         # пункт-заготовка без ссылки с тем же названием (так готовят меню заранее) — заполняем его
-        stub = ::Menu.where(page_id: list.id, parent_id: menu_parent&.id, title: title, path: [nil, '']).first
+        # menu.replace - заготовка называлась иначе (например, с ошибкой): заполняем её и переименовываем
+        stub_title = item.dig('menu', 'replace') || title
+        stub = ::Menu.where(page_id: list.id, parent_id: menu_parent&.id, title: stub_title, path: [nil, '']).first
         if stub
-          stub.update!(path: page.path)
+          stub.update!(path: page.path, title: title)
         else
           ::Menu.create!(
             page_id: list.id, parent_id: menu_parent&.id, path: page.path,
@@ -100,6 +104,15 @@ class TranslationImporter
       end
     end
     "создано: #{@lang}:#{item['path']} (#{item['title']})"
+  end
+
+  # Обложка оригинала: копируем файл, чтобы у перевода была своя картинка (в своей папке)
+  def copy_cover(src, page)
+    path = src.cover&.path
+    return unless path && ::File.exist?(path)
+
+    page.cover = ::File.open(path)
+    page.save!
   end
 
   # Перевод переписан заново: меняем страницу на месте, пункты меню со старым адресом ведём на новый
