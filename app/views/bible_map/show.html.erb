@@ -27,24 +27,40 @@
   data-moon="<%= my_res_link_to('/bible_map/moon.jpg') %>">
 
   <div id="scene"></div>
+  <div id="flash"></div>
   <div id="labels"></div>
+  <div id="hover-tip" role="tooltip"></div>
 
   <aside id="card" aria-live="polite"></aside>
 
+  <div id="year" aria-live="polite"></div>
+
   <div id="legend">
     <a id="home" href="<%= my_bib_link_to('/') %>">Bibleox</a>
-    <span><i class="l-solid"></i>путь</span>
-    <span><i class="l-dash"></i>предположительно</span>
+    <button id="toggle-people" class="chip" aria-pressed="true"><i class="sw sw-church"></i>Народ Божий</button>
+    <span class="key"><i class="sw sw-human"></i>отпавшие и самочинные общества</span>
+    <button id="toggle-persons" class="chip" aria-pressed="true"><i class="sw sw-person"></i>Праведники и пророки</button>
+    <button id="toggle-politics" class="chip off" aria-pressed="false"><i class="sw sw-polity"></i>Державы</button>
+    <span class="key"><i class="l-solid"></i>путь</span>
+    <span class="key"><i class="l-dash"></i>предположительно</span>
     <span class="hint">перетаскивайте глобус · ← → события · пробел — показ</span>
   </div>
 
   <footer id="timeline">
-    <div class="tl-buttons">
-      <button id="prev" aria-label="Предыдущее событие">‹</button>
-      <button id="play" aria-label="Показ по порядку"><span class="i-play">▶</span><span class="i-pause">❚❚</span></button>
-      <button id="next" aria-label="Следующее событие">›</button>
+    <div id="shelf" class="empty">
+      <span class="title">Библия</span>
+      <span class="spines"></span>
+      <span class="count"></span>
     </div>
-    <div class="tl-track" id="track"></div>
+    <div class="tl-periods" id="periods"></div>
+    <div class="tl-row">
+      <div class="tl-buttons">
+        <button id="prev" aria-label="Предыдущее событие">‹</button>
+        <button id="play" aria-label="Показ по порядку"><span class="i-play">▶</span><span class="i-pause">❚❚</span></button>
+        <button id="next" aria-label="Следующее событие">›</button>
+      </div>
+      <div class="tl-track" id="track"></div>
+    </div>
   </footer>
 
   <div id="loader"><div><span>Сотворение мира…</span><b><i></i></b></div></div>

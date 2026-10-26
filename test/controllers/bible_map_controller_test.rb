@@ -17,7 +17,7 @@ class BibleMapControllerTest < ActionDispatch::IntegrationTest
     importmap = JSON.parse(response.body[%r{<script type="importmap"[^>]*>(.*?)</script>}m, 1])
     assert_match(%r{/three-[0-9a-f]+\.js\z}, importmap['imports']['three'])
     assert importmap['imports'].key?('three/addons/lines/Line2.js')
-    assert importmap['imports'].key?('bible_map/events')
+    assert importmap['imports'].key?('bible_map/data')
   end
 
   test "textures and verse links come from data attributes" do
@@ -27,6 +27,15 @@ class BibleMapControllerTest < ActionDispatch::IntegrationTest
       assert File.exist?(Rails.root.join('public', 'bible_map', file)), "нет текстуры #{file}"
     end
     assert_includes response.body, 'data-bible-url="/ru/ru/"'
+  end
+
+  # id события — это адрес (#id) в ссылке; одинаковые id открывали бы не то событие
+  test "event ids in globe data are unique" do
+    ids = Dir[Rails.root.join('app/javascript/bible_map/data/*.js')].flat_map do |file|
+      File.read(file).scan(/^    id: '([^']+)', period:/).flatten
+    end
+    assert ids.size > 50
+    assert_equal [], ids.tally.select { |_, n| n > 1 }.keys
   end
 
   test "other interface languages are not indexed" do
