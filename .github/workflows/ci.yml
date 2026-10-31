@@ -52,6 +52,7 @@ jobs:
         run: |
           cp config/database.yml.example config/database.yml
           cp config/settings.yml.example config/settings.yml
+          sed -i 's#redis://:psw@bibredis:6379/15#redis://localhost:6379/15#' config/settings.yml
       - name: Подготовка БД
         run: bin/rails db:create db:schema:load
       - name: Тесты
