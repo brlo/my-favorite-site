@@ -23,6 +23,19 @@
 class TranslationImporter
   def self.call(data, is_dry_run: false, is_published: false) = new(data, is_dry_run:, is_published:).perform
 
+  # Обложка оригинала: копируем файл, чтобы у перевода была своя картинка (в своей папке)
+  def self.copy_cover(src, page)
+    return if src.cover.blank?
+
+    # Загрузчик не принимает файлы больше 1 МБ, у старых обложек бывают такие: берём версию поменьше
+    paths = [src.cover, *src.cover.versions.values].filter_map(&:path)
+    path = paths.find { ::File.exist?(_1) && ::File.size(_1) <= 1.megabyte }
+    return unless path
+
+    page.cover = ::File.open(path)
+    page.save!
+  end
+
   def initialize(data, is_dry_run: false, is_published: false)
     @data = data
     @lang = data.fetch('lang')
@@ -106,18 +119,8 @@ class TranslationImporter
     "создано: #{@lang}:#{item['path']} (#{item['title']})"
   end
 
-  # Обложка оригинала: копируем файл, чтобы у перевода была своя картинка (в своей папке)
-  def copy_cover(src, page)
-    return if src.cover.blank?
+  def copy_cover(src, page) = self.class.copy_cover(src, page)
 
-    # Загрузчик не принимает файлы больше 1 МБ, у старых обложек бывают такие: берём версию поменьше
-    paths = [src.cover, *src.cover.versions.values].filter_map(&:path)
-    path = paths.find { ::File.exist?(_1) && ::File.size(_1) <= 1.megabyte }
-    return unless path
-
-    page.cover = ::File.open(path)
-    page.save!
-  end
 
   # Перевод переписан заново: меняем страницу на месте, пункты меню со старым адресом ведём на новый
   def update_page(page, item, list)

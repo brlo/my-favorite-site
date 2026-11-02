@@ -48,7 +48,7 @@ docker exec bibleox bash -lc 'cd /app && bin/rails runner "puts 1"'
 - Ссылки на ещё не переведённые статьи писать `[[ru:путь|текст]]` или `[[en:путь|текст]]` (сборщик найдёт русскую страницу). Их потом заменяет `bin/rails pages:relink_translations LANG=.. LIST=..`: сперва пройти все статьи, затем перелинковать, якоря при этом пропадают.
 - Папки меню — отдельный файл `db/translations/LANG/q_00_folders.yml`, загружается первым.
 - Правки уже загруженных статей: YAML остаётся источником правды, `bin/rails runner script/translations/q_sync.rb LANG FILE [path]` заносит его в базу, потом снова перелинковка (после неё тексты в базе и в YAML отличаются ссылками). Без `update: true` импорт существующую статью молча пропускает.
-- Проверка: `bin/rails runner script/translations/chk_q.rb LANG FILE` (стихи, пометки языка). Обложки — `copy_cover: true`; картинки внутри текста переносятся вручную, в компактном виде они отмечены `IMG`.
+- Проверка: `bin/rails runner script/translations/chk_q.rb LANG FILE` (стихи, пометки языка). Обложки — `copy_cover: true`: файл копируется в `public/s` на той машине, где идёт импорт, в git картинки не попадают. Недостающие обложки добирает `bin/rails runner script/translations/copy_covers.rb LANG [LIST] [DRY_RUN]`; картинки внутри текста переносятся вручную, в компактном виде они отмечены `IMG`.
 
 Подводные камни:
 

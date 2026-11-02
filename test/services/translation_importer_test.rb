@@ -37,7 +37,7 @@ class TranslationImporterTest < ActiveSupport::TestCase
     src = Struct.new(:cover).new(cover.new(big.path, { small: cover.new(small.path, {}) }))
     page = Struct.new(:cover) { def save! = true }.new
 
-    TranslationImporter.allocate.send(:copy_cover, src, page)
+    TranslationImporter.copy_cover(src, page)
 
     assert_equal small.path, page.cover.path
   end
