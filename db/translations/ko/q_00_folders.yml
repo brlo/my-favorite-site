@@ -1,0 +1,17 @@
+# Папки меню раздела «성경 구절» (ko-q). Загружать первым.
+lang: ko
+list: ko-q
+folders:
+  - { path: "하느님", priority: 1 }
+  - { path: "하느님/아들", priority: 19 }
+  - { path: "하느님/아버지", priority: 18 }
+  - { path: "하느님/성령", priority: 20 }
+  - { path: "교회", priority: 5 }
+  - { path: "교회/성사", priority: 7 }
+  - { path: "교회/신앙", priority: 6 }
+  - { path: "교회/은사", priority: 8 }
+  - { path: "교회/예배", priority: 9 }
+  - { path: "교회/기도", priority: 10 }
+  - { path: "교회/설교", priority: 11 }
+  - { path: "교회/수덕", priority: 12 }
+pages: []

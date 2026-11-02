@@ -1,0 +1,1 @@
+[142,137,143,1209].each{|id| p=Page.find(id); v=p.verses; puts "#{id} #{p.lang} type=#{p.page_type} vclass=#{v.class} n=#{v.size} lines=#{v.sum{|c| c['lines'].to_a.size} rescue '?'}"; puts v.first(1).to_json[0,600] }

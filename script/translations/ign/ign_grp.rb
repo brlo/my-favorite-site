@@ -1,0 +1,1 @@
+%w[ПлкСм_Фл Церковная_история_книга_3_—_Евсевий_Кесарийский r6fC_Иероним_Стридонский_IV_век Поликарп_Смирнский Правила_святых_апостолов трёхчинная-священническая-иерархия].each{|path| r=Page.find_by(lang:'ru', path: path); next puts("no ru #{path}") unless r; t=Page.where(group_lang_id: r.group_lang_id).where.not(lang:'ru').pluck(:lang,:path); puts "#{path}: #{t.inspect}"}
