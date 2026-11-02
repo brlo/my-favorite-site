@@ -35,7 +35,7 @@ class TranslationImporterTest < ActiveSupport::TestCase
     small = Tempfile.new('small').tap { _1.write('x'); _1.flush }
     cover = Struct.new(:path, :versions) { def blank? = false }
     src = Struct.new(:cover).new(cover.new(big.path, { small: cover.new(small.path, {}) }))
-    page = Struct.new(:cover) { def save! = true; def valid? = cover.size <= 1.megabyte }.new
+    page = Struct.new(:cover) { def save! = true; def valid? = true; def errors = { cover: cover.size > 1.megabyte ? ['big'] : [] } }.new
 
     TranslationImporter.copy_cover(src, page)
 
@@ -50,7 +50,7 @@ class TranslationImporterTest < ActiveSupport::TestCase
       attr_accessor :cover
 
       def valid? = false
-      def restore_attributes(_) = self.cover = nil
+      def errors = { cover: ['big'] }
     end.new
 
     assert_nil TranslationImporter.copy_cover(src, page)

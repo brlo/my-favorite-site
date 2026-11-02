@@ -29,12 +29,20 @@ class TranslationImporter
 
     # Загрузчик не принимает файлы больше 1 МБ, в том числе после своей обработки: берём первый вариант, что проходит
     original, *versions = [src.cover, *src.cover.versions.values].filter_map(&:path).select { ::File.exist?(_1) }
-    [original, recompressed(original), *versions].compact.each do |path|
-      page.cover = ::File.open(path)
-      return page.save! if page.valid?
-    end
-    page.restore_attributes(['cover'])
-    nil
+    smaller = recompressed(original)
+    path = [original, smaller&.path, *versions].compact.find { cover_fits?(page, _1) }
+    return unless path
+
+    page.cover = ::File.open(path)
+    page.save!
+  end
+
+  # Пробуем на копии: после неудачной загрузки ошибка остаётся на объекте и следующий файл уже не пройдёт
+  def self.cover_fits?(page, path)
+    probe = page.dup
+    probe.cover = ::File.open(path)
+    probe.valid?
+    probe.errors[:cover].empty?
   end
 
   # Загрузчик увеличивает картинку до 2000 пикселей, и файл меньше 1 МБ может превысить предел: сжимаем заранее
@@ -43,7 +51,7 @@ class TranslationImporter
 
     target = ::Tempfile.new(['cover', '.jpg'])
     ::Magick::Image.read(path).first.write(target.path) { |options| options.quality = 80 }
-    target.path
+    target
   rescue ::Magick::ImageMagickError
     nil
   end
