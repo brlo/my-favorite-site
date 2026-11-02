@@ -18,6 +18,7 @@ folders:
   - { path: "교회/수덕", priority: 12 }
   - { path: "교회/성인", priority: 13 }
   - { path: "사람", priority: 10 }
+  - { path: "구약", priority: 100 }
   - { path: "사람/내세", priority: 0 }
   - { path: "사람/죄", priority: 1 }
   - { path: "사람/덕", priority: 2 }
