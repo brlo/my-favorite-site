@@ -27,13 +27,24 @@ class TranslationImporter
   def self.copy_cover(src, page)
     return if src.cover.blank?
 
-    # Загрузчик не принимает файлы больше 1 МБ, в том числе после своей обработки: берём первую версию, что проходит
-    paths = [src.cover, *src.cover.versions.values].filter_map(&:path).select { ::File.exist?(_1) }
-    paths.each do |path|
+    # Загрузчик не принимает файлы больше 1 МБ, в том числе после своей обработки: берём первый вариант, что проходит
+    original, *versions = [src.cover, *src.cover.versions.values].filter_map(&:path).select { ::File.exist?(_1) }
+    [original, recompressed(original), *versions].compact.each do |path|
       page.cover = ::File.open(path)
       return page.save! if page.valid?
     end
     page.restore_attributes(['cover'])
+    nil
+  end
+
+  # Загрузчик увеличивает картинку до 2000 пикселей, и файл меньше 1 МБ может превысить предел: сжимаем заранее
+  def self.recompressed(path)
+    return unless path
+
+    target = ::Tempfile.new(['cover', '.jpg'])
+    ::Magick::Image.read(path).first.write(target.path) { |options| options.quality = 80 }
+    target.path
+  rescue ::Magick::ImageMagickError
     nil
   end
 
