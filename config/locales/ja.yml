@@ -124,7 +124,7 @@ ja:
     arab-avd: 'アラビア語'
     cn-sb: '簡体字中国語'
     hi-ov: 'ヒンディー語'
-    ko-ctb: '韓国語'
+    ko-nkrv: '韓国語'
     csl-pnm: '教会スラヴ語'
     csl-ru: '教会スラヴ語'
     el: '現代ギリシャ語'
@@ -254,7 +254,7 @@ ja:
         jp-ni: '日本語訳 (JP-NI)'
         cn-sb: '中国語訳 (SB)'
         hi-ov: 'ヒンディー語訳 (O.V.)'
-        ko-ctb: '韓国語訳 (CTB)'
+        ko-nkrv: '韓国語訳 (NKRV)'
         ge-sch: 'ドイツ語訳 (SCH)'
         arab-avd: 'アラビア語訳 (AVD)'
       nz:
@@ -271,7 +271,7 @@ ja:
         jp-ni: '日本語訳 (JP-NI, 1987)'
         cn-sb: '中国語訳 (SB, 1968)'
         hi-ov: 'ヒンディー語訳 (O.V., 2016)'
-        ko-ctb: '韓国語訳 (CTB, 1977)'
+        ko-nkrv: '韓国語訳 (NKRV, 1998)'
         ge-sch: 'ドイツ語訳 (SCH, 1951)'
         arab-avd: 'アラビア語訳 (AVD, 1999)'
 

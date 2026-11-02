@@ -124,7 +124,7 @@ it:
     arab-avd: 'Arabo'
     cn-sb: 'Cinese semplificato'
     hi-ov: 'Hindi'
-    ko-ctb: 'Coreano'
+    ko-nkrv: 'Coreano'
     csl-pnm: 'Slavo ecclesiastico'
     csl-ru: 'Slavo ecclesiastico'
     el: 'Greco moderno'
@@ -252,7 +252,7 @@ it:
         jp-ni: 'traduzione giapponese (JP-NI)'
         cn-sb: 'traduzione cinese (SB)'
         hi-ov: 'traduzione hindi (O.V.)'
-        ko-ctb: 'traduzione coreana (CTB)'
+        ko-nkrv: 'traduzione coreana (NKRV)'
         ge-sch: 'traduzione tedesca (SCH)'
         arab-avd: 'traduzione araba (AVD)'
       nz:
@@ -271,7 +271,7 @@ it:
         jp-ni: 'traduzione giapponese (JP-NI, 1987)'
         cn-sb: 'traduzione cinese (SB, 1968)'
         hi-ov: 'traduzione hindi (O.V., 2016)'
-        ko-ctb: 'traduzione coreana (CTB, 1977)'
+        ko-nkrv: 'traduzione coreana (NKRV, 1998)'
         ge-sch: 'traduzione tedesca (SCH, 1951)'
         arab-avd: 'traduzione araba (AVD, 1999)'
 

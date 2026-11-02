@@ -124,7 +124,7 @@ tr:
     arab-avd: 'Arapça'
     cn-sb: 'Basitleştirilmiş Çince'
     hi-ov: 'Hintçe'
-    ko-ctb: 'Korece'
+    ko-nkrv: 'Korece'
     csl-pnm: 'Kilise Slavcası'
     csl-ru: 'Kilise Slavcası'
     el: 'Modern Yunanca'
@@ -252,7 +252,7 @@ tr:
         jp-ni: 'Japonca çeviri (JP-NI)'
         cn-sb: 'Çince çeviri (SB)'
         hi-ov: 'Hintçe çeviri (O.V.)'
-        ko-ctb: 'Korece çeviri (CTB)'
+        ko-nkrv: 'Korece çeviri (NKRV)'
         ge-sch: 'Almanca çeviri (SCH)'
         arab-avd: 'Arapça çeviri (AVD)'
       nz:
@@ -271,7 +271,7 @@ tr:
         jp-ni: 'Japonca çeviri (JP-NI, 1987)'
         cn-sb: 'Çince çeviri (SB, 1968)'
         hi-ov: 'Hintçe çeviri (O.V., 2016)'
-        ko-ctb: 'Korece çeviri (CTB, 1977)'
+        ko-nkrv: 'Korece çeviri (NKRV, 1998)'
         ge-sch: 'Almanca çeviri (SCH, 1951)'
         arab-avd: 'Arapça çeviri (AVD, 1999)'
 

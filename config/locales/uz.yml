@@ -124,7 +124,7 @@ uz:
     arab-avd: 'Arabcha'
     cn-sb: 'Soddalashtirilgan Xitoycha'
     hi-ov: 'Hindcha'
-    ko-ctb: 'Koreyscha'
+    ko-nkrv: 'Koreyscha'
     csl-pnm: 'Cherkov Slavyanchasi'
     csl-ru: 'Cherkov Slavyanchasi'
     el: 'Zamonaviy Yunoncha'
@@ -252,7 +252,7 @@ uz:
         jp-ni: 'yaponcha tarjima (JP-NI)'
         cn-sb: 'xitoycha tarjima (SB)'
         hi-ov: 'hindcha tarjima (O.V.)'
-        ko-ctb: 'koreyscha tarjima (CTB)'
+        ko-nkrv: 'koreyscha tarjima (NKRV)'
         ge-sch: 'nemischa tarjima (SCH)'
         arab-avd: 'arabcha tarjima (AVD)'
       nz:
@@ -271,7 +271,7 @@ uz:
         jp-ni: 'yaponcha tarjima (JP-NI, 1987)'
         cn-sb: 'xitoycha tarjima (SB, 1968)'
         hi-ov: 'hindcha tarjima (O.V., 2016)'
-        ko-ctb: 'koreyscha tarjima (CTB, 1977)'
+        ko-nkrv: 'koreyscha tarjima (NKRV, 1998)'
         ge-sch: 'nemischa tarjima (SCH, 1951)'
         arab-avd: 'arabcha tarjima (AVD, 1999)'
 

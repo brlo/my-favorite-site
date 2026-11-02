@@ -125,7 +125,7 @@ zh-Hans:
     arab-avd: '阿拉伯语'
     cn-sb: '简体中文'
     hi-ov: '印地语'
-    ko-ctb: '韩语'
+    ko-nkrv: '韩语'
     csl-pnm: '教会斯拉夫语'
     csl-ru: '教会斯拉夫语'
     el: '现代希腊语'
@@ -253,7 +253,7 @@ zh-Hans:
         jp-ni: '日语译本 (JP-NI)'
         cn-sb: '中文译本 (SB)'
         hi-ov: '印地语译本 (O.V.)'
-        ko-ctb: '韩语译本 (CTB)'
+        ko-nkrv: '韩语译本 (NKRV)'
         ge-sch: '德语译本 (SCH)'
         arab-avd: '阿拉伯语译本 (AVD)'
       nz:
@@ -272,7 +272,7 @@ zh-Hans:
         jp-ni: '日语译本 (JP-NI, 1987)'
         cn-sb: '中文译本 (SB, 1968)'
         hi-ov: '印地语译本 (O.V., 2016)'
-        ko-ctb: '韩语译本 (CTB, 1977)'
+        ko-nkrv: '韩语译本 (NKRV, 1998)'
         ge-sch: '德语译本 (SCH, 1951)'
         arab-avd: '阿拉伯语译本 (AVD, 1999)'
 

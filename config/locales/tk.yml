@@ -124,7 +124,7 @@ tk:
     arab-avd: 'Arapça'
     cn-sb: 'Ýönekeýleşdirilen Hytaýça'
     hi-ov: 'Hindi'
-    ko-ctb: 'Koreýçe'
+    ko-nkrv: 'Koreýçe'
     csl-pnm: 'Sobor Slawýan dili'
     csl-ru: 'Sobor Slawýan dili'
     el: 'Täze Grek dili'
@@ -252,7 +252,7 @@ tk:
         jp-ni: 'ýapon terjime (JP-NI)'
         cn-sb: 'hytaý terjime (SB)'
         hi-ov: 'hindi terjime (O.V.)'
-        ko-ctb: 'koreý terjime (CTB)'
+        ko-nkrv: 'koreý terjime (NKRV)'
         ge-sch: 'nemes terjime (SCH)'
         arab-avd: 'arap terjime (AVD)'
       nz:
@@ -271,7 +271,7 @@ tk:
         jp-ni: 'ýapon terjime (JP-NI, 1987)'
         cn-sb: 'hytaý terjime (SB, 1968)'
         hi-ov: 'hindi terjime (O.V., 2016)'
-        ko-ctb: 'koreý terjime (CTB, 1977)'
+        ko-nkrv: 'koreý terjime (NKRV, 1998)'
         ge-sch: 'nemes terjime (SCH, 1951)'
         arab-avd: 'arap terjime (AVD, 1999)'
 

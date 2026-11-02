@@ -8,7 +8,7 @@ class BibleLinker
     'ja'      => 'jp-ni',
     'de'      => 'ge-sch',
     'zh-Hans' => 'cn-sb',
-    'ko'      => 'ko-ctb',
+    'ko'      => 'ko-nkrv',
     'hi'      => 'hi-ov',
   }.freeze
 

@@ -14,9 +14,9 @@ lang, file = ARGV
 tr = BibleLinker::BIBLE_BY_LANG.fetch(lang)
 short = I18n.t('books.short', locale: lang.to_sym)
 NOTE_GR = { 'ko' => '그리스어에서 번역' }.fetch(lang, '')
-SOURCE = { 'ko' => '<p>번역: 로디온 블라소프 (AI 도구 활용). 저본: 러시아어 원문. 참고: 영어·일본어 번역. 성경 인용과 링크는 공동번역 성서에 따름.</p>' }.fetch(lang)
+SOURCE = { 'ko' => '<p>번역: 로디온 블라소프 (AI 도구 활용). 저본: 러시아어 원문. 참고: 영어·일본어 번역. 성경 인용과 링크는 개역개정에 따름.</p>' }.fetch(lang)
 errors = []
-clean = ->(t) { t.to_s.gsub(/\[[^\]]*\]/, '').gsub(%r{<br>|</?[a-z]+>}, '').squeeze(' ').strip.gsub('하나님', '하느님') }
+clean = ->(t) { t.to_s.gsub(/\[[^\]]*\]/, '').gsub(%r{<br>|</?[a-z]+>}, '').squeeze(' ').strip }
 quote = ->(t) { i = 0; t.gsub('"') { (i += 1).odd? ? '‘' : '’' } }
 expand = ->(ls) { ls.split(',').flat_map { |x| a, z = x.split('-').map(&:to_i); (a..(z || a)).to_a } }
 base = "https://bibleox.com/#{lang}"

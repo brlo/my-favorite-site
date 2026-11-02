@@ -5,7 +5,7 @@ require 'yaml'
 lang, *args = ARGV
 tr = BibleLinker::BIBLE_BY_LANG.fetch(lang)
 Quote = ->(t) { i = 0; t.gsub('"') { (i += 1).odd? ? '‘' : '’' } }
-clean = ->(t) { t.to_s.gsub(/\[[^\]]*\]/, '').gsub(%r{<br>|</?[a-z]+>}, '').squeeze(' ').strip.gsub('하나님', '하느님') }
+clean = ->(t) { t.to_s.gsub(/\[[^\]]*\]/, '').gsub(%r{<br>|</?[a-z]+>}, '').squeeze(' ').strip }
 expand = ->(ls) { ls.split(',').flat_map { |x| a, z = x.split('-').map(&:to_i); (a..(z || a)).to_a } }
 yaml_items = {}
 Dir['db/translations/en/*.yml'].sort.each { |f| (YAML.load_file(f)['pages'] || []).each { |p| yaml_items[p['src']] = p.merge('file' => File.basename(f, '.yml')) } }

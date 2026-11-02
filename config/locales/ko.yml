@@ -124,7 +124,7 @@ ko:
     arab-avd: '아랍어'
     cn-sb: '중국어(간체)'
     hi-ov: '힌디어'
-    ko-ctb: '한국어'
+    ko-nkrv: '한국어'
     csl-pnm: '교회 슬라브어'
     csl-ru: '교회 슬라브어'
     el: '현대 그리스어'
@@ -252,7 +252,7 @@ ko:
         jp-ni: '일본어 번역 (JP-NI)'
         cn-sb: '중국어 번역 (SB)'
         hi-ov: '힌디어 번역 (O.V.)'
-        ko-ctb: '한국어 번역 (CTB)'
+        ko-nkrv: '한국어 번역 (NKRV)'
         ge-sch: '독일어 번역 (SCH)'
         arab-avd: '아랍어 번역 (AVD)'
       nz:
@@ -271,7 +271,7 @@ ko:
         jp-ni: '일본어 번역 (JP-NI, 1987)'
         cn-sb: '중국어 번역 (SB, 1968)'
         hi-ov: '힌디어 번역 (O.V., 2016)'
-        ko-ctb: '한국어 번역 (CTB, 1977)'
+        ko-nkrv: '한국어 번역 (NKRV, 1998)'
         ge-sch: '독일어 번역 (SCH, 1951)'
         arab-avd: '아랍어 번역 (AVD, 1999)'
 
@@ -330,40 +330,40 @@ ko:
       lev: 레
       chis: 민
       vtor: 신
-      nav: 여호
-      sud: 판관
+      nav: 수
+      sud: 삿
       ruf: 룻
       1ts: 삼상
       2ts: 삼하
-      3ts: 열상
-      4ts: 열하
-      1par: 역상
-      2par: 역하
-      ezd: 에즈
-      neem: 느헤
-      esf: 에스
+      3ts: 왕상
+      4ts: 왕하
+      1par: 대상
+      2par: 대하
+      ezd: 스
+      neem: 느
+      esf: 에
       iov: 욥
-      ps: 시편
-      pr: 잠언
-      ekl: 전도
-      pp: 아가
-      is: 이사
-      ier: 예레
-      pier: 애가
-      iez: 에제
-      dan: 다니
-      os: 호세
-      iol: 요엘
-      am: 아모
-      av: 오바
-      ion: 요나
-      mih: 미가
-      naum: 나훔
-      avm: 하바
-      sof: 스바
-      ag: 하깨
-      zah: 즈가
-      mal: 말라
+      ps: 시
+      pr: 잠
+      ekl: 전
+      pp: 아
+      is: 사
+      ier: 렘
+      pier: 애
+      iez: 겔
+      dan: 단
+      os: 호
+      iol: 욜
+      am: 암
+      av: 옵
+      ion: 욘
+      mih: 미
+      naum: 나
+      avm: 합
+      sof: 습
+      ag: 학
+      zah: 슥
+      mal: 말
       1mak: 1마카
       2mak: 2마카
       3mak: 3마카
@@ -375,33 +375,33 @@ ko:
       iudf: 유딧
       prs: 지혜
       prsir: 집회
-      mf: 마태
-      mk: 마르
-      lk: 루가
-      in: 요한
-      act: 사도
-      rim: 로마
-      1kor: 1고린
-      2kor: 2고린
-      gal: 갈라
-      ef: 에페
-      fil: 필립
-      kol: 골로
-      1sol: 1데살
-      2sol: 2데살
-      1tim: 1디모
-      2tim: 2디모
-      tit: 디도
-      fm: 필레
-      evr: 히브
-      iak: 야고
-      1pet: 1베드
-      2pet: 2베드
-      1in: 1요한
-      2in: 2요한
-      3in: 3요한
-      iud: 유다
-      otkr: 묵시
+      mf: 마
+      mk: 막
+      lk: 눅
+      in: 요
+      act: 행
+      rim: 롬
+      1kor: 고전
+      2kor: 고후
+      gal: 갈
+      ef: 엡
+      fil: 빌
+      kol: 골
+      1sol: 살전
+      2sol: 살후
+      1tim: 딤전
+      2tim: 딤후
+      tit: 딛
+      fm: 몬
+      evr: 히
+      iak: 약
+      1pet: 벧전
+      2pet: 벧후
+      1in: 요일
+      2in: 요이
+      3in: 요삼
+      iud: 유
+      otkr: 계
     mid:
       gen: 창세기
       ish: 출애굽기
@@ -409,17 +409,17 @@ ko:
       chis: 민수기
       vtor: 신명기
       nav: 여호수아
-      sud: 판관기
+      sud: 사사기
       ruf: 룻기
       1ts: 사무엘상
       2ts: 사무엘하
       3ts: 열왕기상
       4ts: 열왕기하
-      1par: 역대기상
-      2par: 역대기하
-      ezd: 에즈라
+      1par: 역대상
+      2par: 역대하
+      ezd: 에스라
       neem: 느헤미야
-      esf: 에스델
+      esf: 에스더
       iov: 욥기
       ps: 시편
       pr: 잠언
@@ -427,20 +427,20 @@ ko:
       pp: 아가
       is: 이사야
       ier: 예레미야
-      pier: 애가
-      iez: 에제키엘
+      pier: 예레미야애가
+      iez: 에스겔
       dan: 다니엘
       os: 호세아
       iol: 요엘
       am: 아모스
-      av: 오바디야
+      av: 오바댜
       ion: 요나
       mih: 미가
       naum: 나훔
-      avm: 하바꾹
-      sof: 스바니야
-      ag: 하깨
-      zah: 즈가리야
+      avm: 하박국
+      sof: 스바냐
+      ag: 학개
+      zah: 스가랴
       mal: 말라기
       1mak: 마카베오상
       2mak: 마카베오하
@@ -453,33 +453,33 @@ ko:
       iudf: 유딧
       prs: 지혜서
       prsir: 집회서
-      mf: 마태오의 복음서
-      mk: 마르코의 복음서
-      lk: 루가의 복음서
-      in: 요한의 복음서
+      mf: 마태복음
+      mk: 마가복음
+      lk: 누가복음
+      in: 요한복음
       act: 사도행전
-      rim: 로마인들에게 보낸 편지
-      1kor: 고린토인들에게 보낸 첫째 편지
-      2kor: 고린토인들에게 보낸 둘째 편지
-      gal: 갈라디아인들에게 보낸 편지
-      ef: 에페소인들에게 보낸 편지
-      fil: 필립비인들에게 보낸 편지
-      kol: 골로사이인들에게 보낸 편지
-      1sol: 데살로니카인들에게 보낸 첫째 편지
-      2sol: 데살로니카인들에게 보낸 둘째 편지
-      1tim: 디모테오에게 보낸 첫째 편지
-      2tim: 디모테오에게 보낸 둘째 편지
-      tit: 디도에게 보낸 편지
-      fm: 필레몬에게 보낸 편지
-      evr: 히브리인들에게 보낸 편지
-      iak: 야고보의 편지
-      1pet: 베드로의 첫째 편지
-      2pet: 베드로의 둘째 편지
-      1in: 요한의 첫째 편지
-      2in: 요한의 둘째 편지
-      3in: 요한의 셋째 편지
-      iud: 유다의 편지
-      otkr: 요한의 묵시록
+      rim: 로마서
+      1kor: 고린도전서
+      2kor: 고린도후서
+      gal: 갈라디아서
+      ef: 에베소서
+      fil: 빌립보서
+      kol: 골로새서
+      1sol: 데살로니가전서
+      2sol: 데살로니가후서
+      1tim: 디모데전서
+      2tim: 디모데후서
+      tit: 디도서
+      fm: 빌레몬서
+      evr: 히브리서
+      iak: 야고보서
+      1pet: 베드로전서
+      2pet: 베드로후서
+      1in: 요한일서
+      2in: 요한이서
+      3in: 요한삼서
+      iud: 유다서
+      otkr: 요한계시록
     full:
       gen: 창세기
       ish: 출애굽기
@@ -487,17 +487,17 @@ ko:
       chis: 민수기
       vtor: 신명기
       nav: 여호수아
-      sud: 판관기
+      sud: 사사기
       ruf: 룻기
       1ts: 사무엘상
       2ts: 사무엘하
       3ts: 열왕기상
       4ts: 열왕기하
-      1par: 역대기상
-      2par: 역대기하
-      ezd: 에즈라
+      1par: 역대상
+      2par: 역대하
+      ezd: 에스라
       neem: 느헤미야
-      esf: 에스델
+      esf: 에스더
       iov: 욥기
       ps: 시편
       pr: 잠언
@@ -505,20 +505,20 @@ ko:
       pp: 아가
       is: 이사야
       ier: 예레미야
-      pier: 애가
-      iez: 에제키엘
+      pier: 예레미야애가
+      iez: 에스겔
       dan: 다니엘
       os: 호세아
       iol: 요엘
       am: 아모스
-      av: 오바디야
+      av: 오바댜
       ion: 요나
       mih: 미가
       naum: 나훔
-      avm: 하바꾹
-      sof: 스바니야
-      ag: 하깨
-      zah: 즈가리야
+      avm: 하박국
+      sof: 스바냐
+      ag: 학개
+      zah: 스가랴
       mal: 말라기
       1mak: 마카베오상
       2mak: 마카베오하
@@ -531,30 +531,30 @@ ko:
       iudf: 유딧
       prs: 지혜서
       prsir: 집회서
-      mf: 마태오의 복음서
-      mk: 마르코의 복음서
-      lk: 루가의 복음서
-      in: 요한의 복음서
+      mf: 마태복음
+      mk: 마가복음
+      lk: 누가복음
+      in: 요한복음
       act: 사도행전
-      rim: 로마인들에게 보낸 편지
-      1kor: 고린토인들에게 보낸 첫째 편지
-      2kor: 고린토인들에게 보낸 둘째 편지
-      gal: 갈라디아인들에게 보낸 편지
-      ef: 에페소인들에게 보낸 편지
-      fil: 필립비인들에게 보낸 편지
-      kol: 골로사이인들에게 보낸 편지
-      1sol: 데살로니카인들에게 보낸 첫째 편지
-      2sol: 데살로니카인들에게 보낸 둘째 편지
-      1tim: 디모테오에게 보낸 첫째 편지
-      2tim: 디모테오에게 보낸 둘째 편지
-      tit: 디도에게 보낸 편지
-      fm: 필레몬에게 보낸 편지
-      evr: 히브리인들에게 보낸 편지
-      iak: 야고보의 편지
-      1pet: 베드로의 첫째 편지
-      2pet: 베드로의 둘째 편지
-      1in: 요한의 첫째 편지
-      2in: 요한의 둘째 편지
-      3in: 요한의 셋째 편지
-      iud: 유다의 편지
-      otkr: 요한의 묵시록
+      rim: 로마서
+      1kor: 고린도전서
+      2kor: 고린도후서
+      gal: 갈라디아서
+      ef: 에베소서
+      fil: 빌립보서
+      kol: 골로새서
+      1sol: 데살로니가전서
+      2sol: 데살로니가후서
+      1tim: 디모데전서
+      2tim: 디모데후서
+      tit: 디도서
+      fm: 빌레몬서
+      evr: 히브리서
+      iak: 야고보서
+      1pet: 베드로전서
+      2pet: 베드로후서
+      1in: 요한일서
+      2in: 요한이서
+      3in: 요한삼서
+      iud: 유다서
+      otkr: 요한계시록

@@ -132,7 +132,7 @@ en:
     arab-avd: 'Arabic'
     cn-sb: 'Simplified Chinese'
     hi-ov: 'Hindi'
-    ko-ctb: 'Korean'
+    ko-nkrv: 'Korean'
     csl-pnm: 'Church Slavonic'
     csl-ru: 'Church Slavonic'
     el: 'Modern Greek'
@@ -262,7 +262,7 @@ en:
         jp-ni: 'Japanese Translation (JP-NI)'
         cn-sb: 'Chinese Translation (SB)'
         hi-ov: 'Hindi Translation (O.V.)'
-        ko-ctb: 'Korean Translation (CTB)'
+        ko-nkrv: 'Korean Translation (NKRV)'
         ge-sch: 'German Translation (SCH)'
         arab-avd: 'Arabic Translation (AVD)'
       nz:
@@ -279,7 +279,7 @@ en:
         jp-ni: 'Japanese Translation (JP-NI, 1987)'
         cn-sb: 'Chinese Translation (SB, 1968)'
         hi-ov: 'Hindi Translation (O.V., 2016)'
-        ko-ctb: 'Korean Translation (CTB, 1977)'
+        ko-nkrv: 'Korean Translation (NKRV, 1998)'
         ge-sch: 'German Translation (SCH, 1951)'
         arab-avd: 'Arabic Translation (AVD, 1999)'
 

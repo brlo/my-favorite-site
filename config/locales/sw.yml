@@ -124,7 +124,7 @@ sw:
     arab-avd: 'Kiarabu'
     cn-sb: 'Kichina Rahisi'
     hi-ov: 'Kihindi'
-    ko-ctb: 'Kikorea'
+    ko-nkrv: 'Kikorea'
     csl-pnm: 'Kislovakia'
     csl-ru: 'Kislovakia'
     el: 'Kigiriki cha Kisasa'
@@ -252,7 +252,7 @@ sw:
         jp-ni: 'tafsiri ya Kijapani (JP-NI)'
         cn-sb: 'tafsiri ya Kichina (SB)'
         hi-ov: 'tafsiri ya Kihindi (O.V.)'
-        ko-ctb: 'tafsiri ya Kikorea (CTB)'
+        ko-nkrv: 'tafsiri ya Kikorea (NKRV)'
         ge-sch: 'tafsiri ya Kijerumani (SCH)'
         arab-avd: 'tafsiri ya Kiarabu (AVD)'
       nz:
@@ -271,7 +271,7 @@ sw:
         jp-ni: 'tafsiri ya Kijapani (JP-NI, 1987)'
         cn-sb: 'tafsiri ya Kichina (SB, 1968)'
         hi-ov: 'tafsiri ya Kihindi (O.V., 2016)'
-        ko-ctb: 'tafsiri ya Kikorea (CTB, 1977)'
+        ko-nkrv: 'tafsiri ya Kikorea (NKRV, 1998)'
         ge-sch: 'tafsiri ya Kijerumani (SCH, 1951)'
         arab-avd: 'tafsiri ya Kiarabu (AVD, 1999)'
 

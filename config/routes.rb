@@ -137,6 +137,9 @@ Rails.application.routes.draw do
     get '/cn-ccbs(/*rest)', to: redirect { |_params, req|
       req.path.sub('/cn-ccbs', '/cn-sb') + (req.query_string.present? ? "?#{req.query_string}" : '')
     }
+    get '/ko-ctb(/*rest)', to: redirect { |_params, req|
+      req.path.sub('/ko-ctb', '/ko-nkrv') + (req.query_string.present? ? "?#{req.query_string}" : '')
+    }
 
     scope '/:content_lang', :content_lang => /#{::R_BIB_LANGS}/ do
       get '/:book_code/:chapter', to: 'verses#index', :constraints =>
