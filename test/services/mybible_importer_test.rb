@@ -24,4 +24,9 @@ class MybibleImporterTest < ActiveSupport::TestCase
     orig = '광야에 나타난 요한;막1:1-8]</n> 그 무렵에 "ㄱ) 내가 내 아들을 불러 내었다"고 하신 말씀'
     assert_equal '그 무렵에 "내가 내 아들을 불러 내었다"고 하신 말씀', MybibleImporter.clean(orig)
   end
+
+  test "keeps a verse that closes a bracketed passage opened in an earlier verse" do
+    orig = '대답하되 주여 없나이다 예수께서 이르시되 나도 너를 정죄하지 아니하노니 가서 다시는 죄를 범하지 말라 하시니라]</n>'
+    assert_equal '대답하되 주여 없나이다 예수께서 이르시되 나도 너를 정죄하지 아니하노니 가서 다시는 죄를 범하지 말라 하시니라]', MybibleImporter.clean(orig)
+  end
 end
