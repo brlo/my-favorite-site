@@ -25,6 +25,7 @@ folders:
   - { path: "세상", priority: 20 }
   - { path: "비유", priority: 50 }
   - { path: "천사", priority: 30 }
+  - { path: "예언", priority: 40 }
   - { path: "천사/거룩한 천사", priority: 1 }
   - { path: "천사/타락한 천사", priority: 2 }
   - { path: "사람/내세", priority: 0 }
