@@ -14,4 +14,5 @@ folders:
   - { path: "교회/기도", priority: 10 }
   - { path: "교회/설교", priority: 11 }
   - { path: "교회/수덕", priority: 12 }
+  - { path: "교회/성인", priority: 13 }
 pages: []

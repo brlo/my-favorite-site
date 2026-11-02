@@ -30,6 +30,18 @@ class TranslationImporterTest < ActiveSupport::TestCase
     assert_equal [@son.id, 'In Heaven', 6], [menu.parent_id, menu.title, menu.priority]
   end
 
+  test "copies a smaller version of the cover when the original exceeds the upload limit" do
+    big = Tempfile.new('big').tap { _1.write('x' * (1.megabyte + 1)); _1.flush }
+    small = Tempfile.new('small').tap { _1.write('x'); _1.flush }
+    cover = Struct.new(:path, :versions) { def blank? = false }
+    src = Struct.new(:cover).new(cover.new(big.path, { small: cover.new(small.path, {}) }))
+    page = Struct.new(:cover) { def save! = true }.new
+
+    TranslationImporter.allocate.send(:copy_cover, src, page)
+
+    assert_equal small.path, page.cover.path
+  end
+
   test "skips the original that already has a translation, so the file can be run again" do
     d = data
     TranslationImporter.call(d)

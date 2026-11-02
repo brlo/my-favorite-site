@@ -108,8 +108,12 @@ class TranslationImporter
 
   # Обложка оригинала: копируем файл, чтобы у перевода была своя картинка (в своей папке)
   def copy_cover(src, page)
-    path = src.cover&.path
-    return unless path && ::File.exist?(path)
+    return if src.cover.blank?
+
+    # Загрузчик не принимает файлы больше 1 МБ, у старых обложек бывают такие: берём версию поменьше
+    paths = [src.cover, *src.cover.versions.values].filter_map(&:path)
+    path = paths.find { ::File.exist?(_1) && ::File.size(_1) <= 1.megabyte }
+    return unless path
 
     page.cover = ::File.open(path)
     page.save!
