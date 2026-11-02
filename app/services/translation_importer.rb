@@ -27,13 +27,14 @@ class TranslationImporter
   def self.copy_cover(src, page)
     return if src.cover.blank?
 
-    # Загрузчик не принимает файлы больше 1 МБ, у старых обложек бывают такие: берём версию поменьше
-    paths = [src.cover, *src.cover.versions.values].filter_map(&:path)
-    path = paths.find { ::File.exist?(_1) && ::File.size(_1) <= 1.megabyte }
-    return unless path
-
-    page.cover = ::File.open(path)
-    page.save!
+    # Загрузчик не принимает файлы больше 1 МБ, в том числе после своей обработки: берём первую версию, что проходит
+    paths = [src.cover, *src.cover.versions.values].filter_map(&:path).select { ::File.exist?(_1) }
+    paths.each do |path|
+      page.cover = ::File.open(path)
+      return page.save! if page.valid?
+    end
+    page.restore_attributes(['cover'])
+    nil
   end
 
   def initialize(data, is_dry_run: false, is_published: false)

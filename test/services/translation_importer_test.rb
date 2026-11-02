@@ -35,11 +35,26 @@ class TranslationImporterTest < ActiveSupport::TestCase
     small = Tempfile.new('small').tap { _1.write('x'); _1.flush }
     cover = Struct.new(:path, :versions) { def blank? = false }
     src = Struct.new(:cover).new(cover.new(big.path, { small: cover.new(small.path, {}) }))
-    page = Struct.new(:cover) { def save! = true }.new
+    page = Struct.new(:cover) { def save! = true; def valid? = cover.size <= 1.megabyte }.new
 
     TranslationImporter.copy_cover(src, page)
 
     assert_equal small.path, page.cover.path
+  end
+
+  test "leaves the page without a cover when no version passes validation" do
+    file = Tempfile.new('big').tap { _1.write('x'); _1.flush }
+    cover = Struct.new(:path, :versions) { def blank? = false }
+    src = Struct.new(:cover).new(cover.new(file.path, {}))
+    page = Class.new do
+      attr_accessor :cover
+
+      def valid? = false
+      def restore_attributes(_) = self.cover = nil
+    end.new
+
+    assert_nil TranslationImporter.copy_cover(src, page)
+    assert_nil page.cover
   end
 
   test "skips the original that already has a translation, so the file can be run again" do

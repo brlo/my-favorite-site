@@ -11,7 +11,8 @@ pages.find_each do |page|
   next if ru.nil? || ru.cover.blank?
 
   puts "#{page.path} <- #{ru.path}"
-  TranslationImporter.copy_cover(ru, page) unless dry
-  done += 1
+  next done += 1 if dry
+
+  TranslationImporter.copy_cover(ru, page) ? done += 1 : puts("  не подошла ни одна версия")
 end
 puts "обложек: #{done}"
