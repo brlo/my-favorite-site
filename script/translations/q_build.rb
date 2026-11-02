@@ -9,6 +9,7 @@
 #     Ссылка с префиксом lang=gr показывается как греческая.
 # | свой текст **жирный** ||| gr prs 2:24 ~~ примечание   — цитата своими словами (книги нет в Библии языка: с греческого)
 # | текст ||| ctb mf 5:5  — свой текст со ссылкой на Библию языка
+# | текст ||| ru 3ezd 3:24  — свой перевод с Синодального (текст есть только в нём)
 require 'yaml'
 lang, file = ARGV
 tr = BibleLinker::BIBLE_BY_LANG.fetch(lang)
@@ -93,6 +94,7 @@ literal = lambda do |line|
   r, note = tail.split(/\s*~~\s*/, 2)
   a = if r.start_with?('grt ') then link.(r.delete_prefix('grt '), code: 'gr-lxx-byz')
       elsif r.start_with?('en ') then "#{link.(r.delete_prefix('en '), code: 'en-nrsv')}, 영어 번역(NRSV)에서 옮김"
+      elsif r.start_with?('ru ') then "#{link.(r.delete_prefix('ru '), code: 'ru')}, 러시아어 시노달 역본에서 옮김"
       elsif r.start_with?('gr ') then "#{link.(r.delete_prefix('gr '), code: 'gr-lxx-byz')}, #{NOTE_GR}"
       else r.split(';').map { link.(_1.delete_prefix('ctb ').strip) }.join('; ') end
   %(<blockquote><p>“#{inline.(body)}” (#{a})#{" <em>(#{inline.(note)})</em>" if note}</p></blockquote>)

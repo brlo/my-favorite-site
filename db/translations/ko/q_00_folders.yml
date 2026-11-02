@@ -20,6 +20,7 @@ folders:
   - { path: "사람", priority: 10 }
   - { path: "구약", priority: 100 }
   - { path: "구약/율법", priority: 1 }
+  - { path: "구약/예배", priority: 2 }
   - { path: "사람/내세", priority: 0 }
   - { path: "사람/죄", priority: 1 }
   - { path: "사람/덕", priority: 2 }
