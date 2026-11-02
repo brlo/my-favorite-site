@@ -127,7 +127,7 @@ File.readlines(file, chomp: true).each do |l|
       when /\A# / then "<h2>#{inline.(l[2..])}</h2>"
       when /\A> / then expand_quote.(l[2..], cur['path'])
       when /\A\| / then literal.(l[2..])
-      when /\A<(blockquote|figure|div|table)/ then inline.(l)
+      when /\A<(blockquote|figure|div|table|img)/ then inline.(l)
       else "<p>#{inline.(l)}</p>"
       end
   end
