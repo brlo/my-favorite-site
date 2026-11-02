@@ -334,6 +334,9 @@
   color: #AAAAAA;
   background-color: rgba(102, 102, 102, 0.153);
 }
+.menu-tree .menu-link.not-exist a:not([href]) {
+  pointer-events: none;
+}
 
 .menu-tree .menu-link a, .block-link {
   text-decoration: none;

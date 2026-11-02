@@ -139,6 +139,25 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, 'Пункт меню'
   end
 
+  test "grey menu items look the same for everyone but are links only for an admin" do
+    list = create_published(title: 'Список', path: 'grey_list', page_type: 4)
+    create_published(title: 'Заглушка', path: 'grey_stub', parent_id: list.id)
+    Menu.create!(page_id: list.id, title: 'Ненаписанная')
+    Menu.create!(page_id: list.id, title: 'Заглушка', path: 'grey_stub', is_empty: true)
+    Rails.cache.clear
+
+    get '/ru/ru/w/grey_list'
+    assert_response :success
+    assert_select '.menu-link.not-exist', 2
+    assert_select '.menu-link.not-exist a', 2
+    assert_select '.menu-link.not-exist a[href]', 0
+
+    sign_in(create_user(is_admin: true))
+    get '/ru/ru/w/grey_list'
+    assert_select '.menu-link.not-exist a[href]', 2
+    assert_select '.menu-link.not-exist a[href*="menu_id="]', 1
+  end
+
   test "bible comment page lives under the bible menu" do
     comment = create_published(title: 'Быт. 1:1', path: '', page_type: 3)
     get "/ru/ru/w/#{ERB::Util.url_encode(comment.path)}"
