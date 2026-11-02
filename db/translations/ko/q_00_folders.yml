@@ -10,6 +10,7 @@ folders:
   - { path: "교회/구원", priority: 5 }
   - { path: "교회/성사", priority: 7 }
   - { path: "교회/신앙", priority: 6 }
+  - { path: "교회/성경", priority: 6 }
   - { path: "교회/은사", priority: 8 }
   - { path: "교회/예배", priority: 9 }
   - { path: "교회/기도", priority: 10 }
