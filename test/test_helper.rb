@@ -6,8 +6,8 @@ require "rails/test_help"
 ImgTextWrap.singleton_class.prepend(Module.new { def page_generate_img(_page) = nil })
 
 class ActiveSupport::TestCase
-  # Run tests in parallel with specified workers
-  parallelize(workers: :number_of_processors)
+  # Один процесс и одна тестовая база: параллельные базы (bibleox_test_N) с индексами pgroonga занимают по ~4 ГБ
+  parallelize(workers: 1)
 
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
