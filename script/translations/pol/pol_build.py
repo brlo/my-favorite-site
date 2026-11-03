@@ -131,11 +131,11 @@ def main():
         "Поликарп Смирнский (страница автора), японский перевод ru-страницы Поликарп_Смирнский. Собирается из script/translations/pol/pol_build.py (рабочая копия в tmp/pol)",
         "Загружать до трудов (pol_01): bin/rails pages:import_translations FILE=db/translations/ja/pol_00_author.yml [DRY_RUN=1] [PUBLISH=1]",
     ], [dict(
-        src='Поликарп_Смирнский', path=AUTHOR[0], title='スミルナのポリュカルポス、1–2世紀', update=True,
+        src='Поликарп_Смирнский', path=AUTHOR[0], title='ポリュカルポス（スミルナの）、1–2世紀', update=True,  # название и пункт меню поправлены на сайте
         title_sub='致命者（69年頃〜155年）、スミルナの主教、神学者使徒ヨハネの弟子',
         meta_desc='スミルナの主教、致命者聖ポリュカルポス（69年頃〜155年）。使徒ヨハネの弟子の生涯、著作、殉教、そしてその信仰。',
         copy_cover=True,
-        menu={'parent': '1世紀', 'replace': 'スミルナのポリカルポス、殉教者（69-155）', 'title': 'ポリュカルポス（スミルナ）、致命者（〜69-155）'},
+        menu={'parent': '1世紀', 'replace': 'スミルナのポリカルポス、殉教者（69-155）', 'title': 'ポリュカルポス（スミルナの）、致命者（〜69-155）'},
         body=''.join(BODY), references=REFS)], list_path='chirch_writers_jp')
     write_yaml(f'{ROOT}/db/translations/ja/pol_01_works.yml', [
         "Поликарп Смирнский: «Послание к Филиппийцам» и «Мученичество Поликарпа», японский перевод с греческого (и латыни). Собирается из script/translations/pol/pol_build.py (рабочая копия в tmp/pol)",
