@@ -7,6 +7,7 @@ import { initNetwork, onReconnect, online } from './lib/net.js'
 import { loadManifest } from './lib/manifest.js'
 import { loadSyncState, syncAll } from './lib/sync.js'
 import { applyTheme } from './lib/settings.js'
+import { rememberCurrentScroll } from './router.js'
 import { t } from './lib/i18n.js'
 import AudioBar from './components/AudioBar.vue'
 import BottomNav from './components/BottomNav.vue'
@@ -33,6 +34,7 @@ onMounted(async () => {
   syncAll()
   onReconnect(() => syncAll({ force: true }))
   CapApp.addListener('resume', () => syncAll())
+  CapApp.addListener('pause', rememberCurrentScroll)
   CapApp.addListener('backButton', ({ canGoBack }) => {
     if (canGoBack && route.name !== 'bible') router.back()
     else CapApp.exitApp()

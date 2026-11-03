@@ -16,6 +16,7 @@ import { norm, formatBytes } from '../lib/text.js'
 import { RTL_LANGS } from '../lib/config.js'
 import { player, playUrl, toggle } from '../lib/player.js'
 import { pageRoute, openHref } from '../router.js'
+import { isHistoryRestore } from '../lib/scroll.js'
 import StatusNote from '../components/StatusNote.vue'
 import MenuTree from '../components/MenuTree.vue'
 import HtmlContent from '../components/HtmlContent.vue'
@@ -103,7 +104,7 @@ async function loadBody() {
   bodyError.value = null
   try {
     body.value = await getBody(page.value)
-    if (route.hash) {
+    if (route.hash && !isHistoryRestore()) {
       await nextTick()
       content.value?.scrollToAnchor(decodeURIComponent(route.hash.slice(1)))
     }

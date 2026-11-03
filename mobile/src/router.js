@@ -4,6 +4,7 @@ import { settings } from './lib/settings.js'
 import { parseHref } from './lib/links.js'
 import { booksByCode } from './lib/manifest.js'
 import { API_BASE } from './lib/config.js'
+import { rememberScroll, rememberedScroll, whenScrollable } from './lib/scroll.js'
 
 import BibleHome from './views/BibleHome.vue'
 import BibleChapter from './views/BibleChapter.vue'
@@ -22,11 +23,31 @@ const router = createRouter({
     { path: '/search', name: 'search', component: SearchView },
     { path: '/settings', name: 'settings', component: SettingsView },
   ],
-  scrollBehavior(to, from, saved) {
-    if (saved) return saved
-    return { top: 0 }
+  // «назад» — туда, где были; на ранее открытый материал — туда, где остановились
+  async scrollBehavior(to, from, saved) {
+    let top = saved?.top
+    if (top == null && to.name === 'page' && !to.hash) top = rememberedScroll(to.path)
+    if (!top) return { top: 0 }
+    restoring = to.fullPath
+    const ok = await whenScrollable(top)
+    // пока ждали, могли уйти на другую страницу
+    const current = restoring === to.fullPath
+    if (current) restoring = null
+    return ok && current ? { top } : false
   },
 })
+
+let restoring = null // страница, на которую ещё не вернули прокрутку
+
+router.beforeEach((to, from) => {
+  if (from.name === 'page' && restoring !== from.fullPath) rememberScroll(from.path, window.scrollY)
+  restoring = null
+})
+
+export function rememberCurrentScroll() {
+  const r = router.currentRoute.value
+  if (r.name === 'page') rememberScroll(r.path, window.scrollY)
+}
 
 export default router
 

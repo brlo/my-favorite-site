@@ -11,6 +11,7 @@ import { localeForBib, bibFontClass, RTL_BIBS } from '../lib/config.js'
 import { rubyfy } from '../lib/text.js'
 import { player, playUrl, toggle } from '../lib/player.js'
 import { chapterRoute, pageRoute } from '../router.js'
+import { isHistoryRestore } from '../lib/scroll.js'
 import StatusNote from '../components/StatusNote.vue'
 
 const route = useRoute()
@@ -58,14 +59,15 @@ async function load() {
     if (await hasSkeleton(commentsLang)) comments.value = await verseComments(commentsLang, book, chapter)
     settings.bible = tr
     settings.lastRead = { tr, book, chapter }
-    if (verse) {
-      await nextTick()
-      document.getElementById(`v${verse}`)?.scrollIntoView({ block: 'center' })
-    }
   } catch (e) {
     error.value = e
   } finally {
     loading.value = false
+  }
+  // стихи появляются только после loading = false
+  if (verse && !error.value && !isHistoryRestore()) {
+    await nextTick()
+    document.getElementById(`v${verse}`)?.scrollIntoView({ block: 'center' })
   }
 }
 
