@@ -67,6 +67,8 @@ fr:
     references: 'Notes'
     no_books_links_yet: "Il n'y a pas encore d'autres liens ici. Revenez plus tard."
     menu_name: 'Sommaire'
+    menu_expand: 'Développer'
+    menu_collapse: 'Réduire'
     search_placeholder: 'Recherche dans toute la section'
 
   dict_words:

@@ -67,6 +67,8 @@ it:
     references: 'Note'
     no_books_links_yet: 'Al momento non ci sono altri collegamenti. Ripassa più tardi.'
     menu_name: 'Indice'
+    menu_expand: 'Espandi'
+    menu_collapse: 'Comprimi'
     search_placeholder: 'Cerca in tutta la sezione'
 
   dict_words:

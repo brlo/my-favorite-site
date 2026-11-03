@@ -67,6 +67,8 @@ hi:
     references: 'टिप्पणियाँ'
     no_books_links_yet: 'यहाँ अभी और लिंक नहीं हैं। बाद में देखें।'
     menu_name: 'विषयसूची'
+    menu_expand: 'विस्तार करें'
+    menu_collapse: 'संक्षिप्त करें'
     search_placeholder: 'पूरे अनुभाग में खोजें'
 
   dict_words:

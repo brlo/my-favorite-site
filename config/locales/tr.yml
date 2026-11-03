@@ -67,6 +67,8 @@ tr:
     references: 'Notlar'
     no_books_links_yet: 'Henüz başka bağlantı yok. Daha sonra tekrar bakın.'
     menu_name: 'İçindekiler'
+    menu_expand: 'Genişlet'
+    menu_collapse: 'Daralt'
     search_placeholder: 'Tüm bölümde ara'
 
   dict_words:

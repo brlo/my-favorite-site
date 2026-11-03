@@ -75,6 +75,8 @@ en:
     references: 'References'
     no_books_links_yet: 'There is no links yet.'
     menu_name: 'Contents'
+    menu_expand: 'Expand'
+    menu_collapse: 'Collapse'
     search_placeholder: 'Search the entire section'
 
   dict_words:

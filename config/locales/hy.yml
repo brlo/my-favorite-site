@@ -67,6 +67,8 @@ hy:
     references: 'Հղումներ'
     no_books_links_yet: 'Դեռևս հղումներ չկան։'
     menu_name: 'Բովանդակություն'
+    menu_expand: 'Ընդարձակել'
+    menu_collapse: 'Ծալել'
     search_placeholder: 'Որոնել ամբողջ բաժնում'
 
   dict_words:

@@ -1,6 +1,16 @@
-<nav id="article-menu">
+<% menu_items = (@page || page).body_menu %>
+<% menu_limit = 20 %>
+<% is_menu_long = menu_items.size > menu_limit %>
+<nav id="article-menu" <% if is_menu_long %>class="collapsed" data-controller="reveal-list"<% end %>>
   <div class='menu-name'><%= I18n.t('page.menu_name') %></div>
-  <% (@page || page).body_menu.each do |(el_name, el_anchor, el_text)| %>
-    <div class="nav-<%= el_name %> <%= el_text.length <= 3 ? 'short' : '' %>"><a href="#<%= el_anchor %>" data-turbo='false'><%= el_text %></a></div>
+  <% menu_items.each_with_index do |(el_name, el_anchor, el_text), i| %>
+    <div class="nav-<%= el_name %> <%= el_text.length <= 3 ? 'short' : '' %> <%= is_menu_long && i >= menu_limit ? 'extra' : '' %>"><a href="#<%= el_anchor %>" data-turbo='false'><%= el_text %></a></div>
+  <% end %>
+  <% if is_menu_long %>
+    <button type="button" class="menu-more" aria-expanded="false" data-action="reveal-list#toggle" data-reveal-list-target="button"
+      data-reveal-list-expand-text-value="<%= I18n.t('page.menu_expand') %>" data-reveal-list-collapse-text-value="<%= I18n.t('page.menu_collapse') %>">
+      <span class="menu-more-label" data-reveal-list-target="label"><%= I18n.t('page.menu_expand') %></span>
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l6 6 6-6"/></svg>
+    </button>
   <% end %>
 </nav>

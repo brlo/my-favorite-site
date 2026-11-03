@@ -67,6 +67,8 @@ es:
     references: 'Notas'
     no_books_links_yet: 'Aún no hay otros enlaces aquí. Vuelva más tarde.'
     menu_name: 'Contenido'
+    menu_expand: 'Desplegar'
+    menu_collapse: 'Contraer'
     search_placeholder: 'Buscar en toda la sección'
 
   dict_words:

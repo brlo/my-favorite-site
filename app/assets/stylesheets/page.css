@@ -549,6 +549,23 @@
 
 #article-menu .short { display: inline-block; margin-right: 10px; }
 
+/* длинное содержание: показываем первые 20 пунктов, остальное по стрелке */
+#article-menu.collapsed .extra { display: none; }
+#article-menu .menu-more {
+  display: block;
+  margin: 5px auto 0 auto;
+  padding: 2px 12px;
+  border: none;
+  background: none;
+  color: inherit;
+  opacity: .6;
+  cursor: pointer;
+}
+#article-menu .menu-more:hover { opacity: 1; }
+#article-menu .menu-more-label { display: block; font-size: .8em; line-height: 1.2; }
+#article-menu .menu-more svg { transition: transform .2s; }
+#article-menu:not(.collapsed) .menu-more svg { transform: rotate(180deg); }
+
 /* маркер перед старшими пунктами меню */
 /* #article-menu .nav-h2::before {
   content: "・";

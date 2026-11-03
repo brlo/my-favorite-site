@@ -67,6 +67,8 @@ ko:
     references: '각주'
     no_books_links_yet: '아직 다른 링크가 없습니다. 나중에 다시 확인해 주세요.'
     menu_name: '목차'
+    menu_expand: '펼치기'
+    menu_collapse: '접기'
     search_placeholder: '전체 섹션 검색'
 
   dict_words:

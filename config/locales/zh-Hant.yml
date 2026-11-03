@@ -68,6 +68,8 @@ zh-Hant:
     references: '參考'
     no_books_links_yet: '還沒有連結。'
     menu_name: '目錄'
+    menu_expand: '展開'
+    menu_collapse: '收起'
     search_placeholder: '搜尋整個部分'
 
   dict_words:

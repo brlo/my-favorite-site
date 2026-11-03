@@ -67,6 +67,8 @@ de:
     references: 'Anmerkungen'
     no_books_links_yet: 'Hier gibt es noch keine weiteren Links. Schauen Sie später wieder vorbei.'
     menu_name: 'Inhaltsverzeichnis'
+    menu_expand: 'Aufklappen'
+    menu_collapse: 'Zuklappen'
     search_placeholder: 'Suche im gesamten Bereich'
 
   dict_words:

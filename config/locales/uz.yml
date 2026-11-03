@@ -67,6 +67,8 @@ uz:
     references: 'Eslatmalar'
     no_books_links_yet: 'Hozircha boshqa havolalar yo‘q. Keyinroq keling.'
     menu_name: 'Mundarija'
+    menu_expand: 'Yoyish'
+    menu_collapse: 'Yig‘ish'
     search_placeholder: 'Bo‘lim bo‘yicha qidiruv'
 
   dict_words:

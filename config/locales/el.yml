@@ -67,6 +67,8 @@ el:
     references: 'βιβλιογραφικές αναφορές'
     no_books_links_yet: 'Δεν υπάρχουν σύνδεσμοι ακόμα.'
     menu_name: 'Περιεχόμενα'
+    menu_expand: 'Ανάπτυξη'
+    menu_collapse: 'Σύμπτυξη'
     search_placeholder: 'Αναζήτηση ολόκληρης της ενότητας'
 
   dict_words:

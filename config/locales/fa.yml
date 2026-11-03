@@ -67,6 +67,8 @@ fa:
     references: 'یادداشت‌ها'
     no_books_links_yet: 'هنوز پیوندهای دیگری اینجا وجود ندارد. بعداً مراجعه کنید.'
     menu_name: 'فهرست مطالب'
+    menu_expand: 'نمایش همه'
+    menu_collapse: 'بستن'
     search_placeholder: 'جستجو در تمام بخش'
 
   dict_words:

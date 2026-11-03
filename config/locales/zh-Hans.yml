@@ -68,6 +68,8 @@ zh-Hans:
     references: '参考'
     no_books_links_yet: '还没有链接。'
     menu_name: '目录'
+    menu_expand: '展开'
+    menu_collapse: '收起'
     search_placeholder: '搜索整个部分'
 
   dict_words:

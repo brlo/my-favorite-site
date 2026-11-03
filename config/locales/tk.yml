@@ -67,6 +67,8 @@ tk:
     references: 'Bellikler'
     no_books_links_yet: 'Häzirçe beýleki çykgytlar ýok. Soňra gaýdyp geliň.'
     menu_name: 'Mazmuny'
+    menu_expand: 'Giňelt'
+    menu_collapse: 'Ýygna'
     search_placeholder: 'Bölümiň ählisinde gözleg'
 
   dict_words:

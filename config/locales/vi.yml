@@ -67,6 +67,8 @@ vi:
     references: 'Ghi chú'
     no_books_links_yet: 'Hiện chưa có liên kết nào khác. Vui lòng quay lại sau.'
     menu_name: 'Nội dung'
+    menu_expand: 'Mở rộng'
+    menu_collapse: 'Thu gọn'
     search_placeholder: 'Tìm kiếm trong toàn bộ phần'
 
   dict_words:
