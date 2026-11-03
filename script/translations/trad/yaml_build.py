@@ -13,8 +13,10 @@ CREDIT = dict(
 # name: (src ru path, path prefix, emoji, priority, has menu)
 ART = [('icons', 'древние-иконы', 'Ik1c', '🖼️ ', 3, True), ('churches', 'Древние_христианские_храмы', 'Ch2c', '🪨 ', 4, True),
        ('burials', 'KPgB_Христианские_захоронения_и_надписи', 'Bu3i', '', 5, True), ('cook', '2NCD_Постная_кухня', 'Lc4k', '🍞 ', 9, True),
+       ('ms', 'библейские_манускрипты', 'Bm6s', '📜 ', 6, True),
        ('icons2', 'bdRJ_Разные_древние_образы_не_вошедшие_в_основную_коллекцию', 'Ik5v', '', 0, False)]
 PLACEHOLDER = dict(ko='🖼️ 성화(이콘)', de='🖼️ Ikonen', zh='🖼️ 圣像', el='🖼️ Εικόνες')
+MS_PLACEHOLDER = dict(ko='📜 성경 사본들', de='📜 Biblische Handschriften', zh='📜 圣经手抄本', el='📜 Βιβλικά χειρόγραφα')
 def slug(t): return re.sub(r'_+', '_', re.sub(r'[\s/]+', '_', re.sub(r'[«»“”„"(),.:;!?¿·、。，：；！？（）「」『』\'’]', '', t))).strip('_')
 for lang in sys.argv[1:]:
   pages = []
@@ -28,7 +30,8 @@ for lang in sys.argv[1:]:
     if menu:
       it['menu'] = dict(parent=LIB[lang], title=emoji + title, priority=prio)
       if name == 'icons' and lang in PLACEHOLDER: it['menu']['replace'] = PLACEHOLDER[lang]
-    if name == 'icons' and lang == 'ja': it['update'] = True
+      if name == 'ms' and lang in MS_PLACEHOLDER: it['menu']['replace'] = MS_PLACEHOLDER[lang]
+    if name == 'ms' and lang == 'ja': it['update'] = True
     pages.append(it)
   out = dict(lang=LOC[lang], list=f'links_{LOC[lang]}', pages=pages)
   head = f'# Раздел «Предание» (иконы, храмы, захоронения, постная кухня), перевод с русского. Собрано tmp/trad/yaml_build.py\n'
