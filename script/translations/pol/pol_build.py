@@ -131,7 +131,7 @@ def main():
         "Поликарп Смирнский (страница автора), японский перевод ru-страницы Поликарп_Смирнский. Собирается из script/translations/pol/pol_build.py (рабочая копия в tmp/pol)",
         "Загружать до трудов (pol_01): bin/rails pages:import_translations FILE=db/translations/ja/pol_00_author.yml [DRY_RUN=1] [PUBLISH=1]",
     ], [dict(
-        src='Поликарп_Смирнский', path=AUTHOR[0], title='ポリュカルポス（スミルナの）、1–2世紀', update=True,  # название и пункт меню поправлены на сайте
+        src='Поликарп_Смирнский', path=AUTHOR[0], title='ポリュカルポス（スミルナの）、1–2世紀',
         title_sub='致命者（69年頃〜155年）、スミルナの主教、神学者使徒ヨハネの弟子',
         meta_desc='スミルナの主教、致命者聖ポリュカルポス（69年頃〜155年）。使徒ヨハネの弟子の生涯、著作、殉教、そしてその信仰。',
         copy_cover=True,
@@ -141,11 +141,11 @@ def main():
         "Поликарп Смирнский: «Послание к Филиппийцам» и «Мученичество Поликарпа», японский перевод с греческого (и латыни). Собирается из script/translations/pol/pol_build.py (рабочая копия в tmp/pol)",
         "Загрузка после pol_00: bin/rails pages:import_translations FILE=db/translations/ja/pol_01_works.yml [DRY_RUN=1] [PUBLISH=1]",
     ], [
-        dict(src='ПлкСм_Фл', path=PHIL[0], title=PHIL[1], update=True,  # 2026-11-03: сноски о пропусках в grc-тексте убраны
+        dict(src='ПлкСм_Фл', path=PHIL[0], title=PHIL[1],
              meta_desc='スミルナの主教聖ポリュカルポスがフィリピの教会に宛てた手紙。ギリシア語原文（一部ラテン語訳）からの翻訳と注。',
              menu={'parent': '手紙', 'title': PHIL[1], 'priority': 1},
              body=body_html(phil), references=refs_html(ja_phil.NOTES, PHIL_SRC)),
-        dict(src='окружное-послание-Церкви-Смирнской-о-Поликарпе', path=MART[0], title=MART[1], update=True,  # 2026-11-03: текст по Лейку
+        dict(src='окружное-послание-Церкви-Смирнской-о-Поликарпе', path=MART[0], title=MART[1],
              title_sub='スミルナの教会がポリュカルポスの殉教について諸教会に送った回状（2世紀）',
              meta_desc='聖ポリュカルポスの殉教を伝えるスミルナの教会の回状。ギリシア語原文からの翻訳と注。',
              menu={'parent': '手紙', 'title': MART[1], 'priority': 2},
