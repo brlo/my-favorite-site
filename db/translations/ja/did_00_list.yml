@@ -1,0 +1,14 @@
+# «Труды I века неизвестных авторов» (страница-список), японский перевод ru-страницы. Собирается из script/translations/did/did_ja.py
+# Загружать до Дидахе (did_01): bin/rails pages:import_translations FILE=db/translations/ja/did_00_list.yml [DRY_RUN=1] [PUBLISH=1]
+lang: ja
+list: chirch_writers_jp
+pages:
+  - src: 1-век-труды-неизвестных-авторов
+    path: Uk1A_1世紀の無名の作者による作品
+    title: 1世紀の無名の作者による作品
+    meta_desc: 作者のわからない1世紀の初期キリスト教文書：ディダケー（十二使徒の教え）など。
+    menu: { parent: "1世紀", title: "1世紀の無名の作者による作品" }
+    body: |-
+      <p>古代の文書の中には、作者を確かに定めることのできないものがいくつかあります。作者についてはさまざまな説が出されています。このページには、そのような1世紀の著作を集めています。</p>
+    references: |-
+      
