@@ -276,6 +276,8 @@ it:
         arab-avd: 'traduzione araba (AVD, 1999)'
 
   menu:
+    more: "Altro"
+    help_site: "Sostieni il sito"
     bible: Scrittura
     links: Tradizione
     articles: Articoli

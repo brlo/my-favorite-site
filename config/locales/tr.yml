@@ -276,6 +276,8 @@ tr:
         arab-avd: 'Arapça çeviri (AVD, 1999)'
 
   menu:
+    more: "Daha fazla"
+    help_site: "Siteye destek"
     bible: Kutsal Yazılar
     links: Gelenek
     articles: Makaleler

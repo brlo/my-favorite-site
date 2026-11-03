@@ -276,6 +276,8 @@ sw:
         arab-avd: 'tafsiri ya Kiarabu (AVD, 1999)'
 
   menu:
+    more: "Zaidi"
+    help_site: "Saidia tovuti"
     bible: Maandiko
     links: Mapokeo
     articles: Makala

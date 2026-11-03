@@ -276,6 +276,8 @@ ko:
         arab-avd: '아랍어 번역 (AVD, 1999)'
 
   menu:
+    more: "더보기"
+    help_site: "사이트 후원"
     bible: 성경
     links: 전통
     articles: 글

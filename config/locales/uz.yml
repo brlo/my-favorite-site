@@ -276,6 +276,8 @@ uz:
         arab-avd: 'arabcha tarjima (AVD, 1999)'
 
   menu:
+    more: "Yana"
+    help_site: "Saytga yordam"
     bible: Muqaddas Kitob
     links: An’ana
     articles: Maqolalar

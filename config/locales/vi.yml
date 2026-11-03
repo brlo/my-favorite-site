@@ -276,6 +276,8 @@ vi:
         arab-avd: 'bản dịch tiếng Ả Rập (AVD, 1999)'
 
   menu:
+    more: "Thêm"
+    help_site: "Ủng hộ trang web"
     bible: 'Kinh Thánh'
     links: 'Truyền thống'
     articles: 'Bài viết'

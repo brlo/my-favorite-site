@@ -272,6 +272,8 @@ ar:
         arab-avd: 'الترجمة العربية (AVD، 1999)'
 
   menu:
+    more: "المزيد"
+    help_site: "دعم الموقع"
     bible: الكتاب المقدس
     links: تقليد مقدس
     articles: مقالات

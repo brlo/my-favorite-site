@@ -276,6 +276,8 @@ hi:
         arab-avd: 'अरबी अनुवाद (AVD, 1999)'
 
   menu:
+    more: "और"
+    help_site: "साइट की सहायता करें"
     bible: शास्त्र
     links: परंपरा
     articles: लेख

@@ -55,8 +55,19 @@
         <nav>
           <a href="<%= my_bib_link_to("/") %>" id="bible-link" data-action="books-menu#show" class="local <%= @current_menu_item == 'biblia' ? ' selected' : nil %>"><%= I18n.t('menu.bible') %></a>
           <a href="<%= my_page_link_to("/links_#{current_lang()}") %>" id="quotes-link" class="<%= @current_menu_item == 'links' ? ' selected' : nil %>"><%= I18n.t('menu.links') %></a>
-          <%= link_to t('menu.chat'), chat_path(locale: ::I18n.locale), class: (@current_menu_item == 'chat' ? 'selected' : nil) %>
-          <%= link_to t('menu.translates'), translation_projects_path(locale: ::I18n.locale), class: (@current_menu_item == 'translates' ? 'selected' : nil) %>
+          <div id="more-btn" data-controller="more-menu" data-action="click@window->more-menu#clickOutside">
+            <a class="local more-dots"
+              title="<%= t('menu.more') %>"
+              aria-label="<%= t('menu.more') %>"
+              data-action="click->more-menu#toggle"
+              data-more-menu-target="button">⋯</a>
+
+            <div id="more-area" class="hidden" data-more-menu-target="menu">
+              <%= link_to t('menu.chat'), chat_path(locale: ::I18n.locale), class: (@current_menu_item == 'chat' ? 'selected' : nil) %>
+              <%= link_to t('menu.translates'), translation_projects_path(locale: ::I18n.locale), class: (@current_menu_item == 'translates' ? 'selected' : nil) %>
+              <a href="<%= my_page_link_to("/help_#{current_lang()}") %>"><%= t('menu.help_site') %></a>
+            </div>
+          </div>
 
           <div id="settings-btn" data-controller="settings" data-action="click@window->settings#clickOutside">
 

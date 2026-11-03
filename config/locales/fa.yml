@@ -276,6 +276,8 @@ fa:
         arab-avd: 'ترجمه عربی (AVD, 1999)'
 
   menu:
+    more: "بیشتر"
+    help_site: "حمایت از سایت"
     bible: 'کتاب مقدس'
     links: 'سنت'
     articles: 'مقالات'

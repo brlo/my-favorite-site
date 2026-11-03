@@ -277,6 +277,8 @@ zh-Hant:
         arab-avd: '阿拉伯語譯本 (AVD, 1999)'
 
   menu:
+    more: "更多"
+    help_site: "支持本站"
     bible: 聖經
     links: 聖傳
     articles: 文章

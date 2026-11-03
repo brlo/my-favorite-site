@@ -334,6 +334,36 @@ header nav > #settings-btn {
     padding-right: 0;
 }
 
+/* Меню «⋯»: чат, переводы, помощь сайту */
+#more-btn {
+    flex-shrink: 0;
+}
+#more-btn .more-dots {
+    text-decoration: none;
+    cursor: pointer;
+    padding: 0 8px;
+    font-weight: bold;
+}
+#more-area {
+    z-index: 2;
+    position: absolute;
+    top: 100%; /* по горизонтали остаётся под кнопкой (nav обрезает только позиционированных внутри него) */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 8px 14px;
+    background-color: #f6f4e4;
+    border-radius: 0 0 5px 5px;
+    box-shadow: 0px 1px 1px #deddd1;
+}
+#more-area.hidden {
+    display: none;
+}
+.night-mode #more-area {
+    background-color: #2f3541;
+    box-shadow: none;
+}
+
 .local {
     text-decoration: underline;
     text-decoration-style: dashed;

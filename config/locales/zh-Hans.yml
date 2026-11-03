@@ -277,6 +277,8 @@ zh-Hans:
         arab-avd: '阿拉伯语译本 (AVD, 1999)'
 
   menu:
+    more: "更多"
+    help_site: "支持本站"
     bible: 圣经
     links: 圣传
     articles: 文章

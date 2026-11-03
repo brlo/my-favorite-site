@@ -276,6 +276,8 @@ sr:
         arab-avd: 'арапски превод (AVD, 1999)'
 
   menu:
+    more: "Више"
+    help_site: "Подршка сајту"
     bible: Писмо
     links: Предање
     articles: Чланци

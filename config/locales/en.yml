@@ -284,6 +284,8 @@ en:
         arab-avd: 'Arabic Translation (AVD, 1999)'
 
   menu:
+    more: "More"
+    help_site: "Support the site"
     bible: Scripture
     links: Tradition
     articles: Articles

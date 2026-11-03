@@ -470,6 +470,8 @@ ru:
         arab-avd: 'арабский перевод (AVD, 1999)'
 
   menu:
+    more: "Ещё"
+    help_site: "Помощь сайту"
     bible: Писание
     links: Предание
     translates: Переводы

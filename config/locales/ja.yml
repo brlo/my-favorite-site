@@ -276,6 +276,8 @@ ja:
         arab-avd: 'アラビア語訳 (AVD, 1999)'
 
   menu:
+    more: "その他"
+    help_site: "サイトを支援する"
     bible: 聖書
     links: 聖伝
     articles: 記事

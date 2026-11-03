@@ -272,6 +272,8 @@ hy:
         arab-avd: 'अरबी अनुवाद (AVD, 1999)'
 
   menu:
+    more: "Ավելին"
+    help_site: "Աջակցել կայքին"
     bible: Սուրբ Գիրք
     links: Ավանդություն
     articles: Հոդվածներ

@@ -276,6 +276,8 @@ tk:
         arab-avd: 'arap terjime (AVD, 1999)'
 
   menu:
+    more: "Köpräk"
+    help_site: "Sahypa goldaw bermek"
     bible: Ýazgylar
     links: Däp
     articles: Makalalar

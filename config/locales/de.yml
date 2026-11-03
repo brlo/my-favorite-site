@@ -276,6 +276,8 @@ de:
         arab-avd: 'arabische Übersetzung (AVD, 1999)'
 
   menu:
+    more: "Mehr"
+    help_site: "Die Seite unterstützen"
     bible: Schrift
     links: Tradition
     articles: Artikel
