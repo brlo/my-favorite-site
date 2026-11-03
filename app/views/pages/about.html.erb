@@ -35,7 +35,8 @@
 <br>
 <p><%= t('about_funding') %></p>
 <p><%= t('about_prayer') %></p>
-<p><%= t('about_donate_html', bank: tag.span('СБЕР', style: 'color: #0D8523'), card: tag.strong('2202 2082 9863 8306')) %></p>
+<p><%= t('about_donate_html', bank: tag.span(I18n.locale == :ru ? 'СБЕР' : 'SBER', style: 'color: #0D8523'), card: tag.strong('2202 2082 9863 8306')) %></p>
+<p>SBER · RODION VLASOV</p>
 <br><br>
 <%# Названия изданий не переводим: показываем их так, как они называются на языке перевода %>
 <% editions = {
