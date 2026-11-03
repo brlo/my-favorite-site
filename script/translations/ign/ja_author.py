@@ -30,7 +30,7 @@ def ep0(ep):
     return f'<a href="https://bibleox.com/ja/ja/w/{path}#HH-0">『{title}』序</a>'
 
 
-POL_PHIL = '<a href="https://bibleox.com/ja/en/w/Plk_Ph#HH-13">ポリュカルポス『フィリピの信徒への手紙』13章（英語）</a>'
+POL_PHIL = '<a href="https://bibleox.com/ja/ja/w/Pk1F_フィリピの教会への手紙#HH-13">ポリュカルポス『フィリピの教会への手紙』13章</a>'
 EUS = '<a href="https://bibleox.com/ja/en/w/eusebius-the-church-history-3#HH-Ignatius-and-His-Epistles">エウセビオス『教会史』3巻36章（英語）</a>'
 EUS_GRC = 'https://bibleox.com/ja/grc/w/ΕΚΚΛΗΣΙΑΣΤΙΚΗΣ_ΙΣΤΟΡΙΑΣ-3#HH-36'
 ROM_GRC = 'https://bibleox.com/ja/grc/w/ΙγνΘ_Ρωμ#HH-5'
