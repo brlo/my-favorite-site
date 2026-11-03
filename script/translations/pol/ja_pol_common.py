@@ -58,6 +58,8 @@ def write_yaml(file, header, pages, list_path=IGN, folders=None):
         for key in ('path', 'title', 'title_sub', 'meta_desc'):
             if pg.get(key):
                 out.append(f"    {key}: {pg[key]}")
+        if pg.get('update'):
+            out.append("    update: true")
         if pg.get('copy_cover'):
             out.append("    copy_cover: true")
         if pg.get('menu'):

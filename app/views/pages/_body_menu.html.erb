@@ -4,7 +4,7 @@
 <nav id="article-menu" <% if is_menu_long %>class="collapsed" data-controller="reveal-list"<% end %>>
   <div class='menu-name'><%= I18n.t('page.menu_name') %></div>
   <% menu_items.each_with_index do |(el_name, el_anchor, el_text), i| %>
-    <div class="nav-<%= el_name %> <%= el_text.length <= 3 ? 'short' : '' %> <%= is_menu_long && i >= menu_limit ? 'extra' : '' %>"><a href="#<%= el_anchor %>" data-turbo='false'><%= el_text %></a></div>
+    <div class="nav-<%= el_name %> <%= toc_item_short?(el_text) ? 'short' : '' %> <%= is_menu_long && i >= menu_limit ? 'extra' : '' %>"><a href="#<%= el_anchor %>" data-turbo='false'><%= el_text %></a></div>
   <% end %>
   <% if is_menu_long %>
     <button type="button" class="menu-more" aria-expanded="false" data-action="reveal-list#toggle" data-reveal-list-target="button"
