@@ -5,7 +5,7 @@ list: Ig4A_安提阿的伊格那丢一世纪
 folders:
   - { path: "书信", priority: 1 }
 pages:
-    src: ИгнАн_Фл
+  - src: ИгнАн_Фл
     path: Ig4F_致非拉铁非人书
     title: 致非拉铁非人书
     meta_desc: 安提阿的圣伊格那丢（提阿弗罗斯）写给非拉铁非教会的书信。译自希腊文原文，附注释。

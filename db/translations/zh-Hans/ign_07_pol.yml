@@ -5,7 +5,7 @@ list: Ig4A_安提阿的伊格那丢一世纪
 folders:
   - { path: "书信", priority: 1 }
 pages:
-    src: ИгнАн_Пк
+  - src: ИгнАн_Пк
     path: Ig4P_致坡旅甲书
     title: 致坡旅甲书
     meta_desc: 安提阿的圣伊格那丢（提阿弗罗斯）写给士每拿主教坡旅甲的书信。译自希腊文原文，附注释。

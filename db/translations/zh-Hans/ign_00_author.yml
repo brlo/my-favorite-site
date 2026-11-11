@@ -3,7 +3,7 @@
 lang: zh-Hans
 list: z0wk_古代基督教著作
 pages:
-    src: Игнатий_Антиохийский
+  - src: Игнатий_Антиохийский
     path: Ig4A_安提阿的伊格那丢一世纪
     copy_cover: true
     title: 安提阿的伊格那丢（提阿弗罗斯），一世纪
