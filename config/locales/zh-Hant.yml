@@ -338,43 +338,43 @@ zh-Hant:
     short:
       gen: 創
       ish: 出
-      lev: 肋
-      chis: 戶
+      lev: 利
+      chis: 民
       vtor: 申
-      nav: 蘇
-      sud: 民
-      ruf: 盧
+      nav: 書
+      sud: 士
+      ruf: 得
       1ts: 撒上
       2ts: 撒下
-      3ts: 列上
-      4ts: 列下
-      1par: 編上
-      2par: 編下
-      ezd: 厄上
-      neem: 厄下
-      esf: 艾
-      iov: 約
-      ps: 詠
+      3ts: 王上
+      4ts: 王下
+      1par: 代上
+      2par: 代下
+      ezd: 拉
+      neem: 尼
+      esf: 斯
+      iov: 伯
+      ps: 詩
       pr: 箴
-      ekl: 訓
+      ekl: 傳
       pp: 歌
-      is: 依
+      is: 賽
       ier: 耶
       pier: 哀
-      iez: 則
-      dan: 達
-      os: 歐
-      iol: 岳
-      am: 亞
-      av: 北
-      ion: 納
-      mih: 米
+      iez: 結
+      dan: 但
+      os: 何
+      iol: 珥
+      am: 摩
+      av: 俄
+      ion: 拿
+      mih: 彌
       naum: 鴻
       avm: 哈
-      sof: 索
-      ag: 蓋
-      zah: 匝
-      mal: 拉
+      sof: 番
+      ag: 該
+      zah: 亞
+      mal: 瑪
       1mak: 加上
       2mak: 加下
       3mak: 加三
@@ -386,73 +386,73 @@ zh-Hant:
       iudf: 友
       prs: 智
       prsir: 德
-      mf: 瑪
-      mk: 谷
+      mf: 太
+      mk: 可
       lk: 路
-      in: 若
-      act: 宗
+      in: 約
+      act: 徒
       rim: 羅
-      1kor: 格前
-      2kor: 格後
-      gal: 迦
+      1kor: 林前
+      2kor: 林後
+      gal: 加
       ef: 弗
-      fil: 斐
-      kol: 哥
-      1sol: 得前
-      2sol: 得後
-      1tim: 弟前
-      2tim: 弟後
-      tit: 鐸
-      fm: 費
+      fil: 腓
+      kol: 西
+      1sol: 帖前
+      2sol: 帖後
+      1tim: 提前
+      2tim: 提後
+      tit: 多
+      fm: 門
       evr: 希
       iak: 雅
-      1pet: 伯前
-      2pet: 伯後
-      1in: 若一
-      2in: 若二
-      3in: 若三
+      1pet: 彼前
+      2pet: 彼後
+      1in: 約壹
+      2in: 約贰
+      3in: 約叁
       iud: 猶
-      otkr: 默
+      otkr: 啟
     mid:
-      gen: 創世紀
-      ish: 出谷紀
-      lev: 肋未紀
-      chis: 戶籍紀
-      vtor: 申命紀
-      nav: 若蘇厄書
-      sud: 民長紀
-      ruf: 盧德傳
-      1ts: 撒慕爾紀上
-      2ts: 撒慕爾紀下
+      gen: 創世記
+      ish: 出埃及記
+      lev: 利未記
+      chis: 民數記
+      vtor: 申命記
+      nav: 約書亞記
+      sud: 士師記
+      ruf: 路得記
+      1ts: 撒母耳記上
+      2ts: 撒母耳記下
       3ts: 列王紀上
       4ts: 列王紀下
-      1par: 編年紀上
-      2par: 編年紀下
-      ezd: 厄斯德拉上
-      neem: 厄斯德拉下
-      esf: 艾斯德爾傳
-      iov: 約伯傳
-      ps: 聖詠集
+      1par: 歷代誌上
+      2par: 歷代誌下
+      ezd: 以斯拉記
+      neem: 尼希米記
+      esf: 以斯帖記
+      iov: 約伯記
+      ps: 詩篇
       pr: 箴言
-      ekl: 訓道篇
+      ekl: 傳道書
       pp: 雅歌
-      is: 依撒依亞
-      ier: 耶肋米亞
-      pier: 耶肋米亞哀歌
-      iez: 厄則克耳
-      dan: 達尼爾
-      os: 歐瑟亞
-      iol: 岳厄爾
-      am: 亞毛斯
-      av: 亞北底亞
-      ion: 約納
-      mih: 米該亞
-      naum: 納鴻
-      avm: 哈巴谷
-      sof: 索福尼亞
-      ag: 哈蓋
-      zah: 匝加利亞
-      mal: 馬拉基亞
+      is: 以賽亞書
+      ier: 耶利米書
+      pier: 耶利米哀歌
+      iez: 以西結書
+      dan: 但以理書
+      os: 何西阿書
+      iol: 約珥書
+      am: 阿摩司書
+      av: 俄巴底亞書
+      ion: 約拿書
+      mih: 彌迦書
+      naum: 那鴻書
+      avm: 哈巴谷書
+      sof: 西番雅書
+      ag: 哈該書
+      zah: 撒迦利亞書
+      mal: 瑪拉基書
       1mak: 馬加伯上
       2mak: 馬加伯下
       3mak: 馬加伯三書
@@ -464,73 +464,73 @@ zh-Hant:
       iudf: 友弟德傳
       prs: 智慧篇
       prsir: 德訓篇
-      mf: 瑪竇福音
-      mk: 馬爾谷福音
+      mf: 馬太福音
+      mk: 馬可福音
       lk: 路加福音
-      in: 若望福音
-      act: 宗徒大事錄
+      in: 約翰福音
+      act: 使徒行傳
       rim: 羅馬書
-      1kor: 格林多前書
-      2kor: 格林多後書
-      gal: 迦拉達書
-      ef: 厄弗所書
-      fil: 斐理伯書
-      kol: 哥羅森書
-      1sol: 得撒洛尼前書
-      2sol: 得撒洛尼後書
-      1tim: 弟茂德前書
-      2tim: 弟茂德後書
-      tit: 弟鐸書
-      fm: 費肋孟書
+      1kor: 哥林多前書
+      2kor: 哥林多後書
+      gal: 加拉太書
+      ef: 以弗所書
+      fil: 腓立比書
+      kol: 歌羅西書
+      1sol: 帖撒羅尼迦前書
+      2sol: 帖撒羅尼迦後書
+      1tim: 提摩太前書
+      2tim: 提摩太後書
+      tit: 提多書
+      fm: 腓利門書
       evr: 希伯來書
-      iak: 雅各伯書
-      1pet: 伯多祿前書
-      2pet: 伯多祿後書
-      1in: 若望一書
-      2in: 若望二書
-      3in: 若望三書
-      iud: 猶達書
-      otkr: 默示錄
+      iak: 雅各書
+      1pet: 彼得前書
+      2pet: 彼得後書
+      1in: 約翰一書
+      2in: 約翰二書
+      3in: 約翰三書
+      iud: 猶大書
+      otkr: 啟示錄
     full:
-      gen: 創世紀
-      ish: 出谷紀
-      lev: 肋未紀
-      chis: 戶籍紀
-      vtor: 申命紀
-      nav: 若蘇厄書
-      sud: 民長紀
-      ruf: 盧德傳
-      1ts: 撒慕爾紀上
-      2ts: 撒慕爾紀下
+      gen: 創世記
+      ish: 出埃及記
+      lev: 利未記
+      chis: 民數記
+      vtor: 申命記
+      nav: 約書亞記
+      sud: 士師記
+      ruf: 路得記
+      1ts: 撒母耳記上
+      2ts: 撒母耳記下
       3ts: 列王紀上
       4ts: 列王紀下
-      1par: 編年紀上
-      2par: 編年紀下
-      ezd: 厄斯德拉上
-      neem: 厄斯德拉下
-      esf: 艾斯德爾傳
-      iov: 約伯傳
-      ps: 聖詠集
+      1par: 歷代誌上
+      2par: 歷代誌下
+      ezd: 以斯拉記
+      neem: 尼希米記
+      esf: 以斯帖記
+      iov: 約伯記
+      ps: 詩篇
       pr: 箴言
-      ekl: 訓道篇
+      ekl: 傳道書
       pp: 雅歌
-      is: 依撒依亞
-      ier: 耶肋米亞
-      pier: 耶肋米亞哀歌
-      iez: 厄則克耳
-      dan: 達尼爾
-      os: 歐瑟亞
-      iol: 岳厄爾
-      am: 亞毛斯
-      av: 亞北底亞
-      ion: 約納
-      mih: 米該亞
-      naum: 納鴻
-      avm: 哈巴谷
-      sof: 索福尼亞
-      ag: 哈蓋
-      zah: 匝加利亞
-      mal: 馬拉基亞
+      is: 以賽亞書
+      ier: 耶利米書
+      pier: 耶利米哀歌
+      iez: 以西結書
+      dan: 但以理書
+      os: 何西阿書
+      iol: 約珥書
+      am: 阿摩司書
+      av: 俄巴底亞書
+      ion: 約拿書
+      mih: 彌迦書
+      naum: 那鴻書
+      avm: 哈巴谷書
+      sof: 西番雅書
+      ag: 哈該書
+      zah: 撒迦利亞書
+      mal: 瑪拉基書
       1mak: 馬加伯上
       2mak: 馬加伯下
       3mak: 馬加伯三書
@@ -542,33 +542,33 @@ zh-Hant:
       iudf: 友弟德傳
       prs: 智慧篇
       prsir: 德訓篇
-      mf: 瑪竇福音
-      mk: 馬爾谷福音
+      mf: 馬太福音
+      mk: 馬可福音
       lk: 路加福音
-      in: 若望福音
-      act: 宗徒大事錄
+      in: 約翰福音
+      act: 使徒行傳
       rim: 羅馬書
-      1kor: 格林多前書
-      2kor: 格林多後書
-      gal: 迦拉達書
-      ef: 厄弗所書
-      fil: 斐理伯書
-      kol: 哥羅森書
-      1sol: 得撒洛尼前書
-      2sol: 得撒洛尼後書
-      1tim: 弟茂德前書
-      2tim: 弟茂德後書
-      tit: 弟鐸書
-      fm: 費肋孟書
+      1kor: 哥林多前書
+      2kor: 哥林多後書
+      gal: 加拉太書
+      ef: 以弗所書
+      fil: 腓立比書
+      kol: 歌羅西書
+      1sol: 帖撒羅尼迦前書
+      2sol: 帖撒羅尼迦後書
+      1tim: 提摩太前書
+      2tim: 提摩太後書
+      tit: 提多書
+      fm: 腓利門書
       evr: 希伯來書
-      iak: 雅各伯書
-      1pet: 伯多祿前書
-      2pet: 伯多祿後書
-      1in: 若望一書
-      2in: 若望二書
-      3in: 若望三書
-      iud: 猶達書
-      otkr: 默示錄
+      iak: 雅各書
+      1pet: 彼得前書
+      2pet: 彼得後書
+      1in: 約翰一書
+      2in: 約翰二書
+      3in: 約翰三書
+      iud: 猶大書
+      otkr: 啟示錄
 
   errors:
     no_translation_for_this_book: '这本书没有这样的翻译'

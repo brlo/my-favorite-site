@@ -15,7 +15,11 @@ lang, file = ARGV
 tr = BibleLinker::BIBLE_BY_LANG.fetch(lang)
 short = I18n.t('books.short', locale: lang.to_sym)
 NOTE_GR = { 'ko' => '그리스어에서 번역' }.fetch(lang, '')
-SOURCE = { 'ko' => '<p>번역: 로디온 블라소프 (AI 도구 활용). 저본: 러시아어 원문. 참고: 영어·일본어 번역. 성경 인용과 링크는 개역개정에 따름.</p>' }.fetch(lang)
+SOURCE = {
+  'ko' => '<p>번역: 로디온 블라소프 (AI 도구 활용). 저본: 러시아어 원문. 참고: 영어·일본어 번역. 성경 인용과 링크는 개역개정에 따름.</p>',
+  'zh-Hans' => '<p>翻译：罗季翁·弗拉索夫（借助人工智能工具）。底本：俄文原文。参考：英文、日文翻译。圣经链接指向本站的和合本（上帝版）。</p>',
+  'zh-Hant' => '<p>翻譯：羅季翁·弗拉索夫（借助人工智能工具）。底本：俄文原文。參考：英文、日文翻譯。聖經鏈接指向本站的和合本（上帝版）。</p>',
+}.fetch(lang) { '' }
 errors = []
 clean = ->(t) { t.to_s.gsub(/\[[^\]]*\]/, '').gsub(%r{<br>|</?[a-z]+>}, '').squeeze(' ').strip }
 quote = ->(t) { i = 0; t.gsub('"') { (i += 1).odd? ? '‘' : '’' } }
@@ -140,5 +144,5 @@ if errors.any?
   exit 1
 end
 out = "db/translations/#{lang}/q_#{File.basename(file, '.txt')}.yml"
-File.write(out, { 'lang' => lang, 'list' => Page.find_by!(lang: lang, parent_id: Page.find_by!(lang: lang, path_low: "links_#{lang}").id, group_lang_id: 'биб-цитаты').path, 'pages' => pages }.to_yaml(line_width: -1))
+File.write(out, { 'lang' => lang, 'list' => Page.find_by!(lang: lang, parent_id: Page.find_by!(lang: lang, path_low: "links_#{lang}".downcase).id, group_lang_id: 'биб-цитаты').path, 'pages' => pages }.to_yaml(line_width: -1))
 puts "ok #{out}: #{pages.size} статей"

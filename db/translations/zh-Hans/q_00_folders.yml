@@ -1,0 +1,36 @@
+# Папки (разделы без ссылки) меню раздела «圣经引文» (cn-q). Загружать первым:
+# bin/rails pages:import_translations FILE=db/translations/zh-Hans/q_00_folders.yml
+# Перевод японского списка (db/translations/ja/q_00_folders.yml); названия — по глоссарию.
+lang: zh-Hans
+list: cn-q
+folders:
+  - { path: "上帝", priority: 1 }
+  - { path: "上帝/圣父", priority: 18 }
+  - { path: "上帝/圣子", priority: 19 }
+  - { path: "上帝/圣灵", priority: 20 }
+  - { path: "教会", priority: 5 }
+  - { path: "教会/信仰", priority: 2 }
+  - { path: "教会/圣人", priority: 3 }
+  - { path: "教会/祈祷", priority: 4 }
+  - { path: "教会/圣奥秘", priority: 7 }
+  - { path: "教会/宣教", priority: 10 }
+  - { path: "教会/灵修", priority: 12 }
+  - { path: "教会/救恩", priority: 20 }
+  - { path: "教会/恩赐", priority: 20 }
+  - { path: "教会/圣经", priority: 21 }
+  - { path: "教会/事奉圣礼", priority: 25 }
+  - { path: "人", priority: 10 }
+  - { path: "人/死后", priority: 0 }
+  - { path: "人/罪", priority: 1 }
+  - { path: "人/德行", priority: 2 }
+  - { path: "世界", priority: 20 }
+  - { path: "旧约", priority: 100 }
+  - { path: "旧约/预表", priority: 1 }
+  - { path: "旧约/律法", priority: 2 }
+  - { path: "旧约/礼拜", priority: 3 }
+  - { path: "比喻", priority: 110 }
+  - { path: "天使", priority: 120 }
+  - { path: "天使/圣天使", priority: 1 }
+  - { path: "天使/堕落的天使", priority: 2 }
+  - { path: "预言", priority: 130 }
+pages: []
