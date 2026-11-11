@@ -125,6 +125,9 @@ vi:
     translates: Bản dịch
     arab-avd: 'Tiếng Ả Rập'
     cn-sb: 'Tiếng Trung giản thể'
+    cn-cuv: 'Tiếng Trung giản thể'
+    cn-cuvt: 'Tiếng Trung phồn thể'
+    cn-sbt: 'Tiếng Trung phồn thể'
     hi-ov: 'Tiếng Hindi'
     ko-nkrv: 'Tiếng Hàn'
     csl-pnm: 'Tiếng Slavơ nhà thờ'
@@ -253,6 +256,9 @@ vi:
 
         jp-ni: 'bản dịch tiếng Nhật (JP-NI)'
         cn-sb: 'bản dịch tiếng Trung (SB)'
+        cn-cuv: 'bản dịch tiếng Trung (CUV)'
+        cn-cuvt: 'bản dịch tiếng Trung (CUV-T)'
+        cn-sbt: 'bản dịch tiếng Trung (SB-T)'
         hi-ov: 'bản dịch tiếng Hindi (O.V.)'
         ko-nkrv: 'bản dịch tiếng Hàn (NKRV)'
         ge-sch: 'bản dịch tiếng Đức (SCH)'
@@ -272,6 +278,9 @@ vi:
 
         jp-ni: 'bản dịch tiếng Nhật (JP-NI, 1987)'
         cn-sb: 'bản dịch tiếng Trung (SB, 1968)'
+        cn-cuv: 'bản dịch tiếng Trung (CUV, 1919)'
+        cn-cuvt: 'bản dịch tiếng Trung (CUV-T, 1919)'
+        cn-sbt: 'bản dịch tiếng Trung (SB-T, 1968)'
         hi-ov: 'bản dịch tiếng Hindi (O.V., 2016)'
         ko-nkrv: 'bản dịch tiếng Hàn (NKRV, 1998)'
         ge-sch: 'bản dịch tiếng Đức (SCH, 1951)'

@@ -125,6 +125,9 @@ sw:
     translates: Tafsiri
     arab-avd: 'Kiarabu'
     cn-sb: 'Kichina Rahisi'
+    cn-cuv: 'Kichina Rahisi'
+    cn-cuvt: 'Kichina cha Jadi'
+    cn-sbt: 'Kichina cha Jadi'
     hi-ov: 'Kihindi'
     ko-nkrv: 'Kikorea'
     csl-pnm: 'Kislovakia'
@@ -253,6 +256,9 @@ sw:
 
         jp-ni: 'tafsiri ya Kijapani (JP-NI)'
         cn-sb: 'tafsiri ya Kichina (SB)'
+        cn-cuv: 'tafsiri ya Kichina (CUV)'
+        cn-cuvt: 'tafsiri ya Kichina (CUV-T)'
+        cn-sbt: 'tafsiri ya Kichina (SB-T)'
         hi-ov: 'tafsiri ya Kihindi (O.V.)'
         ko-nkrv: 'tafsiri ya Kikorea (NKRV)'
         ge-sch: 'tafsiri ya Kijerumani (SCH)'
@@ -272,6 +278,9 @@ sw:
 
         jp-ni: 'tafsiri ya Kijapani (JP-NI, 1987)'
         cn-sb: 'tafsiri ya Kichina (SB, 1968)'
+        cn-cuv: 'tafsiri ya Kichina (CUV, 1919)'
+        cn-cuvt: 'tafsiri ya Kichina (CUV-T, 1919)'
+        cn-sbt: 'tafsiri ya Kichina (SB-T, 1968)'
         hi-ov: 'tafsiri ya Kihindi (O.V., 2016)'
         ko-nkrv: 'tafsiri ya Kikorea (NKRV, 1998)'
         ge-sch: 'tafsiri ya Kijerumani (SCH, 1951)'

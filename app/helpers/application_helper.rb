@@ -174,7 +174,7 @@ module ApplicationHelper
       case @current_bib_lang
       when 'csl-pnm'
         'csl'
-      when 'jp-ni', 'gr-jp', 'arab-avd', 'cn-sb', 'ko-nkrv', 'heb-osm'
+      when 'jp-ni', 'gr-jp', 'arab-avd', 'cn-sb', 'cn-sbt', 'cn-cuv', 'cn-cuvt', 'ko-nkrv', 'heb-osm'
         'text-detailed'
       else
         ''

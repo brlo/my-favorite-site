@@ -125,6 +125,9 @@ uz:
     translates: Tarjimalar
     arab-avd: 'Arabcha'
     cn-sb: 'Soddalashtirilgan Xitoycha'
+    cn-cuv: 'Soddalashtirilgan Xitoycha'
+    cn-cuvt: 'Anʼanaviy xitoycha'
+    cn-sbt: 'Anʼanaviy xitoycha'
     hi-ov: 'Hindcha'
     ko-nkrv: 'Koreyscha'
     csl-pnm: 'Cherkov Slavyanchasi'
@@ -253,6 +256,9 @@ uz:
 
         jp-ni: 'yaponcha tarjima (JP-NI)'
         cn-sb: 'xitoycha tarjima (SB)'
+        cn-cuv: 'xitoycha tarjima (CUV)'
+        cn-cuvt: 'xitoycha tarjima (CUV-T)'
+        cn-sbt: 'xitoycha tarjima (SB-T)'
         hi-ov: 'hindcha tarjima (O.V.)'
         ko-nkrv: 'koreyscha tarjima (NKRV)'
         ge-sch: 'nemischa tarjima (SCH)'
@@ -272,6 +278,9 @@ uz:
 
         jp-ni: 'yaponcha tarjima (JP-NI, 1987)'
         cn-sb: 'xitoycha tarjima (SB, 1968)'
+        cn-cuv: 'xitoycha tarjima (CUV, 1919)'
+        cn-cuvt: 'xitoycha tarjima (CUV-T, 1919)'
+        cn-sbt: 'xitoycha tarjima (SB-T, 1968)'
         hi-ov: 'hindcha tarjima (O.V., 2016)'
         ko-nkrv: 'koreyscha tarjima (NKRV, 1998)'
         ge-sch: 'nemischa tarjima (SCH, 1951)'

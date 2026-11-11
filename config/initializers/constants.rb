@@ -200,6 +200,9 @@ FLAG_BY_LANG = {
   # переводы Библии
   'arab-avd' => '🇸🇦',   # Китайский
   'cn-sb' => '🇨🇳',      # Китайский
+  'cn-sbt' => '🇨🇳',     # Китайский (традиционная графика)
+  'cn-cuv' => '🇨🇳',     # Китайский (和合本 上帝版)
+  'cn-cuvt' => '🇨🇳',    # Китайский (和合本 上帝版, традиционная графика)
   'hi-ov' => '🇮🇳',      # Хинди
   'ko-nkrv' => '🇰🇷',     # Корейский
   'csl-pnm' => '🇷🇺📜',    # Церковнославянский
@@ -231,6 +234,9 @@ BIB_LANG_TO_LOCALE = {
 
   'jp-ni'      => 'ja',
   'cn-sb'      => 'zh-Hans',
+  'cn-sbt'     => 'zh-Hant',
+  'cn-cuv'     => 'zh-Hans',
+  'cn-cuvt'    => 'zh-Hant',
   'ge-sch'     => 'de',
   'arab-avd'   => 'ar',
   'hi-ov'      => 'hi',
@@ -251,6 +257,9 @@ LANG_FOR_BIB_LANG = {
 
   'jp-ni'      => 'ja',
   'cn-sb'      => 'zh-Hans',
+  'cn-sbt'     => 'zh-Hant',
+  'cn-cuv'     => 'zh-Hans',
+  'cn-cuvt'    => 'zh-Hant',
   'ge-sch'     => 'de',
   'arab-avd'   => 'ar',
   'hi-ov'      => 'hi',
@@ -267,8 +276,8 @@ LOCALE_TO_BIB_LANG = {
   'el' => 'gr-lxx-byz',
   'grc' => 'gr-lxx-byz',
   'ja' => 'jp-ni',
-  'zh-Hans' => 'cn-sb',
-  'zh-Hant' => 'cn-sb',
+  'zh-Hans' => 'cn-cuv',
+  'zh-Hant' => 'cn-cuvt',
   'de' => 'ge-sch',
   'ar' => 'arab-avd',
 
@@ -416,6 +425,9 @@ BIB_LANGS = {
   # --- Переводы
   "arab-avd" => 'العربية',
   "cn-sb" => '简体中文',
+  "cn-sbt" => '繁體中文',
+  "cn-cuv" => '简体中文',
+  "cn-cuvt" => '繁體中文',
   "hi-ov" => 'हिन्दी',
   "ko-nkrv" => '한국어',
   "csl-pnm" => 'Церковнославянский',

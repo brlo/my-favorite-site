@@ -125,6 +125,9 @@ ko:
     translates: 번역본
     arab-avd: '아랍어'
     cn-sb: '중국어(간체)'
+    cn-cuv: '중국어(간체)'
+    cn-cuvt: '중국어(번체)'
+    cn-sbt: '중국어(번체)'
     hi-ov: '힌디어'
     ko-nkrv: '한국어'
     csl-pnm: '교회 슬라브어'
@@ -253,6 +256,9 @@ ko:
 
         jp-ni: '일본어 번역 (JP-NI)'
         cn-sb: '중국어 번역 (SB)'
+        cn-cuv: '중국어 번역 (CUV)'
+        cn-cuvt: '중국어 번역 (CUV-T)'
+        cn-sbt: '중국어 번역 (SB-T)'
         hi-ov: '힌디어 번역 (O.V.)'
         ko-nkrv: '한국어 번역 (NKRV)'
         ge-sch: '독일어 번역 (SCH)'
@@ -272,6 +278,9 @@ ko:
 
         jp-ni: '일본어 번역 (JP-NI, 1987)'
         cn-sb: '중국어 번역 (SB, 1968)'
+        cn-cuv: '중국어 번역 (CUV, 1919)'
+        cn-cuvt: '중국어 번역 (CUV-T, 1919)'
+        cn-sbt: '중국어 번역 (SB-T, 1968)'
         hi-ov: '힌디어 번역 (O.V., 2016)'
         ko-nkrv: '한국어 번역 (NKRV, 1998)'
         ge-sch: '독일어 번역 (SCH, 1951)'

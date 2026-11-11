@@ -125,6 +125,9 @@ es:
     translates: Traducciones
     arab-avd: 'Árabe'
     cn-sb: 'Chino simplificado'
+    cn-cuv: 'Chino simplificado'
+    cn-cuvt: 'Chino tradicional'
+    cn-sbt: 'Chino tradicional'
     hi-ov: 'Hindi'
     ko-nkrv: 'Coreano'
     csl-pnm: 'Eslavo eclesiástico'
@@ -253,6 +256,9 @@ es:
 
         jp-ni: 'traducción japonesa (JP-NI)'
         cn-sb: 'traducción china (SB)'
+        cn-cuv: 'traducción china (CUV)'
+        cn-cuvt: 'traducción china (CUV-T)'
+        cn-sbt: 'traducción china (SB-T)'
         hi-ov: 'traducción hindi (O.V.)'
         ko-nkrv: 'traducción coreana (NKRV)'
         ge-sch: 'traducción alemana (SCH)'
@@ -272,6 +278,9 @@ es:
 
         jp-ni: 'traducción japonesa (JP-NI, 1987)'
         cn-sb: 'traducción china (SB, 1968)'
+        cn-cuv: 'traducción china (CUV, 1919)'
+        cn-cuvt: 'traducción china (CUV-T, 1919)'
+        cn-sbt: 'traducción china (SB-T, 1968)'
         hi-ov: 'traducción hindi (O.V., 2016)'
         ko-nkrv: 'traducción coreana (NKRV, 1998)'
         ge-sch: 'traducción alemana (SCH, 1951)'

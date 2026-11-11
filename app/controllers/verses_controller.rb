@@ -184,7 +184,7 @@ class VersesController < ApplicationController
   # Результаты поиска по Писанию (до 3000 стихов)
   def fetch_search_results
     searcher =
-      if @search_lang.in?(%w[jp-ni cn-sb ko-nkrv arab-avd heb-osm gr-lxx-byz]) || @search_accuracy == 'exact'
+      if @search_lang.in?(%w[jp-ni cn-sb cn-sbt cn-cuv cn-cuvt ko-nkrv arab-avd heb-osm gr-lxx-byz]) || @search_accuracy == 'exact'
         ::VerseSearchPgroonga
       else
         ::VerseSearch

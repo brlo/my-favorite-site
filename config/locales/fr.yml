@@ -125,6 +125,9 @@ fr:
     translates: Traductions
     arab-avd: 'Arabe'
     cn-sb: 'Chinois simplifié'
+    cn-cuv: 'Chinois simplifié'
+    cn-cuvt: 'Chinois traditionnel'
+    cn-sbt: 'Chinois traditionnel'
     hi-ov: 'Hindi'
     ko-nkrv: 'Coréen'
     csl-pnm: "Slavon d'église"
@@ -253,6 +256,9 @@ fr:
 
         jp-ni: 'traduction japonaise (JP-NI)'
         cn-sb: 'traduction chinoise (SB)'
+        cn-cuv: 'traduction chinoise (CUV)'
+        cn-cuvt: 'traduction chinoise (CUV-T)'
+        cn-sbt: 'traduction chinoise (SB-T)'
         hi-ov: 'traduction hindie (O.V.)'
         ko-nkrv: 'traduction coréenne (NKRV)'
         ge-sch: 'traduction allemande (SCH)'
@@ -272,6 +278,9 @@ fr:
 
         jp-ni: 'traduction japonaise (JP-NI, 1987)'
         cn-sb: 'traduction chinoise (SB, 1968)'
+        cn-cuv: 'traduction chinoise (CUV, 1919)'
+        cn-cuvt: 'traduction chinoise (CUV-T, 1919)'
+        cn-sbt: 'traduction chinoise (SB-T, 1968)'
         hi-ov: 'traduction hindie (O.V., 2016)'
         ko-nkrv: 'traduction coréenne (NKRV, 1998)'
         ge-sch: 'traduction allemande (SCH, 1951)'

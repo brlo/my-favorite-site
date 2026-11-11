@@ -125,6 +125,9 @@ tr:
     translates: Çeviriler
     arab-avd: 'Arapça'
     cn-sb: 'Basitleştirilmiş Çince'
+    cn-cuv: 'Basitleştirilmiş Çince'
+    cn-cuvt: 'Geleneksel Çince'
+    cn-sbt: 'Geleneksel Çince'
     hi-ov: 'Hintçe'
     ko-nkrv: 'Korece'
     csl-pnm: 'Kilise Slavcası'
@@ -253,6 +256,9 @@ tr:
 
         jp-ni: 'Japonca çeviri (JP-NI)'
         cn-sb: 'Çince çeviri (SB)'
+        cn-cuv: 'Çince çeviri (CUV)'
+        cn-cuvt: 'Çince çeviri (CUV-T)'
+        cn-sbt: 'Çince çeviri (SB-T)'
         hi-ov: 'Hintçe çeviri (O.V.)'
         ko-nkrv: 'Korece çeviri (NKRV)'
         ge-sch: 'Almanca çeviri (SCH)'
@@ -272,6 +278,9 @@ tr:
 
         jp-ni: 'Japonca çeviri (JP-NI, 1987)'
         cn-sb: 'Çince çeviri (SB, 1968)'
+        cn-cuv: 'Çince çeviri (CUV, 1919)'
+        cn-cuvt: 'Çince çeviri (CUV-T, 1919)'
+        cn-sbt: 'Çince çeviri (SB-T, 1968)'
         hi-ov: 'Hintçe çeviri (O.V., 2016)'
         ko-nkrv: 'Korece çeviri (NKRV, 1998)'
         ge-sch: 'Almanca çeviri (SCH, 1951)'
