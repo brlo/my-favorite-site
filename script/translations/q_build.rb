@@ -15,10 +15,11 @@ lang, file = ARGV
 tr = BibleLinker::BIBLE_BY_LANG.fetch(lang)
 short = I18n.t('books.short', locale: lang.to_sym)
 NOTE_GR = { 'ko' => '그리스어에서 번역' }.fetch(lang, '')
+SB_TR = lang == 'zh-Hant' ? 'cn-sbt' : 'cn-sb'
 SOURCE = {
   'ko' => '<p>번역: 로디온 블라소프 (AI 도구 활용). 저본: 러시아어 원문. 참고: 영어·일본어 번역. 성경 인용과 링크는 개역개정에 따름.</p>',
-  'zh-Hans' => '<p>翻译：罗季翁·弗拉索夫（借助人工智能工具）。底本：俄文原文。参考：英文、日文翻译。圣经链接指向本站的和合本（上帝版）。</p>',
-  'zh-Hant' => '<p>翻譯：羅季翁·弗拉索夫（借助人工智能工具）。底本：俄文原文。參考：英文、日文翻譯。聖經鏈接指向本站的和合本（上帝版）。</p>',
+  'zh-Hans' => '<p>翻译：罗季翁·弗拉索夫（借助人工智能工具）。底本：俄文原文。参考：英文、日文翻译。圣经链接指向本站的和合本（上帝版）；次经书卷引文按思高译本，无中文经文处自俄文译出。</p>',
+  'zh-Hant' => '<p>翻譯：羅季翁·弗拉索夫（借助人工智能工具）。底本：俄文原文。參考：英文、日文翻譯。聖經鏈接指向本站的和合本（上帝版）；次經書卷引文按思高譯本，無中文經文處自俄文譯出。</p>',
 }.fetch(lang) { '' }
 errors = []
 clean = ->(t) { t.to_s.gsub(/\[[^\]]*\]/, '').gsub(%r{<br>|</?[a-z]+>}, '').squeeze(' ').strip }
@@ -90,15 +91,18 @@ expand_quote = lambda do |line, title|
     inner = text[a...b]
     text[a...b] = mk ? "<strong><mark>#{inner}</mark></strong>" : "<strong>#{inner}</strong>"
   end
-  links = rs.map { |r| r.start_with?('gr ') ? link.(r.delete_prefix('gr '), code: 'gr-lxx-byz') : link.(r) }.join('; ')
+  link_ref = ->(r) { r.start_with?('gr ') ? link.(r.delete_prefix('gr '), code: 'gr-lxx-byz') : r.start_with?('sb ') ? link.(r.delete_prefix('sb '), code: SB_TR) : link.(r) }
+  links = rs.map { |r| link_ref.(r) }.join('; ')
   %(<blockquote><p>“#{text}” (#{links})#{" <em>(#{inline.(note)})</em>" if note}</p></blockquote>)
 end
 literal = lambda do |line|
   body, tail = line.split(/\s*\|\|\|\s*/, 2)
   r, note = tail.split(/\s*~~\s*/, 2)
+  NOTE_RU = { 'ko' => '러시아어 시노달 역본에서 옮김', 'zh-Hans' => '俄文原文无中文经文，此处自译' }.fetch(lang, '')
   a = if r.start_with?('grt ') then link.(r.delete_prefix('grt '), code: 'gr-lxx-byz')
       elsif r.start_with?('en ') then "#{link.(r.delete_prefix('en '), code: 'en-nrsv')}, 영어 번역(NRSV)에서 옮김"
-      elsif r.start_with?('ru ') then "#{link.(r.delete_prefix('ru '), code: 'ru')}, 러시아어 시노달 역본에서 옮김"
+      elsif r.start_with?('ru ') then "#{link.(r.delete_prefix('ru '), code: 'ru')}, #{NOTE_RU}"
+      elsif r.start_with?('sb ') then link.(r.delete_prefix('sb '), code: SB_TR)
       elsif r.start_with?('gr ') then "#{link.(r.delete_prefix('gr '), code: 'gr-lxx-byz')}, #{NOTE_GR}"
       else r.split(';').map { link.(_1.delete_prefix('ctb ').strip) }.join('; ') end
   %(<blockquote><p>“#{inline.(body)}” (#{a})#{" <em>(#{inline.(note)})</em>" if note}</p></blockquote>)

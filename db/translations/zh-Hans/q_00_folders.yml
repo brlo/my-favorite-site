@@ -5,6 +5,7 @@ lang: zh-Hans
 list: cn-q
 folders:
   - { path: "上帝", priority: 1 }
+  - { path: "救恩", priority: 2 }
   - { path: "上帝/圣父", priority: 18 }
   - { path: "上帝/圣子", priority: 19 }
   - { path: "上帝/圣灵", priority: 20 }
