@@ -16,6 +16,7 @@ tr = BibleLinker::BIBLE_BY_LANG.fetch(lang)
 short = I18n.t('books.short', locale: lang.to_sym)
 NOTE_GR = { 'ko' => '그리스어에서 번역', 'zh-Hans' => '译自希腊文', 'zh-Hant' => '譯自希臘文' }.fetch(lang, '')
 SB_TR = lang == 'zh-Hant' ? 'cn-sbt' : 'cn-sb'
+NOTE_RU = { 'ko' => '러시아어 시노달 역본에서 옮김', 'zh-Hans' => '俄文原文无中文经文，此处自译' }.fetch(lang, '')
 SOURCE = {
   'ko' => '<p>번역: 로디온 블라소프 (AI 도구 활용). 저본: 러시아어 원문. 참고: 영어·일본어 번역. 성경 인용과 링크는 개역개정에 따름.</p>',
   'zh-Hans' => '<p>翻译：罗季翁·弗拉索夫（借助人工智能工具）。底本：俄文原文。参考：英文、日文翻译。圣经链接指向本站的和合本（上帝版）；次经书卷引文按思高译本，无中文经文处自俄文译出。</p>',
@@ -98,7 +99,6 @@ end
 literal = lambda do |line|
   body, tail = line.split(/\s*\|\|\|\s*/, 2)
   r, note = tail.split(/\s*~~\s*/, 2)
-  NOTE_RU = { 'ko' => '러시아어 시노달 역본에서 옮김', 'zh-Hans' => '俄文原文无中文经文，此处自译' }.fetch(lang, '')
   a = if r.start_with?('grt ') then link.(r.delete_prefix('grt '), code: 'gr-lxx-byz')
       elsif r.start_with?('en ') then "#{link.(r.delete_prefix('en '), code: 'en-nrsv')}, 영어 번역(NRSV)에서 옮김"
       elsif r.start_with?('ru ') then "#{link.(r.delete_prefix('ru '), code: 'ru')}, #{NOTE_RU}"
