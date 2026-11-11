@@ -14,7 +14,7 @@ require 'yaml'
 lang, file = ARGV
 tr = BibleLinker::BIBLE_BY_LANG.fetch(lang)
 short = I18n.t('books.short', locale: lang.to_sym)
-NOTE_GR = { 'ko' => '그리스어에서 번역' }.fetch(lang, '')
+NOTE_GR = { 'ko' => '그리스어에서 번역', 'zh-Hans' => '译自希腊文', 'zh-Hant' => '譯自希臘文' }.fetch(lang, '')
 SB_TR = lang == 'zh-Hant' ? 'cn-sbt' : 'cn-sb'
 SOURCE = {
   'ko' => '<p>번역: 로디온 블라소프 (AI 도구 활용). 저본: 러시아어 원문. 참고: 영어·일본어 번역. 성경 인용과 링크는 개역개정에 따름.</p>',
