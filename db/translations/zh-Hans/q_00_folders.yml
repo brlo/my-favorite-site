@@ -16,7 +16,6 @@ folders:
   - { path: "教会/圣奥秘", priority: 7 }
   - { path: "教会/宣教", priority: 10 }
   - { path: "教会/灵修", priority: 12 }
-  - { path: "教会/救恩", priority: 20 }
   - { path: "教会/恩赐", priority: 20 }
   - { path: "教会/圣经", priority: 21 }
   - { path: "教会/事奉圣礼", priority: 25 }
