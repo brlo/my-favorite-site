@@ -627,20 +627,22 @@ body.night-mode {
 }
 
 
-.menu-books-church {
-  text-align: center;
-  padding: 0 0 10px 0;
+/* Ссылка на Православную Церковь — первый пункт дропдауна «⋯» */
+
+#more-area .menu-books-church {
+  text-align: left;
+  padding: 0 0 8px 0;
   border-bottom: 1px solid #d8d1c0;
-  margin-bottom: 10px;
+  margin-bottom: 8px;
 }
 
-.menu-books-church a {
+#more-area .menu-books-church a {
   font-size: 1.15em;
   font-weight: bold;
   color: #317441;
 }
 
-.night-mode .menu-books-church a {
+.night-mode #more-area .menu-books-church a {
   color: #6fbf83;
 }
 

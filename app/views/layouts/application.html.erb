@@ -63,6 +63,9 @@
               data-more-menu-target="button">⋯</a>
 
             <div id="more-area" class="hidden" data-more-menu-target="menu">
+              <% if (church_page = header_church_page) %>
+                <%= link_to church_page.title, my_page_link_to("/#{CGI.escape(church_page.path)}", page_lang: church_page.lang) %>
+              <% end %>
               <%= link_to t('menu.chat'), chat_path(locale: ::I18n.locale), class: (@current_menu_item == 'chat' ? 'selected' : nil) %>
               <%= link_to t('menu.translates'), translation_projects_path(locale: ::I18n.locale), class: (@current_menu_item == 'translates' ? 'selected' : nil) %>
               <a href="<%= my_page_link_to("/help_#{current_lang()}") %>"><%= t('menu.help_site') %></a>
@@ -155,14 +158,6 @@
               </svg>
             </button>
           </form>
-
-          <% if (church_page = header_church_page) %>
-            <div class="menu-books-church">
-              <a href="<%= my_page_link_to("/#{CGI.escape(church_page.path)}", page_lang: church_page.lang) %>">
-                <%= church_page.title %>
-              </a>
-            </div>
-          <% end %>
 
           <div class="bible-list overtop">
             <!-- Ветхий и Новый Завет -->
