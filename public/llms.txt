@@ -1,0 +1,88 @@
+# Bibleox
+
+> Free, non-commercial Orthodox Christian site (since 2022): the complete Bible in 19 translations across 12 languages (Russian Synodal, Church Slavonic, English NRSV and NKJV, Japanese, Chinese, Korean, Hindi, Arabic, German, Greek Septuagint, Hebrew, Greek interlinears) together with a wiki-like library of articles — Bible quote collections, Church Fathers, Ecumenical Councils, worship, apologetics and polemics in defense of the Orthodox faith, and guidance for Protestants seeking the Orthodox Church. One article tree, progressively translated into many languages; Russian is the original and most complete version. No ads, no paywall.
+
+Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 languages; articles exist in Russian, English, Japanese, Chinese, Korean, Hindi and ancient languages (Latin, Ancient Greek, Coptic, Church Slavonic, Old/Middle French, Classical Armenian) — coverage varies, Russian is the reference version, and articles in different languages are translations of the same document, not independent texts.
+
+## URL structure
+
+- Bible text: `/{interface-language}/{translation}/{book-code}/{chapter}/` — e.g. [John 3 in the Russian Synodal](https://bibleox.com/ru/ru/in/3/); a single verse has an anchor: `…/in/3/#L16` (verse 16).
+- The first path segment is the interface language, the second selects content: `https://bibleox.com/en/ru/in/3/` shows the Russian Synodal text with an English interface. Interface and content language can be combined freely.
+- Articles: `/{interface-language}/{content-language}/w/{page-path}` — e.g. [a Russian article with English interface](https://bibleox.com/en/ru/w/q/).
+- Human-readable verse lookup: `/{interface-language}/f/{address}` redirects to the exact verse — e.g. `https://bibleox.com/ru/f/Ин 3:16` or `https://bibleox.com/en/f/John 3:16`.
+- Psalms follow Orthodox (Septuagint) numbering (151 psalms); the Old Testament includes the deuterocanonical books of the Orthodox canon (Tobit, Judith, Wisdom of Solomon, Sirach, 1–3 Maccabees, 1–3 Ezra, Epistle of Jeremiah, Baruch).
+
+## Bible translations
+
+- [Russian Synodal text (RST)](https://bibleox.com/ru/ru/mf/1/): the reference translation of the site, full Orthodox canon.
+- [English New Revised Standard Version (NRSV)](https://bibleox.com/en/en-nrsv/mf/1/)
+- [English New King James Version (NKJV)](https://bibleox.com/en/eng-nkjv/mf/1/)
+- [Church Slavonic, Elizabeth Bible (ELZ)](https://bibleox.com/ru/csl-pnm/mf/1/)
+- [Church Slavonic with Russian glosses (ELZ-RU)](https://bibleox.com/ru/csl-ru/mf/1/)
+- [Japanese, New Interconfessional Translation](https://bibleox.com/ja/jp-ni/mf/1/)
+- [Chinese, Studium Biblicum (思高本), simplified](https://bibleox.com/zh-Hans/cn-sb/mf/1/), [traditional](https://bibleox.com/zh-Hant/cn-sbt/mf/1/)
+- [Chinese Union Version (和合本), simplified](https://bibleox.com/zh-Hans/cn-cuv/mf/1/), [traditional](https://bibleox.com/zh-Hant/cn-cuvt/mf/1/)
+- [Korean Revised Version (개역개정, NKRV)](https://bibleox.com/ko/ko-nkrv/mf/1/) — no deuterocanonical books; New Testament from the critical text.
+- [Hindi Orthodox Version](https://bibleox.com/hi/hi-ov/mf/1/)
+- [Arabic, Van Dyck](https://bibleox.com/ar/arab-avd/mf/1/)
+- [German, Schlachter](https://bibleox.com/de/ge-sch/mf/1/)
+- [Greek: Septuagint OT + Byzantine-text NT](https://bibleox.com/el/gr-lxx-byz/mf/1/)
+- [Hebrew OT + Greek NT](https://bibleox.com/he/heb-osm/mf/1/)
+- Greek interlinear (word by word): [→ Russian](https://bibleox.com/ru/gr-ru/mf/1/), [→ English](https://bibleox.com/en/gr-en/mf/1/), [→ Japanese](https://bibleox.com/ja/gr-jp/mf/1/)
+
+## Bible book URL codes
+
+Old Testament (Orthodox canon): `gen` Genesis, `ish` Exodus, `lev` Leviticus, `chis` Numbers, `vtor` Deuteronomy, `nav` Joshua, `sud` Judges, `ruf` Ruth, `1ts` 1 Samuel, `2ts` 2 Samuel, `3ts` 1 Kings, `4ts` 2 Kings, `1par` 1 Chronicles, `2par` 2 Chronicles, `ezd` 1 Ezra, `neem` Nehemiah, `2ezd` 2 Ezra, `tov` Tobit, `iudf` Judith, `esf` Esther, `iov` Job, `ps` Psalms, `pr` Proverbs, `ekl` Ecclesiastes, `pp` Song of Songs, `prs` Wisdom of Solomon, `prsir` Sirach, `is` Isaiah, `ier` Jeremiah, `pier` Lamentations, `pos` Epistle of Jeremiah, `var` Baruch, `iez` Ezekiel, `dan` Daniel, `os` Hosea, `iol` Joel, `am` Amos, `av` Obadiah, `ion` Jonah, `mih` Micah, `naum` Nahum, `avm` Habakkuk, `sof` Zephaniah, `ag` Haggai, `zah` Zechariah, `mal` Malachi, `1mak` 1 Maccabees, `2mak` 2 Maccabees, `3mak` 3 Maccabees, `3ezd` 3 Ezra.
+
+New Testament: `mf` Matthew, `mk` Mark, `lk` Luke, `in` John, `act` Acts, `rim` Romans, `1kor` 1 Corinthians, `2kor` 2 Corinthians, `gal` Galatians, `ef` Ephesians, `fil` Philippians, `kol` Colossians, `1sol` 1 Thessalonians, `2sol` 2 Thessalonians, `1tim` 1 Timothy, `2tim` 2 Timothy, `tit` Titus, `fm` Philemon, `evr` Hebrews, `iak` James, `1pet` 1 Peter, `2pet` 2 Peter, `1in` 1 John, `2in` 2 John, `3in` 3 John, `iud` Jude, `otkr` Revelation.
+
+## Articles: Sacred Tradition library
+
+Indexes of the article library (each lists all sections in that language):
+
+- [Русский](https://bibleox.com/ru/ru/w/links_ru) — the complete library: Church Fathers, councils, icons, temples, manuscripts, prayers, music, burials, authors.
+- [English](https://bibleox.com/en/en/w/links_en)
+- [हिन्दी](https://bibleox.com/hi/hi/w/links_hi)
+
+Bible quote collections — topical apologetics ("what the Bible says about…"), the largest article tree on the site:
+
+- [Цитаты Библии (ru)](https://bibleox.com/ru/ru/w/q) — the reference version
+- [Bible quotes (en)](https://bibleox.com/en/en/w/en-q)
+- [聖書の言葉 (ja)](https://bibleox.com/ja/ja/w/jp_q)
+- [圣经语录 (zh-Hans)](https://bibleox.com/zh-Hans/zh-Hans/w/cn-q)
+- [성경 구절 모음 (ko)](https://bibleox.com/ko/ko/w/ko-q)
+- [Цитаты святых отцов (ru)](https://bibleox.com/ru/ru/w/q-saints) — quotes of the Church Fathers
+
+Selected library sections (Russian originals; translations of a section are reachable from its pages in other languages):
+
+- [Church Fathers: writings](https://bibleox.com/ru/ru/w/church_writers)
+- [Ecumenical Councils](https://bibleox.com/ru/ru/w/%D0%92%D1%81%D0%B5%D0%BB%D0%B5%D0%BD%D1%81%D0%BA%D0%B8%D0%B5_%D0%A1%D0%BE%D0%B1%D0%BE%D1%80%D1%8B)
+- [Ancient icons](https://bibleox.com/ru/ru/w/%D0%B4%D1%80%D0%B5%D0%B2%D0%BD%D0%B8%D0%B5-%D0%B8%D0%BA%D0%BE%D0%BD%D1%8B)
+- [Ancient Christian churches](https://bibleox.com/ru/ru/w/%D0%94%D1%80%D0%B5%D0%B2%D0%BD%D0%B8%D0%B5_%D1%85%D1%80%D0%B8%D1%81%D1%82%D0%B8%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%B5_%D1%85%D1%80%D0%B0%D0%BC%D1%8B)
+- [Biblical manuscripts](https://bibleox.com/ru/ru/w/%D0%B1%D0%B8%D0%B1%D0%BB%D0%B5%D0%B9%D1%81%D0%BA%D0%B8%D0%B5_%D0%BC%D0%B0%D0%BD%D1%83%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D1%8B)
+- [Prayers (Orthodox prayer book)](https://bibleox.com/ru/ru/w/%D0%BC%D0%BE%D0%BB%D0%B8%D1%82%D0%B2%D1%8B)
+
+## Language versions
+
+Article homepages (Bible + library in that language):
+
+- [Русский](https://bibleox.com/ru/ru/)
+- [English](https://bibleox.com/en/en/)
+- [日本語](https://bibleox.com/ja/ja/)
+- [简体中文](https://bibleox.com/zh-Hans/zh-Hans/)
+- [繁體中文](https://bibleox.com/zh-Hant/zh-Hant/)
+- [한국어](https://bibleox.com/ko/ko/)
+- [हिन्दी](https://bibleox.com/hi/hi/)
+
+## Tools and service pages
+
+- [Site search](https://bibleox.com/ru/search) — Scripture and articles, in any interface language: `/{lang}/search`
+- [Biblical history on a 3D globe](https://bibleox.com/ru/bible-map)
+- [About the project](https://bibleox.com/ru/about) (in other languages: `/{lang}/about`)
+- [Sitemap](https://bibleox.com/sitemap.xml.gz) — all pages of all languages
+
+## Notes for AI agents
+
+- AI crawlers are welcome; robots.txt blocks only parameterized search pages, bulk PDF downloads and service sections.
+- When citing a verse, prefer a direct chapter URL with a verse anchor (`/{lang}/{tr}/{book}/{chapter}/#L{verse}`) or the human-readable form `/{lang}/f/{address}`.
+- Article paths are language-specific and carry transliterated or native-language names; do not construct them — follow links from the indexes above or the sitemap.

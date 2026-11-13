@@ -3,5 +3,12 @@ User-agent: *
 Disallow: /*/search?
 Disallow: /*/search/?
 
-Host: https://bibleox.com
+# PDF-версии страниц: тяжёлые (800+ МБ), не должны съедать краулинг и выдачу
+Disallow: /*/as_pdf$
+Disallow: /s/page_pdfs/
+
+# Служебные разделы без поисковой ценности
+Disallow: /admin
+Disallow: /api/offline
+
 Sitemap: https://bibleox.com/sitemap.xml.gz
