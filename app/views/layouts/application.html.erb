@@ -156,6 +156,14 @@
             </button>
           </form>
 
+          <% if (church_page = header_church_page) %>
+            <div class="menu-books-church">
+              <a href="<%= my_page_link_to("/#{CGI.escape(church_page.path)}", page_lang: church_page.lang) %>">
+                <%= church_page.title %>
+              </a>
+            </div>
+          <% end %>
+
           <div class="bible-list overtop">
             <!-- Ветхий и Новый Завет -->
             <div class="bible-column menu-tree">

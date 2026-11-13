@@ -132,6 +132,16 @@ module ApplicationHelper
     "/#{I18n.locale}#{path}"
   end
 
+  # Статья «Православная Церковь» для выпадающего меню «Писание» в хэдере:
+  # ставится на первое место, если есть перевод на текущий язык интерфейса.
+  def header_church_page
+    Rails.cache.fetch("header_church_page/#{I18n.locale}", expires_in: 1.hour) do
+      ru = Page.find_by(lang: 'ru', path_low: 'православная-церковь')
+      next nil unless ru
+      Page.find_by(lang: I18n.locale.to_s, group_lang_id: ru.group_lang_id)
+    end
+  end
+
   # А КАК ЖЕ КАНОНИКАЛ ЮРЛ?
 
   # Делает ссылку с указанной локалью (текущей)

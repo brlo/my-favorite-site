@@ -627,6 +627,23 @@ body.night-mode {
 }
 
 
+.menu-books-church {
+  text-align: center;
+  padding: 0 0 10px 0;
+  border-bottom: 1px solid #d8d1c0;
+  margin-bottom: 10px;
+}
+
+.menu-books-church a {
+  font-size: 1.15em;
+  font-weight: bold;
+  color: #317441;
+}
+
+.night-mode .menu-books-church a {
+  color: #6fbf83;
+}
+
 .bible-list {
   display: flex;
   flex-wrap: wrap;
