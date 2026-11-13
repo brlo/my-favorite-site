@@ -58,6 +58,11 @@ gem 'nokogiri'
 
 gem 'carrierwave'
 
+# транзитивная зависимость carrierwave (обработка картинок): пин, чтобы bundler не прыгнул на мажор 2.x
+gem 'image_processing', '~> 1.14'
+# JSON.parse в ruby 3.x ещё держим на 2.x: мажор 3.x меняет поведение сериализации
+gem 'json', '~> 2.19'
+
 # Use Redis adapter to run Action Cable in production
 # gem "redis", "~> 4.0"
 
