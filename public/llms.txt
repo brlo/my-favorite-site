@@ -62,6 +62,13 @@ Selected library sections (Russian originals; translations of a section are reac
 - [Biblical manuscripts](https://bibleox.com/ru/ru/w/%D0%B1%D0%B8%D0%B1%D0%BB%D0%B5%D0%B9%D1%81%D0%BA%D0%B8%D0%B5_%D0%BC%D0%B0%D0%BD%D1%83%D1%81%D0%BA%D1%80%D0%B8%D0%BF%D1%82%D1%8B)
 - [Prayers (Orthodox prayer book)](https://bibleox.com/ru/ru/w/%D0%BC%D0%BE%D0%BB%D0%B8%D1%82%D0%B2%D1%8B)
 
+## Original-language patristic texts
+
+A large library of the Church Fathers in the original languages — over 1,200 works, the site's second-largest collection:
+
+- [Greek: works of the ancient Fathers and ecclesiastical writers](https://bibleox.com/grc/grc/w/church_writers_grc) — St John Chrysostom (homilies), St Cyril of Jerusalem (catechetical lectures), the Didache, St Polycarp and more; the whole Greek section is in [Ελληνικά](https://bibleox.com/grc/grc/).
+- [Latin: works of the ancient Fathers](https://bibleox.com/ru/la/w/church_writers_la) — Latin is a content-only language, so it is combined with any interface language.
+
 ## Language versions
 
 Article homepages (Bible + library in that language):
@@ -73,6 +80,7 @@ Article homepages (Bible + library in that language):
 - [繁體中文](https://bibleox.com/zh-Hant/zh-Hant/)
 - [한국어](https://bibleox.com/ko/ko/)
 - [हिन्दी](https://bibleox.com/hi/hi/)
+- [Ελληνικά](https://bibleox.com/grc/grc/) — interface for the Ancient Greek patristic library
 
 ## Tools and service pages
 
