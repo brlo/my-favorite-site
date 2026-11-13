@@ -3,6 +3,7 @@
 <h1>Сводка</h1>
 
 <h2>Посещения за неделю</h2>
+<p class="muted">HTML-просмотры за сутки. «Подозрительные» — IP, сделавшие за день больше <%= ::PageVisits::SUSPICIOUS_DAY_LIMIT %> запросов (скрейперы с обычными браузерными User-Agent).</p>
 <div class="stats">
   <% @week_visits.each do |name, days| %>
     <div>
@@ -10,6 +11,53 @@
       <table>
         <% days.each do |date, visits| %>
           <tr><td class="muted"><%= date %></td><td><%= visits %></td></tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+</div>
+
+<h2>Вчера, <%= @yesterday.strftime('%d.%m.%Y') %></h2>
+<div class="stats">
+  <% if @day_bots.any? %>
+    <div>
+      <div class="hint">Топ ботов (запросов)</div>
+      <table>
+        <% @day_bots.first(10).each do |name, count| %>
+          <tr><td class="muted"><%= name %></td><td><%= count %></td></tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+
+  <% if @day_langs.any? %>
+    <div>
+      <div class="hint">Языки интерфейса (люди)</div>
+      <table>
+        <% @day_langs.first(10).each do |lang, count| %>
+          <tr><td class="muted"><%= lang %></td><td><%= count %></td></tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+
+  <% if @day_top_ips.any? %>
+    <div>
+      <div class="hint">Топ IP (без ботов)</div>
+      <table>
+        <% @day_top_ips.each do |ip, count| %>
+          <tr><td class="muted"><%= ip %></td><td><%= count %></td></tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+
+  <% if @day_top_pages && @day_top_pages.any? %>
+    <div>
+      <div class="hint">Популярные статьи (без ботов)</div>
+      <table>
+        <% @day_top_pages.each do |title, count| %>
+          <tr><td class="muted"><%= title %></td><td><%= count %></td></tr>
         <% end %>
       </table>
     </div>

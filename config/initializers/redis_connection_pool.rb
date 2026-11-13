@@ -22,6 +22,12 @@ module RedisConnectionPool
                    :decr,
                    :decrby,
                    :flushall,
+                   :hincrby, # прибавить к полю хэша https://redis.io/commands/hincrby
+                   :hgetall, # прочитать хэш целиком https://redis.io/commands/hgetall
+                   :pfadd, # добавить в гиперлоглог (подсчёт уникальных) https://redis.io/commands/pfadd
+                   :pfcount, # число уникальных в гиперлоглоге https://redis.io/commands/pfcount
+                   :zincrby, # прибавить к участнику сортированного множества https://redis.io/commands/zincrby
+                   :zrevrange, # участники сортированного множества по убыванию https://redis.io/commands/zrevrange
                    :ttl, # узнать оставшееся время жизни https://redis.io/commands/TTL
                    :expire # задать TTL (время до удаления) https://redis.io/commands/expire
 

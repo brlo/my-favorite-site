@@ -162,7 +162,7 @@ module ApplicationHelper
   end
 
   def day_visit
-    @count_visit ||= ::PageVisits.day_visit(browser: browser)
+    @count_visit ||= ::PageVisits.day_visit(browser: browser, ip: request.ip, lang: I18n.locale)
   end
 
   def page_visit(id)
