@@ -358,12 +358,13 @@ class PageTest < ActiveSupport::TestCase
     assert_equal [170, 187, 204], page.cover_overlay_rgb
   end
 
-  test "short cover title is a single word or shorter than 15 characters" do
+  test "short cover title is decided by character count only (no whitespace logic for CJK)" do
     assert create_page(title: 'Артос').is_cover_title_short?
     assert create_page(title: 'Святая Троица').is_cover_title_short?
-    assert create_page(title: 'Богословствование').is_cover_title_short?
+    assert create_page(title: '晨起祈祷').is_cover_title_short?
     assert create_page(title: 'aaaa bbbbbbbbb').is_cover_title_short?
     assert_not create_page(title: 'aaaa bbbbbbbbbb').is_cover_title_short?
+    assert_not create_page(title: 'Богословствование').is_cover_title_short?
     assert_not create_page(title: 'Хлеб и вино в литургии').is_cover_title_short?
   end
 

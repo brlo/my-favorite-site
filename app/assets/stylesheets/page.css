@@ -642,7 +642,15 @@ h2.parent-title {
   text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
 }
 
-/* Короткий заголовок (одно слово или меньше 15 символов) — крупнее */
+.cover-overlay-caption.title-md h1.title {
+  font-size: 32px;
+}
+
+.cover-overlay-caption.title-lg h1.title {
+  font-size: 26px;
+}
+
+/* Короткий заголовок (меньше 15 символов) — крупнее */
 .cover-overlay-caption h1.title.is-short {
   font-size: 55px;
 }

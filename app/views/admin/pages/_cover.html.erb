@@ -18,11 +18,11 @@
         <img src="<%= page.cover.urls[:large] || page.cover.url %>" alt="">
         <div class="cover-overlay <%= 'is-off' unless page.is_cover_overlay? %>" data-cover-overlay-target="overlay"
              style="<%= page.cover_overlay_bg.present? ? cover_overlay_gradient_style(page) : '' %>">
-          <div class="cover-overlay-caption" data-cover-overlay-target="caption" style="color: <%= page.cover_overlay_text_color %>">
+          <div class="cover-overlay-caption <%= cover_overlay_title_size_class(page) %>" data-cover-overlay-target="caption" style="color: <%= page.cover_overlay_text_color %>">
             <% if page.parent.present? && page.is_show_parent %>
               <div class="cover-overlay-parent"><%= page.parent.title %></div>
             <% end %>
-            <h1 class="title"><%= page.title %></h1>
+            <h1 class="title<%= ' is-short' if page.is_cover_title_short? %>"><%= page.title %></h1>
           </div>
         </div>
       </div>

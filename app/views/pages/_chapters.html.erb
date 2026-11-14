@@ -11,7 +11,7 @@
         <img src="<%= @page.cover.large.url %>" draggable="false" alt="<%= @page.title %>">
         <% if @page.is_cover_overlay? %>
           <div class="cover-overlay" style="<%= cover_overlay_gradient_style(@page) %>">
-            <div class="cover-overlay-caption" style="color: <%= @page.cover_overlay_text_color %>">
+            <div class="cover-overlay-caption <%= cover_overlay_title_size_class(@page) %>" style="color: <%= @page.cover_overlay_text_color %>">
               <% if @parent_page.present? && @page.is_show_parent %>
                 <div class="cover-overlay-parent">
                   <a href="<%= my_page_link_to("/#{@parent_page.path}", page_lang: @parent_page.lang) %>"><%= @parent_page.title %></a>

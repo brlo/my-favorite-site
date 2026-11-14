@@ -764,6 +764,18 @@
   font-size: 20px;
 }
 
+.admin-ui .cover-overlay-preview .cover-overlay-caption.title-md h1.title {
+  font-size: 17px;
+}
+
+.admin-ui .cover-overlay-preview .cover-overlay-caption.title-lg h1.title {
+  font-size: 14px;
+}
+
+.admin-ui .cover-overlay-preview .cover-overlay-caption h1.title.is-short {
+  font-size: 26px;
+}
+
 .admin-ui .cover-overlay.is-off {
   display: none;
 }
