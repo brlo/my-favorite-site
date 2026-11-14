@@ -1,6 +1,6 @@
 <%# h1 страницы: рендерится либо под обложкой, либо (при заданном cover_overlay_bg) поверх неё %>
 <h1
-  class="title"
+  class="title<%= ' is-short' if @page.is_cover_title_short? %>"
   id="current-address"
   data-book-short-name="<%= @page.path %>"
   data-lang-ui="<%= I18n.locale %>"

@@ -207,6 +207,12 @@ class Page < ApplicationRecord
     cover_overlay_text.presence || COVER_OVERLAY_TEXT_DEFAULT
   end
 
+  # Короткий заголовок (одно слово или меньше 15 символов) поверх обложки выводим крупнее
+  def is_cover_title_short?
+    title = self.title.to_s.strip
+    title.split.size <= 1 || title.length < 15
+  end
+
   # [r, g, b] цвета подложки — для rgba-градиента
   def cover_overlay_rgb
     hex = cover_overlay_bg.to_s.delete_prefix('#')

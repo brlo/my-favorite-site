@@ -358,6 +358,15 @@ class PageTest < ActiveSupport::TestCase
     assert_equal [170, 187, 204], page.cover_overlay_rgb
   end
 
+  test "short cover title is a single word or shorter than 15 characters" do
+    assert create_page(title: 'Артос').is_cover_title_short?
+    assert create_page(title: 'Святая Троица').is_cover_title_short?
+    assert create_page(title: 'Богословствование').is_cover_title_short?
+    assert create_page(title: 'aaaa bbbbbbbbb').is_cover_title_short?
+    assert_not create_page(title: 'aaaa bbbbbbbbbb').is_cover_title_short?
+    assert_not create_page(title: 'Хлеб и вино в литургии').is_cover_title_short?
+  end
+
   test "propagate_cover_overlay_colors copies colors to translations the user can edit and skips the rest" do
     ru = create_page(lang: 'ru', cover_overlay_bg: '#123456', cover_overlay_text: '#eeeeee')
     en = create_page(lang: 'en', group_lang_id: ru.group_lang_id)
