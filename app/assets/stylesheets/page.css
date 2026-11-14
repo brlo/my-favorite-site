@@ -495,12 +495,18 @@
 }
 
 .menu-tree .vis {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 2px;
   font-size: .5em;
   vertical-align: middle;
   opacity: .6;
   margin-left: 2px;
   user-select: none;
+}
+.menu-tree .vis svg {
+  width: 1.6em;
+  height: 1.6em;
 }
 /* menu end */
 
