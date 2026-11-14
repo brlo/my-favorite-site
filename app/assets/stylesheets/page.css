@@ -610,6 +610,56 @@ h2.parent-title {
   text-decoration: none;
 }
 
+/* ============================ заголовок поверх обложки ======================== */
+
+.img-header.is-overlay {
+  position: relative;
+}
+
+.cover-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+}
+
+.cover-overlay-caption {
+  width: 100%;
+  text-align: center;
+  padding: 0 16px 18px;
+}
+
+.cover-overlay-caption h1.title {
+  margin: 0;
+  font-size: 30px;
+  line-height: 1.25;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.35);
+}
+
+.cover-overlay-divider {
+  width: 120px;
+  height: 1px;
+  margin: 8px auto;
+  background: currentColor;
+  opacity: 0.6;
+}
+
+.cover-overlay-parent {
+  font-size: 14px;
+  opacity: 0.85;
+}
+
+.cover-overlay-parent a {
+  color: inherit;
+  text-decoration: none;
+}
+
+@media (max-width: 700px) {
+  .cover-overlay-caption h1.title {
+    font-size: 22px;
+  }
+}
+
 /* ============================ minimap ======================== */
 
 /*

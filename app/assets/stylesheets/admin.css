@@ -736,6 +736,58 @@
   display: block;
 }
 
+/* ---------- заголовок поверх обложки ---------- */
+
+.admin-ui .cover-overlay-settings {
+  margin-top: 14px;
+  border-top: 1px solid var(--border-main);
+  padding-top: 10px;
+}
+
+.admin-ui .cover-overlay-settings h4 {
+  margin: 0 0 4px 0;
+}
+
+.admin-ui .cover-overlay-preview {
+  position: relative;
+  border-radius: 6px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.admin-ui .cover-overlay-preview > img {
+  width: 100%;
+  display: block;
+}
+
+.admin-ui .cover-overlay-preview .cover-overlay-caption h1.title {
+  font-size: 17px;
+}
+
+.admin-ui .cover-overlay.is-off {
+  display: none;
+}
+
+.admin-ui .color-field {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.admin-ui .color-field input[type="color"] {
+  width: 34px;
+  height: 28px;
+  padding: 0;
+  border: 1px solid var(--border-main);
+  border-radius: 4px;
+  background: none;
+  cursor: pointer;
+}
+
+.admin-ui .color-field input[type="text"] {
+  width: 90px;
+}
+
 /* ---------- меню статьи ---------- */
 
 .admin-ui .menu-editor {

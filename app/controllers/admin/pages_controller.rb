@@ -99,12 +99,15 @@ module Admin
 
     def cover
       expire_page_cache(@page.path, @page.lang)
-      @page.cover = params.dig(:page, :cover)
+
+      is_new_file = params.dig(:page, :cover).present?
+      @page.cover = params.dig(:page, :cover) if is_new_file
+      @page.assign_attributes(params.require(:page).permit(:cover_overlay_bg, :cover_overlay_text))
 
       if @page.save
-        render_cover(notice: 'Изображение для шапки загружено')
+        render_cover(notice: is_new_file ? 'Изображение для шапки загружено' : 'Настройки изображения сохранены')
       else
-        render_cover(alert: "Не удалось загрузить: #{@page.errors.full_messages.join(', ')}")
+        render_cover(alert: "Не удалось сохранить: #{@page.errors.full_messages.join(', ')}")
       end
     end
 

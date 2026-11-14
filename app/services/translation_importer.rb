@@ -23,7 +23,8 @@
 class TranslationImporter
   def self.call(data, is_dry_run: false, is_published: false) = new(data, is_dry_run:, is_published:).perform
 
-  # Обложка оригинала: копируем файл, чтобы у перевода была своя картинка (в своей папке)
+  # Обложка оригинала: копируем файл, чтобы у перевода была своя картинка (в своей папке),
+  # а вместе с ней и настройки заголовка поверх обложки
   def self.copy_cover(src, page)
     return if src.cover.blank?
 
@@ -34,6 +35,8 @@ class TranslationImporter
     return unless path
 
     page.cover = ::File.open(path)
+    page.cover_overlay_bg = src.cover_overlay_bg
+    page.cover_overlay_text = src.cover_overlay_text
     page.save!
   end
 

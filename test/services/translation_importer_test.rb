@@ -34,18 +34,24 @@ class TranslationImporterTest < ActiveSupport::TestCase
     big = Tempfile.new('big').tap { _1.write('x' * (1.megabyte + 1)); _1.flush }
     small = Tempfile.new('small').tap { _1.write('x'); _1.flush }
     cover = Struct.new(:path, :versions) { def blank? = false }
-    src = Struct.new(:cover).new(cover.new(big.path, { small: cover.new(small.path, {}) }))
-    page = Struct.new(:cover) { def save! = true; def valid? = true; def errors = { cover: cover.size > 1.megabyte ? ['big'] : [] } }.new
+    src = Struct.new(:cover, :cover_overlay_bg, :cover_overlay_text)
+      .new(cover.new(big.path, { small: cover.new(small.path, {}) }), '#111111', '#eeeeee')
+    page = Struct.new(:cover, :cover_overlay_bg, :cover_overlay_text) do
+      def save! = true
+      def valid? = true
+      def errors = { cover: cover.size > 1.megabyte ? ['big'] : [] }
+    end.new
 
     TranslationImporter.copy_cover(src, page)
 
     assert_equal small.path, page.cover.path
+    assert_equal ['#111111', '#eeeeee'], [page.cover_overlay_bg, page.cover_overlay_text]
   end
 
   test "leaves the page without a cover when no version passes validation" do
     file = Tempfile.new('big').tap { _1.write('x'); _1.flush }
     cover = Struct.new(:path, :versions) { def blank? = false }
-    src = Struct.new(:cover).new(cover.new(file.path, {}))
+    src = Struct.new(:cover, :cover_overlay_bg, :cover_overlay_text).new(cover.new(file.path, {}))
     page = Class.new do
       attr_accessor :cover
 

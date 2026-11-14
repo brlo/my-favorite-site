@@ -321,5 +321,41 @@ class PageTest < ActiveSupport::TestCase
       end
     end
   end
+  # --- цвета заголовка поверх обложки ---
+
+  test "cover overlay colors are normalized to lowercase hex with a leading sharp" do
+    page = create_page(cover_overlay_bg: ' A1B2C3 ', cover_overlay_text: '#ABC')
+    assert_equal '#a1b2c3', page.cover_overlay_bg
+    assert_equal '#abc', page.cover_overlay_text
+  end
+
+  test "blank cover overlay colors are stored as nil and mean no overlay" do
+    page = create_page(cover_overlay_bg: '', cover_overlay_text: '  ')
+    assert_nil page.cover_overlay_bg
+    assert_nil page.cover_overlay_text
+    assert_not page.is_cover_overlay?
+  end
+
+  test "cover overlay colors must be hex" do
+    page = Page.new(title: 't', lang: 'ru', path: 'x', cover_overlay_bg: 'red')
+    assert_not page.valid?
+    assert page.errors[:cover_overlay_bg].present?
+  end
+
+  test "is_cover_overlay requires both a cover and a background color" do
+    page = create_page(cover_overlay_bg: '#123456')
+    assert_not page.is_cover_overlay?
+    stubbing(page, :cover?, true) { assert page.is_cover_overlay? }
+    stubbing(page, :cover?, true) do
+      page.cover_overlay_bg = nil
+      assert_not page.is_cover_overlay?
+    end
+  end
+
+  test "cover overlay text color falls back to white and rgb parses short hex" do
+    page = create_page(cover_overlay_bg: '#abc')
+    assert_equal '#ffffff', page.cover_overlay_text_color
+    assert_equal [170, 187, 204], page.cover_overlay_rgb
+  end
 
 end

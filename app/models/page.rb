@@ -35,6 +35,9 @@ class Page < ApplicationRecord
   }
 
   SITE_URL = 'https://bibleox.com'.freeze
+
+  COVER_COLOR_FORMAT = /\A#(?:[0-9a-f]{3}|[0-9a-f]{6})\z/
+  COVER_OVERLAY_TEXT_DEFAULT = '#ffffff'.freeze
   # Языки без своего интерфейса: статью на них открываем под локалью из LANG_FALLBACKS (grc -> /el/grc/...)
   LANGS_WITHOUT_UI = (%w[la grc] + ::LANGS_CONTENT_ONLY.keys).freeze
 
@@ -70,6 +73,7 @@ class Page < ApplicationRecord
 
   # === Валидации ===
   validates :page_type, :title, :lang, :path, presence: true
+  validates :cover_overlay_bg, :cover_overlay_text, format: { with: COVER_COLOR_FORMAT }, allow_nil: true
 
   # === Скоупы ===
   scope :published, -> { where(is_published: true) }
@@ -193,11 +197,31 @@ class Page < ApplicationRecord
     body.to_s.length < 40
   end
 
+  # Заголовок и родитель показываются поверх обложки, а не под ней:
+  # нужна обложка и заданный цвет подложки (градиента)
+  def is_cover_overlay?
+    cover? && cover_overlay_bg.present?
+  end
+
+  def cover_overlay_text_color
+    cover_overlay_text.presence || COVER_OVERLAY_TEXT_DEFAULT
+  end
+
+  # [r, g, b] цвета подложки — для rgba-градиента
+  def cover_overlay_rgb
+    hex = cover_overlay_bg.to_s.delete_prefix('#')
+    hex = hex.chars.map { _1 * 2 }.join if hex.length == 3
+    [hex[0, 2], hex[2, 2], hex[4, 2]].map { _1.to_i(16) }
+  end
+
   private
 
   def normalize_attributes
     self.title = self.title.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')
     self.meta_desc = self.meta_desc.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')
+
+    self.cover_overlay_bg = normalize_hex_color(cover_overlay_bg)
+    self.cover_overlay_text = normalize_hex_color(cover_overlay_text)
 
     normalize_path
 
@@ -217,8 +241,15 @@ class Page < ApplicationRecord
     render_body if self.body_changed? || (self.lang_changed? && self.body.present?)
   end
 
-  def normalize_path
-    # Доработки, если статья — комментарий на библейский стих
+  # "#A1B2C3", "a1b2c3", "  #abc " → "#a1b2c3"; пустое → nil (цвет не задан)
+  def normalize_hex_color(value)
+    value = value.to_s.strip.downcase
+    return nil if value.blank?
+
+    value.start_with?('#') ? value : "##{value}"
+  end
+
+  def normalize_path    # Доработки, если статья — комментарий на библейский стих
     if self.path.blank? && self.is_page_bib_comment?
       # 'Быт. 1:14' -> '/zah/1/#L6'
       self.path = ::AddressConverter.human_to_link(self.title).to_s

@@ -9,5 +9,54 @@
   </label>
   <% if page.cover.present? %>
     <button type="submit" form="page-cover-remove-form" class="btn-link danger">Удалить</button>
+
+    <div class="cover-overlay-settings" data-controller="cover-overlay">
+      <h4>Заголовок на изображении</h4>
+      <div class="hint">Если задан цвет подложки, заголовок и название родителя выводятся поверх картинки, а под ней не дублируются.</div>
+
+      <div class="cover-overlay-preview img-header is-overlay">
+        <img src="<%= page.cover.urls[:large] || page.cover.url %>" alt="">
+        <div class="cover-overlay <%= 'is-off' unless page.is_cover_overlay? %>" data-cover-overlay-target="overlay"
+             style="<%= page.cover_overlay_bg.present? ? cover_overlay_gradient_style(page) : '' %>">
+          <div class="cover-overlay-caption" data-cover-overlay-target="caption" style="color: <%= page.cover_overlay_text_color %>">
+            <h1 class="title"><%= page.title %></h1>
+            <% if page.parent.present? && page.is_show_parent %>
+              <div class="cover-overlay-divider"></div>
+              <div class="cover-overlay-parent"><%= page.parent.title %></div>
+            <% end %>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="page_cover_overlay_bg">Цвет подложки</label>
+        <div class="color-field">
+          <input type="color" value="<%= page.cover_overlay_bg.presence || '#000000' %>"
+                 data-cover-overlay-target="bgPicker"
+                 data-action="input->cover-overlay#pick" data-cover-overlay-field-param="bg">
+          <input type="text" name="page[cover_overlay_bg]" id="page_cover_overlay_bg" form="page-cover-overlay-form"
+                 value="<%= page.cover_overlay_bg %>" placeholder="не задан" maxlength="7"
+                 data-cover-overlay-target="bgText" data-action="input->cover-overlay#type">
+          <button type="button" class="btn-link danger" title="Убрать цвет"
+                  data-action="cover-overlay#clear" data-cover-overlay-field-param="bg">✕</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="page_cover_overlay_text">Цвет текста</label>
+        <div class="color-field">
+          <input type="color" value="<%= page.cover_overlay_text.presence || '#ffffff' %>"
+                 data-cover-overlay-target="textPicker"
+                 data-action="input->cover-overlay#pick" data-cover-overlay-field-param="text">
+          <input type="text" name="page[cover_overlay_text]" id="page_cover_overlay_text" form="page-cover-overlay-form"
+                 value="<%= page.cover_overlay_text %>" placeholder="#ffffff" maxlength="7"
+                 data-cover-overlay-target="textText" data-action="input->cover-overlay#type">
+          <button type="button" class="btn-link danger" title="Убрать цвет"
+                  data-action="cover-overlay#clear" data-cover-overlay-field-param="text">✕</button>
+        </div>
+      </div>
+
+      <button type="submit" form="page-cover-overlay-form" class="btn btn-light btn-small">Сохранить цвета</button>
+    </div>
   <% end %>
 </section>
