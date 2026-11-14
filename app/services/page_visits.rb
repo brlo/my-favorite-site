@@ -18,14 +18,18 @@ class PageVisits
         prefix = 'b-'
         hincr("bots#{day}", BotDetector.bot_name(browser) || 'другие')
       else
-        # все не-боты попадают в топ IP (в том числе подозрительные)
+        # все не-боты попадают в топ IP (в том числе подозрительные и одноразовые)
         ::RedisConnectionPool.zincrby("zips#{day}", 1, ip.to_s) if ip.present?
         if ip_count > SUSPICIOUS_DAY_LIMIT
           prefix = 's-'
-        else
+        elsif ip.blank? || ip_count >= 2
+          # человеком считаем IP, вернувшийся хотя бы второй раз за день:
+          # распределённые скрейперы делают по одному запросу с адреса
           prefix = ''
           ::RedisConnectionPool.pfadd("uip#{day}", ip.to_s) if ip.present?
           hincr("langs#{day}", lang.to_s.presence || '?') if lang.present?
+        else
+          prefix = 'o-'
         end
       end
 
@@ -42,6 +46,7 @@ class PageVisits
       {
         'Люди': '',
         'Уникальные IP': nil,
+        'Одноразовые': 'o-',
         'Подозрительные': 's-',
         'Поисковые боты': 'b-'
       }.each do |name, prefix|
