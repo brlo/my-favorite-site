@@ -214,6 +214,21 @@ class Page < ApplicationRecord
     [hex[0, 2], hex[2, 2], hex[4, 2]].map { _1.to_i(16) }
   end
 
+  # Копирует цвета заголовка поверх обложки всем языковым версиям статьи.
+  # Возвращает [обновлённые страницы, пропущенные из-за отсутствия прав у user]
+  def propagate_cover_overlay_colors(user:)
+    updated, skipped = [], []
+    Page.where(group_lang_id: group_lang_id).where.not(id: id).find_each do |page|
+      if page.editable_by?(user)
+        page.update!(cover_overlay_bg: cover_overlay_bg, cover_overlay_text: cover_overlay_text)
+        updated << page
+      else
+        skipped << page
+      end
+    end
+    [updated, skipped]
+  end
+
   private
 
   def normalize_attributes

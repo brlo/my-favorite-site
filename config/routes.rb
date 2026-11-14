@@ -16,6 +16,7 @@ Rails.application.routes.draw do
     resources :pages, except: :show do
       member do
         patch :cover
+        patch :cover_overlay_all
         delete :cover, action: :remove_cover
         patch :pdf
         delete :pdf, action: :remove_pdf

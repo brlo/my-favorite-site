@@ -358,4 +358,22 @@ class PageTest < ActiveSupport::TestCase
     assert_equal [170, 187, 204], page.cover_overlay_rgb
   end
 
+  test "propagate_cover_overlay_colors copies colors to translations the user can edit and skips the rest" do
+    ru = create_page(lang: 'ru', cover_overlay_bg: '#123456', cover_overlay_text: '#eeeeee')
+    en = create_page(lang: 'en', group_lang_id: ru.group_lang_id)
+    outsider = create_page(lang: 'en')
+
+    admin = create_user(is_admin: true)
+    updated, skipped = ru.propagate_cover_overlay_colors(user: admin)
+    assert_equal [en], updated
+    assert_empty skipped
+    assert_equal ['#123456', '#eeeeee'], [en.reload.cover_overlay_bg, en.cover_overlay_text]
+    assert_nil outsider.reload.cover_overlay_bg
+
+    user = create_user
+    updated, skipped = ru.propagate_cover_overlay_colors(user: user)
+    assert_empty updated
+    assert_equal [en], skipped
+  end
+
 end

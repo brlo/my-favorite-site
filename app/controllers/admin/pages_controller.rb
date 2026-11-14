@@ -13,7 +13,7 @@ module Admin
     before_action :set_page, except: %i[index new create]
     before_action :reject_by_read_privs, only: %i[index edit]
     before_action :reject_by_create_privs, only: %i[new create]
-    before_action :reject_by_update_privs, only: %i[update cover remove_cover pdf remove_pdf]
+    before_action :reject_by_update_privs, only: %i[update cover remove_cover pdf remove_pdf cover_overlay_all]
     before_action :reject_by_destroy_privs, only: %i[destroy]
 
     def index
@@ -111,6 +111,20 @@ module Admin
       end
     end
 
+    # Сохраняет цвета заголовка поверх обложки и применяет их ко всем языковым версиям статьи
+    def cover_overlay_all
+      expire_page_cache(@page.path, @page.lang)
+      @page.assign_attributes(params.require(:page).permit(:cover_overlay_bg, :cover_overlay_text))
+
+      if @page.save
+        updated, skipped = @page.propagate_cover_overlay_colors(user: current_user)
+        updated.each { |page| expire_page_cache(page.path, page.lang) }
+        render_cover(notice: cover_overlay_all_notice(updated.size, skipped.size))
+      else
+        render_cover(alert: "Не удалось сохранить: #{@page.errors.full_messages.join(', ')}")
+      end
+    end
+
     def remove_cover
       expire_page_cache(@page.path, @page.lang)
       @page.remove_cover = true
@@ -157,6 +171,16 @@ module Admin
         title, path = link[:title].to_s.strip, link[:path].to_s.strip
         [title, path] if title.present? || path.present?
       end
+    end
+
+    def cover_overlay_all_notice(updated_count, skipped_count)
+      notice =
+        if updated_count.positive?
+          "Цвета сохранены и применены к языковым версиям: #{updated_count}"
+        else
+          'Цвета сохранены; других языковых версий нет'
+        end
+      skipped_count.positive? ? "#{notice} (без прав на правку: #{skipped_count})" : notice
     end
 
     def render_cover(notice: nil, alert: nil)

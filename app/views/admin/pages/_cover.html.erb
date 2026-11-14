@@ -21,7 +21,6 @@
           <div class="cover-overlay-caption" data-cover-overlay-target="caption" style="color: <%= page.cover_overlay_text_color %>">
             <h1 class="title"><%= page.title %></h1>
             <% if page.parent.present? && page.is_show_parent %>
-              <div class="cover-overlay-divider"></div>
               <div class="cover-overlay-parent"><%= page.parent.title %></div>
             <% end %>
           </div>
@@ -56,7 +55,13 @@
         </div>
       </div>
 
-      <button type="submit" form="page-cover-overlay-form" class="btn btn-light btn-small">Сохранить цвета</button>
+      <div class="btn-group">
+        <button type="submit" form="page-cover-overlay-form" class="btn btn-light btn-small">Сохранить цвета</button>
+        <button type="submit" form="page-cover-overlay-form" formaction="<%= cover_overlay_all_admin_page_path(page) %>"
+                class="btn btn-light btn-small" title="Сохранить цвета и применить их ко всем языковым версиям статьи">
+          Применить ко всем языкам
+        </button>
+      </div>
     </div>
   <% end %>
 </section>
