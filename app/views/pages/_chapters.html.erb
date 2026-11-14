@@ -1,11 +1,4 @@
-<div id="chapter-header" data-controller="menu-filter">
-
-<%# ссылка на редактирование — только тем, кто может редактировать (страница не кэшируется целиком) %>
-<% if logged_in? && current_user.admin_area_access? && current_user.allow_ip?(request.ip) && @page.editable_by?(current_user) %>
-  <div class="page-edit-top">
-    <a rel="nofollow" href="<%= edit_admin_page_path(@page, locale: nil) %>">✎ <%= I18n.t('quote_page.edit_link') %></a>
-  </div>
-<% end %>
+<div id="chapter-header" class="<%= 'has-cover-overlay' if @page.is_cover_overlay? %>" data-controller="menu-filter">
 
 <% if @page.cover? %>
   <% content_for(:img_header) do %>
@@ -19,12 +12,12 @@
         <% if @page.is_cover_overlay? %>
           <div class="cover-overlay" style="<%= cover_overlay_gradient_style(@page) %>">
             <div class="cover-overlay-caption" style="color: <%= @page.cover_overlay_text_color %>">
-              <%= render(partial: 'pages/h1_title') %>
               <% if @parent_page.present? && @page.is_show_parent %>
                 <div class="cover-overlay-parent">
                   <a href="<%= my_page_link_to("/#{@parent_page.path}", page_lang: @parent_page.lang) %>"><%= @parent_page.title %></a>
                 </div>
               <% end %>
+              <%= render(partial: 'pages/h1_title') %>
             </div>
           </div>
         <% end %>
@@ -62,6 +55,13 @@
           <% end %>
         <% end %>
       </div>
+    </div>
+  <% end %>
+
+  <%# ссылка на редактирование — только тем, кто может редактировать (страница не кэшируется целиком) %>
+  <% if logged_in? && current_user.admin_area_access? && current_user.allow_ip?(request.ip) && @page.editable_by?(current_user) %>
+    <div class="page-edit-top">
+      <a rel="nofollow" href="<%= edit_admin_page_path(@page, locale: nil) %>">✎ <%= I18n.t('quote_page.edit_link') %></a>
     </div>
   <% end %>
 
