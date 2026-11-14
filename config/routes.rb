@@ -49,6 +49,9 @@ Rails.application.routes.draw do
     get 'autocomplete/dict_words', to: 'autocomplete#dict_words', as: :autocomplete_dict_words
   end
 
+  # JS-маячок посещаемости (без локали в адресе)
+  post '/visit', to: 'visits#create'
+
   # редиректим /jp (без слеша и дополнительных частей)
   get '/:loc_ui', to: redirect(status: 301) { |params, req|
     lang = ::COUNTRY_TO_LANG[params[:loc_ui]] || 'en' # fallback на английский

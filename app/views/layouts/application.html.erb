@@ -41,8 +41,11 @@
 
   <body
     class="<%= 'night-mode' if @is_night_mode %>"
-    data-controller="books-menu metrics landing"
-    data-action="click->books-menu#clickOutside">
+    data-controller="books-menu metrics landing visit-beacon"
+    data-action="click->books-menu#clickOutside"
+    data-visit-page-id="<%= @page&.id || 0 %>"
+    data-visit-lang="<%= I18n.locale %>"
+    data-visit-token="<%= ::PageVisits.visit_token(@page&.id || 0) %>">
 
     <header>
       <div class="container">
@@ -265,7 +268,7 @@
         </dd>
         <dd>2022-<%= Date.today.strftime('%Y') %> <%= I18n.t('years_from') %></dd>
         <dd><%= ::I18n.t('about_site_short') %></dd>
-        <dd><a title="<%= day_visit() %>" href="<%= my_link_to('/about/') %>"><%= I18n.t('about_site') %></a></dd>
+        <dd><a title="<%= day_count() %>" href="<%= my_link_to('/about/') %>"><%= I18n.t('about_site') %></a></dd>
       </div>
     </footer>
 

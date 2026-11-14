@@ -171,12 +171,14 @@ module ApplicationHelper
     ::FLAG_BY_LANG[lang.to_s.downcase].to_s
   end
 
-  def day_visit
-    @count_visit ||= ::PageVisits.day_visit(browser: browser, ip: request.ip, lang: I18n.locale)
+  # просмотры людей за сегодня (сам подсчёт делает JS-маячок, здесь только чтение)
+  def day_count
+    @count_visit ||= ::PageVisits.day_count
   end
 
-  def page_visit(id)
-    @page_visit ||= ::PageVisits.visit(id, user_ip: request.ip, browser: browser)
+  # счётчик просмотров статьи (сам подсчёт делает JS-маячок, здесь только чтение)
+  def page_visit(page)
+    @page_visit ||= ::PageVisits.page_count(page.id)
   end
 
   def font_classes

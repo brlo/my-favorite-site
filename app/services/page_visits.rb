@@ -8,7 +8,15 @@ class PageVisits
   SUSPICIOUS_DAY_LIMIT = 150
 
   class << self
-    # увеличить счётчики дневной посещаемости (вызывается из макета на каждый HTML-запрос)
+    # Точка входа для JS-маячка (VisitsController): дневная статистика
+    # и счётчик просмотров статьи. Сюда попадают только запросы от браузеров,
+    # исполнивших JS, — скрейперы, тянущие голый HTML, статистику не двигают.
+    def beacon_visit(page_id:, browser:, ip:, lang:)
+      day_visit(browser: browser, ip: ip, lang: lang)
+      register_visit(page_id, user_ip: ip) if page_id.to_i.positive? && !BotDetector.bot?(browser)
+    end
+
+    # увеличить счётчики дневной посещаемости (вызывается из JS-маячка)
     # browser — объект Browser (гем browser), ip — адрес клиента, lang — локаль интерфейса
     def day_visit browser: nil, ip: nil, lang: nil
       day = Date.today.to_s
@@ -18,18 +26,14 @@ class PageVisits
         prefix = 'b-'
         hincr("bots#{day}", BotDetector.bot_name(browser) || 'другие')
       else
-        # все не-боты попадают в топ IP (в том числе подозрительные и одноразовые)
+        # все не-боты попадают в топ IP (в том числе подозрительные)
         ::RedisConnectionPool.zincrby("zips#{day}", 1, ip.to_s) if ip.present?
         if ip_count > SUSPICIOUS_DAY_LIMIT
           prefix = 's-'
-        elsif ip.blank? || ip_count >= 2
-          # человеком считаем IP, вернувшийся хотя бы второй раз за день:
-          # распределённые скрейперы делают по одному запросу с адреса
+        else
           prefix = ''
           ::RedisConnectionPool.pfadd("uip#{day}", ip.to_s) if ip.present?
           hincr("langs#{day}", lang.to_s.presence || '?') if lang.present?
-        else
-          prefix = 'o-'
         end
       end
 
@@ -39,6 +43,11 @@ class PageVisits
       int_to_human_s(count)
     end
 
+    # просмотры людей за сегодня (для подсказки в футере, без увеличения счётчиков)
+    def day_count
+      int_to_human_s(::RedisConnectionPool.get("vis#{Date.today}"))
+    end
+
     # счётчики общих посещений за последнюю неделю
     def week_visits
       days = (6.days.ago.to_date..Date.today).to_a.map(&:to_s)
@@ -46,7 +55,6 @@ class PageVisits
       {
         'Люди': '',
         'Уникальные IP': nil,
-        'Одноразовые': 'o-',
         'Подозрительные': 's-',
         'Поисковые боты': 'b-'
       }.each do |name, prefix|
@@ -65,27 +73,38 @@ class PageVisits
 
     # Увеличивает счётчик посещения страницы,
     # если пользователь сегодня ещё не посещал эту страницу.
-    # Отдаёт итоговый счётчик просмотров страницы
-    def visit(page, user_ip:, browser: nil)
-      # метка для защиты от накрутов: пока она существует, следующий просмотр не защитается
-      redis_user_key = "vis:#{page.id}=#{user_ip}"
+    # Вызывается только из JS-маячка (beacon_visit) и только для не-ботов.
+    def register_visit(page_id, user_ip:)
+      # метка для защиты от накруток: пока она существует, следующий просмотр не защитается
+      redis_user_key = "vis:#{page_id}=#{user_ip}"
       # счётчик просмотров страницы
-      redis_page_key = "vis:#{page.id}"
+      redis_page_key = "vis:#{page_id}"
 
       # Метка для защиты от накруток ещё существует?
-      if ::RedisConnectionPool.exists?(redis_user_key)
-        # если уже посещал, просто вернуть текущий счётчик просмотров страницы
-        count = ::RedisConnectionPool.get(redis_page_key)
-      else
-        # Создать метку для защиты от накруток на 12 часов
-        ::RedisConnectionPool.setex(redis_user_key, 12 * 60 * 60, nil)
-        # увеличить счётчик посещений страницы
-        count = ::RedisConnectionPool.incr(redis_page_key)
-        # и ежедневный топ статей (без ботов)
-        hincr("top#{Date.today}", page.id) unless BotDetector.bot?(browser)
-      end
+      return if ::RedisConnectionPool.exists?(redis_user_key)
 
-      int_to_human_s(count)
+      # Создать метку для защиты от накруток на 12 часов
+      ::RedisConnectionPool.setex(redis_user_key, 12 * 60 * 60, nil)
+      # увеличить счётчик посещений страницы
+      ::RedisConnectionPool.incr(redis_page_key)
+      # и ежедневный топ статей
+      hincr("top#{Date.today}", page_id)
+    end
+
+    # счётчик просмотров страницы без увеличения (для вывода на странице)
+    def page_count(page_id)
+      int_to_human_s(::RedisConnectionPool.get("vis:#{page_id}"))
+    end
+
+    # Токен для JS-маячка: подтверждает, что отправитель получил страницу сайта.
+    # Привязан к id статьи (0 — для нестатейных страниц), но не к дате и IP,
+    # чтобы не ломаться о страничный кеш и смену адреса.
+    def visit_token(page_id)
+      OpenSSL::HMAC.hexdigest('SHA256', Rails.application.secret_key_base, "visit:#{page_id}")[0, 32]
+    end
+
+    def valid_visit_token?(page_id, token)
+      visit_token(page_id) == token.to_s
     end
 
     # Добывает просмотры всех страниц, отдаёт хэш:

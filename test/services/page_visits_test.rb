@@ -11,34 +11,32 @@ class PageVisitsTest < ActiveSupport::TestCase
 
   teardown { clean_stats }
 
-  test 'запрос человека попадает в строку «Люди» со второго за день запроса с IP' do
-    2.times { PageVisits.day_visit(browser: CHROME, ip: '10.0.0.1', lang: :ru) }
+  test 'запрос человека попадает в строку «Люди», пишется язык и IP' do
+    PageVisits.day_visit(browser: CHROME, ip: '10.0.0.1', lang: :ru)
 
     assert_equal '1', week_visits['Люди']
-    assert_equal '1', week_visits['Одноразовые']
     assert_equal '0', week_visits['Подозрительные']
     assert_equal '0', week_visits['Поисковые боты']
     assert_equal '1', week_visits['Уникальные IP']
-    # язык пишется только со второго запроса, когда IP признан человеком
     assert_equal({ 'ru' => 1 }, PageVisits.day_langs(@day))
-    assert_equal [['10.0.0.1', 2]], PageVisits.day_top_ips(@day)
+    assert_equal [['10.0.0.1', 1]], PageVisits.day_top_ips(@day)
   end
 
-  test 'первый за день запрос с IP уходит в «Одноразовые», а не в людей' do
-    PageVisits.day_visit(browser: CHROME, ip: '10.0.0.1', lang: :ru)
+  test 'day_count возвращает просмотры людей за сегодня, ничего не увеличивая' do
+    assert_equal '0', PageVisits.day_count
 
-    assert_equal '0', week_visits['Люди']
-    assert_equal '1', week_visits['Одноразовые']
-    assert_equal '0', week_visits['Уникальные IP']
-    assert_empty PageVisits.day_langs(@day)
-    assert_equal [['10.0.0.1', 1]], PageVisits.day_top_ips(@day)
+    PageVisits.day_visit(browser: CHROME, ip: '10.0.0.1', lang: :ru)
+    assert_equal '1', PageVisits.day_count
+
+    # повторное чтение не двигает счётчики
+    PageVisits.day_count
+    assert_equal '1', week_visits['Люди']
   end
 
   test 'запрос бота попадает в строку ботов и в топ ботов с именем' do
     PageVisits.day_visit(browser: GPTBOT, ip: '10.0.0.9', lang: :ru)
 
     assert_equal '0', week_visits['Люди']
-    assert_equal '0', week_visits['Одноразовые']
     assert_equal '1', week_visits['Поисковые боты']
     assert_equal({ 'ChatGPT' => 1 }, PageVisits.day_bots(@day))
     # боты не попадают ни в уникальные IP, ни в топ IP
@@ -50,9 +48,7 @@ class PageVisitsTest < ActiveSupport::TestCase
     limit = PageVisits::SUSPICIOUS_DAY_LIMIT
     (limit + 1).times { PageVisits.day_visit(browser: CHROME, ip: '10.0.0.2', lang: :ru) }
 
-    # первый запрос — одноразовый, запросы со 2-го по limit — люди
-    assert_equal (limit - 1).to_s, week_visits['Люди']
-    assert_equal '1', week_visits['Одноразовые']
+    assert_equal limit.to_s, week_visits['Люди']
     assert_equal '1', week_visits['Подозрительные']
     # уникальных адресов один, как ни крути счётчик запросов
     assert_equal '1', week_visits['Уникальные IP']
@@ -61,23 +57,41 @@ class PageVisitsTest < ActiveSupport::TestCase
   end
 
   test 'уникальные IP считаются по людям' do
-    3.times { |i| 2.times { PageVisits.day_visit(browser: CHROME, ip: "10.0.1.#{i}", lang: :en) } }
+    3.times { |i| PageVisits.day_visit(browser: CHROME, ip: "10.0.1.#{i}", lang: :en) }
 
     assert_equal '3', week_visits['Люди']
-    assert_equal '3', week_visits['Одноразовые']
     assert_equal '3', week_visits['Уникальные IP']
     assert_equal({ 'en' => 3 }, PageVisits.day_langs(@day))
   end
 
-  test 'просмотры статей считаются в ежедневный топ без ботов' do
-    page = Struct.new(:id).new(42)
-    PageVisits.visit(page, user_ip: '10.0.2.1', browser: CHROME)
-    PageVisits.visit(page, user_ip: '10.0.2.2', browser: CHROME)
+  test 'маячок со статьёй двигает счётчик статьи и дневную статистику, бот — только ботов' do
+    PageVisits.beacon_visit(page_id: 42, browser: CHROME, ip: '10.0.2.1', lang: :ru)
+    PageVisits.beacon_visit(page_id: 42, browser: CHROME, ip: '10.0.2.2', lang: :ru)
     # повтор с того же IP в течение 12 часов не защитается
-    PageVisits.visit(page, user_ip: '10.0.2.1', browser: CHROME)
-    PageVisits.visit(page, user_ip: '10.0.2.3', browser: GPTBOT)
+    PageVisits.beacon_visit(page_id: 42, browser: CHROME, ip: '10.0.2.1', lang: :ru)
+    # бот счётчик статьи не двигает, в дневной статистике помечается ботом
+    PageVisits.beacon_visit(page_id: 42, browser: GPTBOT, ip: '10.0.2.3', lang: :ru)
 
+    assert_equal '2', PageVisits.page_count(42)
     assert_equal({ '42' => 2 }, PageVisits.day_top_pages(@day))
+    assert_equal '3', week_visits['Люди']
+    assert_equal '1', week_visits['Поисковые боты']
+  end
+
+  test 'маячок без статьи (page_id = 0) трогает только дневную статистику' do
+    PageVisits.beacon_visit(page_id: 0, browser: CHROME, ip: '10.0.2.1', lang: :ru)
+
+    assert_equal '1', week_visits['Люди']
+    assert_empty PageVisits.day_top_pages(@day)
+  end
+
+  test 'токен маячка привязан к id страницы' do
+    token = PageVisits.visit_token(42)
+
+    assert PageVisits.valid_visit_token?(42, token)
+    assert_not PageVisits.valid_visit_token?(43, token)
+    assert_not PageVisits.valid_visit_token?(42, 'forged')
+    assert_not PageVisits.valid_visit_token?(42, nil)
   end
 
   private
@@ -96,6 +110,7 @@ class PageVisitsTest < ActiveSupport::TestCase
     keys << "ipvis#{@day}:10.0.0.1" << "ipvis#{@day}:10.0.0.2" << "ipvis#{@day}:10.0.0.9"
     keys << "vis:42" << "vis:42=10.0.2.1" << "vis:42=10.0.2.2" << "vis:42=10.0.2.3"
     (0..2).each { |i| keys << "ipvis#{@day}:10.0.1.#{i}" }
+    (1..3).each { |i| keys << "ipvis#{@day}:10.0.2.#{i}" }
     ::RedisConnectionPool.del(keys)
   end
 end
