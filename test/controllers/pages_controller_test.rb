@@ -85,6 +85,41 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_match %r{/ru/en/w/eng_version\z}, response.location
   end
 
+  test "switch to a content-only language keeps that language in the address" do
+    ru = create_published(path: 'grabar_source', lang: 'ru')
+    create_published(path: 'grabar_xcl', lang: 'xcl', group_lang_id: ru.group_lang_id)
+    get '/en/xcl/w/grabar_source'
+    assert_response :redirect
+    assert_match %r{/en/xcl/w/grabar_xcl\z}, response.location
+  end
+
+  test "page in a content-only language opens and keeps its language on the page" do
+    create_published(path: 'grabar_page', lang: 'xcl')
+    get '/en/xcl/w/grabar_page'
+    assert_response :success
+    assert_match(/<meta property="og:locale" content=\s*"xcl"/, response.body)
+  end
+
+  test "service page links fall back to english when the language has no such page" do
+    create_published(path: 'links_en', lang: 'en')
+    create_published(path: 'help_en', lang: 'en')
+    create_published(path: 'xcl_without_links', lang: 'xcl')
+    get '/en/xcl/w/xcl_without_links'
+    assert_response :success
+    assert_includes response.body, 'href="/en/en/w/links_en"'
+    assert_includes response.body, 'href="/en/en/w/help_en"'
+  end
+
+  test "service page links stay in the article language when such a page exists" do
+    create_published(path: 'links_ru', lang: 'ru')
+    create_published(path: 'help_ru', lang: 'ru')
+    create_published(path: 'rus_with_links', lang: 'ru')
+    get '/ru/ru/w/rus_with_links'
+    assert_response :success
+    assert_includes response.body, 'href="/ru/ru/w/links_ru"'
+    assert_includes response.body, 'href="/ru/ru/w/help_ru"'
+  end
+
   test "other language versions are listed" do
     ru = create_published(path: 'rus_v2', lang: 'ru')
     create_published(path: 'eng_v2', lang: 'en', group_lang_id: ru.group_lang_id)

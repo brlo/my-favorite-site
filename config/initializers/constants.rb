@@ -323,8 +323,10 @@ COUNTRY_TO_LANG = {
 
 # доступные локали - позиции для 1-го path: /*/
 R_LOCALES = ::ALL_LOCALES.keys.join('|')
+# все языки, на которых может быть статья: и с интерфейсом (ALL_LOCALES), и только контентные (cu, xcl...)
+ALL_CONTENT_LANGS = ::ALL_LOCALES.merge(::LANGS_CONTENT_ONLY)
 # доступные языки контекста статей - позиции для 2-го path: /.../*
-R_CONT_LANGS = (::ALL_LOCALES.keys + ::LANGS_CONTENT_ONLY.keys).join('|')
+R_CONT_LANGS = ::ALL_CONTENT_LANGS.keys.join('|')
 # доступные переводы Библии - позиции для 2-го path: /.../*
 R_BIB_LANGS = ::BIB_LANG_TO_LOCALE.keys.join('|')
 # -------------------------

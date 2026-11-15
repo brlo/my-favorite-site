@@ -62,8 +62,10 @@ module ApplicationHelper
   def current_lang
     # Если явно указан язык контента и он валиден — берём его — params[:content_lang],
     # а иначе берём одноимённое название локали (языка интерфейса).
+    # Проверяем по ALL_CONTENT_LANGS: языки вроде xcl (грабар) есть только как язык статьи,
+    # в ALL_LOCALES их нет, но в адресе /en/xcl/w/... они всё равно должны сохраняться.
     @current_lang ||=
-    if ALL_LOCALES[params[:content_lang]]
+    if ::ALL_CONTENT_LANGS[params[:content_lang]]
       params[:content_lang]
     else
       params[:locale]
@@ -154,6 +156,16 @@ module ApplicationHelper
     path = path.gsub(/\A\/+/, '')  # убираем слэши вначале
     path = path.gsub(/\/+\z/, '')  # убираем слэши вконце
     "/#{I18n.locale}/#{ page_lang ? page_lang : current_lang()}/w/#{path}"
+  end
+
+  # Ссылка на служебную страницу языка (links_xx, help_xx).
+  # Если для этого языка такой страницы нет (например, её нет для грабара xcl),
+  # ведём на английскую версию — её поймёт больше людей, чем любую другую.
+  def my_lang_page_link_to(kind, lang = current_lang())
+    page = ::Page.find_by(path_low: "#{kind}_#{lang}".downcase) ||
+           ::Page.find_by(path_low: "#{kind}_en")
+    page_lang = page&.lang || 'en'
+    my_page_link_to("/#{page&.path || "#{kind}_en"}", page_lang: page_lang)
   end
 
   # ссылка на ресурс
