@@ -50,6 +50,7 @@ Bible quote collections — topical apologetics ("what the Bible says about…")
 - [Bible quotes (en)](https://bibleox.com/en/en/w/en-q)
 - [聖書の言葉 (ja)](https://bibleox.com/ja/ja/w/jp_q)
 - [圣经语录 (zh-Hans)](https://bibleox.com/zh-Hans/zh-Hans/w/cn-q)
+- [聖經語錄 (zh-Hant)](https://bibleox.com/zh-Hant/zh-Hant/w/tw-q)
 - [성경 구절 모음 (ko)](https://bibleox.com/ko/ko/w/ko-q)
 - [Цитаты святых отцов (ru)](https://bibleox.com/ru/ru/w/q-saints) — quotes of the Church Fathers
 
