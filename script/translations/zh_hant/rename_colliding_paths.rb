@@ -7,9 +7,11 @@ Dir["db/translations/#{lang}/q_*.yml"].each do |f|
   y = YAML.safe_load(File.read(f), permitted_classes: [], aliases: true)
   changed = false
   y['pages'].each do |p|
-    next unless ::Page.exists?(path_low: p['path'].downcase)
+    # коллизия — только если путь занят страницей ДРУГОГО языка (свои страницы
+    # на этом языке находятся сами собой и не повод переименовывать)
+    next unless ::Page.where(path_low: p['path'].downcase).where.not(lang: lang).exists?
     np = p['path'].sub(/A(?=_)/, 'T')
-    next if np == p['path'] || ::Page.exists?(path_low: np.downcase)
+    next if np == p['path'] || ::Page.where(path_low: np.downcase).where.not(lang: lang).exists?
     puts "#{p['path']} → #{np}"
     p['path'] = np
     changed = true
