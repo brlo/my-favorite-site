@@ -472,6 +472,12 @@ header nav > #settings-btn {
     border-color: #666560;
 }
 
+[dir="rtl"] .menu-books #filter-books,
+[dir="rtl"] .menu-books #filter-author-books {
+    padding-right: 8px;
+    padding-left: 30px;
+}
+
 .menu-books form {
     display: block;
     position: relative;
@@ -479,7 +485,7 @@ header nav > #settings-btn {
 
 .menu-books form .search-icon {
     position: absolute;
-    right: 3px;
+    inset-inline-end: 3px;
     top: 3px;
     cursor: pointer;
     color: #565656;

@@ -527,8 +527,16 @@ input.btn:active, input.btn:focus {
   margin: 15px auto 0 auto
 }
 
-.search-tree-input {
+input.search-tree-input {
   width: 100%;
+  /* место под иконку лупы, чтобы текст не заезжал под неё:
+     иконка прижата к краю интерфейса, а текст в поле может быть RTL */
+  padding-right: 40px;
+}
+
+[dir="rtl"] input.search-tree-input {
+  padding-right: 12px;
+  padding-left: 40px;
 }
 .search-tree-input-area {
   position: relative;
