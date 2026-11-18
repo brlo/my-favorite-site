@@ -138,7 +138,7 @@ header .container, footer .container {
 #text-bar .right-group {
   display: flex;
   gap: 20px;
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 #text-bar .bar-el.btn a { color: #222; text-decoration: none; }
@@ -284,7 +284,7 @@ header .container, footer .container {
   font-variant-numeric: tabular-nums;
   color: #8f8b78;
 }
-#audio-player .ap-time:last-child { text-align: right; }
+#audio-player .ap-time:last-child { text-align: end; }
 
 /* полоска перемотки: большая зона нажатия, тонкая линия */
 #audio-player .ap-seek {
@@ -368,7 +368,7 @@ html.has-audio-player #popup-notif { bottom: calc(var(--audio-player-h, 90px) + 
 .lang-select .choices__inner {
   border-radius: 0 0 4px 4px;
   border-top: none;
-  padding: 0 0 0 6px;
+  padding-inline-start: 6px;
   padding-bottom: 0 !important;
   min-height: 30px;
 }
@@ -536,7 +536,7 @@ input.btn:active, input.btn:focus {
 
 .search-tree-input-area .search-icon {
   position: absolute;
-  right: 12px;
+  inset-inline-end: 12px;
   top: 12px;
   cursor: pointer;
   background: none;
@@ -630,7 +630,7 @@ body.night-mode {
 /* Ссылка на Православную Церковь — первый пункт дропдауна «⋯» */
 
 #more-area .menu-books-church {
-  text-align: left;
+  text-align: start;
   padding: 0 0 8px 0;
   border-bottom: 1px solid #d8d1c0;
   margin-bottom: 8px;
@@ -682,7 +682,7 @@ a#current-book {
 .bar-description {
   font-size: 12px;
   padding-bottom: 5px;
-  padding-left: 0px;
+  padding-inline-start: 0;
   opacity: .8;
 }
 
@@ -709,3 +709,28 @@ a#current-book {
 }
 
 .keyword { font-weight: bold; }
+
+/* ==================================================== */
+/* RTL: то, что не выражается logical-свойствами */
+/* ==================================================== */
+
+/* счётчик просмотров статьи прижат к правому нижнему углу (в RTL — к левому) */
+[dir="rtl"] #visits { float: left; }
+
+/* стрелки «назад/вперёд» в разметке смотрят по направлению строки */
+.dir-arrow { display: inline-block; }
+[dir="rtl"] .dir-arrow { transform: scaleX(-1); }
+
+/* полоска аудиоплеера: в RTL заполняется от правого края */
+[dir="rtl"] #audio-player .ap-seek::-webkit-slider-runnable-track {
+  background: linear-gradient(to left, #8a7f5f var(--ap-progress), #d6d1b7 var(--ap-progress));
+}
+[dir="rtl"] #audio-player .ap-seek::-moz-range-track {
+  background: linear-gradient(to left, #8a7f5f var(--ap-progress), #d6d1b7 var(--ap-progress));
+}
+[dir="rtl"] .night-mode #audio-player .ap-seek::-webkit-slider-runnable-track {
+  background: linear-gradient(to left, #61afef var(--ap-progress), #4b5263 var(--ap-progress));
+}
+[dir="rtl"] .night-mode #audio-player .ap-seek::-moz-range-track {
+  background: linear-gradient(to left, #61afef var(--ap-progress), #4b5263 var(--ap-progress));
+}

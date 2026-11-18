@@ -7,15 +7,15 @@
 <% else %>
   <% @authors.each do |a| %>
     <section class="cite-author">
-      <h3>
+      <h3 dir="auto">
         <%= link_to a[:author].title, my_page_link_to("/#{CGI.escape(a[:author].path)}", page_lang: a[:author].lang) %>
         <span class="cite-total"><%= a[:total] %></span>
       </h3>
       <% a[:works].each do |w| %>
         <div class="cite-work">
-          <div class="cite-work-title"><%= w[:page].title %></div>
+          <div class="cite-work-title" dir="auto"><%= w[:page].title %></div>
           <% w[:refs].each do |r| %>
-            <a class="cite-snippet" href="<%= citation_page_link(w[:page], r.snippet) %>"><%= r.snippet %></a>
+            <a class="cite-snippet" dir="auto" href="<%= citation_page_link(w[:page], r.snippet) %>"><%= r.snippet %></a>
           <% end %>
         </div>
       <% end %>

@@ -28,15 +28,15 @@
       <% if message.reply_preview_visible? %>
         <a class="chat-msg__reply" href="#chat-msg-<%= message.reply_to_id %>" data-action="chat#jumpTo" data-target-id="<%= message.reply_to_id %>">
           <b><%= message.reply_to.member.nickname %></b>
-          <span><%= truncate(message.reply_to.body_text.to_s.squish, length: 120) %></span>
+          <span dir="auto"><%= truncate(message.reply_to.body_text.to_s.squish, length: 120) %></span>
         </a>
       <% else %>
         <span class="chat-msg__reply chat-msg__reply--missing" data-i18n="deleted_message"></span>
       <% end %>
     <% end %>
 
-    <div class="chat-msg__body" lang="<%= message.lang %>"><%= message.body_html.to_s.html_safe %></div>
-    <div class="chat-msg__translation" hidden></div>
+    <div class="chat-msg__body" lang="<%= message.lang %>" dir="auto"><%= message.body_html.to_s.html_safe %></div>
+    <div class="chat-msg__translation" dir="auto" hidden></div>
 
     <% if message.pending? %>
       <div class="chat-msg__status" data-i18n="pending"></div>

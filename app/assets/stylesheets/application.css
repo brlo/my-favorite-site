@@ -325,13 +325,13 @@ header nav {
     -ms-overflow-style: none;
 }
 header nav > a {
-    padding-right: 10px;
+    padding-inline-end: 10px;
     flex-shrink: 0; /* предотвращает сжатие элементов */
     white-space: nowrap;
 }
 header nav > #settings-btn {
-    margin-left: auto;
-    padding-right: 0;
+    margin-inline-start: auto;
+    padding-inline-end: 0;
 }
 
 /* Меню «⋯»: чат, переводы, помощь сайту */
@@ -370,7 +370,7 @@ header nav > #settings-btn {
 }
 
 .profile_link, .login_link {
-    margin-right: 10px;
+    margin-inline-end: 10px;
 }
 
 /* МЕНЮ НАСТРОЕК */
@@ -379,7 +379,7 @@ header nav > #settings-btn {
     z-index: 1;
     position: absolute;
     top: 100%;
-    right: 0;
+    inset-inline-end: 0;
     background-color: #f6f4e4;
     border-radius: 0 0 5px 5px;
     box-shadow: 0px 1px 1px #deddd1;
@@ -397,13 +397,13 @@ header nav > #settings-btn {
 }
 
 #settings-area label {
-    padding: 0 12px 0 0;
+    padding-inline-end: 12px;
 }
 
 #settings-area .switcher {
     display: inline-block;
-    margin-left: auto;
-    padding: 0 0 0 12px;
+    margin-inline-start: auto;
+    padding-inline-start: 12px;
 }
 
 /* КНИГИ: Меню книг: Бытие, Исход ... */
@@ -626,7 +626,7 @@ td.verse-line {
                                   supported by Chrome, Edge, Opera and Firefox */
 
     vertical-align: top;
-    text-align: right;
+    text-align: end;
     color: #616562;
     font-size: 13px;
     font-family:
@@ -640,13 +640,16 @@ td.verse-line {
 }
 
 .text-small td.verse-line {
-    padding: 4px 8px 0 0;
+    padding: 4px 0 0 0;
+    padding-inline-end: 8px;
 }
 .text-medium td.verse-line {
-    padding: 8px 8px 0 0;
+    padding: 8px 0 0 0;
+    padding-inline-end: 8px;
 }
 .text-large td.verse-line {
-    padding: 11px 8px 0 0;
+    padding: 11px 0 0 0;
+    padding-inline-end: 8px;
 }
 
 td.zero-verse {
@@ -657,20 +660,20 @@ td.zero-verse {
 
 th.verse-title {
     display: table-cell;
-    border-left: 2px solid transparent;
+    border-inline-start: 2px solid transparent;
     padding: 0 7px 15px 7px;
-    text-align: left;
+    text-align: start;
 }
 
 td.verse-text {
     display: table-cell;
-    border-left: 2px solid transparent;
-    padding-left: 7px;
+    border-inline-start: 2px solid transparent;
+    padding-inline-start: 7px;
 }
 
 td.highlighted {
     background: #cd97652e;
-    border-left: 2px solid #cd9765;
+    border-inline-start: 2px solid #cd9765;
 }
 
 tr:hover td.verse-line {
@@ -683,24 +686,27 @@ tr:hover td.verse-line:before {
     position: absolute;
     width: 100%;
     height: 100%;
-    text-align: right;
+    text-align: end;
     top: 0;
-    right: 0;
+    inset-inline-end: 0;
 }
 .text-small tr:hover td.verse-line:before {
-    padding: 4px 8px 0 0;
+    padding: 4px 0 0 0;
+    padding-inline-end: 8px;
 }
 .text-medium tr:hover td.verse-line:before {
-    padding: 8px 8px 0 0;
+    padding: 8px 0 0 0;
+    padding-inline-end: 8px;
 }
 .text-large tr:hover td.verse-line:before {
-    padding: 11px 8px 0 0;
+    padding: 11px 0 0 0;
+    padding-inline-end: 8px;
 }
 
 .night-mode td.highlighted {
     color: #d4dded;
     background: #90b99025;
-    border-left: 2px solid #90b990c9;
+    border-inline-start: 2px solid #90b990c9;
 }
 
 /* .night-mode tr:hover td.verse-line {
@@ -825,7 +831,7 @@ footer dd.tip {
 .fixed-side-btn {
     z-index: 999;
     position: fixed;
-    right: 40px;
+    inset-inline-end: 40px;
     width: 50px;
     height: 50px;
     background-color: #d0d7be;
@@ -1076,7 +1082,7 @@ a.bib-comment:hover {
 /* Скролл для длинных сегментов */
 @media (max-width: 992px) {
     .segment-row .row > div {
-        border-right: none !important;
+        border-inline-end: none !important;
         border-bottom: 1px solid var(--bs-border-color) !important;
     }
 }
@@ -1192,7 +1198,7 @@ input[type="checkbox"] + label {
 .errors ul {
   font-size: 0.85rem;
   margin: 0;
-  padding-left: 20px;
+  padding-inline-start: 20px;
 }
 
 .errors li {
@@ -1502,12 +1508,13 @@ body.night-mode {
 }
 
 .translate-from {
-  border-left: 2px solid var(--brown) !important;
-  border-radius: 0 6px 6px 0 !important;
+  border-inline-start: 2px solid var(--brown) !important;
+  border-start-end-radius: 6px !important;
+  border-end-end-radius: 6px !important;
 }
 
 .translate-from.origin {
-  border-left: 2px solid var(--blue) !important;
+  border-inline-start: 2px solid var(--blue) !important;
 }
 
 .translations-header {
@@ -1648,12 +1655,12 @@ body.night-mode {
 /* Счётчики голосов */
 .vote-count {
   font-weight: 600;
-  margin-right: 0.25rem;
+  margin-inline-end: 0.25rem;
 }
 
 /* Кнопка "Предложить перевод" */
 .btn-propose {
-  text-align: right;
+  text-align: end;
   margin: 10px 0 0 0;
   text-decoration: underline;
   text-decoration-style: dashed;
@@ -1992,8 +1999,8 @@ body.night-mode {
 }
 
 .tiptap blockquote {
-  border-left: 3px solid #d1d5db;
-  padding-left: 1rem;
+  border-inline-start: 3px solid #d1d5db;
+  padding-inline-start: 1rem;
   margin: 0.5rem 0;
   color: #6b7280;
 }
@@ -2083,7 +2090,7 @@ body.night-mode {
 .bbx-arrow {
   transition: transform 0.2s;
   color: #6b7280;
-  margin-left: 8px;
+  margin-inline-start: 8px;
   flex-shrink: 0;
 }
 
@@ -2123,7 +2130,7 @@ body.night-mode {
   padding: 10px;
   color: #000000;
   background-color: #f6f4e3;
-  text-align: left;
+  text-align: start;
 }
 
 /* Опции */
@@ -2152,7 +2159,7 @@ body.night-mode {
 .bbx-option .bbx-check {
   color: #3b82f6;
   font-weight: bold;
-  margin-left: 4px;
+  margin-inline-start: 4px;
 }
 
 /* Прогресс-бар в опциях - фиксированный размер */
@@ -2173,7 +2180,7 @@ body.night-mode {
 .bbx-progress .bbx-bar {
   position: absolute;
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   height: 100%;
   border-radius: 2px;
   width: 0%;
@@ -2199,7 +2206,7 @@ body.night-mode {
 }
 
 .bbx-progress.selected {
-  margin-left: auto;
+  margin-inline-start: auto;
 }
 
 /* Адаптивность */
@@ -2357,7 +2364,7 @@ body.night-mode {
 }
 .translation-item .bbx-progress {
   display: inline-block;
-  margin-left: 10px;
+  margin-inline-start: 10px;
 }
 
 .block-link {
@@ -2468,7 +2475,7 @@ body.night-mode {
   color: #64748b;
   font-size: 13px;
   font-style: italic;
-  margin-left: 4px;
+  margin-inline-start: 4px;
   word-break: break-word;
 }
 
@@ -2557,7 +2564,7 @@ body.night-mode {
 .interliner .interlinear-feedback {
   display: inline-block;
   font-weight: bold;
-  margin-left: 6px;
+  margin-inline-start: 6px;
   font-size: 16px;
   animation: interlinear-fade 1.5s ease-out forwards;
 }
@@ -2619,7 +2626,7 @@ body.night-mode {
 .verse-feedback {
   display: inline-block;
   font-weight: bold;
-  margin-left: 8px;
+  margin-inline-start: 8px;
   font-size: 18px;
   animation: verse-fade 1.5s ease-out forwards;
 }
@@ -2730,7 +2737,7 @@ td.verse-cites .cite-bar.active {
 .cite-author h3 { margin: 18px 0 6px; font-size: 1.05em; }
 .cite-author h3 a { text-decoration: none; }
 .cite-total {
-  margin-left: 6px;
+  margin-inline-start: 6px;
   padding: 0 6px;
   border-radius: 8px;
   background: rgba(128, 128, 128, 0.2);
@@ -2743,7 +2750,7 @@ td.verse-cites .cite-bar.active {
   display: block;
   margin: 4px 0;
   padding: 6px 8px;
-  border-left: 3px solid #cd9765;
+  border-inline-start: 3px solid #cd9765;
   background: rgba(205, 151, 101, 0.12);
   color: inherit;
   text-decoration: none;

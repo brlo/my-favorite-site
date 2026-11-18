@@ -99,7 +99,7 @@
 
 <% if @tree_menu.present? %>
 
-  <div class="menu-tree <%= text_cont_classes %>" data-menu-filter-target="tree">
+  <div class="menu-tree" data-menu-filter-target="tree" dir="<%= content_direction %>">
     <div>
       <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0, page_lang: @page.lang}) %>
     </div>

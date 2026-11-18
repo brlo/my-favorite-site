@@ -4,7 +4,7 @@
      data-chat-profile-max-size-value="<%= 2.megabytes %>"
      data-chat-profile-color-value="<%= avatar_color %>"
      data-chat-profile-too-big-value="<%= t('chat.profile.too_big') %>">
-  <p><%= link_to "← #{t('chat.title')}", chat_path(locale: I18n.locale) %></p>
+  <p><%= link_to chat_path(locale: I18n.locale) do %><span class="dir-arrow">←</span> <%= t('chat.title') %><% end %></p>
   <h1><%= t('chat.profile.title') %></h1>
 
   <%= render 'layouts/errors', ar_object: @member %>

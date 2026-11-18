@@ -1,5 +1,5 @@
 <div class="chat-member">
-  <p><%= link_to "← #{t('chat.title')}", chat_path(locale: I18n.locale) %></p>
+  <p><%= link_to chat_path(locale: I18n.locale) do %><span class="dir-arrow">←</span> <%= t('chat.title') %><% end %></p>
 
   <div class="chat-member__card">
     <div class="chat-member__head">

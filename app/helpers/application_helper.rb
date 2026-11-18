@@ -206,12 +206,25 @@ module ApplicationHelper
     end
   end
 
-  def text_cont_classes
-    text_content_direction = ['heb-osm', 'arab-avd', 'he', 'ar', 'fa'].include?(params[:content_lang]) ? 't-rtl' : ''
+  # Направление письма интерфейса: ставится на <html dir="...">
+  def ui_direction
+    ::RTL_LOCALES.include?(::I18n.locale.to_s) ? 'rtl' : 'ltr'
   end
 
-  def text_ui_classes
-    text_ui_direction = ['he', 'ar', 'fa'].include?(::I18n.locale.to_s) ? 't-rtl' : ''
+  # Направление письма контента (статьи, стихи). Оно может не совпадать с интерфейсом:
+  # арабская статья в английском интерфейсе — rtl, английская в арабском — ltr.
+  def content_direction
+    lang = (@content_lang.presence || params[:content_lang]).to_s
+    return ui_direction if lang.blank?
+
+    direction_for_lang(lang)
+  end
+
+  # Направление для конкретного языка контента: локали статей (ar, he)
+  # и коды переводов Библии (arab-avd, heb-osm)
+  def direction_for_lang(lang)
+    locale = ::BIB_LANG_TO_LOCALE[lang.to_s] || lang.to_s
+    ::RTL_LOCALES.include?(locale) ? 'rtl' : 'ltr'
   end
 
   def interliner_helper(verse)

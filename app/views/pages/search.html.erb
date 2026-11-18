@@ -22,6 +22,7 @@
         class='pretty search-tree-input'
         name='t'
         type='text'
+        dir='auto'
         minlength="1"
         required
         placeholder='<%= I18n.t("page.search_placeholder") %>'
@@ -38,7 +39,7 @@
   <% end %>
   <hr>
 
-  <article class='looks-like-page <%= text_size_class %>' id='search-results'>
+  <article class='looks-like-page <%= text_size_class %>' id='search-results' dir="<%= content_direction %>">
     <% if @matches.any? %>
       <%= render partial: "pages/match", collection: @matches, as: :m %>
     <% else %>

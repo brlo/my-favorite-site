@@ -30,7 +30,8 @@
 #text-menu #text-small-btn {
   font-size: 1em;
   border: 1px solid #80808040;
-  border-radius: 4px 0 0 4px;
+  border-start-start-radius: 4px;
+  border-end-start-radius: 4px;
 }
 #text-menu #text-medium-btn {
   font-size: 1.2em;
@@ -40,7 +41,8 @@
 #text-menu #text-large-btn {
   font-size: 1.4em;
   border: 1px solid #80808040;
-  border-radius: 0 4px 4px 0;
+  border-start-end-radius: 4px;
+  border-end-end-radius: 4px;
 }
 
 
@@ -86,7 +88,7 @@
   text-decoration: none;
   font-size: 1em;
   background-color: #54524912;
-  margin-right: 1px;
+  margin-inline-end: 1px;
 }
 
 #select-bar .bar-el:hover {
@@ -160,7 +162,8 @@
   position: absolute;
   /* 0px - отступ справа, то есть прижимаем вправо */
   /* calc(100% + 3px) - отступ снизу вверх на высотку селект-бара, плюс 3px */
-  inset: auto 0px calc(100% + 3px) auto;
+  inset-block: auto calc(100% + 3px);
+  inset-inline-end: 0;
   background-color: #fdfcf1;
   color: #000000;
   border-radius: 5px;
@@ -168,7 +171,7 @@
   box-shadow: 0px 0px 8px #282c3471;
   overflow: hidden;
   font-size: 1em;
-  text-align: left;
+  text-align: start;
 }
 
 /* элементы контекстного меню */
@@ -205,8 +208,8 @@
   font-weight: bold;
   display: inline-block;
   min-width: 75px;
-  text-align: right;
-  padding: 0 10px 0 0;
+  text-align: end;
+  padding-inline-end: 10px;
   color: #00000040;
 }
 

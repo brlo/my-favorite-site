@@ -86,6 +86,10 @@ ALL_LOCALES = {
   'grc' => true, # Древнегреческий (классический) (ISO 639-3)
 }
 
+# Языки с письмом справа налево. Для них и интерфейс, и контент рендерим с dir="rtl"
+# (см. ApplicationHelper#ui_direction, #content_direction).
+RTL_LOCALES = %w[ar fa he].freeze
+
 # Доступные в PG языки:
 # Verse.connection.execute('SELECT cfgname FROM pg_ts_config;').to_a
 LANG_TO_PG_LANGUAGE = {

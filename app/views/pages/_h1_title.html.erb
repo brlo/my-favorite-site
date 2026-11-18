@@ -2,6 +2,7 @@
 <h1
   class="title<%= ' is-short' if @page.is_cover_title_short? %>"
   id="current-address"
+  dir="<%= content_direction %>"
   data-book-short-name="<%= @page.path %>"
   data-lang-ui="<%= I18n.locale %>"
   data-lang-content="<%= @content_lang %>"

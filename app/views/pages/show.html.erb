@@ -40,7 +40,8 @@
         id='page-body'
         data-controller='share-links section-collapse'
         itemprop="articleBody"
-        class="verses <%= text_cont_classes %> <%= text_size_class %>">
+        class="verses <%= text_size_class %>"
+        dir="<%= content_direction %>">
 
         <% if @page.body_menu.present? %>
           <%= render(partial: 'pages/body_menu') %>
@@ -63,7 +64,7 @@
           <% @chapter_prev = @chapters[@chapter_current-2] %>
           <% title, path = @chapter_prev %>
           <div class="prev">
-            <a href="<%= my_page_link_to("/#{path}") %>">← <%= title %></a>
+            <a href="<%= my_page_link_to("/#{path}") %>"><span class="dir-arrow">←</span> <%= title %></a>
           </div>
         <% end %>
 
@@ -71,14 +72,14 @@
           <% @chapter_prev = @chapters[@chapter_current] %>
           <% title, path = @chapter_prev %>
           <div class="next">
-            <a href="<%= my_page_link_to("/#{path}") %>"><%= title %> →</a>
+            <a href="<%= my_page_link_to("/#{path}") %>"><%= title %> <span class="dir-arrow">→</span></a>
           </div>
         <% end %>
       </div>
     <% end %>
 
     <% if @page.references.present? %>
-      <section id='page-references' class="looks-like-page <%= text_cont_classes %>">
+      <section id='page-references' class="looks-like-page" dir="<%= content_direction %>">
         <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
         <div id="page-references-text">
           <% if @page.body_rendered.present? %>
@@ -100,7 +101,7 @@
       </div>
     </div>
 
-    <div class='notification <%= text_ui_classes %>'>
+    <div class='notification'>
       <% if @page.user_id %>
         <div id="page-author">
           <%= ::I18n.t('quote_page.author') %>: <%= @author_name %>

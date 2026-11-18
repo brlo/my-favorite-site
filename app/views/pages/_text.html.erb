@@ -3,7 +3,8 @@
     <article
       id='page-body'
       itemprop="articleBody"
-      class="verses <%= text_size_class %>">
+      class="verses <%= text_size_class %>"
+      dir="<%= content_direction %>">
 
       <table>
         <tbody>
@@ -12,7 +13,7 @@
             <% if chapter_data['title'].present? %>
               <tr>
                 <th></th>
-                <th class='verse-title <%= font_classes %> <%= text_cont_classes %>'>
+                <th class='verse-title <%= font_classes %>'>
                   <h3><%= chapter_data['title'].to_s.html_safe %></h3>
                 </th>
               </tr>
@@ -29,7 +30,7 @@
                   <%= i_glob %>
                 </td>
                 <td
-                  class='verse-text <%= font_classes %> <%= text_cont_classes %>'
+                  class='verse-text <%= font_classes %>'
                   id='T<%= i_glob %>'
                   data-line="<%= "#{i_glob}" %>"
                 >
@@ -45,15 +46,15 @@
     <% if @chapter_prev || @chapter_next %>
       <div id="pagination-bottom">
         <% if @chapter_prev > 0 %>
-          <a href="<%= my_page_link_to("/#{@chapters[@chapter_prev].second}") %>">← <%= I18n.t('backward') %></a>
+          <a href="<%= my_page_link_to("/#{@chapters[@chapter_prev].second}") %>"><span class="dir-arrow">←</span> <%= I18n.t('backward') %></a>
         <% else %>
-          <span class='invisible'>← <%= I18n.t('backward') %></span>
+          <span class='invisible'><span class="dir-arrow">←</span> <%= I18n.t('backward') %></span>
         <% end %>
         <span id="end-tip"><%= I18n.t('end_chapter.the_end_of') %><br><%= @chapter_current + 1 %><%= ::I18n.t('end_chapter.suffix') %></span>
         <% if @chapter_next < @chapters.count %>
-          <a href="<%= my_page_link_to("/#{@chapters[@chapter_next].second}") %>"><%= I18n.t('forward') %> →</a>
+          <a href="<%= my_page_link_to("/#{@chapters[@chapter_next].second}") %>"><%= I18n.t('forward') %> <span class="dir-arrow">→</span></a>
         <% else %>
-          <span class='invisible'><%= I18n.t('forward') %> →</span>
+          <span class='invisible'><%= I18n.t('forward') %> <span class="dir-arrow">→</span></span>
         <% end %>
       </div>
     <% end %>

@@ -42,8 +42,8 @@
   border-radius: 8px;
   transition: background .3s;
 }
-.chat-msg--pending { background: rgba(245, 158, 11, .08); border-left: 3px solid var(--yellow); }
-.chat-msg--direct { border-left: 3px solid var(--blue); }
+.chat-msg--pending { background: rgba(245, 158, 11, .08); border-inline-start: 3px solid var(--yellow); }
+.chat-msg--direct { border-inline-start: 3px solid var(--blue); }
 .chat-msg--flash { background: rgba(59, 130, 246, .15); }
 
 .chat-msg__avatar { flex: 0 0 auto; text-decoration: none; }
@@ -95,7 +95,7 @@
   display: block;
   margin: 4px 0;
   padding: 2px 8px;
-  border-left: 2px solid var(--blue);
+  border-inline-start: 2px solid var(--blue);
   font-size: .85em;
   color: var(--text-secondary);
   text-decoration: none;
@@ -111,7 +111,7 @@
 .chat__editor blockquote {
   margin: 4px 0;
   padding: 2px 10px;
-  border-left: 3px solid var(--border-main);
+  border-inline-start: 3px solid var(--border-main);
   color: var(--text-secondary);
 }
 .chat-msg__translation {
@@ -185,7 +185,7 @@
   justify-content: space-between;
   gap: 8px;
   padding: 2px 8px;
-  border-left: 2px solid var(--blue);
+  border-inline-start: 2px solid var(--blue);
   font-size: .85em;
   color: var(--text-secondary);
 }
@@ -260,7 +260,7 @@
 .chat-member__bio {
   margin: 16px 0 0;
   padding: 10px 14px;
-  border-left: 3px solid var(--border-main);
+  border-inline-start: 3px solid var(--border-main);
   overflow-wrap: anywhere;
 }
 .chat-member__bio p { margin: 4px 0; }

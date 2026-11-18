@@ -16,13 +16,14 @@
       <% if @verses.first&.lang == 'ja' %>
         data-controller="furigana-converter"
       <% end %>
-      class="verses <%= text_size_class %>">
+      class="verses <%= text_size_class %>"
+      dir="<%= content_direction %>">
 
       <table>
         <tbody>
           <% @verses.each.with_index do |v, i| %>
             <% if v.line == 0 %>
-              <tr><td colspan='3' class='zero-verse <%= font_classes %> <%= text_cont_classes %>'><%= sanitize(v.text) %></tr>
+              <tr><td colspan='3' class='zero-verse <%= font_classes %>'><%= sanitize(v.text) %></tr>
             <% else %>
               <tr>
                 <td class='verse-line'
@@ -34,7 +35,7 @@
                   <%= v.line %>
                 </td>
 
-                <td class='verse-text <%= font_classes %> <%= text_cont_classes %>'
+                <td class='verse-text <%= font_classes %>'
                     id='T<%= v.line %>'
                     data-line="<%= v.line %>"
                     <% if current_user&.is_admin? %>
@@ -103,9 +104,9 @@
 
     <div id="pagination-bottom">
       <% if prev_chapter > 0 %>
-        <a href="<%= my_bib_link_to("/#{@book_code}/#{prev_chapter}") %>">← <%= I18n.t('backward') %></a>
+        <a href="<%= my_bib_link_to("/#{@book_code}/#{prev_chapter}") %>"><span class="dir-arrow">←</span> <%= I18n.t('backward') %></a>
       <% else %>
-        <span class='invisible'>← <%= I18n.t('backward') %></span>
+        <span class='invisible'><span class="dir-arrow">←</span> <%= I18n.t('backward') %></span>
       <% end %>
 
       <span id="end-tip">
@@ -116,15 +117,15 @@
 
       <% if next_chapter <= ::BOOKS[@book_code][:chapters] %>
         <a id='next-page-link' href="<%= my_bib_link_to("/#{@book_code}/#{next_chapter}") %>">
-          <%= I18n.t('forward') %> →
+          <%= I18n.t('forward') %> <span class="dir-arrow">→</span>
         </a>
       <% else %>
-        <span class='invisible'><%= I18n.t('forward') %> →</span>
+        <span class='invisible'><%= I18n.t('forward') %> <span class="dir-arrow">→</span></span>
       <% end %>
     </div>
   </div>
 
-  <div class='tip-hkeys <%= text_ui_classes %>'>
+  <div class='tip-hkeys'>
     <%= I18n.t('tips.click_on_verse') %>
     <%= I18n.t('tips.click_on_verse__working') %>
     <div class='key'>Shift</div>

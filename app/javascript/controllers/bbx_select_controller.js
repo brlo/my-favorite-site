@@ -306,20 +306,24 @@ export default class extends Controller {
       dropdown.style.bottom = 'auto'
     }
 
-    // Проверяем, не вылазит ли справа
-    const dropdownRect = dropdown.getBoundingClientRect()
-    if (dropdownRect.right > window.innerWidth) {
-      dropdown.style.left = 'auto'
+    // Выравниваем дропдаун по тому краю селекта, с которого начинается строка:
+    // в LTR — по левому, в RTL — по правому. Если не помещается, прижимаем к другому краю.
+    const isRtl = getComputedStyle(select).direction === 'rtl'
+    dropdown.style.left = 'auto'
+    dropdown.style.right = 'auto'
+    if (isRtl) {
       dropdown.style.right = '0'
     } else {
       dropdown.style.left = '0'
-      dropdown.style.right = 'auto'
     }
 
-    // Проверяем, не вылазит ли слева
-    if (dropdownRect.left < 0) {
-      dropdown.style.left = '0'
+    const dropdownRect = dropdown.getBoundingClientRect()
+    if (isRtl && dropdownRect.left < 0) {
       dropdown.style.right = 'auto'
+      dropdown.style.left = '0'
+    } else if (!isRtl && dropdownRect.right > window.innerWidth) {
+      dropdown.style.left = 'auto'
+      dropdown.style.right = '0'
     }
   }
 }

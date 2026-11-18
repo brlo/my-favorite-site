@@ -75,14 +75,14 @@ body.select-bar-enabled .word-info {
 }
 
 .dict-word h2 .dict-name {
-  margin-left: 6px;
+  margin-inline-start: 6px;
   font-size: 0.45em;
   font-weight: normal;
   color: var(--text-secondary);
 }
 
 .dict-word .desc .dict-source {
-  margin-left: 4px;
+  margin-inline-start: 4px;
   font-size: 0.85em;
   color: var(--text-secondary);
 }

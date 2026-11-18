@@ -44,7 +44,7 @@
   <%= render(partial: 'verses/text_bar') %>
 
   <% if @main_verses.any? %>
-    <div class='pre-bible-text <%= font_classes %> <%= text_cont_classes %>'>
+    <div class='pre-bible-text <%= font_classes %>' dir="<%= content_direction %>">
       "<%= sanitize(@main_verses.map(&:text).join(' '), tags: []) %>"
       <% v = @main_verses.first %>
       <% v_last = @main_verses.last %>

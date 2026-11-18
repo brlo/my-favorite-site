@@ -6,12 +6,12 @@
 }
 
 .prev {
-  text-align: left;
+  text-align: start;
 }
 
 .next {
-  margin-left: auto;
-  text-align: right;
+  margin-inline-start: auto;
+  text-align: end;
 }
 
 #page-content {
@@ -39,7 +39,7 @@
 #page-content.text-page table th {
     background-color: #AAAAAA;
     font-weight: 700;
-    text-align: left;
+    text-align: start;
 }
 
 #page-content.text-page table td, #page-content.text-page table th {
@@ -103,17 +103,17 @@
 }
 
 .btn:first-child {
-  border-top-left-radius: 10px;
-  border-bottom-left-radius: 10px;
+  border-start-start-radius: 10px;
+  border-end-start-radius: 10px;
 }
 
 .btn:last-child {
-  border-top-right-radius: 10px;
-  border-bottom-right-radius: 10px;
+  border-start-end-radius: 10px;
+  border-end-end-radius: 10px;
 }
 
 .btn:not(:first-child) {
-  border-left: none;
+  border-inline-start: none;
 }
 
 .btn:hover {
@@ -171,7 +171,7 @@
   justify-content: center;
   width: 20px;
   height: 20px;
-  margin-left: 6px;
+  margin-inline-start: 6px;
   padding: 0;
   border: 0;
   border-radius: 4px;
@@ -310,7 +310,7 @@
 }
 
 .looks-like-page blockquote {
-  border-left: 2px solid #d5cdb7;
+  border-inline-start: 2px solid #d5cdb7;
   background-color: #d5cdb724;
   font-family: Arial,Helvetica,sans-serif;
   font-style: italic;
@@ -340,7 +340,7 @@
 
 /* MENU */
 .level {
-  margin-left: 15px;
+  margin-inline-start: 15px;
 }
 
 .menu-subject.depth-0 {
@@ -460,7 +460,7 @@
   background: none;
   color: inherit;
   font-family: inherit;
-  text-align: left;
+  text-align: start;
   cursor: pointer;
 }
 .menu-tree .same-subject-toggle:hover { opacity: 1; }
@@ -568,7 +568,7 @@
   font-size: .5em;
   vertical-align: middle;
   opacity: .6;
-  margin-left: 2px;
+  margin-inline-start: 2px;
   user-select: none;
 }
 .menu-tree .vis svg {
@@ -579,7 +579,7 @@
 
 
 .night-mode #page-content blockquote {
-  border-left: 2px solid #90b990;
+  border-inline-start: 2px solid #90b990;
   background-color: #90b99011;
 }
 .night-mode #page-content #title-sub {
@@ -621,11 +621,11 @@
   margin: 10px 0;
 }
 
-#article-menu .nav-h2 { margin-left: 0; }
-#article-menu .nav-h3 { margin-left: 20px; font-size: 0.8em; }
-#article-menu .nav-h4 { margin-left: 40px; font-size: 0.6em; }
+#article-menu .nav-h2 { margin-inline-start: 0; }
+#article-menu .nav-h3 { margin-inline-start: 20px; font-size: 0.8em; }
+#article-menu .nav-h4 { margin-inline-start: 40px; font-size: 0.6em; }
 
-#article-menu .short { display: inline-block; margin-right: 10px; }
+#article-menu .short { display: inline-block; margin-inline-end: 10px; }
 
 /* длинное содержание: по клику на верхнюю полоску показываем/скрываем весь список */
 #article-menu.collapsed .menu-list { display: none; }
@@ -665,7 +665,7 @@
   margin: 28px auto 10px auto;
   padding: 16px 22px;
   border: 1px solid rgba(168, 80, 30, .28);
-  border-left: 4px solid var(--chat-accent);
+  border-inline-start: 4px solid var(--chat-accent);
   border-radius: 8px;
   background: #f7f2e3;
   box-shadow: 0 8px 28px rgba(94, 73, 51, .16);
@@ -692,7 +692,7 @@
   --chat-accent: #93c5fd;
   background: #2b3444;
   border-color: rgba(59, 130, 246, .35);
-  border-left-color: var(--blue);
+  border-inline-start-color: var(--blue);
   box-shadow: 0 8px 28px rgba(31, 41, 55, .16);
 }
 .night-mode .page-chat-invite:hover {
@@ -704,7 +704,7 @@
   .page-chat-invite { flex-wrap: wrap; gap: 10px 12px; padding: 14px 16px; }
   .page-chat-invite__icon svg { width: 24px; height: 24px; }
   .page-chat-invite__text { flex-basis: calc(100% - 36px); }
-  .page-chat-invite__cta { margin-left: 36px; }
+  .page-chat-invite__cta { margin-inline-start: 36px; }
 }
 
 /* плавающее приглашение в чат: появляется, когда читатель доходит до конца статьи */
@@ -729,14 +729,15 @@
   max-width: none;
   width: 100%;
   margin: 0;
-  padding: 12px 56px 12px 18px;
+  padding-block: 12px;
+  padding-inline: 18px 56px;
   pointer-events: auto;
 }
 
 .chat-invite-float__close {
   position: absolute;
   top: 50%;
-  right: 20px;
+  inset-inline-end: 20px;
   transform: translateY(-50%);
   display: flex;
   align-items: center;
@@ -771,8 +772,8 @@
 
 @media (max-width: 640px) {
   .chat-invite-float { bottom: 12px; }
-  .chat-invite-float .page-chat-invite { padding: 12px 52px 12px 16px; }
-  .chat-invite-float__close { right: 18px; }
+  .chat-invite-float .page-chat-invite { padding-block: 12px; padding-inline: 16px 52px; }
+  .chat-invite-float__close { inset-inline-end: 18px; }
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -1142,12 +1143,12 @@ h2.parent-title {
 .copy-anchor {
   content: url('data:image/svg+xml;utf8,<svg fill="%23a0ae62" height="16" viewBox="0 0 16 16" width="16" xmlns="http://www.w3.org/2000/svg"><path d="M6.354 5.5H4a3 3 0 0 0 0 6h3a3 3 0 0 0 2.83-4H9c-.086 0-.17.01-.25.031A2 2 0 0 1 7 10.5H4a2 2 0 1 1 0-4h1.535c.218-.376.495-.714.82-1z"/><path d="M9 5.5a3 3 0 0 0-2.83 4h1.098A2 2 0 0 1 9 6.5h3a2 2 0 1 1 0 4h-1.535a4.02 4.02 0 0 1-.82 1H12a3 3 0 1 0 0-6H9z"/></svg>');
   position: absolute;
-  left: -32px;
+  inset-inline-start: -32px;
   top: 50%;
   transform: translateY(-50%);
   opacity: 0;
   width: 35px;
-  padding-right: 10px;
+  padding-inline-end: 10px;
   height: 100%;
 }
 
@@ -1196,7 +1197,7 @@ h4:hover .copy-anchor,
 
 /* ссылка «редактировать» над заголовком статьи (видна только редакторам) */
 .page-edit-top {
-  text-align: right;
+  text-align: end;
   font-size: 0.85rem;
   margin: 6px 0 0;
 }

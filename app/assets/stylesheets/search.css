@@ -18,7 +18,7 @@
 
 #search-input-area .search-icon {
   position: absolute;
-  right: 12px;
+  inset-inline-end: 12px;
   top: 12px;
   cursor: pointer;
   background: none;
