@@ -129,6 +129,9 @@ class VerseSearchPgroonga
     relation = relation.where(lang: @lang) if arabic? && @lang.present?
     relation = relation.where(book: @search_books) if @search_books.present?
     relation = relation.where(zavet: @zavet) if !@zavet.nil?
+    # обязательно для pgroonga-индексов: их предикат `text_search IS NOT NULL`
+    # без этого условия «не под силу» запросу, и поиск уйдёт в seq scan
+    relation = relation.where.not(search_column => nil)
     # relation = relation.limit(@limit) if @limit.present?
     relation
   end
