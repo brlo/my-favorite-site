@@ -586,3 +586,14 @@ ja:
 
   citations:
     map_hint: '教会著作家による引用マップ'
+
+  tags:
+    nav: 'タグ'
+    title: '記事のタグ'
+    page_label: 'タグ'
+    empty: 'この言語ではこのタグの記事はまだありません'
+    empty_index: 'タグ付きの記事はまだありません'
+    also_in: 'このタグは次の言語でもあります'
+    meta_description: 'Bibleox 記事タグ一覧'
+    tag_page_title: 'タグ：%{tag}'
+    tag_meta_description: 'タグ「%{tag}」の記事'

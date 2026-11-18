@@ -14,6 +14,7 @@ class User < ApplicationRecord
     'pages_self_destroy'  => 'Статьи: удаление своих',
     'menus_update'        => 'Меню статей: редактирование',
     'menus_self_update'   => 'Меню статей: редактирование своих',
+    'tags_manage'         => 'Теги: переименование, переводы имён, удаление',
     'dict_read'           => 'Словарь: просмотр',
     'dict_create'         => 'Словарь: создание',
     'dict_update'         => 'Словарь: редактирование',

@@ -570,3 +570,14 @@ ko:
       3in: 요한삼서
       iud: 유다서
       otkr: 요한계시록
+
+  tags:
+    nav: '태그'
+    title: '글 태그'
+    page_label: '태그'
+    empty: '이 언어에는 이 태그의 글이 아직 없습니다'
+    empty_index: '태그가 있는 글이 아직 없습니다'
+    also_in: '이 태그는 다음 언어로도 제공됩니다'
+    meta_description: 'Bibleox 글 태그 목록'
+    tag_page_title: '태그: %{tag}'
+    tag_meta_description: "'%{tag}' 태그의 글"

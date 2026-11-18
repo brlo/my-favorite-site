@@ -502,4 +502,36 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, 'hreflang="ru" href="https://bibleox.com/ru/ru/w/lyubov"'
   end
 
+  # --- теги статьи ---
+
+  test "article page shows tag chips, keywords and links to the tag page" do
+    page = create_published(path: 's_tegami')
+    page.sync_tag_list!(['Молитва', 'Вера'])
+
+    get '/ru/ru/w/s_tegami'
+    assert_response :success
+    assert_select '#page-tags a.tag-chip', count: 2
+    assert_includes response.body, '/ru/tags/molitva'
+    assert_match(/name="keywords" content="[^"]*Молитва/, response.body)
+    assert_match(/property="og:book:tag" content="Молитва"/, response.body)
+  end
+
+  test "tag chip shows the translated name for the article language" do
+    Tag.create!(name: 'Покаяние', names: { 'en' => 'Repentance' })
+    ru = create_published(path: 's_tegami_i18n')
+    create_published(path: 's_tegami_i18n_en', lang: 'en', group_lang_id: ru.group_lang_id)
+    ru.sync_tag_list!(['Покаяние'])
+
+    get '/en/en/w/s_tegami_i18n_en'
+    assert_response :success
+    assert_select '#page-tags a.tag-chip', text: 'Repentance'
+  end
+
+  test "page without tags renders no tag block" do
+    create_published(path: 'bez_tegov')
+    get '/ru/ru/w/bez_tegov'
+    assert_response :success
+    assert_select '#page-tags', count: 0
+  end
+
 end

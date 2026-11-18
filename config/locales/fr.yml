@@ -334,3 +334,14 @@ fr:
 
   citations:
     map_hint: 'Carte des citations des écrivains ecclésiastiques'
+
+  tags:
+    nav: 'Étiquettes'
+    title: 'Étiquettes d''articles'
+    page_label: 'Étiquettes'
+    empty: 'Pas encore d''articles avec cette étiquette dans cette langue'
+    empty_index: 'Pas encore d''articles étiquetés'
+    also_in: 'Cette étiquette existe aussi en'
+    meta_description: 'Catalogue des étiquettes d''articles de Bibleox'
+    tag_page_title: 'Étiquette : %{tag}'
+    tag_meta_description: 'Articles avec l''étiquette "%{tag}"'

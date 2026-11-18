@@ -195,6 +195,10 @@ class PagesController < ApplicationController
     @meta_description = @page.meta_desc
     @current_menu_item = 'links'
 
+    # Теги: набор один на все переводы; имена идут в og:book:tag и meta keywords
+    @page_tags = @page.tags.order(:name).to_a
+    @meta_book_tags = @page_tags.map(&:name) if @page_tags.any?
+
     prepare_bible_comment if @page.is_page_bib_comment?
 
     # Если текст этой статьи разбит на несколько глав,

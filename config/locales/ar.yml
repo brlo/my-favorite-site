@@ -598,3 +598,14 @@ ar:
     close: إغلاق
     empty: 'لا يذكر أحد من آباء الكنيسة في مكتبتنا هذه الآية بعد.'
     mentions: 'الاقتباسات: %{count}'
+
+  tags:
+    nav: 'الوسوم'
+    title: 'وسوم المقالات'
+    page_label: 'الوسوم'
+    empty: 'لا توجد بعد مقالات بهذا الوسم بهذه اللغة'
+    empty_index: 'لا توجد بعد مقالات موسومة'
+    also_in: 'هذا الوسم متاح أيضًا باللغات'
+    meta_description: 'دليل وسوم مقالات Bibleox'
+    tag_page_title: 'الوسم: %{tag}'
+    tag_meta_description: 'مقالات موسومة بـ "%{tag}"'

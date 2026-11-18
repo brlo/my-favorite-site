@@ -576,3 +576,14 @@ zh-Hans:
 
   citations:
     map_hint: '教会作家引用地图'
+
+  tags:
+    nav: '标签'
+    title: '文章标签'
+    page_label: '标签'
+    empty: '该语言下暂无此标签的文章'
+    empty_index: '暂无带标签的文章'
+    also_in: '此标签还有以下语言版本'
+    meta_description: 'Bibleox 文章标签目录'
+    tag_page_title: '标签：%{tag}'
+    tag_meta_description: '标签为「%{tag}」的文章'

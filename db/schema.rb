@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_18_140000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_18_150000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -256,6 +256,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_18_140000) do
     t.string "cover_overlay_bg"
     t.string "cover_overlay_text"
     t.string "seo_kind"
+    t.index ["group_lang_id"], name: "index_pages_on_group_lang_id"
     t.index ["lang", "path"], name: "index_pages_on_lang_and_path"
     t.index ["parent_id"], name: "index_pages_on_parent_id"
     t.index ["path_low"], name: "index_pages_on_path_low", unique: true
@@ -284,6 +285,25 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_18_140000) do
     t.index ["translation_project_id", "lang"], name: "index_segments_on_translation_project_id_and_lang"
     t.index ["translation_project_id", "part", "chapter", "paragraph", "line", "lang"], name: "idx_on_translation_project_id_part_chapter_paragrap_3a450d47ec"
     t.index ["translation_project_id"], name: "index_segments_on_translation_project_id"
+  end
+
+  create_table "taggings", force: :cascade do |t|
+    t.bigint "page_id", null: false
+    t.bigint "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id", "tag_id"], name: "index_taggings_on_page_id_and_tag_id", unique: true
+    t.index ["tag_id"], name: "index_taggings_on_tag_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "slug", null: false
+    t.jsonb "names", default: {}, null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_tags_on_name", unique: true
+    t.index ["slug"], name: "index_tags_on_slug", unique: true
   end
 
   create_table "translation_projects", force: :cascade do |t|
@@ -409,6 +429,8 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_18_140000) do
   add_foreign_key "pages", "users"
   add_foreign_key "segments", "segments", column: "source_segment_id"
   add_foreign_key "segments", "translation_projects"
+  add_foreign_key "taggings", "pages", on_delete: :cascade
+  add_foreign_key "taggings", "tags", on_delete: :cascade
   add_foreign_key "translation_reactions", "translations"
   add_foreign_key "translation_reactions", "users"
   add_foreign_key "translations", "segments"

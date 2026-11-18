@@ -334,3 +334,14 @@ tk:
 
   citations:
     map_hint: 'Kilise ýazyjylarynyň sitata kartasy'
+
+  tags:
+    nav: 'Bellikler'
+    title: 'Makalalaryň bellikleri'
+    page_label: 'Bellikler'
+    empty: 'Bu dilde bu bellikli makala ýok'
+    empty_index: 'Bellikli makalalar ýok'
+    also_in: 'Bu bellik şu dillerde hem bar'
+    meta_description: 'Bibleox makala bellikleriniň sanawy'
+    tag_page_title: 'Bellik: %{tag}'
+    tag_meta_description: '"%{tag}" bellikli makalalar'

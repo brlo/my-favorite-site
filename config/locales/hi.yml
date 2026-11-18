@@ -570,3 +570,14 @@ hi:
       3in: 3 यूहन्ना
       iud: यहूदा
       otkr: प्रकाशितवाक्य
+
+  tags:
+    nav: 'टैग'
+    title: 'लेख टैग'
+    page_label: 'टैग'
+    empty: 'इस भाषा में इस टैग वाले लेख अभी तक नहीं हैं'
+    empty_index: 'अभी तक कोई टैग वाले लेख नहीं हैं'
+    also_in: 'यह टैग इन भाषाओं में भी है'
+    meta_description: 'Bibleox लेख टैग सूची'
+    tag_page_title: 'टैग: %{tag}'
+    tag_meta_description: 'टैग "%{tag}" वाले लेख'

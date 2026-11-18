@@ -334,3 +334,14 @@ sr:
 
   citations:
     map_hint: 'Мапа цитирања црквених писаца'
+
+  tags:
+    nav: 'Ознаке'
+    title: 'Ознаке чланака'
+    page_label: 'Ознаке'
+    empty: 'Још нема чланака са овом ознаком на овом језику'
+    empty_index: 'Још нема чланака са ознакама'
+    also_in: 'Ова ознака постоји и на језицима'
+    meta_description: 'Каталог ознака чланака Bibleox'
+    tag_page_title: 'Ознака: %{tag}'
+    tag_meta_description: 'Чланци са ознаком "%{tag}"'

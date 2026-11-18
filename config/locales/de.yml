@@ -586,3 +586,14 @@ de:
 
   citations:
     map_hint: 'Zitationskarte der Kirchenväter'
+
+  tags:
+    nav: 'Tags'
+    title: 'Artikel-Tags'
+    page_label: 'Tags'
+    empty: 'Noch keine Artikel mit diesem Tag in dieser Sprache'
+    empty_index: 'Noch keine Artikel mit Tags'
+    also_in: 'Dieses Tag gibt es auch auf'
+    meta_description: 'Verzeichnis der Artikel-Tags auf Bibleox'
+    tag_page_title: 'Tag: %{tag}'
+    tag_meta_description: 'Artikel mit dem Tag "%{tag}"'

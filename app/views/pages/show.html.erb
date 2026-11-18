@@ -121,6 +121,8 @@
         <%= ::I18n.t('quote_page.created_at') %>: <%= @page.created_at&.strftime('%Y-%m-%d') %>,
         <%= ::I18n.t('quote_page.updated_at') %>: <%= @page.updated_at&.strftime('%Y-%m-%d') %>
       </div>
+
+      <%= render partial: 'pages/tags', locals: { page_tags: (@page_tags || []), page_lang: @content_lang } %>
     </div>
   </section>
 

@@ -334,3 +334,14 @@ es:
 
   citations:
     map_hint: 'Mapa de citas de los escritores eclesiásticos'
+
+  tags:
+    nav: 'Etiquetas'
+    title: 'Etiquetas de artículos'
+    page_label: 'Etiquetas'
+    empty: 'Aún no hay artículos con esta etiqueta en este idioma'
+    empty_index: 'Aún no hay artículos con etiquetas'
+    also_in: 'Esta etiqueta también está disponible en'
+    meta_description: 'Catálogo de etiquetas de artículos de Bibleox'
+    tag_page_title: 'Etiqueta: %{tag}'
+    tag_meta_description: 'Artículos con la etiqueta "%{tag}"'

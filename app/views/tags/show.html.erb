@@ -1,0 +1,29 @@
+<%# Статьи одного тега на языке текущей локали %>
+<section class="looks-like-page tag-page">
+  <h1><%= @tag.name_for(::I18n.locale.to_s) %></h1>
+
+  <% if @other_langs.any? %>
+    <div class="hint tag-other-langs">
+      <%= ::I18n.t('tags.also_in') %>:
+      <% @other_langs.each do |lang| %>
+        <a href="<%= "/#{lang}/tags/#{@tag.slug}" %>"><%= page_lang_string_full(lang) %></a>
+      <% end %>
+    </div>
+  <% end %>
+
+  <% if @pages.any? %>
+    <div class="tag-pages-list">
+      <% @pages.each do |page| %>
+        <div class="tag-page-item">
+          <a href="<%= my_page_link_to("/#{::CGI.escape(page.path)}", page_lang: page.lang) %>"><%= page.title %></a>
+          <span class="hint"><%= page.updated_at&.strftime('%Y-%m-%d') %></span>
+        </div>
+      <% end %>
+    </div>
+    <%= paginate @pages if @pages.total_pages > 1 %>
+  <% else %>
+    <div class="tip"><%= ::I18n.t('tags.empty') %></div>
+  <% end %>
+</section>
+
+<%= render(partial: 'shared/arrow_to_top') %>

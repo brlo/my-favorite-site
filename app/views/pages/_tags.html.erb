@@ -1,0 +1,9 @@
+<%# Теги статьи: набор один на все переводы, имя — на языке статьи с фолбэком на каноническое %>
+<% if page_tags.present? %>
+  <div id="page-tags" class="page-tags">
+    <span class="page-tags-label"><%= ::I18n.t('tags.page_label') %>:</span>
+    <% page_tags.each do |tag| %>
+      <a class="tag-chip" href="<%= tag_path(tag.slug) %>"><%= tag.name_for(page_lang) %></a>
+    <% end %>
+  </div>
+<% end %>

@@ -582,3 +582,14 @@ he:
 
   citations:
     map_hint: 'מפת ציטוטים של כותבי הכנסייה'
+
+  tags:
+    nav: 'תגיות'
+    title: 'תגיות מאמרים'
+    page_label: 'תגיות'
+    empty: 'עדיין אין מאמרים עם התגית הזו בשפה זו'
+    empty_index: 'עדיין אין מאמרים עם תגיות'
+    also_in: 'התגית הזו קיימת גם בשפות'
+    meta_description: 'קטלוג תגיות המאמרים של Bibleox'
+    tag_page_title: 'תגית: %{tag}'
+    tag_meta_description: 'מאמרים עם התגית "%{tag}"'

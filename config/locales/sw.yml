@@ -334,3 +334,14 @@ sw:
 
   citations:
     map_hint: 'Ramani ya manukuu ya waandishi wa kanisa'
+
+  tags:
+    nav: 'Lebo'
+    title: 'Lebo za makala'
+    page_label: 'Lebo'
+    empty: 'Hakuna makala zilizo na lebo hii katika lugha hii bado'
+    empty_index: 'Hakuna makala zilizo na lebo bado'
+    also_in: 'Lebo hii ipo pia katika lugha'
+    meta_description: 'Orodha ya lebo za makala za Bibleox'
+    tag_page_title: 'Lebo: %{tag}'
+    tag_meta_description: 'Makala zenye lebo "%{tag}"'

@@ -334,3 +334,14 @@ it:
 
   citations:
     map_hint: 'Mappa delle citazioni degli scrittori ecclesiastici'
+
+  tags:
+    nav: 'Tag'
+    title: 'Tag degli articoli'
+    page_label: 'Tag'
+    empty: 'Ancora nessun articolo con questo tag in questa lingua'
+    empty_index: 'Ancora nessun articolo con tag'
+    also_in: 'Questo tag è disponibile anche in'
+    meta_description: 'Catalogo dei tag degli articoli di Bibleox'
+    tag_page_title: 'Tag: %{tag}'
+    tag_meta_description: 'Articoli con il tag "%{tag}"'

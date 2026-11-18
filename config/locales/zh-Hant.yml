@@ -576,3 +576,14 @@ zh-Hant:
 
   citations:
     map_hint: '教會作家引用地圖'
+
+  tags:
+    nav: '標籤'
+    title: '文章標籤'
+    page_label: '標籤'
+    empty: '該語言下暫無此標籤的文章'
+    empty_index: '暫無帶標籤的文章'
+    also_in: '此標籤還有以下語言版本'
+    meta_description: 'Bibleox 文章標籤目錄'
+    tag_page_title: '標籤：%{tag}'
+    tag_meta_description: '標籤為「%{tag}」的文章'

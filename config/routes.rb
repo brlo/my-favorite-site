@@ -26,6 +26,8 @@ Rails.application.routes.draw do
 
     resources :images, only: %i[index create update destroy]
 
+    resources :tags, only: %i[index edit update destroy]
+
     resources :dict_words, except: :show do
       collection do
         get :waitings
@@ -47,6 +49,7 @@ Rails.application.routes.draw do
 
     get 'autocomplete/pages', to: 'autocomplete#pages', as: :autocomplete_pages
     get 'autocomplete/dict_words', to: 'autocomplete#dict_words', as: :autocomplete_dict_words
+    get 'autocomplete/tags', to: 'autocomplete#tags', as: :autocomplete_tags
   end
 
   # JS-маячок посещаемости (без локали в адресе)
@@ -192,6 +195,10 @@ Rails.application.routes.draw do
     get '/lexemas/:lexema', to: 'dict_words#lexema', as: :lexema_verses
 
     get '/about', to: 'pages#about'
+
+    # Теги статей: каталог тегов и статьи одного тега (на языке текущей локали)
+    get '/tags', to: 'tags#index', as: :tags
+    get '/tags/:slug', to: 'tags#show', as: :tag
     # Библейская история на 3D-глобусе
     get '/bible-map', to: 'bible_map#show', as: :bible_map
     get '/search', to: 'verses#search'

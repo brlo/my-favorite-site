@@ -25,6 +25,9 @@
           <% if can?('pages_read') || current_user.pages_owner.present? %>
             <%= link_to 'Статьи', admin_pages_path, class: ('selected' if section == 'pages') %>
           <% end %>
+          <% if can?('tags_manage') %>
+            <%= link_to 'Теги', admin_tags_path, class: ('selected' if section == 'tags') %>
+          <% end %>
           <% if can?('gallery_read') %>
             <%= link_to 'Картинки', admin_images_path, class: ('selected' if section == 'images') %>
           <% end %>

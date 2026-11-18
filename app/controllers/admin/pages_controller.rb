@@ -63,6 +63,7 @@ module Admin
 
       if @page.save
         link_created_page_to_menu
+        @page.sync_tag_list!(tag_names_param) if params[:page].key?(:tag_names)
         redirect_to edit_admin_page_path(@page), notice: 'Статья создана'
       else
         render :new, status: :unprocessable_entity
@@ -80,6 +81,8 @@ module Admin
       if @page.update(page_params)
         # вид поисковой разметки - у всех переводов статьи одинаковый
         @page.propagate_seo_kind if @page.saved_change_to_seo_kind?
+        # теги тоже свойство содержания: набор применяется ко всем переводам статьи
+        @page.sync_tag_list!(tag_names_param) if params[:page].key?(:tag_names)
         redirect_to edit_admin_page_path(@page), notice: 'Статья сохранена'
       else
         flash.now[:alert] = 'Не удалось сохранить статью'
@@ -173,6 +176,11 @@ module Admin
         title, path = link[:title].to_s.strip, link[:path].to_s.strip
         [title, path] if title.present? || path.present?
       end
+    end
+
+    # имена тегов из строк формы: чистим и убираем повторы
+    def tag_names_param
+      params.dig(:page, :tag_names).to_a.map { |name| name.to_s.gsub(/\s+/, ' ').strip }.uniq.reject(&:blank?)
     end
 
     def cover_overlay_all_notice(updated_count, skipped_count)

@@ -1,0 +1,48 @@
+<% @page_title = "Тег: #{@tag.name}" %>
+
+<div class="crumbs"><%= link_to 'Теги', admin_tags_path %></div>
+<h1><%= @tag.name %> <span class="muted">/tags/<%= @tag.slug %></span></h1>
+
+<%= form_with model: [:admin, @tag] do |f| %>
+  <% if @tag.errors.any? %>
+    <div class="errors">
+      <div class="error-title">Не удалось сохранить:</div>
+      <ul><% @tag.errors.full_messages.each do |msg| %><li><%= msg %></li><% end %></ul>
+    </div>
+  <% end %>
+
+  <div class="settings-grid">
+    <section class="side-card">
+      <h3>Тег</h3>
+      <div class="field">
+        <%= f.label :name, 'Имя (каноническое, русское)' %>
+        <%= f.text_field :name, autocomplete: 'off' %>
+        <div class="hint">Имя показывается на всех языках, где нет перевода.</div>
+      </div>
+      <div class="field">
+        <%= f.label :slug, 'Адрес (slug)' %>
+        <%= f.text_field :slug, autocomplete: 'off' %>
+        <div class="hint">Адрес страницы /tags/… Оставьте пустым — сгенерируется из имени. Менять без нужды не стоит: старые ссылки перестанут работать.</div>
+      </div>
+      <div class="field">
+        <label>Статей с тегом</label>
+        <div><%= @tag.taggings.count %></div>
+      </div>
+    </section>
+
+    <section class="side-card">
+      <h3>Переводы имени</h3>
+      <% ::I18n.available_locales.each do |locale| %>
+        <div class="field">
+          <%= label_tag "tag_names_#{locale}", page_lang_string_full(locale.to_s) %>
+          <%= text_field_tag "tag[names][#{locale}]", @tag.names[locale.to_s], autocomplete: 'off' %>
+        </div>
+      <% end %>
+      <div class="hint">Пустое поле = показывать каноническое имя.</div>
+    </section>
+  </div>
+
+  <div class="actions-bar">
+    <%= f.submit 'Сохранить', class: 'btn' %>
+  </div>
+<% end %>

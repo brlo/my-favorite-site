@@ -1,0 +1,48 @@
+<% @page_title = 'Теги' %>
+
+<div class="actions-bar">
+  <h1 style="margin: 0">Теги</h1>
+  <span class="hint push-right">Теги назначаются статьям в форме статьи</span>
+</div>
+
+<%= form_with url: admin_tags_path, method: :get, class: 'search-form',
+      data: { controller: 'auto-submit', turbo_frame: 'tags_list', turbo_action: 'replace' } do %>
+  <%= search_field_tag :term, @term, placeholder: 'Поиск по имени', autofocus: true,
+        autocomplete: 'off', data: { action: 'input->auto-submit#debounced' } %>
+<% end %>
+
+<%= turbo_frame_tag 'tags_list', target: '_top' do %>
+  <% if @tags.empty? %>
+    <p class="muted">Тегов пока нет — добавьте их в форме статьи.</p>
+  <% end %>
+
+  <div class="table-wrap">
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>Тег</th>
+          <th>Адрес</th>
+          <th>Статей</th>
+          <th>Переводы имени</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @tags.each do |tag| %>
+          <tr>
+            <td><%= link_to tag.name, edit_admin_tag_path(tag) %></td>
+            <td class="muted">/tags/<%= tag.slug %></td>
+            <td><%= tag.pages_count.to_i %></td>
+            <td class="muted"><%= tag.names.keys.sort.join(', ').presence || '—' %></td>
+            <td>
+              <%= button_to 'Удалить', admin_tag_path(tag), method: :delete, class: 'btn-link danger',
+                    form: { data: { turbo_confirm: "Удалить тег «#{tag.name}»? Он слетит со всех статей." } } %>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= paginate @tags %>
+<% end %>

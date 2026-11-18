@@ -334,3 +334,14 @@ uz:
 
   citations:
     map_hint: 'Cherkov yozuvchilarining iqtiboslar xaritasi'
+
+  tags:
+    nav: 'Teglar'
+    title: 'Maqola teglari'
+    page_label: 'Teglar'
+    empty: 'Bu tilda hali bu tegli maqola yo‘q'
+    empty_index: 'Hali tegli maqolalar yo‘q'
+    also_in: 'Bu teg quyidagi tillarda ham bor'
+    meta_description: 'Bibleox maqola teglari katalogi'
+    tag_page_title: 'Teg: %{tag}'
+    tag_meta_description: '"%{tag}" tegli maqolalar'

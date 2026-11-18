@@ -1,0 +1,6 @@
+<%# Строка тега в форме статьи: combobox с подсказками существующих тегов, новое имя создаёт новый тег %>
+<div class="link-row">
+  <%= admin_combobox 'page[tag_names][]', name, url: admin_autocomplete_tags_path, key: 'name',
+        placeholder: 'Тег — начните вводить', min_length: 1 %>
+  <button type="button" class="btn-link danger" data-action="rows#remove" title="Убрать тег">✕</button>
+</div>

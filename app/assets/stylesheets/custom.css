@@ -791,3 +791,58 @@ html:lang(zh-Hant) body {
 #bib-text-area:lang(zh-Hant) td {
   line-height: 1.9;
 }
+
+/* === Теги статей === */
+
+/* чипсы-теги: на странице статьи и в каталоге тегов */
+.tag-chip {
+  display: inline-block;
+  margin: 2px 6px 2px 0;
+  padding: 2px 12px;
+  border: 1px dashed #aca08f;
+  border-radius: 14px;
+  font-size: 14px;
+  text-decoration: none;
+}
+
+.tag-chip:hover {
+  border-color: #8a7f5f;
+  color: #8c6964;
+}
+
+.tag-chip .tag-count {
+  margin-left: 4px;
+  color: #aaa;
+  font-size: 12px;
+}
+
+#page-tags, .tags-list {
+  margin: 10px 0;
+  line-height: 2;
+}
+
+.page-tags-label {
+  font-size: 14px;
+  color: #aaa;
+}
+
+.night-mode .tag-chip { border-color: #555; }
+.night-mode .tag-chip:hover { border-color: #61afef; }
+
+/* страница тега: список статей */
+.tag-pages-list { margin-top: 10px; }
+
+.tag-page-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  padding: 6px 0;
+  border-bottom: 1px dashed #aca08f;
+}
+
+.tag-page-item .hint { margin: 0; flex-shrink: 0; }
+
+.night-mode .tag-page-item { border-bottom-color: #555; }
+
+.tag-other-langs { margin: 6px 0 14px; }

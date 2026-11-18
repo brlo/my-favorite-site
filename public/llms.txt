@@ -9,6 +9,7 @@ Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 la
 - Bible text: `/{interface-language}/{translation}/{book-code}/{chapter}/` — e.g. [John 3 in the Russian Synodal](https://bibleox.com/ru/ru/in/3/); a single verse has an anchor: `…/in/3/#L16` (verse 16).
 - The first path segment is the interface language, the second selects content: `https://bibleox.com/en/ru/in/3/` shows the Russian Synodal text with an English interface. Interface and content language can be combined freely.
 - Articles: `/{interface-language}/{content-language}/w/{page-path}` — e.g. [a Russian article with English interface](https://bibleox.com/en/ru/w/q/).
+- Article tags: `/{interface-language}/tags/` is the tag catalog, `/{interface-language}/tags/{tag-slug}` lists that language's articles carrying the tag — e.g. [the Russian tag catalog](https://bibleox.com/ru/tags/). A tag is shared by all translations of an article.
 - Human-readable verse lookup: `/{interface-language}/f/{address}` redirects to the exact verse — e.g. `https://bibleox.com/ru/f/Ин 3:16`, `https://bibleox.com/en/f/John 3:16`, `https://bibleox.com/ja/f/ヨハネ 3:16`, `https://bibleox.com/zh-Hans/f/约翰 3:16`, `https://bibleox.com/zh-Hant/f/約翰 3:16`. Book names are understood in the interface language.
 - Psalms follow Orthodox (Septuagint) numbering (151 psalms); the Old Testament includes the deuterocanonical books of the Orthodox canon (Tobit, Judith, Wisdom of Solomon, Sirach, 1–3 Maccabees, 1–3 Ezra, Epistle of Jeremiah, Baruch).
 

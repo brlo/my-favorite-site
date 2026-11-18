@@ -334,3 +334,14 @@ fa:
 
   citations:
     map_hint: 'نقشهٔ استناد نویسندگان کلیسایی'
+
+  tags:
+    nav: 'برچسب‌ها'
+    title: 'برچسب‌های مقاله‌ها'
+    page_label: 'برچسب‌ها'
+    empty: 'هنوز مقاله‌ای با این برچسب به این زبان نیست'
+    empty_index: 'هنوز مقاله برچسب‌داری نیست'
+    also_in: 'این برچسب به این زبان‌ها هم هست'
+    meta_description: 'فهرست برچسب‌های مقاله‌های Bibleox'
+    tag_page_title: 'برچسب: %{tag}'
+    tag_meta_description: 'مقاله‌های دارای برچسب "%{tag}"'

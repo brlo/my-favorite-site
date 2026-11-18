@@ -1,0 +1,19 @@
+<%# Каталог тегов: теги, у которых есть опубликованные статьи на языке текущей локали %>
+<section class="looks-like-page tags-page">
+  <h1><%= ::I18n.t('tags.title') %></h1>
+
+  <% if @tags.any? %>
+    <div class="tags-list">
+      <% @tags.each do |tag| %>
+        <a class="tag-chip" href="<%= tag_path(tag.slug) %>">
+          <%= tag.name_for(::I18n.locale.to_s) %>
+          <span class="tag-count"><%= tag.pages_count.to_i %></span>
+        </a>
+      <% end %>
+    </div>
+  <% else %>
+    <div class="tip"><%= ::I18n.t('tags.empty_index') %></div>
+  <% end %>
+</section>
+
+<%= render(partial: 'shared/arrow_to_top') %>

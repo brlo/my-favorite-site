@@ -598,3 +598,14 @@ en:
     close: 'Close'
     empty: 'No Church Fathers in our library mention this verse yet.'
     mentions: 'Mentions: %{count}'
+
+  tags:
+    nav: 'Tags'
+    title: 'Article tags'
+    page_label: 'Tags'
+    empty: 'No articles with this tag in this language yet'
+    empty_index: 'No tagged articles yet'
+    also_in: 'This tag is also available in'
+    meta_description: 'Catalog of Bibleox article tags'
+    tag_page_title: 'Tag: %{tag}'
+    tag_meta_description: 'Articles tagged "%{tag}"'

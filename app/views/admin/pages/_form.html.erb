@@ -75,6 +75,24 @@
     </div>
   </div>
 
+  <% if page.persisted? && editable %>
+    <div class="field">
+      <label>Теги</label>
+      <div data-controller="rows">
+        <div data-rows-target="list">
+          <% page.tag_list.each do |name| %>
+            <%= render 'admin/pages/tag_row', name: %>
+          <% end %>
+        </div>
+        <template data-rows-target="template">
+          <%= render 'admin/pages/tag_row', name: nil %>
+        </template>
+        <button type="button" class="btn btn-light btn-small" data-action="rows#add">＋ Добавить тег</button>
+        <div class="hint">Набор тегов один для всех переводов статьи. Новое имя создаёт новый тег.</div>
+      </div>
+    </div>
+  <% end %>
+
   <% if editable %>
     <div class="actions-bar">
       <%= f.submit submit_label, class: 'btn' %>

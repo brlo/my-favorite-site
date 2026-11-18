@@ -88,6 +88,31 @@ class Page < ApplicationRecord
     ::Page.where(group_lang_id: group_lang_id).where.not(id: id).update_all(seo_kind: seo_kind) # rubocop:disable Rails/SkipsModelValidations
   end
 
+  # Имена тегов страницы (для формы админки)
+  def tag_list
+    tags.order(:name).pluck(:name)
+  end
+
+  # Тег — свойство содержания, а не конкретного перевода: набор тегов применяем
+  # ко всем языковым версиям статьи. Несуществующие теги создаются по имени.
+  def sync_tag_list!(names)
+    tag_names = Array(names).map { |name| name.to_s.gsub(/\s+/, ' ').strip }.uniq.reject(&:blank?)
+    new_tags = tag_names.map { |name| ::Tag.find_or_create_by_name!(name) }
+
+    group_pages = group_lang_id.present? ? ::Page.where(group_lang_id: group_lang_id) : ::Page.where(id: id)
+
+    ::ActiveRecord::Base.transaction do
+      new_tag_ids = new_tags.map(&:id)
+      group_pages.find_each do |page|
+        ::Tagging.where(page_id: page.id).where.not(tag_id: new_tag_ids).delete_all
+        existing_tag_ids = ::Tagging.where(page_id: page.id, tag_id: new_tag_ids).pluck(:tag_id)
+        (new_tag_ids - existing_tag_ids).each do |tag_id|
+          ::Tagging.create!(page_id: page.id, tag_id: tag_id)
+        end
+      end
+    end
+  end
+
   # === Ассоциации ===
   belongs_to :user, optional: true
   belongs_to :parent, class_name: 'Page', optional: true, inverse_of: :children
@@ -97,6 +122,8 @@ class Page < ApplicationRecord
   }, class_name: 'Page', optional: true, foreign_key: :parent_id
   has_many :children, class_name: 'Page', foreign_key: :parent_id, inverse_of: :parent
   has_many :bible_references, dependent: :destroy
+  has_many :taggings, dependent: :destroy
+  has_many :tags, through: :taggings
 
   # === Валидации ===
   validates :page_type, :title, :lang, :path, presence: true

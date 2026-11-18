@@ -334,3 +334,14 @@ tr:
 
   citations:
     map_hint: 'Kilise yazarlarının alıntı haritası'
+
+  tags:
+    nav: 'Etiketler'
+    title: 'Makale etiketleri'
+    page_label: 'Etiketler'
+    empty: 'Bu dilde henüz bu etikete sahip makale yok'
+    empty_index: 'Henüz etiketli makale yok'
+    also_in: 'Bu etiket şu dillerde de mevcut'
+    meta_description: 'Bibleox makale etiketleri dizini'
+    tag_page_title: 'Etiket: %{tag}'
+    tag_meta_description: '"%{tag}" etiketli makaleler'

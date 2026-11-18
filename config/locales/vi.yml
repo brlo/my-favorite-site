@@ -334,3 +334,14 @@ vi:
 
   citations:
     map_hint: 'Bản đồ trích dẫn của các tác giả Giáo hội'
+
+  tags:
+    nav: 'Thẻ'
+    title: 'Thẻ bài viết'
+    page_label: 'Thẻ'
+    empty: 'Chưa có bài viết với thẻ này bằng ngôn ngữ này'
+    empty_index: 'Chưa có bài viết được gắn thẻ'
+    also_in: 'Thẻ này cũng có bằng các ngôn ngữ'
+    meta_description: 'Danh mục thẻ bài viết của Bibleox'
+    tag_page_title: 'Thẻ: %{tag}'
+    tag_meta_description: 'Bài viết với thẻ "%{tag}"'
