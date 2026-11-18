@@ -74,7 +74,6 @@
               <% end %>
               <%= link_to t('menu.chat'), chat_path(locale: ::I18n.locale), class: (@current_menu_item == 'chat' ? 'selected' : nil) %>
               <%= link_to t('menu.translates'), translation_projects_path(locale: ::I18n.locale), class: (@current_menu_item == 'translates' ? 'selected' : nil) %>
-              <%= link_to t('tags.nav'), tags_path %>
               <a href="<%= my_lang_page_link_to('help') %>"><%= t('menu.help_site') %></a>
             </div>
           </div>
