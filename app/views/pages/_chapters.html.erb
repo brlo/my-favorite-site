@@ -58,8 +58,8 @@
     </div>
   <% end %>
 
-  <% if @tree_menu.blank? && @chapters.present? && @chapters.size > 1 %>
-    <%= render(partial: 'pages/similar_materials') %>
+  <% if @tree_menu.blank? && @chapters.present? && @chapters.size > 1 && similar_materials_part?(@chapters) %>
+    <%= render(partial: 'pages/similar_materials', locals: { centered: true }) %>
   <% end %>
 
   <%# ссылка на редактирование — только тем, кто может редактировать (страница не кэшируется целиком) %>
@@ -105,5 +105,7 @@
     </div>
   </div>
 
+<% elsif @chapters.present? && @chapters.size > 1 && !similar_materials_part?(@chapters) %>
+  <%= render(partial: 'pages/similar_materials', locals: { centered: false }) %>
 <% end %>
 </div>

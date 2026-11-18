@@ -353,7 +353,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select '.menu-tree .items .menu-link', count: 3
   end
 
-  test "similar materials are rendered under page links" do
+  test "regular similar materials are rendered below the page text bar" do
     list = create_published(title: 'Книга', path: 'links_list', page_type: 4)
     root = Menu.create!(page_id: list.id, title: 'Раздел меню')
     first = create_published(title: 'Глава 1', path: 'links_ch1', parent_id: list.id,
@@ -366,10 +366,11 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select '#links-sub'
-    assert_select '#chapter-header #links-sub ~ .similar-materials'
+    assert_select '#chapter-header #text-bar-wrapper ~ .menu-tree'
+    assert_select '#links-sub ~ .similar-materials', count: 0
   end
 
-  test "similar materials are called parts when all chapter titles are numeric" do
+  test "numeric chapter titles are rendered as parts under page links" do
     list = create_published(title: 'Книга', path: 'parts_list', page_type: 4)
     root = Menu.create!(page_id: list.id, title: 'Раздел меню')
     first = nil
@@ -377,13 +378,15 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     3.times do |i|
       title = "##{i + 1}"
       path = "part_ch#{i + 1}"
-      first ||= create_published(title: title, path: path, parent_id: list.id)
+      first ||= create_published(title: title, path: path, parent_id: list.id,
+                                 links: { 'Другое' => '/other' })
       Menu.create!(page_id: list.id, parent_id: root.id, title: title, path: path, priority: i + 1)
     end
 
     get "/ru/ru/w/#{first.path}"
 
     assert_response :success
+    assert_select '#chapter-header #links-sub ~ .similar-materials'
     assert_select '.same-subject-static', text: 'Часть'
     assert_select '.same-subject-toggle span', text: 'Часть'
   end
