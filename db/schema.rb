@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_14_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_18_100000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -253,10 +253,12 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_14_120000) do
     t.boolean "is_past"
     t.string "cover_overlay_bg"
     t.string "cover_overlay_text"
+    t.string "seo_kind"
     t.index ["lang", "path"], name: "index_pages_on_lang_and_path"
     t.index ["parent_id"], name: "index_pages_on_parent_id"
     t.index ["path_low"], name: "index_pages_on_path_low", unique: true
     t.index ["redirect_from"], name: "index_pages_on_redirect_from", where: "(redirect_from IS NOT NULL)"
+    t.index ["seo_kind"], name: "index_pages_on_seo_kind"
     t.index ["title"], name: "index_pages_on_title"
     t.index ["updated_at"], name: "index_pages_on_updated_at"
     t.index ["user_id"], name: "index_pages_on_user_id"

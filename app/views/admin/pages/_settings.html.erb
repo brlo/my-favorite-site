@@ -19,6 +19,12 @@
             </div>
 
             <div class="field">
+              <%= f.label :seo_kind, 'Разметка для поисковиков' %>
+              <%= f.select :seo_kind, AdminHelper::SEO_KIND_OPTIONS, {}, data: { controller: 'hint-switch', action: 'hint-switch#update', hint_switch_hints_value: AdminHelper::SEO_KIND_HINTS.to_json } %>
+              <div class="hint"><%= AdminHelper::SEO_KIND_HINTS[page.seo_kind.to_s] %></div>
+            </div>
+
+            <div class="field">
               <%= f.label :lang, 'Язык' %>
               <%= f.select :lang, admin_lang_options %>
             </div>

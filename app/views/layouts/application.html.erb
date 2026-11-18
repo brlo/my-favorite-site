@@ -2,7 +2,9 @@
 <html lang="<%= @page&.lang || @verses&.first&.lang || ::I18n.locale.to_s %>">
   <head>
     <meta charset="UTF-8">
+    <% if @canonical_url.present? %>
     <link rel="canonical" href="<%= @canonical_url %>">
+    <% end %>
     <title><%= @page_title %> / <%= I18n.t('title') %></title>
     <% if @no_index == true %>
     <meta name="robots" content="noindex, follow">
@@ -12,6 +14,7 @@
     <meta property="og:site_name" content="<%= I18n.t('title') %>">
     <meta property="og:title" content="<%= @page_title %> / <%= I18n.t('title') %>">
     <meta property="og:description" content="<%= @meta_description %>">
+    <script type="application/ld+json"><%= raw JSON.generate({"@context" => "https://schema.org", "@type" => "WebSite", "name" => I18n.t('title'), "url" => "https://bibleox.com/"}) %></script>
 <%= content_for?(:head) ? yield(:head) : '' %>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">

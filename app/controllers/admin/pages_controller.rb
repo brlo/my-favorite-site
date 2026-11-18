@@ -4,7 +4,7 @@ module Admin
     BASIC_FIELDS = %i[title title_sub body references is_published].freeze
     # служебные поля, видны и доступны только с привилегией super
     SUPER_FIELDS = %i[
-      page_type edit_mode path parent_id lang group_lang_id meta_desc audio
+      page_type seo_kind edit_mode path parent_id lang group_lang_id meta_desc audio
       is_search is_bibleox is_past period_start period_end is_menu_icons is_show_parent
     ].freeze
     # поля, которые приходят предзаполненными из ссылки «создать страницу» (404 на сайте)
@@ -78,6 +78,8 @@ module Admin
       @page.links = links_param
 
       if @page.update(page_params)
+        # вид поисковой разметки - у всех переводов статьи одинаковый
+        @page.propagate_seo_kind if @page.saved_change_to_seo_kind?
         redirect_to edit_admin_page_path(@page), notice: 'Статья сохранена'
       else
         flash.now[:alert] = 'Не удалось сохранить статью'

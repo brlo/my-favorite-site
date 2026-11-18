@@ -38,4 +38,79 @@ module PagesHelper
 
     strip_tags(page.body.to_s).squish.length >= CHAT_INVITE_MIN_TEXT_LENGTH
   end
+
+  # JSON-LD по виду страницы (page.seo_kind): Person - автор, Book - книга, Article - обычная статья
+  def page_structured_data(og_image)
+    if @page.is_person_kind?
+      person_structured_data(og_image)
+    elsif @page.is_book_kind?
+      book_structured_data(og_image)
+    else
+      article_structured_data(og_image)
+    end
+  end
+
+  # og:type по виду страницы: profile у автора, book у книги, article у статьи
+  def page_og_type
+    return 'profile' if @page.is_person_kind?
+    return 'book' if @page.is_book_kind?
+
+    'article'
+  end
+
+  private
+
+  def article_structured_data(og_image)
+    JSON.generate(
+      '@context' => 'https://schema.org',
+      '@type' => 'Article',
+      'headline' => @page.title,
+      'inLanguage' => @content_lang,
+      'datePublished' => @page.created_at&.iso8601,
+      'dateModified' => @page.updated_at&.iso8601,
+      'image' => og_image,
+      'mainEntityOfPage' => @canonical_url,
+      'author' => {'@type' => 'Organization', 'name' => I18n.t('title')},
+      'publisher' => {'@type' => 'Organization', 'name' => I18n.t('title'), 'logo' => {'@type' => 'ImageObject', 'url' => my_res_link_to('/logo/bibleox.png')}},
+    )
+  end
+
+  def person_structured_data(og_image)
+    data = {
+      '@context' => 'https://schema.org',
+      '@type' => 'Person',
+      'name' => @page.title,
+      'description' => @page.title_sub.presence,
+      'url' => @canonical_url,
+      'image' => og_image,
+    }
+    dates = @page.life_dates
+    data['birthDate'] = dates[:birth].to_s if dates[:birth]
+    data['deathDate'] = dates[:death].to_s if dates[:death]
+    JSON.generate(data)
+  end
+
+  def book_structured_data(og_image)
+    data = {
+      '@context' => 'https://schema.org',
+      '@type' => 'Book',
+      'name' => @page.title,
+      'description' => @page.title_sub.presence,
+      'url' => @canonical_url,
+      'image' => og_image,
+      'inLanguage' => @page.lang,
+    }
+    if (author = book_author_page)
+      data['author'] = {'@type' => 'Person', 'name' => author.title, 'url' => author.canonical_url}
+    end
+    JSON.generate(data)
+  end
+
+  # автор книги: страница-автор (seo_kind=person), в чьём меню есть ссылка на эту книгу
+  def book_author_page
+    @book_author_page ||= begin
+      menu_page_ids = ::Menu.where(path: @page.path).distinct.pluck(:page_id)
+      ::Page.where(id: menu_page_ids, seo_kind: 'person').first
+    end
+  end
 end

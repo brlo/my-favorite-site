@@ -386,4 +386,42 @@ class PageTest < ActiveSupport::TestCase
     assert_equal [en], skipped
   end
 
+  # --- seo_kind: вид поисковой разметки ---
+
+  test "seo_kind accepts only known kinds and blank becomes nil" do
+    page = create_page(seo_kind: 'person')
+    assert page.is_person_kind?
+    assert_not page.is_book_kind?
+
+    page.update!(seo_kind: '')
+    assert_nil page.reload.seo_kind
+
+    assert_raises(ActiveRecord::RecordInvalid) { create_page(seo_kind: 'movie') }
+  end
+
+  test "life_dates come from period columns, else from years in title_sub" do
+    assert_equal({birth: 347, death: 407}, Page.new(title_sub: 'святитель (~347-407), архиепископ').life_dates)
+    assert_equal({birth: 130, death: 202}, Page.new(title_sub: 'sanctus martyr (circa 130–202), episcopus').life_dates)
+    assert_equal({death: 311}, Page.new(title_sub: 'hieromartyr (†~311), bishop').life_dates)
+    assert_equal({birth: 1978}, Page.new(title_sub: '(1978)').life_dates)
+    assert_equal({}, Page.new(title_sub: 'без дат').life_dates)
+    # заполненные period-колонки имеют приоритет над подзаголовком
+    filled = create_page(title_sub: '(347-407)', period_start: '1807', period_end: '1867')
+    assert_equal({birth: 1807, death: 1867}, filled.life_dates)
+  end
+
+  test "propagate_seo_kind copies the kind to all translations" do
+    ru = create_page(lang: 'ru', seo_kind: 'book')
+    en = create_page(lang: 'en', group_lang_id: ru.group_lang_id)
+    outsider = create_page(lang: 'en')
+
+    ru.propagate_seo_kind
+    assert_equal 'book', en.reload.seo_kind
+    assert_nil outsider.reload.seo_kind
+
+    ru.update!(seo_kind: nil)
+    ru.propagate_seo_kind
+    assert_nil en.reload.seo_kind
+  end
+
 end

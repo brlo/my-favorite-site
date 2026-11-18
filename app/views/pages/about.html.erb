@@ -13,6 +13,7 @@
     <% next if ::I18n.locale.to_s == lang.to_s %>
     <link rel="alternate" hreflang="<%= lang %>" href="<%= "https://bibleox.com/#{lang}/about/" %>" />
   <% end %>
+  <link rel="alternate" hreflang="x-default" href="https://bibleox.com/ru/about/" />
 <% end %>
 
 <% content_for(:img_header) do %>

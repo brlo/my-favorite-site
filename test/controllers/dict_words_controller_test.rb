@@ -46,4 +46,16 @@ class DictWordsControllerTest < ActionDispatch::IntegrationTest
     # словари - после блоков с информацией о слове
     assert_operator response.body.index('word-section'), :<, response.body.index('dict-words')
   end
+
+  test "word and lexeme pages have non-empty canonical url" do
+    dict_word = DictWord.create!(dict: 'd', word: 'λόγος', desc: 'слово')
+
+    get "/ru/words/#{dict_word.id}"
+    assert_response :success
+    assert_includes response.body, %(rel="canonical" href="https://bibleox.com/ru/words/#{dict_word.id}")
+
+    get "/en/lexemas/#{ERB::Util.url_encode('λόγος')}"
+    assert_response :success
+    assert_includes response.body, %(rel="canonical" href="https://bibleox.com/en/lexemas/#{ERB::Util.url_encode('λόγος')}")
+  end
 end

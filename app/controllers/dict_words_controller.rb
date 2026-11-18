@@ -5,6 +5,9 @@ class DictWordsController < ApplicationController
     # раньше тут был поиск не по id, а по словам, поэтому какое-то время ещё надо слова поддерживать:
     param_id = params[:bib_word_id]
 
+    # без canonical в layout уезжает пустой href="" - для поисковиков это битая разметка
+    @canonical_url = build_canonical_url("/words/#{param_id}") if param_id.present?
+
     if param_id.blank?
       # 1. Идентификатора нет - 404.
       head 404
@@ -96,6 +99,7 @@ class DictWordsController < ApplicationController
 
     @page_title = ::I18n.t('bib_word_info.lexema_title', lexema: @lexema)
     @meta_description = @page_title
+    @canonical_url = build_canonical_url("/lexemas/#{ERB::Util.url_encode(@lexema)}")
     @no_index = true if params[:page].to_i > 1
   end
 

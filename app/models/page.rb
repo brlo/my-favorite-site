@@ -34,6 +34,9 @@ class Page < ApplicationRecord
     'contributors' => 3,
   }
 
+  # Вид поисковой разметки страницы (SEO): NULL - статья, 'person' - страница автора, 'book' - страница книги
+  SEO_KINDS = %w[person book].freeze
+
   SITE_URL = 'https://bibleox.com'.freeze
 
   COVER_COLOR_FORMAT = /\A#(?:[0-9a-f]{3}|[0-9a-f]{6})\z/
@@ -61,6 +64,30 @@ class Page < ApplicationRecord
     self.class.url_for(lang, path)
   end
 
+  def is_person_kind?
+    seo_kind == 'person'
+  end
+
+  def is_book_kind?
+    seo_kind == 'book'
+  end
+
+  # Годы жизни автора для JSON-LD Person: из period_start/period_end, иначе из подзаголовка
+  # («святитель (~347-407), архиепископ...», «hieromartyr (†~311)», «(1978)»)
+  def life_dates
+    parsed = parsed_title_sub_dates
+    birth = date_start_int.presence || year_from_string(period_start) || parsed[:birth]
+    death = date_end_int.presence || year_from_string(period_end) || parsed[:death]
+    {birth: birth, death: death}.compact_blank
+  end
+
+  # seo_kind - свойство содержания (автор/книга), а не конкретного перевода: применяем ко всем языковым версиям
+  def propagate_seo_kind
+    return if group_lang_id.blank?
+
+    ::Page.where(group_lang_id: group_lang_id).where.not(id: id).update_all(seo_kind: seo_kind) # rubocop:disable Rails/SkipsModelValidations
+  end
+
   # === Ассоциации ===
   belongs_to :user, optional: true
   belongs_to :parent, class_name: 'Page', optional: true, inverse_of: :children
@@ -74,12 +101,14 @@ class Page < ApplicationRecord
   # === Валидации ===
   validates :page_type, :title, :lang, :path, presence: true
   validates :cover_overlay_bg, :cover_overlay_text, format: { with: COVER_COLOR_FORMAT }, allow_nil: true
+  validates :seo_kind, inclusion: {in: SEO_KINDS}, allow_nil: true
 
   # === Скоупы ===
   scope :published, -> { where(is_published: true) }
   scope :deleted, -> { where(is_deleted: true) }
 
   before_validation :normalize_attributes
+  before_validation { self.seo_kind = seo_kind.presence }
 
   before_update :update_menus_params
   before_save :calc_date_int, if: -> { period_start_changed? || period_end_changed? }
@@ -236,6 +265,25 @@ class Page < ApplicationRecord
   end
 
   private
+
+  # Первое «(...)» в подзаголовке. Диапазон «(1807-1867)»/«(circa 130–202)» - рождение и смерть;
+  # одиночный год без † - рождение («(1978)»), с † - смерть («(†~311)»)
+  def parsed_title_sub_dates
+    chunk = title_sub.to_s[/\(([^)]+)\)/, 1].to_s
+    if chunk.match?(/\d{3,4}\s*[-–—]\s*[†+~≈\s]*\d{3,4}/)
+      birth, death = chunk.scan(/\d{3,4}/)
+      {birth: birth.to_i, death: death.to_i}
+    elsif (year = chunk[/\d{3,4}/])
+      chunk.match?(/[†+]/) ? {death: year.to_i} : {birth: year.to_i}
+    else
+      {}
+    end
+  end
+
+  # «1828 / III / ~850» или просто «1978» -> год
+  def year_from_string(value)
+    value.to_s[/\d{3,4}/]&.to_i
+  end
 
   def normalize_attributes
     self.title = self.title.to_s.strip.gsub(/[\t\s\n\r]+/, ' ')

@@ -6,7 +6,8 @@ class PagesController < ApplicationController
   # caches_page :show, :about
 
   def main
-    redirect_to "/#{I18n.locale}/"
+    # 301: поисковики переносят сигналы корня на языковую главную только при постоянном редиректе
+    redirect_to "/#{I18n.locale}/", status: :moved_permanently
   end
 
   def show

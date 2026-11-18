@@ -22,6 +22,47 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert page.persisted?
   end
 
+  test "root redirects to language home with 301" do
+    get '/'
+    assert_response :moved_permanently
+    assert_redirected_to '/ru/'
+  end
+
+  test "article page has x-default hreflang and Article JSON-LD" do
+    create_published(path: 'seo_marks')
+    get '/ru/ru/w/seo_marks'
+    assert_response :success
+    assert_includes response.body, 'hreflang="x-default"'
+    assert_includes response.body, '"@type":"Article"'
+    assert_includes response.body, '"dateModified"'
+    assert_includes response.body, 'property="og:type" content="article"'
+  end
+
+  test "person page has Person JSON-LD with life dates from title_sub and profile og:type" do
+    page = create_published(path: 'author_page', title: 'Иоанн Златоуст, IV век', title_sub: 'святитель (~347-407), архиепископ Константинопольский')
+    page.update_column(:seo_kind, 'person')
+    get '/ru/ru/w/author_page'
+    assert_response :success
+    assert_includes response.body, '"@type":"Person"'
+    assert_includes response.body, '"birthDate":"347"'
+    assert_includes response.body, '"deathDate":"407"'
+    assert_includes response.body, 'property="og:type" content="profile"'
+  end
+
+  test "book page has Book JSON-LD with author from a person menu and book og:type" do
+    author = create_published(page_type: 4, title: 'Священник Евгений Веселов')
+    author.update_column(:seo_kind, 'person')
+    book = create_published(title: 'Вне Церкви нет спасения', title_sub: '(Издание второе, исправленное)')
+    book.update_column(:seo_kind, 'book')
+    Menu.create!(page_id: author.id, title: book.title, path: book.path)
+
+    get "/ru/ru/w/#{book.path}"
+    assert_response :success
+    assert_includes response.body, '"@type":"Book"'
+    assert_includes response.body, '"author":{"@type":"Person","name":"Священник Евгений Веселов"'
+    assert_includes response.body, 'property="og:type" content="book"'
+  end
+
   test "author and editors are shown" do
     author = create_user(name: 'Автор Статьи')
     editor = create_user(name: 'Редактор Правок')

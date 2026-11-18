@@ -24,6 +24,18 @@ module AdminHelper
     ['Автор и редакторы', 3],
   ].freeze
 
+  SEO_KIND_OPTIONS = [
+    ['— обычная статья', ''],
+    ['Автор (Person)', 'person'],
+    ['Книга (Book)', 'book'],
+  ].freeze
+
+  SEO_KIND_HINTS = {
+    '' => 'Разметка статьи (Article). Подходит большинству страниц.',
+    'person' => 'Страница автора: поисковики увидят Person с именем и годами жизни из подзаголовка.',
+    'book' => 'Страница книги: поисковики увидят Book, автор подтянется из меню страницы-автора.',
+  }.freeze
+
   # адрес статьи на сайте
   def admin_public_page_path(page)
     lang = page.lang.to_s
