@@ -27,7 +27,7 @@ class PageParagraphSearchPgroonga
     relation = base_relation
 
     build_groonga_queries(words).each do |groonga_query|
-      count = relation.where("content &@~ ?", groonga_query).count
+      count = relation.where("#{search_column} &@~ ?", groonga_query).count
       return count if count.positive?
     end
     0
@@ -66,6 +66,7 @@ class PageParagraphSearchPgroonga
   def sanitize_and_tokenize
     # Оставляем буквы, цифры, пробелы, дефисы и плюсы (синтаксис Groonga)
     clean = text.strip.gsub(/[^\p{L}\p{N}\s\-+]/u, ' ').gsub(/\s+/, ' ').strip
+    clean = ::ArabicSearchNormalizer.normalize(clean) if arabic?
     return [] if clean.length < min_length
 
     # Для CJK допускаем слова от 1 символа, для латиницы/кириллицы от 2
@@ -110,7 +111,7 @@ class PageParagraphSearchPgroonga
         # Подсветку вынес в отдельный запрос, чтобы не подсвечивать все совпадения в БД, а только совпадения для страницы
         # "pgroonga_highlight_html(content, pgroonga_query_extract_keywords('#{keywords.join(' ')}'), '#{index_name}') AS snippets_raw"
       )
-      .where("content &@~ ?", groonga_query)
+      .where("#{search_column} &@~ ?", groonga_query)
       .where(lang: start_page.lang) # чтобы подключился нужный индекс, так как добавили индексы условные
       .order("rank DESC")
       .to_a
@@ -125,6 +126,16 @@ class PageParagraphSearchPgroonga
 
   def populate_snippets(results, keywords)
     return results if results.blank?
+
+    # Для арабского подсветку делаем в Ruby: в content_ar огласовки сняты,
+    # а показать хочется исходный текст статьи.
+    if arabic?
+      results.each do |par|
+        par.instance_variable_set(:@search_snippets, [::ArabicSearchNormalizer.highlight(par.content, keywords)])
+        par.define_singleton_method(:highlighted_snippets) { @search_snippets }
+      end
+      return results
+    end
 
     ids = results.map(&:id)
     # Один запрос на все сниппеты
@@ -152,5 +163,14 @@ class PageParagraphSearchPgroonga
     return unless highlighted_snippet.present?
 
     snippets = [highlighted_snippet]
+  end
+
+  def arabic?
+    lang.to_s == 'ar'
+  end
+
+  # Колонка, по которой ищем: для арабского — нормализованная копия текста
+  def search_column
+    arabic? ? 'content_ar' : 'content'
   end
 end

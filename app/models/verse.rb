@@ -40,6 +40,8 @@ class Verse < ApplicationRecord
     # при нормализации в лексемы, и потом в итоге не ищутся нормально. Надо эти переносы удалять обязательно. Они часто встречаются и их не видно визуально.
     self.text_search = sanitizer.sanitize(self.text, tags: []).gsub("\u00AD", '')
     self.text_search = self.text_search.gsub(/\[([\p{Hiragana}\p{Katakana}]+)\]/, '')
+    # арабский поиск сравнивает текст без огласовок, поэтому держим нормализованную копию
+    self.text_search_ar = (::ArabicSearchNormalizer.normalize(self.text_search) if lang.to_s == 'ar')
 
     # "私[わたし]" => "<ruby><rb>私</rb><rt>わたし</rt></ruby>"
     # self.text = ::Tools::StringUtils::Rubyfy.call(self.body_rendered)

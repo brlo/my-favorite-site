@@ -61,10 +61,13 @@ class MybibleImporter
         next
       end
 
+      text_search = sanitizer.sanitize(text).gsub("\u00AD", '')
       {
         tr_code: @tr_code, lang: @lang, book_id: book_id.to_i, book: book, zavet: ::BOOKS[book][:zavet] == 2,
         chapter: chapter.to_i, line: verse.to_i, address: "#{book}:#{chapter.to_i}:#{verse.to_i}",
-        text: text, text_search: sanitizer.sanitize(text).gsub("\u00AD", ''), data: { 'orig' => orig },
+        text: text, text_search: text_search,
+        text_search_ar: (@lang == 'ar' ? ::ArabicSearchNormalizer.normalize(text_search) : nil),
+        data: { 'orig' => orig },
         created_at: now, updated_at: now,
       }
     end

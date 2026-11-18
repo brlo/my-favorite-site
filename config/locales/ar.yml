@@ -18,6 +18,14 @@ ar:
   about_translations: "ترجمات الكتاب المقدس"
   fast_search: بحث سريع
   voice: صوت
+  audio:
+    play: تشغيل
+    pause: إيقاف مؤقت
+    back: رجوع ١٥ ثانية
+    forward: تقدّم ١٥ ثانية
+    speed: سرعة التشغيل
+    seek: الموضع
+    close: إغلاق المشغّل
   quote_start: '«'
   quote_end: '»'
   bracket_start: '('
@@ -158,6 +166,10 @@ ar:
 
   bib_word_info:
     warning: عذراً، هذه الصفحة قيد التطوير حالياً
+    dict_source: المصدر
+    lexema_title: 'المفردة «%{lexema}» في الكتاب المقدس'
+    lexema_forms: الصيغ
+    lexema_verses_count: 'الآيات: %{count}'
     h1_title: 'الكلمة الكتابية «%{word}» في المعاجم اليونانية'
     translations: الترجمة
     morphology: الصرف
@@ -582,3 +594,7 @@ ar:
 
   citations:
     map_hint: 'خريطة اقتباسات الآباء الكنسيين'
+    title: 'آباء الكنيسة عن %{address}'
+    close: إغلاق
+    empty: 'لا يذكر أحد من آباء الكنيسة في مكتبتنا هذه الآية بعد.'
+    mentions: 'الاقتباسات: %{count}'

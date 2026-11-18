@@ -16,6 +16,8 @@ class PageParagraph < ApplicationRecord
     # simple_text = DictWord.word_clean_gr(simple_text.to_s) if self.lang.in?(['grc', 'el'])
     # убираем из получившихся строк все html-тэги
     self.content = sanitizer.sanitize(simple_text.to_s, tags: [])
+    # арабский поиск сравнивает текст без огласовок, поэтому держим нормализованную копию
+    self.content_ar = (::ArabicSearchNormalizer.normalize(self.content) if lang.to_s == 'ar')
     # clean_text = ActionView::Base.full_sanitizer.sanitize(clean_text)
   end
 

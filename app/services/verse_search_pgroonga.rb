@@ -44,7 +44,7 @@ class VerseSearchPgroonga
     relation = base_relation
 
     build_groonga_queries(words).each do |groonga_query|
-      count = relation.where("body_search &@~ ?", groonga_query).count
+      count = relation.where("#{search_column} &@~ ?", groonga_query).count
       return count if count.positive?
     end
     0
@@ -82,9 +82,7 @@ class VerseSearchPgroonga
     end
 
     # названия переводом Библии валидны?
-    if ::CacheSearch::SEARCH_LANGS.exclude?(@tr_code)
-      return []
-    end
+    return false if ::CacheSearch::SEARCH_LANGS.exclude?(@tr_code)
 
     true
   end
@@ -96,6 +94,7 @@ class VerseSearchPgroonga
   def sanitize_and_tokenize
     # Оставляем буквы, цифры, пробелы, дефисы и плюсы (синтаксис Groonga)
     clean = text.strip.gsub(/[^\p{L}\p{N}\s\-+]/u, ' ').gsub(/\s+/, ' ').strip
+    clean = ::ArabicSearchNormalizer.normalize(clean) if arabic?
     return [] if clean.length < min_length
 
     # Для CJK допускаем слова от 1 символа, для латиницы/кириллицы от 2
@@ -127,6 +126,7 @@ class VerseSearchPgroonga
   def base_relation
     relation = ::Verse
     relation = relation.where(tr_code: @tr_code) if @tr_code.present?
+    relation = relation.where(lang: @lang) if arabic? && @lang.present?
     relation = relation.where(book: @search_books) if @search_books.present?
     relation = relation.where(zavet: @zavet) if !@zavet.nil?
     # relation = relation.limit(@limit) if @limit.present?
@@ -134,6 +134,16 @@ class VerseSearchPgroonga
   end
 
   def execute_search(relation, conn, groonga_query, keywords)
+    # Для арабского подсветку делаем в Ruby (см. process_snippets): в text_search_ar
+    # огласовки сняты, а показать хочется исходный текст стиха.
+    if arabic?
+      return relation
+        .select(:id, :text, :text_search, :book, :chapter, :line, :lang)
+        .where("text_search_ar &@~ ?", groonga_query)
+        .order(%i[tr_code book_id chapter line])
+        .to_a
+    end
+
     # TIP!!!: после того как функции pgroonga_highlight_html добавил имя индекса (таким образом подключается нормализатор из этого индекса)
     # заработала подсветка синтаксиса с разным регистром. Хотя, всё это дело очень мутно работает.
     relation
@@ -157,13 +167,25 @@ class VerseSearchPgroonga
     return [] if results.empty?
 
     results.each do |verse|
-      # raw = verse.snippets_raw || []
-      # ranked = rank_snippets(raw, keywords)
-      ranked = verse.snippets_raw
+      snippet =
+        if arabic?
+          ::ArabicSearchNormalizer.highlight(verse.text_search, keywords)
+        else
+          verse.snippets_raw
+        end
 
-      verse.instance_variable_set(:@search_snippets, ranked)
+      verse.instance_variable_set(:@search_snippets, snippet)
       verse.define_singleton_method(:snippet) { @search_snippets }
     end
     results
+  end
+
+  def arabic?
+    @lang.to_s == 'ar'
+  end
+
+  # Колонка, по которой ищем: для арабского — нормализованная копия текста
+  def search_column
+    arabic? ? 'text_search_ar' : 'text_search'
   end
 end

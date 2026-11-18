@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_18_100000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_18_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -206,8 +206,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_18_100000) do
     t.text "content", null: false
     t.tsvector "content_tsvector"
     t.string "lang", null: false
+    t.text "content_ar"
     t.index ["content"], name: "idx_page_paragraphs_content_default", where: "((lang)::text <> 'ja'::text)", using: :pgroonga
     t.index ["content"], name: "idx_page_paragraphs_content_mecab", where: "((lang)::text = 'ja'::text)", using: :pgroonga
+    t.index ["content_ar"], name: "idx_page_paragraphs_content_arabic", where: "((lang)::text = 'ar'::text)", using: :pgroonga
     t.index ["content_tsvector"], name: "index_page_paragraphs_on_content_tsvector", using: :gin
     t.index ["page_id"], name: "index_page_paragraphs_on_page_id"
     t.index ["position"], name: "index_page_paragraphs_on_position"
@@ -381,8 +383,10 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_18_100000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.tsvector "text_tsvector"
+    t.text "text_search_ar"
     t.index ["text_search"], name: "idx_verses_text_search_default", where: "((tr_code)::text <> 'jp-ni'::text)", using: :pgroonga
     t.index ["text_search"], name: "idx_verses_text_search_mecab", where: "((tr_code)::text = 'jp-ni'::text)", using: :pgroonga
+    t.index ["text_search_ar"], name: "idx_verses_text_search_arabic", where: "((lang)::text = 'ar'::text)", using: :pgroonga
     t.index ["text_tsvector"], name: "index_verses_on_text_tsvector", using: :gin
     t.index ["tr_code", "book", "chapter"], name: "index_verses_on_tr_code_and_book_and_chapter"
     t.index ["tr_code", "book"], name: "index_verses_on_tr_code_and_book"
