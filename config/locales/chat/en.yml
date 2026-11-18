@@ -3,6 +3,8 @@ en:
     chat: Chat
   chat:
     title: Chat
+    invite_close: 'Close'
+    invite_cta: 'Go to chat'
     description: Questions and discussion about the Bible and faith
     login_link: Log in
     guest_hint: Moderators will see your messages and reply to you. To make your messages visible to everyone, sign up and confirm your email.

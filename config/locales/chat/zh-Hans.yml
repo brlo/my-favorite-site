@@ -3,6 +3,8 @@ zh-Hans:
     chat: 聊天
   chat:
     title: 聊天
+    invite_close: '关闭'
+    invite_cta: '前往聊天室'
     description: 关于圣经与信仰的提问和交流
     login_link: 登录
     guest_hint: 管理员会看到你的消息并回复你。要让所有参与者看到你的消息，请注册并验证电子邮箱。

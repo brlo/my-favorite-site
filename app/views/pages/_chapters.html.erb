@@ -58,6 +58,10 @@
     </div>
   <% end %>
 
+  <% if @tree_menu.blank? && @chapters.present? && @chapters.size > 1 %>
+    <%= render(partial: 'pages/similar_materials') %>
+  <% end %>
+
   <%# ссылка на редактирование — только тем, кто может редактировать (страница не кэшируется целиком) %>
   <% if logged_in? && current_user.admin_area_access? && current_user.allow_ip?(request.ip) && @page.editable_by?(current_user) %>
     <div class="page-edit-top">
@@ -98,22 +102,6 @@
   <div class="menu-tree <%= text_cont_classes %>" data-menu-filter-target="tree">
     <div>
       <%= render(partial: 'pages/menu', locals: {items: @tree_menu, depth: 0, page_lang: @page.lang}) %>
-    </div>
-  </div>
-
-<% elsif @chapters.present? && @chapters.size > 1 %>
-  <!-- Похожие мастериалы -->
-  <div class="menu-tree <%= text_cont_classes %>">
-    <div class="bar-description"><%= ::I18n.t('menu.same_subject') %></div>
-    <div class="items">
-      <% @chapters.each.with_index do |(title, path, is_gold), i| %>
-        <% classes = "menu-unit menu-link" %>
-        <% i == (@chapter_current-1) ? (classes += ' selected') : nil %>
-        <% is_gold ? (classes += ' gold') : nil %>
-        <div class="<%= classes %>">
-          <a href="<%= my_page_link_to("/#{path}", page_lang: @page.lang) %>"><span><%= title %></span></a>
-        </div>
-      <% end %>
     </div>
   </div>
 

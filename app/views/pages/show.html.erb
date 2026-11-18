@@ -33,7 +33,7 @@
     <% else %>
       <article
         id='page-body'
-        data-controller='share-links'
+        data-controller='share-links section-collapse'
         itemprop="articleBody"
         class="verses <%= text_cont_classes %> <%= text_size_class %>">
 
@@ -49,6 +49,8 @@
       </article>
     <% end %>
     <%#= javascript_include_tag "first_needs", media: "all" %>
+
+    <%= render(partial: 'pages/chat_invite') if chat_invite_available?(@page) %>
 
     <% if @chapters.present? && @chapters.size > 1 %>
       <div class='prev-next-bar'>
@@ -108,10 +110,6 @@
       <div id="page-timestamps">
         <%= ::I18n.t('quote_page.created_at') %>: <%= @page.created_at&.strftime('%Y-%m-%d') %>,
         <%= ::I18n.t('quote_page.updated_at') %>: <%= @page.updated_at&.strftime('%Y-%m-%d') %>
-      </div>
-
-      <div id="page-edit-telegram">
-        <%= ::I18n.t('quote_page.whant_to_fix') %>: <%= link_to chat_url, chat_url %>
       </div>
     </div>
   </section>

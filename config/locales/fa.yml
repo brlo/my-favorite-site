@@ -67,8 +67,6 @@ fa:
     references: 'یادداشت‌ها'
     no_books_links_yet: 'هنوز پیوندهای دیگری اینجا وجود ندارد. بعداً مراجعه کنید.'
     menu_name: 'فهرست مطالب'
-    menu_expand: 'نمایش همه'
-    menu_collapse: 'بستن'
     search_placeholder: 'جستجو در تمام بخش'
 
   dict_words:
@@ -303,6 +301,7 @@ fa:
     login: 'ورود'
     another_categories: 'دسته‌بندی‌های دیگر'
     same_subject: 'موارد مشابه:'
+    same_subject_part: 'بخش'
 
   settings:
     color_scheme: 'رنگ‌ها'

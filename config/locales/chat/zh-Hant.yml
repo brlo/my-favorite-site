@@ -3,6 +3,8 @@ zh-Hant:
     chat: 聊天
   chat:
     title: 聊天
+    invite_close: '關閉'
+    invite_cta: '前往聊天室'
     description: 關於聖經與信仰的提問和交流
     login_link: 登入
     guest_hint: 管理員會看到你的訊息並回覆你。要讓所有參與者看到你的訊息，請註冊並驗證電子郵件。

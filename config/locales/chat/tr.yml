@@ -3,6 +3,8 @@ tr:
     chat: Sohbet
   chat:
     title: Sohbet
+    invite_close: 'Kapat'
+    invite_cta: 'Sohbete git'
     description: Kutsal Kitap ve iman hakkında sorular ve sohbet
     login_link: Giriş yap
     guest_hint: Moderatörler mesajlarınızı görecek ve size cevap verecek. Mesajlarınızı tüm katılımcıların görmesi için kayıt olun ve e-posta adresinizi doğrulayın.

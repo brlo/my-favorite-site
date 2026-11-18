@@ -67,8 +67,6 @@ sr:
     references: 'Напомене'
     no_books_links_yet: 'Овде још нема других линкова. Погледајте касније.'
     menu_name: 'Садржај'
-    menu_expand: 'Прошири'
-    menu_collapse: 'Сажми'
     search_placeholder: 'Претрага целог одељка'
 
   dict_words:
@@ -303,6 +301,7 @@ sr:
     login: Пријави се
     another_categories: 'Други одељци'
     same_subject: "Слични материјали:"
+    same_subject_part: 'Део'
 
   settings:
     color_scheme: Боје

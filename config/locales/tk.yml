@@ -67,8 +67,6 @@ tk:
     references: 'Bellikler'
     no_books_links_yet: 'Häzirçe beýleki çykgytlar ýok. Soňra gaýdyp geliň.'
     menu_name: 'Mazmuny'
-    menu_expand: 'Giňelt'
-    menu_collapse: 'Ýygna'
     search_placeholder: 'Bölümiň ählisinde gözleg'
 
   dict_words:
@@ -303,6 +301,7 @@ tk:
     login: Girmek
     another_categories: Beýleki bölümler
     same_subject: "Meňzeş materiallar:"
+    same_subject_part: 'Bölüm'
 
   settings:
     color_scheme: Reňkler

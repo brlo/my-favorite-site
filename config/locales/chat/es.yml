@@ -3,6 +3,8 @@ es:
     chat: Chat
   chat:
     title: Chat
+    invite_close: 'Cerrar'
+    invite_cta: 'Ir al chat'
     description: Preguntas y conversación sobre la Biblia y la fe
     login_link: Iniciar sesión
     guest_hint: Los moderadores verán sus mensajes y le responderán. Para que todos los participantes vean sus mensajes, regístrese y confirme su correo electrónico.

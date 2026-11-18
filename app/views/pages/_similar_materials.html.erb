@@ -1,0 +1,19 @@
+<div class="menu-tree similar-materials <%= text_cont_classes %> collapsed"
+     data-controller="auto-collapse" data-auto-collapse-max-rows-value="2">
+  <button type="button" class="bar-description same-subject-toggle" aria-expanded="false" aria-controls="same-subject-list" hidden
+          data-auto-collapse-target="button" data-action="auto-collapse#toggle">
+    <span><%= similar_materials_title(@chapters) %></span>
+    <svg class="same-subject-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+  </button>
+  <div class="bar-description same-subject-static" data-auto-collapse-target="static"><%= similar_materials_title(@chapters) %></div>
+  <div class="items" id="same-subject-list" data-auto-collapse-target="content">
+    <% @chapters.each.with_index do |(title, path, is_gold), i| %>
+      <% classes = "menu-unit menu-link" %>
+      <% i == (@chapter_current-1) ? (classes += ' selected') : nil %>
+      <% is_gold ? (classes += ' gold') : nil %>
+      <div class="<%= classes %>">
+        <a href="<%= my_page_link_to("/#{path}", page_lang: @page.lang) %>"><span><%= title %></span></a>
+      </div>
+    <% end %>
+  </div>
+</div>

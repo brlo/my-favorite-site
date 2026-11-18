@@ -2,6 +2,7 @@ require "test_helper"
 
 class PagesControllerTest < ActionDispatch::IntegrationTest
   LONG_BODY = '<p>' + 'Достаточно длинный текст страницы. ' * 3 + '</p>'
+  CHAT_INVITE_BODY = '<p>' + 'Достаточно длинный текст статьи. ' * 80 + '</p>'
 
   def create_published(overrides = {})
     create_page({ is_published: true, body: LONG_BODY }.merge(overrides))
@@ -16,6 +17,8 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, 'Беседа о любви'
     assert_includes response.body, 'Достаточно длинный текст'
     assert_includes response.body, 'https://bibleox.com/ru/ru/w/beseda'
+    assert_select '#page-body[data-controller~="section-collapse"]'
+    assert_select '#page-body[data-controller~="auto-collapse"]', count: 0
     assert page.persisted?
   end
 
@@ -26,6 +29,76 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     get '/ru/ru/w/with_authors'
     assert_includes response.body, 'Автор Статьи'
     assert_includes response.body, 'Редактор Правок'
+  end
+
+  test "chat invitation is shown at the end of the article before the notes" do
+    create_published(path: 'with_notes', body: CHAT_INVITE_BODY, references: '<p>Примечание первое</p>')
+    get '/ru/ru/w/with_notes'
+
+    assert_response :success
+    assert_select '[data-controller="chat-invite"]'
+    assert_select '[data-chat-invite-target="sentinel"]'
+    assert_select '.chat-invite-float[hidden]'
+    assert_select '.chat-invite-float .page-chat-invite[href="/ru/chat"]'
+    assert_select '.chat-invite-float .page-chat-invite__cta', text: 'Перейти в чат'
+    assert_select '.chat-invite-float__close[aria-label="Закрыть"]'
+    invite_pos = response.body.index('page-chat-invite')
+    notes_pos = response.body.index('page-references')
+    assert invite_pos && notes_pos
+    assert_operator invite_pos, :<, notes_pos
+  end
+
+  test "chat invitation is hidden for short articles" do
+    create_published(path: 'short_article', body: '<p>' + 'а' * 1999 + '</p>')
+    get '/ru/ru/w/short_article'
+
+    assert_response :success
+    assert_select '.page-chat-invite', count: 0
+  end
+
+  test "chat invitation is shown for articles with at least 2000 characters" do
+    create_published(path: 'long_article', body: '<p>' + 'а' * 2000 + '</p>')
+    get '/ru/ru/w/long_article'
+
+    assert_response :success
+    assert_select '.page-chat-invite', count: 1
+  end
+
+  test "bibleox translation badge is an accessible tooltip trigger" do
+    create_published(path: 'bibleox_text', is_bibleox: true)
+    get '/ru/ru/w/bibleox_text'
+
+    assert_response :success
+    assert_select 'button.translation-icon[aria-expanded="false"]'
+    assert_select 'button.translation-icon[aria-describedby="translation-tooltip"]'
+    assert_select 'button.translation-icon[aria-controls="translation-tooltip"]'
+    assert_select '#translation-tooltip[role="tooltip"]'
+  end
+
+  test "table of contents uses height-based auto-collapse" do
+    body = (1..22).map { |i| "<h2>Раздел #{i}</h2><p>Текст раздела #{i}.</p>" }.join
+    create_published(path: 'long_toc', body: body)
+    get '/ru/ru/w/long_toc'
+
+    assert_response :success
+    assert_select '#article-menu[data-controller="auto-collapse"][data-auto-collapse-max-height-value="900"][data-auto-collapse-always-toggle-value="true"]'
+    assert_select '#article-menu.collapsed'
+    assert_select '#article-menu button.menu-toggle[aria-expanded="false"]'
+    assert_select '#article-menu .menu-toggle span', text: 'Содержание'
+    assert_select '#article-menu .menu-toggle-chevron'
+    assert_select '#article-menu .menu-list .nav-h2', count: 22
+  end
+
+  test "short table of contents is rendered for the same height-based controller" do
+    body = (1..3).map { |i| "<h2>Раздел #{i}</h2><p>Текст раздела #{i}.</p>" }.join
+    create_published(path: 'short_toc', body: body)
+    get '/ru/ru/w/short_toc'
+
+    assert_response :success
+    assert_select '#article-menu[data-controller="auto-collapse"]'
+    assert_select '#article-menu button.menu-toggle'
+    assert_select '#article-menu .menu-toggle-chevron'
+    assert_select '#article-menu .menu-list .nav-h2', count: 3
   end
 
   test "page whose ui language differs from the content language is not indexed" do
@@ -162,6 +235,82 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_includes response.body, 'Глава вторая'
     assert_not_includes response.body, 'Глава пустая'
+  end
+
+  test "similar pages use row-based auto-collapse" do
+    list = create_published(title: 'Книга', path: 'similar_long_list', page_type: 4)
+    root = Menu.create!(page_id: list.id, title: 'Раздел меню')
+    first = nil
+
+    11.times do |i|
+      title = "Глава #{i + 1}"
+      path = "similar_long_ch#{i + 1}"
+      first ||= create_published(title: title, path: path, parent_id: list.id)
+      Menu.create!(page_id: list.id, parent_id: root.id, title: title, path: path, priority: i + 1)
+    end
+
+    get "/ru/ru/w/#{first.path}"
+
+    assert_response :success
+    assert_select '.menu-tree[data-controller="auto-collapse"][data-auto-collapse-max-rows-value="2"]'
+    assert_select '.menu-tree.collapsed'
+    assert_select 'button.same-subject-toggle[aria-expanded="false"][hidden]'
+    assert_select '.same-subject-static', text: 'Похожие материалы:'
+    assert_select '.menu-tree .items .menu-link', count: 11
+  end
+
+  test "short similar list is rendered for the same row-based controller" do
+    list = create_published(title: 'Книга', path: 'similar_short_list', page_type: 4)
+    root = Menu.create!(page_id: list.id, title: 'Раздел меню')
+    first = nil
+
+    3.times do |i|
+      title = "Глава #{i + 1}"
+      path = "similar_short_ch#{i + 1}"
+      first ||= create_published(title: title, path: path, parent_id: list.id)
+      Menu.create!(page_id: list.id, parent_id: root.id, title: title, path: path, priority: i + 1)
+    end
+
+    get "/ru/ru/w/#{first.path}"
+
+    assert_response :success
+    assert_select '.menu-tree[data-controller="auto-collapse"][data-auto-collapse-max-rows-value="2"]'
+    assert_select '.menu-tree .items .menu-link', count: 3
+  end
+
+  test "similar materials are rendered under page links" do
+    list = create_published(title: 'Книга', path: 'links_list', page_type: 4)
+    root = Menu.create!(page_id: list.id, title: 'Раздел меню')
+    first = create_published(title: 'Глава 1', path: 'links_ch1', parent_id: list.id,
+                             links: { 'Другое' => '/other' })
+    create_published(title: 'Глава 2', path: 'links_ch2', parent_id: list.id)
+    Menu.create!(page_id: list.id, parent_id: root.id, title: 'Глава 1', path: 'links_ch1', priority: 1)
+    Menu.create!(page_id: list.id, parent_id: root.id, title: 'Глава 2', path: 'links_ch2', priority: 2)
+
+    get "/ru/ru/w/#{first.path}"
+
+    assert_response :success
+    assert_select '#links-sub'
+    assert_select '#chapter-header #links-sub ~ .similar-materials'
+  end
+
+  test "similar materials are called parts when all chapter titles are numeric" do
+    list = create_published(title: 'Книга', path: 'parts_list', page_type: 4)
+    root = Menu.create!(page_id: list.id, title: 'Раздел меню')
+    first = nil
+
+    3.times do |i|
+      title = "##{i + 1}"
+      path = "part_ch#{i + 1}"
+      first ||= create_published(title: title, path: path, parent_id: list.id)
+      Menu.create!(page_id: list.id, parent_id: root.id, title: title, path: path, priority: i + 1)
+    end
+
+    get "/ru/ru/w/#{first.path}"
+
+    assert_response :success
+    assert_select '.same-subject-static', text: 'Часть'
+    assert_select '.same-subject-toggle span', text: 'Часть'
   end
 
   test "list page shows its tree menu with visit counters" do

@@ -3,6 +3,8 @@ ja:
     chat: チャット
   chat:
     title: チャット
+    invite_close: '閉じる'
+    invite_cta: 'チャットへ'
     description: 聖書と信仰についての質問と対話
     login_link: ログイン
     guest_hint: モデレーターがあなたのメッセージを読み、返信します。すべての参加者にメッセージを表示するには、登録してメールアドレスを確認してください。

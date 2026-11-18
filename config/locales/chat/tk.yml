@@ -3,6 +3,8 @@ tk:
     chat: Söhbet
   chat:
     title: Söhbet
+    invite_close: 'Ýap'
+    invite_cta: 'Söhbete git'
     description: Mukaddes Kitap we iman barada soraglar we söhbet
     login_link: Giriş
     guest_hint: Moderatorlar siziň hatlaryňyzy görerler we size jogap bererler. Hatlaryňyzy ähli gatnaşyjylar görer ýaly, hasaba duruň we e-poçtaňyzy tassyklaň.

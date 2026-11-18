@@ -3,6 +3,8 @@ ko:
     chat: 채팅
   chat:
     title: 채팅
+    invite_close: '닫기'
+    invite_cta: '채팅으로 이동'
     description: 성경과 신앙에 관한 질문과 대화
     login_link: 로그인
     guest_hint: 운영자가 메시지를 보고 답변해 드립니다. 모든 참가자에게 메시지가 보이게 하려면 가입하고 이메일을 인증하세요.

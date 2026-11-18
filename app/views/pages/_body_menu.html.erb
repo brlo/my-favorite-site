@@ -1,16 +1,15 @@
 <% menu_items = (@page || page).body_menu %>
-<% menu_limit = 20 %>
-<% is_menu_long = menu_items.size > menu_limit %>
-<nav id="article-menu" <% if is_menu_long %>class="collapsed" data-controller="reveal-list"<% end %>>
-  <div class='menu-name'><%= I18n.t('page.menu_name') %></div>
-  <% menu_items.each_with_index do |(el_name, el_anchor, el_text), i| %>
-    <div class="nav-<%= el_name %> <%= toc_item_short?(el_text) ? 'short' : '' %> <%= is_menu_long && i >= menu_limit ? 'extra' : '' %>"><a href="#<%= el_anchor %>" data-turbo='false'><%= el_text %></a></div>
-  <% end %>
-  <% if is_menu_long %>
-    <button type="button" class="menu-more" aria-expanded="false" data-action="reveal-list#toggle" data-reveal-list-target="button"
-      data-reveal-list-expand-text-value="<%= I18n.t('page.menu_expand') %>" data-reveal-list-collapse-text-value="<%= I18n.t('page.menu_collapse') %>">
-      <span class="menu-more-label" data-reveal-list-target="label"><%= I18n.t('page.menu_expand') %></span>
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7l6 6 6-6"/></svg>
-    </button>
-  <% end %>
+<nav id="article-menu" aria-label="<%= I18n.t('page.menu_name') %>" class="collapsed"
+     data-controller="auto-collapse" data-auto-collapse-max-height-value="900"
+     data-auto-collapse-always-toggle-value="true">
+  <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="article-menu-list"
+          data-auto-collapse-target="button" data-action="auto-collapse#toggle">
+    <span><%= I18n.t('page.menu_name') %></span>
+    <svg class="menu-toggle-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
+  </button>
+  <div class="menu-list" id="article-menu-list" data-auto-collapse-target="content">
+    <% menu_items.each do |el_name, el_anchor, el_text| %>
+      <div class="nav-<%= el_name %> <%= toc_item_short?(el_text) ? 'short' : '' %>"><a href="#<%= el_anchor %>" data-turbo='false'><%= el_text %></a></div>
+    <% end %>
+  </div>
 </nav>

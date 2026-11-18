@@ -12,4 +12,11 @@ class PagesHelperTest < ActionView::TestCase
     refute toc_item_short?('3а')
     refute toc_item_short?('')
   end
+
+  test "similar materials are parts when every title has no letters" do
+    assert similar_materials_part?([['#1', 'one', false], ['2', 'two', false], ['— 3 —', 'three', false]])
+    refute similar_materials_part?([['#1', 'one', false], ['Глава 2', 'two', false]])
+    refute similar_materials_part?([['IV', 'four', false]])
+    refute similar_materials_part?([])
+  end
 end

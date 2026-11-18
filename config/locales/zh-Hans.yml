@@ -68,8 +68,6 @@ zh-Hans:
     references: '参考'
     no_books_links_yet: '还没有链接。'
     menu_name: '目录'
-    menu_expand: '展开'
-    menu_collapse: '收起'
     search_placeholder: '搜索整个部分'
 
   dict_words:
@@ -304,6 +302,7 @@ zh-Hans:
     login: 登入
     another_categories: 其他类别
     same_subject: 类似页面
+    same_subject_part: '部分'
 
   settings:
     color_scheme: 颜色

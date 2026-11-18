@@ -251,8 +251,6 @@ ru:
     references: 'Примечания'
     no_books_links_yet: 'Здесь пока что нет других ссылок. Загляните позже.'
     menu_name: 'Содержание'
-    menu_expand: 'Развернуть'
-    menu_collapse: 'Свернуть'
     search_placeholder: 'Поиск по всему разделу'
 
   dict_words:
@@ -498,6 +496,7 @@ ru:
     login: Войти
     another_categories: Другие разделы
     same_subject: "Похожие материалы:"
+    same_subject_part: 'Часть'
 
   settings:
     color_scheme: Цвета

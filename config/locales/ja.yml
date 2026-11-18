@@ -67,8 +67,6 @@ ja:
     references: '参考文献'
     no_books_links_yet: 'まだリンクはありません。'
     menu_name: '目次'
-    menu_expand: '展開する'
-    menu_collapse: '折りたたむ'
     search_placeholder: セクション全体を検索
 
   dict_words:
@@ -303,6 +301,7 @@ ja:
     login: サインイン
     another_categories: その他のカテゴリー
     same_subject: 類似のページ
+    same_subject_part: '部分'
 
   settings:
     color_scheme: 色

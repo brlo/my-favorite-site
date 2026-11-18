@@ -3,6 +3,8 @@ sw:
     chat: Gumzo
   chat:
     title: Gumzo
+    invite_close: 'Funga'
+    invite_cta: 'Nenda kwenye gumzo'
     description: Maswali na mazungumzo kuhusu Biblia na imani
     login_link: Ingia
     guest_hint: Wasimamizi wataona ujumbe wako na kukujibu. Ili washiriki wote waone ujumbe wako, jisajili na uthibitishe barua pepe yako.

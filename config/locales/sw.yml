@@ -67,8 +67,6 @@ sw:
     references: 'Vidokezo'
     no_books_links_yet: 'Hakuna viungo vingine bado. Rudi baadaye.'
     menu_name: 'Yaliyomo'
-    menu_expand: 'Panua'
-    menu_collapse: 'Kunja'
     search_placeholder: 'Tafuta kwenye sehemu hii'
 
   dict_words:
@@ -303,6 +301,7 @@ sw:
     login: Ingia
     another_categories: Sehemu zingine
     same_subject: "Nyenzo zinazofanana:"
+    same_subject_part: 'Sehemu'
 
   settings:
     color_scheme: Rangi

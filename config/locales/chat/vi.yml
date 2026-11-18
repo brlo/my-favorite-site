@@ -3,6 +3,8 @@ vi:
     chat: Trò chuyện
   chat:
     title: Trò chuyện
+    invite_close: 'Đóng'
+    invite_cta: 'Đi tới trò chuyện'
     description: Câu hỏi và thảo luận về Kinh Thánh và đức tin
     login_link: Đăng nhập
     guest_hint: Người điều hành sẽ thấy tin nhắn của bạn và trả lời bạn. Để mọi người đều thấy tin nhắn của bạn, hãy đăng ký và xác nhận email.

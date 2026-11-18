@@ -3,6 +3,8 @@ de:
     chat: Chat
   chat:
     title: Chat
+    invite_close: 'Schließen'
+    invite_cta: 'Zum Chat'
     description: Fragen und Gespräche über die Bibel und den Glauben
     login_link: Anmelden
     guest_hint: Moderatoren sehen Ihre Nachrichten und antworten Ihnen. Damit alle Teilnehmer Ihre Nachrichten sehen, registrieren Sie sich und bestätigen Sie Ihre E-Mail-Adresse.

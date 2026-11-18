@@ -7,7 +7,7 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  max-width: 860px;
+  max-width: 900px;
   margin: 0 auto;
   height: calc(100vh - 180px);
   min-height: 420px;

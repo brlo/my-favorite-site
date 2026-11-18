@@ -67,8 +67,6 @@ hy:
     references: 'Հղումներ'
     no_books_links_yet: 'Դեռևս հղումներ չկան։'
     menu_name: 'Բովանդակություն'
-    menu_expand: 'Ընդարձակել'
-    menu_collapse: 'Ծալել'
     search_placeholder: 'Որոնել ամբողջ բաժնում'
 
   dict_words:
@@ -299,6 +297,7 @@ hy:
     login: Մուտք
     another_categories: Այլ կատեգորիաներ
     same_subject: "Նմանատիպ էջեր՝"
+    same_subject_part: 'Մաս'
 
   settings:
     color_scheme: Գույներ

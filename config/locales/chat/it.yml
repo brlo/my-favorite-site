@@ -3,6 +3,8 @@ it:
     chat: Chat
   chat:
     title: Chat
+    invite_close: 'Chiudi'
+    invite_cta: 'Vai alla chat'
     description: Domande e conversazioni sulla Bibbia e sulla fede
     login_link: Accedi
     guest_hint: I moderatori vedranno i tuoi messaggi e ti risponderanno. Perché tutti i partecipanti vedano i tuoi messaggi, registrati e conferma la tua email.

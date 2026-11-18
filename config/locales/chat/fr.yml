@@ -3,6 +3,8 @@ fr:
     chat: Chat
   chat:
     title: Chat
+    invite_close: 'Fermer'
+    invite_cta: 'Aller au chat'
     description: Questions et échanges sur la Bible et la foi
     login_link: Se connecter
     guest_hint: Les modérateurs verront vos messages et vous répondront. Pour que tous les participants voient vos messages, inscrivez-vous et confirmez votre adresse e-mail.

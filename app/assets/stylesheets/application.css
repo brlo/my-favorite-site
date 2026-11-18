@@ -897,82 +897,125 @@ a.bib-comment:hover {
 /* МЕТКА BIBLEOX с объяснениями */
 
 .translation-notice {
-    width: 27px;
     display: inline-block;
-    margin: 0 0 0 5px;
+    margin: 0 0 0 6px;
     position: relative;
-    cursor: help;
-    opacity: 0.5;
     vertical-align: middle;
-    top: -3px;
-}
-
-.translation-notice:hover {
-    opacity: 1;
+    top: -2px;
 }
 
 .translation-icon {
-    opacity: 0.8;
-    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 0;
+    border-radius: 4px;
+    background: none;
+    color: inherit;
+    cursor: help;
+    opacity: 0.5;
+    transition: opacity 0.2s ease;
 }
 
+.translation-notice:hover .translation-icon,
+.translation-notice:focus-within .translation-icon,
+.translation-notice.is-open .translation-icon {
+    opacity: 1;
+}
+
+.translation-icon:focus-visible {
+    opacity: 1;
+    outline: 2px solid var(--blue);
+    outline-offset: 2px;
+}
+
+.translation-icon svg {
+    display: block;
+    width: 20px;
+    height: 20px;
+}
+
+/* Подсказка позиционируется скриптом (position: fixed), поэтому длинный
+   текст не растягивает страницу на узких экранах. */
 .translation-tooltip {
     font-size: 12px; /* РАЗМЕР ТЕКСТА */
     font-family: Arial, sans-serif !important;
-    position: absolute;
-    top: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    min-width: 300px;
-    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    width: 360px;
+    max-width: calc(100vw - 32px);
+    padding: 12px;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 12px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background: #fff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
     color: #333;
+    line-height: 1.4;
+    text-align: start;
     visibility: hidden;
     opacity: 0;
-    transition: all 0.3s ease;
-    z-index: 100;
-    margin-top: 0;
+    pointer-events: none;
+    transition: opacity 0.15s ease;
+}
+
+.translation-tooltip.is-open {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* на тач-устройствах подсказку можно закрыть тапом по ней */
+.translation-notice.is-touch .translation-tooltip.is-open {
+    pointer-events: auto;
 }
 
 .translation-tooltip .title {
     display: block;
     font-size: 15px;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
 }
 
-/* Стрелочка с рамкой */
-.translation-tooltip::before {
+/* Стрелочка с рамкой; --arrow-left выставляет скрипт у центра иконки */
+.translation-tooltip::before,
+.translation-tooltip::after {
     content: "";
     position: absolute;
-    bottom: 100%;
-    left: 50%;
+    left: var(--arrow-left, 50%);
     transform: translateX(-50%);
-    border-width: 6px;
     border-style: solid;
+}
+
+.translation-tooltip::before {
+    bottom: 100%;
+    border-width: 6px;
     border-color: transparent transparent #fff transparent;
 }
 
 /* Рамка для стрелки (повторяет цвет основной рамки) */
 .translation-tooltip::after {
-    content: "";
-    position: absolute;
     bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
+    margin-bottom: 1px;
     border-width: 7px;
-    border-style: solid;
     border-color: transparent transparent #e0e0e0 transparent;
     z-index: -1;
 }
 
-.translation-notice:hover .translation-tooltip {
-    visibility: visible;
-    opacity: 1;
-    margin-top: 5px;
+/* Подсказка над иконкой, если снизу не помещается */
+.translation-tooltip.is-above::before {
+    bottom: auto;
+    top: 100%;
+    border-color: #fff transparent transparent transparent;
+}
+
+.translation-tooltip.is-above::after {
+    bottom: auto;
+    top: 100%;
+    margin-bottom: 0;
+    margin-top: 1px;
+    border-color: #e0e0e0 transparent transparent transparent;
 }
 
 .translation-tooltip p {
@@ -997,6 +1040,14 @@ a.bib-comment:hover {
 
 .night-mode .translation-tooltip::after {
     border-color: transparent transparent #444 transparent;
+}
+
+.night-mode .translation-tooltip.is-above::before {
+    border-color: #2d2d2d transparent transparent transparent;
+}
+
+.night-mode .translation-tooltip.is-above::after {
+    border-color: #444 transparent transparent transparent;
 }
 
 /* Сетка сегментов */

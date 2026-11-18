@@ -3,6 +3,8 @@ uz:
     chat: Chat
   chat:
     title: Chat
+    invite_close: 'Yopish'
+    invite_cta: 'Chatga o‘tish'
     description: Muqaddas Kitob va imon haqida savollar va suhbat
     login_link: Kirish
     guest_hint: Moderatorlar xabarlaringizni ko‘rib, sizga javob berishadi. Xabarlaringizni barcha ishtirokchilar ko‘rishi uchun ro‘yxatdan o‘ting va elektron pochtangizni tasdiqlang.

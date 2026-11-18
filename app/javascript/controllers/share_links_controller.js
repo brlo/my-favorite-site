@@ -35,6 +35,7 @@ export default class extends Controller {
 
   copyLink(event) {
     event.preventDefault()
+    event.stopPropagation()
     const href = event.currentTarget.href
     shareLink(href)
   }
