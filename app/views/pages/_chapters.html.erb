@@ -35,13 +35,13 @@
       </h2>
     <% end %>
 
-    <div id="h1-title">
+    <div id="h1-title" lang="<%= @page.lang %>">
       <%= render(partial: 'pages/h1_title') %>
     </div>
   <% end %>
 
   <% if @page.title_sub.present? %>
-    <div id="title-sub"><%= @page.title_sub %></div>
+    <div id="title-sub" lang="<%= @page.lang %>"><%= @page.title_sub %></div>
   <% end %>
 
   <% if @page.links.present? %>

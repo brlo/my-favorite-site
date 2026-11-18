@@ -1,0 +1,189 @@
+---
+ja:
+  open_tags:
+    h2: 見出し
+    p: 段落
+    strong: 太字
+  close_tags:
+    h2: 見出しの終わり
+    p: 段落の終わり
+    strong: 太字の終わり
+  time_ago:
+    just_now: たった今
+    minute: 分
+    hour: 時間
+    day: 日
+    week: 週間
+    month: か月
+    year: 年
+  bc:
+    profile: プロフィール
+    change_password: パスワード変更
+    edit_password: プロフィール編集
+  helpers:
+    label:
+      session:
+        email: メールアドレス
+        password_reset: パスワードをお忘れのアカウントのメールアドレス
+        password_reset_alert: ご入力のメールアドレスが登録されている場合、手順を記載したメールをお送りします
+        password_reset_ok: パスワードを更新しました
+    submit:
+      session:
+        create: ログイン
+        password_reset: パスワードを再設定
+      user:
+        create: 登録する
+        update: 更新する
+  activemodel:
+    attributes:
+      session:
+        email: メールアドレス
+        password: パスワード
+        remember_me: ログイン状態を保持
+    errors:
+      models:
+        session:
+          invalid_credentials: メールアドレスまたはパスワードが正しくありません
+          account_activation_pending: メールのリンクからアカウントを有効化してください。
+  activerecord:
+    models:
+      translation: 翻訳
+    attributes:
+      translation:
+        user_id: ユーザー
+        segment_id: セグメント
+        lang: 言語
+        text: 翻訳テキスト
+      user:
+        username: ユーザー名
+        name: 名前
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード（確認）
+        pages_owner: ページ所有者
+        privs: 権限
+        failed_logins_count: ログイン失敗回数
+        lock_expires_at: ロック解除日時
+    errors:
+      messages:
+        record_invalid: エラーがあります
+        blank: 入力してください
+        invalid: 形式が正しくありません
+        too_short: 短すぎます（%{count}文字以上）
+        too_long: 長すぎます（%{count}文字以内）
+        inclusion: 値が正しくありません
+        taken: すでに使われています
+        confirmation: 一致しません
+        email_cant_contain_plus: "「+」は使用できません"
+        email_in_blacklist: 一時的なメールアドレスは使用できません
+        email_cant_changes_too_often: 1日に2回までしか変更できません
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: このセグメントの翻訳はすでに提案されています
+              too_many_variants: 翻訳は最大%{count}件までです
+  users:
+    links:
+      login: ログイン
+      logout: ログアウト
+      profile_edit: プロフィールを編集
+      password_change: パスワードを変更
+    titles:
+      signup: 新規登録
+      login: ログイン
+      password_reset: パスワードの再設定
+      new_password: 新しいパスワードの設定
+      profile: プロフィール
+      password_change: パスワード変更
+      profile_edit: プロフィール編集
+    buttons:
+      signup: 登録する
+      login: ログイン
+      password_reset: パスワードを再設定
+      new_password: パスワードを設定
+      save_changes: 変更を保存
+      save_new_password: 新しいパスワードを保存
+    notices:
+      error: エラー
+      registration_successful: 登録が完了しました
+      profile_is_updated: プロフィールを更新しました
+      password_is_changed: パスワードを変更しました
+      password_confirm_is_wrong: パスワードと確認用パスワードが一致しません
+      current_password_is_wrong: 現在のパスワードが正しくありません
+      user_is_activated: メールを確認しました。アカウントが有効になりました。
+      update_your_password_if_you_forgotten_it: パスワードをお忘れの場合は再設定してください
+      already_logged_in: すでにログインしています
+      logged_out: ログアウトしました
+      logged_in: ログインしました
+      login_failed: ログインできませんでした
+      loggin_failed_account_is_locked: ログインできませんでした。アカウントがロックされています。メールのリンクから有効化してください
+    alerts:
+      are_you_shure: よろしいですか？
+    errors:
+      login_required: ログインが必要です
+      activation_required: メールのリンクからアカウントを有効化してください
+      account_blocked: アカウントがブロックされています
+      not_admin: 権限がありません
+      too_many_requests: リクエストが多すぎます。しばらく待ってからお試しください。
+    hints:
+      email_confirmed: "✅ メール確認済み"
+      email_not_confirmed: "⚠️ メールが未確認です。メールのリンクを開いてください。"
+    fields:
+      current_password: 現在のパスワード
+      new_password: 新しいパスワード
+      new_password_confirmation: 新しいパスワード（確認）
+    is_already_registred: すでに登録済みですか？
+    is_not_yet_registred: アカウントをお持ちでないですか？
+    is_forgot_password: パスワードをお忘れですか？
+    letters:
+      welcome:
+        subject: bibleox.com に登録しました
+        body: |
+          <p>%{name} 様</p><br>
+          <p>bibleox.com で、お客様の名義による登録が行われました。ログインはこちらのリンクから：%{url}。</p>
+          <p>お心当たりがない場合は、このメールを無視してください。</p>
+          <p>よい一日を！</p>
+      activation_needed:
+        subject: メールの確認
+        body: |
+          <p>%{name} 様</p><br>
+          <p>このメールアドレスは bibleox.com の登録に使用されました。アカウントを有効にするには、こちらのリンクを開いてください：%{url}。</p><br>
+          <p>お心当たりがない場合は、このメールを無視してください。</p>
+          <p>よい一日を！</p>
+      password_reset:
+        subject: パスワードの再設定
+        body: |
+          <p>%{name} 様</p><br>
+          <p>bibleox.com で、このメールアドレスのパスワード再設定がリクエストされました。新しいパスワードを設定するには、こちらのリンクを開いてください：%{url}。</p>
+          <p>このリンクは24時間で無効になります。</p>
+          <p>お心当たりがない場合は、このメールを無視してください。</p><br>
+          <p>よい一日を！</p>
+      account_unlock:
+        subject: アカウントのロック解除
+        body: |
+          <p>%{name} 様</p><br>
+          <p>bibleox.com で、正しくないパスワードによるログインが何度も試されました。アカウントを保護するため、一時的にロックしました。解除するには、こちらのリンクを開いてください：%{url}。</p><br>
+          <p>よい一日を！</p>
+  audio:
+    play: 再生
+    pause: 一時停止
+    back: 15秒戻る
+    forward: 15秒進む
+    speed: 再生速度
+    seek: 再生位置
+    close: プレーヤーを閉じる
+  bib_word_info:
+    morph:
+      aor. ind. pass.: アオリスト直説法受動態
+  menu:
+    translates: 翻訳
+  errors:
+    alert: エラーが発生しました
+    messages:
+      mini_magick_processing_error: 画像の処理に失敗しました
+  citations:
+    title: この節についての教父の言葉：%{address}
+    close: 閉じる
+    empty: この節について、当ライブラリで言及している教父はまだいません。
+    mentions: 言及：%{count}

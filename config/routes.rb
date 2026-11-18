@@ -197,7 +197,7 @@ Rails.application.routes.draw do
     get '/search', to: 'verses#search'
 
     # ищем по человеческому адресу стих и редиректим на правильный адрес
-    get '/f/:human_address', :constraints => {human_address: /[\sА-ЯA-Z0-9\-\.\,\:%]+/i}, to: 'verses#goto_verse_by_human_address'
+    get '/f/:human_address', constraints: { human_address: /[^\/]+/ }, to: 'verses#goto_verse_by_human_address', format: false
 
     # # resources :users
     # get '/profile', to: 'users#profile', as: 'profile'

@@ -11,6 +11,18 @@ class AddressConverterTest < ActiveSupport::TestCase
     assert_equal '/in/3/', AddressConverter.human_to_link('Ин. 3')
   end
 
+  test "human_to_link understands japanese book names" do
+    assert_equal '/in/3/#L16', AddressConverter.human_to_link('ヨハネ 3:16')
+    assert_equal '/in/3/#L16', AddressConverter.human_to_link('ヨハネ３：１６')
+    assert_equal '/1in/3/#L16', AddressConverter.human_to_link('ヨハネの手紙１ 3:16')
+  end
+
+  test "human_to_link understands simplified and traditional chinese book names" do
+    assert_equal '/in/3/#L16', AddressConverter.human_to_link('约翰 3:16')
+    assert_equal '/in/3/#L16', AddressConverter.human_to_link('約翰福音 3:16')
+    assert_equal '/1in/3/#L16', AddressConverter.human_to_link('约翰一书 3:16')
+  end
+
   test "human_to_link returns nil for garbage and unknown books" do
     assert_nil AddressConverter.human_to_link('')
     assert_nil AddressConverter.human_to_link(nil)

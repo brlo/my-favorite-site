@@ -22,8 +22,41 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert page.persisted?
   end
 
+  test "html lang is the interface language and article body keeps its own language" do
+    create_published(title: '中文文章', path: 'zh_article', lang: 'zh-Hans', body: '<p>' + '这是足够长的中文正文。' * 3 + '</p>')
+    get '/en/zh-Hans/w/zh_article'
+    assert_response :success
+    assert_select 'html[lang="en"]'
+    assert_select '#page-body[lang="zh-Hans"]'
+    assert_select '#h1-title[lang="zh-Hans"]'
+  end
+
   test "root redirects to language home with 301" do
     get '/'
+    assert_response :moved_permanently
+    assert_redirected_to '/ru/'
+    assert_includes response.headers['Vary'].to_s, 'Accept-Language'
+  end
+
+  test "root redirects japanese browser to japanese home" do
+    get '/', headers: { 'Accept-Language' => 'ja-JP,ja;q=0.9' }
+    assert_response :found
+    assert_redirected_to '/ja/'
+    assert_includes response.headers['Vary'].to_s, 'Accept-Language'
+  end
+
+  test "root redirects simplified and traditional chinese browsers to their home" do
+    get '/', headers: { 'Accept-Language' => 'zh-CN,zh;q=0.9' }
+    assert_response :found
+    assert_redirected_to '/zh-Hans/'
+
+    get '/', headers: { 'Accept-Language' => 'zh-TW,zh;q=0.9' }
+    assert_response :found
+    assert_redirected_to '/zh-Hant/'
+  end
+
+  test "root ignores unsupported browser languages" do
+    get '/', headers: { 'Accept-Language' => 'pt-BR,pt;q=0.9' }
     assert_response :moved_permanently
     assert_redirected_to '/ru/'
   end
@@ -33,6 +66,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     get '/ru/ru/w/seo_marks'
     assert_response :success
     assert_includes response.body, 'hreflang="x-default"'
+    assert_select 'link[rel="alternate"][hreflang="ru"][href="https://bibleox.com/ru/ru/w/seo_marks"]', count: 1
     assert_includes response.body, '"@type":"Article"'
     assert_includes response.body, '"dateModified"'
     assert_includes response.body, 'property="og:type" content="article"'

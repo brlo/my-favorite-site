@@ -1,0 +1,193 @@
+---
+zh-Hant:
+  open_tags:
+    h2: 標題
+    p: 段落
+    strong: 粗體
+  close_tags:
+    h2: 標題結束
+    p: 段落結束
+    strong: 粗體結束
+  time_ago:
+    just_now: 剛剛
+    minute: 分鐘
+    hour: 小時
+    day: 天
+    week: 週
+    month: 個月
+    year: 年
+  bc:
+    profile: 個人資料
+    change_password: 修改密碼
+    edit_password: 編輯個人資料
+  helpers:
+    label:
+      session:
+        email: 電子郵件
+        password_reset: 忘記密碼的帳號電子郵件
+        password_reset_alert: 如果該電子郵件已註冊，您將收到一封包含說明的郵件
+        password_reset_ok: 密碼已更新
+    submit:
+      session:
+        create: 登入
+        password_reset: 重設密碼
+      user:
+        create: 註冊
+        update: 更新
+  activemodel:
+    attributes:
+      session:
+        email: 電子郵件
+        password: 密碼
+        remember_me: 記住我
+    errors:
+      models:
+        session:
+          invalid_credentials: 電子郵件或密碼錯誤
+          account_activation_pending: 請先透過郵件中的連結啟用帳號。
+  activerecord:
+    models:
+      translation: 翻譯
+    attributes:
+      translation:
+        user_id: 使用者
+        segment_id: 片段
+        lang: 語言
+        text: 譯文
+      user:
+        username: 使用者名稱
+        name: 姓名
+        email: 電子郵件
+        password: 密碼
+        password_confirmation: 確認密碼
+        pages_owner: 頁面擁有者
+        privs: 權限
+        failed_logins_count: 登入失敗次數
+        lock_expires_at: 鎖定到期時間
+    errors:
+      messages:
+        record_invalid: 包含錯誤
+        blank: 不能為空
+        invalid: 格式無效
+        too_short: 太短（至少 %{count} 個字元）
+        too_long: 太長（最多 %{count} 個字元）
+        inclusion: 值無效
+        taken: 已被使用
+        confirmation: 不一致
+        email_cant_contain_plus: 不能包含「+」
+        email_in_blacklist: 不能使用臨時電子郵件
+        email_cant_changes_too_often: 每天最多修改兩次
+      models:
+        translation:
+          attributes:
+            user_id:
+              taken: 已為該片段提交過譯文
+              too_many_variants: 最多可提交 %{count} 個譯文
+  users:
+    links:
+      login: 登入
+      logout: 登出
+      profile_edit: 編輯個人資料
+      password_change: 修改密碼
+    titles:
+      signup: 註冊
+      login: 登入
+      password_reset: 找回密碼
+      new_password: 設定新密碼
+      profile: 個人資料
+      password_change: 修改密碼
+      profile_edit: 編輯個人資料
+    buttons:
+      signup: 註冊
+      login: 登入
+      password_reset: 重設密碼
+      new_password: 設定密碼
+      save_changes: 儲存修改
+      save_new_password: 儲存新密碼
+    notices:
+      error: 錯誤
+      registration_successful: 註冊成功
+      profile_is_updated: 個人資料已更新
+      password_is_changed: 密碼已修改
+      password_confirm_is_wrong: 兩次輸入的密碼不一致
+      current_password_is_wrong: 目前密碼錯誤
+      user_is_activated: 電子郵件已驗證，帳號已啟用。
+      update_your_password_if_you_forgotten_it: 如果忘記密碼，請更新密碼
+      already_logged_in: 您已登入
+      logged_out: 已登出
+      logged_in: 登入成功
+      login_failed: 登入失敗
+      loggin_failed_account_is_locked: 登入失敗。帳號已被鎖定，請透過郵件中的連結啟用
+    alerts:
+      are_you_shure: 確定嗎？
+    errors:
+      login_required: 請先登入
+      activation_required: 請透過郵件中的連結啟用帳號
+      account_blocked: 您的帳號已被封鎖
+      not_admin: 權限不足
+      too_many_requests: 請求過於頻繁，請稍後再試。
+    hints:
+      email_confirmed: "✅ 電子郵件已驗證"
+      email_not_confirmed: "⚠️ 電子郵件未驗證，請開啟郵件中的連結。"
+    fields:
+      current_password: 目前密碼
+      new_password: 新密碼
+      new_password_confirmation: 確認新密碼
+    is_already_registred: 已經註冊過？
+    is_not_yet_registred: 還沒有帳號？
+    is_forgot_password: 忘記密碼？
+    letters:
+      welcome:
+        subject: 您已註冊 bibleox.com
+        body: |
+          <p>%{name}，您好。</p><br>
+          <p>有人以您的名義在 bibleox.com 註冊了帳號。請透過以下連結登入：%{url}。</p>
+          <p>如果這不是您本人操作，請忽略此郵件。</p>
+          <p>祝您愉快！</p>
+      activation_needed:
+        subject: 驗證電子郵件
+        body: |
+          <p>%{name}，您好。</p><br>
+          <p>該電子郵件被用於註冊 bibleox.com。要啟用帳號，請開啟以下連結：%{url}。</p><br>
+          <p>如果這不是您本人操作，請忽略此郵件。</p>
+          <p>祝您愉快！</p>
+      password_reset:
+        subject: 重設密碼
+        body: |
+          <p>%{name}，您好。</p><br>
+          <p>有人在 bibleox.com 請求為該電子郵件重設密碼。要設定新密碼，請開啟以下連結：%{url}。</p>
+          <p>該連結將在 24 小時後失效。</p>
+          <p>如果這不是您本人操作，請忽略此郵件。</p><br>
+          <p>祝您愉快！</p>
+      account_unlock:
+        subject: 解鎖帳號
+        body: |
+          <p>%{name}，您好。</p><br>
+          <p>有人在 bibleox.com 多次使用錯誤密碼嘗試登入您的帳號。為了保護您的帳號，我們已暫時將其鎖定。要解鎖，請開啟以下連結：%{url}。</p><br>
+          <p>祝您愉快！</p>
+  audio:
+    play: 播放
+    pause: 暫停
+    back: 後退 15 秒
+    forward: 前進 15 秒
+    speed: 播放速度
+    seek: 播放位置
+    close: 關閉播放器
+  bib_word_info:
+    dict_source: 來源
+    lexema_title: 聖經中的詞位「%{lexema}」
+    lexema_forms: 詞形
+    lexema_verses_count: 經文數：%{count}
+    morph:
+      aor. ind. pass.: 不定過去時陳述語氣被動語態
+  menu:
+    translates: 翻譯
+  errors:
+    alert: 發生錯誤
+    messages:
+      mini_magick_processing_error: 圖片處理錯誤
+  citations:
+    title: 教父論此經文：%{address}
+    close: 關閉
+    empty: 目前我們圖書館中還沒有教父提到這節經文。
+    mentions: 提及：%{count}

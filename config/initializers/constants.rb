@@ -270,6 +270,24 @@ LANG_FOR_BIB_LANG = {
   'ko-nkrv'     => 'ko',
 }
 
+# Основной перевод для каждого языка — на него ведёт hreflang.
+# У китайского по два перевода на графику, но код языка один: канонический — CUV,
+# 思高 (cn-sb/cn-sbt) остаётся вторым переводом и в hreflang-кластер не входит.
+PRIMARY_BIB_LANG_BY_LANG = {
+  'ru' => 'ru',
+  'en' => 'eng-nkjv',
+  'cu' => 'csl-ru',
+  'he' => 'heb-osm',
+  'grc' => 'gr-lxx-byz',
+  'ja' => 'jp-ni',
+  'zh-Hans' => 'cn-cuv',
+  'zh-Hant' => 'cn-cuvt',
+  'de' => 'ge-sch',
+  'ar' => 'arab-avd',
+  'hi' => 'hi-ov',
+  'ko' => 'ko-nkrv',
+}.freeze
+
 # Какой язык Библии включать для локали
 LOCALE_TO_BIB_LANG = {
   ''   => 'ru',

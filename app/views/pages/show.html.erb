@@ -12,6 +12,9 @@
       <meta property="og:url" content= "<%= @canonical_url %>" />
       <meta property="og:locale" content= "<%= current_lang() %>" />
 
+      <%# self-reference: Google ждёт, что каждая языковая версия перечисляет и саму себя %>
+      <link rel="alternate" hreflang="<%= @content_lang %>" href="<%= @canonical_url %>" />
+
       <% @page_langs.each do |lang, path| %>
         <% next if @content_lang == lang %>
         <meta property="og:locale:alternate" content= "<%= lang %>" />
@@ -38,6 +41,7 @@
     <% else %>
       <article
         id='page-body'
+        lang="<%= @page.lang %>"
         data-controller='share-links section-collapse'
         itemprop="articleBody"
         class="verses <%= text_size_class %>"
@@ -79,7 +83,7 @@
     <% end %>
 
     <% if @page.references.present? %>
-      <section id='page-references' class="looks-like-page" dir="<%= content_direction %>">
+      <section id='page-references' class="looks-like-page" lang="<%= @page.lang %>" dir="<%= content_direction %>">
         <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
         <div id="page-references-text">
           <% if @page.body_rendered.present? %>

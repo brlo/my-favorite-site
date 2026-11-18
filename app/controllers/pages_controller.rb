@@ -6,8 +6,18 @@ class PagesController < ApplicationController
   # caches_page :show, :about
 
   def main
-    # 301: поисковики переносят сигналы корня на языковую главную только при постоянном редиректе
-    redirect_to "/#{I18n.locale}/", status: :moved_permanently
+    # Язык выбираем по браузеру, а не по IP: у японца ja-JP должен открыться /ja/,
+    # у китайца zh-CN — /zh-Hans/, у zh-TW/zh-HK — /zh-Hant/.
+    locale = ::AcceptLanguage.best_locale(request.headers['Accept-Language'])
+    response.headers['Vary'] = [response.headers['Vary'], 'Accept-Language'].compact.join(', ')
+
+    if locale.to_s == 'ru'
+      # 301: поисковики переносят сигналы корня на языковую главную только при постоянном редиректе
+      redirect_to '/ru/', status: :moved_permanently
+    else
+      # 302: выбор зависит от заголовка, поэтому постоянный редирект здесь нельзя кэшировать
+      redirect_to "/#{locale}/", status: :found
+    end
   end
 
   def show

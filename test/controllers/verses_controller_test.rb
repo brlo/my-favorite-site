@@ -54,6 +54,32 @@ class VersesControllerTest < ActionDispatch::IntegrationTest
 
   # --- главная ---
 
+  test "html lang is the interface language and bible text keeps its own language" do
+    get '/en/ru/in/3/'
+    assert_response :success
+    assert_select 'html[lang="en"]'
+    assert_select '#bib-text-area[lang="ru"]'
+
+    create_verse(tr_code: 'cn-cuv', lang: 'zh-Hans', text: '神爱世人。')
+    get '/en/cn-cuv/in/3/'
+    assert_response :success
+    assert_select 'html[lang="en"]'
+    assert_select '#bib-text-area[lang="zh-Hans"]'
+  end
+
+  test "chapter has self-referencing hreflang and one alternate per language" do
+    get '/en/ru/in/3/'
+    assert_response :success
+    assert_select 'link[rel="alternate"][hreflang="ru"]', count: 1
+    assert_select 'link[rel="alternate"][hreflang="ru"][href="https://bibleox.com/ru/ru/in/3/"]'
+
+    get '/zh-Hans/cn-cuv/in/3/'
+    assert_response :success
+    assert_select 'link[rel="alternate"][hreflang="zh-Hans"]', count: 1
+    assert_select 'link[rel="alternate"][hreflang="zh-Hans"][href="https://bibleox.com/zh-Hans/cn-cuv/in/3/"]'
+    assert_select 'link[rel="alternate"][hreflang="zh-Hant"][href="https://bibleox.com/zh-Hant/cn-cuvt/in/3/"]', count: 1
+  end
+
   test "main page renders" do
     create_verse(book: '1in', book_id: 62, line: 1, text: 'Бог есть любовь.')
     get '/ru/'
@@ -86,6 +112,14 @@ class VersesControllerTest < ActionDispatch::IntegrationTest
   test "goto by human address redirects to the verse" do
     get "/ru/f/#{ERB::Util.url_encode('Дан. 1:2')}"
     assert_redirected_to '/ru/ru/dan/1/#L2'
+  end
+
+  test "goto by human address understands japanese and chinese book names" do
+    get "/ja/f/#{ERB::Util.url_encode('ヨハネ 3:16')}"
+    assert_redirected_to '/ja/jp-ni/in/3/#L16'
+
+    get "/zh-Hans/f/#{ERB::Util.url_encode('约翰 3:16')}"
+    assert_redirected_to '/zh-Hans/cn-cuv/in/3/#L16'
   end
 
   test "goto by unknown human address redirects to the root" do

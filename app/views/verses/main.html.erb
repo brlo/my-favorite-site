@@ -1,3 +1,11 @@
+<% content_for(:head) do %>
+  <link rel="alternate" hreflang="<%= ::I18n.locale %>" href="<%= @canonical_url %>" />
+  <% (::ALL_LOCALES.keys.map(&:to_s) - [::I18n.locale.to_s]).each do |lang| %>
+    <link rel="alternate" hreflang="<%= lang %>" href="https://bibleox.com/<%= lang %>/" />
+  <% end %>
+  <link rel="alternate" hreflang="x-default" href="https://bibleox.com/ru/" />
+<% end %>
+
 
 <section id="page-content" class='mainp'>
   <h1
@@ -44,7 +52,7 @@
   <%= render(partial: 'verses/text_bar') %>
 
   <% if @main_verses.any? %>
-    <div class='pre-bible-text <%= font_classes %>' dir="<%= content_direction %>">
+    <div class='pre-bible-text <%= font_classes %>' lang="<%= @locale_by_bib %>" dir="<%= content_direction %>">
       "<%= sanitize(@main_verses.map(&:text).join(' '), tags: []) %>"
       <% v = @main_verses.first %>
       <% v_last = @main_verses.last %>

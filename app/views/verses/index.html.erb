@@ -10,10 +10,16 @@
   <meta property="og:url" content= "<%= @canonical_url %>" />
   <meta property="og:locale" content= "<%= ::I18n.locale %>" />
 
-  <% ::LANG_FOR_BIB_LANG.each do |bib_lang, lang_seo| %>
+  <% current_seo_lang = ::LANG_FOR_BIB_LANG[@current_bib_lang] %>
+  <%# self-reference: Google ждёт, что каждая версия перечисляет и саму себя %>
+  <% if current_seo_lang.present? && ::PRIMARY_BIB_LANG_BY_LANG[current_seo_lang] == @current_bib_lang %>
+    <link rel="alternate" hreflang="<%= current_seo_lang %>" href="<%= @canonical_url %>" />
+  <% end %>
+
+  <% ::PRIMARY_BIB_LANG_BY_LANG.each do |lang_seo, bib_lang| %>
+    <% next if bib_lang.to_s == @current_bib_lang.to_s %>
     <% ui_locale = BIB_LANG_TO_LOCALE[bib_lang] %>
-    <% next if @current_bib_lang.to_s == bib_lang.to_s %>
-    <% next if @locale_by_bib.to_s == ui_locale.to_s %>
+    <% next if ui_locale.blank? %>
     <meta property="og:locale:alternate" content= "<%= lang_seo %>" />
     <link rel="alternate" hreflang="<%= lang_seo %>" href="https://bibleox.com/<%= ui_locale %>/<%= bib_lang %>/<%= [@book_code, @chapter].join('/') %>/" />
   <% end %>
@@ -24,7 +30,7 @@
 <section id='chapter-content' itemscope itemtype="http://schema.org/Article">
   <%= render(partial: 'verses/chapters') %>
   <%= render(partial: 'verses/text_bar') %>
-  <div id='bib-text-area'>
+  <div id='bib-text-area' lang="<%= ::BIB_LANG_TO_LOCALE[@content_lang] || ::BIB_LANG_TO_LOCALE[@current_bib_lang] %>">
     <%= render(partial: 'verses/text') %>
   </div>
 </section>

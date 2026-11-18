@@ -29,27 +29,29 @@ class AddressConverter
   # ::AddressConverter.human_to_link("Зах. 1:1,2-3,8")
   # Переводит Зах. 1:1,2-3,8 -> /zah/1/#L1,2-3,8
   # Переводит Зах. 1 -> /zah/1/
+  # Понимает и названия книг на языках интерфейса: 约翰 3:16, 約翰 3:16, ヨハネ 3:16.
   def self.human_to_link address
-    address = address.to_s.strip.downcase.gsub(/[ \s\(\)]/, '')
+    # NFKC приводит полноширинные цифры и двоеточие (３：１６) к обычным
+    address = address.to_s.unicode_normalize(:nfkc).strip.downcase.gsub(/[ \s\(\)]/, '')
     # заменяем длинные тире на обычный дефис
     address = address.gsub(/[–—]/, '-')
 
     # адрес есть, > 3 символов, заканчивается цифрой
     if address.present? && address.length > 3 && address =~ /\d$/
-      if address =~ /\:/
+      if address.include?(':')
         # есть двоеточие, значит слева глава, а справа стихи
-        book, ch, lines = address.scan(/^([\dI]{0,3}[А-ЯA-Z\.\-]{2,10})[ \s]*(\d{1,3})\:([\d\-,]{1,20})$/i).first
+        book, ch, lines = address.match(/\A(.+?)(\d{1,3}):([\d\-,]{1,20})\z/).to_a[1..3]
       else
         # нет двоеточия, значит считаем, что указана только книга и глава
-        book, ch = address.scan(/^([\dI]{0,3}[А-ЯA-Z\.\-]{2,10})[ \s]*(\d{1,3})$/i).first
+        book, ch = address.match(/\A(.+?)(\d{1,3})\z/).to_a[1..3]
       end
 
-      return nil unless book
+      return nil unless book.present?
 
-      # оставляем только буквы и цифры, убирая точки
-      book = book.gsub(/[^0-9A-ZА-Я]/i, '')
+      # оставляем только буквы и цифры, убирая точки и дефисы
+      book = book.gsub(/[^\p{L}\p{N}]/u, '')
       # находим наш код книги по человеческому названию
-      book_code = BOOK_TO_CODE[book]
+      book_code = BOOK_TO_CODE[book] || localized_book_code(book)
 
       # формируем ссылку
       if book_code
@@ -57,11 +59,88 @@ class AddressConverter
         str = str + "#L#{lines}" if lines
         str
       else
-        nil
+        # Название книги может само заканчиваться цифрой (ヨハネの手紙１).
+        # Тогда обычный разбор съедает её как главу — ищем самое длинное известное название.
+        link_by_known_book_prefix(address)
       end
     else
       nil
     end
+  end
+
+  # Короткие названия, которые люди реально набирают: 约翰, 約翰, ヨハネ.
+  # Полные названия и books.short берутся из locale-файлов; здесь — обиходные формы.
+  LOCALIZED_BOOK_ALIASES = {
+    'ja' => {
+      'ヨハネ' => 'in', 'マタイ' => 'mf', 'マルコ' => 'mk', 'ルカ' => 'lk',
+      '使徒' => 'act', 'ローマ' => 'rim', 'ヘブライ' => 'evr', 'ヤコブ' => 'iak',
+      'ユダ' => 'iud', '黙示録' => 'otkr', '創世記' => 'gen', '出エジプト' => 'ish',
+      '詩篇' => 'ps', 'イザヤ' => 'is', 'エレミヤ' => 'ier', 'エゼキエル' => 'iez',
+      'ダニエル' => 'dan',
+    },
+    'zh-Hans' => {
+      '约翰' => 'in', '马太' => 'mf', '马可' => 'mk', '路加' => 'lk',
+      '使徒' => 'act', '罗马' => 'rim', '希伯来' => 'evr', '雅各' => 'iak',
+      '犹大' => 'iud', '启示录' => 'otkr', '创世记' => 'gen', '出埃及记' => 'ish',
+      '诗篇' => 'ps', '以赛亚' => 'is', '耶利米' => 'ier', '以西结' => 'iez',
+      '但以理' => 'dan',
+    },
+    'zh-Hant' => {
+      '約翰' => 'in', '馬太' => 'mf', '馬可' => 'mk', '路加' => 'lk',
+      '使徒' => 'act', '羅馬' => 'rim', '希伯來' => 'evr', '雅各' => 'iak',
+      '猶大' => 'iud', '啟示錄' => 'otkr', '創世記' => 'gen', '出埃及記' => 'ish',
+      '詩篇' => 'ps', '以賽亞' => 'is', '耶利米' => 'ier', '以西結' => 'iez',
+      '但以理' => 'dan',
+    },
+  }.freeze
+
+  # Ссылка по самому длинному известному названию книги в начале адреса.
+  # Нужна для названий с цифрой на конце: ヨハネの手紙１ 3:16.
+  def self.link_by_known_book_prefix address
+    compact = address.gsub(/[^\p{L}\p{N}:,\-]/u, '')
+    candidates = localized_book_map.map { |name, code| [name, code] }
+    candidates += BOOK_TO_CODE.map { |name, code| [normalize_book_name(name), code] }
+    candidates.sort_by { |name, _code| -name.length }.each do |name, code|
+      next if name.blank? || !compact.start_with?(name)
+
+      rest = compact[name.length..]
+      if (match = rest.match(/\A(\d{1,3}):([\d\-,]{1,20})\z/))
+        return "/#{code}/#{match[1]}/#L#{match[2]}"
+      end
+    end
+    nil
+  end
+
+  # Названия книг на языках, для которых нет латиницы/кириллицы в BOOK_TO_CODE.
+  # Карта строится из тех же locale-файлов, что и меню книг, поэтому не расходится с интерфейсом.
+  def self.localized_book_code book
+    localized_book_map[book]
+  end
+
+  def self.localized_book_map
+    @localized_book_map ||= begin
+      map = {}
+      %w[ja zh-Hans zh-Hant].each do |locale|
+        %w[mid short].each do |kind|
+          translations = ::I18n.t("books.#{kind}", locale: locale, default: {})
+          next unless translations.is_a?(Hash)
+
+          translations.each do |code, name|
+            normalized = normalize_book_name(name)
+            map[normalized] ||= code.to_s if normalized.present?
+          end
+        end
+
+        LOCALIZED_BOOK_ALIASES.fetch(locale, {}).each do |name, code|
+          map[normalize_book_name(name)] ||= code
+        end
+      end
+      map
+    end
+  end
+
+  def self.normalize_book_name name
+    name.to_s.unicode_normalize(:nfkc).downcase.gsub(/[^\p{L}\p{N}]/u, '')
   end
 
   # конвертация кодов книг из формата bibleox (optina) в формат azbyka:

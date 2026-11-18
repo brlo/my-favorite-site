@@ -734,3 +734,60 @@ a#current-book {
 [dir="rtl"] .night-mode #audio-player .ap-seek::-moz-range-track {
   background: linear-gradient(to left, #61afef var(--ap-progress), #4b5263 var(--ap-progress));
 }
+
+/* ==================================================== */
+/* CJK: японский и китайский текст                      */
+/* ==================================================== */
+
+/* Интерфейс: латиница остаётся прежней, иероглифы берут системный шрифт языка */
+html:lang(ja) body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans", "Yu Gothic", "Meiryo", "Noto Sans CJK JP", sans-serif;
+  line-height: 1.55;
+}
+html:lang(zh-Hans) body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  line-height: 1.55;
+}
+html:lang(zh-Hant) body {
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", sans-serif;
+  line-height: 1.55;
+}
+
+/* Статьи и стихи: запас по строке больше, чем для латиницы/кириллицы */
+#page-body:lang(ja), #bib-text-area:lang(ja), #page-references:lang(ja), .pre-bible-text:lang(ja) {
+  font-family: "Helvetica Neue", Helvetica, Arial, "Hiragino Sans", "Yu Gothic", "Meiryo", "Noto Sans CJK JP", sans-serif;
+  line-height: 1.85;
+  font-feature-settings: "palt" 1;
+  line-break: strict;
+}
+#page-body:lang(zh-Hans), #bib-text-area:lang(zh-Hans), #page-references:lang(zh-Hans), .pre-bible-text:lang(zh-Hans) {
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+  line-height: 1.85;
+}
+#page-body:lang(zh-Hant), #bib-text-area:lang(zh-Hant), #page-references:lang(zh-Hant), .pre-bible-text:lang(zh-Hant) {
+  font-family: "Helvetica Neue", Helvetica, Arial, "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", sans-serif;
+  line-height: 1.85;
+}
+
+/* Заголовки: сохраняем антикву для латиницы, иероглифы — в минчо/сун */
+#h1-title:lang(ja) .title,
+#page-body:lang(ja) h1, #page-body:lang(ja) h2, #page-body:lang(ja) h3, #page-body:lang(ja) h4 {
+  font-family: "Linux Libertine", Georgia, "Times", "Source Serif Pro", "Hiragino Mincho ProN", "Yu Mincho", "Noto Serif CJK JP", serif;
+  line-height: 1.4;
+}
+#h1-title:lang(zh-Hans) .title,
+#page-body:lang(zh-Hans) h1, #page-body:lang(zh-Hans) h2, #page-body:lang(zh-Hans) h3, #page-body:lang(zh-Hans) h4 {
+  font-family: "Linux Libertine", Georgia, "Times", "Source Serif Pro", "Songti SC", "SimSun", "Noto Serif CJK SC", serif;
+  line-height: 1.4;
+}
+#h1-title:lang(zh-Hant) .title,
+#page-body:lang(zh-Hant) h1, #page-body:lang(zh-Hant) h2, #page-body:lang(zh-Hant) h3, #page-body:lang(zh-Hant) h4 {
+  font-family: "Linux Libertine", Georgia, "Times", "Source Serif Pro", "Songti TC", "PMingLiU", "Noto Serif CJK TC", serif;
+  line-height: 1.4;
+}
+
+#bib-text-area:lang(ja) td,
+#bib-text-area:lang(zh-Hans) td,
+#bib-text-area:lang(zh-Hant) td {
+  line-height: 1.9;
+}
