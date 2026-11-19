@@ -13,7 +13,11 @@ def check_file(path)
   notes = []
   quotes.each_with_index do |q, i|
     text = q[/«(.*?)»\s*\(/m, 1]
-    errs << "Q#{i + 1}: не найден текст цитаты («…»)" and next if text.nil?
+    if text.nil?
+      # blockquote с прозой (например, толкование отца), а не библейская цитата
+      notes << "Q#{i + 1}: пропущено (blockquote без цитаты «…»)"
+      next
+    end
     refs = q.scan(%r{bibleox\.com/el/gr-lxx-byz/([a-z0-9-]+)/(\d+)/#L([\d,\-]+)})
     errs << "Q#{i + 1}: нет ссылок на стихи" and next if refs.empty?
     bk, ch, ls = refs[0]

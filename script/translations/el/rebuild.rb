@@ -163,14 +163,22 @@ def rebuild_quote(bq)
   sig = refs.map do |b, c, l|
     %(<a href="#{BASE}/#{b}/#{c}/#L#{l}">#{SHORT[b]} #{c}:#{l}</a>)
   end.join(' · ')
-  ["<blockquote><p>«#{out.join}» (#{sig})</p></blockquote>", nil, notes]
+  # структура цитаты как в RU: blockquote с <p> или без него
+  if bq =~ %r{<blockquote>\s*<p[ >]}
+    ["<blockquote><p>«#{out.join}» (#{sig})</p></blockquote>", nil, notes]
+  else
+    ["<blockquote>«#{out.join}» (#{sig})</blockquote>", nil, notes]
+  end
 end
 
 path = ARGV[0] or abort 'usage: rebuild.rb <draft.html>'
 body = File.read(path)
 quotes = body.scan(%r{<blockquote>.*?</blockquote>}m)
 failed = false
+rebuilt = 0
 quotes.each do |bq|
+  # blockquote с прозой (толкование отца) — не библейская цитата, пропускаем
+  next unless bq =~ /«.*?»\s*\(/m
   new_bq, err, qnotes = rebuild_quote(bq)
   if err
     failed = true
@@ -178,6 +186,7 @@ quotes.each do |bq|
   else
     qnotes.each { |n| puts "note: #{n}" }
     body = body.sub(bq) { new_bq }
+    rebuilt += 1
   end
 end
 # подписи всех ссылок на gr-lxx-byz (в т.ч. в прозе) — канонические (лечит гомоглифы кириллицы)
@@ -187,5 +196,5 @@ end
 # кириллические гомоглифы во всём файле, кроме значений href (там пути с кириллицей легальны)
 body = body.gsub(%r{href="[^"]*"|[^"]+}) { |m| m.start_with?('href="') ? m : fix_homoglyphs(m) }
 File.write(path, body) unless failed
-puts failed ? 'пересборка НЕ выполнена — исправьте ошибки' : "пересобрано цитат: #{quotes.size}"
+puts failed ? 'пересборка НЕ выполнена — исправьте ошибки' : "пересобрано цитат: #{rebuilt}"
 exit 1 if failed
