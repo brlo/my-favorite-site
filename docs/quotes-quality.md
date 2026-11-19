@@ -3,6 +3,8 @@
 Как доводить перевод раздела «Библейские цитаты» (`q-saints` → `en-saints-q`, `ko-q`, `cn-q`, …) до эталона и принимать партию перед выкладкой.
 Дополняет `docs/quotes-section.md` (инструменты сборки `q_build` и механика раздела) и `docs/translations.md` (общие правила перевода).
 Проверено на партии EN «Священное Писание» (12 статей: 9 правок после GLM + 3 новых, 2026-11).
+Долгосрочный план и статус EN-проекта (какие папки сделаны, что дальше, журнал партий) —
+`docs/english-quotes-project.md`; общий план двух EN-треков — `docs/english-translation-plan.md`.
 
 ## Главный принцип
 
@@ -32,6 +34,11 @@
    (только `&lt;…&gt;`), нет пустых абзацев.
 6. **Текст**: без тегов не меняется относительно предыдущей версии, кроме осознанных исправлений (ошибки, пропуски);
    для цитат из библиотеки — дословно, допустимы только типографика/сноски.
+7. **Смысловая верность заимствованного перевода**: если английский перевод (библиотеки или Библии)
+   скрывает мысль, ради которой цитата стоит в статье, — найден другой перевод, либо дано примечание
+   с оригиналом (греч./лат./евр.), либо цитата заменена; молча оставлять нельзя, текст чужого перевода
+   не правится. Проверяется на ревью отдельным пунктом.
+   Порог — только смысл, на котором держится довод статьи; мелкие стилистические отличия не комментируются.
 
 ## Инструменты
 
@@ -41,6 +48,17 @@ bin/rails runner script/translations/q_parity.rb en db/translations/en/q_saints_
 bin/rails runner script/translations/q_parity.rb en db/translations/en/q_saints_1.yml --summary
 bin/rails runner script/translations/q_parity.rb en db/translations/en/q_saints_1.yml --links
 bin/rails runner script/translations/q_parity.rb en db/translations/en/q_saints_1.yml --spans   # RU | EN по каждой цитате для глазами-сверки
+bin/rails runner script/translations/q_parity.rb en db/translations/en/q_saints_1.yml --draft tmp/q_batch/<папка>/out  # черновики статей до сборки в YAML
+
+# инвентарь долгосрочного проекта: что готово/осталось по папкам
+bin/rails runner script/translations/q_inventory.rb en en-saints-q --folders
+bin/rails runner script/translations/q_inventory.rb en en-saints-q --next
+
+# подготовка партии: выгрузка RU-эталона, текущего EN и ссылок в tmp/q_batch/<папка>/
+bin/rails runner script/translations/q_batch.rb export en en-saints-q "Бог"
+
+# сборка партии: применить черновики tmp/q_batch/<папка>/out в YAML
+bin/rails runner script/translations/q_apply.rb en db/translations/en/q_saints_2.yml tmp/q_batch/бог
 
 # компактный вид статей для перевода/сборки
 bin/rails runner script/translations/view_q.rb en file:q_saints_1

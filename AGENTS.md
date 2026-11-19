@@ -40,6 +40,7 @@ docker exec bibpostgres psql -U bibleox bibleox_development -t -A -c "SELECT ...
 - `docs/translations.md` — перевод/правка статей, импорт YAML, обновление отдельной статьи на проде. Для китайского проекта дополнительно `docs/chinese-translations.md`; для святоотеческой библиотеки по языкам: японский — `docs/japanese-translations.md` (Библия 新共同訳， глоссарий, конвейер, меню-заготовки, инвентарь веков), корейский — `docs/korean-translations.md`, арабский — `docs/arabic-translations.md`; для современных диспутов с протестантами (любой язык) — `docs/disputes-translations.md`.
 - `docs/quotes-section.md` — перенос раздела «Библейские цитаты» на новый язык: инструменты, механика `q_build`, подводные камни Библий, заливка партии на прод.
 - `docs/quotes-quality.md` — контроль качества перевода раздела цитат: паритет разметки/структуры с русским эталоном (`script/translations/q_parity.rb`), независимое ревью, приёмка и выкладка партии.
+- `docs/english-translation-plan.md` — долгий перевод святых отцов на английский: общий план двух треков — цитаты (`docs/english-quotes-project.md`) и библиотека (`docs/english-library-project.md`), приоритеты, инвентарь (`q_inventory.rb`, `library_status.rb`), подготовка/сборка партии (`q_batch.rb`, `q_apply.rb`), как продолжить в новой сессии.
 - `docs/bibles.md` — добавление переводов Библии (MyBible-модули, регистрация, известные дефекты модулей).
 - `docs/page-visits.md` — статистика посещений (`BotDetector`, счётчики в Redis, сводка `/admin`).
 

@@ -20,11 +20,19 @@
 require 'yaml'
 require 'cgi'
 
-lang, file, *flags = ARGV
-abort 'usage: q_parity.rb LANG FILE [--spans|--links|--summary] [--strict]' unless lang && file
-strict = flags.include?('--strict')
-mode = (flags - ['--strict']).find { |f| f.start_with?('--') }&.delete_prefix('--')
+args = ARGV.dup
+lang = args.shift
+file = args.shift
+abort 'usage: q_parity.rb LANG FILE [--spans|--links|--summary] [--strict] [--draft DIR]' unless lang && file
+draft_dir = nil
+if (i = args.index('--draft'))
+  draft_dir = args[i + 1]
+  args.slice!(i, 2)
+end
+strict = args.delete('--strict')
+mode = args.find { |f| f.start_with?('--') }&.delete_prefix('--')
 data = YAML.load_file(file)
+abort '--draft требует каталог' if args.include?('--draft') && draft_dir.nil?
 short = I18n.t('books.short', locale: lang.to_sym).transform_keys(&:to_s)
 TAGS = %w[blockquote strong mark em h2 h3 h4 ul ol li p u hr]
 
@@ -131,6 +139,16 @@ summary = []
 data.fetch('pages').each do |p|
   path = p['path']
   body = p['body'].to_s
+  if draft_dir
+    f = File.join(draft_dir, "#{path}.html")
+    if File.exist?(f)
+      body = File.read(f)
+    elsif body.strip.empty?
+      summary << format('%-50s %s', path, 'НЕТ ЧЕРНОВИКА')
+      all_errs << "#{path}: нет черновика #{f}" unless mode == 'summary'
+      next
+    end
+  end
   ru = Page.find_by(lang: 'ru', path: p['src'])
   unless ru
     all_errs << "#{path}: нет русской статьи #{p['src']}"
