@@ -5,10 +5,10 @@ list: z0wk_古代基督教著作
 pages:
   - src: Климент_Римский
     path: Kl4A_罗马的革利免一世纪
-    title: 罗马的革利免，一世纪
+    title: 革利免（罗马的），一世纪
     title_sub: 殉道司祭（†约101年），罗马的主教，使徒们的门徒
     meta_desc: 罗马的圣革利免（†约101年）——罗马的主教、使徒时代的教父之一——的生平与《致哥林多人前书》等著作，以及这些文献所见证的古代教会的信仰。
-    menu: { parent: "一世纪", title: "罗马的革利免，主教，殉道者（†约101年）", priority: 10, replace: "克莱门特，罗马的圣殉道者（†约101年）" }
+    menu: { parent: "一世纪", title: "革利免（罗马的），主教，殉道者（†约101年）", priority: 10, replace: "克莱门特，罗马的圣殉道者（†约101年）" }
     copy_cover: true
     update: true
     body: |-
