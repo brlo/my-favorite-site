@@ -27,12 +27,24 @@ def verse_text(bk, ch, nums)
   [parts.compact.join(' ').gsub(/\s+/, ' ').strip, missing]
 end
 
+# Кириллические двойники греческих букв — невидимая ловушка ручного набора; чиним молча.
+CYR2GR = {
+  'А' => 'Α', 'В' => 'Β', 'Е' => 'Ε', 'К' => 'Κ', 'М' => 'Μ', 'Н' => 'Η', 'О' => 'Ο',
+  'Р' => 'Ρ', 'С' => 'Σ', 'Т' => 'Τ', 'У' => 'Υ', 'Х' => 'Χ',
+  'а' => 'α', 'е' => 'ε', 'о' => 'ο', 'р' => 'ρ', 'с' => 'σ', 'т' => 'τ', 'у' => 'υ',
+  'х' => 'χ', 'к' => 'κ', 'м' => 'μ', 'и' => 'ι', 'н' => 'η', 'в' => 'β', 'г' => 'γ',
+  'л' => 'λ', 'п' => 'π', 'ф' => 'φ',
+}.freeze
+def fix_homoglyphs(s)
+  s.gsub(/[#{CYR2GR.keys.join}]/, CYR2GR)
+end
+
 # HTML-фрагмент → последовательность [{char:} | {tag:}]
 # Сущности разрыва заменяем на GAP-символ ДО сканирования: иначе жадный [^<]+
 # поглощает "&lt;…&gt;" внутри текста.
 def tokenize(html)
   out = []
-  s = html.gsub('&lt;…&gt;', GAP).gsub('&lt;...&gt;', GAP)
+  s = fix_homoglyphs(html).gsub('&lt;…&gt;', GAP).gsub('&lt;...&gt;', GAP)
   s.scan(%r{#{GAP}|<[^>]+>|[^<]+}) do |tok|
     if tok == GAP
       out << { char: GAP }
@@ -172,6 +184,8 @@ end
 body = body.gsub(%r{<a href="#{BASE}/([a-z0-9-]+)/(\d+)/#L([\d,\-]+)">[^<]*</a>}) do
   %(<a href="#{BASE}/#{$1}/#{$2}/#L#{$3}">#{SHORT[$1]} #{$2}:#{$3}</a>)
 end
+# кириллические гомоглифы во всём файле, кроме значений href (там пути с кириллицей легальны)
+body = body.gsub(%r{href="[^"]*"|[^"]+}) { |m| m.start_with?('href="') ? m : fix_homoglyphs(m) }
 File.write(path, body) unless failed
 puts failed ? 'пересборка НЕ выполнена — исправьте ошибки' : "пересобрано цитат: #{quotes.size}"
 exit 1 if failed
