@@ -113,16 +113,22 @@ def rebuild_quote(bq)
 
   tokens = tokenize(text)
   notes = []
+  emit_from = 0
   events, errors, _notes, _mi, fail_di = align(tokens, mod)
   if errors.any? && fail_di && fail_di <= 2
-    # цитата начинается с середины стиха (обрезка <<): ищем смещение в модуле
+    # цитата начинается с середины стиха (обрезка <<): ищем смещение в модуле.
+    # ВАЖНО: эмиссия текста тоже идёт от смещения — иначе в цитату попадает полный стих.
     best = nil # [end_mi, off, errs]
     1.upto(160) do |off|
-      ev, errs, _n, m, _f = align(tokens, mod.chars[off..].join)
+      # старт срезаем до первой буквы: пунктуация перед ней относится к обрезанной части
+      start = off
+      start += 1 while start < mod.size && mod[start] != GAP && base_char(mod[start]).nil?
+      ev, errs, _n, m, _f = align(tokens, mod.chars[start..].join)
       if errs.empty?
-        events = ev.map { |pos, tag| [pos + off, tag] }
+        events = ev
+        emit_from = start
         errors = []
-        notes << "обрезано начало модуля (~#{off} симв.: цитата с середины стиха)"
+        notes << "обрезано начало модуля (~#{emit_from} симв.: цитата с середины стиха)"
         break
       end
       best = [m, off, errs] if best.nil? || m > best[0]
@@ -133,7 +139,7 @@ def rebuild_quote(bq)
   end
   return [nil, errors.join('; ')] if errors.any?
 
-  mod_chars = mod.chars
+  mod_chars = mod.chars[emit_from..]
   out = []
   mod_chars.each_with_index do |c, i|
     # теги с событием в позиции i вставляются ПЕРЕД символом i
@@ -144,7 +150,7 @@ def rebuild_quote(bq)
 
   sig = refs.map do |b, c, l|
     %(<a href="#{BASE}/#{b}/#{c}/#L#{l}">#{SHORT[b]} #{c}:#{l}</a>)
-  end.join('; ')
+  end.join(' · ')
   ["<blockquote><p>«#{out.join}» (#{sig})</p></blockquote>", nil, notes]
 end
 
