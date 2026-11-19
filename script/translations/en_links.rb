@@ -11,11 +11,11 @@
 #     ещё нет — ведём на список раздела (en-q / en-saints-q).
 # Идемпотентен: повторный запуск обновляет только изменившиеся links.
 # После импорта новой партии — запускать на dev и на проде.
-# Строит links (вкладки Писание/Предание) для EN-страниц по RU-эталону.
-# Запуск: bin/rails runner tmp/q_batch/en_links.rb [--dry]
+# --check — ничего не пишет, выходит с кодом 1, если вкладки расходятся с RU.
 require 'json'
 
 dry = ARGV.include?('--dry')
+check = ARGV.include?('--check')
 list_paths = { 'en-q' => 'en-saints-q', 'en-saints-q' => 'en-q' }
 bible_labels = ['По Библии', 'По Писанию', 'Писание']
 father_labels = ['По святым отцам', 'Предание']
@@ -49,7 +49,12 @@ Page.where(lang: 'en').where.not(group_lang_id: nil).find_each do |p|
 
   changed += 1
   report << [p.path, p.links, new_links]
-  p.update!(links: new_links) unless dry
+  p.update!(links: new_links) unless dry || check
+end
+if check && changed.positive?
+  puts "вкладки расходятся с RU: #{changed} страниц(ы); запусти без --check"
+  report.first(15).each { |row| puts row.inspect }
+  exit 1
 end
 puts "#{dry ? 'DRY ' : ''}changed: #{changed}"
-report.first(15).each { |row| puts row.inspect }
+report.first(15).each { |row| puts row.inspect } unless check
