@@ -165,7 +165,10 @@
    границы выделений, дословность библиотечных цитат, подписи/якоря, потери текста.
 7. **Сборка:** `q_apply.rb en <yaml> tmp/q_batch/<папка>` (один писатель на файл, ставит
    `update: true`), затем `q_parity.rb` чист, `q_sync.rb` в dev, проверка страниц на
-   `http://localhost/ru/en/w/...` и списка.
+   `http://localhost/ru/en/w/...` и списка. После импорта — `script/translations/en_links.rb`:
+   переносит с RU-страниц вкладки «Писание / Предание» (`links`): на списках
+   `en-q`/`en-saints-q` — «Scripture»/«Tradition», на статьях — «By Scripture»/«By the Fathers»;
+   EN-пара ищется по `group_lang_id`, если её нет — ведёт на список раздела.
 8. **Выкладка** (по команде): commit+push → `bin/bib_deploy.sh` → импорт YAML на проде
    (`PUBLISH=1`, для существующих — `update: true`) → «золотые» пункты меню → обложки →
    проверка страниц/`md5(body)` → обновить статус и журнал ниже.
