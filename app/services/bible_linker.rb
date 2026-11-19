@@ -10,6 +10,7 @@ class BibleLinker
     'zh-Hans' => 'cn-cuv',
     'zh-Hant' => 'cn-cuvt',
     'ko'      => 'ko-nkrv',
+    'el'      => 'gr-lxx-byz',
     'hi'      => 'hi-ov',
   }.freeze
 
@@ -46,6 +47,25 @@ class BibleLinker
     @ja_pattern ||= /(?<book>#{ja_books.keys.map { Regexp.escape(_1) }.join('|')})\s*(?<chapter>[0-9０-９]{1,3})\s*[:：]\s*(?<verses>[0-9０-９]{1,3}(?:#{DASH}[0-9０-９]{1,3})?(?:\s*[,、]\s*[0-9０-９]{1,3}(?:#{DASH}[0-9０-９]{1,3})?)*)/
   end
 
+  # Греческие названия книг: "Μτ", "Α Κορ", "Ψλ" -> код книги. Берём из локали, длинные названия первыми.
+  def self.el_books
+    @el_books = nil if Rails.env.development?
+    @el_books ||= begin
+      names = %i[short mid full].flat_map do |kind|
+        (::I18n.t("books.#{kind}", locale: :el, default: {}) || {}).map { |code, name| [name.to_s, code.to_s] }
+      end
+      names.reject { |name, code| name.empty? || !::BOOKS.key?(code) }.to_h.sort_by { |name, _| -name.length }.to_h
+    end
+  end
+
+  # Греческая ссылка на Писание: "Μτ 5:3-10", "Α Κορ 13:4". Названия книг — по локали el,
+  # точка после сокращения допустима; цифры европейские. Без /x: пробелы внутри названий
+  # ("Α Κορ") значимы.
+  def self.el_pattern
+    @el_pattern = nil if Rails.env.development?
+    @el_pattern ||= /(?<![\p{L}\d])(?<book>#{el_books.keys.map { Regexp.escape(_1) }.join('|')})\.?\s*(?<chapter>[0-9]{1,3})\s*[:：]\s*(?<verses>[0-9]{1,3}(?:#{DASH}[0-9]{1,3})?(?:\s*[,、]\s*[0-9]{1,3}(?:#{DASH}[0-9]{1,3})?)*)(?![\p{L}\d:])/
+  end
+
   # HTML-фрагмент -> HTML, где найденные ссылки на Писание стали гиперссылками
   def self.link_html(html, lang)
     return html.to_s unless BIBLE_BY_LANG.key?(lang) && html.present?
@@ -78,11 +98,15 @@ class BibleLinker
   def self.find(text, lang)
     bible = BIBLE_BY_LANG[lang] or return []
     locale = ::BIB_LANG_TO_LOCALE[bible]
-    pattern = lang == 'ja' ? ja_pattern : ::BibleCitationExtractor::PATTERN
+    pattern = lang == 'ja' ? ja_pattern : lang == 'el' ? el_pattern : ::BibleCitationExtractor::PATTERN
 
     text.to_enum(:scan, pattern).flat_map do
       m = ::Regexp.last_match
-      book_code = lang == 'ja' ? ja_books[m[:book]] : ::BibleCitationExtractor.book_code_for(m[:book])
+      book_code = case lang
+                  when 'ja' then ja_books[m[:book]]
+                  when 'el' then el_books[m[:book]]
+                  else ::BibleCitationExtractor.book_code_for(m[:book])
+                  end
       next [] unless book_code
 
       matches = []

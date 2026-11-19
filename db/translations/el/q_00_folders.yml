@@ -1,0 +1,10 @@
+# Папки меню раздела цитат el (Βιβλικές ρήσεις, список el-q). Загружать первым:
+# bin/rails pages:import_translations FILE=db/translations/el/q_00_folders.yml
+# priority верхнеуровневых — по порядку папок эталона ru (Бог=0, Церковь=1, …, Ангелы=6, Пророчества=7).
+lang: el
+list: el-q
+folders:
+  - { path: "Άγγελοι", priority: 6 }
+  - { path: "Άγγελοι/Άγιοι άγγελοι", priority: 0 }
+  - { path: "Άγγελοι/Παραπεσόντες", priority: 0 }
+pages: []

@@ -46,6 +46,17 @@ class BibleLinkerTest < ActiveSupport::TestCase
     assert_includes link('<p>（１コリ13：4）</p>', 'ja'), 'href="/ja/jp-ni/1kor/13#L4"'
   end
 
+  test "Greek articles link to the LXX/Byzantine Bible" do
+    assert_includes link('<p>(Μτ 5:3-10)</p>', 'el'), 'href="/el/gr-lxx-byz/mf/5#L3-10"'
+    assert_includes link('<p>(Ψλ 50:3)</p>', 'el'), 'href="/el/gr-lxx-byz/ps/50#L3"'
+    # названия из нескольких слов: "Α Κορ"
+    assert_includes link('<p>(Α Κορ 13:4)</p>', 'el'), 'href="/el/gr-lxx-byz/1kor/13#L4"'
+    # точка после сокращения допустима
+    assert_includes link('<p>(Μτ. 20:13)</p>', 'el'), 'href="/el/gr-lxx-byz/mf/20#L13"'
+    # продолжение той же книги другой главой
+    assert_includes link('<p>(Μτ 5:21, 6:24)</p>', 'el'), '<a href="/el/gr-lxx-byz/mf/6#L24">6:24</a>'
+  end
+
   test "does not touch existing links, headings or unknown text" do
     html = '<p><a href="/x">Мф. 20:13</a></p><h2>Ин. 3:16</h2><p>в 10:30 на 5, 3 раза</p>'
     assert_equal html, link(html)

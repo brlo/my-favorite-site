@@ -21,7 +21,10 @@ SOURCE = {
   'ko' => '<p>번역: 로디온 블라소프 (AI 도구 활용). 저본: 러시아어 원문. 참고: 영어·일본어 번역. 성경 인용과 링크는 개역개정에 따름.</p>',
   'zh-Hans' => '<p>翻译：罗季翁·弗拉索夫（借助人工智能工具）。底本：俄文原文。参考：英文、日文翻译。圣经链接指向本站的和合本（上帝版）；次经书卷引文按思高译本，无中文经文处自俄文译出。</p>',
   'zh-Hant' => '<p>翻譯：羅季翁·弗拉索夫（借助人工智能工具）。底本：俄文原文。參考：英文、日文翻譯。聖經鏈接指向本站的和合本（上帝版）；次經書卷引文按思高譯本，無中文經文處自俄文譯出。</p>',
+  'el' => '<p>Μετάφραση: Ροδίων Βλάσοφ (με τη χρήση εργαλείων τεχνητής νοημοσύνης). Τα χωρία των Αγίων Πατέρων μεταφράζονται από τα ρωσικά και, όπου είναι δυνατόν, ελέγχονται με το ελληνικό πρωτότυπο της βιβλιοθήκης του ιστότοπου· οι βιβλικές περικοπές παρατίθενται κατά το κείμενο της Ελληνικής Βίβλου του ιστότοπου (μετάφραση των Ο΄ και βυζαντινό κείμενο της Καινής Διαθήκης).</p>',
 }.fetch(lang) { '' }
+# Кавычки-обёртка цитаты: el — « », ja — 「 」, остальные — “ ”
+WRAP = { 'el' => ['«', '»'], 'ja' => ['「', '」'] }.fetch(lang) { ['“', '”'] }
 errors = []
 clean = ->(t) { t.to_s.gsub(/\[[^\]]*\]/, '').gsub(%r{<br>|</?[a-z]+>}, '').squeeze(' ').strip }
 quote = ->(t) { i = 0; t.gsub('"') { (i += 1).odd? ? '‘' : '’' } }
@@ -94,7 +97,7 @@ expand_quote = lambda do |line, title|
   end
   link_ref = ->(r) { r.start_with?('gr ') ? link.(r.delete_prefix('gr '), code: 'gr-lxx-byz') : r.start_with?('sb ') ? link.(r.delete_prefix('sb '), code: SB_TR) : link.(r) }
   links = rs.map { |r| link_ref.(r) }.join('; ')
-  %(<blockquote><p>“#{text}” (#{links})#{" <em>(#{inline.(note)})</em>" if note}</p></blockquote>)
+  %(<blockquote><p>#{WRAP[0]}#{text}#{WRAP[1]} (#{links})#{" <em>(#{inline.(note)})</em>" if note}</p></blockquote>)
 end
 literal = lambda do |line|
   body, tail = line.split(/\s*\|\|\|\s*/, 2)
@@ -105,7 +108,7 @@ literal = lambda do |line|
       elsif r.start_with?('sb ') then link.(r.delete_prefix('sb '), code: SB_TR)
       elsif r.start_with?('gr ') then "#{link.(r.delete_prefix('gr '), code: 'gr-lxx-byz')}, #{NOTE_GR}"
       else r.split(';').map { link.(_1.delete_prefix('ctb ').strip) }.join('; ') end
-  %(<blockquote><p>“#{inline.(body)}” (#{a})#{" <em>(#{inline.(note)})</em>" if note}</p></blockquote>)
+  %(<blockquote><p>#{WRAP[0]}#{inline.(body)}#{WRAP[1]} (#{a})#{" <em>(#{inline.(note)})</em>" if note}</p></blockquote>)
 end
 pages = []; cur = nil; list = nil
 flush = -> { if list; cur['body'] << "<#{list[0]}>#{list[1].map { "<li><p>#{_1}</p></li>" }.join}</#{list[0]}>"; list = nil; end }

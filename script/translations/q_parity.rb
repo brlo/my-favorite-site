@@ -107,6 +107,7 @@ end
 
 def check_links(body, path, lang, short, page_paths, verse_lines_cache)
   errs = []
+  grc_paths = nil
   body.scan(%r{<a [^>]*href="([^"]+)"[^>]*>(.*?)</a>}m) do |href, txt|
     label = norm_label(txt.gsub(/<[^>]+>/, ''))
     case href
@@ -121,6 +122,12 @@ def check_links(body, path, lang, short, page_paths, verse_lines_cache)
     when %r{bibleox\.com/[a-z-]+/#{Regexp.escape(lang)}/w/([^"#]+)}
       ep = CGI.unescape($1)
       errs << "#{path}: нет страницы библиотеки #{ep}" unless page_paths.include?(ep.downcase)
+    when %r{bibleox\.com/grc/grc/w/([^"#]+)}
+      # ссылки на греческие оригиналы библиотеки (конвенция проекта el: цитаты отцов ведут на подлинник)
+      next unless lang == 'el'
+      grc_paths ||= Page.where(lang: 'grc').pluck(:path_low).to_set
+      ep = CGI.unescape($1)
+      errs << "#{path}: нет grc-страницы библиотеки #{ep}" unless grc_paths.include?(ep.downcase)
     when %r{bibleox\.com/ru/ru/}
       errs << "#{path}: ссылка на русскую статью без lang=\"ru\": #{href}" unless body[/<a [^>]*href="#{Regexp.escape(href)}"[^>]*lang="ru"/]
     when /azbyka/
