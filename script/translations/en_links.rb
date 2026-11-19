@@ -40,11 +40,24 @@ LABELS = {
 
 dry = ARGV.include?('--dry')
 check = ARGV.include?('--check')
-ru_by_group = Page.where(lang: 'ru').where.not(group_lang_id: nil).index_by(&:group_lang_id)
+# ВАЖНО: только лёгкие колонки — прежний вариант грузил ВСЕ RU-страницы целиком
+# (с телами, гигабайты объектов) и перебирал все EN-страницы: на проде это
+# выедало память и CPU (зависание сервера 2026-11-19).
+ru_by_group = Page.where(lang: 'ru').where.not(group_lang_id: nil)
+                 .select(:id, :group_lang_id, :links, :path, :title).index_by(&:group_lang_id)
+groups_with_links = ru_by_group.select { |_, r| r.links.present? }.keys
+# соседи вкладок — двумя массовыми запросами вместо find_by на каждую вкладку
+link_paths = ru_by_group.values.flat_map { |r| (r.links || []).filter_map { |l| l[1].presence } }.uniq
+ru_by_path = link_paths.empty? ? {} : Page.where(lang: 'ru', path: link_paths).pluck(:path, :group_lang_id).to_h
+en_by_group = Page.where(lang: 'en', group_lang_id: ru_by_path.values.compact.uniq)
+                  .pluck(:group_lang_id, :path)
+                  .group_by(&:first).transform_values { |rows| rows.first[1] }
 changed = 0
 report = []
 
-Page.where(lang: 'en').where.not(group_lang_id: nil).find_each do |p|
+Page.where(lang: 'en', group_lang_id: groups_with_links)
+    .order(:id).select(:id, :group_lang_id, :path_low, :path, :title, :links)
+    .find_each do |p|
   r = ru_by_group[p.group_lang_id] or next
   next if r.links.blank?
   is_list = %w[en-q en-saints-q].include?(p.path_low)
@@ -61,10 +74,10 @@ Page.where(lang: 'en').where.not(group_lang_id: nil).find_each do |p|
       new_links << [LABELS[orig] || p.title, '']
       next
     end
-    rp = Page.find_by(lang: 'ru', path: path)
-    ep = rp && Page.find_by(lang: 'en', group_lang_id: rp.group_lang_id)
-    if ep
-      new_links << [label, ep.path]
+    rp_group = ru_by_path[path]
+    ep_path = rp_group && en_by_group[rp_group]
+    if ep_path
+      new_links << [label, ep_path]
     elsif is_bible || is_father
       new_links << [label, is_bible ? 'en-q' : 'en-saints-q']
     end
@@ -74,7 +87,8 @@ Page.where(lang: 'en').where.not(group_lang_id: nil).find_each do |p|
 
   changed += 1
   report << [p.path, p.links, new_links]
-  p.update!(links: new_links) unless dry || check
+  # полный объект нужен для save-колбэков; грузится только для изменившихся страниц
+  Page.find(p.id).update!(links: new_links) unless dry || check
 end
 
 if check && changed.positive?
