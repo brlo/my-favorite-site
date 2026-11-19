@@ -6,6 +6,7 @@ class ChatController < Chat::BaseController
     @messages = @room.messages.visible_to(@member)
                      .includes(:member, reply_to: :member)
                      .order(id: :desc).limit(Chat::PAGE_SIZE).to_a.reverse
+    @member&.mark_chat_read!(@messages.last&.id)
     @has_more = @messages.size == Chat::PAGE_SIZE
     @my_reactions = my_reactions(@messages)
     @wait_seconds = Chat::RateLimiter.wait_seconds(@member)

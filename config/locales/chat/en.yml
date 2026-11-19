@@ -6,6 +6,8 @@ en:
     invite_close: 'Close'
     invite_cta: 'Go to chat'
     description: Questions and discussion about the Bible and faith
+    unread_new: New messages in the chat
+    unread_reply: Someone replied to you in the chat
     login_link: Log in
     guest_hint: Moderators will see your messages and reply to you. To make your messages visible to everyone, sign up and confirm your email.
     greeting: |-

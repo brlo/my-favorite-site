@@ -110,6 +110,8 @@ Rails.application.routes.draw do
     # Чат
     get 'chat', to: 'chat#show', as: :chat
     namespace :chat do
+      get 'unread', to: 'unread#show', as: :unread
+      post 'read', to: 'unread#mark', as: :read
       resources :messages, only: %i[index show create update destroy] do
         member do
           post :approve

@@ -12,6 +12,7 @@
      data-chat-verified-value="<%= verified %>"
      data-chat-locale-value="<%= I18n.locale %>"
      data-chat-messages-url-value="<%= chat_messages_path(locale: I18n.locale) %>"
+     data-chat-read-url-value="<%= chat_read_path(locale: I18n.locale) %>"
      data-chat-translate-langs-value="<%= (Chat::Translator.enabled? ? Chat::Translator::LANG_CODES : {}).to_json %>"
      data-chat-wait-seconds-value="<%= @wait_seconds %>"
      data-chat-edit-window-value="<%= Chat::EDIT_WINDOW.to_i %>"

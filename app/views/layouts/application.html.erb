@@ -44,8 +44,12 @@
 
   <body
     class="<%= 'night-mode' if @is_night_mode %>"
-    data-controller="books-menu metrics landing visit-beacon"
+    data-controller="books-menu metrics landing visit-beacon<%= ' chat-unread' if chat_notification_member %>"
     data-action="click->books-menu#clickOutside"
+    data-chat-unread-url-value="<%= chat_unread_path(locale: I18n.locale) %>"
+    data-chat-unread-interval-value="60000"
+    data-chat-unread-title-value="<%= t('chat.unread_new') %>"
+    data-chat-unread-reply-title-value="<%= t('chat.unread_reply') %>"
     data-visit-page-id="<%= @page&.id || 0 %>"
     data-visit-lang="<%= I18n.locale %>"
     data-visit-token="<%= ::PageVisits.visit_token(@page&.id || 0) %>">
@@ -66,7 +70,7 @@
               title="<%= t('menu.more') %>"
               aria-label="<%= t('menu.more') %>"
               data-action="click->more-menu#toggle"
-              data-more-menu-target="button">⋯</a>
+              data-more-menu-target="button">⋯<%= chat_unread_badge %></a>
 
             <div id="more-area" class="hidden" data-more-menu-target="menu">
               <% if (church_page = header_church_page) %>

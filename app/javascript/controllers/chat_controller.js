@@ -18,6 +18,7 @@ export default class extends Controller {
     verified: Boolean,
     locale: String,
     messagesUrl: String,
+    readUrl: String,
     translateLangs: Object,
     waitSeconds: Number,
     editWindow: Number,
@@ -54,12 +55,18 @@ export default class extends Controller {
       }
     }
     document.addEventListener("click", this.closePickerOnClick)
+
+    // пока вкладка видима, новые сообщения считаются прочитанными
+    this.onVisibility = () => { if (!document.hidden) this.scheduleRead() }
+    document.addEventListener("visibilitychange", this.onVisibility)
   }
 
   disconnect() {
     clearInterval(this.clock)
     clearInterval(this.waitTimer)
+    clearTimeout(this.readTimer)
     document.removeEventListener("click", this.closePickerOnClick)
+    document.removeEventListener("visibilitychange", this.onVisibility)
     this.editor?.destroy()
     this.subscription?.unsubscribe()
     this.consumer?.disconnect()
@@ -404,6 +411,7 @@ export default class extends Controller {
       const tmp = document.createElement("div")
       tmp.innerHTML = data.html
       tmp.querySelectorAll(".chat-msg").forEach(el => this.upsert(el.outerHTML))
+      this.scheduleRead()
     } catch (_) { /* не критично */ }
   }
 
@@ -460,11 +468,24 @@ export default class extends Controller {
 
   received(data) {
     switch (data.type) {
-      case "upsert": this.upsert(data.html); break
+      case "upsert": this.upsert(data.html); this.scheduleRead(); break
       case "remove": this.remove(data.id); break
       case "reactions": this.renderReactions(data.id, data.reactions); break
       case "room": this.postingClosedValue = data.posting_closed; break
     }
+  }
+
+  // Отмечаем прочитанное с задержкой: при пачке сообщений уйдёт один запрос.
+  scheduleRead() {
+    if (document.hidden) return
+    clearTimeout(this.readTimer)
+    this.readTimer = setTimeout(() => this.markRead(), 1500)
+  }
+
+  markRead() {
+    const last = this.messageTargets.at(-1)
+    if (!last) return
+    axios.post(this.readUrlValue, { id: last.dataset.id }).catch(() => { /* не критично */ })
   }
 
   // ---------- отрисовка ----------

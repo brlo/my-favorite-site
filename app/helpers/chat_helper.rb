@@ -28,6 +28,36 @@ module ChatHelper
     content_tag(:time, time.strftime(with_time ? '%d.%m.%Y %H:%M' : '%d.%m.%Y'), datetime: time.iso8601)
   end
 
+  # Участник чата, которому можно показать бейдж непрочитанных.
+  # Ищем без create и без записи last_seen_at: хелпер вызывается в шапке на каждой странице.
+  def chat_notification_member
+    return @chat_notification_member if defined?(@chat_notification_member)
+
+    @chat_notification_member = Chat::Identity.new(
+      request: request, cookies: cookies, user: current_user, locale: I18n.locale
+    ).lookup
+  end
+
+  def chat_unread_summary
+    @chat_unread_summary ||= chat_notification_member&.unread_summary || { count: 0, replies: 0 }
+  end
+
+  # Бейдж в шапке. Разметку обновляет chat_unread_controller.js при опросе.
+  def chat_unread_badge
+    return if chat_notification_member.nil?
+
+    summary = chat_unread_summary
+    count = summary[:count].to_i
+    replies = summary[:replies].to_i
+    content_tag(:span,
+                count > 99 ? '99+' : count.to_s,
+                class: "chat-unread#{' chat-unread--reply' if replies.positive?}",
+                hidden: count.zero?,
+                title: t(replies.positive? ? 'chat.unread_reply' : 'chat.unread_new'),
+                aria: { label: t('menu.chat') },
+                data: { chat_unread_target: 'badge' })
+  end
+
   # with_label: подпись сразу на сервере (для обычных страниц);
   # без неё подпись ставит JS (в сообщениях, которые рассылаются всем одинаковыми)
   def chat_role_badge(member, with_label: false)

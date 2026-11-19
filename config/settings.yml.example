@@ -11,6 +11,11 @@ development:
     chat_id: '-123'
   index_now:
     key: 'sample_key'
+  yandex_translate:
+    api_key: ''
+  # DeepSeek — переводчик для коротких сообщений (см. Chat::Translator)
+  deepseek:
+    api_key: ''
 
 production:
   redis:
@@ -20,3 +25,8 @@ production:
     chat_id: '-123'
   index_now:
     key: 'sample_key'
+  yandex_translate:
+    api_key: ''
+  # DeepSeek — переводчик для коротких сообщений (см. Chat::Translator)
+  deepseek:
+    api_key: ''

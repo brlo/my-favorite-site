@@ -21,6 +21,14 @@ module Chat
       @member
     end
 
+    # Только найти участника, ничего не записывая (для бейджа непрочитанных в шапке
+    # и опроса — они случаются на каждой странице и не должны трогать last_seen_at).
+    def lookup
+      return @lookup if defined?(@lookup)
+
+      @lookup = @user ? Member.find_by(user_id: @user.id) : guest_from_cookie
+    end
+
     private
 
     def member_for_user(create)

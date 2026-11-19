@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_18_150000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_19_150000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -84,6 +84,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_18_150000) do
     t.datetime "last_seen_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "last_read_message_id", default: 0, null: false
     t.index "lower((nickname)::text)", name: "index_chat_members_on_lower_nickname", unique: true
     t.index ["guest_token_digest"], name: "index_chat_members_on_guest_token_digest", unique: true
     t.index ["user_id"], name: "index_chat_members_on_user_id", unique: true
@@ -404,6 +405,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_18_150000) do
     t.datetime "updated_at", null: false
     t.tsvector "text_tsvector"
     t.text "text_search_ar"
+    t.index ["address"], name: "index_verses_on_address"
     t.index ["text_search"], name: "idx_verses_text_search_default", where: "((text_search IS NOT NULL) AND ((tr_code)::text <> 'jp-ni'::text))", using: :pgroonga
     t.index ["text_search"], name: "idx_verses_text_search_mecab", where: "((text_search IS NOT NULL) AND ((tr_code)::text = 'jp-ni'::text))", using: :pgroonga
     t.index ["text_search_ar"], name: "idx_verses_text_search_arabic", where: "((text_search_ar IS NOT NULL) AND ((lang)::text = 'ar'::text))", using: :pgroonga

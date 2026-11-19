@@ -344,6 +344,24 @@ header nav > #settings-btn {
     padding: 0 8px;
     font-weight: bold;
 }
+
+/* Счётчик непрочитанных сообщений чата на кнопке «⋯» */
+.chat-unread {
+    display: inline-block;
+    min-width: 16px;
+    margin-inline-start: 2px;
+    padding: 0 4px;
+    border-radius: 8px;
+    background: var(--blue);
+    color: #fff;
+    font-size: .7em;
+    font-weight: normal;
+    line-height: 16px;
+    text-align: center;
+    vertical-align: super;
+}
+.chat-unread--reply { background: var(--red); }
+.chat-unread[hidden] { display: none; }
 #more-area {
     z-index: 2;
     position: absolute;

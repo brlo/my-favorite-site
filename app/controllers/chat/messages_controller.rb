@@ -185,7 +185,9 @@ module Chat
       end
 
       version = message.edits_count
-      raw = Chat::Translator.translate_html(message.body_html, from: message.lang, to: to)
+      raw = Chat::Translator.translate_html(
+        message.body_html, from: message.lang, to: to, plain_text: message.body_text
+      )
       html = sanitize_translation(raw)
       message.store_translation!(to, html, version: version)
       html
