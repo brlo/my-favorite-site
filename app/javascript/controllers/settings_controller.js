@@ -24,22 +24,18 @@ export default class extends Controller {
       this.textSmallBtnTarget.classList.add('active')
     }
 
-    // применяем к article (предварительно это уже задано на сервере, но может быть кэш, поэтому тут проверяем)
-    const articleEl = document.querySelector('article')
-    if (!articleEl) return
+    // Применяем только к статьям с текстом, а не к первому <article> на странице:
+    // иначе на странице чата класс получало первое сообщение.
+    const correctClass = {
+      '1': 'text-small',
+      '2': 'text-medium',
+      '3': 'text-large'
+    }[textSizeFromCookies] || 'text-medium'
 
-    let correctClass;
-    if (textSizeFromCookies == '1') {
-      correctClass = 'text-small'
-    } else if (textSizeFromCookies == '2') {
-      correctClass = 'text-medium'
-    } else if (textSizeFromCookies == '3') {
-      correctClass = 'text-large'
-    }
-
-    // Удаляем все классы размера текста перед применением нового
-    articleEl.classList.remove('text-small', 'text-medium', 'text-large')
-    articleEl.classList.add(correctClass)
+    this.textSizeArticles().forEach((el) => {
+      el.classList.remove('text-small', 'text-medium', 'text-large')
+      el.classList.add(correctClass)
+    })
   }
 
   // Предварительная инициализация цветовой схемы
@@ -102,8 +98,6 @@ export default class extends Controller {
       'text-large-btn': '3'
     }
 
-    const oldActiveBtn = this.getActiveTextBtn()
-    const oldTextSizeClass = textClassMap[oldActiveBtn?.id]
     const newTextSizeClass = textClassMap[btn.id]
     const fontSizeCookie = textCookieMap[btn.id]
 
@@ -115,11 +109,11 @@ export default class extends Controller {
     // Активируем нажатую
     btn.classList.add('active')
 
-    // Меняем класс у article
-    const articleEl = document.querySelector('article')
-    if (articleEl && oldTextSizeClass) {
-      articleEl.classList.replace(oldTextSizeClass, newTextSizeClass)
-    }
+    // Меняем класс у всех статей с текстом
+    this.textSizeArticles().forEach((el) => {
+      el.classList.remove('text-small', 'text-medium', 'text-large')
+      el.classList.add(newTextSizeClass)
+    })
 
     // Сохраняем в куки
     Cookies.set('textSize', fontSizeCookie, 999)
@@ -143,6 +137,11 @@ export default class extends Controller {
     }
 
     return false;
+  }
+
+  // Статьи, к которым применяется выбранный размер текста
+  textSizeArticles() {
+    return document.querySelectorAll('article[data-text-size]')
   }
 
   // Получить активную кнопку размера текста

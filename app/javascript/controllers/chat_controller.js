@@ -7,7 +7,7 @@ import axios from "lib/axios"
 // а подписи, время и доступные кнопки (по правам зрителя) расставляются здесь, в hydrate().
 // Права всё равно проверяются на сервере.
 export default class extends Controller {
-  static targets = ["feed", "list", "more", "message", "editor", "send", "wait", "error",
+  static targets = ["feed", "list", "more", "message", "editor", "send", "sendLabel", "wait", "error",
                     "context", "contextText", "picker", "composer", "postingSwitch"]
   static values = {
     roomId: Number,
@@ -144,6 +144,7 @@ export default class extends Controller {
       const data = response.data
       this.upsert(data.html)
       this.editor.commands.clearContent()
+      this.editor.commands.unsetAllMarks()
       this.cancelContext(false)
 
       if (!editing) {
@@ -226,7 +227,12 @@ export default class extends Controller {
     if (!this.hasSendTarget) return
     const editing = this.composeMode?.type === "edit"
     this.sendTarget.disabled = !editing && this.waitLeft > 0
-    this.sendTarget.textContent = editing ? this.t("save") : this.t("send")
+    this.sendTarget.classList.toggle("chat__send--edit", editing)
+    if (this.hasSendLabelTarget) {
+      this.sendLabelTarget.textContent = editing ? this.t("save") : this.t("send")
+    } else {
+      this.sendTarget.textContent = editing ? this.t("save") : this.t("send")
+    }
   }
 
   showError(text) {
@@ -271,7 +277,10 @@ export default class extends Controller {
   }
 
   cancelContext(clear = true) {
-    if (clear && this.composeMode?.type === "edit") this.editor?.commands.clearContent()
+    if (clear && this.composeMode?.type === "edit") {
+      this.editor?.commands.clearContent()
+      this.editor?.commands.unsetAllMarks()
+    }
     this.composeMode = null
     if (this.hasContextTarget) this.contextTarget.hidden = true
     this.updateSendButton()

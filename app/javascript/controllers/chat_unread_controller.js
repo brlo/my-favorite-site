@@ -5,7 +5,7 @@ import axios from "lib/axios"
 // Отдельный лёгкий опрос вместо постоянного ActionCable-соединения на всех страницах:
 // один запрос в минуту и только для тех, у кого уже есть профиль в чате.
 export default class extends Controller {
-  static targets = ["badge"]
+  static targets = ["link"]
   static values = {
     url: String,
     interval: Number,
@@ -35,11 +35,11 @@ export default class extends Controller {
     const total = Number(count) || 0
     const hasReplies = Number(replies) > 0
 
-    this.badgeTargets.forEach((badge) => {
-      badge.hidden = total === 0
-      badge.textContent = total > 99 ? "99+" : String(total)
-      badge.classList.toggle("chat-unread--reply", hasReplies)
-      badge.title = hasReplies ? this.replyTitleValue : this.titleValue
+    this.linkTargets.forEach((link) => {
+      link.hidden = total === 0
+      link.dataset.count = total > 99 ? "99+" : String(total)
+      link.classList.toggle("chat-notify-link--reply", hasReplies)
+      link.title = hasReplies ? this.replyTitleValue : this.titleValue
     })
   }
 }

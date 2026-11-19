@@ -78,7 +78,12 @@
           <% end %>
         </div>
         <div class="chat__editor" data-chat-target="editor" dir="auto"></div>
-        <button type="button" class="chat__send" data-chat-target="send" data-action="chat#submit"><%= t('chat.js.send') %></button>
+        <button type="button" class="chat__send" data-chat-target="send" data-action="chat#submit">
+          <svg class="chat__send-icon" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M2 21l21-9L2 3v7l15 2-15 2z" fill="currentColor"></path>
+          </svg>
+          <span data-chat-target="sendLabel"><%= t('chat.js.send') %></span>
+        </button>
       </div>
       <div class="chat__wait" data-chat-target="wait" hidden></div>
       <div class="chat__error" data-chat-target="error" hidden></div>

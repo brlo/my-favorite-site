@@ -92,7 +92,7 @@
 <div class='hint'><%= t('search_page.matches') %>: <%= @matches_count %></div>
 <hr>
 
-<article class="<%= text_size_class %>" dir="<%= direction_for_lang(@search_lang) %>">
+<article data-text-size class="<%= text_size_class %>" dir="<%= direction_for_lang(@search_lang) %>">
 <% if @matches_count > 0 %>
 
   <% @verses.each do |v| %>

@@ -42,8 +42,10 @@
   border-radius: 8px;
   transition: background .3s;
 }
-.chat-msg--pending { background: rgba(245, 158, 11, .08); border-inline-start: 3px solid var(--yellow); }
-.chat-msg--direct { border-inline-start: 3px solid var(--blue); }
+.chat-msg--pending { background: rgba(245, 158, 11, .08); box-shadow: inset 3px 0 0 var(--yellow); }
+.chat-msg--direct { box-shadow: inset 3px 0 0 var(--blue); }
+[dir="rtl"] .chat-msg--pending { box-shadow: inset -3px 0 0 var(--yellow); }
+[dir="rtl"] .chat-msg--direct { box-shadow: inset -3px 0 0 var(--blue); }
 .chat-msg--flash { background: rgba(59, 130, 246, .15); }
 
 .chat-msg__avatar { flex: 0 0 auto; text-decoration: none; }
@@ -105,7 +107,7 @@
 }
 .chat-msg__reply--missing { font-style: italic; }
 
-.chat-msg__body, .chat-msg__translation { overflow-wrap: anywhere; }
+.chat-msg__body, .chat-msg__translation { overflow-wrap: anywhere; font-size: 1em; }
 .chat-msg__body p, .chat-msg__translation p { margin: 2px 0; }
 .chat-msg__body blockquote, .chat-msg__translation blockquote,
 .chat__editor blockquote {
@@ -220,7 +222,42 @@
 }
 .chat__editor .ProseMirror { outline: none; min-height: 24px; }
 .chat__editor .ProseMirror p { margin: 0; }
-.chat__send { grid-area: send; padding: 8px 14px; }
+.chat__send {
+  grid-area: send;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  min-height: 40px;
+  padding: 8px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #b8826a, #96614b);
+  color: #fff;
+  font: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(150, 97, 75, .28);
+  transition: filter .15s, transform .1s, box-shadow .15s;
+}
+.chat__send:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(150, 97, 75, .3);
+}
+.chat__send:active { transform: translateY(0); }
+.chat__send:disabled {
+  opacity: .55;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+.chat__send svg { width: 16px; height: 16px; flex: 0 0 auto; }
+.chat__send--edit svg { display: none; }
+.night-mode .chat__send {
+  background: linear-gradient(135deg, #a9745f, #7f5240);
+  box-shadow: none;
+}
 .chat__wait { font-size: .85em; color: var(--text-secondary); margin-top: 4px; }
 .chat__error { font-size: .85em; color: var(--red); margin-top: 4px; }
 

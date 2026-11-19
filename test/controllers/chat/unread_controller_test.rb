@@ -49,12 +49,43 @@ class Chat::UnreadControllerTest < ActionDispatch::IntegrationTest
     assert_equal({ 'count' => 0, 'replies' => 0 }, response.parsed_body)
   end
 
-  test "header badge shows the unread count" do
+  test "header chip shows the unread count and links to the chat" do
     post_message(@admin, reply_to: post_message(@guest))
 
     get '/ru/tags'
     assert_response :success
-    assert_select '#more-btn .chat-unread', text: '1'
-    assert_select '#more-btn .chat-unread--reply', count: 1
+    assert_select 'a.chat-notify-link[href="/ru/chat"][data-count="1"]', text: 'Чат'
+    assert_select 'a.chat-notify-link--reply', count: 1
+    assert_select '#more-btn .chat-unread', count: 0
+  end
+
+  test "header chip is hidden without unread messages" do
+    get '/ru/tags'
+    assert_response :success
+    assert_select 'a.chat-notify-link[hidden]', count: 1
+  end
+
+  test "message header shows the flag after the nickname" do
+    post_message(@admin)
+
+    get '/ru/chat'
+    assert_response :success
+    assert_select '.chat-msg__head a.chat-msg__nick + span.chat-flag', count: 1
+  end
+
+  test "chat messages are not text-size articles" do
+    post_message(@admin)
+
+    get '/ru/chat'
+    assert_response :success
+    assert_select 'article[data-text-size]', count: 0
+    assert_select 'article.chat-msg.text-medium', count: 0
+  end
+
+  test "send button has an icon and a label target" do
+    get '/ru/chat'
+    assert_response :success
+    assert_select 'button.chat__send svg', count: 1
+    assert_select 'button.chat__send [data-chat-target="sendLabel"]', text: 'Отправить'
   end
 end

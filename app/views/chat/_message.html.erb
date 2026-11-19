@@ -16,8 +16,8 @@
   <a class="chat-msg__avatar" href="<%= chat_member_path(member, locale: I18n.locale) %>"><%= chat_avatar(member) %></a>
   <div class="chat-msg__main">
     <div class="chat-msg__head">
-      <%= chat_flag(member) %>
       <a class="chat-msg__nick" href="<%= chat_member_path(member, locale: I18n.locale) %>"><%= member.nickname %></a>
+      <%= chat_flag(member) %>
       <%= chat_role_badge(member) %>
       <% if member.title.present? %><span class="chat-msg__title"><%= member.title %></span><% end %>
       <time class="chat-msg__time" datetime="<%= message.created_at.iso8601 %>"></time>

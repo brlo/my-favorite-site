@@ -40,6 +40,7 @@
       <%= render(partial: 'pages/text') %>
     <% else %>
       <article
+        data-text-size
         id='page-body'
         lang="<%= @page.lang %>"
         data-controller='share-links section-collapse'

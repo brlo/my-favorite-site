@@ -39,7 +39,7 @@
   <% end %>
   <hr>
 
-  <article class='looks-like-page <%= text_size_class %>' id='search-results' dir="<%= content_direction %>">
+  <article data-text-size class='looks-like-page <%= text_size_class %>' id='search-results' dir="<%= content_direction %>">
     <% if @matches.any? %>
       <%= render partial: "pages/match", collection: @matches, as: :m %>
     <% else %>

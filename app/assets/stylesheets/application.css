@@ -345,11 +345,22 @@ header nav > #settings-btn {
     font-weight: bold;
 }
 
-/* Счётчик непрочитанных сообщений чата на кнопке «⋯» */
-.chat-unread {
-    display: inline-block;
+/* Непрочитанные сообщения чата: обычный пункт меню + цифра рядом.
+   Бейдж вынесен из потока, чтобы не менять высоту строки и не сдвигать «Чат» вниз. */
+.chat-notify-link {
+    position: relative;
+    align-self: baseline;
+    padding-inline-end: 24px;
+}
+.chat-notify-link[hidden] { display: none; }
+.chat-notify-link::after {
+    content: attr(data-count);
+    position: absolute;
+    top: -2px;
+    inset-inline-end: 4px;
+    box-sizing: border-box;
     min-width: 16px;
-    margin-inline-start: 2px;
+    height: 16px;
     padding: 0 4px;
     border-radius: 8px;
     background: var(--blue);
@@ -358,10 +369,8 @@ header nav > #settings-btn {
     font-weight: normal;
     line-height: 16px;
     text-align: center;
-    vertical-align: super;
 }
-.chat-unread--reply { background: var(--red); }
-.chat-unread[hidden] { display: none; }
+.chat-notify-link--reply::after { background: var(--red); }
 #more-area {
     z-index: 2;
     position: absolute;

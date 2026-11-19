@@ -42,20 +42,22 @@ module ChatHelper
     @chat_unread_summary ||= chat_notification_member&.unread_summary || { count: 0, replies: 0 }
   end
 
-  # Бейдж в шапке. Разметку обновляет chat_unread_controller.js при опросе.
-  def chat_unread_badge
+  # Пункт «Чат» в шапке: обычная ссылка, как остальные пункты меню.
+  # Показываем только при непрочитанных; внимание привлекает цифра рядом.
+  # Разметку обновляет chat_unread_controller.js.
+  def chat_unread_link
     return if chat_notification_member.nil?
 
     summary = chat_unread_summary
     count = summary[:count].to_i
     replies = summary[:replies].to_i
-    content_tag(:span,
-                count > 99 ? '99+' : count.to_s,
-                class: "chat-unread#{' chat-unread--reply' if replies.positive?}",
+    content_tag(:a,
+                t('menu.chat'),
+                href: chat_path(locale: I18n.locale),
+                class: "chat-notify-link#{' chat-notify-link--reply' if replies.positive?}",
                 hidden: count.zero?,
                 title: t(replies.positive? ? 'chat.unread_reply' : 'chat.unread_new'),
-                aria: { label: t('menu.chat') },
-                data: { chat_unread_target: 'badge' })
+                data: { chat_unread_target: 'link', count: count > 99 ? '99+' : count.to_s })
   end
 
   # with_label: подпись сразу на сервере (для обычных страниц);
