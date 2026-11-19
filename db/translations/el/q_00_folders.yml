@@ -7,6 +7,7 @@ folders:
   - { path: "Κόσμος", priority: 3 }
   - { path: "Παραβολές", priority: 5 }
   - { path: "Άγγελοι", priority: 6 }
+  - { path: "Προφητείες", priority: 7 }
   - { path: "Άγγελοι/Άγιοι άγγελοι", priority: 0 }
   - { path: "Άγγελοι/Παραπεσόντες", priority: 0 }
 pages: []
