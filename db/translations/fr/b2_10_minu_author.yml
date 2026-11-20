@@ -1,0 +1,13 @@
+lang: fr
+list: 4saQ_Ouvrages_des_anciens_chrétiens
+pages:
+  - src: Марк_Минуций_Феликс
+    path: MnFl_Minucius_Felix_IIIe_siècle
+    title: "Minucius Felix, IIIe siècle"
+    title_sub: "(†~250), avocat romain, apologiste chrétien, auteur du dialogue Octavius"
+    meta_desc: "Minucius Felix (†~250), avocat et apologiste chrétien : sa vie et son dialogue Octavius."
+    update: true
+    body: |-
+      <h2>Biographie</h2><p>Marcus Minucius Felix (en latin) naquit en Afrique dans une famille païenne. Il reçut une solide formation de rhéteur et devint avocat à Rome. Il se convertit au christianisme à l’âge adulte, frappé par la doctrine sublime de l’Évangile et par le courage des martyrs chrétiens.</p>
+    references: |-
+      <p>Traduction : Rodion Vlasov, avec l’aide de l’IA, d’après la <a href="https://bibleox.com/fr/ru/w/%D0%9C%D0%B0%D1%80%D0%BA_%D0%9C%D0%B8%D0%BD%D1%83%D1%86%D0%B8%D0%B9_%D0%A4%D0%B5%D0%BB%D0%B8%D0%BA%D1%81">page de référence en russe</a>.</p>
