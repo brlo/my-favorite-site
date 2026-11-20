@@ -17,8 +17,7 @@ dry = ARGV.include?('--dry')
 check = ARGV.include?('--check')
 # Не грузим все ru-страницы с телами: на проде их тысячи, это давало минуты
 # и заметный CPU. Нужны только группы el-страниц и колонка links.
-el_pages = Page.where(lang: 'el').where.not(group_lang_id: nil)
-               .select(:id, :path, :path_low, :group_lang_id, :links).to_a
+el_pages = Page.where(lang: 'el').where.not(group_lang_id: nil).to_a
 ru_by_group = Page.where(lang: 'ru', group_lang_id: el_pages.map(&:group_lang_id))
                   .select(:id, :group_lang_id, :links).index_by(&:group_lang_id)
 changed = 0
