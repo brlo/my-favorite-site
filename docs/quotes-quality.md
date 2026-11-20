@@ -168,6 +168,11 @@ bin/rails runner script/translations/copy_covers.rb en en-saints-q
 2. `bin/bib_deploy.sh` (сайт должен ответить 200; рестарт puma может занять до ~2.5 минут — скрипт ретраит).
 3. `scp` YAML и скрипт импорта на сервер → `docker cp` в `/app/tmp/` → импорт с `is_published: true`
    (на проде `RAILS_ENV=production`, БД `bibleox_production`). Для уже существующих страниц в YAML должен быть `update: true`.
+   На самом деле YAML доставлять не нужно: серверный репозиторий (`/projects/bibleox`) bind-монтится в контейнер как `/app`,
+   и после деплоя (`git reset --hard origin/main`) YAML уже на месте — на сервер нужен только runner-скрипт
+   (`ssh bibleox 'sudo docker exec -i bibleox bash -lc "cat > /app/tmp/x.rb && chown 1000:1001 /app/tmp/x.rb"' < x.rb`).
+   Деплои разных сессий сериализовать: `git reset --hard` + рестарт puma рвут чужие прод-runner'ы.
+   Скрипты не должны грузить модели с телами целиком (`Page.all.index_by…` = OOM прода) — только лёгкие `select`.
 4. Зеркалировать «золотые» пункты меню (`menus.is_gold`) с русских статей по `group_lang_id`
    (переводы — отдельные пункты меню, `is_gold` у них не наследуется).
 5. `copy_covers.rb LANG LIST`.
