@@ -176,6 +176,19 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select '#article-menu .menu-list .nav-h2', count: 3
   end
 
+  test "part before the cut is rendered before the table of contents" do
+    body = '<p>Эпиграф статьи</p><hr class="article-cut"><h2>Начало</h2>' + LONG_BODY
+    create_published(path: 'cut_article', body: body)
+    get '/ru/ru/w/cut_article'
+
+    assert_response :success
+    assert_select '#page-body .page-lead p', text: 'Эпиграф статьи'
+    # в оглавление попадают только заголовки после деления
+    assert_select '#article-menu .nav-h2', count: 1
+    # и первая часть идёт в разметке раньше меню-оглавления
+    assert_operator response.body.index('page-lead'), :<, response.body.index('id="article-menu"')
+  end
+
   test "page whose ui language differs from the content language is not indexed" do
     create_published(path: 'en_page', lang: 'en')
     get '/ru/en/w/en_page'

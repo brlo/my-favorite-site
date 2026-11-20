@@ -1,6 +1,7 @@
 import { Controller } from "@hotwired/stimulus"
 import { Editor, StarterKit, Typography, Underline, Link, Highlight, Image, TableKit } from "tiptap/tiptap_bundle"
 import { CustomList } from "tiptap/custom_list"
+import { ArticleCut } from "tiptap/article_cut"
 
 export default class extends Controller {
   static targets = ["field", "editor"]
@@ -30,13 +31,15 @@ export default class extends Controller {
             target: null
           },
         }),
-        TableKit
+        TableKit,
+        ArticleCut
       ],
       content: this.initialContentValue || '<p></p>',
 
       // При каждом изменении обновляем скрытое поле формы
       onUpdate: ({ editor }) => {
         this.fieldTarget.value = editor.getHTML()
+        this.refreshArticleCutState()
       },
 
       // Аналог вашего onBlur с emit('change')
@@ -44,11 +47,14 @@ export default class extends Controller {
         this.fieldTarget.value = editor.getHTML()
         // Если нужно триггерить событие для других контроллеров:
         this.dispatch('change', { detail: { html: editor.getHTML() } })
-      }
+      },
+
+      onSelectionUpdate: () => this.refreshArticleCutState()
     })
 
     // Делаем editor доступным для кнопок тулбара
     this.element.editor = this.editor
+    this.refreshArticleCutState()
   }
 
   disconnect() {
@@ -108,6 +114,66 @@ export default class extends Controller {
     if (startNum) {
       this.editor.chain().focus().updateAttributes('orderedList', { start: parseInt(startNum) }).run()
     }
+  }
+
+  // === Место деления статьи (аналог habracut) ===
+
+  // Ставит метку деления в позицию курсора, а если она уже стоит — убирает её
+  toggleArticleCut() {
+    if (!this.editor) return
+    const cutType = this.editor.schema.nodes.articleCut
+    if (!cutType) return
+
+    const existing = this.findArticleCutPos()
+    if (existing !== null) {
+      this.editor.chain().focus().deleteRange({ from: existing, to: existing + 1 }).run()
+      return
+    }
+
+    const pos = this.articleCutInsertPos()
+    this.editor.view.dispatch(this.editor.state.tr.replaceWith(pos, pos, cutType.create()).scrollIntoView())
+    this.editor.view.focus()
+  }
+
+  // Позиция уже стоящей метки деления или null
+  findArticleCutPos() {
+    if (!this.editor) return null
+    const cutType = this.editor.schema.nodes.articleCut
+    let found = null
+
+    this.editor.state.doc.descendants((node, pos) => {
+      if (found !== null) return false
+      if (node.type === cutType) {
+        found = pos
+        return false
+      }
+      return true
+    })
+
+    return found
+  }
+
+  // Куда поставить метку: в позицию курсора; внутри цитаты, списка или таблицы —
+  // после этого блока на верхнем уровне, чтобы метка не оказалась вложенной в разметку
+  articleCutInsertPos() {
+    const { $from } = this.editor.state.selection
+
+    if ($from.depth > 1) return $from.after(1)
+    if ($from.depth === 1 && $from.parent.isTextblock) {
+      if ($from.parentOffset === 0) return $from.before(1)
+      if ($from.parentOffset === $from.parent.content.size) return $from.after(1)
+    }
+    return $from.pos
+  }
+
+  // Кнопка в тулбаре подсвечивается, когда метка деления стоит в тексте
+  refreshArticleCutState() {
+    const button = this.element.querySelector('[data-tiptap-role="article-cut"]')
+    if (!button) return
+
+    const hasCut = this.findArticleCutPos() !== null
+    button.classList.toggle('active', hasCut)
+    button.setAttribute('aria-pressed', hasCut ? 'true' : 'false')
   }
 
   // Вспомогательный метод для проверки активности (используется в view)

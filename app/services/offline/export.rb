@@ -117,7 +117,7 @@ module Offline
       changed_pages = pages.where('updated_at > ?', since_t)
         .select(:id, :path, :title, :title_sub, :parent_id, :page_type, :is_show_parent, :is_search,
                 :is_menu_icons, :is_bibleox, :links, :cover, :audio, :updated_at, :lang, :h_id, :created_at)
-        .select('octet_length(body_rendered) AS body_size')
+        .select('COALESCE(octet_length(body_rendered), 0) + COALESCE(octet_length(body_lead), 0) AS body_size')
         .to_a
 
       {
@@ -166,7 +166,7 @@ module Offline
         {
           id: p.id,
           updated_at: p.updated_at.to_i,
-          body: p.body_rendered.presence || p.body.to_s,
+          body: [p.body_lead, p.body_rendered.presence || p.body.to_s].compact.join,
           references: p.references.present? ? (p.references_rendered.presence || p.references) : nil,
           body_menu: p.body_menu.presence,
           verses: p.is_page_verses? ? p.verses.presence : nil,

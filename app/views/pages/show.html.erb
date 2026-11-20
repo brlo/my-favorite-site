@@ -48,12 +48,20 @@
         class="verses <%= text_size_class %>"
         dir="<%= content_direction %>">
 
+        <%# Первая часть статьи (до метки деления, аналог habracut): эпиграф или самое важное — %>
+        <%# показываем до меню-оглавления, а остальной текст идёт после него %>
+        <% if @page.body_lead.present? %>
+          <div class="page-lead">
+            <%= @page.body_lead.html_safe %>
+          </div>
+        <% end %>
+
         <% if @page.body_menu.present? %>
           <%= render(partial: 'pages/body_menu') %>
         <% end %>
 
-        <% if @page.body_rendered.present? %>
-          <%= @page.body_rendered.html_safe %>
+        <% if @page.body_rendered.present? || @page.body_lead.present? %>
+          <%= @page.body_rendered.to_s.html_safe %>
         <% else %>
           <%= @page.body.to_s.html_safe %>
         <% end %>

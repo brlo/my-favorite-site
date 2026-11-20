@@ -372,6 +372,7 @@ class Page < ApplicationRecord
     self.body = result.body
     self.body_rendered = result.rendered
     self.body_menu = result.menu
+    self.body_lead = result.lead
   end
 
   # Запускается в колбэке:

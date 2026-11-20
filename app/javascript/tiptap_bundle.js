@@ -6,7 +6,7 @@
 // Итоговый бандл здесь:
 // app/javascript/tiptap/tiptap_bundle.js
 
-import { Editor } from '@tiptap/core'
+import { Editor, Node, mergeAttributes } from '@tiptap/core'
 import StarterKit from '@tiptap/starter-kit'
 import Typography from '@tiptap/extension-typography'
 import Underline from '@tiptap/extension-underline'
@@ -18,6 +18,8 @@ import OrderedList from '@tiptap/extension-ordered-list';
 
 export {
   Editor,
+  Node,
+  mergeAttributes,
   StarterKit,
   OrderedList,
   Typography,

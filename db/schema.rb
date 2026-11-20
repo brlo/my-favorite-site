@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_19_150000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_20_120000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -257,6 +257,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_19_150000) do
     t.string "cover_overlay_bg"
     t.string "cover_overlay_text"
     t.string "seo_kind"
+    t.text "body_lead"
     t.index ["group_lang_id"], name: "index_pages_on_group_lang_id"
     t.index ["lang", "path"], name: "index_pages_on_lang_and_path"
     t.index ["parent_id"], name: "index_pages_on_parent_id"

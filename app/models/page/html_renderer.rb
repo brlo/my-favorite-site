@@ -5,11 +5,17 @@ require_relative '../../../lib/tools/string_utils/rubyfy'
 # чистит теги, строит оглавление, ссылки на сноски, источники под цитатами и т.п.
 # Не знает ничего про Page и БД — только строки на входе и на выходе.
 module Page::HtmlRenderer
+  # Метка места деления статьи (аналог habracut): часть до неё показывается
+  # до оглавления. В редакторе это отдельный атомарный блок tiptap, в HTML —
+  # <hr class="article-cut">: hr и class разрешены санитайзером (Page::ALLOW_TAGS/ALLOW_ATTRS).
+  CUT_SELECTOR = 'hr.article-cut'.freeze
+
   # Результат render_body
-  #   body     - очищенный HTML для редактора (сноски обычным текстом)
+  #   body     - очищенный HTML для редактора (сноски обычным текстом, метка деления на месте)
   #   rendered - HTML для читателя
   #   menu     - оглавление [[тег, якорь, текст], ...]
-  Body = Struct.new(:body, :rendered, :menu, keyword_init: true)
+  #   lead     - HTML первой части (до метки деления) или nil, если метки нет
+  Body = Struct.new(:body, :rendered, :menu, :lead, keyword_init: true)
 
   module_function
 
@@ -43,8 +49,12 @@ module Page::HtmlRenderer
     # сделаем их обычным текстом:
     body = remove_footnote_links(body)
 
-    # построение перекрестных ссылок на сноски
+    # построение перекрестных ссылок на сноски — по всему тексту, до деления:
+    # иначе id одинаковых сносок в первой и второй частях совпадут
     rendered = footnote_anchors(body)
+    # часть до метки деления показываем до оглавления, остальное — как обычно
+    lead, rendered = split_at_cut(rendered)
+
     # ссылки на Писание ("Мф. 20:13") -> гиперссылки на Библию. До mark_quote_sources: источник под цитатой
     rendered = ::BibleLinker.link_html(rendered, lang)
     # построение оглавления и необходимых ссылок
@@ -56,7 +66,45 @@ module Page::HtmlRenderer
     # Add furigana: "私[わたし]" => "<ruby><rb>私</rb><rt>わたし</rt></ruby>"
     rendered = ::Tools::StringUtils::Rubyfy.call(rendered)
 
-    Body.new(body: body, rendered: rendered, menu: menu)
+    lead = render_lead(lead, lang)
+
+    Body.new(body: body, rendered: rendered, menu: menu, lead: lead)
+  end
+
+  # Первая часть статьи (до метки деления): те же преобразования, что и для остального текста,
+  # кроме оглавления — её заголовки в меню не попадают.
+  def render_lead(lead, lang)
+    return nil if lead.blank?
+
+    rendered = ::BibleLinker.link_html(lead, lang)
+    rendered = mark_quote_sources(rendered)
+    rendered = lazy_images(rendered)
+    ::Tools::StringUtils::Rubyfy.call(rendered)
+  end
+
+  # Делит HTML по метке места деления: [часть до оглавления, остальной текст].
+  # Метку из разметки убираем. Если метки нет — [nil, html без изменений].
+  def split_at_cut(html)
+    doc = ::Nokogiri.HTML(html.to_s)
+    body = doc.at_css('body')
+    marker = body&.at_css(CUT_SELECTOR)
+    return [nil, inner_body(doc)] unless marker
+
+    # верхнеуровневый блок, внутри которого стоит метка (обычно это сама метка)
+    top = marker
+    top = top.parent while top.parent && top.parent != body
+
+    children = body.children.to_a
+    index = children.index(top)
+    marker.remove
+
+    lead = children[0...index].map(&:to_html).join
+    rest = children[(index + 1)..].map(&:to_html).join
+    # метка внутри списка или цитаты: сам блок целиком уходит во вторую часть,
+    # чтобы не разрезать разметку и не потерять текст
+    rest = top.to_html + rest if top != marker
+
+    [lead.strip.presence, rest.strip]
   end
 
   # Примечания внизу статьи: (html для редактора, html для читателя)

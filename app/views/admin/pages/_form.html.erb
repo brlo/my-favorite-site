@@ -51,7 +51,7 @@
 
   <div class="field editor-body">
     <label>Текст статьи</label>
-    <%= render 'shared/tiptap_editor', form: f, field_name: :body, initial_value: page.body %>
+    <%= render 'shared/tiptap_editor', form: f, field_name: :body, initial_value: page.body, show_article_cut: true %>
   </div>
 
   <div class="field editor-refs">

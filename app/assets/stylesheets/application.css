@@ -1996,6 +1996,12 @@ body.night-mode {
   background: #e5e7eb;
 }
 
+/* Метка места деления статьи стоит в тексте — подсвечиваем кнопку в тулбаре */
+.tiptap-area button.tiptap-cut-btn.active {
+  background: #fde68a;
+  border-color: #b45309;
+}
+
 .tiptap-area button svg {
   width: 18px;
   height: 18px;
@@ -2041,6 +2047,22 @@ body.night-mode {
 .tiptap mark {
   background-color: #fef08a;
   padding: 0 2px;
+}
+
+/* Метка места деления статьи в редакторе (аналог habracut) */
+.tiptap .article-cut-marker {
+  margin: 14px 0;
+  padding: 6px 10px;
+  border-top: 2px dashed #b45309;
+  border-bottom: 2px dashed #b45309;
+  color: #b45309;
+  font-size: 0.8rem;
+  text-align: center;
+  user-select: none;
+}
+
+.tiptap .article-cut-marker.ProseMirror-selectednode {
+  background: #fef3c7;
 }
 
 .tiptap img {

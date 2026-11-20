@@ -51,6 +51,37 @@ class Page::HtmlRendererTest < ActiveSupport::TestCase
     assert_equal [['h2', 'HH-Глава', 'Глава']], result.menu
   end
 
+  test "render_body splits off the lead at the cut marker" do
+    result = R.render_body('<p>Эпиграф</p><hr class="article-cut"><h2>Глава</h2><p>Текст</p>')
+    assert_equal '<p>Эпиграф</p>', result.lead
+    assert_not_includes result.rendered, 'Эпиграф'
+    assert_includes result.rendered, '<h2 id="HH-Глава"'
+    assert_equal [['h2', 'HH-Глава', 'Глава']], result.menu
+    # в редакторском html метка остаётся, чтобы её можно было убрать
+    assert_includes result.body, '<hr class="article-cut">'
+  end
+
+  test "render_body without the cut marker has no lead" do
+    result = R.render_body('<p>Эпиграф</p><h2>Глава</h2>')
+    assert_nil result.lead
+    assert_includes result.rendered, 'Эпиграф'
+  end
+
+  test "render_body numbers footnotes across the cut so their ids do not repeat" do
+    result = R.render_body('<p>a[1]</p><hr class="article-cut"><p>b[1]</p>')
+    assert_includes result.lead, 'cite_ref-1'
+    assert_includes result.rendered, 'cite_ref-1-2'
+    assert_not_includes result.rendered, 'cite_ref-1"'
+  end
+
+  test "split_at_cut moves a block with a nested marker to the rest whole" do
+    lead, rest = R.split_at_cut('<p>a</p><blockquote><p>b</p><hr class="article-cut"><p>c</p></blockquote>')
+    assert_equal '<p>a</p>', lead
+    assert_includes rest, '<p>b</p>'
+    assert_includes rest, '<p>c</p>'
+    assert_not_includes rest, 'article-cut'
+  end
+
   test "render_references returns sanitized source and rendered html" do
     source, rendered = R.render_references('<ol><li><p>x</p></li></ol><script>1</script>')
     assert_not_includes source, 'script'

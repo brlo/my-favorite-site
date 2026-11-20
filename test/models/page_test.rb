@@ -102,6 +102,21 @@ class PageTest < ActiveSupport::TestCase
     assert_includes page.body_rendered, '<h2 id="HH-Первая-глава" name="HH-Первая-глава">'
   end
 
+  test "article lead is split off before the menu" do
+    page = create_page(body: '<p>Эпиграф</p><hr class="article-cut"><h2>Глава</h2><p>Текст</p>')
+    assert_equal '<p>Эпиграф</p>', page.body_lead
+    assert_not_includes page.body_rendered, 'Эпиграф'
+    assert_equal [['h2', 'HH-Глава', 'Глава']], page.body_menu
+    # метка остаётся в body, чтобы её можно было убрать в редакторе
+    assert_includes page.body, '<hr class="article-cut">'
+  end
+
+  test "removing the cut marker clears the article lead" do
+    page = create_page(body: '<p>Лид</p><hr class="article-cut"><p>Текст</p>')
+    page.update!(body: '<p>Лид</p><p>Текст</p>')
+    assert_nil page.body_lead
+  end
+
   test "source paragraph after a quote gets source-link class" do
     page = create_page(body: '<blockquote><p>Цитата</p></blockquote><p>(<a href="/x">Источник</a>)</p><p>(обычный)</p>')
     assert_includes page.body_rendered, '<p class="source-link">('
