@@ -1,0 +1,16 @@
+---
+lang: en
+list: en-saints-q
+folders: []
+pages:
+- src: ZrVXDwkU_Боговоплощение
+  path: The-Incarnation
+  title: The Incarnation
+  menu:
+    parent: God
+    title: The Incarnation
+    priority: 15
+  body: ''
+  references: "<p>Translation: Rodion Vlasov (with the use of AI tools). Quotations
+    of the Holy Fathers are cited from the English translations held in this site’s
+    library where available; otherwise they are translated from the Russian.</p>"
