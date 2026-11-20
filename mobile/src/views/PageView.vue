@@ -1,6 +1,6 @@
 <script setup>
 // Страница материалов: хлебные крошки, меню-дерево, текст, похожие материалы
-import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { t } from '../lib/i18n.js'
 import { settings } from '../lib/settings.js'
@@ -47,6 +47,10 @@ const filter = ref('')
 const showSiblings = ref(false)
 const content = ref(null)
 const tags = ref([])
+const tocEl = ref(null)
+const tocTall = ref(false)
+const tocOpen = ref(false)
+const TOC_COLLAPSE_HEIGHT = 900
 
 // скачивание раздела
 const section = ref(null) // {pages, missing, size}
@@ -84,6 +88,17 @@ function onVisibility() {
   else sendReading(page.value)
 }
 
+async function measureToc() {
+  await nextTick()
+  const el = tocEl.value
+  tocTall.value = !!el && el.scrollHeight > TOC_COLLAPSE_HEIGHT
+  if (!tocTall.value) tocOpen.value = false
+}
+
+function toggleToc() {
+  tocOpen.value = !tocOpen.value
+}
+
 async function findPage() {
   if (!path) return rootPage(lang)
   let p = await getPageByPath(lang, path)
@@ -101,6 +116,8 @@ async function load() {
   notFound.value = false
   stopReading()
   tags.value = []
+  tocTall.value = false
+  tocOpen.value = false
   try {
     await ensureSkeleton(lang)
     settings.pagesLang = lang
@@ -140,6 +157,7 @@ async function loadBody() {
   bodyLoading.value = true
   try {
     body.value = await getBody(page.value)
+    await measureToc()
     if (route.hash && !isHistoryRestore()) {
       await nextTick()
       content.value?.scrollToAnchor(decodeURIComponent(route.hash.slice(1)))
@@ -222,13 +240,17 @@ function changeLang(e) {
   router.push({ name: 'page', params: { lang: e.target.value } })
 }
 
+watch(() => settings.fontSize, measureToc)
+
 onMounted(() => {
   load()
   document.addEventListener('visibilitychange', onVisibility)
+  window.addEventListener('resize', measureToc)
 })
 
 onUnmounted(() => {
   document.removeEventListener('visibilitychange', onVisibility)
+  window.removeEventListener('resize', measureToc)
   stopReading(true)
 })
 </script>
@@ -333,12 +355,20 @@ onUnmounted(() => {
         <!-- лид идёт до оглавления; для старых скачанных страниц он ещё внутри body -->
         <HtmlContent v-if="body.lead" :html="body.lead" :lang="lang" class="page-lead" />
 
-        <nav v-if="body.body_menu?.length" class="article-menu">
+        <nav
+          v-if="body.body_menu?.length"
+          ref="tocEl"
+          class="article-menu"
+          :class="{ 'is-collapsed': tocTall && !tocOpen }"
+        >
           <div class="menu-name">{{ t('contents') }}</div>
           <div v-for="([tag, anchor, text], i) in body.body_menu" :key="i" :class="`nav-${tag}`">
             <a href="#" @click.prevent="content?.scrollToAnchor(anchor)">{{ text }}</a>
           </div>
         </nav>
+        <button v-if="tocTall" type="button" class="link-btn toc-toggle" @click="toggleToc">
+          {{ tocOpen ? t('collapse_toc') : t('expand_toc') }}
+        </button>
 
         <article v-if="body.verses" class="verses" :style="{ fontSize: 'var(--text-size)' }">
           <template v-for="(ch, ci) in body.verses" :key="ci">
@@ -347,16 +377,16 @@ onUnmounted(() => {
           </template>
         </article>
         <HtmlContent v-else ref="content" :html="body.body" :lang="lang" class="article" :style="{ fontSize: 'var(--text-size)' }" />
-
-        <section v-if="body.refs" class="references">
-          <h2>{{ t('references') }}</h2>
-          <HtmlContent :html="body.refs" :lang="lang" tag="div" />
-        </section>
       </template>
 
       <section v-if="isArticle" class="page-reactions-block">
         <h2>{{ t('reactions_title') }}</h2>
         <ReactionBar :page-id="page.id" />
+      </section>
+
+      <section v-if="body?.refs" class="references">
+        <h2>{{ t('references') }}</h2>
+        <HtmlContent :html="body.refs" :lang="lang" tag="div" />
       </section>
 
       <div v-if="tags.length" class="page-tags">

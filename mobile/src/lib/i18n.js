@@ -88,6 +88,8 @@ const dict = {
     tags: 'Теги',
     articles_with_tag: 'Статей с тегом',
     no_articles: 'Пока нет статей',
+    expand_toc: 'Показать оглавление полностью',
+    collapse_toc: 'Свернуть оглавление',
   },
   en: {
     bible: 'Bible',
@@ -176,6 +178,8 @@ const dict = {
     tags: 'Tags',
     articles_with_tag: 'Articles with tag',
     no_articles: 'No articles yet',
+    expand_toc: 'Show full contents',
+    collapse_toc: 'Collapse contents',
   },
 }
 
