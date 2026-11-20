@@ -7,6 +7,11 @@ let lastSentUrl = null
 // Как часто подтверждать, что вкладка ещё читает статью
 const READING_INTERVAL = 45_000
 
+// Повторный сигнал на ту же цель в первые секунды не нужен: connect и
+// turbo:load срабатывают на одну загрузку почти одновременно, а отметка
+// у сервера всё равно одна и та же.
+const READING_DEDUP_MS = 3_000
+
 // Маячок посещаемости: шлёт POST /visit на каждый показ страницы,
 // чем подтверждает, что в браузере исполнился JS. Статистика считается
 // только по этим сигналам — скрейперы, тянущие голый HTML, не учитываются.
@@ -69,6 +74,11 @@ export default class extends Controller {
     clearInterval(this.heartbeatTimer)
     if (!this.readingParams()) return
 
+    // Первую отметку ставим сразу, а не через READING_INTERVAL: у статьи её
+    // дополнительно ставит маячок /visit, а у главы Библии других сигналов
+    // нет, и читатель попадал в «Читают сейчас» только спустя 45 секунд
+    // непрерывного чтения одной главы.
+    this.sendReading()
     this.heartbeatTimer = setInterval(() => this.sendReading(), READING_INTERVAL)
   }
 
@@ -94,6 +104,12 @@ export default class extends Controller {
     const params = this.readingParams()
     if (!params) return
 
+    const key = params.book ? `b:${params.book}` : `p:${params.page_id}`
+    const now = Date.now()
+    if (this.lastReadingKey === key && now - this.lastReadingAt < READING_DEDUP_MS) return
+
+    this.lastReadingKey = key
+    this.lastReadingAt = now
     this.postReading(params)
   }
 
