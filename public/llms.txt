@@ -10,6 +10,7 @@ Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 la
 - The first path segment is the interface language, the second selects content: `https://bibleox.com/en/ru/in/3/` shows the Russian Synodal text with an English interface. Interface and content language can be combined freely.
 - Articles: `/{interface-language}/{content-language}/w/{page-path}` — e.g. [a Russian article with English interface](https://bibleox.com/en/ru/w/q/).
 - Article tags: `/{interface-language}/tags/` is the tag catalog, `/{interface-language}/tags/{tag-slug}` lists that language's articles carrying the tag — e.g. [the Russian tag catalog](https://bibleox.com/ru/tags/). A tag is shared by all translations of an article.
+- News feed: `/{interface-language}/news/` lists recent articles that the editors marked for the news feed. A card shows the part of the article before its cut, the author, tags, positive reactions and a "Read more" link; comments are replaced by an invitation to the site chat. The sidebar shows what people are reading right now.
 - Human-readable verse lookup: `/{interface-language}/f/{address}` redirects to the exact verse — e.g. `https://bibleox.com/ru/f/Ин 3:16`, `https://bibleox.com/en/f/John 3:16`, `https://bibleox.com/ja/f/ヨハネ 3:16`, `https://bibleox.com/zh-Hans/f/约翰 3:16`, `https://bibleox.com/zh-Hant/f/約翰 3:16`. Book names are understood in the interface language.
 - Psalms follow Orthodox (Septuagint) numbering (151 psalms); the Old Testament includes the deuterocanonical books of the Orthodox canon (Tobit, Judith, Wisdom of Solomon, Sirach, 1–3 Maccabees, 1–3 Ezra, Epistle of Jeremiah, Baruch).
 
@@ -53,7 +54,7 @@ Bible quote collections — topical apologetics ("what the Bible says about…")
 - [圣经语录 (zh-Hans)](https://bibleox.com/zh-Hans/zh-Hans/w/cn-q)
 - [聖經語錄 (zh-Hant)](https://bibleox.com/zh-Hant/zh-Hant/w/tw-q)
 - [성경 구절 모음 (ko)](https://bibleox.com/ko/ko/w/ko-q)
-- [Βιβλικές ρήσεις (el)](https://bibleox.com/el/el/w/el-q) — Modern Greek (74 articles: angels, the world, the parables, the prophecies, the whole section on God and the Son, and eighteen articles on man)
+- [Βιβλικές ρήσεις (el)](https://bibleox.com/el/el/w/el-q) — Modern Greek (77 articles: angels, the world, the parables, the prophecies, the whole section on God and the Son, eighteen articles on man, and the first articles on the Old Testament and the Church)
 - [Цитаты святых отцов (ru)](https://bibleox.com/ru/ru/w/q-saints) — quotes of the Church Fathers
 
 Selected library sections (Russian originals; translations of a section are reachable from its pages in other languages):
