@@ -29,21 +29,21 @@ module Admin
 
     private
 
-    # Статьи на всех языках, которые читают прямо сейчас (общий Redis-ключ «reading»)
+    # Страницы всех языков и книги Библии, которые читают прямо сейчас (общий Redis-ключ «reading»)
     def prepare_reading_now
       data = ::PageVisits.reading_now(limit: 30)
       @reading_now_total = data.total_readers
 
       ids = data.pages.map(&:first)
       pages = if ids.any?
-                ::Page.where(id: ids, is_published: true, is_deleted: [nil, false],
-                             page_type: ::Page::PAGE_TYPES['статья'])
+                ::Page.where(id: ids, is_published: true, is_deleted: [nil, false])
                   .select(:id, :title, :lang).index_by(&:id)
               else
                 {}
               end
 
       @reading_now = data.pages.filter_map { |id, count| [pages[id], count] if pages[id] }.first(10)
+      @reading_now_bibles = data.bibles
     end
   end
 end

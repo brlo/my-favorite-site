@@ -42,7 +42,7 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_no_match(/Популярные статьи/, response.body)
   end
 
-  test 'сводка показывает читаемые сейчас статьи на всех языках' do
+  test 'сводка показывает читаемые сейчас страницы на всех языках и книги Библии' do
     ru = create_page(title: 'Русская читаемая', lang: 'ru', is_published: true)
     en = create_page(title: 'English read now', lang: 'en', is_published: true)
     draft = create_page(title: 'Скрытая', is_published: false)
@@ -53,6 +53,7 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     PageVisits.touch_reading(en.id, ip: '10.0.8.3')
     PageVisits.touch_reading(draft.id, ip: '10.0.8.4')
     PageVisits.touch_reading(list.id, ip: '10.0.8.5')
+    PageVisits.touch_bible_reading('gen', ip: '10.0.8.6')
 
     get '/admin'
     assert_response :success
@@ -60,9 +61,10 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_select '#reading-now' do
       assert_select 'td', text: 'Русская читаемая'
       assert_select 'td', text: 'English read now'
+      assert_select 'td', text: 'Список'
       assert_select 'td', text: '2'
+      assert_select 'td', text: 'Библия · Бытие'
       assert_select 'td', text: 'Скрытая', count: 0
-      assert_select 'td', text: 'Список', count: 0
     end
   end
 

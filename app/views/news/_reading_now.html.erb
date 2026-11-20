@@ -8,9 +8,20 @@
     <%= t('news.reading_now_total', count: @reading_now_total) %>
   </p>
   <ul class="reading-now__list">
-    <% @reading_now.each do |page, count| %>
+    <% @reading_now.each do |type, item, count| %>
       <li>
-        <a href="<%= news_page_link(page) %>"><%= page.title %></a>
+        <% if type == :page %>
+          <span class="reading-now__item">
+            <a href="<%= news_page_link(item) %>"><%= item.title %></a>
+            <% if item.lang.to_s != ::I18n.locale.to_s %>
+              <span class="reading-now__lang"><%= item.lang %></span>
+            <% end %>
+          </span>
+        <% else %>
+          <span class="reading-now__item reading-now__item--bible">
+            <%= t('news.reading_now_bible', book: ::I18n.t("books.full.#{item}")) %>
+          </span>
+        <% end %>
         <span class="reading-now__count" title="<%= t('news.readers_count', count: count) %>"><%= count %></span>
       </li>
     <% end %>

@@ -153,6 +153,23 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
     assert_select '.reading-now__count', text: '2'
   end
 
+  test 'блок «Читают сейчас» показывает страницы с других языков и книги Библии' do
+    ru_page = create_page(is_published: true, title: 'Русская страница', path: 'reading_ru')
+    en_page = create_page(is_published: true, title: 'English page', path: 'reading_en', lang: 'en')
+    PageVisits.touch_reading(ru_page.id, ip: '10.0.9.4')
+    PageVisits.touch_reading(en_page.id, ip: '10.0.9.5')
+    PageVisits.touch_bible_reading('gen', ip: '10.0.9.6')
+
+    get '/ru/news'
+    assert_response :success
+
+    assert_select '.reading-now__total', text: /На сайте сейчас читают: 3/
+    assert_select '.reading-now__list a', text: 'Русская страница'
+    assert_select '.reading-now__list a', text: 'English page'
+    assert_select '.reading-now__lang', text: 'en'
+    assert_select '.reading-now__item--bible', text: /Библия · Бытие/
+  end
+
   test 'endpoint живого блока отдаёт обновлённую разметку' do
     page = create_page(is_published: true, is_news: true, title: 'Живой блок', path: 'news_live', body: LONG_BODY)
     PageVisits.touch_reading(page.id, ip: '10.0.9.3')

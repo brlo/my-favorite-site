@@ -67,42 +67,50 @@ export default class extends Controller {
 
   startHeartbeat() {
     clearInterval(this.heartbeatTimer)
-
-    const pageId = document.body.dataset.visitPageId
-    if (!pageId || pageId === "0") return
+    if (!this.readingParams()) return
 
     this.heartbeatTimer = setInterval(() => this.sendReading(), READING_INTERVAL)
+  }
+
+  // Цель heartbeat: глава Библии (только книга) или статья (page_id).
+  // Нет ни того, ни другого — на этой странице чтение не отмечаем.
+  readingParams() {
+    const body = document.body
+    const token = body.dataset.readingToken
+    if (!token) return null
+
+    const book = body.dataset.readingBook
+    if (book) return { book, t: token }
+
+    const pageId = body.dataset.visitPageId
+    if (!pageId || pageId === "0") return null
+
+    return { page_id: pageId, t: token }
   }
 
   sendReading() {
     if (document.hidden) return
 
-    const body = document.body
-    const pageId = body.dataset.visitPageId
-    const token = body.dataset.visitToken
-    if (!pageId || pageId === "0" || !token) return
+    const params = this.readingParams()
+    if (!params) return
 
-    const params = new URLSearchParams({ page_id: pageId, t: token })
-
-    if (navigator.sendBeacon) {
-      navigator.sendBeacon("/reading", params)
-    } else {
-      fetch("/reading", { method: "POST", body: params, keepalive: true })
-    }
+    this.postReading(params)
   }
 
   sendReadingLeave() {
-    const body = document.body
-    const pageId = body.dataset.visitPageId
-    const token = body.dataset.visitToken
-    if (!pageId || pageId === "0" || !token) return
+    const params = this.readingParams()
+    if (!params) return
 
-    const params = new URLSearchParams({ page_id: pageId, t: token, leave: "1" })
+    this.postReading({ ...params, leave: "1" })
+  }
+
+  postReading(params) {
+    const body = new URLSearchParams(params)
 
     if (navigator.sendBeacon) {
-      navigator.sendBeacon("/reading", params)
+      navigator.sendBeacon("/reading", body)
     } else {
-      fetch("/reading", { method: "POST", body: params, keepalive: true })
+      fetch("/reading", { method: "POST", body, keepalive: true })
     }
   }
 }

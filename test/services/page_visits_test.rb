@@ -123,6 +123,44 @@ class PageVisitsTest < ActiveSupport::TestCase
     assert_equal 1, PageVisits.reading_now.total_readers
   end
 
+  test 'чтение книг Библии считается без главы' do
+    PageVisits.touch_bible_reading('gen', ip: '10.0.4.1')
+    PageVisits.touch_bible_reading('gen', ip: '10.0.4.2')
+    PageVisits.touch_bible_reading('in', ip: '10.0.4.1')
+
+    reading = PageVisits.reading_now
+
+    assert_equal 2, reading.total_readers
+    assert_equal [['gen', 2], ['in', 1]], reading.bibles
+    assert_empty reading.pages
+  end
+
+  test 'один читатель статьи и Библии считается в общем счётчике один раз' do
+    PageVisits.touch_reading(42, ip: '10.0.4.3')
+    PageVisits.touch_bible_reading('gen', ip: '10.0.4.3')
+
+    reading = PageVisits.reading_now
+
+    assert_equal 1, reading.total_readers
+    assert_equal [[42, 1]], reading.pages
+    assert_equal [['gen', 1]], reading.bibles
+  end
+
+  test 'несуществующая книга Библии не попадает в «Читают сейчас»' do
+    PageVisits.touch_bible_reading('nope', ip: '10.0.4.4')
+
+    assert_empty PageVisits.reading_now.bibles
+    assert_equal 0, PageVisits.reading_now.total_readers
+  end
+
+  test 'leave снимает отметку чтения книги' do
+    PageVisits.touch_bible_reading('gen', ip: '10.0.4.5')
+    assert_equal [['gen', 1]], PageVisits.reading_now.bibles
+
+    PageVisits.clear_bible_reading('gen', ip: '10.0.4.5')
+    assert_empty PageVisits.reading_now.bibles
+  end
+
   private
 
   # значения строк сегодняшнего дня, ключи строками:

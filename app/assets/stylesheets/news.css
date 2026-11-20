@@ -410,6 +410,30 @@
   color: var(--text-tag);
 }
 
+.reading-now__item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  min-width: 0;
+}
+
+.reading-now__item--bible {
+  color: var(--text-primary);
+  font-size: 14px;
+  line-height: 1.35;
+}
+
+.reading-now__lang {
+  flex: 0 0 auto;
+  padding: 0 5px;
+  border: 1px solid var(--border-main);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
 .reading-now__count {
   flex: 0 0 auto;
   min-width: 20px;

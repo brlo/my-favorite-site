@@ -42,6 +42,35 @@ class ReadingsControllerTest < ActionDispatch::IntegrationTest
     assert_empty PageVisits.reading_now.pages
   end
 
+  test 'heartbeat главы Библии отмечает книгу без главы' do
+    post '/reading', params: {book: 'gen', t: PageVisits.bible_visit_token('gen')},
+                     headers: {'HTTP_USER_AGENT' => CHROME_UA}
+
+    assert_response :ok
+    reading = PageVisits.reading_now
+    assert_equal [['gen', 1]], reading.bibles
+    assert_empty reading.pages
+  end
+
+  test 'heartbeat Библии с чужим токеном отклоняется' do
+    post '/reading', params: {book: 'gen', t: PageVisits.visit_token(0)},
+                     headers: {'HTTP_USER_AGENT' => CHROME_UA}
+
+    assert_response :unprocessable_entity
+    assert_empty PageVisits.reading_now.bibles
+  end
+
+  test 'leave снимает отметку чтения книги' do
+    post '/reading', params: {book: 'gen', t: PageVisits.bible_visit_token('gen')},
+                     headers: {'HTTP_USER_AGENT' => CHROME_UA}
+    assert_equal [['gen', 1]], PageVisits.reading_now.bibles
+
+    post '/reading', params: {book: 'gen', t: PageVisits.bible_visit_token('gen'), leave: '1'},
+                     headers: {'HTTP_USER_AGENT' => CHROME_UA}
+    assert_response :ok
+    assert_empty PageVisits.reading_now.bibles
+  end
+
   private
 
   def clean_reading

@@ -157,6 +157,8 @@ class VersesController < ApplicationController
     @no_index = true if chapter.no_index?
     @book_code = chapter.book_code
     @chapter = chapter.chapter
+    # для heartbeat «Читают сейчас»: у главы нет Page, поэтому запоминаем книгу
+    @reading_bible_book = @book_code
     @bible_path = chapter.cache_key
     @is_psalm = chapter.is_psalm?
     @audio_file = chapter.audio_file

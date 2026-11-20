@@ -16,9 +16,14 @@ class PageVisits
   READING_WINDOW = 15 * 60
   READING_TTL = 60 * 60
 
+  # Член zset для главы Библии: 'b:<код книги>:<хэш читателя>'.
+  # Глава не хранится — в блоке показываем только книгу.
+  BIBLE_MEMBER_PREFIX = 'b:'.freeze
+
   # total_readers — сколько разных читателей сейчас на сайте,
-  # pages — [[page_id, читателей], ...] по убыванию
-  ReadingNow = Struct.new(:total_readers, :pages, keyword_init: true)
+  # pages — [[page_id, читателей], ...] по убыванию,
+  # bibles — [[код книги, читателей], ...] по убыванию
+  ReadingNow = Struct.new(:total_readers, :pages, :bibles, keyword_init: true)
 
   class << self
     # Точка входа для JS-маячка (VisitsController): дневная статистика
@@ -133,7 +138,26 @@ class PageVisits
       ::RedisConnectionPool.zrem(READING_KEY, "#{id}:#{reader_digest(ip)}")
     end
 
-    # Кто читает сейчас: общее число читателей и топ статей по числу читателей
+    # Отметка «читает главу Библии»: запоминаем только книгу, без главы.
+    def touch_bible_reading(book_code, ip:)
+      book = book_code.to_s
+      return unless ::BOOKS.key?(book)
+
+      now = Time.now.to_f
+      ::RedisConnectionPool.zremrangebyscore(READING_KEY, 0, now - READING_WINDOW)
+      ::RedisConnectionPool.zadd(READING_KEY, now, "#{BIBLE_MEMBER_PREFIX}#{book}:#{reader_digest(ip)}")
+      ::RedisConnectionPool.expire(READING_KEY, READING_TTL)
+    end
+
+    # Читатель ушёл с главы Библии
+    def clear_bible_reading(book_code, ip:)
+      book = book_code.to_s
+      return unless ::BOOKS.key?(book)
+
+      ::RedisConnectionPool.zrem(READING_KEY, "#{BIBLE_MEMBER_PREFIX}#{book}:#{reader_digest(ip)}")
+    end
+
+    # Кто читает сейчас: общее число читателей, топ страниц и книг Библии
     def reading_now(limit: 5)
       now = Time.now.to_f
       from = now - READING_WINDOW
@@ -141,16 +165,26 @@ class PageVisits
 
       readers = {}
       counts = Hash.new(0)
+      bible_counts = Hash.new(0)
       ::RedisConnectionPool.zrangebyscore(READING_KEY, from, '+inf').each do |member|
-        page_id, digest = member.split(':', 2)
-        next if page_id.blank? || digest.blank?
+        if member.start_with?(BIBLE_MEMBER_PREFIX)
+          book_code, digest = member.delete_prefix(BIBLE_MEMBER_PREFIX).split(':', 2)
+          next if book_code.blank? || digest.blank? || !::BOOKS.key?(book_code)
 
-        readers[digest] = true
-        counts[page_id.to_i] += 1
+          readers[digest] = true
+          bible_counts[book_code] += 1
+        else
+          page_id, digest = member.split(':', 2)
+          next if page_id.blank? || digest.blank?
+
+          readers[digest] = true
+          counts[page_id.to_i] += 1
+        end
       end
 
       pages = counts.sort_by { |id, count| [-count, id] }.first(limit)
-      ReadingNow.new(total_readers: readers.size, pages: pages)
+      bibles = bible_counts.sort_by { |book_code, count| [-count, book_code] }.first(limit)
+      ReadingNow.new(total_readers: readers.size, pages: pages, bibles: bibles)
     end
 
     # Сколько человек читают конкретную статью прямо сейчас
@@ -173,6 +207,16 @@ class PageVisits
 
     def valid_visit_token?(page_id, token)
       visit_token(page_id) == token.to_s
+    end
+
+    # Токен heartbeat'а главы Библии: у главы нет page_id, поэтому подписываем книгу.
+    def bible_visit_token(book_code)
+      OpenSSL::HMAC.hexdigest('SHA256', Rails.application.secret_key_base, "visit:bible:#{book_code}")[0, 32]
+    end
+
+    def valid_bible_visit_token?(book_code, token)
+      book = book_code.to_s
+      ::BOOKS.key?(book) && bible_visit_token(book) == token.to_s
     end
 
     # Добывает просмотры всех страниц, отдаёт хэш:

@@ -15,6 +15,13 @@ class VersesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, %(name="description")
   end
 
+  test "chapter page marks the book for the reading heartbeat" do
+    get '/ru/ru/gen/1/'
+    assert_response :success
+    assert_select 'body[data-reading-book="gen"]'
+    assert_includes response.body, %(data-reading-token="#{::PageVisits.bible_visit_token('gen')}")
+  end
+
   test "chapter page of an empty chapter still renders" do
     get '/ru/ru/ish/2/'
     assert_response :success

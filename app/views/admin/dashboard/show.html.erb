@@ -6,15 +6,15 @@
   <section id="reading-now">
     <h2>Читают сейчас</h2>
     <p class="muted">
-      Статьи на всех языках, которые читают прямо сейчас (по JS-маячку).
+      Страницы на всех языках и книги Библии, которые читают прямо сейчас (по JS-маячку).
       Всего читателей на сайте: <%= @reading_now_total %>.
-      Статья остаётся в списке до <%= ::PageVisits::READING_WINDOW / 60 %> минут после последнего сигнала.
+      Отметка живёт до <%= ::PageVisits::READING_WINDOW / 60 %> минут после последнего сигнала.
     </p>
 
-    <% if @reading_now.any? %>
+    <% if @reading_now.any? || @reading_now_bibles.any? %>
       <div class="table-wrap">
         <table class="admin-table">
-          <tr><th>Статья</th><th>Язык</th><th>Читателей</th></tr>
+          <tr><th>Страница</th><th>Язык</th><th>Читателей</th></tr>
           <% @reading_now.each do |page, count| %>
             <tr>
               <td><%= link_to page.title, edit_admin_page_path(page, locale: nil) %></td>
@@ -22,10 +22,17 @@
               <td><%= count %></td>
             </tr>
           <% end %>
+          <% @reading_now_bibles.each do |book_code, count| %>
+            <tr>
+              <td>Библия · <%= ::I18n.t("books.full.#{book_code}") %></td>
+              <td class="muted">библия</td>
+              <td><%= count %></td>
+            </tr>
+          <% end %>
         </table>
       </div>
     <% else %>
-      <p class="muted">Сейчас никто не читает статьи.</p>
+      <p class="muted">Сейчас никто не читает.</p>
     <% end %>
   </section>
 <% end %>
