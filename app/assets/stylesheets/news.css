@@ -306,6 +306,13 @@
   font-weight: 500;
 }
 
+/* Заголовок реакций стоит вплотную к примечаниям, у которых тоже линия снизу:
+   двойное подчёркивание подряд выглядит лишним. Перебиваем `.looks-like-page h2`. */
+.page-reactions-block .page-reactions-title {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
 .page-reactions-block .page-reaction {
   justify-content: center;
 }
