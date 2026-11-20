@@ -8,7 +8,7 @@ A1 = 'https://bibleox.com/ja/ja/w/Ju2C1_弁明書第一'
 A2 = 'https://bibleox.com/ja/ja/w/Ju2C2_弁明書第二'
 
 BODY1 = (
-    f'<p>ユスティノスの著作をギリシア語原文で読むには<a href="{GRC}">こちら</a>。'
+    f'<p>ユスティノスの著作を<strong>ギリシア語原文</strong>で読むには<a href="{GRC}">こちら</a>。'
     'ほかの言語への切り替えは、著作の一覧の上でもできます。</p>'
     '<p><strong>記憶日</strong>：6月1日（新暦6月14日）</p>'
     '<h2>生涯</h2>'

@@ -40,14 +40,27 @@ WP = load_work_paras()
 def plain(t):
     return re.sub(r'\s+', '', re.sub(r'\[\d+\]', '', re.sub(r'<[^>]+>', '', t)))
 
+FOOT_RE = re.compile(r'\[\d+\]')
+
 def html_slice(p_html, p_from, p_to):
+    # посимвольная карта согласована с plain(): \s и маркеры сносок [n] не
+    # считаются (иначе срез съезжает на число пробелов в текстах ссылок
+    # «マタ. 11:27» до точки среза — джанк-префиксы и обрезанные хвосты, Q77)
     mapping = []
     i = 0
-    while i < len(p_html):
-        if p_html[i] == '<':
+    n = len(p_html)
+    while i < n:
+        c = p_html[i]
+        if c == '<':
             j = p_html.find('>', i)
-            if j < 0: j = len(p_html) - 1
-            i = j + 1
+            i = (j + 1) if j >= 0 else n
+            continue
+        if c.isspace():
+            i += 1
+            continue
+        m = FOOT_RE.match(p_html, i)
+        if m:
+            i = m.end()
             continue
         mapping.append((i, i + 1))
         i += 1
@@ -86,6 +99,8 @@ def extract_fragment(work, num, ps, pe, st, en):
         frag = html_slice(paras[ps], p_from, p_to)
         if frag is None:
             return None, 'slice fail'
+        # срез обязан совпадать с маркерным спаном по plain (добыча съезжала на пробелах ссылок)
+        assert plain(frag) == plain_ps[p_from:p_to], f'{work}:{num} срез не совпал с маркерами'
         return '<p>' + frag + '</p>', None
     parts = []
     f1 = html_slice(paras[ps], p_from, len(plain(paras[ps])))
@@ -96,9 +111,273 @@ def extract_fragment(work, num, ps, pe, st, en):
     parts.append(f2)
     if any(p is None for p in parts):
         return None, 'slice fail multi'
+    exp = plain_ps[p_from:] + ''.join(plain(paras[k]) for k in range(ps + 1, pe_k)) + plain(paras[pe_k])[:p_to]
+    assert plain(''.join(parts)) == exp, f'{work}:{num} multi-срез не совпал с маркерами'
     return ''.join('<p>%s</p>' % p for p in parts), None
 
-# ---------------------------------------------------------------- реестр
+# ---------------------------------------------------------------- выделения
+# Зеркалирование выделений из ru-биографии: MARKS[n] = список спанов для
+# цитаты n; спан = (frag_idx, s_text, e_text, tag) либо (frag_idx, text, tag),
+# где s_text/e_text — уникальные подстроки plain-текста фрагмента (начало и
+# конец спана). plain-текст цитат наложением не меняется — только обёртки.
+try:
+    from ju_author_marks import MARKS, MARKS_COMPLETE
+except ImportError:  # до начала разметки
+    MARKS, MARKS_COMPLETE = {}, False
+
+MARK_TAGS = ('strong', 'mark', 'em')
+BLOCK_TAGS = {'p', 'blockquote', 'h2', 'h3'}
+
+def frag_map(html):
+    # plain-текст фрагмента + посимвольная карта (hstart, hend) в html-координатах
+    chars, cmap = [], []
+    i, n = 0, len(html)
+    while i < n:
+        c = html[i]
+        if c == '<':
+            j = html.find('>', i)
+            i = (j + 1) if j >= 0 else n
+            continue
+        if c.isspace():
+            i += 1
+            continue
+        m = FOOT_RE.match(html, i)
+        if m:
+            i = m.end()
+            continue
+        chars.append(c)
+        cmap.append((i, i + 1))
+        i += 1
+    return ''.join(chars), cmap
+
+def tokenize(html):
+    # [(kind, text, name, is_close)] — kind: 'tag' | 'text'
+    out = []
+    i, n = 0, len(html)
+    while i < n:
+        if html[i] == '<':
+            j = html.find('>', i)
+            if j < 0:
+                raise ValueError(f'незакрытый тег в: {html[i:i+50]!r}')
+            t = html[i:j + 1]
+            m = re.match(r'<(/?)([a-zA-Z0-9]+)', t)
+            out.append(('tag', t, m.group(2), m.group(1) == '/'))
+            i = j + 1
+        else:
+            j = html.find('<', i)
+            if j < 0:
+                j = n
+            out.append(('text', html[i:j], '', False))
+            i = j
+    return out
+
+def inline_elements(tokens):
+    # plain-диапазоны инлайн-элементов (<a> и т.п.): [(start, end)];
+    # незакрытые (разорванные extract'ом) элементы закрываются условно на конце
+    stack, ranges = [], []
+    pos = 0
+    for kind, text, name, is_close in tokens:
+        if kind == 'tag':
+            if is_close:
+                for k in range(len(stack) - 1, -1, -1):
+                    if stack[k][0] == name:
+                        st = stack.pop(k)[1]
+                        ranges.append((name, st, pos))
+                        break
+            else:
+                stack.append((name, pos))
+            continue
+        i = 0
+        while i < len(text):
+            c = text[i]
+            if c.isspace() or FOOT_RE.match(text, i):
+                i += 1 if c.isspace() else FOOT_RE.match(text, i).end()
+                continue
+            pos += 1
+            i += 1
+    for name, st in stack:  # разорванные ссылки (дефект Q77) — до конца фрагмента
+        ranges.append((name, st, pos))
+    return [(s, e) for name, s, e in ranges if name not in BLOCK_TAGS]
+
+def resolve_spans(n, frag_idx, plain, entries):
+    # entries спанов одного фрагмента -> [(s, e, tag)]; уникальность подстрок.
+    # Формы: (fi, text, tag) | (fi, s_text, e_text, tag) | (fi, text, tag, nth)
+    out = []
+    for ent in entries:
+        fi = ent[0]
+        assert fi == frag_idx, f'Q{n}: frag_idx {fi} != {frag_idx}'
+        if len(ent) == 3 or (len(ent) == 4 and ent[2] in MARK_TAGS):
+            text, tag = ent[1], ent[2]
+            nth = ent[3] if len(ent) == 4 else 0
+            occs = []
+            at = plain.find(text)
+            while at >= 0:
+                occs.append(at)
+                at = plain.find(text, at + 1)
+            assert len(occs) > nth, f'Q{n} f{frag_idx}: "{text[:30]}" вхождений {len(occs)}, нужно #{nth + 1}'
+            s_off = occs[nth]
+            e_off = s_off + len(text)
+        else:
+            _, st, en, tag = ent
+            cs = plain.count(st); ce = plain.count(en)
+            assert cs == 1, f'Q{n} f{frag_idx}: start "{st[:30]}" найден {cs} раз'
+            assert ce == 1, f'Q{n} f{frag_idx}: end "{en[:30]}" найден {ce} раз'
+            s_off = plain.find(st)
+            e_off = plain.find(en) + len(en)
+        assert tag in MARK_TAGS, f'Q{n}: тег {tag}'
+        assert s_off < e_off, f'Q{n} f{frag_idx}: пустой спан ({s_off},{e_off})'
+        out.append((s_off, e_off, tag))
+    out.sort(key=lambda x: (x[0], x[1]))
+    # дубликаты и пересечения
+    seen = set()
+    for i, a in enumerate(out):
+        if a in seen:
+            continue
+        seen.add(a)
+        for b in out[i + 1:]:
+            if b[0] >= a[1]:
+                break
+            assert (b[0] >= a[0] and b[1] <= a[1]) or (a[0] >= b[0] and a[1] <= b[1]) or a[:2] == b[:2], \
+                f'Q{n} f{frag_idx}: пересечение {a} и {b} ("{plain[a[0]:a[1]][:30]}" / "{plain[b[0]:b[1]][:30]}")'
+            if a[:2] == b[:2] and a[2] == b[2]:
+                out.remove(b)
+    return out
+
+def apply_marks(frag_html, spans):
+    # наложение спанов (s, e, tag) на HTML-фрагмент по plain-позициям;
+    # теги не рвутся: спан, частично пересекающий <a>-элемент, расширяется до
+    # его границ; соседние спаны одного тега сливаются на стыке
+    plain, _ = frag_map(frag_html)
+    tokens = tokenize(frag_html)
+    ranges = inline_elements(tokens)
+    fixed = []
+    for (s, e, tag) in spans:
+        assert 0 <= s < e <= len(plain), f'спан ({s},{e}) вне plain ({len(plain)})'
+        for (rs, re_) in ranges:
+            if s >= rs and e <= re_:
+                continue  # внутри элемента — не рвём
+            if rs >= s and re_ <= e:
+                continue  # элемент целиком внутри спана
+            if s < re_ and e > rs:  # частичное пересечение — расширяем
+                if s > rs:
+                    s = rs
+                if e < re_:
+                    e = re_
+        fixed.append((s, e, tag))
+    opens, closes = {}, {}
+    for (s, e, tag) in fixed:
+        opens.setdefault(s, []).append((tag, e))
+        closes.setdefault(e, []).append(tag)
+    # слияние соседних спанов одного тега на одном стыке: закрывающийся здесь
+    # спан тега T + открывающийся здесь же T = непрерывный спан
+    for b in list(set(opens) | set(closes)):
+        cl = closes.get(b, [])
+        op = opens.get(b, [])
+        for t in list(cl):
+            if any(x[0] == t for x in op):
+                cl.remove(t)
+                for x in list(op):
+                    if x[0] == t:
+                        op.remove(x)
+                        break
+        if b in opens and not opens[b]:
+            del opens[b]
+        if b in closes and not closes[b]:
+            del closes[b]
+    # открывающие на одном стыке: внешний (больший конец) первым;
+    # закрывающие — через стек (flush_closes), порядок не важен
+    for b in opens:
+        opens[b].sort(key=lambda x: -x[1])
+        opens[b] = [t for (t, _) in opens[b]]
+
+    def flush_closes(b):
+        pend = closes.pop(b, None)
+        if not pend:
+            return
+        while stack and stack[-1] in pend:
+            t = stack.pop()
+            out.append(f'</{t}>')
+            pend.remove(t)
+        assert not pend, f'не закрыто на {b}: {pend} (стек {stack})'
+
+    def flush_opens(b):
+        tags = opens.pop(b, None)
+        if not tags:
+            return
+        for t in tags:
+            out.append(f'<{t}>')
+            stack.append(t)
+
+    out, stack, pos = [], [], 0
+    for kind, text, name, is_close in tokens:
+        if kind == 'tag':
+            if is_close:
+                # инлайн-закрывающие — спаны закроем позже (после них);
+                # блочные — спаны закрываются до них
+                if name in BLOCK_TAGS:
+                    flush_closes(pos)
+                out.append(text)
+            else:
+                if name in BLOCK_TAGS:
+                    flush_closes(pos)
+                    out.append(text)
+                    flush_opens(pos)
+                else:
+                    flush_closes(pos)
+                    flush_opens(pos)
+                    out.append(text)
+            continue
+        # текстовый токен — посимвольно
+        i = 0
+        while i < len(text):
+            c = text[i]
+            if c.isspace():
+                out.append(c)
+                i += 1
+                continue
+            m = FOOT_RE.match(text, i)
+            if m:
+                out.append(m.group(0))
+                i = m.end()
+                continue
+            flush_closes(pos)
+            flush_opens(pos)
+            out.append(c)
+            pos += 1
+            i += 1
+    assert pos == len(plain), (pos, len(plain))
+    flush_closes(pos)
+    assert not stack, f'незакрытые спаны: {stack}'
+    res = ''.join(out)
+    plain2, _ = frag_map(res)
+    assert plain2 == plain, 'plain-текст изменился при наложении'
+    for t in MARK_TAGS:
+        o = len(re.findall(f'<{t}>', res)); c = len(re.findall(f'</{t}>', res))
+        assert o == c, (t, o, c)
+    return res
+
+def apply_quote_marks(n, parts):
+    # MARKS[n] -> по фрагментам; возвращает (parts, applied, skipped)
+    entries = MARKS.get(n, [])
+    if not entries:
+        return parts, 0, len(entries)
+    by_frag = {}
+    for ent in entries:
+        by_frag.setdefault(ent[0], []).append(ent)
+    applied = 0
+    new_parts = []
+    for fi, frag in enumerate(parts):
+        ents = by_frag.get(fi, [])
+        if not ents:
+            new_parts.append(frag)
+            continue
+        plain, _ = frag_map(frag)
+        spans = resolve_spans(n, fi, plain, ents)
+        frag2 = apply_marks(frag, spans)
+        new_parts.append(frag2)
+        applied += len(spans)
+    return new_parts, applied, len(entries) - applied
+
 AUTO = json.load(open(os.path.join(HERE, 'quotes_auto.json')))
 # {n_str: [(work, num, ps, pe, st, en), ...]}
 
@@ -136,6 +415,7 @@ QTEXT = {
 def build_quotes():
     frags = {}
     fails = []
+    marks_report = []
     for n in range(1, 96):
         spec = MANUAL.get(n)
         if not spec:
@@ -155,56 +435,76 @@ def build_quotes():
             else:
                 parts.append(frag)
         if ok and parts:
+            parts, applied, skipped = apply_quote_marks(n, parts)
+            marks_report.append((n, applied, skipped))
             sep = '<p>…</p>' if (len(parts) > 1 and n in MANUAL) else ''
             frags[n] = sep.join(parts)
         else:
             frags[n] = '<p>（未解決）</p>'
     for n, text in QTEXT.items():
-        frags[n] = f'<p>{text}</p>'
-    return frags, fails
+        parts, applied, skipped = apply_quote_marks(n, [text])
+        marks_report.append((n, applied, skipped))
+        frags[n] = f'<p>{parts[0]}</p>'
+    return frags, fails, marks_report
 
-frags, fails = build_quotes()
-ok_count = 95 - len([f for f in fails if 'not found' in str(f[1]) or 'no spec' in str(f[1]) or 'slice' in str(f[1])])
-print(f'вербатим OK: {ok_count}/95 (спец-композиты и отзывы — вне проверки)')
+def main():
+    frags, fails, marks_report = build_quotes()
+    ok_count = 95 - len([f for f in fails if 'not found' in str(f[1]) or 'no spec' in str(f[1]) or 'slice' in str(f[1])])
+    print(f'вербатим OK: {ok_count}/95 (спец-композиты и отзывы — вне проверки)')
+    assert MARKS_COMPLETE, 'ju_author_marks.py: разметка не завершена (MARKS_COMPLETE=False)'
+    mr = {n: (a, s) for n, a, s in marks_report}
+    for n in sorted(mr):
+        a, s = mr[n]
+        if s or a:
+            print(f'  Q{n}: спанов наложено {a}' + (f', пропущено {s}' if s else ''))
+    tot = {}
+    for n, frag in frags.items():
+        for t in MARK_TAGS:
+            tot[t] = tot.get(t, 0) + len(re.findall(f'<{t}>', frag))
+    print('выделения в цитатах:', tot)
 
-body = (BODY1 + BODY2)
-for n, frag in frags.items():
-    body = body.replace('{{Q:%d}}' % n, '<blockquote>' + frag + '</blockquote>')
-left = re.findall(r'\{\{Q:\d+\}\}', body)
-assert not left, f'остались плейсхолдеры: {left}'
+    body = (BODY1 + BODY2)
+    for n, frag in frags.items():
+        body = body.replace('{{Q:%d}}' % n, '<blockquote>' + frag + '</blockquote>')
+    left = re.findall(r'\{\{Q:\d+\}\}', body)
+    assert not left, f'остались плейсхолдеры: {left}'
 
-cyr = re.findall(r'[\u0400-\u04FF]', body)
-assert not cyr, f'кириллица: {cyr[:10]}'
-for tag in ('p', 'blockquote', 'h2', 'h3', 'a'):
-    o = len(re.findall(f'<{tag}[ >]', body)); c = len(re.findall(f'</{tag}>', body))
-    assert o == c, (tag, o, c)
+    cyr = re.findall(r'[\u0400-\u04FF]', body)
+    assert not cyr, f'кириллица: {cyr[:10]}'
+    for tag in ('p', 'blockquote', 'h2', 'h3', 'a'):
+        o = len(re.findall(f'<{tag}[ >]', body)); c = len(re.findall(f'</{tag}>', body))
+        assert o == c, (tag, o, c)
 
-refs = (
-    '<p>翻訳原則：本ページは本サイトのロシア語版ページからの翻訳です。ユスティノスの著作からの引用は、'
-    'すべて本サイトの日本語訳（『弁明書 第一』『弁明書 第二』『ユダヤ人トリュフォンとの対話』）によるもので、'
-    '該当箇所のリンクを付けました。テルトゥリアヌス、メトディオス、エピファニオス、ヒエロニムス、テオドレトスの言葉は、'
-    'ロシア語訳を参照して訳しました（本サイトにこれらの日本語訳はありません）。'
-    '「使徒たちの記録」という呼び方は、ユスティノスが福音書に与えた名前です。'
-    '人名は本サイトの日本語訳の伝統に従います：ユスティノス（哲学者）、トリュフォン、ポンティウス・ピラトゥス、'
-    'アントニヌス・ピウス、マルクス・アウレリウス、クレセンセス、エウセビオス（カイサリアの）。</p>'
-    '<p>翻訳：ロジオン・ヴラソフ（AIツールを併用）。</p>'
-)
+    refs = (
+        '<p>翻訳原則：本ページは本サイトのロシア語版ページからの翻訳です。ユスティノスの著作からの引用は、'
+        'すべて本サイトの日本語訳（『弁明書 第一』『弁明書 第二』『ユダヤ人トリュフォンとの対話』）によるもので、'
+        '該当箇所のリンクを付けました。引用の強調（太字・色付き）は、ロシア語版の標示に従っています。'
+        'テルトゥリアヌス、メトディオス、エピファニオス、ヒエロニムス、テオドレトスの言葉は、'
+        'ロシア語訳を参照して訳しました（本サイトにこれらの日本語訳はありません）。'
+        '「使徒たちの記録」という呼び方は、ユスティノスが福音書に与えた名前です。'
+        '人名は本サイトの日本語訳の伝統に従います：ユスティノス（哲学者）、トリュフォン、ポンティウス・ピラトゥス、'
+        'アントニヌス・ピウス、マルクス・アウレリウス、クレセンセス、エウセビオス（カイサリアの）。</p>'
+        '<p>翻訳：ロジオン・ヴラソフ（AIツールを併用）。</p>'
+    )
 
-build(
-    src='Иустин_Философ_мученик',
-    path='Ju2A_ユスティノス2世紀',
-    title='ユスティノス（哲学者）、2世紀',
-    title_sub='致命者（〜100-165）、哲学者',
-    meta_desc='2世紀のキリスト教護教家、ユスティノス（哲学者、致命者）の生涯と信仰：ロゴスの教え、三一の神、'
-              'モーセの律法の意味、洗礼と聖体、復活と終末、そして古代の教父たちの証し。',
-    menu={'parent': '2世紀', 'title': 'ユスティノス（哲学者）、致命者（〜100-165）',
-          'priority': 2, 'replace': '哲学者ユスティノス殉教者（～100-165）'},
-    body=body,
-    refs=refs,
-    out_name='ju_00_author.yml',
-    update=True,
-    builder='ju_author.py',
-)
-print(f'failures: {len(fails)}')
-for n, msg in fails:
-    print(f'  Q{n}: {msg}')
+    build(
+        src='Иустин_Философ_мученик',
+        path='Ju2A_ユスティノス2世紀',
+        title='ユスティノス（哲学者）、2世紀',
+        title_sub='致命者（〜100-165）、哲学者',
+        meta_desc='2世紀のキリスト教護教家、ユスティノス（哲学者、致命者）の生涯と信仰：ロゴスの教え、三一の神、'
+                  'モーセの律法の意味、洗礼と聖体、復活と終末、そして古代の教父たちの証し。',
+        menu={'parent': '2世紀', 'title': 'ユスティノス（哲学者）、致命者（〜100-165）',
+              'priority': 2, 'replace': '哲学者ユスティノス殉教者（～100-165）', 'copy_cover': True},
+        body=body,
+        refs=refs,
+        out_name='ju_00_author.yml',
+        update=True,
+        builder='ju_author.py',
+    )
+    print(f'failures: {len(fails)}')
+    for n, msg in fails:
+        print(f'  Q{n}: {msg}')
+
+if __name__ == '__main__':
+    main()
