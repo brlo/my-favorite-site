@@ -7,6 +7,19 @@ const SCHEMA_VERSION = 1
 const isWeb = Capacitor.getPlatform() === 'web'
 const sqlite = new SQLiteConnection(CapacitorSQLite)
 
+// Колонки, появившиеся после первой версии базы. CREATE TABLE IF NOT EXISTS
+// не меняет существующие таблицы, поэтому добавляем их вручную.
+const COLUMN_MIGRATIONS = {
+  pages: {
+    cover_overlay_bg: 'TEXT',
+    cover_overlay_text: 'TEXT',
+    has_lead: 'INTEGER',
+  },
+  page_bodies: {
+    lead: 'TEXT',
+  },
+}
+
 let conn = null
 
 // Поисковые индексы — FTS4: он есть и в SQLCipher (Android), и в sql.js.
@@ -45,9 +58,12 @@ CREATE TABLE IF NOT EXISTS pages (
   is_bibleox INTEGER,
   links TEXT,
   cover TEXT,
+  cover_overlay_bg TEXT,
+  cover_overlay_text TEXT,
   icon TEXT,
   audio TEXT,
   body_size INTEGER,
+  has_lead INTEGER,
   updated_at INTEGER
 );
 CREATE INDEX IF NOT EXISTS pages_path ON pages (lang, path_low);
@@ -57,10 +73,33 @@ CREATE TABLE IF NOT EXISTS page_bodies (
   id INTEGER PRIMARY KEY NOT NULL,
   updated_at INTEGER,
   body TEXT,
+  lead TEXT,
   refs TEXT,
   body_menu TEXT,
   verses TEXT,
   saved_at INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS tags (
+  id INTEGER NOT NULL,
+  lang TEXT NOT NULL,
+  slug TEXT NOT NULL,
+  name TEXT NOT NULL,
+  PRIMARY KEY (id, lang)
+);
+CREATE INDEX IF NOT EXISTS tags_slug ON tags (lang, slug);
+
+CREATE TABLE IF NOT EXISTS page_tags (
+  page_id INTEGER NOT NULL,
+  tag_id INTEGER NOT NULL,
+  lang TEXT NOT NULL,
+  PRIMARY KEY (page_id, tag_id)
+);
+CREATE INDEX IF NOT EXISTS page_tags_tag ON page_tags (lang, tag_id);
+
+CREATE TABLE IF NOT EXISTS page_tokens (
+  page_id INTEGER PRIMARY KEY NOT NULL,
+  token TEXT NOT NULL
 );
 
 CREATE TABLE IF NOT EXISTS menus (
@@ -108,8 +147,20 @@ export async function initDb() {
     : await sqlite.createConnection(DB_NAME, false, 'no-encryption', SCHEMA_VERSION, false)
   await conn.open()
   await conn.execute(SCHEMA, true)
+  await ensureColumns()
   await persist()
   return conn
+}
+
+// Идемпотентная миграция: добавляет недостающие колонки в уже созданные таблицы
+async function ensureColumns() {
+  for (const [table, columns] of Object.entries(COLUMN_MIGRATIONS)) {
+    const info = await conn.query(`PRAGMA table_info(${table})`)
+    const present = new Set((info.values || []).map((row) => row.name))
+    for (const [name, type] of Object.entries(columns)) {
+      if (!present.has(name)) await conn.run(`ALTER TABLE ${table} ADD COLUMN ${name} ${type}`, [], false)
+    }
+  }
 }
 
 // В браузере база живёт в памяти — сохраняем в IndexedDB после записи

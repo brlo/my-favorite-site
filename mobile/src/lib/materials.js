@@ -4,6 +4,7 @@ import { query, queryOne, run, insertMany, deleteIds, kvGet, kvSet, persist } fr
 import { getJSON, online } from './net.js'
 import { norm, htmlToParagraphs, stripTags, ftsQuery } from './text.js'
 import { NotDownloadedError } from './bible.js'
+import { needsFullSkeleton } from './skeleton.js'
 
 // rowid абзаца в индексе = id страницы * PARA_MUL + номер абзаца
 const PARA_MUL = 100000
@@ -40,18 +41,23 @@ export function syncSkeleton(lang) {
   return pendingSkeleton[lang]
 }
 
-async function doSyncSkeleton(lang) {
-  const since = await kvGet(`skel_since:${lang}`, 0)
+async function doSyncSkeleton(lang, { forceFull = false } = {}) {
+  const localVersion = await kvGet(`skel_version:${lang}`, 0)
+  const savedSince = await kvGet(`skel_since:${lang}`, 0)
+  const since = forceFull ? 0 : savedSince
   const data = await getJSON('/api/offline/skeleton', { lang, since })
+  const serverVersion = Number(data.data_version) || 1
 
   await insertMany(
     'pages',
     ['id', 'lang', 'path', 'path_low', 'title', 'title_norm', 'title_sub', 'parent_id', 'page_type',
-      'is_show_parent', 'is_search', 'is_bibleox', 'links', 'cover', 'icon', 'audio', 'body_size', 'updated_at'],
+      'is_show_parent', 'is_search', 'is_bibleox', 'links', 'cover', 'cover_overlay_bg', 'cover_overlay_text',
+      'icon', 'audio', 'body_size', 'has_lead', 'updated_at'],
     data.pages.map((p) => [
       p.id, lang, p.path, p.path.toLowerCase(), p.title, norm(`${p.title} ${p.title_sub || ''}`), p.title_sub,
       p.parent_id, p.page_type, p.is_show_parent ? 1 : 0, p.is_search ? 1 : 0, p.is_bibleox ? 1 : 0,
-      p.links ? JSON.stringify(p.links) : null, p.cover, p.icon, p.audio, p.body_size, p.updated_at,
+      p.links ? JSON.stringify(p.links) : null, p.cover, p.cover_overlay_bg, p.cover_overlay_text,
+      p.icon, p.audio, p.body_size, p.has_lead ? 1 : 0, p.updated_at,
     ])
   )
   await insertMany(
@@ -68,6 +74,8 @@ async function doSyncSkeleton(lang) {
   const gonePages = localPages.filter((id) => !serverPages.has(id))
   if (gonePages.length) {
     await deleteIds('pages', gonePages)
+    await deleteIds('page_tags', gonePages, 'page_id')
+    await deleteIds('page_tokens', gonePages, 'page_id')
     for (const id of gonePages) await removeBody(id)
   }
   const serverMenus = new Set(data.menu_ids)
@@ -75,9 +83,38 @@ async function doSyncSkeleton(lang) {
   const goneMenus = localMenus.filter((id) => !serverMenus.has(id))
   if (goneMenus.length) await deleteIds('menus', goneMenus)
 
+  await syncSkeletonTags(data.tags, data.page_tags, lang)
+
   await kvSet(`skel_since:${lang}`, data.next_since)
+
+  // Дельта старого формата не содержит новых полей страниц. Как только сервер
+  // сообщил новую версию, один раз перечитываем язык целиком. Версию поднимаем
+  // только после успешной полной синхронизации, иначе при обрыве сети не
+  // попробуем ещё раз.
+  const needFull = needsFullSkeleton({ since: savedSince, localVersion, serverVersion, forceFull })
+  await kvSet(`skel_version:${lang}`,
+    needFull ? Math.max(Number(localVersion) || 0, 1) : Math.max(Number(localVersion) || 0, serverVersion))
   await markLangUsed(lang)
   await persist()
+
+  if (needFull) return doSyncSkeleton(lang, { forceFull: true })
+}
+
+// Теги приходят снимком на весь язык, поэтому при каждой синхронизации
+// (полной или дельте) заменяем набор целиком — так ловятся переименования
+// и снятия тегов без отметок updated_at у статей.
+async function syncSkeletonTags(tags, pageTags, lang) {
+  if (!Array.isArray(tags) || !Array.isArray(pageTags)) return
+
+  await run('DELETE FROM page_tags WHERE lang = ?', [lang])
+  await run('DELETE FROM tags WHERE lang = ?', [lang])
+
+  if (tags.length) {
+    await insertMany('tags', ['id', 'lang', 'slug', 'name'], tags.map((t) => [t.id, lang, t.slug, t.name]))
+  }
+  if (pageTags.length) {
+    await insertMany('page_tags', ['page_id', 'tag_id', 'lang'], pageTags.map(([pageId, tagId]) => [pageId, tagId, lang]))
+  }
 }
 
 export async function ensureSkeleton(lang) {
@@ -131,8 +168,11 @@ export async function getLocalBody(id) {
 // Текст страницы: локальный; если его нет или он устарел — с сервера (если есть сеть)
 export async function getBody(page) {
   const local = await getLocalBody(page.id)
+  // старые скачанные тела содержат lead внутри body; после обновления приложения
+  // докачиваем такую страницу один раз, чтобы вынести lead над оглавлением
+  const needsLead = !!page.has_lead && !!local && local.lead === null
   const stale = !local || local.updated_at < page.updated_at
-  if (stale && online.value) {
+  if ((stale || needsLead) && online.value) {
     try {
       await downloadBodies(page.lang, [page.id])
       return await getLocalBody(page.id)
@@ -153,11 +193,20 @@ export async function downloadBodies(lang, ids) {
 }
 
 async function saveBody(b) {
+  // Новый сервер отдаёт lead и body_main отдельно; старый — только body целиком.
+  // lead = null означает, что lead уже внутри body (старый кэш).
+  const hasLeadField = Object.prototype.hasOwnProperty.call(b, 'lead')
+  const lead = hasLeadField ? (b.lead || '') : null
+  const body = hasLeadField ? (b.body_main ?? b.body ?? '') : (b.body ?? '')
+
   await run(
-    'INSERT OR REPLACE INTO page_bodies (id, updated_at, body, refs, body_menu, verses, saved_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
-    [b.id, b.updated_at, b.body, b.references, b.body_menu ? JSON.stringify(b.body_menu) : null,
+    'INSERT OR REPLACE INTO page_bodies (id, updated_at, body, lead, refs, body_menu, verses, saved_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+    [b.id, b.updated_at, body, lead, b.references, b.body_menu ? JSON.stringify(b.body_menu) : null,
       b.verses ? JSON.stringify(b.verses) : null, Date.now()]
   )
+  if (b.visit_token) {
+    await run('INSERT OR REPLACE INTO page_tokens (page_id, token) VALUES (?, ?)', [b.id, b.visit_token])
+  }
   await indexBody(b)
 }
 
@@ -229,6 +278,35 @@ export async function downloadBodiesBatched(lang, pages, onProgress, signal) {
     if (batch.length >= 50 || batchSize > 2_000_000) await flush()
   }
   if (!signal?.aborted) await flush()
+}
+
+// ---------------------------------------------------------------------------
+// ТЕГИ
+
+// Теги страницы (имена уже локализованы на язык скелета)
+export async function pageTags(pageId) {
+  return query(
+    `SELECT t.id, t.slug, t.name FROM page_tags pt
+       JOIN tags t ON t.id = pt.tag_id AND t.lang = pt.lang
+      WHERE pt.page_id = ? ORDER BY t.name`,
+    [pageId]
+  )
+}
+
+export async function tagInfo(lang, slug) {
+  return queryOne('SELECT id, slug, name FROM tags WHERE lang = ? AND slug = ? LIMIT 1', [lang, slug])
+}
+
+// Статьи с тегом на языке — из локального скелета, доступны офлайн
+export async function pagesForTag(lang, slug) {
+  return query(
+    `SELECT p.id, p.path, p.title, p.updated_at FROM page_tags pt
+       JOIN tags t ON t.id = pt.tag_id AND t.lang = pt.lang
+       JOIN pages p ON p.id = pt.page_id
+      WHERE pt.lang = ? AND t.slug = ?
+      ORDER BY p.updated_at DESC LIMIT 500`,
+    [lang, slug]
+  )
 }
 
 // ---------------------------------------------------------------------------

@@ -24,6 +24,15 @@ allprojects {
     }
 }
 
+// В образе ghcr.io/cirruslabs/android-sdk:36 есть только build-tools 36.0.0,
+// а AGP по умолчанию просит 35.0.0. Явно используем установленную версию.
+subprojects {
+    afterEvaluate { project ->
+        def android = project.extensions.findByName('android')
+        if (android != null) android.buildToolsVersion = '36.0.0'
+    }
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }

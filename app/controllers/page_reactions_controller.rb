@@ -8,29 +8,9 @@ class PageReactionsController < ApplicationController
     kind = params[:kind].to_s
     return head :unprocessable_entity unless ::PageReaction::KINDS.key?(kind)
 
-    digest = ::PageReaction.digest_ip(request.ip)
-    reaction = ::PageReaction.find_by(page_id: @page.id, ip_digest: digest)
-
-    active =
-      if reaction
-        if reaction.kind == kind
-          reaction.destroy!
-          nil
-        else
-          reaction.update!(kind: kind)
-          kind
-        end
-      else
-        begin
-          ::PageReaction.create!(page_id: @page.id, kind: kind, ip_digest: digest)
-        rescue ActiveRecord::RecordNotUnique
-          # параллельный запрос с того же IP уже поставил реакцию
-          ::PageReaction.find_by(page_id: @page.id, ip_digest: digest)&.update!(kind: kind)
-        end
-        kind
-      end
-
-    counts = ::PageReaction.counts_by_kind(@page.id)
+    result = ::PageReaction.toggle!(page: @page, kind: kind, ip: request.ip)
+    counts = result[:counts]
+    active = result[:active]
 
     respond_to do |format|
       format.json { render json: {counts: counts, active: active} }

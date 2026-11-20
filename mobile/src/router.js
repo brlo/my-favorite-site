@@ -9,6 +9,8 @@ import { rememberScroll, rememberedScroll, whenScrollable } from './lib/scroll.j
 import BibleHome from './views/BibleHome.vue'
 import BibleChapter from './views/BibleChapter.vue'
 import PageView from './views/PageView.vue'
+import NewsView from './views/NewsView.vue'
+import TagView from './views/TagView.vue'
 import SearchView from './views/SearchView.vue'
 import SettingsView from './views/SettingsView.vue'
 
@@ -19,6 +21,8 @@ const router = createRouter({
     { path: '/bible/:tr?', name: 'bible', component: BibleHome },
     { path: '/bible/:tr/:book/:chapter', name: 'chapter', component: BibleChapter },
     { path: '/w', redirect: () => `/w/${settings.pagesLang}` },
+    { path: '/news', name: 'news', component: NewsView },
+    { path: '/w/:lang/tags/:slug', name: 'tag', component: TagView },
     { path: '/w/:lang/:path?', name: 'page', component: PageView },
     { path: '/search', name: 'search', component: SearchView },
     { path: '/settings', name: 'settings', component: SettingsView },

@@ -8,7 +8,7 @@ const route = useRoute()
 const section = computed(() => {
   const n = route.name
   if (n === 'bible' || n === 'chapter') return 'bible'
-  if (n === 'page') return 'page'
+  if (n === 'page' || n === 'news' || n === 'tag') return 'page'
   return n
 })
 

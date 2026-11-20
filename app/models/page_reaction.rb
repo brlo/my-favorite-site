@@ -55,5 +55,33 @@ class PageReaction < ApplicationRecord
     def kind_for(page_id, ip)
       where(page_id: page_id, ip_digest: digest_ip(ip)).pick(:kind)
     end
+
+    # Поставить, сменить или снять реакцию. Возвращает {counts:, active:} —
+    # counts для всех видов, active — выбранный этим IP вид или nil.
+    def toggle!(page:, kind:, ip:)
+      digest = digest_ip(ip)
+      reaction = find_by(page_id: page.id, ip_digest: digest)
+
+      active =
+        if reaction
+          if reaction.kind == kind
+            reaction.destroy!
+            nil
+          else
+            reaction.update!(kind: kind)
+            kind
+          end
+        else
+          begin
+            create!(page_id: page.id, kind: kind, ip_digest: digest)
+          rescue ActiveRecord::RecordNotUnique
+            # параллельный запрос с того же IP уже поставил реакцию
+            find_by(page_id: page.id, ip_digest: digest)&.update!(kind: kind)
+          end
+          kind
+        end
+
+      {counts: counts_by_kind(page.id), active: active}
+    end
   end
 end

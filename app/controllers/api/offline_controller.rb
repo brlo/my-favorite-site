@@ -1,7 +1,7 @@
-# API для оффлайн-приложения (Android). Только чтение, без авторизации.
+# API для оффлайн-приложения (Android). Чтение без авторизации.
 module Api
   class OfflineController < ActionController::API
-    before_action :validate_lang, only: %i[skeleton pages]
+    before_action :validate_lang, only: %i[skeleton pages feed reading_now]
 
     # GET /api/offline/manifest?locale=ru
     def manifest
@@ -31,6 +31,25 @@ module Api
       return render(json: { pages: [] }) if ids.empty?
 
       render json: { pages: ::Offline::Export.pages(lang: @lang, ids: ids) }
+    end
+
+    # GET /api/offline/tokens?ids=1,2,3
+    # Токены маячка для уже скачанных страниц (в тексте они приходят вместе с body).
+    def tokens
+      ids = params[:ids].to_s.split(',').select { _1.match?(/\A\d+\z/) }
+      render json: { tokens: ::Offline::Export.visit_tokens(ids) }
+    end
+
+    # GET /api/offline/feed?lang=ru&page=1
+    def feed
+      response.headers['Cache-Control'] = 'no-store'
+      render json: ::Offline::Export.feed(lang: @lang, page: params[:page], ip: request.ip)
+    end
+
+    # GET /api/offline/reading_now?lang=ru
+    def reading_now
+      response.headers['Cache-Control'] = 'no-store'
+      render json: ::Offline::Export.reading_now(lang: @lang)
     end
 
     private

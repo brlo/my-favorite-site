@@ -1,6 +1,6 @@
 <script setup>
 // Страница материалов: хлебные крошки, меню-дерево, текст, похожие материалы
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { t } from '../lib/i18n.js'
 import { settings } from '../lib/settings.js'
@@ -9,7 +9,7 @@ import { query } from '../lib/db.js'
 import { manifest, resUrl } from '../lib/manifest.js'
 import {
   ensureSkeleton, syncSkeleton, getPageByPath, rootPage, topPages, getBody, menuTree, siblings, ancestors,
-  sectionPages, missingBodies, downloadBodiesBatched, PAGE_TYPE_LIST,
+  sectionPages, missingBodies, downloadBodiesBatched, pageTags, PAGE_TYPE_LIST,
 } from '../lib/materials.js'
 import { localSrc, cacheFile } from '../lib/files.js'
 import { norm, formatBytes } from '../lib/text.js'
@@ -17,9 +17,12 @@ import { RTL_LANGS } from '../lib/config.js'
 import { player, playUrl, toggle } from '../lib/player.js'
 import { pageRoute, openHref } from '../router.js'
 import { isHistoryRestore } from '../lib/scroll.js'
+import { markVisit, sendReading } from '../lib/visit.js'
+import { overlayStyle, overlayTextColor, overlayTitleClass } from '../lib/cover.js'
 import StatusNote from '../components/StatusNote.vue'
 import MenuTree from '../components/MenuTree.vue'
 import HtmlContent from '../components/HtmlContent.vue'
+import ReactionBar from '../components/ReactionBar.vue'
 
 const route = useRoute()
 const router = useRouter()
@@ -29,6 +32,7 @@ const path = route.params.path || null
 const page = ref(null)
 const body = ref(null)
 const bodyError = ref(null)
+const bodyLoading = ref(false)
 const crumbs = ref([])
 const tree = ref([])
 const sibs = ref(null)
@@ -42,17 +46,43 @@ const notFound = ref(false)
 const filter = ref('')
 const showSiblings = ref(false)
 const content = ref(null)
+const tags = ref([])
 
 // скачивание раздела
 const section = ref(null) // {pages, missing, size}
 const sectionProgress = ref(null)
 let abort = null
+let readingTimer = null
 
 const isList = computed(() => page.value?.page_type === PAGE_TYPE_LIST)
+const isArticle = computed(() => page.value?.page_type === 1)
 const rtl = RTL_LANGS.includes(lang)
 const audioUrl = computed(() => (page.value?.audio ? resUrl(page.value.audio) : null))
 const isThisPlaying = computed(() => player.url && player.url === audioUrl.value)
 const langsList = computed(() => Object.entries(manifest.value?.page_langs || {}).sort((a, b) => b[1] - a[1]))
+const hasOverlay = computed(() => !!cover.value && !!page.value?.cover_overlay_bg)
+const parentCrumb = computed(() => crumbs.value[crumbs.value.length - 1] || null)
+
+function startReading() {
+  clearInterval(readingTimer)
+  if (!isArticle.value) return
+  sendReading(page.value)
+  readingTimer = setInterval(() => {
+    if (!document.hidden) sendReading(page.value)
+  }, 45_000)
+}
+
+function stopReading(leave = false) {
+  clearInterval(readingTimer)
+  readingTimer = null
+  if (leave && isArticle.value) sendReading(page.value, { leave: true })
+}
+
+function onVisibility() {
+  if (!isArticle.value) return
+  if (document.hidden) sendReading(page.value, { leave: true })
+  else sendReading(page.value)
+}
 
 async function findPage() {
   if (!path) return rootPage(lang)
@@ -69,6 +99,8 @@ async function load() {
   loading.value = true
   error.value = null
   notFound.value = false
+  stopReading()
+  tags.value = []
   try {
     await ensureSkeleton(lang)
     settings.pagesLang = lang
@@ -80,6 +112,9 @@ async function load() {
     }
     settings.lastPage = { lang, path: page.value.path }
     crumbs.value = await ancestors(page.value)
+    tags.value = await pageTags(page.value.id)
+    markVisit(page.value)
+    startReading()
     if (isList.value) {
       tree.value = await menuTree(page.value.id)
       icons.value = Object.fromEntries(
@@ -102,6 +137,7 @@ async function load() {
 
 async function loadBody() {
   bodyError.value = null
+  bodyLoading.value = true
   try {
     body.value = await getBody(page.value)
     if (route.hash && !isHistoryRestore()) {
@@ -110,6 +146,8 @@ async function loadBody() {
     }
   } catch (e) {
     bodyError.value = e
+  } finally {
+    bodyLoading.value = false
   }
 }
 
@@ -184,7 +222,15 @@ function changeLang(e) {
   router.push({ name: 'page', params: { lang: e.target.value } })
 }
 
-onMounted(load)
+onMounted(() => {
+  load()
+  document.addEventListener('visibilitychange', onVisibility)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('visibilitychange', onVisibility)
+  stopReading(true)
+})
 </script>
 
 <template>
@@ -194,6 +240,7 @@ onMounted(load)
       <select v-if="!path && langsList.length" class="tr-select small" :value="lang" @change="changeLang">
         <option v-for="[l, cnt] in langsList" :key="l" :value="l">{{ l }} ({{ cnt }})</option>
       </select>
+      <router-link v-if="!path" class="btn small" :to="{ name: 'news' }">{{ t('news') }}</router-link>
     </header>
 
     <StatusNote :error="error" :loading="loading" @retry="load" />
@@ -216,9 +263,21 @@ onMounted(load)
         </template>
       </nav>
 
-      <img v-if="cover" :src="cover" class="cover" alt="" />
+      <div v-if="hasOverlay" class="cover-wrap">
+        <img :src="cover" class="cover-img" :alt="page.title" />
+        <div class="cover-overlay" :style="overlayStyle(page.cover_overlay_bg)">
+          <div class="cover-overlay-caption" :class="overlayTitleClass(page.title)"
+               :style="{ color: overlayTextColor(page.cover_overlay_text) }">
+            <div v-if="page.is_show_parent && parentCrumb" class="cover-overlay-parent">
+              <router-link :to="pageRoute(lang, parentCrumb.path)">{{ parentCrumb.title }}</router-link>
+            </div>
+            <h1 class="cover-title">{{ page.title }}</h1>
+          </div>
+        </div>
+      </div>
+      <img v-else-if="cover" :src="cover" class="cover" alt="" />
 
-      <h1 v-if="path" class="page-title">{{ page.title }}</h1>
+      <h1 v-if="path && !hasOverlay" class="page-title">{{ page.title }}</h1>
       <div v-if="page.title_sub" class="title-sub">{{ page.title_sub }}</div>
 
       <div v-if="page.links" class="btn-group">
@@ -234,6 +293,8 @@ onMounted(load)
 
       <!-- страница-список: меню -->
       <template v-if="isList">
+        <HtmlContent v-if="body?.lead" :html="body.lead" :lang="lang" class="page-lead" />
+
         <div v-if="section && section.pages > 1" class="section-dl">
           <template v-if="sectionProgress">
             {{ t('downloading') }} {{ sectionProgress.done }} / {{ sectionProgress.total }}
@@ -266,8 +327,12 @@ onMounted(load)
       </div>
 
       <StatusNote v-if="bodyError" :error="bodyError" @retry="loadBody" />
+      <div v-if="bodyLoading && !body" class="spinner"></div>
 
       <template v-if="body">
+        <!-- лид идёт до оглавления; для старых скачанных страниц он ещё внутри body -->
+        <HtmlContent v-if="body.lead" :html="body.lead" :lang="lang" class="page-lead" />
+
         <nav v-if="body.body_menu?.length" class="article-menu">
           <div class="menu-name">{{ t('contents') }}</div>
           <div v-for="([tag, anchor, text], i) in body.body_menu" :key="i" :class="`nav-${tag}`">
@@ -288,6 +353,23 @@ onMounted(load)
           <HtmlContent :html="body.refs" :lang="lang" tag="div" />
         </section>
       </template>
+
+      <section v-if="isArticle" class="page-reactions-block">
+        <h2>{{ t('reactions_title') }}</h2>
+        <ReactionBar :page-id="page.id" />
+      </section>
+
+      <div v-if="tags.length" class="page-tags">
+        <span class="page-tags-label">{{ t('tags') }}:</span>
+        <router-link
+          v-for="tag in tags"
+          :key="tag.id"
+          class="tag-chip"
+          :to="{ name: 'tag', params: { lang, slug: tag.slug } }"
+        >
+          {{ tag.name }}
+        </router-link>
+      </div>
 
       <div v-if="sibs && sibs.list.length > 1" class="prev-next">
         <router-link v-if="sibs.idx > 0" class="btn" :to="pageRoute(lang, sibs.list[sibs.idx - 1].path)">← {{ sibs.list[sibs.idx - 1].title }}</router-link>

@@ -1,6 +1,6 @@
 <script setup>
 // Чтение главы
-import { ref, computed, onMounted, nextTick } from 'vue'
+import { ref, computed, onMounted, onUnmounted, nextTick, watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { t } from '../lib/i18n.js'
 import { settings } from '../lib/settings.js'
@@ -12,6 +12,7 @@ import { rubyfy } from '../lib/text.js'
 import { player, playUrl, toggle } from '../lib/player.js'
 import { chapterRoute, pageRoute } from '../router.js'
 import { isHistoryRestore } from '../lib/scroll.js'
+import { sendBibleReading } from '../lib/visit.js'
 import StatusNote from '../components/StatusNote.vue'
 
 const route = useRoute()
@@ -27,6 +28,11 @@ const loading = ref(true)
 const error = ref(null)
 
 const info = computed(() => booksByCode.value[book])
+
+// Манифест с токеном книги приходит чуть позже первого рендера
+watch(() => info.value?.reading_token, (token) => {
+  if (token) sendBibleReading(book)
+})
 const isPsalm = book === 'ps'
 const title = computed(() => `${info.value?.name || book}, ${isPsalm ? t('psalm') : t('chapter')} ${chapter}`)
 const commentsLang = localeForBib(tr)
@@ -71,7 +77,32 @@ async function load() {
   }
 }
 
-onMounted(load)
+let readingTimer = null
+
+function startReading() {
+  sendBibleReading(book)
+  clearInterval(readingTimer)
+  readingTimer = setInterval(() => {
+    if (!document.hidden) sendBibleReading(book)
+  }, 45_000)
+}
+
+function onVisibility() {
+  if (document.hidden) sendBibleReading(book, { leave: true })
+  else sendBibleReading(book)
+}
+
+onMounted(() => {
+  load()
+  startReading()
+  document.addEventListener('visibilitychange', onVisibility)
+})
+
+onUnmounted(() => {
+  document.removeEventListener('visibilitychange', onVisibility)
+  clearInterval(readingTimer)
+  sendBibleReading(book, { leave: true })
+})
 
 function changeTr(e) {
   router.replace(chapterRoute(e.target.value, book, chapter, verse))

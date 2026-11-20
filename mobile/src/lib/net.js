@@ -30,6 +30,7 @@ export class OfflineError extends Error {
 }
 
 const isNative = Capacitor.isNativePlatform()
+const USER_AGENT = typeof navigator !== 'undefined' ? navigator.userAgent : ''
 
 function buildUrl(path, params) {
   const qs = params ? '?' + new URLSearchParams(params).toString() : ''
@@ -52,6 +53,35 @@ export async function getJSON(path, params) {
   const r = await fetch(buildUrl(path, params))
   if (!r.ok) throw new Error(`HTTP ${r.status}`)
   return r.json()
+}
+
+// POST JSON. Нужен для реакций и маячков — они пишут, а не читают.
+export async function postJSON(path, data) {
+  if (!online.value) throw new OfflineError()
+  if (isNative) {
+    const r = await CapacitorHttp.post({
+      url: `${API_BASE}${path}`,
+      headers: {
+        'Content-Type': 'application/json',
+        // Нативный HTTP не обязан присылать браузерный UA, а по нему сервер
+        // отличает людей от ботов в статистике посещений.
+        ...(USER_AGENT ? { 'User-Agent': USER_AGENT } : {}),
+      },
+      data,
+      connectTimeout: 15000,
+      readTimeout: 30000,
+    })
+    if (r.status < 200 || r.status >= 300) throw new Error(`HTTP ${r.status}`)
+    if (r.data == null || r.data === '') return null
+    return typeof r.data === 'string' ? JSON.parse(r.data) : r.data
+  }
+  const r = await fetch(buildUrl(path), {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+  if (!r.ok) throw new Error(`HTTP ${r.status}`)
+  return r.json().catch(() => null)
 }
 
 function base64ToBytes(b64) {

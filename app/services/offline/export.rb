@@ -15,6 +15,10 @@ module Offline
     VERSE_TAGS = %w[j e i br ruby rb rt].freeze
     PACKS_DIR = Rails.root.join('public', 's', 'offline')
     MAX_PAGES_PER_REQUEST = 100
+    FEED_PER_PAGE = 10
+    # Версия формата скелета. Клиент по ней понимает, что старую дельту
+    # нужно один раз перечитать целиком: в ней нет новых полей страниц.
+    SKELETON_VERSION = 2
 
     def tr_codes
       ::Rails.cache.fetch('offline:tr_codes', expires_in: 1.hour) do
@@ -57,6 +61,8 @@ module Offline
             zavet: b[:zavet],
             name: ::I18n.t("books.mid.#{code}", locale: locale, default: b[:name]),
             short: ::I18n.t("books.short.#{code}", locale: locale, default: code),
+            # токен heartbeat «Читают сейчас» для глав этой книги
+            reading_token: ::PageVisits.bible_visit_token(code),
           }
         end,
         bible: tr_codes.map do |tr|
@@ -116,8 +122,10 @@ module Offline
 
       changed_pages = pages.where('updated_at > ?', since_t)
         .select(:id, :path, :title, :title_sub, :parent_id, :page_type, :is_show_parent, :is_search,
-                :is_menu_icons, :is_bibleox, :links, :cover, :audio, :updated_at, :lang, :h_id, :created_at)
+                :is_menu_icons, :is_bibleox, :links, :cover, :audio, :updated_at, :lang, :h_id, :created_at,
+                :cover_overlay_bg, :cover_overlay_text)
         .select('COALESCE(octet_length(body_rendered), 0) + COALESCE(octet_length(body_lead), 0) AS body_size')
+        .select('(COALESCE(octet_length(body_lead), 0) > 0) AS has_lead')
         .to_a
 
       {
@@ -125,7 +133,9 @@ module Offline
         # небольшой нахлёст, чтобы не потерять записи, сохранённые во время выгрузки
         next_since: (started_at - 60).to_i,
         full: since.to_i <= 0,
+        data_version: SKELETON_VERSION,
         pages: changed_pages.map { |p| page_meta(p) },
+        **tag_snapshot(lang),
         menus: menus.where('updated_at > ?', since_t)
           .pluck(:id, :page_id, :parent_id, :title, :path, :priority, :is_gold, :is_empty),
         page_ids: pages.ids,
@@ -146,11 +156,24 @@ module Offline
         is_bibleox: p.is_bibleox,
         links: p.links.presence,
         cover: p.cover? ? p.cover.large.url : nil,
+        cover_overlay_bg: p.cover_overlay_bg.presence,
+        cover_overlay_text: p.cover_overlay_text.presence,
         icon: (p.cover? && p.is_menu_icons) ? p.cover.micro.url : nil,
         audio: page_audio_url(p),
         body_size: p.attributes['body_size'].to_i,
+        has_lead: ::ActiveModel::Type::Boolean.new.cast(p.attributes['has_lead']),
         updated_at: p.updated_at.to_i,
       }
+    end
+
+    # Теги языка отдаём снимком целиком: их немного, а так переименование или
+    # снятие тега не требует трогать updated_at у статей ради дельты.
+    def tag_snapshot(lang)
+      taggings = ::Tagging.where(page_id: lang_pages(lang).select(:id)).pluck(:page_id, :tag_id)
+      tags = ::Tag.where(id: taggings.map(&:last).uniq)
+        .map { |tag| {id: tag.id, slug: tag.slug, name: tag.name_for(lang)} }
+        .sort_by { |tag| tag[:name].to_s.downcase }
+      {tags: tags, page_tags: taggings}
     end
 
     def page_audio_url(p)
@@ -163,15 +186,121 @@ module Offline
     def pages(lang:, ids:)
       ids = ids.map(&:to_i).uniq.first(MAX_PAGES_PER_REQUEST)
       lang_pages(lang).where(id: ids).map do |p|
+        body_main = p.body_rendered.presence || p.body.to_s
         {
           id: p.id,
           updated_at: p.updated_at.to_i,
-          body: [p.body_lead, p.body_rendered.presence || p.body.to_s].compact.join,
+          # lead — часть до метки деления; старые версии приложения читают body целиком
+          lead: p.body_lead.presence,
+          body_main: body_main,
+          body: [p.body_lead, body_main].compact.join,
           references: p.references.present? ? (p.references_rendered.presence || p.references) : nil,
           body_menu: p.body_menu.presence,
           verses: p.is_page_verses? ? p.verses.presence : nil,
+          visit_token: ::PageVisits.visit_token(p.id),
         }
       end
+    end
+
+    # Токены маячка посещаемости: нужны для уже скачанных страниц, которым токен
+    # не пришёл вместе с текстом (до появления этой функции).
+    def visit_tokens(ids)
+      ids.map(&:to_i).uniq.first(MAX_PAGES_PER_REQUEST).index_with { |id| ::PageVisits.visit_token(id) }
+    end
+
+    # Новостная лента для приложения. Собирается на сервере: карточке нужны
+    # создатель, теги, анонс и счётчики реакций, которых нет в оффлайн-скелете.
+    def feed(lang:, page: 1, ip: nil)
+      page = [page.to_i, 1].max
+      pages = news_scope(lang).includes(:user, :tags, :parent)
+        .order(created_at: :desc, id: :desc)
+        .page(page).per(FEED_PER_PAGE)
+
+      ids = pages.map(&:id)
+      reaction_counts = ::PageReaction.counts_for(ids)
+      my_reactions = ::PageReaction.kinds_for(ip, ids)
+
+      {
+        lang: lang,
+        page: pages.current_page,
+        total_pages: pages.total_pages,
+        total_count: pages.total_count,
+        server_time: ::Time.now.to_i,
+        pages: pages.map { |p| feed_card(p, reaction_counts[p.id], my_reactions[p.id], lang) },
+        reading_now: reading_now(lang: lang),
+      }
+    end
+
+    # Живой блок «Читают сейчас» для ленты приложения
+    def reading_now(lang:)
+      data = ::PageVisits.reading_now(limit: 20)
+      ids = data.pages.map(&:first)
+      pages = if ids.empty?
+                {}
+              else
+                ::Page.where(id: ids, lang: lang, is_published: true, is_deleted: [nil, false],
+                             page_type: ::Page::PAGE_TYPES['статья'])
+                  .select(:id, :title, :path).index_by(&:id)
+              end
+
+      {
+        total: data.total_readers,
+        pages: data.pages.filter_map do |id, count|
+          next unless pages[id]
+
+          {id: id, title: pages[id].title, path: pages[id].path, count: count}
+        end.first(5),
+        bibles: data.bibles.first(5).map do |book_code, count|
+          {book: book_code, title: ::I18n.t("books.full.#{book_code}", locale: lang, default: book_code), count: count}
+        end,
+      }
+    end
+
+    def feed_card(page, counts, active, lang)
+      {
+        id: page.id,
+        path: page.path,
+        title: page.title,
+        title_sub: page.title_sub.presence,
+        cover: page.cover? ? page.cover.large.url : nil,
+        cover_overlay_bg: page.cover_overlay_bg.presence,
+        cover_overlay_text: page.cover_overlay_text.presence,
+        is_show_parent: page.is_show_parent,
+        parent: feed_parent(page),
+        author: page.user&.name.presence,
+        created_at: page.created_at.to_i,
+        tags: page.tags.map { |tag| {id: tag.id, slug: tag.slug, name: tag.name_for(lang)} }
+          .sort_by { |tag| tag[:name].to_s.downcase },
+        preview: feed_preview(page),
+        reactions: {counts: counts || {}, active: active},
+      }
+    end
+
+    def feed_parent(page)
+      return nil unless page.is_show_parent && page.parent.present?
+
+      {id: page.parent.id, path: page.parent.path, title: page.parent.title}
+    end
+
+    # Анонс карточки: часть статьи до метки деления либо текстовый отрывок.
+    # id из разметки убираем, а внутристатейные якоря ведут на саму статью.
+    def feed_preview(page)
+      if page.body_lead.present?
+        fragment = ::Nokogiri::HTML::DocumentFragment.parse(page.body_lead)
+        page_link = ::Page.path_for(page.lang, page.path)
+        fragment.css('a[href^="#"]').each { |link| link['href'] = "#{page_link}#{link['href']}" }
+        fragment.css('[id]').each { |node| node.remove_attribute('id') }
+        fragment.to_html
+      else
+        text = ::Nokogiri::HTML::DocumentFragment.parse((page.body_rendered.presence || page.body).to_s).text.squish
+        "<p>#{::ERB::Util.html_escape(text.truncate(800, separator: ' '))}</p>"
+      end
+    end
+
+    def news_scope(lang)
+      ::Page.news_feed
+        .where(lang: lang, page_type: ::Page::PAGE_TYPES['статья'])
+        .where('COALESCE(LENGTH(pages.body), 0) >= 40')
     end
 
     def res_base

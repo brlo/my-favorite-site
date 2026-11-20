@@ -7,6 +7,17 @@ Rails.application.routes.draw do
     get 'bible/:tr_code', action: :bible, constraints: { tr_code: /[a-z\-]+/ }
     get 'skeleton'
     get 'pages'
+    get 'tokens'
+    get 'feed'
+    get 'reading_now'
+  end
+
+  # Запись из мобильного приложения: реакции, маячок посещаемости, heartbeat
+  scope '/api/offline', module: 'api', defaults: { format: :json } do
+    get 'reactions', to: 'reactions#show'
+    post 'reactions', to: 'reactions#toggle'
+    post 'visit', to: 'visits#create'
+    post 'reading', to: 'readings#create'
   end
 
   # Админка (без локали в адресе, интерфейс только на русском)
