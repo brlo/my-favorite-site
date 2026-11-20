@@ -1,129 +1,114 @@
 <% @page_title = 'Сводка' %>
 
-<h1>Сводка</h1>
+<div class="admin-dashboard">
+  <h1>Сводка</h1>
 
-<% if @reading_now %>
-  <section id="reading-now">
-    <h2>Читают сейчас</h2>
-    <p class="muted">
-      Страницы на всех языках и книги Библии, которые читают прямо сейчас (по JS-маячку).
-      Всего читателей на сайте: <%= @reading_now_total %>.
-      Отметка живёт до <%= ::PageVisits::READING_WINDOW / 60 %> минут после последнего сигнала.
-    </p>
+  <% if @reading_now %>
+    <section id="reading-now" class="dash-card">
+      <h2 class="dash-card__title">
+        <span class="dash-card__dot" aria-hidden="true"></span>
+        Читают сейчас
+        <span class="dash-card__total">Всего на сайте: <%= @reading_now_total %></span>
+      </h2>
+      <p class="dash-card__lead">
+        Страницы на всех языках и книги Библии, которые читают прямо сейчас (по JS-маячку).
+        Отметка живёт до <%= ::PageVisits::READING_WINDOW / 60 %> минут после последнего сигнала.
+      </p>
 
-    <% if @reading_now.any? || @reading_now_bibles.any? %>
-      <div class="table-wrap">
-        <table class="admin-table">
-          <tr><th>Страница</th><th>Язык</th><th>Читателей</th></tr>
+      <% if @reading_now.any? || @reading_now_bibles.any? %>
+        <ul class="dash-list">
           <% @reading_now.each do |page, count| %>
-            <tr>
-              <td><%= link_to page.title, edit_admin_page_path(page, locale: nil) %></td>
-              <td class="muted"><%= page_lang_string_full(page.lang) %></td>
-              <td><%= count %></td>
-            </tr>
+            <li class="dash-list__row">
+              <span class="dash-list__main">
+                <%= link_to page.title, edit_admin_page_path(page, locale: nil) %>
+                <span class="dash-badge" title="<%= page_lang_string_full(page.lang) %>"><%= page.lang %></span>
+              </span>
+              <span class="dash-count" title="Читателей: <%= count %>"><%= count %></span>
+            </li>
           <% end %>
-          <% @reading_now_bibles.each do |book_code, count| %>
-            <tr>
-              <td>Библия · <%= ::I18n.t("books.full.#{book_code}") %></td>
-              <td class="muted">библия</td>
-              <td><%= count %></td>
-            </tr>
+          <% @reading_now_bibles.each do |content_lang, book_code, count| %>
+            <li class="dash-list__row">
+              <span class="dash-list__main">
+                <span class="dash-list__title">Библия · <%= ::I18n.t("books.full.#{book_code}") %></span>
+                <span class="dash-badge"><%= ::BIB_LANG_TO_LOCALE[content_lang] || content_lang %></span>
+                <span class="dash-list__note"><%= ::I18n.t("bib_translations.#{content_lang}", default: content_lang) %></span>
+              </span>
+              <span class="dash-count" title="Читателей: <%= count %>"><%= count %></span>
+            </li>
           <% end %>
-        </table>
-      </div>
-    <% else %>
-      <p class="muted">Сейчас никто не читает.</p>
-    <% end %>
-  </section>
-<% end %>
-
-<h2>Посещения за неделю</h2>
-<p class="muted">Просмотры за сутки по JS-маячку: засчитываются только клиенты, исполнившие JavaScript на странице, поэтому скрейперы голого HTML не учитываются. «Подозрительные» — IP, сделавшие за день больше <%= ::PageVisits::SUSPICIOUS_DAY_LIMIT %> запросов.</p>
-<div class="stats">
-  <% @week_visits.each do |name, days| %>
-    <div>
-      <div class="hint"><%= name %></div>
-      <table>
-        <% days.each do |date, visits| %>
-          <tr><td class="muted"><%= date %></td><td><%= visits %></td></tr>
-        <% end %>
-      </table>
-    </div>
-  <% end %>
-</div>
-
-<h2>Вчера, <%= @yesterday.strftime('%d.%m.%Y') %></h2>
-<div class="stats">
-  <% if @day_bots.any? %>
-    <div>
-      <div class="hint">Топ ботов (запросов)</div>
-      <table>
-        <% @day_bots.first(10).each do |name, count| %>
-          <tr><td class="muted"><%= name %></td><td><%= count %></td></tr>
-        <% end %>
-      </table>
-    </div>
-  <% end %>
-
-  <% if @day_langs.any? %>
-    <div>
-      <div class="hint">Языки интерфейса (люди)</div>
-      <table>
-        <% @day_langs.first(10).each do |lang, count| %>
-          <tr><td class="muted"><%= lang %></td><td><%= count %></td></tr>
-        <% end %>
-      </table>
-    </div>
-  <% end %>
-
-  <% if @day_top_ips.any? %>
-    <div>
-      <div class="hint">Топ IP (без ботов)</div>
-      <table>
-        <% @day_top_ips.each do |ip, count| %>
-          <tr><td class="muted"><%= ip %></td><td><%= count %></td></tr>
-        <% end %>
-      </table>
-    </div>
-  <% end %>
-
-  <% if @day_top_pages && @day_top_pages.any? %>
-    <div>
-      <div class="hint">Популярные статьи (без ботов)</div>
-      <table>
-        <% @day_top_pages.each do |title, count| %>
-          <tr><td class="muted"><%= title %></td><td><%= count %></td></tr>
-        <% end %>
-      </table>
-    </div>
-  <% end %>
-</div>
-
-<% if @pages %>
-  <h2>Недавно изменённые статьи</h2>
-  <%= render partial: 'admin/pages/page_item', collection: @pages, as: :page, locals: { visits: @page_visits || {}, parent_titles: {} } %>
-  <p><%= link_to 'Все статьи →', admin_pages_path %></p>
-<% end %>
-
-<% if @users_total %>
-  <h2>Пользователи</h2>
-  <p>
-    Всего: <%= @users_total %>.
-    <% if @users_pending > 0 %>
-      <%= link_to "Не подтвердили почту: #{@users_pending}", admin_users_path(filter: 'not_activated') %>
-    <% end %>
-  </p>
-  <div class="table-wrap">
-    <table class="admin-table">
-      <tr><th>Новые</th><th>Почта</th><th>Создан</th><th></th></tr>
-      <% @users_new.each do |user| %>
-        <tr>
-          <td><%= link_to user.name, edit_admin_user_path(user) %></td>
-          <td><%= user.email %></td>
-          <td><%= admin_time(user.created_at) %></td>
-          <td><%= admin_user_badges(user) %></td>
-        </tr>
+        </ul>
+      <% else %>
+        <p class="dash-card__empty">Сейчас никто не читает.</p>
       <% end %>
-    </table>
-  </div>
-<% end %>
+    </section>
+  <% end %>
+
+  <section class="dash-card">
+    <h2 class="dash-card__title">Посещения за неделю</h2>
+    <p class="dash-card__lead">
+      Просмотры за сутки по JS-маячку: засчитываются только клиенты, исполнившие JavaScript на странице,
+      поэтому скрейперы голого HTML не учитываются. «Подозрительные» — IP, сделавшие за день больше
+      <%= ::PageVisits::SUSPICIOUS_DAY_LIMIT %> запросов.
+    </p>
+    <div class="dash-stat-grid">
+      <% @week_visits.each do |name, days| %>
+        <%= render 'admin/dashboard/stat_card', title: name, rows: days.to_a %>
+      <% end %>
+    </div>
+  </section>
+
+  <section class="dash-card">
+    <h2 class="dash-card__title">Вчера, <%= @yesterday.strftime('%d.%m.%Y') %></h2>
+    <div class="dash-stat-grid">
+      <% if @day_bots.any? %>
+        <%= render 'admin/dashboard/stat_card', title: 'Топ ботов (запросов)', rows: @day_bots.first(10).to_a %>
+      <% end %>
+
+      <% if @day_langs.any? %>
+        <%= render 'admin/dashboard/stat_card', title: 'Языки интерфейса (люди)', rows: @day_langs.first(10).to_a %>
+      <% end %>
+
+      <% if @day_top_ips.any? %>
+        <%= render 'admin/dashboard/stat_card', title: 'Топ IP (без ботов)', rows: @day_top_ips.to_a %>
+      <% end %>
+
+      <% if @day_top_pages && @day_top_pages.any? %>
+        <%= render 'admin/dashboard/stat_card', title: 'Популярные статьи (без ботов)', rows: @day_top_pages.to_a %>
+      <% end %>
+    </div>
+  </section>
+
+  <% if @pages %>
+    <section class="dash-card">
+      <h2 class="dash-card__title">Недавно изменённые статьи</h2>
+      <div class="dash-card__list">
+        <%= render partial: 'admin/pages/page_item', collection: @pages, as: :page, locals: { visits: @page_visits || {}, parent_titles: {} } %>
+      </div>
+      <p class="dash-card__footer"><%= link_to 'Все статьи →', admin_pages_path %></p>
+    </section>
+  <% end %>
+
+  <% if @users_total %>
+    <section class="dash-card">
+      <h2 class="dash-card__title">Пользователи</h2>
+      <p class="dash-card__lead">
+        Всего: <%= @users_total %>.
+        <% if @users_pending > 0 %>
+          <%= link_to "Не подтвердили почту: #{@users_pending}", admin_users_path(filter: 'not_activated') %>
+        <% end %>
+      </p>
+      <ul class="dash-list dash-list--users">
+        <% @users_new.each do |user| %>
+          <li class="dash-list__row">
+            <span class="dash-list__main">
+              <%= link_to user.name, edit_admin_user_path(user) %>
+              <span class="dash-list__sub"><%= user.email %></span>
+            </span>
+            <span class="dash-list__meta"><%= admin_time(user.created_at) %></span>
+            <span class="dash-badges"><%= admin_user_badges(user) %></span>
+          </li>
+        <% end %>
+      </ul>
+    </section>
+  <% end %>
+</div>

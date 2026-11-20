@@ -576,6 +576,20 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_operator response.body.index('id="page-reactions"'), :<, response.body.index("id='page-references'")
   end
 
+  test "reaction choices are ordered by count from most to least" do
+    page = create_published(path: 'reaction_sort', body: LONG_BODY)
+    %w[thanks thanks thanks useful useful like].each_with_index do |kind, index|
+      PageReaction.create!(page: page, kind: kind,
+                           ip_digest: PageReaction.digest_ip("10.0.6.#{index}"))
+    end
+
+    get '/ru/ru/w/reaction_sort'
+    assert_response :success
+
+    kinds = css_select('#page-reactions .page-reaction__choice').map { |button| button['data-kind'] }
+    assert_equal %w[thanks useful like interesting hundred], kinds
+  end
+
   test "article page shows reaction choices and live readers" do
     ::RedisConnectionPool.del(::PageVisits::READING_KEY)
     page = create_published(path: 'reaction_page', body: LONG_BODY)

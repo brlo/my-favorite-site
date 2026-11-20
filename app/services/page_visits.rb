@@ -16,13 +16,14 @@ class PageVisits
   READING_WINDOW = 15 * 60
   READING_TTL = 60 * 60
 
-  # Член zset для главы Библии: 'b:<код книги>:<хэш читателя>'.
-  # Глава не хранится — в блоке показываем только книгу.
+  # Член zset для главы Библии: 'b:<код перевода>:<код книги>:<хэш читателя>'.
+  # Глава не хранится — в блоке показываем только книгу, но язык перевода нужен
+  # для пометки языка и ссылки на главу.
   BIBLE_MEMBER_PREFIX = 'b:'.freeze
 
   # total_readers — сколько разных читателей сейчас на сайте,
   # pages — [[page_id, читателей], ...] по убыванию,
-  # bibles — [[код книги, читателей], ...] по убыванию
+  # bibles — [[код перевода, код книги, читателей], ...] по убыванию
   ReadingNow = Struct.new(:total_readers, :pages, :bibles, keyword_init: true)
 
   class << self
@@ -138,23 +139,34 @@ class PageVisits
       ::RedisConnectionPool.zrem(READING_KEY, "#{id}:#{reader_digest(ip)}")
     end
 
-    # Отметка «читает главу Библии»: запоминаем только книгу, без главы.
-    def touch_bible_reading(book_code, ip:)
+    # Отметка «читает главу Библии»: запоминаем книгу и язык перевода, без главы.
+    def touch_bible_reading(book_code, ip:, content_lang: nil)
       book = book_code.to_s
       return unless ::BOOKS.key?(book)
 
+      lang = bible_content_lang(content_lang)
       now = Time.now.to_f
       ::RedisConnectionPool.zremrangebyscore(READING_KEY, 0, now - READING_WINDOW)
-      ::RedisConnectionPool.zadd(READING_KEY, now, "#{BIBLE_MEMBER_PREFIX}#{book}:#{reader_digest(ip)}")
+      ::RedisConnectionPool.zadd(READING_KEY, now, "#{BIBLE_MEMBER_PREFIX}#{lang}:#{book}:#{reader_digest(ip)}")
       ::RedisConnectionPool.expire(READING_KEY, READING_TTL)
     end
 
     # Читатель ушёл с главы Библии
-    def clear_bible_reading(book_code, ip:)
+    def clear_bible_reading(book_code, ip:, content_lang: nil)
       book = book_code.to_s
       return unless ::BOOKS.key?(book)
 
-      ::RedisConnectionPool.zrem(READING_KEY, "#{BIBLE_MEMBER_PREFIX}#{book}:#{reader_digest(ip)}")
+      lang = bible_content_lang(content_lang)
+      ::RedisConnectionPool.zrem(READING_KEY, "#{BIBLE_MEMBER_PREFIX}#{lang}:#{book}:#{reader_digest(ip)}")
+    end
+
+    # Код перевода для отметки чтения Библии. Неизвестный код (старая вкладка,
+    # запрос без языка) заменяем основным переводом текущего интерфейса.
+    def bible_content_lang(content_lang)
+      lang = content_lang.to_s
+      return lang if ::BIB_LANG_TO_LOCALE.key?(lang)
+
+      ::LOCALE_TO_BIB_LANG[::I18n.locale.to_s] || 'ru'
     end
 
     # Кто читает сейчас: общее число читателей, топ страниц и книг Библии
@@ -168,11 +180,12 @@ class PageVisits
       bible_counts = Hash.new(0)
       ::RedisConnectionPool.zrangebyscore(READING_KEY, from, '+inf').each do |member|
         if member.start_with?(BIBLE_MEMBER_PREFIX)
-          book_code, digest = member.delete_prefix(BIBLE_MEMBER_PREFIX).split(':', 2)
-          next if book_code.blank? || digest.blank? || !::BOOKS.key?(book_code)
+          content_lang, book_code, digest = member.delete_prefix(BIBLE_MEMBER_PREFIX).split(':', 3)
+          next if content_lang.blank? || book_code.blank? || digest.blank? ||
+                  !::BIB_LANG_TO_LOCALE.key?(content_lang) || !::BOOKS.key?(book_code)
 
           readers[digest] = true
-          bible_counts[book_code] += 1
+          bible_counts[[content_lang, book_code]] += 1
         else
           page_id, digest = member.split(':', 2)
           next if page_id.blank? || digest.blank?
@@ -183,7 +196,10 @@ class PageVisits
       end
 
       pages = counts.sort_by { |id, count| [-count, id] }.first(limit)
-      bibles = bible_counts.sort_by { |book_code, count| [-count, book_code] }.first(limit)
+      bibles = bible_counts
+        .sort_by { |(content_lang, book_code), count| [-count, book_code, content_lang] }
+        .first(limit)
+        .map { |(content_lang, book_code), count| [content_lang, book_code, count] }
       ReadingNow.new(total_readers: readers.size, pages: pages, bibles: bibles)
     end
 

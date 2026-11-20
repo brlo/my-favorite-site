@@ -26,6 +26,15 @@ class PageReaction < ApplicationRecord
       OpenSSL::HMAC.hexdigest('SHA256', Rails.application.secret_key_base, "page-reaction:#{ip}")
     end
 
+    # Виды реакций слева направо по убыванию количества; при равенстве —
+    # в исходном порядке KINDS, чтобы кнопки не перескакивали без нужды.
+    def ordered_kinds(counts)
+      counts ||= {}
+      KINDS.keys.each_with_index
+        .sort_by { |kind, index| [-(counts[kind].to_i), index] }
+        .map(&:first)
+    end
+
     # {kind => количество} для одной статьи; все виды присутствуют, даже с нулём
     def counts_by_kind(page_id)
       counts = where(page_id: page_id).group(:kind).count

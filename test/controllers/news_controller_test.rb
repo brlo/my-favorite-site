@@ -158,7 +158,7 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
     en_page = create_page(is_published: true, title: 'English page', path: 'reading_en', lang: 'en')
     PageVisits.touch_reading(ru_page.id, ip: '10.0.9.4')
     PageVisits.touch_reading(en_page.id, ip: '10.0.9.5')
-    PageVisits.touch_bible_reading('gen', ip: '10.0.9.6')
+    PageVisits.touch_bible_reading('gen', ip: '10.0.9.6', content_lang: 'eng-nkjv')
 
     get '/ru/news'
     assert_response :success
@@ -166,8 +166,9 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
     assert_select '.reading-now__total', text: /На сайте сейчас читают: 3/
     assert_select '.reading-now__list a', text: 'Русская страница'
     assert_select '.reading-now__list a', text: 'English page'
-    assert_select '.reading-now__lang', text: 'en'
-    assert_select '.reading-now__item--bible', text: /Библия · Бытие/
+    assert_select '.reading-now__item:not(.reading-now__item--bible) .reading-now__lang', text: 'en'
+    assert_select '.reading-now__item--bible a[href="/ru/eng-nkjv/gen/1/"]', text: /Библия · Бытие/
+    assert_select '.reading-now__item--bible .reading-now__lang', text: 'en'
   end
 
   test 'endpoint живого блока отдаёт обновлённую разметку' do

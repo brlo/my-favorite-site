@@ -131,8 +131,21 @@ class PageVisitsTest < ActiveSupport::TestCase
     reading = PageVisits.reading_now
 
     assert_equal 2, reading.total_readers
-    assert_equal [['gen', 2], ['in', 1]], reading.bibles
+    assert_equal [['ru', 'gen', 2], ['ru', 'in', 1]], reading.bibles
     assert_empty reading.pages
+  end
+
+  test 'язык перевода сохраняется в отметке чтения книги' do
+    PageVisits.touch_bible_reading('gen', ip: '10.0.4.10', content_lang: 'eng-nkjv')
+    PageVisits.touch_bible_reading('gen', ip: '10.0.4.11', content_lang: 'ru')
+
+    assert_equal [['eng-nkjv', 'gen', 1], ['ru', 'gen', 1]], PageVisits.reading_now.bibles
+  end
+
+  test 'неизвестный язык перевода заменяется основным для интерфейса' do
+    PageVisits.touch_bible_reading('gen', ip: '10.0.4.12', content_lang: 'nope')
+
+    assert_equal [['ru', 'gen', 1]], PageVisits.reading_now.bibles
   end
 
   test 'один читатель статьи и Библии считается в общем счётчике один раз' do
@@ -143,7 +156,7 @@ class PageVisitsTest < ActiveSupport::TestCase
 
     assert_equal 1, reading.total_readers
     assert_equal [[42, 1]], reading.pages
-    assert_equal [['gen', 1]], reading.bibles
+    assert_equal [['ru', 'gen', 1]], reading.bibles
   end
 
   test 'несуществующая книга Библии не попадает в «Читают сейчас»' do
@@ -155,7 +168,7 @@ class PageVisitsTest < ActiveSupport::TestCase
 
   test 'leave снимает отметку чтения книги' do
     PageVisits.touch_bible_reading('gen', ip: '10.0.4.5')
-    assert_equal [['gen', 1]], PageVisits.reading_now.bibles
+    assert_equal [['ru', 'gen', 1]], PageVisits.reading_now.bibles
 
     PageVisits.clear_bible_reading('gen', ip: '10.0.4.5')
     assert_empty PageVisits.reading_now.bibles

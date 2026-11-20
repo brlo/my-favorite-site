@@ -90,7 +90,7 @@ export default class extends Controller {
     if (!token) return null
 
     const book = body.dataset.readingBook
-    if (book) return { book, t: token }
+    if (book) return { book, lang: body.dataset.readingLang || "", t: token }
 
     const pageId = body.dataset.visitPageId
     if (!pageId || pageId === "0") return null

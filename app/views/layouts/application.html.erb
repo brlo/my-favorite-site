@@ -54,6 +54,7 @@
     data-visit-lang="<%= I18n.locale %>"
     data-visit-token="<%= ::PageVisits.visit_token(@page&.id || 0) %>"
     data-reading-book="<%= @reading_bible_book %>"
+    data-reading-lang="<%= @reading_bible_book ? current_bib_lang() : '' %>"
     data-reading-token="<%= @reading_bible_book ? ::PageVisits.bible_visit_token(@reading_bible_book) : (@page&.id ? ::PageVisits.visit_token(@page.id) : '') %>">
 
     <header>

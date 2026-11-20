@@ -231,12 +231,12 @@ class Api::OfflineControllerTest < ActionDispatch::IntegrationTest
   test 'heartbeat главы Библии ставит и снимает отметку книги' do
     token = ::PageVisits.bible_visit_token('gen')
 
-    post '/api/offline/reading', params: {book: 'gen', t: token}, as: :json,
+    post '/api/offline/reading', params: {book: 'gen', lang: 'eng-nkjv', t: token}, as: :json,
                                  headers: {'REMOTE_ADDR' => IP_TWO, 'HTTP_USER_AGENT' => CHROME_UA}
     assert_response :success
-    assert_equal [['gen', 1]], ::PageVisits.reading_now.bibles
+    assert_equal [['eng-nkjv', 'gen', 1]], ::PageVisits.reading_now.bibles
 
-    post '/api/offline/reading', params: {book: 'gen', t: token, leave: 1}, as: :json,
+    post '/api/offline/reading', params: {book: 'gen', lang: 'eng-nkjv', t: token, leave: 1}, as: :json,
                                  headers: {'REMOTE_ADDR' => IP_TWO, 'HTTP_USER_AGENT' => CHROME_UA}
     assert_response :success
     assert_empty ::PageVisits.reading_now.bibles

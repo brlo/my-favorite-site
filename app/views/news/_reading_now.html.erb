@@ -18,8 +18,14 @@
             <% end %>
           </span>
         <% else %>
+          <% content_lang, book_code = item %>
+          <% bible_lang = ::BIB_LANG_TO_LOCALE[content_lang] %>
           <span class="reading-now__item reading-now__item--bible">
-            <%= t('news.reading_now_bible', book: ::I18n.t("books.full.#{item}")) %>
+            <a href="<%= bible_chapter_link(book_code, content_lang) %>"
+               title="<%= ::I18n.t("bib_translations.#{content_lang}", default: content_lang) %>"><%= t('news.reading_now_bible', book: ::I18n.t("books.full.#{book_code}")) %></a>
+            <% if bible_lang.present? && bible_lang != ::I18n.locale.to_s %>
+              <span class="reading-now__lang"><%= bible_lang %></span>
+            <% end %>
           </span>
         <% end %>
         <span class="reading-now__count" title="<%= t('news.readers_count', count: count) %>"><%= count %></span>

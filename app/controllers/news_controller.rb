@@ -59,7 +59,7 @@ class NewsController < ApplicationController
       .select(:id, :title, :path, :lang, :updated_at)
   end
 
-  # @reading_now — [[:page, page, count] | [:bible, код книги, count], ...] по убыванию,
+  # @reading_now — [[:page, page, count] | [:bible, [код перевода, код книги], count], ...] по убыванию,
   # @reading_now_total — читателей на сайте (все языки и книги Библии)
   def prepare_reading_now
     data = ::PageVisits.reading_now(limit: READING_CANDIDATES)
@@ -77,7 +77,7 @@ class NewsController < ApplicationController
       page = pages[page_id]
       [:page, page, count] if page
     end
-    items += data.bibles.map { |book_code, count| [:bible, book_code, count] }
+    items += data.bibles.map { |content_lang, book_code, count| [:bible, [content_lang, book_code], count] }
     @reading_now = items.sort_by { |type, _item, count| [-count, type == :page ? 0 : 1] }.first(READING_LIMIT)
   end
 end

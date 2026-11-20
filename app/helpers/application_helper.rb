@@ -151,6 +151,11 @@ module ApplicationHelper
     "/#{I18n.locale}/#{current_bib_lang()}#{path}"
   end
 
+  # Ссылка на главу Библии в том переводе, который сейчас читают (блок «Читают сейчас»)
+  def bible_chapter_link(book_code, content_lang)
+    "/#{I18n.locale}/#{content_lang}/#{book_code}/1/"
+  end
+
   # Делает ссылку с указанной локалью (текущей)
   def my_page_link_to(path, page_lang: nil)
     path = path.gsub(/\A\/+/, '')  # убираем слэши вначале

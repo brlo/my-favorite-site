@@ -1,0 +1,12 @@
+<%# locals: title:, rows: — rows как [[подпись, значение], ...] %>
+<div class="dash-stat">
+  <h3 class="dash-stat__title"><%= title %></h3>
+  <ul class="dash-stat__list">
+    <% rows.each do |label, value| %>
+      <li class="dash-stat__row">
+        <span class="dash-stat__label"><%= label %></span>
+        <span class="dash-stat__value"><%= value %></span>
+      </li>
+    <% end %>
+  </ul>
+</div>

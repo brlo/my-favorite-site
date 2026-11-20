@@ -48,8 +48,16 @@ class ReadingsControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :ok
     reading = PageVisits.reading_now
-    assert_equal [['gen', 1]], reading.bibles
+    assert_equal [['ru', 'gen', 1]], reading.bibles
     assert_empty reading.pages
+  end
+
+  test 'heartbeat главы Библии сохраняет язык перевода' do
+    post '/reading', params: {book: 'gen', lang: 'eng-nkjv', t: PageVisits.bible_visit_token('gen')},
+                     headers: {'HTTP_USER_AGENT' => CHROME_UA}
+
+    assert_response :ok
+    assert_equal [['eng-nkjv', 'gen', 1]], PageVisits.reading_now.bibles
   end
 
   test 'heartbeat Библии с чужим токеном отклоняется' do
@@ -63,7 +71,7 @@ class ReadingsControllerTest < ActionDispatch::IntegrationTest
   test 'leave снимает отметку чтения книги' do
     post '/reading', params: {book: 'gen', t: PageVisits.bible_visit_token('gen')},
                      headers: {'HTTP_USER_AGENT' => CHROME_UA}
-    assert_equal [['gen', 1]], PageVisits.reading_now.bibles
+    assert_equal [['ru', 'gen', 1]], PageVisits.reading_now.bibles
 
     post '/reading', params: {book: 'gen', t: PageVisits.bible_visit_token('gen'), leave: '1'},
                      headers: {'HTTP_USER_AGENT' => CHROME_UA}

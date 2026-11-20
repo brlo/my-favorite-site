@@ -20,8 +20,8 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     get '/admin'
     assert_response :success
 
-    # недельная таблица + вчерашние блоки: два блока .stats по четыре столбца
-    assert_select 'div.stats > div', count: 8
+    # пять недельных карточек и три вчерашних
+    assert_select 'div.dash-stat', count: 8
     assert_match(/Подозрительные/, response.body)
     assert_match(/Уникальные IP/, response.body)
 
@@ -33,7 +33,7 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_match(/10\.9\.9\.9/, response.body)
     assert_match(/Популярные статьи/, response.body)
     assert_match(/Иконы и почитание/, response.body)
-    assert_match(/3<\/td>/, response.body)
+    assert_select '.dash-stat__value', text: '3'
   end
 
   test 'у пользователей без pages_read блоки статей не выводятся' do
@@ -59,12 +59,12 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
 
     assert_select '#reading-now' do
-      assert_select 'td', text: 'Русская читаемая'
-      assert_select 'td', text: 'English read now'
-      assert_select 'td', text: 'Список'
-      assert_select 'td', text: '2'
-      assert_select 'td', text: 'Библия · Бытие'
-      assert_select 'td', text: 'Скрытая', count: 0
+      assert_select '.dash-list__main a', text: 'Русская читаемая'
+      assert_select '.dash-list__main a', text: 'English read now'
+      assert_select '.dash-list__main a', text: 'Список'
+      assert_select '.dash-count', text: '2'
+      assert_select '.dash-list__title', text: 'Библия · Бытие'
+      assert_select '.dash-list__row', text: /Скрытая/, count: 0
     end
   end
 

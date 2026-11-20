@@ -7,7 +7,8 @@
       id: dom_id(page, :reactions),
       class: 'page-reaction',
       data: {controller: 'page-reaction', action: 'submit->page-reaction#submit'} do %>
-  <% ::PageReaction::KINDS.each do |kind, emoji| %>
+  <% ::PageReaction.ordered_kinds(counts).each do |kind| %>
+    <% emoji = ::PageReaction::KINDS[kind] %>
     <% count = counts[kind].to_i %>
     <% label = t("news.reactions.#{kind}") %>
     <button type="submit" name="kind" value="<%= kind %>"

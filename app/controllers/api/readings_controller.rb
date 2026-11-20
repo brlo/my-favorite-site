@@ -24,9 +24,9 @@ module Api
       return head :unprocessable_entity unless ::PageVisits.valid_bible_visit_token?(book, params[:t])
 
       if params[:leave].present?
-        ::PageVisits.clear_bible_reading(book, ip: request.ip)
+        ::PageVisits.clear_bible_reading(book, ip: request.ip, content_lang: params[:lang])
       elsif !::BotDetector.bot?(Browser.new(request.user_agent))
-        ::PageVisits.touch_bible_reading(book, ip: request.ip)
+        ::PageVisits.touch_bible_reading(book, ip: request.ip, content_lang: params[:lang])
       end
       head :ok
     end

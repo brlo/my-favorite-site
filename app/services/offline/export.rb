@@ -250,8 +250,14 @@ module Offline
 
           {id: id, title: pages[id].title, path: pages[id].path, count: count}
         end.first(5),
-        bibles: data.bibles.first(5).map do |book_code, count|
-          {book: book_code, title: ::I18n.t("books.full.#{book_code}", locale: lang, default: book_code), count: count}
+        bibles: data.bibles.first(5).map do |content_lang, book_code, count|
+          {
+            book: book_code,
+            lang: content_lang,
+            locale: ::BIB_LANG_TO_LOCALE[content_lang],
+            title: ::I18n.t("books.full.#{book_code}", locale: lang, default: book_code),
+            count: count,
+          }
         end,
       }
     end

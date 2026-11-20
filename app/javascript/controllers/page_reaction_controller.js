@@ -52,9 +52,11 @@ export default class extends Controller {
   }
 
   render(payload) {
+    const counts = payload.counts || {}
+
     this.choiceTargets.forEach((button) => {
       const kind = button.dataset.kind
-      const count = (payload.counts || {})[kind] || 0
+      const count = counts[kind] || 0
       const countElement = button.querySelector(".page-reaction__count")
       if (countElement) {
         countElement.textContent = count
@@ -69,5 +71,16 @@ export default class extends Controller {
       button.classList.toggle("is-empty", count === 0)
       button.setAttribute("aria-pressed", active ? "true" : "false")
     })
+
+    this.sortChoices(counts)
+  }
+
+  // Порядок кнопок — по убыванию счётчика, при равенстве сохраняем исходный.
+  sortChoices(counts) {
+    const form = this.element
+    this.choiceTargets
+      .map((button, index) => ({button, index, count: counts[button.dataset.kind] || 0}))
+      .sort((a, b) => (b.count - a.count) || (a.index - b.index))
+      .forEach(({button}) => form.appendChild(button))
   }
 }

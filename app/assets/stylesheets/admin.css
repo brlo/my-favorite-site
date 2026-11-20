@@ -354,21 +354,258 @@
   margin: 4px 0;
 }
 
-/* ---------- статистика ---------- */
+/* ---------- сводка (/admin) ---------- */
 
-.admin-ui .stats {
+.admin-ui .admin-dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-ui .admin-dashboard > h1 {
+  margin: 0;
+}
+
+.admin-ui .dash-card {
+  padding: 16px 18px;
+  border: 1px solid var(--border-main);
+  border-radius: 10px;
+  background: var(--bg-card);
+}
+
+.admin-ui .dash-card__title {
   display: flex;
   flex-wrap: wrap;
-  gap: 24px;
+  align-items: center;
+  gap: 6px 8px;
+  margin: 0 0 8px;
+  padding: 0;
+  border: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
 }
 
-.admin-ui .stats table {
-  width: auto;
-  font-size: 0.85rem;
+.admin-ui .dash-card__dot {
+  flex: 0 0 auto;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #3fa45b;
+  box-shadow: 0 0 0 0 rgba(63, 164, 91, .45);
+  animation: dash-card-pulse 2s infinite;
 }
 
-.admin-ui .stats td {
-  padding: 1px 10px 1px 0;
+@keyframes dash-card-pulse {
+  0% { box-shadow: 0 0 0 0 rgba(63, 164, 91, .45); }
+  70% { box-shadow: 0 0 0 7px rgba(63, 164, 91, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(63, 164, 91, 0); }
+}
+
+.admin-ui .dash-card__total {
+  margin-left: auto;
+  color: var(--text-secondary);
+  font-size: .8rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.admin-ui .dash-card__lead {
+  margin: 0 0 10px;
+  color: var(--text-secondary);
+  font-size: .85rem;
+  line-height: 1.45;
+}
+
+.admin-ui .dash-card__empty {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: .9rem;
+}
+
+.admin-ui .dash-card__footer {
+  margin: 10px 0 0;
+}
+
+/* Строки в стиле блока «Читают сейчас» из ленты */
+.admin-ui .dash-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-ui .dash-list__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 7px 0;
+  border-top: 1px dashed var(--border-main);
+}
+
+.admin-ui .dash-list__row:first-child {
+  border-top: 0;
+}
+
+.admin-ui .dash-list__main {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 6px;
+  min-width: 0;
+}
+
+.admin-ui .dash-list__main a,
+.admin-ui .dash-list__title {
+  color: var(--text-primary);
+  font-size: .9rem;
+  line-height: 1.35;
+  text-decoration: none;
+}
+
+.admin-ui .dash-list__main a:hover {
+  color: var(--text-tag);
+}
+
+.admin-ui .dash-list__sub {
+  flex-basis: 100%;
+  color: var(--text-secondary);
+  font-size: .78rem;
+  line-height: 1.3;
+}
+
+.admin-ui .dash-list__note {
+  color: var(--text-secondary);
+  font-size: .78rem;
+  line-height: 1.3;
+}
+
+.admin-ui .dash-list__meta {
+  flex: 0 0 auto;
+  color: var(--text-secondary);
+  font-size: .78rem;
+  white-space: nowrap;
+}
+
+.admin-ui .dash-badges {
+  flex: 0 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 4px;
+}
+
+.admin-ui .dash-badge {
+  flex: 0 0 auto;
+  padding: 0 5px;
+  border: 1px solid var(--border-main);
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 10px;
+  line-height: 1.7;
+  text-transform: uppercase;
+}
+
+.admin-ui .dash-count {
+  flex: 0 0 auto;
+  min-width: 20px;
+  padding: 1px 7px;
+  border-radius: 10px;
+  background: rgba(63, 164, 91, .12);
+  color: #2f7d45;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+}
+
+/* Вспомогательные карточки недельной и вчерашней статистики */
+.admin-ui .dash-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  align-items: start;
+  gap: 12px;
+}
+
+.admin-ui .dash-stat {
+  min-width: 0;
+  padding: 10px 12px;
+  border: 1px solid var(--border-main);
+  border-radius: 8px;
+}
+
+.admin-ui .dash-stat__title {
+  margin: 0 0 6px;
+  color: var(--text-secondary);
+  font-size: .8rem;
+  font-weight: 600;
+  letter-spacing: .02em;
+  text-transform: uppercase;
+}
+
+.admin-ui .dash-stat__list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.admin-ui .dash-stat__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 4px 0;
+  border-top: 1px dashed var(--border-main);
+  font-size: .82rem;
+}
+
+.admin-ui .dash-stat__row:first-child {
+  border-top: 0;
+}
+
+.admin-ui .dash-stat__label {
+  min-width: 0;
+  color: var(--text-secondary);
+  overflow-wrap: anywhere;
+}
+
+.admin-ui .dash-stat__value {
+  flex: 0 0 auto;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Список статей внутри карточки повторяет ритм строк «Читают сейчас» */
+.admin-ui .dash-card__list .list-item {
+  padding: 8px 0;
+  border-top: 1px dashed var(--border-main);
+  border-bottom: 0;
+}
+
+.admin-ui .dash-card__list .list-item:first-child {
+  border-top: 0;
+}
+
+@media (max-width: 640px) {
+  .admin-ui .dash-card__total {
+    flex-basis: 100%;
+    margin-left: 0;
+  }
+
+  .admin-ui .dash-list--users .dash-list__row {
+    flex-wrap: wrap;
+  }
+
+  .admin-ui .dash-list--users .dash-list__main {
+    flex-basis: 100%;
+  }
+
+  .admin-ui .dash-list--users .dash-badges {
+    justify-content: flex-start;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-ui .dash-card__dot {
+    animation: none;
+  }
 }
 
 /* ---------- ссылки статьи ---------- */
