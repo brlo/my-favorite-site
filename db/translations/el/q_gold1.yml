@@ -18,7 +18,6 @@ pages:
 - src: любовь
   path: Η_αγάπη
   title: Η αγάπη
-  meta_desc: Βιβλικές ρήσεις για την αγάπη προς τον Θεό και τον πλησίον.
   copy_cover: true
   menu:
     parent: Άνθρωπος/Αρετή
