@@ -601,18 +601,20 @@
   text-align: left;
 }
 
+/* Над картинкой заголовок крупнее, чем под обложкой: иначе он теряется на фоне изображения */
 .news-card__cover .news-card__cover-title {
   margin: 0;
-  line-height: 1.22;
+  font-size: 2.25rem;
+  line-height: 1.2;
   text-shadow: 0 1px 3px rgba(0, 0, 0, .35);
 }
 
 .news-card__cover .cover-overlay-caption.title-md .news-card__cover-title {
-  font-size: 1.35rem;
+  font-size: 1.8rem;
 }
 
 .news-card__cover .cover-overlay-caption.title-lg .news-card__cover-title {
-  font-size: 1.1rem;
+  font-size: 1.4rem;
 }
 
 .news-card__cover .news-card__cover-title a,
@@ -662,12 +664,16 @@
     padding: 0 16px 12px;
   }
 
+  .news-card__cover .news-card__cover-title {
+    font-size: 1.65rem;
+  }
+
   .news-card__cover .cover-overlay-caption.title-md .news-card__cover-title {
-    font-size: 1.15rem;
+    font-size: 1.4rem;
   }
 
   .news-card__cover .cover-overlay-caption.title-lg .news-card__cover-title {
-    font-size: .95rem;
+    font-size: 1.15rem;
   }
 
   .news-action__label {
