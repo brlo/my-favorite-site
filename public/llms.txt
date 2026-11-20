@@ -53,7 +53,7 @@ Bible quote collections — topical apologetics ("what the Bible says about…")
 - [圣经语录 (zh-Hans)](https://bibleox.com/zh-Hans/zh-Hans/w/cn-q)
 - [聖經語錄 (zh-Hant)](https://bibleox.com/zh-Hant/zh-Hant/w/tw-q)
 - [성경 구절 모음 (ko)](https://bibleox.com/ko/ko/w/ko-q)
-- [Βιβλικές ρήσεις (el)](https://bibleox.com/el/el/w/el-q) — Modern Greek (64 articles: angels, the world, the parables, the prophecies, the whole section on God and the Son, and the first articles on man)
+- [Βιβλικές ρήσεις (el)](https://bibleox.com/el/el/w/el-q) — Modern Greek (69 articles: angels, the world, the parables, the prophecies, the whole section on God and the Son, and thirteen articles on man)
 - [Цитаты святых отцов (ru)](https://bibleox.com/ru/ru/w/q-saints) — quotes of the Church Fathers
 
 Selected library sections (Russian originals; translations of a section are reachable from its pages in other languages):
