@@ -15,11 +15,16 @@ LABELS = {
 
 dry = ARGV.include?('--dry')
 check = ARGV.include?('--check')
-ru_by_group = Page.where(lang: 'ru').where.not(group_lang_id: nil).index_by(&:group_lang_id)
+# Не грузим все ru-страницы с телами: на проде их тысячи, это давало минуты
+# и заметный CPU. Нужны только группы el-страниц и колонка links.
+el_pages = Page.where(lang: 'el').where.not(group_lang_id: nil)
+               .select(:id, :path, :path_low, :group_lang_id, :links).to_a
+ru_by_group = Page.where(lang: 'ru', group_lang_id: el_pages.map(&:group_lang_id))
+                  .select(:id, :group_lang_id, :links).index_by(&:group_lang_id)
 changed = 0
 report = []
 
-Page.where(lang: 'el').where.not(group_lang_id: nil).find_each do |p|
+el_pages.each do |p|
   r = ru_by_group[p.group_lang_id] or next
   next if r.links.blank?
   is_list = %w[el-q el-saints-q].include?(p.path_low)
@@ -37,12 +42,12 @@ Page.where(lang: 'el').where.not(group_lang_id: nil).find_each do |p|
       new_links << [label, '']
       next
     end
-    rp = Page.find_by(lang: 'ru', path: path)
-    ep = rp && Page.find_by(lang: 'el', group_lang_id: rp.group_lang_id)
+    rp = Page.where(lang: 'ru', path: path).select(:id, :group_lang_id).first
+    ep = rp && Page.where(lang: 'el', group_lang_id: rp.group_lang_id).select(:id, :path).first
     if ep
       new_links << [label, ep.path]
     elsif is_bible || is_father
-      list = Page.find_by(lang: 'el', path_low: LISTS[is_bible ? :bible : :father])
+      list = Page.where(lang: 'el', path_low: LISTS[is_bible ? :bible : :father]).select(:id, :path).first
       new_links << [label, list.path] if list # списка ещё нет — вкладку пропускаем
     end
   end

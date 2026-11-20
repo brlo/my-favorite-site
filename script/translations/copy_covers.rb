@@ -7,7 +7,8 @@ done = 0
 pages.find_each do |page|
   next if page.cover.present?
 
-  ru = Page.find_by(lang: 'ru', group_lang_id: page.group_lang_id)
+  ru = Page.where(lang: 'ru', group_lang_id: page.group_lang_id)
+           .select(:id, :group_lang_id, :cover, :cover_overlay_bg, :cover_overlay_text).first
   next if ru.nil? || ru.cover.blank?
 
   puts "#{page.path} <- #{ru.path}"
