@@ -1,0 +1,48 @@
+lang: fr
+list: 4saQ_Ouvrages_des_anciens_chrétiens
+pages:
+  - src: Ириней_Лионский
+    path: IrLn_Irénée_de_Lyon_IIe_siècle
+    title: "Irénée de Lyon, IIe siècle"
+    title_sub: "hiéromartyr (~130-202), évêque de Lyon, théologien, apologiste, père de l’Église, disciple de Polycarpe de Smyrne"
+    meta_desc: "Saint Irénée de Lyon (~130-202), évêque et hiéromartyr, père de l’Église : sa vie, sa doctrine et son traité Contre les hérésies."
+    menu: { parent: "IIe siècle", title: "Irénée de Lyon, hiéromartyr (~130-202)" }
+    copy_cover: true
+    body: |-
+      <p><strong>Jour de mémoire</strong> : 23 août (5 septembre).</p><p>Traduction de la page de référence russe en cours de préparation.</p>
+  - src: Климент_Александрийский
+    path: ClAl_Clément_dAlexandrie_IIe_IIIe_siècle
+    title: "Clément d’Alexandrie, IIe–IIIe siècle"
+    title_sub: "prêtre (~150-215), didascale, écrivain ecclésiastique, théologien et philosophe, l’un des fondateurs de l’école théologique d’Alexandrie"
+    meta_desc: "Clément d’Alexandrie (~150-215), didascale et théologien : sa vie, sa doctrine, les Stromates et le Pédagogue."
+    menu: { parent: "IIe siècle", title: "Clément d'Alexandrie, prêtre (~150-215)" }
+    copy_cover: true
+    body: |-
+      <p><strong>Jour de mémoire</strong> : 4 décembre (17 décembre).</p><p>Traduction de la page de référence russe en cours de préparation.</p>
+  - src: тертуллиан
+    path: Trll_Tertullien_IIe_IIIe_siècle
+    title: "Tertullien, IIe–IIIe siècle"
+    title_sub: "(~155-220), l’un des plus éminents écrivains et apologistes chrétiens des premiers siècles, fondateur de la patristique latine ; passé ensuite au montanisme"
+    meta_desc: "Tertullien (~155-220), apologiste et théologien latin : sa vie, sa doctrine et ses traités."
+    menu: { parent: "IIe siècle", title: "Tertullien (~155-220)" }
+    copy_cover: true
+    body: |-
+      <p>Traduction de la page de référence russe en cours de préparation.</p>
+  - src: Киприан_Карфагенский_III_век
+    path: CpCr_Cyprien_de_Carthage_IIIe_siècle
+    title: "Cyprien de Carthage, IIIe siècle"
+    title_sub: "hiéromartyr (~200-258), évêque de Carthage, écrivain ecclésiastique, apologiste"
+    meta_desc: "Saint Cyprien de Carthage (~200-258), évêque et hiéromartyr : sa vie, sa doctrine et son traité De l’unité de l’Église."
+    menu: { parent: "IIIe siècle", title: "Cyprien de Carthage, hiéromartyr (~200-258)" }
+    copy_cover: true
+    body: |-
+      <p><strong>Jour de mémoire</strong> : 31 août (13 septembre).</p><p>Traduction de la page de référence russe en cours de préparation.</p>
+  - src: Марк_Минуций_Феликс
+    path: MnFl_Minucius_Felix_IIIe_siècle
+    title: "Minucius Felix, IIIe siècle"
+    title_sub: "(†~250), avocat romain, apologiste chrétien, auteur du dialogue Octavius"
+    meta_desc: "Minucius Felix (†~250), avocat et apologiste chrétien : sa vie et son dialogue Octavius."
+    menu: { parent: "IIIe siècle", title: "Marcus Minucius Felix (†~250)" }
+    copy_cover: true
+    body: |-
+      <p>Traduction de la page de référence russe en cours de préparation.</p>

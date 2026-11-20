@@ -5,6 +5,7 @@ pages:
     path: ClRm_Clément_de_Rome_Ier_siècle
     title: "Clément de Rome, Ier siècle"
     title_sub: "hiéromartyr (†~101), évêque de Rome, disciple des apôtres"
+    menu: { parent: "Ier siècle", title: "Clément de Rome, hiéromartyr (†~101)" }
     meta_desc: "Saint Clément de Rome (†~101), évêque de Rome et disciple des apôtres : sa vie, sa doctrine et ses épîtres à l’Église de Corinthe."
     update: true
     copy_cover: true
@@ -16,6 +17,7 @@ pages:
     path: PlKp_Polycarpe_de_Smyrne_Ier_IIe_siècle
     title: "Polycarpe de Smyrne, Ier–IIe siècle"
     title_sub: "hiéromartyr (69-155), évêque de Smyrne, disciple de l’apôtre Jean le Théologien"
+    menu: { parent: "Ier siècle", title: "Polycarpe de Smyrne, hiéromartyr (69-155)" }
     meta_desc: "Saint Polycarpe de Smyrne (69-155), évêque et hiéromartyr, disciple de l’apôtre Jean : sa vie, sa doctrine et son épître aux Philippiens."
     update: true
     copy_cover: true
@@ -27,6 +29,7 @@ pages:
     path: JsNp_Justin_le_Philosophe_IIe_siècle
     title: "Justin le Philosophe, IIe siècle"
     title_sub: "saint martyr, philosophe (~100-165), originaire de Naplouse (Flavia Neapolis) en Samarie"
+    menu: { parent: "IIe siècle", title: "Justin le Philosophe, martyr (~100-165)" }
     meta_desc: "Saint Justin le Philosophe (~100-165), martyr et apologiste : sa vie, sa doctrine, ses Apologies et son Dialogue avec Tryphon."
     update: true
     copy_cover: true
