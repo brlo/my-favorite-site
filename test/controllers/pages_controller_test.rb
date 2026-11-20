@@ -424,8 +424,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     get '/ru/ru/w/cut_list'
     assert_response :success
     assert_select '#chapter-header .page-lead p', text: 'Эпиграф списка'
-    # в самом тексте статьи лида уже нет, и в разметке он идёт раньше меню-дерева
+    # в самом тексте статьи лида уже нет; он под панелью текста, но раньше меню-дерева
     assert_select '#page-body .page-lead', count: 0
+    assert_operator response.body.index("id='text-bar'"), :<, response.body.index('page-lead')
     assert_operator response.body.index('page-lead'), :<, response.body.index('data-menu-filter-target="tree"')
   end
 

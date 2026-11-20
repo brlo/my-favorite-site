@@ -69,14 +69,6 @@
     </div>
   <% end %>
 
-  <%# Первая часть статьи (до метки деления): на странице-списке меню-дерево идёт сразу после %>
-  <%# заголовка, поэтому лид показываем здесь — до меню, а не после него, как в обычной статье %>
-  <% if @tree_menu.present? && @page.body_lead.present? %>
-    <article class="page-lead <%= text_size_class %>" data-text-size lang="<%= @page.lang %>" dir="<%= content_direction %>">
-      <%= @page.body_lead.html_safe %>
-    </article>
-  <% end %>
-
 
 <% if @tree_menu.present? %>
   <% if @page.is_search %>
@@ -104,6 +96,14 @@
 <% end %>
 
 <%= render(partial: 'pages/text_bar') %>
+
+<%# Первая часть статьи (до метки деления): на странице-списке лид идёт под панелью текста, %>
+<%# но до меню-дерева — в обычной статье он выводится в #page-body перед оглавлением %>
+<% if @tree_menu.present? && @page.body_lead.present? %>
+  <article class="page-lead <%= text_size_class %>" data-text-size lang="<%= @page.lang %>" dir="<%= content_direction %>">
+    <%= @page.body_lead.html_safe %>
+  </article>
+<% end %>
 
 <% if @tree_menu.present? %>
 
