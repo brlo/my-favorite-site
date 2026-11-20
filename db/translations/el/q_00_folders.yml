@@ -12,6 +12,7 @@ folders:
   - { path: "Άνθρωπος/Η μετά θάνατον ζωή", priority: 0 }
   - { path: "Εκκλησία", priority: 1 }
   - { path: "Εκκλησία/Αγία Γραφή", priority: 1 }
+  - { path: "Εκκλησία/Άγιοι", priority: 3 }
   - { path: "Παλαιά Διαθήκη", priority: 2 }
   - { path: "Εκκλησία/Μυστήρια", priority: 7 }
   - { path: "Εκκλησία/Προσευχή", priority: 4 }
