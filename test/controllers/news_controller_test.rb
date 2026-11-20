@@ -106,6 +106,41 @@ class NewsControllerTest < ActionDispatch::IntegrationTest
     assert_operator response.body.index('Обновлена недавно'), :<, response.body.index('Обновлена давно')
   end
 
+  test 'у статьи с цветом подложки заголовок и родительская страница ложатся на обложку' do
+    stored_files = []
+    parent = create_page(title: 'Родительский раздел', path: 'news_overlay_parent')
+    page = create_page(is_published: true, is_news: true, title: 'Новость на обложке', path: 'news_overlay',
+                       body: CUT_BODY, parent_id: parent.id, cover_overlay_bg: '#123456')
+    plain = create_page(is_published: true, is_news: true, title: 'Новость с обычной обложкой',
+                        path: 'news_plain_cover', body: LONG_BODY)
+
+    [page, plain].each do |news_page|
+      news_page.cover = File.open(Rails.root.join('app/assets/images/favicon.png'))
+      news_page.save!
+      stored_files.concat([news_page.cover.path, *news_page.cover.versions.values.map(&:path)])
+    end
+
+    get '/ru/news'
+    assert_response :success
+
+    assert_select "#news_page_#{page.id} .news-card__cover--overlay .cover-overlay-parent a", text: 'Родительский раздел'
+    assert_select "#news_page_#{page.id} .news-card__cover-title a", text: 'Новость на обложке'
+    # клик по самой картинке тоже ведёт в статью
+    assert_select "#news_page_#{page.id} a.news-card__cover-img[href='/ru/ru/w/news_overlay']"
+    # заголовок уже на обложке — под ней не дублируем
+    assert_select "#news_page_#{page.id} .news-card__header .news-card__title", count: 0
+
+    # без цвета подложки обложка остаётся просто картинкой, заголовок — под ней
+    assert_select "#news_page_#{plain.id} .news-card__cover--overlay", count: 0
+    assert_select "#news_page_#{plain.id} .news-card__header .news-card__title a", text: 'Новость с обычной обложкой'
+  ensure
+    stored_files.each { |path| FileUtils.rm_f(path) }
+    # пустой каталог страницы после теста не оставляем
+    stored_files.filter_map { |path| File.dirname(path) if path }.uniq.each do |dir|
+      Dir.rmdir(dir) if Dir.exist?(dir) && Dir.empty?(dir)
+    end
+  end
+
   test 'блок «Читают сейчас» показывает статьи с читателями' do
     page = create_page(is_published: true, is_news: true, title: 'Сейчас читают', path: 'news_reading', body: LONG_BODY)
     PageVisits.touch_reading(page.id, ip: '10.0.9.1')

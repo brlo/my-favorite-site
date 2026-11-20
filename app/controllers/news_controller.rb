@@ -12,7 +12,7 @@ class NewsController < ApplicationController
     @pages = ::Page.news_feed
       .where(lang: lang, page_type: ::Page::PAGE_TYPES['статья'])
       .where('COALESCE(LENGTH(pages.body), 0) >= 40')
-      .includes(:user, :tags)
+      .includes(:user, :tags, :parent)
       .order(created_at: :desc, id: :desc)
       .page(params[:page]).per(PER_PAGE)
 

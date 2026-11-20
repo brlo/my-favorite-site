@@ -1,8 +1,32 @@
+<%# при заданном цвете подложки заголовок и родительская страница ложатся на обложку, как в статье %>
+<% cover_overlay = page.is_cover_overlay? %>
+
 <article class="news-card" id="news_page_<%= page.id %>">
   <% if page.cover? %>
-    <a class="news-card__cover" href="<%= news_page_link(page) %>" tabindex="-1" aria-hidden="true">
-      <img src="<%= page.cover.large.url %>" alt="" loading="lazy" decoding="async" draggable="false">
-    </a>
+    <% if cover_overlay %>
+      <div class="news-card__cover news-card__cover--overlay">
+        <a class="news-card__cover-img" href="<%= news_page_link(page) %>" tabindex="-1" aria-hidden="true">
+          <img src="<%= page.cover.large.url %>" alt="" loading="lazy" decoding="async" draggable="false">
+        </a>
+        <div class="cover-overlay" style="<%= cover_overlay_gradient_style(page) %>">
+          <div class="cover-overlay-caption <%= cover_overlay_title_size_class(page) %>"
+               style="color: <%= page.cover_overlay_text_color %>">
+            <% if page.is_show_parent && page.parent.present? %>
+              <div class="cover-overlay-parent">
+                <a href="<%= news_page_link(page.parent) %>"><%= page.parent.title %></a>
+              </div>
+            <% end %>
+            <h2 class="news-card__title news-card__cover-title">
+              <a href="<%= news_page_link(page) %>"><%= page.title %></a>
+            </h2>
+          </div>
+        </div>
+      </div>
+    <% else %>
+      <a class="news-card__cover" href="<%= news_page_link(page) %>" tabindex="-1" aria-hidden="true">
+        <img src="<%= page.cover.large.url %>" alt="" loading="lazy" decoding="async" draggable="false">
+      </a>
+    <% end %>
   <% end %>
 
   <header class="news-card__header">
@@ -17,9 +41,11 @@
       </time>
     </div>
 
-    <h2 class="news-card__title">
-      <a href="<%= news_page_link(page) %>"><%= page.title %></a>
-    </h2>
+    <% unless cover_overlay %>
+      <h2 class="news-card__title">
+        <a href="<%= news_page_link(page) %>"><%= page.title %></a>
+      </h2>
+    <% end %>
 
     <% if page.title_sub.present? %>
       <div class="news-card__subtitle"><%= page.title_sub %></div>
