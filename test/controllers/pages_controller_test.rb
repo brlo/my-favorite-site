@@ -414,6 +414,21 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, 'Пункт меню'
   end
 
+  test "on a list page the part before the cut is rendered before the tree menu" do
+    body = '<p>Эпиграф списка</p><hr class="article-cut"><p>Текст списка</p>'
+    list = create_published(title: 'Список с катом', path: 'cut_list', page_type: 4, body: body)
+    create_published(title: 'Пункт', path: 'cut_list_item', parent_id: list.id)
+    Menu.create!(page_id: list.id, title: 'Пункт меню', path: 'cut_list_item')
+    Rails.cache.clear
+
+    get '/ru/ru/w/cut_list'
+    assert_response :success
+    assert_select '#chapter-header .page-lead p', text: 'Эпиграф списка'
+    # в самом тексте статьи лида уже нет, и в разметке он идёт раньше меню-дерева
+    assert_select '#page-body .page-lead', count: 0
+    assert_operator response.body.index('page-lead'), :<, response.body.index('data-menu-filter-target="tree"')
+  end
+
   test "grey menu items look the same for everyone but are links only for an admin" do
     list = create_published(title: 'Список', path: 'grey_list', page_type: 4)
     create_published(title: 'Заглушка', path: 'grey_stub', parent_id: list.id)

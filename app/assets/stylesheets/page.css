@@ -163,6 +163,11 @@
   margin: 20px 0;
 }
 
+/* Первая часть статьи до метки деления: на странице-списке она стоит в шапке, до меню */
+#chapter-header .page-lead {
+  margin: 20px 0;
+}
+
 /* Сворачивание секций статьи по h2 */
 #page-body h2.section-collapsible { cursor: pointer; }
 #page-body h2.section-collapsible .section-toggle {
