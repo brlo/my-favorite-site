@@ -94,6 +94,35 @@ class PageVisitsTest < ActiveSupport::TestCase
     assert_not PageVisits.valid_visit_token?(42, nil)
   end
 
+  test 'отметка чтения считает уникальных читателей по IP и страницам' do
+    PageVisits.touch_reading(42, ip: '10.0.3.1')
+    PageVisits.touch_reading(42, ip: '10.0.3.1') # тот же читатель — не второй
+    PageVisits.touch_reading(42, ip: '10.0.3.2')
+    PageVisits.touch_reading(43, ip: '10.0.3.1')
+
+    reading = PageVisits.reading_now
+
+    assert_equal 2, reading.total_readers
+    assert_equal [[42, 2], [43, 1]], reading.pages
+    assert_equal 2, PageVisits.readers_count(42)
+    assert_equal 1, PageVisits.readers_count(43)
+  end
+
+  test 'старые отметки чтения не попадают в «Читают сейчас»' do
+    old = Time.now.to_f - PageVisits::READING_WINDOW - 5
+    ::RedisConnectionPool.zadd(PageVisits::READING_KEY, old, '42:old')
+
+    assert_empty PageVisits.reading_now.pages
+  end
+
+  test 'маячок статьи отмечает чтение, а бот — нет' do
+    PageVisits.beacon_visit(page_id: 42, browser: CHROME, ip: '10.0.3.3', lang: :ru)
+    assert_equal [[42, 1]], PageVisits.reading_now.pages
+
+    PageVisits.beacon_visit(page_id: 43, browser: GPTBOT, ip: '10.0.3.4', lang: :ru)
+    assert_equal 1, PageVisits.reading_now.total_readers
+  end
+
   private
 
   # значения строк сегодняшнего дня, ключи строками:
@@ -109,6 +138,7 @@ class PageVisitsTest < ActiveSupport::TestCase
     keys = %w[vis o-vis s-vis b-vis uip bots zips langs top].map { |name| "#{name}#{@day}" }
     keys << "ipvis#{@day}:10.0.0.1" << "ipvis#{@day}:10.0.0.2" << "ipvis#{@day}:10.0.0.9"
     keys << "vis:42" << "vis:42=10.0.2.1" << "vis:42=10.0.2.2" << "vis:42=10.0.2.3"
+    keys << ::PageVisits::READING_KEY
     (0..2).each { |i| keys << "ipvis#{@day}:10.0.1.#{i}" }
     (1..3).each { |i| keys << "ipvis#{@day}:10.0.2.#{i}" }
     ::RedisConnectionPool.del(keys)

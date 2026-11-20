@@ -483,6 +483,7 @@ ru:
     help_site: "Помощь сайту"
     bible: Писание
     links: Предание
+    news: Лента
     translates: Переводы
     articles: Статьи
     search: Поиск
@@ -789,3 +790,31 @@ ru:
     meta_description: 'Каталог тегов статей сайта Bibleox'
     tag_page_title: 'Тег: %{tag}'
     tag_meta_description: 'Статьи по тегу «%{tag}»'
+
+  news:
+    reactions_title: 'Реакции читателей'
+    recently_updated: 'Недавно обновились'
+    title: 'Новостная лента'
+    subtitle: 'Новые статьи и заметки, отмеченные редакцией для ленты'
+    meta_description: 'Новости и новые статьи Bibleox'
+    editorial: 'Редакция'
+    read_more: 'Читать далее'
+    share: 'Поделиться'
+    discuss: 'Обсудить в чате'
+    reactions:
+      like: 'Нравится'
+      useful: 'Полезно'
+      thanks: 'Спасибо'
+      interesting: 'Интересно'
+      hundred: '100%'
+    reaction_thanks: 'Спасибо за отклик'
+    reaction_removed: 'Реакция убрана'
+    reading_now: 'Читают сейчас'
+    reading_now_empty: 'Пока никто не читает статьи. Будьте первым.'
+    reading_now_total: 'На сайте сейчас читают: %{count}'
+    readers_now: 'сейчас читают: %{count}'
+    readers_count: 'Читают: %{count}'
+    empty: 'В ленте пока нет статей'
+    empty_hint: 'Статья попадает в ленту, если в настройках отмечен флаг «В новостной ленте».'
+    about_title: 'О ленте'
+    about_text: 'Здесь собраны новые статьи и заметки. Комментариев у нас нет — обсуждение идёт в общем чате.'

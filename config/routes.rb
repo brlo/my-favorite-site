@@ -54,6 +54,8 @@ Rails.application.routes.draw do
 
   # JS-маячок посещаемости (без локали в адресе)
   post '/visit', to: 'visits#create'
+  # JS-heartbeat «читает сейчас» (без локали в адресе)
+  post '/reading', to: 'readings#create'
 
   # редиректим /jp (без слеша и дополнительных частей)
   get '/:loc_ui', to: redirect(status: 301) { |params, req|
@@ -201,6 +203,12 @@ Rails.application.routes.draw do
     # Теги статей: каталог тегов и статьи одного тега (на языке текущей локали)
     get '/tags', to: 'tags#index', as: :tags
     get '/tags/:slug', to: 'tags#show', as: :tag
+
+    # Новостная лента статей с флагом is_news (на языке текущей локали)
+    get '/news', to: 'news#index', as: :news
+    get '/news/reading', to: 'news#reading_now', as: :news_reading
+    # Положительные реакции к статье (одна на IP; повторное нажатие снимает)
+    post '/pages/:page_id/reaction', to: 'page_reactions#toggle', as: :toggle_page_reaction
     # Библейская история на 3D-глобусе
     get '/bible-map', to: 'bible_map#show', as: :bible_map
     get '/search', to: 'verses#search'

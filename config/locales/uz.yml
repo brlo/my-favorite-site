@@ -345,3 +345,7 @@ uz:
     meta_description: 'Bibleox maqola teglari katalogi'
     tag_page_title: 'Teg: %{tag}'
     tag_meta_description: '"%{tag}" tegli maqolalar'
+
+  news:
+    reactions_title: 'O‘quvchilar reaktsiyalari'
+    recently_updated: 'Yaqinda yangilanganlar'

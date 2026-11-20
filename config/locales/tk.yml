@@ -345,3 +345,7 @@ tk:
     meta_description: 'Bibleox makala bellikleriniň sanawy'
     tag_page_title: 'Bellik: %{tag}'
     tag_meta_description: '"%{tag}" bellikli makalalar'
+
+  news:
+    reactions_title: 'Okyjylaryň reaksiýalary'
+    recently_updated: 'Ýakynda täzelendi'

@@ -1,0 +1,25 @@
+<%# locals: page:, counts:, active: (kind или nil) %>
+<% counts = local_assigns.fetch(:counts, {}) %>
+<% active = local_assigns[:active] %>
+
+<%= form_with url: toggle_page_reaction_path(page, locale: ::I18n.locale),
+      method: :post,
+      id: dom_id(page, :reactions),
+      class: 'page-reaction',
+      data: {controller: 'page-reaction', action: 'submit->page-reaction#submit'} do %>
+  <% ::PageReaction::KINDS.each do |kind, emoji| %>
+    <% count = counts[kind].to_i %>
+    <% label = t("news.reactions.#{kind}") %>
+    <button type="submit" name="kind" value="<%= kind %>"
+            class="page-reaction__choice<%= ' is-active' if active == kind %><%= ' is-empty' if count.zero? %>"
+            aria-pressed="<%= active == kind ? 'true' : 'false' %>"
+            aria-label="<%= "#{label} (#{count})" %>"
+            data-label="<%= label %>"
+            data-kind="<%= kind %>"
+            data-page-reaction-target="choice"
+            title="<%= label %>">
+      <span class="page-reaction__emoji" aria-hidden="true"><%= emoji %></span>
+      <span class="page-reaction__count" data-kind="<%= kind %>"<%= ' hidden' if count.zero? %>><%= count %></span>
+    </button>
+  <% end %>
+<% end %>

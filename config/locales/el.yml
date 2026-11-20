@@ -593,3 +593,7 @@ el:
     meta_description: 'Κατάλογος ετικετών άρθρων του Bibleox'
     tag_page_title: 'Ετικέτα: %{tag}'
     tag_meta_description: 'Άρθρα με ετικέτα "%{tag}"'
+
+  news:
+    reactions_title: 'Αντιδράσεις αναγνωστών'
+    recently_updated: 'Πρόσφατα ενημερωμένα'

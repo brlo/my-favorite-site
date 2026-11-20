@@ -1,0 +1,73 @@
+<article class="news-card" id="news_page_<%= page.id %>">
+  <% if page.cover? %>
+    <a class="news-card__cover" href="<%= news_page_link(page) %>" tabindex="-1" aria-hidden="true">
+      <img src="<%= page.cover.large.url %>" alt="" loading="lazy" decoding="async" draggable="false">
+    </a>
+  <% end %>
+
+  <header class="news-card__header">
+    <div class="news-card__topline">
+      <span class="news-card__author">
+        <span class="news-card__avatar" aria-hidden="true"><%= news_author_name(page).to_s[0]&.upcase %></span>
+        <span><%= news_author_name(page) %></span>
+      </span>
+      <time class="news-card__date" datetime="<%= page.created_at.iso8601 %>"
+            title="<%= page.created_at.strftime('%d.%m.%Y %H:%M') %>">
+        <%= time_ago_in_words(page.created_at) %>
+      </time>
+    </div>
+
+    <h2 class="news-card__title">
+      <a href="<%= news_page_link(page) %>"><%= page.title %></a>
+    </h2>
+
+    <% if page.title_sub.present? %>
+      <div class="news-card__subtitle"><%= page.title_sub %></div>
+    <% end %>
+
+    <% if page.tags.any? %>
+      <div class="news-card__tags">
+        <% page.tags.sort_by { |tag| tag.name.to_s.downcase }.each do |tag| %>
+          <a class="tag-chip" href="<%= tag_path(tag.slug) %>"><%= tag.name_for(page.lang) %></a>
+        <% end %>
+      </div>
+    <% end %>
+  </header>
+
+  <div class="news-card__body looks-like-page"
+       lang="<%= page.lang %>" dir="<%= direction_for_lang(page.lang) %>">
+    <%= news_preview(page) %>
+  </div>
+
+  <footer class="news-card__footer">
+    <a class="news-card__read-more" href="<%= news_page_link(page) %>">
+      <%= t('news.read_more') %> <span aria-hidden="true">→</span>
+    </a>
+
+    <div class="news-card__actions">
+      <%= render 'pages/reactions', page: page,
+            counts: @reaction_counts[page.id],
+            active: @my_reactions[page.id] %>
+
+      <button type="button" class="news-action"
+              data-controller="share-btn"
+              data-action="click->share-btn#share"
+              data-share-btn-url-value="<%= page.canonical_url %>"
+              title="<%= t('news.share') %>">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/>
+        </svg>
+        <span class="news-action__label"><%= t('news.share') %></span>
+      </button>
+
+      <a class="news-action" href="<%= chat_path(locale: ::I18n.locale) %>" title="<%= t('news.discuss') %>">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+             stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+        </svg>
+        <span class="news-action__label"><%= t('news.discuss') %></span>
+      </a>
+    </div>
+  </footer>
+</article>

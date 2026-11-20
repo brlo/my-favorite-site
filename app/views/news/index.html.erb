@@ -1,0 +1,44 @@
+<section class="news-page">
+  <header class="news-head">
+    <h1><%= t('news.title') %></h1>
+    <p class="hint"><%= t('news.subtitle') %></p>
+  </header>
+
+  <div class="news-layout">
+    <div class="news-feed">
+      <% if @pages.any? %>
+        <% @pages.each do |page| %>
+          <%= render 'news/card', page: page %>
+        <% end %>
+
+        <% if @pages.total_pages > 1 %>
+          <div class="news-pagination"><%= paginate @pages %></div>
+        <% end %>
+      <% else %>
+        <div class="news-empty">
+          <div class="news-empty__title"><%= t('news.empty') %></div>
+          <p class="hint"><%= t('news.empty_hint') %></p>
+        </div>
+      <% end %>
+    </div>
+
+    <aside class="news-aside">
+      <div class="reading-now"
+           data-controller="reading-now"
+           data-reading-now-url-value="<%= news_reading_path(locale: ::I18n.locale) %>"
+           data-reading-now-interval-value="60000">
+        <%= render 'news/reading_now' %>
+      </div>
+
+      <%= render 'news/recently_updated' %>
+
+      <div class="news-about">
+        <h2><%= t('news.about_title') %></h2>
+        <p><%= t('news.about_text') %></p>
+        <a class="news-about__chat" href="<%= chat_path(locale: ::I18n.locale) %>"><%= t('news.discuss') %></a>
+      </div>
+    </aside>
+  </div>
+</section>
+
+<%= render(partial: 'shared/arrow_to_top') %>

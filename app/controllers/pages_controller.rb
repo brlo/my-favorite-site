@@ -199,6 +199,8 @@ class PagesController < ApplicationController
     @page_tags = @page.tags.order(:name).to_a
     @meta_book_tags = @page_tags.map(&:name) if @page_tags.any?
 
+    prepare_page_reactions
+
     prepare_bible_comment if @page.is_page_bib_comment?
 
     # Если текст этой статьи разбит на несколько глав,
@@ -241,6 +243,15 @@ class PagesController < ApplicationController
       end
     end
     "#{title} / #{parent_part}"
+  end
+
+  # Реакция и живые читатели для нижней панели статьи
+  def prepare_page_reactions
+    @page_readers_count = ::PageVisits.readers_count(@page.id)
+    return unless @page.is_page_simple?
+
+    @page_reaction_counts = ::PageReaction.counts_by_kind(@page.id)
+    @my_page_reaction = ::PageReaction.kind_for(@page.id, request.ip)
   end
 
   # Если это коммент к библейскому стиху, то надо переделать хлеб. крошки, заголовок и активное меню

@@ -345,3 +345,7 @@ fa:
     meta_description: 'فهرست برچسب‌های مقاله‌های Bibleox'
     tag_page_title: 'برچسب: %{tag}'
     tag_meta_description: 'مقاله‌های دارای برچسب "%{tag}"'
+
+  news:
+    reactions_title: 'واکنش‌های خوانندگان'
+    recently_updated: 'اخیراً به‌روزرسانی شده'

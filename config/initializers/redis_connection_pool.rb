@@ -28,6 +28,10 @@ module RedisConnectionPool
                    :pfcount, # число уникальных в гиперлоглоге https://redis.io/commands/pfcount
                    :zincrby, # прибавить к участнику сортированного множества https://redis.io/commands/zincrby
                    :zrevrange, # участники сортированного множества по убыванию https://redis.io/commands/zrevrange
+                   :zadd, # добавить/обновить участника сортированного множества https://redis.io/commands/zadd
+                   :zrangebyscore, # участники сортированного множества в диапазоне score https://redis.io/commands/zrangebyscore
+                   :zremrangebyscore, # удалить участников с score в диапазоне https://redis.io/commands/zremrangebyscore
+                   :zrem, # удалить участников сортированного множества https://redis.io/commands/zrem
                    :ttl, # узнать оставшееся время жизни https://redis.io/commands/TTL
                    :expire # задать TTL (время до удаления) https://redis.io/commands/expire
 

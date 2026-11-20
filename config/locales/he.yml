@@ -593,3 +593,7 @@ he:
     meta_description: 'קטלוג תגיות המאמרים של Bibleox'
     tag_page_title: 'תגית: %{tag}'
     tag_meta_description: 'מאמרים עם התגית "%{tag}"'
+
+  news:
+    reactions_title: 'תגובות הקוראים'
+    recently_updated: 'עודכנו לאחרונה'

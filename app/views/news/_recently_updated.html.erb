@@ -1,0 +1,16 @@
+<% if @recently_updated.any? %>
+  <section class="news-updates">
+    <h2 class="news-updates__title"><%= t('news.recently_updated') %></h2>
+    <ul class="news-updates__list">
+      <% @recently_updated.each do |page| %>
+        <li>
+          <a href="<%= news_page_link(page) %>"><%= page.title %></a>
+          <time datetime="<%= page.updated_at.iso8601 %>"
+                title="<%= page.updated_at.strftime('%d.%m.%Y %H:%M') %>">
+            <%= time_ago_in_words(page.updated_at) %>
+          </time>
+        </li>
+      <% end %>
+    </ul>
+  </section>
+<% end %>

@@ -88,6 +88,13 @@ class Page < ApplicationRecord
     ::Page.where(group_lang_id: group_lang_id).where.not(id: id).update_all(seo_kind: seo_kind) # rubocop:disable Rails/SkipsModelValidations
   end
 
+  # Флаг ленты — свойство содержания, как теги: одна статья во всех переводах либо в ленте, либо нет
+  def propagate_is_news
+    return if group_lang_id.blank?
+
+    ::Page.where(group_lang_id: group_lang_id).where.not(id: id).update_all(is_news: is_news) # rubocop:disable Rails/SkipsModelValidations
+  end
+
   # Имена тегов страницы (для формы админки)
   def tag_list
     tags.order(:name).pluck(:name)
@@ -124,6 +131,7 @@ class Page < ApplicationRecord
   has_many :bible_references, dependent: :destroy
   has_many :taggings, dependent: :destroy
   has_many :tags, through: :taggings
+  has_many :page_reactions, dependent: :delete_all
 
   # === Валидации ===
   validates :page_type, :title, :lang, :path, presence: true
@@ -133,6 +141,8 @@ class Page < ApplicationRecord
   # === Скоупы ===
   scope :published, -> { where(is_published: true) }
   scope :deleted, -> { where(is_deleted: true) }
+  # Статьи новостной ленты: только опубликованные и не удалённые
+  scope :news_feed, -> { where(is_news: true, is_published: true, is_deleted: [nil, false]) }
 
   before_validation :normalize_attributes
   before_validation { self.seo_kind = seo_kind.presence }

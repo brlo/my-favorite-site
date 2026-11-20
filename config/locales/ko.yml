@@ -581,3 +581,7 @@ ko:
     meta_description: 'Bibleox 글 태그 목록'
     tag_page_title: '태그: %{tag}'
     tag_meta_description: "'%{tag}' 태그의 글"
+
+  news:
+    reactions_title: '독자 반응'
+    recently_updated: '최근 업데이트된 글'

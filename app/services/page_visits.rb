@@ -1,3 +1,5 @@
+require 'openssl'
+
 class PageVisits
   # Ключи дневной статистики живут неделю: столько же показывает сводка админки
   TTL = 60 * 60 * 24 * 7
@@ -7,13 +9,27 @@ class PageVisits
   # заметно меньше, а скрейперы с браузерными User-Agent ловятся только так.
   SUSPICIOUS_DAY_LIMIT = 150
 
+  # «Читают сейчас»: отметка живёт READING_WINDOW секунд после последнего heartbeat.
+  # 15 минут — чтобы статья не пропадала сразу, если вкладка ушла в фон или
+  # heartbeat задержался; один читатель (IP) на странице считается один раз.
+  READING_KEY = 'reading'.freeze
+  READING_WINDOW = 15 * 60
+  READING_TTL = 60 * 60
+
+  # total_readers — сколько разных читателей сейчас на сайте,
+  # pages — [[page_id, читателей], ...] по убыванию
+  ReadingNow = Struct.new(:total_readers, :pages, keyword_init: true)
+
   class << self
     # Точка входа для JS-маячка (VisitsController): дневная статистика
     # и счётчик просмотров статьи. Сюда попадают только запросы от браузеров,
     # исполнивших JS, — скрейперы, тянущие голый HTML, статистику не двигают.
     def beacon_visit(page_id:, browser:, ip:, lang:)
       day_visit(browser: browser, ip: ip, lang: lang)
-      register_visit(page_id, user_ip: ip) if page_id.to_i.positive? && !BotDetector.bot?(browser)
+      return if page_id.to_i <= 0 || BotDetector.bot?(browser)
+
+      register_visit(page_id, user_ip: ip)
+      touch_reading(page_id, ip: ip)
     end
 
     # увеличить счётчики дневной посещаемости (вызывается из JS-маячка)
@@ -96,6 +112,58 @@ class PageVisits
       int_to_human_s(::RedisConnectionPool.get("vis:#{page_id}"))
     end
 
+    # Отметка «читает прямо сейчас»: heartbeat со страницы статьи.
+    # score — время последнего сигнала; старые отметки вычищаем при каждом визите.
+    def touch_reading(page_id, ip:)
+      id = page_id.to_i
+      return if id <= 0
+
+      now = Time.now.to_f
+      ::RedisConnectionPool.zremrangebyscore(READING_KEY, 0, now - READING_WINDOW)
+      ::RedisConnectionPool.zadd(READING_KEY, now, "#{id}:#{reader_digest(ip)}")
+      ::RedisConnectionPool.expire(READING_KEY, READING_TTL)
+    end
+
+    # Читатель ушёл со страницы (переход или закрытие вкладки): убираем отметку,
+    # чтобы он не висел в «Читают сейчас» до истечения окна.
+    def clear_reading(page_id, ip:)
+      id = page_id.to_i
+      return if id <= 0
+
+      ::RedisConnectionPool.zrem(READING_KEY, "#{id}:#{reader_digest(ip)}")
+    end
+
+    # Кто читает сейчас: общее число читателей и топ статей по числу читателей
+    def reading_now(limit: 5)
+      now = Time.now.to_f
+      from = now - READING_WINDOW
+      ::RedisConnectionPool.zremrangebyscore(READING_KEY, 0, from)
+
+      readers = {}
+      counts = Hash.new(0)
+      ::RedisConnectionPool.zrangebyscore(READING_KEY, from, '+inf').each do |member|
+        page_id, digest = member.split(':', 2)
+        next if page_id.blank? || digest.blank?
+
+        readers[digest] = true
+        counts[page_id.to_i] += 1
+      end
+
+      pages = counts.sort_by { |id, count| [-count, id] }.first(limit)
+      ReadingNow.new(total_readers: readers.size, pages: pages)
+    end
+
+    # Сколько человек читают конкретную статью прямо сейчас
+    def readers_count(page_id)
+      id = page_id.to_i
+      return 0 if id <= 0
+
+      now = Time.now.to_f
+      prefix = "#{id}:"
+      ::RedisConnectionPool.zrangebyscore(READING_KEY, now - READING_WINDOW, '+inf')
+        .count { |member| member.start_with?(prefix) }
+    end
+
     # Токен для JS-маячка: подтверждает, что отправитель получил страницу сайта.
     # Привязан к id статьи (0 — для нестатейных страниц), но не к дате и IP,
     # чтобы не ломаться о страничный кеш и смену адреса.
@@ -153,6 +221,11 @@ class PageVisits
     end
 
     private
+
+    # Читатель для «Читают сейчас»: хэш IP, чтобы не хранить адрес в Redis.
+    def reader_digest(ip)
+      OpenSSL::HMAC.hexdigest('SHA256', Rails.application.secret_key_base, "reading:#{ip}")[0, 32]
+    end
 
     # суточный счётчик запросов с IP
     def incr_ip(day, ip)

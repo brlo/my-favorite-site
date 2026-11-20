@@ -53,6 +53,7 @@ class VisitsControllerTest < ActionDispatch::IntegrationTest
   def clean_stats
     keys = %w[vis o-vis s-vis b-vis uip bots zips langs top].map { |name| "#{name}#{@day}" }
     keys << "vis:42" << "vis:42=#{TEST_IP}" << "ipvis#{@day}:#{TEST_IP}"
+    keys << ::PageVisits::READING_KEY
     ::RedisConnectionPool.del(keys)
   end
 end

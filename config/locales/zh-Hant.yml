@@ -587,3 +587,7 @@ zh-Hant:
     meta_description: 'Bibleox 文章標籤目錄'
     tag_page_title: '標籤：%{tag}'
     tag_meta_description: '標籤為「%{tag}」的文章'
+
+  news:
+    reactions_title: '讀者反應'
+    recently_updated: '最近更新'

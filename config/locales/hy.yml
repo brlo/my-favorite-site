@@ -341,3 +341,7 @@ hy:
     meta_description: 'Bibleox հոդվածների պիտակների ցանկ'
     tag_page_title: 'Պիտակ՝ %{tag}'
     tag_meta_description: '«%{tag}» պիտակով հոդվածներ'
+
+  news:
+    reactions_title: 'Ընթերցողների արձագանքները'
+    recently_updated: 'Վերջերս թարմացված'

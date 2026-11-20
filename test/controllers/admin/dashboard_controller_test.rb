@@ -2,12 +2,16 @@ require 'test_helper'
 
 class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
   setup do
+    clean_reading
     @editor = create_user(privs: { 'pages_read' => true })
     sign_in(@editor)
     @yday = Date.yesterday.to_s
   end
 
-  teardown { clean_stats }
+  teardown do
+    clean_stats
+    clean_reading
+  end
 
   test 'сводка рендерится с новыми блоками вчерашней статистики' do
     page = create_page(title: 'Иконы и почитание')
@@ -38,6 +42,40 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_no_match(/Популярные статьи/, response.body)
   end
 
+  test 'сводка показывает читаемые сейчас статьи на всех языках' do
+    ru = create_page(title: 'Русская читаемая', lang: 'ru', is_published: true)
+    en = create_page(title: 'English read now', lang: 'en', is_published: true)
+    draft = create_page(title: 'Скрытая', is_published: false)
+    list = create_page(title: 'Список', page_type: 4, is_published: true)
+
+    PageVisits.touch_reading(ru.id, ip: '10.0.8.1')
+    PageVisits.touch_reading(en.id, ip: '10.0.8.2')
+    PageVisits.touch_reading(en.id, ip: '10.0.8.3')
+    PageVisits.touch_reading(draft.id, ip: '10.0.8.4')
+    PageVisits.touch_reading(list.id, ip: '10.0.8.5')
+
+    get '/admin'
+    assert_response :success
+
+    assert_select '#reading-now' do
+      assert_select 'td', text: 'Русская читаемая'
+      assert_select 'td', text: 'English read now'
+      assert_select 'td', text: '2'
+      assert_select 'td', text: 'Скрытая', count: 0
+      assert_select 'td', text: 'Список', count: 0
+    end
+  end
+
+  test 'без pages_read блока «Читают сейчас» нет' do
+    delete logout_path(locale: 'ru')
+    other = create_user(privs: { 'dict_read' => true })
+    sign_in(other)
+
+    get '/admin'
+    assert_response :success
+    assert_select '#reading-now', count: 0
+  end
+
   private
 
   def seed_stats(page_id)
@@ -54,5 +92,9 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
 
   def clean_stats
     ::RedisConnectionPool.del(["bots#{@yday}", "langs#{@yday}", "zips#{@yday}", "top#{@yday}"])
+  end
+
+  def clean_reading
+    ::RedisConnectionPool.del(::PageVisits::READING_KEY)
   end
 end

@@ -1,7 +1,7 @@
 module Admin
   class PagesController < BaseController
     # поля, которые может менять любой, кто может редактировать статью
-    BASIC_FIELDS = %i[title title_sub body references is_published].freeze
+    BASIC_FIELDS = %i[title title_sub body references is_published is_news].freeze
     # служебные поля, видны и доступны только с привилегией super
     SUPER_FIELDS = %i[
       page_type seo_kind edit_mode path parent_id lang group_lang_id meta_desc audio
@@ -18,7 +18,7 @@ module Admin
 
     def index
       @term = params[:term].to_s.strip
-      @pages = ::Page.select(:id, :title, :path, :is_published, :is_deleted, :lang, :parent_id, :user_id, :updated_at)
+      @pages = ::Page.select(:id, :title, :path, :is_published, :is_deleted, :is_news, :lang, :parent_id, :user_id, :updated_at)
         .order(updated_at: :desc)
         .page(params[:page]).per(30)
 
@@ -83,6 +83,8 @@ module Admin
         @page.propagate_seo_kind if @page.saved_change_to_seo_kind?
         # теги тоже свойство содержания: набор применяется ко всем переводам статьи
         @page.sync_tag_list!(tag_names_param) if params[:page].key?(:tag_names)
+        # флаг ленты — тоже свойство содержания, а не отдельного перевода
+        @page.propagate_is_news if @page.saved_change_to_is_news?
         redirect_to edit_admin_page_path(@page), notice: 'Статья сохранена'
       else
         flash.now[:alert] = 'Не удалось сохранить статью'

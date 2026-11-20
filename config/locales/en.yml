@@ -297,6 +297,7 @@ en:
     help_site: "Support the site"
     bible: Scripture
     links: Tradition
+    news: News
     articles: Articles
     search: Search
     settings: Settings
@@ -609,3 +610,31 @@ en:
     meta_description: 'Catalog of Bibleox article tags'
     tag_page_title: 'Tag: %{tag}'
     tag_meta_description: 'Articles tagged "%{tag}"'
+
+  news:
+    reactions_title: 'Reader reactions'
+    recently_updated: 'Recently updated'
+    title: 'News feed'
+    subtitle: 'New articles and notes selected by the editors for the feed'
+    meta_description: 'News and recent articles from Bibleox'
+    editorial: 'Editorial team'
+    read_more: 'Read more'
+    share: 'Share'
+    discuss: 'Discuss in chat'
+    reactions:
+      like: 'Like'
+      useful: 'Useful'
+      thanks: 'Thank you'
+      interesting: 'Interesting'
+      hundred: '100%'
+    reaction_thanks: 'Thanks for your feedback'
+    reaction_removed: 'Reaction removed'
+    reading_now: 'Reading now'
+    reading_now_empty: 'Nobody is reading articles right now. Be the first.'
+    reading_now_total: 'Reading now on the site: %{count}'
+    readers_now: 'reading now: %{count}'
+    readers_count: 'Readers: %{count}'
+    empty: 'No articles in the feed yet'
+    empty_hint: 'An article appears here when the "News feed" flag is checked in its settings.'
+    about_title: 'About the feed'
+    about_text: 'New articles and notes are collected here. We have no comments — discussion happens in the common chat.'

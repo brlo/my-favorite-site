@@ -345,3 +345,7 @@ fr:
     meta_description: 'Catalogue des étiquettes d''articles de Bibleox'
     tag_page_title: 'Étiquette : %{tag}'
     tag_meta_description: 'Articles avec l''étiquette "%{tag}"'
+
+  news:
+    reactions_title: 'Réactions des lecteurs'
+    recently_updated: 'Mis à jour récemment'

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[8.1].define(version: 2026_11_20_120000) do
+ActiveRecord::Schema[8.1].define(version: 2026_11_20_132000) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_trgm"
@@ -216,6 +216,15 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_20_120000) do
     t.index ["position"], name: "index_page_paragraphs_on_position"
   end
 
+  create_table "page_reactions", force: :cascade do |t|
+    t.bigint "page_id", null: false
+    t.string "kind", default: "like", null: false
+    t.string "ip_digest", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["page_id", "ip_digest"], name: "index_page_reactions_on_page_and_ip", unique: true
+  end
+
   create_table "pages", force: :cascade do |t|
     t.bigint "parent_id"
     t.bigint "user_id"
@@ -258,7 +267,9 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_20_120000) do
     t.string "cover_overlay_text"
     t.string "seo_kind"
     t.text "body_lead"
+    t.boolean "is_news", default: false, null: false
     t.index ["group_lang_id"], name: "index_pages_on_group_lang_id"
+    t.index ["lang", "created_at"], name: "index_pages_on_news_feed", where: "(is_news = true)"
     t.index ["lang", "path"], name: "index_pages_on_lang_and_path"
     t.index ["parent_id"], name: "index_pages_on_parent_id"
     t.index ["path_low"], name: "index_pages_on_path_low", unique: true
@@ -428,6 +439,7 @@ ActiveRecord::Schema[8.1].define(version: 2026_11_20_120000) do
   add_foreign_key "chat_reactions", "chat_members", column: "member_id", on_delete: :cascade
   add_foreign_key "chat_reactions", "chat_messages", column: "message_id", on_delete: :cascade
   add_foreign_key "page_paragraphs", "pages"
+  add_foreign_key "page_reactions", "pages"
   add_foreign_key "pages", "pages", column: "parent_id"
   add_foreign_key "pages", "users"
   add_foreign_key "segments", "segments", column: "source_segment_id"

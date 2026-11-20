@@ -22,6 +22,12 @@
       <%= f.check_box :is_published %>
       <%= f.label :is_published, 'Доступна для чтения' %>
     </div>
+    <% if page.is_page_simple? %>
+      <div class="field inline">
+        <%= f.check_box :is_news %>
+        <%= f.label :is_news, 'В новостной ленте' %>
+      </div>
+    <% end %>
     <% if page.persisted? %>
       <span class="hint push-right">
         Изменена <%= page.updated_at_word.downcase %><%= " · #{page.user.name}" if page.user %> ·

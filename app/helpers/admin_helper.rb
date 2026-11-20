@@ -97,6 +97,7 @@ module AdminHelper
     safe_join([
       (tag.i('удалена', class: 'badge red') if page.is_deleted),
       (tag.i('скрыта', class: 'badge') unless page.is_published),
+      (tag.i('лента', class: 'badge green') if page.is_news),
     ].compact, ' ')
   end
 

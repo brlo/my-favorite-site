@@ -597,3 +597,7 @@ ja:
     meta_description: 'Bibleox 記事タグ一覧'
     tag_page_title: 'タグ：%{tag}'
     tag_meta_description: 'タグ「%{tag}」の記事'
+
+  news:
+    reactions_title: '読者の反応'
+    recently_updated: '最近更新された記事'

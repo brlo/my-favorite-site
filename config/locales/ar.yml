@@ -609,3 +609,7 @@ ar:
     meta_description: 'دليل وسوم مقالات Bibleox'
     tag_page_title: 'الوسم: %{tag}'
     tag_meta_description: 'مقالات موسومة بـ "%{tag}"'
+
+  news:
+    reactions_title: 'تفاعلات القراء'
+    recently_updated: 'حُدِّثت مؤخرًا'

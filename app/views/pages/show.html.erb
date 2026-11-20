@@ -92,6 +92,14 @@
       </div>
     <% end %>
 
+    <% if @page.is_page_simple? %>
+      <section id="page-reactions" class="page-reactions-block" aria-labelledby="page-reactions-title">
+        <h2 id="page-reactions-title" class="page-reactions-title"><%= ::I18n.t('news.reactions_title') %></h2>
+        <%= render 'pages/reactions', page: @page,
+              counts: @page_reaction_counts, active: @my_page_reaction %>
+      </section>
+    <% end %>
+
     <% if @page.references.present? %>
       <section id='page-references' class="looks-like-page" lang="<%= @page.lang %>" dir="<%= content_direction %>">
         <h2 id="page-references-title"><%= ::I18n.t('page.references') %></h2>
@@ -112,6 +120,9 @@
           <path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
         <%= page_visit(@page) %>
+        <% if @page_readers_count.to_i.positive? %>
+          <span class="page-readers-now">· <%= t('news.readers_now', count: @page_readers_count) %></span>
+        <% end %>
       </div>
     </div>
 

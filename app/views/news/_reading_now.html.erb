@@ -1,0 +1,20 @@
+<h2 class="reading-now__title">
+  <span class="reading-now__dot" aria-hidden="true"></span>
+  <%= t('news.reading_now') %>
+</h2>
+
+<% if @reading_now.any? %>
+  <p class="reading-now__total">
+    <%= t('news.reading_now_total', count: @reading_now_total) %>
+  </p>
+  <ul class="reading-now__list">
+    <% @reading_now.each do |page, count| %>
+      <li>
+        <a href="<%= news_page_link(page) %>"><%= page.title %></a>
+        <span class="reading-now__count" title="<%= t('news.readers_count', count: count) %>"><%= count %></span>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p class="reading-now__empty"><%= t('news.reading_now_empty') %></p>
+<% end %>

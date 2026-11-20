@@ -345,3 +345,7 @@ vi:
     meta_description: 'Danh mục thẻ bài viết của Bibleox'
     tag_page_title: 'Thẻ: %{tag}'
     tag_meta_description: 'Bài viết với thẻ "%{tag}"'
+
+  news:
+    reactions_title: 'Phản ứng của độc giả'
+    recently_updated: 'Mới cập nhật'

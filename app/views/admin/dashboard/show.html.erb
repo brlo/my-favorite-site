@@ -2,6 +2,34 @@
 
 <h1>Сводка</h1>
 
+<% if @reading_now %>
+  <section id="reading-now">
+    <h2>Читают сейчас</h2>
+    <p class="muted">
+      Статьи на всех языках, которые читают прямо сейчас (по JS-маячку).
+      Всего читателей на сайте: <%= @reading_now_total %>.
+      Статья остаётся в списке до <%= ::PageVisits::READING_WINDOW / 60 %> минут после последнего сигнала.
+    </p>
+
+    <% if @reading_now.any? %>
+      <div class="table-wrap">
+        <table class="admin-table">
+          <tr><th>Статья</th><th>Язык</th><th>Читателей</th></tr>
+          <% @reading_now.each do |page, count| %>
+            <tr>
+              <td><%= link_to page.title, edit_admin_page_path(page, locale: nil) %></td>
+              <td class="muted"><%= page_lang_string_full(page.lang) %></td>
+              <td><%= count %></td>
+            </tr>
+          <% end %>
+        </table>
+      </div>
+    <% else %>
+      <p class="muted">Сейчас никто не читает статьи.</p>
+    <% end %>
+  </section>
+<% end %>
+
 <h2>Посещения за неделю</h2>
 <p class="muted">Просмотры за сутки по JS-маячку: засчитываются только клиенты, исполнившие JavaScript на странице, поэтому скрейперы голого HTML не учитываются. «Подозрительные» — IP, сделавшие за день больше <%= ::PageVisits::SUSPICIOUS_DAY_LIMIT %> запросов.</p>
 <div class="stats">

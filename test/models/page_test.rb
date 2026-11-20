@@ -439,4 +439,31 @@ class PageTest < ActiveSupport::TestCase
     assert_nil en.reload.seo_kind
   end
 
+  # --- is_news: флаг новостной ленты ---
+
+  test "news_feed gives only published, non-deleted news" do
+    news = create_page(is_published: true, is_news: true)
+    create_page(is_published: true, is_news: false)
+    create_page(is_published: false, is_news: true)
+    create_page(is_published: true, is_news: true, is_deleted: true)
+
+    assert_equal [news.id], Page.news_feed.pluck(:id)
+  end
+
+  test "propagate_is_news copies the flag to all translations" do
+    ru = create_page(lang: 'ru', is_news: true)
+    en = create_page(lang: 'en', group_lang_id: ru.group_lang_id)
+    outsider = create_page(lang: 'en', is_news: true)
+
+    ru.propagate_is_news
+    assert en.reload.is_news
+    assert outsider.reload.is_news
+
+    ru.update!(is_news: false)
+    ru.propagate_is_news
+    assert_not en.reload.is_news
+    # чужая статья не входит в группу переводов
+    assert outsider.reload.is_news
+  end
+
 end

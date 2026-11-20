@@ -345,3 +345,7 @@ sw:
     meta_description: 'Orodha ya lebo za makala za Bibleox'
     tag_page_title: 'Lebo: %{tag}'
     tag_meta_description: 'Makala zenye lebo "%{tag}"'
+
+  news:
+    reactions_title: 'Miitikio ya wasomaji'
+    recently_updated: 'Zilizosasishwa hivi karibuni'

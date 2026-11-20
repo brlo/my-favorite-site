@@ -566,4 +566,29 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select '#page-tags', count: 0
   end
 
+  test "reaction choices stand before references under the readers' reactions heading" do
+    create_published(path: 'reaction_before_refs', body: LONG_BODY, references: '<p>Примечание к статье</p>')
+
+    get '/ru/ru/w/reaction_before_refs'
+    assert_response :success
+    assert_select '#page-reactions.page-reactions-block .page-reactions-title', text: 'Реакции читателей'
+    assert_select '#page-reactions form.page-reaction', count: 1
+    assert_operator response.body.index('id="page-reactions"'), :<, response.body.index("id='page-references'")
+  end
+
+  test "article page shows reaction choices and live readers" do
+    ::RedisConnectionPool.del(::PageVisits::READING_KEY)
+    page = create_published(path: 'reaction_page', body: LONG_BODY)
+    PageReaction.create!(page: page, kind: 'like', ip_digest: PageReaction.digest_ip('127.0.0.1'))
+    PageVisits.touch_reading(page.id, ip: '127.0.0.1')
+
+    get '/ru/ru/w/reaction_page'
+    assert_response :success
+    assert_select '#page-reactions .page-reaction__choice[data-kind="like"][aria-pressed="true"]'
+    assert_select '#page-reactions .page-reaction__choice[data-kind="like"] .page-reaction__count', text: '1'
+    assert_select '#visits .page-readers-now', text: /сейчас читают: 1/
+  ensure
+    ::RedisConnectionPool.del(::PageVisits::READING_KEY)
+  end
+
 end

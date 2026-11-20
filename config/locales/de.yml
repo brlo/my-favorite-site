@@ -597,3 +597,7 @@ de:
     meta_description: 'Verzeichnis der Artikel-Tags auf Bibleox'
     tag_page_title: 'Tag: %{tag}'
     tag_meta_description: 'Artikel mit dem Tag "%{tag}"'
+
+  news:
+    reactions_title: 'Reaktionen der Leser'
+    recently_updated: 'Kürzlich aktualisiert'

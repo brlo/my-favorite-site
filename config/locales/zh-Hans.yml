@@ -587,3 +587,7 @@ zh-Hans:
     meta_description: 'Bibleox 文章标签目录'
     tag_page_title: '标签：%{tag}'
     tag_meta_description: '标签为「%{tag}」的文章'
+
+  news:
+    reactions_title: '读者反应'
+    recently_updated: '最近更新'

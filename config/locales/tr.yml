@@ -345,3 +345,7 @@ tr:
     meta_description: 'Bibleox makale etiketleri dizini'
     tag_page_title: 'Etiket: %{tag}'
     tag_meta_description: '"%{tag}" etiketli makaleler'
+
+  news:
+    reactions_title: 'Okuyucu tepkileri'
+    recently_updated: 'Son güncellenenler'

@@ -345,3 +345,7 @@ sr:
     meta_description: 'Каталог ознака чланака Bibleox'
     tag_page_title: 'Ознака: %{tag}'
     tag_meta_description: 'Чланци са ознаком "%{tag}"'
+
+  news:
+    reactions_title: 'Реакције читалаца'
+    recently_updated: 'Недавно ажурирано'
