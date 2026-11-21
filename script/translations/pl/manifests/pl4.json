@@ -1,0 +1,112 @@
+{
+ "volume": 4,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL4.html",
+ "out": "tmp/pl/4",
+ "works": [
+  {
+   "start": "EPISTOLAE",
+   "end": "THASCII CAECILII CYPRIANI EPISCOPI CARTHAGINENSIS ET MARTYRIS OPERUM PARS II",
+   "path": "CpCr_Epistolae",
+   "title": "Epistolae",
+   "split": "h2"
+  },
+  {
+   "start": "LIBER DE HABITU VIRGINUM",
+   "end": "LIBER DE LAPSIS",
+   "path": "CpCr_De_Habitu_Virginum",
+   "title": "De Habitu Virginum",
+   "split": "none"
+  },
+  {
+   "start": "LIBER DE LAPSIS",
+   "end": "LIBER DE UNITATE ECCLESIAE",
+   "path": "CpCr_De_Lapsis",
+   "title": "De Lapsis",
+   "split": "none"
+  },
+  {
+   "start": "LIBER DE UNITATE ECCLESIAE",
+   "end": "LIBER DE ORATIONE DOMINICA",
+   "path": "CpCr_De_Unitate_Ecclesiae",
+   "title": "De Unitate Ecclesiae",
+   "split": "none"
+  },
+  {
+   "start": "LIBER DE ORATIONE DOMINICA",
+   "end": "LIBER AD DEMETRIANUM",
+   "path": "CpCr_De_Oratione_Dominica",
+   "title": "De Oratione Dominica",
+   "split": "none"
+  },
+  {
+   "start": "LIBER AD DEMETRIANUM",
+   "end": "LIBER DE IDOLORUM VANITATE",
+   "path": "CpCr_Ad_Demetrianum",
+   "title": "Ad Demetrianum",
+   "split": "none"
+  },
+  {
+   "start": "LIBER DE IDOLORUM VANITATE",
+   "end": "LIBER DE MORTALITATE",
+   "path": "CpCr_De_Idolorum_Vanitate",
+   "title": "De Idolorum Vanitate",
+   "split": "none"
+  },
+  {
+   "start": "LIBER DE MORTALITATE",
+   "end": "LIBER DE OPERE ET ELEEMOSYNIS",
+   "path": "CpCr_De_Mortalitate",
+   "title": "De Mortalitate",
+   "split": "none"
+  },
+  {
+   "start": "LIBER DE OPERE ET ELEEMOSYNIS",
+   "end": "LIBER DE BONO PATIENTIAE",
+   "path": "CpCr_De_Opere_et_Eleemosynis",
+   "title": "De Opere et Eleemosynis",
+   "split": "none"
+  },
+  {
+   "start": "LIBER DE BONO PATIENTIAE",
+   "end": "LIBER DE ZELO ET LIVORE",
+   "path": "CpCr_De_Bono_Patientiae",
+   "title": "De Bono Patientiae",
+   "split": "none"
+  },
+  {
+   "start": "LIBER DE ZELO ET LIVORE",
+   "end": "EPISTOLA AD FORTUNATUM",
+   "path": "CpCr_De_Zelo_et_Livore",
+   "title": "De Zelo et Livore",
+   "split": "none"
+  },
+  {
+   "start": "EPISTOLA AD FORTUNATUM",
+   "end": "TESTIMONIORUM LIBRI TRES ADVERSUS JUDAEOS",
+   "path": "CpCr_Ad_Fortunatum",
+   "title": "Epistola ad Fortunatum de Exhortatione Martyrii",
+   "split": "h2"
+  },
+  {
+   "start": "TESTIMONIORUM LIBRI TRES ADVERSUS JUDAEOS",
+   "end": "LIBER DE SPECTACULIS",
+   "path": "CpCr_Testimonia",
+   "title": "Testimoniorum Libri Tres adversus Iudaeos",
+   "split": "h2:books"
+  },
+  {
+   "start": "LIBER DE SPECTACULIS",
+   "end": "LIBER DE LAUDE MARTYRII",
+   "path": "CpCr_De_Spectaculis",
+   "title": "De Spectaculis",
+   "split": "none"
+  },
+  {
+   "start": "LIBER DE LAUDE MARTYRII",
+   "end": "AD OPERA D. CYPRIANI GENUINA APPENDICES",
+   "path": "CpCr_De_Laude_Martyrii",
+   "title": "De Laude Martyrii",
+   "split": "none"
+  }
+ ]
+}

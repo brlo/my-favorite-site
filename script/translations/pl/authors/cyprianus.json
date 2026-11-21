@@ -1,0 +1,212 @@
+{
+ "lang": "la",
+ "list": "church_writers_la",
+ "volume": 4,
+ "source_url": "https://azbyka.ru/otechnik/Patrologija/PL4.html",
+ "author": {
+  "path": "CpCr_Cyprianus_Carthaginensis",
+  "title": "Cyprianus Carthaginensis, saeculo III",
+  "title_sub": "hieromartyr (~200-258), episcopus Carthaginensis, scriptor ecclesiasticus Latinus",
+  "ru": "Киприан_Карфагенский_III_век",
+  "menu_folder": "Saeculum III",
+  "menu_replace": "Cyprianus Carthaginensis, hieromartyr (~200-258)",
+  "menu_title": "Cyprianus Carthaginensis, hieromartyr (~200-258)",
+  "body_file": "tmp/pl/4/author_body.html",
+  "references": "<p><strong>Fons:</strong> biographia e pagina Russica «Киприан Карфагенский» (<a href=\"https://bibleox.com/ru/ru/w/Киприан_Карфагенский_III_век\">bibleox.com</a>) translata.</p>"
+ },
+ "folders": [
+  {
+   "title": "Epistolae",
+   "priority": 1
+  },
+  {
+   "title": "Tractatus",
+   "priority": 2
+  }
+ ],
+ "works": [
+  {
+   "fragment": "CpCr_Epistolae",
+   "ru": "tNaHSPT6_Письма_Киприана_Карфагенского",
+   "folder": "Epistolae",
+   "parts": [
+    {
+     "path": "CpCr_Epistolae_1",
+     "title": "Epistolae I–XX",
+     "first": "EPISTOLA PRIMA",
+     "last": "EPISTOLA XXI",
+     "priority": 1
+    },
+    {
+     "path": "CpCr_Epistolae_2",
+     "title": "Epistolae XXI–XLII",
+     "first": "EPISTOLA XXI",
+     "last": "EPISTOLA XLIII",
+     "priority": 2
+    },
+    {
+     "path": "CpCr_Epistolae_3",
+     "title": "Epistolae XLIII–LV",
+     "first": "EPISTOLA XLIII",
+     "last": "EPISTOLA LVI",
+     "priority": 3
+    },
+    {
+     "path": "CpCr_Epistolae_4",
+     "title": "Epistolae LVI–LXV",
+     "first": "EPISTOLA LVI",
+     "last": "EPISTOLA LXVI",
+     "priority": 4
+    },
+    {
+     "path": "CpCr_Epistolae_5",
+     "title": "Epistolae LXVI–LXXV",
+     "first": "EPISTOLA LXVI",
+     "last": "EPISTOLA LXXVI",
+     "priority": 5
+    },
+    {
+     "path": "CpCr_Epistolae_6",
+     "title": "Epistolae LXXVI–LXXXIII",
+     "first": "EPISTOLA LXXVI",
+     "last": null,
+     "priority": 6
+    }
+   ]
+  },
+  {
+   "fragment": "CpCr_Ad_Fortunatum",
+   "ru": "WKFCHz6i_Письмо_к_Фортунату_об_увещании_к_мученичеству__Киприан_Карфагенский",
+   "folder": "Epistolae",
+   "path": "CpCr_Ad_Fortunatum",
+   "title": "Epistola ad Fortunatum de Exhortatione Martyrii",
+   "priority": 7
+  },
+  {
+   "fragment": "CpCr_Ad_Demetrianum",
+   "folder": "Tractatus",
+   "path": "CpCr_Ad_Demetrianum",
+   "title": "Ad Demetrianum",
+   "priority": 1,
+   "ru": "GPb0Tnh8_Книга_к_Деметриану__Киприан_Карфагенский"
+  },
+  {
+   "fragment": "CpCr_De_Idolorum_Vanitate",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Idolorum_Vanitate",
+   "title": "De Idolorum Vanitate",
+   "priority": 2,
+   "ru": "klIgxFRU_Книга_о_суете_идолов__Киприан_Карфагенский"
+  },
+  {
+   "fragment": "CpCr_Testimonia",
+   "folder": "Tractatus",
+   "ru": "5ywJduVD_К_Квирину_3_книги_свидетельств_против_иудеев__Киприан_Карфагенский",
+   "parts": [
+    {
+     "path": "CpCr_Testimonia_1",
+     "title": "Testimoniorum Liber I",
+     "first": null,
+     "last": "LIBER SECUNDUS",
+     "priority": 3
+    },
+    {
+     "path": "CpCr_Testimonia_2",
+     "title": "Testimoniorum Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 4
+    },
+    {
+     "path": "CpCr_Testimonia_3",
+     "title": "Testimoniorum Liber III",
+     "first": "LIBER TERTIUS",
+     "last": null,
+     "priority": 5
+    }
+   ]
+  },
+  {
+   "fragment": "CpCr_De_Unitate_Ecclesiae",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Unitate_Ecclesiae",
+   "title": "De Unitate Ecclesiae",
+   "priority": 6,
+   "ru": "fqde5EZK_О_единстве_Церкви_De_unitate__Киприан_Карфагенский"
+  },
+  {
+   "fragment": "CpCr_De_Habitu_Virginum",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Habitu_Virginum",
+   "title": "De Habitu Virginum",
+   "priority": 7,
+   "ru": "qEs7HBOd_Книга_об_одежде_девствениц__Киприан_Карфагенский"
+  },
+  {
+   "fragment": "CpCr_De_Lapsis",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Lapsis",
+   "title": "De Lapsis",
+   "priority": 8,
+   "ru": "02jQL1xq_Книга_о_падших__Киприан_Карфагенский"
+  },
+  {
+   "fragment": "CpCr_De_Oratione_Dominica",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Oratione_Dominica",
+   "title": "De Oratione Dominica",
+   "priority": 9,
+   "ru": "hag3Fns9_О_молитве_Господней__Киприан_Карфагенский"
+  },
+  {
+   "fragment": "CpCr_De_Mortalitate",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Mortalitate",
+   "title": "De Mortalitate",
+   "priority": 10,
+   "ru": "sTfINaYq_Книга_о_смертности__Киприан_Карфагенский"
+  },
+  {
+   "fragment": "CpCr_De_Opere_et_Eleemosynis",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Opere_et_Eleemosynis",
+   "title": "De Opere et Eleemosynis",
+   "priority": 11,
+   "ru": "sgL9EHzT_Книга_о_благотворении_и_милостынях__Киприан_Карфагенский"
+  },
+  {
+   "fragment": "CpCr_De_Bono_Patientiae",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Bono_Patientiae",
+   "title": "De Bono Patientiae",
+   "priority": 12,
+   "ru": "nMFHuImz_Книга_о_благе_терпения__Киприан_Карфагенский"
+  },
+  {
+   "fragment": "CpCr_De_Zelo_et_Livore",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Zelo_et_Livore",
+   "title": "De Zelo et Livore",
+   "priority": 13,
+   "ru": "Vvl2JTrw_Книга_о_ревности_и_зависти__Киприан_Карфагенский"
+  },
+  {
+   "fragment": "CpCr_De_Spectaculis",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Spectaculis",
+   "title": "De Spectaculis",
+   "priority": 14,
+   "ru": "0oFS1dsU_Книга_о_зрелищах__Киприан_Карфагенский",
+   "dubium": true
+  },
+  {
+   "fragment": "CpCr_De_Laude_Martyrii",
+   "folder": "Tractatus",
+   "path": "CpCr_De_Laude_Martyrii",
+   "title": "De Laude Martyrii",
+   "priority": 15,
+   "ru": "lWfiQjSC_Книга_о_похвале_мученичеству_к_Моисею_Максиму_и_другим_исповедникам__Киприан_Карфагенский",
+   "dubium": true
+  }
+ ]
+}

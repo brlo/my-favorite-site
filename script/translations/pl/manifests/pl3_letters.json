@@ -1,0 +1,121 @@
+{
+ "volume": 3,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL3.html",
+ "out": "tmp/pl/3/supplements",
+ "letters": [
+  {
+   "number": "XLI",
+   "start": "EPISTOLA PRIMA\\. S\\. CYPRIANI CARTHAGINENSIS EPISCOPI AD S\\. CORNELIUM",
+   "end": "EPISTOLA II\\. S\\. CYPRIANI",
+   "source": "PL3, epistola I corporis Corneliani"
+  },
+  {
+   "number": "XLII",
+   "start": "EPISTOLA II\\. S\\. CYPRIANI CARTHAGINENSIS EPISCOPI AD S\\. CORNELIUM",
+   "end": "EPISTOLA III\\. EJUSDEM",
+   "source": "PL3, epistola II"
+  },
+  {
+   "number": "XLIII",
+   "start": "EPISTOLA III\\. EJUSDEM AD EUMDEM",
+   "end": "EPISTOLA IV\\. EJUSDEM",
+   "source": "PL3, epistola III"
+  },
+  {
+   "number": "XLV",
+   "start": "EPISTOLA IV\\. EJUSDEM AD EUMDEM",
+   "end": "EPISTOLA V$",
+   "source": "PL3, epistola IV (de Polycarpo)"
+  },
+  {
+   "number": "XLVI",
+   "start": "EPISTOLA VI\\. SANCTI CORNELII PAPAE AD CYPRIANUM",
+   "end": "EPISTOLA VII\\. S\\. CYPRIANI, CARTHAGINENSIS",
+   "source": "PL3, epistola VI (Cornelius)"
+  },
+  {
+   "number": "XLVII",
+   "start": "EPISTOLA VIII$",
+   "end": "IX EX EPISTOLA AD FABIUM",
+   "source": "PL3, epistola VIII"
+  },
+  {
+   "number": "XLVIII",
+   "start": "EPISTOLA V$",
+   "end": "EPISTOLA VI\\. SANCTI CORNELII",
+   "source": "PL3, epistola V (Cornelius)"
+  },
+  {
+   "number": "XLIX",
+   "start": "EPISTOLA VII\\. S\\. CYPRIANI, CARTHAGINENSIS EPISCOPI, AD CORNELIUM",
+   "end": "EPISTOLA VIII$",
+   "source": "PL3, epistola VII (Novatus)"
+  },
+  {
+   "number": "LII",
+   "start": "EPISTOLA X\\. SEU EPISTOLAE S\\. CYPRIANI AD ANTONIANUM",
+   "end": "EPISTOLA XI$",
+   "source": "PL3, epistola X (duae partes)"
+  },
+  {
+   "number": "LV",
+   "start": "EPISTOLA XII\\. S\\. CYPRIANI CARTHAGINENSIS EPISCOPI AD S\\. CORNELIUM",
+   "end": "EPISTOLA XIII\\. SANCTI CYPRIANI",
+   "source": "PL3, epistola XII (de quinque presbyteris et Fortunato)"
+  },
+  {
+   "number": "LVII",
+   "start": "EPISTOLA XIII\\. SANCTI CYPRIANI AD S\\. CORNELIUM",
+   "end": "APPENDIX PRIMA\\. EPISTOLAE CORNELIO",
+   "source": "PL3, epistola XIII"
+  },
+  {
+   "number": "LVIII",
+   "start": "EPISTOLA UNICA S\\. CYPRIANI CARTHAGINENSIS EPISCOPI AD LUCIUM",
+   "end": "APPENDIX UNICA\\. EPISTOLAE ET DECRETA S\\. LUCIO",
+   "source": "PL3, epistola ad Lucium papam"
+  },
+  {
+   "number": "LIX",
+   "start": "CYPRIANUS ET CAETERI COLLEGAE QUI IN CONCILIO AFFUERUNT",
+   "end": "CARTHAGINENSE CONCILIUM SUB CYPRIANO QUARTUM",
+   "source": "PL3, concilium Carthaginense III"
+  },
+  {
+   "number": "LXVII",
+   "start": "EPISTOLAE QUAE AD S\\. STEPHANUM I PAPAM ATTINENT",
+   "end": "APPENDIX\\. EPISTOLAE DECRETALES S\\. STEPHANO",
+   "source": "PL3, epistola ad Stephanum de Marciano Arelatensi"
+  },
+  {
+   "number": "LXXII",
+   "start": "CYPRIANUS ET CAETERI STEPHANO FRATRI SALUTEM",
+   "end": "ANNO CHRISTI CCLVI, PONTIFICATUS S\\. STEPHANI III\\. CARTHAGINIENSE CONCILIUM SUB CYPRIANO SEPTIMUM",
+   "source": "PL3, epistola synodica ad Stephanum"
+  },
+  {
+   "number": "LXXIII",
+   "start": "ANNO CHRISTI CCLVI\\. EPISTOLA S\\. CYPRIANI AD JUBAIANUM",
+   "end": "EPISTOLA S\\. CYPRIANI AD POMPEIUM",
+   "source": "PL3, epistola ad Jubaianum"
+  },
+  {
+   "number": "LXXIV",
+   "start": "EPISTOLA S\\. CYPRIANI AD POMPEIUM",
+   "end": "EPISTOLA S\\. CYPRIANI AD MAGNUM",
+   "source": "PL3, epistola ad Pompeium"
+  },
+  {
+   "number": "LXXV",
+   "start": "EPISTOLA FIRMILIANI, EPISCOPI CAESAREAE",
+   "end": "DE REBAPTISMATE",
+   "source": "PL3, epistola Firmiliani"
+  },
+  {
+   "number": "LXXVI",
+   "start": "EPISTOLA S\\. CYPRIANI AD MAGNUM",
+   "end": "CONCILIUM ICONIENSE",
+   "source": "PL3, epistola ad Magnum"
+  }
+ ]
+}
