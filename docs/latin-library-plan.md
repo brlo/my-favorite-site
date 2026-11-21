@@ -11,6 +11,17 @@
   включая 3 книги Testimonia), ~900 КБ латинского текста.
   Письма и «Testimonia» раздроблены (4 и 3 страницы), потому что длинные страницы тяжело
   читать с телефона; вторая и следующие части получили отдельные группы языков.
+- **Киприан на проде** (деплой + импорт 21.11): 23 страницы, все 200.
+- **Амвросий, бат 2 (в dev)**: PL 14 — 12 страниц: автор (`Ambr_Ambrosius_Mediolanensis`) и
+  11 трудов в папках «Exegetica» / «Moralia»: Hexaemeron (6 книг отдельными страницами),
+  De Isaac et Anima, De Bono Mortis, De Jacob et Vita Beata, De Joseph Patriarcha, De Fuga Saeculi.
+  Из 19 трудов PL 14 с русскими совпали 6 — остальные (De Paradiso, De Cain et Abel, De Noe,
+  De Abraham, De Benedictionibus, De Elia, De Nabuthe, De Tobia, Apologiae David, Enarrationes
+  in XII Psalmos) в русской библиотеке отсутствуют.
+- **Иларий отложен**: из 5 русских трудов 3 — фрагменты («Единение верующих с Богом»,
+  «О Троице (фрагменты)» с разбивкой 1,1–13 / 12,52–57 / 1,8, «Изъяснение тайн. Кн. 1»),
+  для них нужна пораздельная привязка к De Trinitate и Tractatus Mysteriorum; «Против Авксентия»
+  и «Беседа на псалом 130» находятся в PL 9–10 без проблем. Вернуться к нему после бата Амвросия.
 - Чего в PL 4 нет: тексты 14 писем (XLI, XLII, XLIII, XLV, XLVIII, XLIX, LII, LVII, LIX,
   LXVIII, LXX, LXXII, LXXIII, LXXVI). Migne сам отсылает их к тому III — в тексте стоят
   заглушки, номера перечислены в примечаниях. Достать их из PL 3 — следующая задача.

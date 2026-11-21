@@ -31,7 +31,7 @@ from html import unescape
 
 TAG_RE = re.compile(r'<[^>]+>')
 MARKER_RE = re.compile(r'\[PL(\d+)\.(\d+[A-Z]?)\]')
-LEADING_NUM_RE = re.compile(r'^\s*\d+\s+(?=[A-Z\[])')
+LEADING_NUM_RE = re.compile(r'^\s*\d{1,4}\.?\s+(?=[A-Z\[])')
 SIGLA_RE = re.compile(r'\((?:[CGS](?:\s*,\s*[CGS])*)\)\*?')
 EDIT_REF_RE = re.compile(
     r'\s*\((?:Erasm|Pamel|Rig|Baluz|Paris|Pariss|Oxon|Lips|Coustant|Galland|Routh|Bod|Lam|'
@@ -129,6 +129,8 @@ EDITORIAL_HEAD = re.compile(
     r'ADMONITIO\b|PROLEGOMENA\b|ELENCHUS\b|ORDO\b|INDEX\b|APPENDIX\b|SIGLIORUM\b|'
     r'OPUSCULA VULGO\b|TRACTATUS\.?$|PARS\b|DIVI THASCII\b|THASCII\b)', re.I)
 
+EDITORIAL_TAIL = re.compile(r'\b(ADMONITIO|PRAEFATIO|MONITUM|NOTAE?)\b', re.I)
+
 WORK_TITLE = re.compile(
     r'^(LIBER (DE|AD) |EPISTOLA AD FORTUNATUM|TESTIMONIORUM LIBRI|EPISTOLAE$)', re.I)
 
@@ -145,10 +147,13 @@ def extract_work(blocks, start_idx, end_idx, path, title, split_mode):
     skip_until_heading = False   # CAPITULA/MONITUM/NOTA: до следующего заголовка
     arg_budget = 0                # ARGUMENTUM: срезаем не больше одного абзаца-резюме
 
-    for tag, txt, raw in blocks[start_idx:end_idx]:
+    for pos, (tag, txt, raw) in enumerate(blocks[start_idx:end_idx]):
         if tag != 'p':
             h = clean_heading(txt)
             if not h:
+                continue
+            if pos == 0 and not body_started:
+                body_started = True          # заголовок самого труда: страница уже названа
                 continue
             if VID_TOM_RE.search(h) or NOTE_RE.match(h):
                 skipped.append(h)
@@ -160,7 +165,7 @@ def extract_work(blocks, start_idx, end_idx, path, title, split_mode):
                 if split_mode.startswith('h2') and BOOK_RE.match(h):
                     out.append(('h', h))
                 continue
-            if EDITORIAL_HEAD.match(h):
+            if EDITORIAL_HEAD.match(h) or EDITORIAL_TAIL.search(h):
                 skipped.append(h)
                 arg_budget = 1 if re.match(r'^ARGUMENTUM', h, re.I) else 0
                 skip_until_heading = arg_budget == 0
@@ -234,6 +239,8 @@ def extract_work(blocks, start_idx, end_idx, path, title, split_mode):
         html_parts.append(f'<{level}>{text}</{level}>')
     if pending_heading is not None:
         stats['empty_sections'].append(pending_heading)
+    while html_parts and re.match(r'<h[23]>', html_parts[-1]):
+        html_parts.pop()
 
     html = '\n'.join(html_parts)
     stats['chars'] = len(MARKER_RE.sub('', TAG_RE.sub('', html)))

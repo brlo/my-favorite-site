@@ -1,0 +1,118 @@
+{
+ "lang": "la",
+ "list": "church_writers_la",
+ "volume": 14,
+ "source_url": "https://azbyka.ru/otechnik/Patrologija/PL14.html",
+ "author": {
+  "path": "Ambr_Ambrosius_Mediolanensis",
+  "title": "Ambrosius Mediolanensis, saeculo IV",
+  "title_sub": "sanctus (~339-397), episcopus Mediolanensis, doctor Ecclesiae, theologus, hymnographus, praedicator",
+  "ru": "Амвросий_Медиоланский",
+  "menu_folder": "Saeculum IV",
+  "menu_replace": "Ambrosius Mediolanensis, sanctus (~339-397)",
+  "menu_title": "Ambrosius Mediolanensis, sanctus (~339-397)",
+  "body_file": "tmp/pl/14/author_body.html",
+  "references": "<p><strong>Fons:</strong> biographia e pagina Russica «Амвросий Медиоланский» (<a href=\"https://bibleox.com/ru/ru/w/Амвросий_Медиоланский\">bibleox.com</a>) translata.</p>"
+ },
+ "folders": [
+  {
+   "title": "Exegetica",
+   "priority": 1
+  },
+  {
+   "title": "Moralia",
+   "priority": 2
+  }
+ ],
+ "works": [
+  {
+   "fragment": "Ambr_Hexaemeron",
+   "ru": "nCFH_Шестоднев",
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Ambr_Hexaemeron_1",
+     "title": "Hexaemeron, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Ambr_Hexaemeron_2",
+     "title": "Hexaemeron, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 2
+    },
+    {
+     "path": "Ambr_Hexaemeron_3",
+     "title": "Hexaemeron, Liber III",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 3
+    },
+    {
+     "path": "Ambr_Hexaemeron_4",
+     "title": "Hexaemeron, Liber IV",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER QUINTUS",
+     "priority": 4
+    },
+    {
+     "path": "Ambr_Hexaemeron_5",
+     "title": "Hexaemeron, Liber V",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER SEXTUS",
+     "priority": 5
+    },
+    {
+     "path": "Ambr_Hexaemeron_6",
+     "title": "Hexaemeron, Liber VI",
+     "first": "LIBER SEXTUS",
+     "last": null,
+     "priority": 6
+    }
+   ]
+  },
+  {
+   "fragment": "Ambr_De_Isaac_et_Anima",
+   "ru": "S7T8_Об_Исааке_или_душе",
+   "folder": "Exegetica",
+   "path": "Ambr_De_Isaac_et_Anima",
+   "title": "De Isaac et Anima",
+   "priority": 2
+  },
+  {
+   "fragment": "Ambr_De_Bono_Mortis",
+   "ru": "LPW4_О_благе_смерти",
+   "folder": "Exegetica",
+   "path": "Ambr_De_Bono_Mortis",
+   "title": "De Bono Mortis",
+   "priority": 3
+  },
+  {
+   "fragment": "Ambr_De_Jacob_et_Vita_Beata",
+   "ru": "Npal_Об_Иакове_и_блаженной_жизни",
+   "folder": "Exegetica",
+   "path": "Ambr_De_Jacob_et_Vita_Beata",
+   "title": "De Jacob et Vita Beata",
+   "priority": 4
+  },
+  {
+   "fragment": "Ambr_De_Joseph",
+   "ru": "5Nxm_Об_Иосифе",
+   "folder": "Exegetica",
+   "path": "Ambr_De_Joseph",
+   "title": "De Joseph Patriarcha",
+   "priority": 5
+  },
+  {
+   "fragment": "Ambr_De_Fuga_Saeculi",
+   "ru": "L6ly_О_бегстве_от_мира",
+   "folder": "Moralia",
+   "path": "Ambr_De_Fuga_Saeculi",
+   "title": "De Fuga Saeculi",
+   "priority": 1
+  }
+ ]
+}

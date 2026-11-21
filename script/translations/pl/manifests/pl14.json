@@ -1,0 +1,49 @@
+{
+ "volume": 14,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL14.html",
+ "out": "tmp/pl/14",
+ "works": [
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI HEXAEMERON LIBRI SEX",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE PARADISO",
+   "path": "Ambr_Hexaemeron",
+   "title": "Hexaemeron",
+   "split": "h2:books"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE ISAAC ET ANIMA",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE BONO MORTIS",
+   "path": "Ambr_De_Isaac_et_Anima",
+   "title": "De Isaac et Anima",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE BONO MORTIS",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE FUGA SAECULI",
+   "path": "Ambr_De_Bono_Mortis",
+   "title": "De Bono Mortis",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE FUGA SAECULI",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE JACOB",
+   "path": "Ambr_De_Fuga_Saeculi",
+   "title": "De Fuga Saeculi",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE JACOB ET VITA BEATA",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE JOSEPH",
+   "path": "Ambr_De_Jacob_et_Vita_Beata",
+   "title": "De Jacob et Vita Beata",
+   "split": "h2:books"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE JOSEPH PATRIARCHA",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE BENEDICTIONIBUS",
+   "path": "Ambr_De_Joseph",
+   "title": "De Joseph Patriarcha",
+   "split": "none"
+  }
+ ]
+}
