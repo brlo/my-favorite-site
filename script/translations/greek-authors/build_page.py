@@ -28,6 +28,7 @@ META = {
         'blocks': 'blocks_pol.json', 'parts': 'pol_parts', 'out': 'pol_body.html',
         'works': {
             'PlkFl': ('https://bibleox.com/grc/grc/w/%CE%95%CF%80%CE%B9%CF%83%CF%84%CE%BF%CE%BB%CE%AE-%CE%A0%CE%BF%CE%BB%CF%85%CE%BA%CE%AC%CF%81%CF%80%CE%BF%CF%85-%CF%80%CF%81%CE%BF%CF%82-%CE%A6%CE%B9%CE%BB%CE%B9%CF%80%CF%80%CE%B7%CF%83%CE%AF%CE%BF%CF%85%CF%82', 'Πρὸς Φιλιππησίους'),
+            'Iren3': ('https://bibleox.com/grc/grc/w/jzHD_%E1%BC%9C%CE%BB%CE%B5%CE%B3%CF%87%CE%BF%CF%82_%CE%BA%CE%B1%E1%BD%B6_%E1%BC%80%CE%BD%CE%B1%CF%84%CF%81%CE%BF%CF%80%E1%BD%B4_%CF%84%E1%BF%86%CF%82_%CF%88%CE%B5%CF%85%CE%B4%CF%89%CE%BD%CF%8D%CE%BC%CE%BF%CF%85_%CE%B3%CE%BD%CF%8E%CF%83%CE%B5%CF%89%CF%82_%CE%9A%CE%B1%CF%84%E1%BD%B0_%CE%B1%E1%BC%B1%CF%81%CE%AD%CF%83%CE%B5%CF%89%CE%BD__%CE%92%CE%B9%CE%B2%CE%BB%CE%AF%CE%BF%CE%BD_3', 'Κατὰ αἱρέσεων Γ΄'),
             'Mart': ('https://bibleox.com/grc/grc/w/%CE%9C%CE%B1%CF%81%CF%84%CF%8D%CF%81%CE%B9%CE%BF_%CF%84%CE%BF%CF%85_%CE%91%CE%B3%CE%AF%CE%BF%CF%85_%CE%A0%CE%BF%CE%BB%CF%85%CE%BA%CE%AC%CF%81%CF%80%CE%BF%CF%85_%CE%95%CF%80%CE%B9%CF%83%CE%BA%CF%8C%CF%80%CE%BF%CF%85_%CE%A3%CE%BC%CF%8D%CF%81%CE%BD%CE%B7%CF%82', 'Μαρτύριο τοῦ ἁγίου Πολυκάρπου'),
             'Eus3': ('https://bibleox.com/grc/grc/w/%CE%95%CE%9A%CE%9A%CE%9B%CE%97%CE%A3%CE%99%CE%91%CE%A3%CE%A4%CE%99%CE%9A%CE%97%CE%A3_%CE%99%CE%A3%CE%A4%CE%9F%CE%A1%CE%99%CE%91%CE%A3-3', 'Ἐκκλησιαστικὴ Ἱστορία Γ΄'),
         },
@@ -90,6 +91,10 @@ def cut(works, w, ch, frm, to):
     return text[i:j + len(to)], None
 
 
+FIXUPS = [('πολλοὺςἀπὸ', 'πολλοὺς ἀπὸ')]
+SOURCE_SUFFIX = {18: ' · τὸ χωρίον 12,3 σώζεται μόνο στὰ λατινικά'}
+
+
 def escape_text_lt(s):
     return re.sub(r'<(?!/?(?:strong|mark|em|u)>)', '&lt;', s)
 
@@ -121,6 +126,8 @@ def main(page):
     chunks, problems = [], []
     last = None
     for b in blocks:
+        if b['id'] in getattr(parts, 'SKIP', ()):
+            continue
         t = b['type']
         if t in ('h2', 'h3', 'h4', 'table'):
             txt = parts.PARTS.get(b['id'])
@@ -213,6 +220,15 @@ def main(page):
                     flat.append(made[idx])
                     idx += 1
             chunks.append((b['id'], '<blockquote>' + ''.join(flat) + '</blockquote>'))
+            ov = getattr(parts, 'SOURCE_OVERRIDE', {}).get(b['q'])
+            if ov and not b['source']:
+                ww, chh, label = ov
+                if ww == 'JEROME':
+                    href = ('https://azbyka.ru/otechnik/Ieronim_Stridonskij/o_znamenityh/1_9'
+                            '#sel=63:1,63:52')
+                else:
+                    href = cfg['works'][ww][0] + (f'#HH-{chh}' if chh else '')
+                chunks.append((b['id'], f'<p>(<a href="{href}">{label}</a>)</p>'))
             rc, ec = ru_counts(b), {'strong': 0, 'mark': 0, 'em': 0, 'u': 0}
             for p in made:
                 for m in re.finditer(r'<(/?)(strong|mark|em|u)>', p):
@@ -248,8 +264,12 @@ def main(page):
                 continue
             url, title = cfg['works'][w]
             href = url + (f'#HH-{ch}' if ch else '')
-            chunks.append((b['id'], f'<p>(<a href="{href}">{title}</a>)</p>'))
+            label = f'{title}, {ch}' if ch else title
+            suffix = SOURCE_SUFFIX.get(q['q'], '')
+            chunks.append((b['id'], f'<p>(<a href="{href}">{label}</a>{suffix})</p>'))
     body = ''.join(x for _, x in chunks)
+    for a, bfix in FIXUPS:
+        body = body.replace(a, bfix)
     open(os.path.join(HERE, cfg['out']), 'w', encoding='utf-8').write(body)
     print(page, 'блоков:', len(blocks), 'цитат:', len([b for b in blocks if b['type'] == 'quote']))
     print('кириллица:', len(re.findall(r'[А-Яа-яЁё]', body)), 'размер:', len(body))

@@ -120,6 +120,8 @@ def main():
     chunks, problems, report = [], [], []
     last_quote = None
     for b in blocks:
+        if b['id'] in getattr(my_parts, 'SKIP', ()):
+            continue
         t = b['type']
         if t in ('h2', 'h3'):
             txt = parts.get(b['id'])
