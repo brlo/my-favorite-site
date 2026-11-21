@@ -219,7 +219,14 @@ def main(page):
                 for _ in g:
                     flat.append(made[idx])
                     idx += 1
+            fn = getattr(parts, 'FOOTNOTE', {}).get(b['q'])
+            if fn and flat:
+                lastp = flat[-1]
+                flat[-1] = lastp[:-4] + f'[{fn}]</p>'
             chunks.append((b['id'], '<blockquote>' + ''.join(flat) + '</blockquote>'))
+            extra = getattr(parts, 'EXTRA_LINKS', {}).get(b['q'])
+            if extra:
+                chunks.append((b['id'], f'<p>(<a href="{extra[0]}">{extra[1]}</a>)</p>'))
             ov = getattr(parts, 'SOURCE_OVERRIDE', {}).get(b['q'])
             if ov and not b['source']:
                 ww, chh, label = ov
