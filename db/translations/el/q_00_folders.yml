@@ -20,6 +20,7 @@ folders:
   - { path: "Εκκλησία/Λατρεία", priority: 25 }
   - { path: "Εκκλησία/Ασκητική", priority: 12 }
   - { path: "Εκκλησία/Πίστη", priority: 2 }
+  - { path: "Άνθρωπος/Αμαρτία", priority: 0 }
   - { path: "Εκκλησία/Σωτηρία", priority: 0 }
   - { path: "Εκκλησία/Κήρυγμα", priority: 10 }
   - { path: "Παλαιά Διαθήκη/Λατρεία", priority: 0 }
