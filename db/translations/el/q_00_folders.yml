@@ -18,6 +18,7 @@ folders:
   - { path: "Εκκλησία/Προσευχή", priority: 4 }
   - { path: "Εκκλησία/Χαρίσματα", priority: 20 }
   - { path: "Εκκλησία/Σωτηρία", priority: 0 }
+  - { path: "Εκκλησία/Κήρυγμα", priority: 10 }
   - { path: "Παλαιά Διαθήκη/Λατρεία", priority: 0 }
   - { path: "Παλαιά Διαθήκη/Νόμος", priority: 0 }
   - { path: "Άνθρωπος/Αρετή", priority: 0 }
