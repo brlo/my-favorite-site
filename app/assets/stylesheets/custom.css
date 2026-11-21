@@ -59,6 +59,17 @@ hr {
 mark { background-color: #FAF594; }
 .night-mode mark { background-color: #FAF594D4; }
 
+/* В ночном режиме b/strong получают светлый цвет (#ddd) — на жёлтой подсветке
+   mark он почти нечитаем. Подсветка в тёмной теме остаётся жёлтой, поэтому
+   текст внутри mark держим тёмным, в том числе для вложенных b/strong:
+   у самого mark цвет задаёт стиль браузера, и до вложенных элементов он
+   не доходит (поэтому mark + strong без этого правила был бы белым). */
+.night-mode mark,
+.night-mode mark b,
+.night-mode mark strong {
+  color: #111;
+}
+
 
 h1, h2, h3, h4 {
   position: relative;
