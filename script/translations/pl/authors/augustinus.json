@@ -2636,6 +2636,108 @@
    "priority": 22,
    "path": "Aug_De_Praedestinatione_Sanctorum",
    "ru": "s0bL_О_предопределении_святых"
+  },
+  {
+   "fragment": "Aug_De_Dono_Perseverantiae",
+   "volume": 45,
+   "folder": "Contra Pelagianos",
+   "path": "Aug_De_Dono_Perseverantiae",
+   "title": "De Dono Perseverantiae",
+   "priority": 1,
+   "ru": "tgcu_О_даре_пребыванияDe_dono_perseverantiaeвторая_книга_к_Просперу_и_Иларию",
+   "max_kb": 120
+  },
+  {
+   "fragment": "Aug_Contra_Secundam_Juliani_Responsionem",
+   "volume": 45,
+   "folder": "Contra Pelagianos",
+   "parts": [
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_1",
+     "title": "Contra Secundam Juliani Responsionem, Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 3
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_2",
+     "title": "Contra Secundam Juliani Responsionem, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 4
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_3",
+     "title": "Contra Secundam Juliani Responsionem, Liber TERTIUS",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 5
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_4",
+     "title": "Contra Secundam Juliani Responsionem, Liber QUARTUS",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER QUINTUS",
+     "priority": 6
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_5",
+     "title": "Contra Secundam Juliani Responsionem, Liber QUINTUS",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER SEXTUS",
+     "priority": 7
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_6",
+     "title": "Contra Secundam Juliani Responsionem, Liber SEXTUS",
+     "first": "LIBER SEXTUS",
+     "last": "LIBER PRIMUS. In quo Pelagianorum primum",
+     "priority": 8
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_7",
+     "title": "Contra Secundam Juliani Responsionem, Liber PRIMUS",
+     "first": "LIBER PRIMUS. In quo Pelagianorum primum",
+     "last": "LIBER SECUNDUS. Refellitur secundum dogm",
+     "priority": 9
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_8",
+     "title": "Contra Secundam Juliani Responsionem, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS. Refellitur secundum dogm",
+     "last": "LIBER TERTIUS. Adversus tertium dogma Pe",
+     "priority": 10
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_9",
+     "title": "Contra Secundam Juliani Responsionem, Liber TERTIUS",
+     "first": "LIBER TERTIUS. Adversus tertium dogma Pe",
+     "last": "LIBER QUARTUS. Contra quartum dogma Pela",
+     "priority": 11
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_10",
+     "title": "Contra Secundam Juliani Responsionem, Liber QUARTUS",
+     "first": "LIBER QUARTUS. Contra quartum dogma Pela",
+     "last": "LIBER QUINTUS. Adversus quintum dogma Pe",
+     "priority": 12
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_11",
+     "title": "Contra Secundam Juliani Responsionem, Liber QUINTUS",
+     "first": "LIBER QUINTUS. Adversus quintum dogma Pe",
+     "last": "LIBER SEXTUS. In quo de praedestinatione",
+     "priority": 13
+    },
+    {
+     "path": "Aug_Contra_Secundam_Juliani_Responsionem_12",
+     "title": "Contra Secundam Juliani Responsionem, Liber SEXTUS",
+     "first": "LIBER SEXTUS. In quo de praedestinatione",
+     "last": null,
+     "priority": 14
+    }
+   ],
+   "max_kb": 120
   }
  ]
 }

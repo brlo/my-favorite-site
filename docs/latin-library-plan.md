@@ -56,6 +56,9 @@
   Фиваида → Coll. XI, Нижний Египет → Coll. XVIII. Из тома PL 50 не берём чужие труды
   (Vigilius, Fastidius, Coelestinus, Eucherius, Hilarius Arelatensis).
   Варианты чтения в квадратных скобках вида «[Lips. in marg. …]» вырезаются (`strip_apparatus`).
+- **Августин, PL 45 — готово (32 страницы)**: De Dono Perseverantiae (2) и Contra Secundam
+  Juliani Responsionem Opus Imperfectum (6 книг, Liber VI поделен на 8 частей).
+  Русская пара: «О даре пребывания».
 - **Августин, PL 43 — готово (31 страница)**: антидонатистские труды — Psalmus contra partem
   Donati (стихи), Contra Epistolam Parmeniani (2), De Baptismo contra Donatistas (4; первая
   часть — существующая страница `Mw8R_…`), Contra Litteras Petiliani (3), Contra Cresconium (4),

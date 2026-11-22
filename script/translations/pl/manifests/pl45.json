@@ -1,0 +1,23 @@
+{
+ "volume": 45,
+ "source": "tmp/pl/45/prepped_45.html",
+ "out": "tmp/pl/45",
+ "works": [
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE DONO PERSEVERANTIAE",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA SECUNDAM JULIANI RESPONSIONEM",
+   "path": "Aug_De_Dono_Perseverantiae",
+   "title": "De Dono Perseverantiae",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA SECUNDAM JULIANI RESPONSIONEM",
+   "end": null,
+   "path": "Aug_Contra_Secundam_Juliani_Responsionem",
+   "title": "Contra Secundam Juliani Responsionem Opus Imperfectum",
+   "split": "h2:books",
+   "drop_em": true
+  }
+ ]
+}
