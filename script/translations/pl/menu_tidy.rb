@@ -49,29 +49,37 @@ module MenuTidy
     roman_to_i(s).positive?
   end
 
+  UPCASE = {
+    'LIBER' => 'Liber', 'LIBRI' => 'Libri', 'TRACTATUS' => 'Tractatus', 'SERMO' => 'Sermo',
+    'SERMONES' => 'Sermones', 'EPISTOLA' => 'Epistola', 'EPISTOLAE' => 'Epistolae',
+    'PSALMUS' => 'Psalmus', 'CAPUT' => 'Caput'
+  }.freeze
+
   # «LIBER SEXTUS DECIMUS» → «Liber 16», «Enarrationes II–VII» → «Enarrationes 2–7»
   def convert(title)
     t = title.to_s.strip
-    WORDS.sort_by { |k, _| -k.length }.each do |word, num|
-      t = t.gsub(/\b#{Regexp.escape(word)}\b/i, num.to_s)
-    end
-    t = t.gsub(/\b(#{KEYWORDS.join('|')})\s+([IVXLC]+)(\s*[–-]\s*([IVXLC]+))?/) do
+    UPCASE.each { |up, normal| t = t.gsub(/\b#{up}\b/, normal) }
+    WORDS.sort_by { |k, _| -k.length }.each { |word, num| t = t.gsub(/\b#{Regexp.escape(word)}\b/i, num.to_s) }
+
+    t = t.gsub(/\b(#{KEYWORDS.join('|')})\s+([IVXLC]+)(\s*[\u2013-]\s*([IVXLC]+))?/) do
       head, from, dash, to = Regexp.last_match(1), Regexp.last_match(2), Regexp.last_match(3), Regexp.last_match(4)
       out = "#{head} #{roman_to_i(from)}"
       out += "#{dash.to_s[/[\u2013-]/]}#{roman_to_i(to)}" if to
       out
     end
-    t = t.gsub(/([IVXLC]+)\s*([–-])\s*([IVXLC]+)/) do
+    t = t.gsub(/(?<![A-Za-z])([IVXLC]+)\s*([\u2013-])\s*([IVXLC]+)(?![A-Za-z])/) do
       a, dash, b = Regexp.last_match(1), Regexp.last_match(2), Regexp.last_match(3)
       valid_roman?(a) && valid_roman?(b) ? "#{roman_to_i(a)}#{dash}#{roman_to_i(b)}" : "#{a}#{dash}#{b}"
     end
-    t = t.gsub(/\(([IVXLC]+)\)/) { valid_roman?(Regexp.last_match(1)) ? "(#{roman_to_i(Regexp.last_match(1))})" : Regexp.last_match(0) }
-    t = t.gsub(/\A([IVXLC]+)(?=[\s.,;:)]|\z)/) { valid_roman?(Regexp.last_match(1)) ? roman_to_i(Regexp.last_match(1)).to_s : Regexp.last_match(0) }
-    t = t.gsub(/([IVXLC]+)\z/) { valid_roman?(Regexp.last_match(1)) ? roman_to_i(Regexp.last_match(1)).to_s : Regexp.last_match(0) }
-    # оставшиеся отдельные римские токены (LXXXIII, CXXIV) — тоже в арабские
-    { 'LIBER' => 'Liber', 'LIBRI' => 'Libri', 'TRACTATUS' => 'Tractatus', 'SERMO' => 'Sermo',
-      'SERMONES' => 'Sermones', 'EPISTOLA' => 'Epistola', 'EPISTOLAE' => 'Epistolae',
-      'PSALMUS' => 'Psalmus', 'CAPUT' => 'Caput' }.each { |up, normal| t = t.gsub(/\b#{up}\b/, normal) }
+    t = t.gsub(/\(([IVXLC]+)\)/) do
+      valid_roman?(Regexp.last_match(1)) ? "(#{roman_to_i(Regexp.last_match(1))})" : Regexp.last_match(0)
+    end
+    t = t.gsub(/\A([IVXLC]+)(?![A-Za-z])/) do
+      valid_roman?(Regexp.last_match(1)) ? roman_to_i(Regexp.last_match(1)).to_s : Regexp.last_match(0)
+    end
+    t = t.gsub(/(?<![A-Za-z])([IVXLC]+)\z/) do
+      valid_roman?(Regexp.last_match(1)) ? roman_to_i(Regexp.last_match(1)).to_s : Regexp.last_match(0)
+    end
     t = t.gsub(/\b([IVXLC]{2,})\b/) do
       s = Regexp.last_match(1)
       n = valid_roman?(s) ? roman_to_i(s) : nil
