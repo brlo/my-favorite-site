@@ -119,6 +119,9 @@ plan.fetch('pages').each do |w|
     is_past: true,   # «значимый текст из прошлого», как у ru-трудов
   )
   page.group_lang_id = group_for(page, ru)
+  page.parent_id = author.id      # при обновлении переносим труд к нужному автору
+  page.page_type = w['page_type']
+  page.seo_kind = w['seo_kind']
   page.save!
   folder = folders[w['folder']]
   menu_item(author.id, folder&.id, w['title'], page.path, w['priority'])

@@ -192,15 +192,15 @@ def extract_work(blocks, start_idx, end_idx, path, title, split_mode, drop_em=Fa
                 and not re.match(r'^(\[PL[^\]]*\]\s*)*\d+\.', p) \
                 and not re.match(r'^(In |Apud |Item |Psalm|Evangel|Scriptum|Testimon|Cantic)', p, re.I):
             skipped.append('резюме: ' + p[:50]); continue
-        if skipped_paras < skip_paragraphs:
-            skipped_paras += 1
-            skipped.append('вступление: ' + p[:50]); continue
         if not body_started:
             skipped.append(p[:60])
             continue
         if skip_until_heading:
             skipped.append(p[:60])
             continue
+        if skipped_paras < skip_paragraphs:
+            skipped_paras += 1
+            skipped.append('вступление: ' + p[:50]); continue
         if arg_budget:
             arg_budget = 0
             if is_em_only(raw):

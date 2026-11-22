@@ -1,0 +1,112 @@
+{
+ "volume": 32,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL32.html",
+ "out": "tmp/pl/32",
+ "works": [
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI RETRACTATIONUM LIBRI DUO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONFESSIONUM LIBRI TREDECIM",
+   "path": "Aug_Retractationes",
+   "title": "Retractationes",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONFESSIONUM LIBRI TREDECIM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI SOLILOQUIORUM LIBRI DUO",
+   "path": "Aug_Confessiones",
+   "title": "Confessiones",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI SOLILOQUIORUM LIBRI DUO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA ACADEMICOS LIBRI TRES",
+   "path": "Aug_Soliloquia",
+   "title": "Soliloquia",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA ACADEMICOS LIBRI TRES",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE BEATA VITA LIBER UNUS",
+   "path": "Aug_Contra_Academicos",
+   "title": "Contra Academicos",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE BEATA VITA LIBER UNUS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE ORDINE LIBRI DUO",
+   "path": "Aug_De_Beata_Vita",
+   "title": "De Beata Vita",
+   "split": "none",
+   "drop_em": true,
+   "skip_paragraphs": 1
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE ORDINE LIBRI DUO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE IMMORTALITATE ANIMAE",
+   "path": "Aug_De_Ordine",
+   "title": "De Ordine",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE IMMORTALITATE ANIMAE",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE QUANTITATE ANIMAE",
+   "path": "Aug_De_Immortalitate_Animae",
+   "title": "De Immortalitate Animae",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE QUANTITATE ANIMAE",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE MUSICA LIBRI SEX",
+   "path": "Aug_De_Quantitate_Animae",
+   "title": "De Quantitate Animae",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE MUSICA LIBRI SEX",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE MAGISTRO",
+   "path": "Aug_De_Musica",
+   "title": "De Musica",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE MAGISTRO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE LIBERO ARBITRIO LIBRI TRES",
+   "path": "Aug_De_Magistro",
+   "title": "De Magistro",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE LIBERO ARBITRIO LIBRI TRES",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE MORIBUS ECCLESIAE CATHOLICAE",
+   "path": "Aug_De_Libero_Arbitrio",
+   "title": "De Libero Arbitrio",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE MORIBUS ECCLESIAE CATHOLICAE",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI REGULA AD SERVOS DEI",
+   "path": "Aug_De_Moribus",
+   "title": "De Moribus Ecclesiae Catholicae et de Moribus Manichaeorum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI REGULA AD SERVOS DEI",
+   "end": "ADMONITIO DE LIBRO DE GRAMMATICA",
+   "path": "Aug_Regula",
+   "title": "Regula ad Servos Dei",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

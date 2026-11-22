@@ -56,6 +56,13 @@
   Фиваида → Coll. XI, Нижний Египет → Coll. XVIII. Из тома PL 50 не берём чужие труды
   (Vigilius, Fastidius, Coelestinus, Eucherius, Hilarius Arelatensis).
   Варианты чтения в квадратных скобках вида «[Lips. in marg. …]» вырезаются (`strip_apparatus`).
+- **Августин, PL 32 — готово (26 страниц)**: Retractationes (2), Confessiones (5 по книгам),
+  Contra Academicos (2), De Beata Vita, De Ordine (2), Soliloquia, De Immortalitate Animae,
+  De Quantitate Animae (2), De Musica (3), De Magistro, De Libero Arbitrio (3),
+  De Moribus Ecclesiae Catholicae et de Moribus Manichaeorum (2), Regula ad Servos Dei.
+  Существовавшая пустая авторская страница (`I3i4_…`) дозаполнена биографией; труды — в папках
+  «Autobiographica», «Philosophica», «Dogmatica», «Monastica». Тома PL 35–47 скачаны и
+  подготовлены (`prep.py` заменяет скрипты 1–3: gif→греческий, `<small>`, `[Col.]`, таблицы).
 - Чего в PL 4 нет: тексты 14 писем (XLI, XLII, XLIII, XLV, XLVIII, XLIX, LII, LVII, LIX,
   LXVIII, LXX, LXXII, LXXIII, LXXVI). Migne сам отсылает их к тому III — в тексте стоят
   заглушки, номера перечислены в примечаниях. Достать их из PL 3 — следующая задача.
