@@ -309,7 +309,7 @@ def main():
             filled_letters += fill
             body = clean_page(tidy(chunk))
             add_page(part['path'], part['title'], body, part['priority'], w['folder'],
-                     w.get('ru'), dubium, vol, w.get('max_kb'), bool(w.get('verses')))
+                     part.get('ru') or w.get('ru'), dubium, vol, w.get('max_kb'), bool(w.get('verses')))
             print(f"{part['title']:<32} {len(body)//1024:>4} КБ  coll. {cols_str(body):<12} h2={body.count('<h2>')}")
 
     if filled_letters:
