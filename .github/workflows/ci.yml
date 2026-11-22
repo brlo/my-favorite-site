@@ -9,7 +9,7 @@ jobs:
   security:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Системные библиотеки (pg, ImageMagick для rmagick)
         run: sudo apt-get update && sudo apt-get install -y libpq-dev libmagickwand-dev
       - uses: ruby/setup-ruby@v1
@@ -41,7 +41,7 @@ jobs:
       DB_HOST: localhost
       REDIS_URL: redis://localhost:6379/0
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Системные библиотеки (pg, ImageMagick для rmagick и обложек)
         run: sudo apt-get update && sudo apt-get install -y libpq-dev libmagickwand-dev imagemagick
       - uses: ruby/setup-ruby@v1
