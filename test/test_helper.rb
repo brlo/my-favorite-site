@@ -9,6 +9,11 @@ class ActiveSupport::TestCase
   # Один процесс и одна тестовая база: параллельные базы (bibleox_test_N) с индексами pgroonga занимают по ~4 ГБ
   parallelize(workers: 1)
 
+  # ApplicationController выставляет ::I18n.locale на каждом запросе и не восстанавливает
+  # прежнее значение. В тестах это глобальное состояние перетекает из теста в тест
+  # (после запроса к /en/... следующие тесты видят :en) — сбрасываем локаль между тестами.
+  teardown { ::I18n.locale = ::I18n.default_locale }
+
   # Setup all fixtures in test/fixtures/*.yml for all tests in alphabetical order.
   fixtures :all
 
