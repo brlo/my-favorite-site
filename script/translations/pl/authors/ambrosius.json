@@ -713,6 +713,27 @@
    "title": "Hymni",
    "priority": 1,
    "ru": "PkL4_Гимны"
+  },
+  {
+   "fragment": "Ambr_Explanatio_Symboli",
+   "volume": 17,
+   "folder": "Dogmatica",
+   "path": "Ambr_Explanatio_Symboli",
+   "title": "Explanatio Symboli ad Initiandos",
+   "priority": 7,
+   "ru": "rFHd_Объяснение_Символа_веры"
+  },
+  {
+   "fragment": "Ambr_De_Mysterio_Paschae",
+   "volume": 17,
+   "folder": "Sermones",
+   "path": "Ambr_De_Mysterio_Paschae",
+   "title": "Sermo de Mysterio Paschae",
+   "priority": 5,
+   "ru": "dgv6_О_таинстве_Пасхи",
+   "dubium": true,
+   "cap_inline": true,
+   "dubium_note": "<p>Hic sermo iam apud Migne inter opera sancto Ambrosio falso adscripta recensetur: editor notat «conciunculam esse» ab Ambrosio alienam. In bibliotheca nostra ex translatione Russica receptus est.</p>"
   }
  ]
 }

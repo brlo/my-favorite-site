@@ -140,10 +140,11 @@ CAP_RE = re.compile(r'^CAP(UT)?\.?\s')
 SKIP_PARAGRAPH = re.compile(r'^(\(?(Vid|Cf)\b|\((?:C[,\sGS]*)\)\*?\.?$|\d+$)')
 
 
-def extract_work(blocks, start_idx, end_idx, path, title, split_mode, drop_em=False):
+def extract_work(blocks, start_idx, end_idx, path, title, split_mode, drop_em=False, skip_paragraphs=0):
     out = []
     skipped = []
     body_started = False
+    skipped_paras = 0
     skip_until_heading = False   # CAPITULA/MONITUM/NOTA: до следующего заголовка
     arg_budget = 0                # ARGUMENTUM: срезаем не больше одного абзаца-резюме
 
@@ -190,6 +191,9 @@ def extract_work(blocks, start_idx, end_idx, path, title, split_mode, drop_em=Fa
                 and not re.match(r'^(\[PL[^\]]*\]\s*)*\d+\.', p) \
                 and not re.match(r'^(In |Apud |Item |Psalm|Evangel|Scriptum|Testimon|Cantic)', p, re.I):
             skipped.append('резюме: ' + p[:50]); continue
+        if skipped_paras < skip_paragraphs:
+            skipped_paras += 1
+            skipped.append('вступление: ' + p[:50]); continue
         if not body_started:
             skipped.append(p[:60])
             continue
@@ -321,7 +325,7 @@ def main():
         if w.get('verses'):
             body, stats = extract_verses(html, w['start'], w.get('end'))
         else:
-            body, stats = extract_work(blocks, start, end, w['path'], w['title'], w.get('split', 'none'), bool(w.get('drop_em')))
+            body, stats = extract_work(blocks, start, end, w['path'], w['title'], w.get('split', 'none'), bool(w.get('drop_em')), int(w.get('skip_paragraphs') or 0))
         open(os.path.join(out_dir, w['path'] + '.html'), 'w', encoding='utf-8').write(body + '\n')
         json.dump({**stats, 'title': w['title'], 'start': w['start'], 'end': w.get('end'),
                    'blocks': [start, end]},

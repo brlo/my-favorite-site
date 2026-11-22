@@ -1,0 +1,25 @@
+{
+ "volume": 17,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL17.html",
+ "out": "tmp/pl/17",
+ "works": [
+  {
+   "start": "EXPLANATIO SYMBOLI AD INITIANDOS",
+   "end": "EPISTOLA DE FIDE AD BEATUM HIERONYMUM",
+   "path": "Ambr_Explanatio_Symboli",
+   "title": "Explanatio Symboli ad Initiandos",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO XXXV. De Mysterio Paschae II",
+   "end": "SERMO XXXVI",
+   "path": "Ambr_De_Mysterio_Paschae",
+   "title": "Sermo de Mysterio Paschae",
+   "split": "h2",
+   "drop_em": true,
+   "drop_until_heading": false,
+   "skip_paragraphs": 1
+  }
+ ]
+}

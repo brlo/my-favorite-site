@@ -21,6 +21,7 @@ path = ARGV[0] or abort 'usage: import.rb PLAN.json [DRY_RUN=1] [UPDATE=1] [PUBL
 is_dry_run = ENV['DRY_RUN'].present?
 is_update = ENV['UPDATE'].present?
 is_published = ENV['PUBLISH'].present?
+is_prune = ENV['PRUNE'].present?
 plan = JSON.parse(File.read(path))
 
 LANG = plan.fetch('lang').freeze
@@ -122,6 +123,24 @@ plan.fetch('pages').each do |w|
   folder = folders[w['folder']]
   menu_item(author.id, folder&.id, w['title'], page.path, w['priority'])
   log << "труд #{page.previously_new_record? ? 'создан' : 'обновлён'}: #{page.path} (#{w['title']})"
+end
+
+if is_prune && author
+  planned = plan['pages'].map { _1['path'].downcase }
+  extra = ::Page.where(lang: LANG, parent_id: author.id, page_type: 1)
+                .where.not(path_low: planned).to_a
+  extra.each do |page|
+    ::Menu.where(page_id: author.id, path: page.path).delete_all
+    ::Menu.where(page_id: list.id, path: page.path).delete_all
+    page.destroy!
+    log << "удалена лишняя страница: #{page.path} (#{page.title})"
+  end
+  stale = ::Menu.where(page_id: author.id).where.not(path: [nil, ''])
+                .where.not(path: plan['pages'].map { _1['path'] }).to_a
+  if stale.any?
+    stale.each { |m| m.destroy! }
+    log << "удалено лишних пунктов меню: #{stale.size}"
+  end
 end
 
 puts log

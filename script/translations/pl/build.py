@@ -164,7 +164,9 @@ def body_text_len(part: str) -> int:
     return len(re.findall(r'[A-Za-z]', plain))
 
 
-def fill_empty_letters(html: str, sup_dir: str = SUPPLEMENTS) -> tuple[str, list[str], list[str]]:
+def fill_empty_letters(html: str, sup_dir: str | None = SUPPLEMENTS) -> tuple[str, list[str], list[str]]:
+    if sup_dir is None:            # не письма этого автора: заглушки и добор не применяем
+        return html, [], []
     """Письма, у которых в томе нет текста (только заголовок/резюме): подставляем добор из
     PL 3 (если он есть) или пометку. Возвращает номера писем, оставшихся без текста."""
     out, missing, filled = [], [], []
@@ -209,8 +211,8 @@ def main():
     filled_letters = []
     max_kb = cfg.get('max_kb')
 
-    def add_page(path, title, body, priority, folder, ru, dubium, vol, limit_kb=None, no_markers=False):
-        note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + (DUBIUM_NOTE if dubium else '')
+    def add_page(path, title, body, priority, folder, ru, dubium, vol, limit_kb=None, no_markers=False, dubium_note=None):
+        note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + ((dubium_note or DUBIUM_NOTE) if dubium else '')
         limit = (limit_kb or max_kb) and (limit_kb or max_kb) * 1024
         if limit and len(body) > limit:
             chunks = split_paragraphs(body, limit)
@@ -219,7 +221,7 @@ def main():
                 pages.append({'path': f'{path}_{i}', 'title': chunk_title,
                               'ru': ru, 'folder': folder, 'priority': priority,
                               'body': chunk, 'references': SOURCE_TPL.format(cols=cols_str(chunk), url=cfg['source_url']) +
-                              (DUBIUM_NOTE if dubium else ''),
+                              ((dubium_note or DUBIUM_NOTE) if dubium else ''),
                               'page_type': 1, 'seo_kind': 'book', 'cols': cols_str(chunk), 'volume': vol})
                 print(f"{title} ({i}/{len(chunks)})"[:60].ljust(62) + f"{len(chunk)//1024:>4} КБ")
             return
@@ -232,10 +234,12 @@ def main():
         src = fragment(w['fragment'], vol)
         dubium = bool(w.get('dubium'))
         if not w.get('parts'):
-            body, _miss, _fill = fill_empty_letters(src)
+            body, _miss, _fill = fill_empty_letters(src, w.get('letters_supplement'))
             filled_letters += _fill
             body = clean_page(tidy(body))
-            add_page(w['path'], w['title'], body, w['priority'], w['folder'], w.get('ru'), dubium, vol, w.get('max_kb'), bool(w.get('verses')))
+            if w.get('cap_inline'):
+                body = re.sub(r'<p>CAPUT ([IVXLC]+)\.---\s*(\d+\.\s*)?', r'<h2>CAPUT \1</h2><p>', body)
+            add_page(w['path'], w['title'], body, w['priority'], w['folder'], w.get('ru'), dubium, vol, w.get('max_kb'), bool(w.get('verses')), w.get('dubium_note'))
             continue
 
         secs = sections(src)
@@ -255,7 +259,7 @@ def main():
             if len(re.sub(r'<[^>]+>', '', chunk)) < 1500:
                 print(f"  (пропуск пустой части: {part['title']})")
                 continue
-            chunk, miss, fill = fill_empty_letters(chunk)
+            chunk, miss, fill = fill_empty_letters(chunk, w.get('letters_supplement'))
             missing_letters += miss
             filled_letters += fill
             body = clean_page(tidy(chunk))
