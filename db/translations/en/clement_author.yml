@@ -1,0 +1,358 @@
+# Климент Римский (ru 418) -> EN-страница автора. Собирается из tmp/en_fathers/clement/
+# Загрузка: bin/rails pages:import_translations FILE=db/translations/en/clement_author.yml [DRY_RUN=1] [PUBLISH=1]
+lang: en
+list: q-saints-en
+pages:
+  - src: Климент_Римский
+    path: Clement_of_Rome
+    title: "Clement of Rome, 1st c."
+    title_sub: "hieromartyr (†~101), bishop of Rome, disciple of the apostles"
+    meta_desc: "Clement of Rome, hieromartyr and bishop of Rome, disciple of the apostles: his life, the testimony of Irenaeus of Lyons, and his teaching on faith and works, the priesthood and the unity of the Church, in his own words."
+    menu: { title: "Clement of Rome, 1st c." }
+    update: true
+    body: |-
+      <p>The section with the works of Clement of Rome <strong>in Greek</strong>: <a href="https://bibleox.com/en/grc/w/%CE%9A%CE%BB%CE%AE%CE%BC%CE%B7%CF%82_%CE%A1%CF%8E%CE%BC%CE%B7%CF%82/">go</a>. You can also switch to other languages at the top, above the list of works.</p>
+
+      <p><strong>Commemoration Day</strong>: November 25 (December 8)</p>
+
+      <h2>Biography</h2>
+
+      <p>He was born in the 1st century after the Nativity of Christ. In the ancient Church he was venerated as one of the most significant and outstanding Christian saints; he was a disciple of the apostles Peter and Paul. It is possible that he is the one mentioned in the Epistle of the Apostle Paul to the Philippians (<a href="https://bibleox.com/en/eng-nkjv/fil/4/#L3">Phil. 4:3</a>).</p>
+
+      <p>Some authors (Tertullian, Blessed Jerome of Stridon and St. Epiphanius of Cyprus) assert that Clement was ordained to the episcopate by the apostle Peter. No reliable information about his ministry and death has been preserved. For example, in the 80s or 90s of the 2nd century the hieromartyr Irenaeus of Lyons asserted that of the bishops of Rome only St. Telesphorus (127/8–137/8) suffered a martyr's death. However, from the 4th century Clement became the subject of numerous legends. From the 6th century the stories of his martyrdom in Cherson (the Crimea) are widely known, and owing to them the veneration of the saint later spread in Russia.</p>
+
+      <p>To this day one of the most striking and indisputable testimonies to his person and ministry is the epistle to the Corinthian community that has come down to us (in manuscripts), written by St. Clement in connection with the disturbance that had arisen among the local Christians. Apart from its author's authority, the epistle reveals his zeal, love and spiritual wisdom.</p>
+
+      <p>In the 2nd century the hieromartyr Irenaeus of Lyons writes of this epistle:</p>
+
+      <blockquote>
+      <p>3. The blessed apostles, then, having founded and built up the Church, committed into the hands of Linus the office of the episcopate. Of this Linus, Paul makes mention in the Epistles to Timothy. To him succeeded Anacletus; and after him, in the third place from the apostles, <strong>Clement was allotted the bishopric. This man, as he had seen the blessed apostles, and had been conversant with them, might be said to have the preaching of the apostles still echoing [in his ears], and their traditions before his eyes</strong>. Nor was he alone [in this], for there were many still remaining who had received instructions from the apostles. <strong><mark>In the time of this Clement</mark>, no small dissension having occurred among the brethren at Corinth, <mark>the Church in Rome despatched a most powerful letter to the Corinthians</mark>, exhorting them to peace, renewing their faith, and declaring the tradition which it had lately received from the apostles</strong>, proclaiming the one God, omnipotent, the Maker of heaven and earth…</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/irenaeus-against-heresies-b3#HH-3">Irenaeus of Lyons, Against Heresies, book III, ch. 3</a>)</p>
+
+      <h2>Faith</h2>
+
+      <h3>For salvation, not only faith but also works are necessary</h3>
+
+      <p>Clement has various sayings about salvation. He speaks both of justification by works and of justification by faith, and of the necessity, for salvation, of seeking and doing the will of God.</p>
+
+      <p>Now let us try to resolve all these statements.</p>
+
+      <p>First Clement speaks of justification by works:</p>
+
+      <blockquote>
+      <p>Let us clothe ourselves with concord and humility, ever exercising self-control, standing far off from all whispering and evil-speaking, <strong><mark>being justified by our works</mark>, and not our words</strong>.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-30">First Epistle to the Corinthians, ch. 30</a>)</p>
+
+      <p>These words are aimed against hypocrisy. For salvation one must <u>be</u> virtuous, and not merely speak of virtue. The occasion of Clement's epistle is the revolt that had been raised against the presbyters appointed by the apostles. Clement reproaches the rebels, pointing to their hypocrisy. He calls on them to join those who <u>in deed</u> keep the peace, rejecting those who only speak of peace while dividing the Church:</p>
+
+      <blockquote>
+      <p>It is right, therefore, that we should not leave the post which His will has assigned us. <strong>Let us rather offend those men who are foolish, and inconsiderate, and lifted up, and <mark>who glory in the pride of their speech</mark>, than [offend] God</strong>. Let us reverence the Lord Jesus Christ, whose blood was given for us; <strong>let us esteem those who have the rule over us; let us honour the aged among us</strong>[1]; let us train up the young men in the fear of God</p>
+
+      <p>…</p>
+
+      <p><strong>Let us cleave, therefore, to those who cultivate peace with godliness, and not to those who <mark>hypocritically profess to desire it</mark></strong></p>
+
+      <p>….</p>
+
+      <p>For <strong>Christ is of those who are humble-minded, and not of those who exalt themselves over His flock</strong></p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-21">21</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-15">15</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-16">16</a>)</p>
+
+      <p>So for salvation we need real works, and not words only. For salvation one must be virtuous, and not merely seem so.</p>
+
+      <hr>
+
+      <p>Having spoken of the necessity of real works, Clement rules out the opposite extreme, saying that we are saved neither by ourselves nor by our own works alone, but by faith. That is, our works by themselves do not lead to salvation. He who does not believe in Christ will not be saved by himself without Christ, even if he had good works:</p>
+
+      <blockquote>
+      <p>we, too, being called by His will in Christ Jesus, <strong><mark>are not justified by ourselves</mark></strong>, <strong><u><mark>nor</mark></u> by our own</strong> wisdom, or understanding, or godliness, or <strong><mark>works</mark></strong> which we have wrought in holiness of heart; <strong><mark>but by that faith</mark></strong> through which, from the beginning, Almighty God has justified all men</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-32">First Epistle to the Corinthians, ch. 32</a>)</p>
+
+      <hr>
+
+      <p>Further on, Clement returns to the theme of salvation, now describing the whole picture. For salvation three things are needed: 1) faith, 2) the seeking of God's will, and 3) the doing of it.</p>
+
+      <blockquote>
+      <p><strong><mark>Let us therefore earnestly strive</mark></strong> to be found in the number of those that wait for Him, <strong><mark>in order that we may share in His promised gifts</mark></strong>. <strong><mark>But how, beloved, shall this be done?</mark></strong> If our understanding be fixed by faith towards God[2]; if we earnestly seek the things which are pleasing and acceptable to Him; if <strong><mark>we do</mark></strong> the things which are in harmony with His blameless will; and if we follow the way of truth, casting away from us all unrighteousness and iniquity, along with all covetousness, strife, evil practices, deceit, whispering, and evil-speaking, all hatred of God, pride and haughtiness, vainglory and ambition. For <strong><mark>they that do such things are hateful to God</mark></strong>; and not only they that do them, but also those that take pleasure in them that do them.</p>
+
+      <p>….</p>
+
+      <p><strong><u><mark>This is the way</mark></u>, beloved, <u><mark>in which we find</mark></u> our <u><mark>Saviour</mark></u></strong>, even Jesus Christ, the High Priest of all our offerings, the defender and helper of our infirmity.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-35">35</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-36">36</a>)</p>
+
+      <p>Without good works we shall be condemned:</p>
+
+      <blockquote>
+      <p>Take heed, beloved, lest His many kindnesses lead to the condemnation of us all. [For thus it must be] unless we walk worthy of Him, and with one mind do those things which are good and well-pleasing in His sight.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-21">First Epistle to the Corinthians, ch. 21</a>)</p>
+
+      <hr>
+
+      <p>All the quotations about salvation in a row:</p>
+
+      <blockquote>
+      <p>Since then all things are seen and heard [by God], let us fear Him, and <strong><mark>forsake those wicked works which proceed from evil desires</mark></strong>; so that, through His mercy, we may be protected from the judgments to come.</p>
+
+      <p>…</p>
+
+      <p>Let us clothe ourselves with concord and humility, ever exercising self-control, standing far off from all whispering and evil-speaking, <strong><mark>being justified by our works</mark>, and not our words</strong>.</p>
+
+      <p>…</p>
+
+      <p>And we, too, being called by His will in Christ Jesus, <strong><mark>are not justified by ourselves</mark></strong>, nor by our own wisdom, or understanding, or godliness, or <strong><mark>works</mark></strong> which we have wrought in holiness of heart; <strong><mark>but by that faith</mark></strong> through which, from the beginning, Almighty God has justified all men.</p>
+
+      <p>…</p>
+
+      <p><strong>What shall we do</strong>, then, brethren? Shall we become slothful in well-doing, and cease from the practice of love? God forbid that any such course should be followed by us! But rather let us hasten with all energy and readiness of mind to <strong>perform every good work</strong>.</p>
+
+      <p>…</p>
+
+      <p>We see, then, how <strong>all righteous men have been adorned with good works</strong>, and how the Lord Himself, adorning Himself with His works, rejoiced. Having therefore such an example, let us without delay accede to His will, and <strong>let us work the work of righteousness with our whole strength</strong>.</p>
+
+      <p>….</p>
+
+      <p><strong>The good servant receives the bread of his labour with confidence; the lazy and slothful cannot look his employer in the face</strong>. It is requisite, therefore, that <strong>we be prompt in the practice of well-doing</strong>; for of Him are all things. And thus He forewarns us: «Behold, the Lord [cometh], and His reward is before His face, to render to every man <strong>according to his work</strong>.»</p>
+
+      <p>….</p>
+
+      <p><strong><mark>Let us therefore earnestly strive</mark></strong> to be found in the number of those that wait for Him, <strong><mark>in order that we may share in His promised gifts</mark></strong>. <strong><mark>But how, beloved, shall this be done?</mark></strong> If our understanding be fixed by faith towards God; if we earnestly seek the things which are pleasing and acceptable to Him; if <strong><mark>we do</mark></strong> the things which are in harmony with His blameless will; and if we follow the way of truth, casting away from us all unrighteousness and iniquity, along with all covetousness, strife, evil practices, deceit, whispering, and evil-speaking, all hatred of God, pride and haughtiness, vainglory and ambition. For <strong><mark>they that do such things are hateful to God</mark></strong>; and not only they that do them, but also those that take pleasure in them that do them.</p>
+
+      <p>….</p>
+
+      <p><strong><u><mark>This is the way</mark></u>, beloved, <u><mark>in which we find</mark></u> our <u><mark>Saviour</mark></u></strong>[3], even Jesus Christ, the High Priest of all our offerings, the defender and helper of our infirmity.</p>
+
+      <p>…</p>
+
+      <p>But who are His enemies? All the wicked, and those who set themselves to oppose the will of God.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-28">28</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-30">30</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-32">32</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-33">33</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-34">34</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-35">35</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-36">36</a>)</p>
+
+      <h3>Bishops are the successors of the apostles</h3>
+
+      <blockquote>
+      <p><em><mark>Our apostles</mark> also knew, through our Lord Jesus Christ, that there would be strife on account of the office of the episcopate. For this reason, therefore, inasmuch as they had obtained a perfect fore-knowledge of this, <strong>they <mark>appointed those [ministers] already mentioned, and afterwards gave instructions</mark>, that when these should fall asleep, other approved men should <mark>succeed them in their ministry</mark></strong>. We are of opinion, therefore, that those appointed by them, or afterwards by other eminent men, with the consent of the whole Church, and who have blamelessly served the flock of Christ in a humble, peaceable, and disinterested spirit, and have for a long time possessed the good opinion of all, cannot be justly dismissed from the ministry.</em></p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-44">First Epistle to the Corinthians, ch. 44</a>)</p>
+
+      <h3>Not all are priests</h3>
+
+      <blockquote>
+      <p>Let us then, men and brethren, with all energy act the part of soldiers, in accordance with His holy commandments. Let us consider those who serve under our generals, with what order, obedience, and submissiveness they perform the things which are commanded them. <strong><mark>All are not prefects, nor commanders of a thousand, nor of a hundred, nor of fifty, nor the like, but each one in his own rank</mark></strong> performs the things commanded by the king and the generals.</p>
+
+      <p>…</p>
+
+      <p>Let our whole body, then, be preserved in Christ Jesus; and <strong><mark>let every one be subject to his neighbour, according to the special gift bestowed upon him</mark></strong>.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-37">37</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-38">38</a>)</p>
+
+      <h3>The hierarchy of the priesthood: three degrees (bishop, presbyter, deacon)</h3>
+
+      <p>Clement of Rome mentions all three degrees of the priesthood: bishops, presbyters and deacons. At the same time, however, he lists no more than two degrees at once. But there are places where, speaking of the Old Testament, he applies it to the New Testament. And in that place he lists four ecclesiastical degrees: high priest, priest, Levite, and layman. After this Clement at once calls on the believers not to overstep the bounds of their own ministry. This makes it possible to conclude that Clement of Rome knew three degrees of priestly ministry.</p>
+
+      <blockquote>
+      <p>These things therefore being manifest to us, and since we look into the depths of the divine knowledge, it behoves us to do all things in [their proper] order, which the Lord has commanded us to perform at stated times. <strong><mark>He has enjoined</mark> offerings [to be presented] and <mark>service</mark> to be performed [to Him], and that not thoughtlessly or irregularly, but <mark>at the appointed times and hours</mark></strong>. <strong><mark>Where and by whom He desires these things to be done</mark></strong>, He Himself has fixed by His own supreme will, in order that all things being piously done according to His good pleasure, may be acceptable unto Him. Those, therefore, who present their offerings at the appointed times, are accepted and blessed; for inasmuch as they follow the laws of the Lord, they sin not. <strong><mark>For his own peculiar services are assigned to the high priest</mark>, and <mark>their own proper place is prescribed to the priests</mark>, and <mark>their own special ministrations devolve on the Levites</mark>. <mark>The layman is bound by the laws that pertain to laymen</mark>.</strong></p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-40">First Epistle to the Corinthians, ch. 40</a>)</p>
+
+      <blockquote>
+      <p>Let every one of you, brethren, <strong>give thanks to God in his own order</strong>, living in all good conscience, with becoming gravity, and <strong><mark>not going beyond the rule of the ministry prescribed to him</mark></strong>. Not in every place, brethren, are the daily sacrifices offered, or the peace-offerings, or the sin-offerings and the trespass-offerings, but in Jerusalem only. And even there they are not offered in any place, but only at the altar before the temple, that which is offered being first carefully examined by the high priest and the ministers already mentioned. <strong><mark>Those, therefore, who do anything beyond that which is agreeable to His will, are punished with death</mark></strong>. Ye see, brethren, that the greater the knowledge that has been vouchsafed to us, the greater also is <strong>the danger to which we are exposed</strong>.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-41">First Epistle to the Corinthians, ch. 41</a>)</p>
+
+      <blockquote>
+      <p><strong><mark>The apostles</mark></strong> have preached the Gospel to us <strong><mark>from the Lord Jesus Christ</mark></strong>; Jesus Christ [has done so] from God. <strong><mark>Christ therefore was sent forth by God</mark></strong>, and the apostles by Christ. <strong>Both these appointments, then, were made in an orderly way, according to the will of God</strong>. Having therefore received their orders, and being fully assured by the resurrection of our Lord Jesus Christ, and established in the word of God, with full assurance of the Holy Ghost, they went forth proclaiming that the kingdom of God was at hand. And thus preaching through countries and cities, <strong>they <mark>appointed the first-fruits [of their labours]</mark>, having first proved them by the Spirit, <mark>to be bishops and deacons</mark> of those who should afterwards believe. <mark>Nor was this any new thing</mark>, since indeed many ages before it was written concerning bishops and deacons. For thus saith the Scripture a certain place,</strong> «I will appoint their bishops in righteousness, and their deacons in faith.»</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-42">First Epistle to the Corinthians, ch. 42</a>)</p>
+
+      <blockquote>
+      <p>And what wonder is it if those in Christ <strong><mark>who were entrusted with such a duty by God, appointed those [ministers] before mentioned</mark></strong>, when the blessed Moses also, «a faithful servant in all his house,» noted down in the sacred books all the injunctions which were given him, and when the other prophets also followed him, bearing witness with one consent to the ordinances which he had appointed? For, when <strong><mark>rivalry arose concerning the priesthood</mark></strong>, and the tribes were contending among themselves as to which of them should be adorned with that glorious title, he commanded the twelve princes of the tribes to bring him their rods, each one being inscribed with the name of the tribe. And he took them and bound them [together], and sealed them with the rings of the princes of the tribes, and laid them up in the tabernacle of witness on the table of God. And having shut the doors of the tabernacle, he sealed the keys, as he had done the rods, and said to them, Men and brethren, the tribe whose rod shall blossom has God chosen to fulfil the office of the priesthood, and to minister unto Him. And when the morning was come, he assembled all Israel, six hundred thousand men, and showed the seals to the princes of the tribes, and opened the tabernacle of witness, and brought forth the rods. And the rod of Aaron was found not only to have blossomed, but to bear fruit upon it. What think ye, beloved? <strong><mark>Did not Moses know beforehand that this would happen? Undoubtedly he knew</mark></strong>; but he acted thus, that there might be no sedition in Israel, and that the name of the true and only God might be glorified; to whom be glory for ever and ever. Amen.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-43">First Epistle to the Corinthians, ch. 43</a>)</p>
+
+      <blockquote>
+      <p><strong><mark>Our apostles also knew</mark></strong>, through our Lord Jesus Christ, <strong><mark>that there would be strife on account of the office of the episcopate</mark></strong>. For this reason, therefore, inasmuch as they had obtained a perfect fore-knowledge of this, <strong><mark>they appointed those [ministers] already mentioned, and afterwards gave instructions</mark></strong>, that when these should fall asleep, other approved men should succeed them in their ministry. We are of opinion, therefore, that <strong><mark>those appointed by them</mark></strong>, or afterwards by other eminent men, with the consent of the whole Church, and who have <strong><mark>blamelessly served</mark></strong> the flock of Christ in a <u>humble</u>, peaceable, and disinterested spirit, and have for a long time possessed the good opinion of all, <strong><mark>cannot be justly dismissed from the ministry</mark></strong>. For our sin will not be small, if we eject from the episcopate those who have blamelessly and holily fulfilled its duties. Blessed are those presbyters who, having finished their course before now, have obtained a fruitful and perfect departure [from this world]; for they have no fear lest any one deprive them of the place now appointed them. But we see that ye have removed some men of excellent behaviour from the ministry, which they fulfilled blamelessly and with honour.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-44">First Epistle to the Corinthians, ch. 44</a>)</p>
+
+      <p>Above the presbyters there is one who presides (the deacons are spoken of elsewhere):</p>
+
+      <blockquote>
+      <p>It is right, therefore, that we should not leave the post which His will has assigned us. Let us rather offend those men who are foolish, and inconsiderate, and lifted up, and who glory in the pride of their speech, than [offend] God. Let us reverence the Lord Jesus Christ, whose blood was given for us; let us <strong>esteem <mark>those who have the rule over us</mark></strong>; let us <strong>honour <mark>the aged among us</mark></strong>; let us train up the young men in the fear of God</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-21">First Epistle to the Corinthians, ch. 21</a>)</p>
+
+      <h3>The priesthood has grace</h3>
+
+      <p>This statement is not entirely unambiguous, but it is still admissible. Clement writes the epistle to the Corinthians intending to put an end to the revolt against the presbyters. He calls on them to return to those who were appointed by the apostles and served the flock of Christ in humility. Constantly emphasising humility, he again and again calls on them to join those presbyters who keep the peace, those who have grace:</p>
+
+      <blockquote>
+      <p>Seeing, therefore, that we are the portion of the Holy One, let us do all those things which pertain to holiness, <strong>avoiding</strong> all evil-speaking, all abominable and impure embraces, together with all drunkenness, seeking after change, all abominable lusts, detestable adultery, and <strong>execrable pride</strong>. «For God,» saith [the Scripture], «resisteth the proud, but giveth grace to the <strong><u><mark>humble</mark></u></strong>.» <strong><mark>Let us cleave, then, to those to whom grace has been given by God</mark></strong>. Let us clothe ourselves with concord and humility, ever exercising self-control, standing far off from all whispering and evil-speaking, being justified by our works, and not our words.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-30">First Epistle to the Corinthians, ch. 30</a>)</p>
+
+      <blockquote>
+      <p><strong><mark>Let us cleave, therefore, to those who cultivate peace with godliness</mark></strong>, and not to those who <mark>hypocritically profess to desire it</mark> &lt;…&gt; For <strong><mark>Christ is of those who are </mark><u><mark>humble-minded</mark></u>, and not of those who exalt themselves over His flock</strong></p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-15">15</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-16">16</a>)</p>
+
+      <blockquote>
+      <p>Our apostles also knew, through our Lord Jesus Christ, that there would be strife on account of the office of the episcopate. For this reason, therefore, inasmuch as they had obtained a perfect fore-knowledge of this, <strong>they <mark>appointed</mark> those [ministers] already mentioned, and afterwards <mark>gave instructions</mark></strong>, that when these should fall asleep, other approved men should succeed them in their ministry. We are of opinion, therefore, that <strong><mark>those appointed by them</mark>, or afterwards by other eminent men</strong>, with the consent of the whole Church, and <strong><mark>who have </mark><u><mark>blamelessly served</mark></u></strong> the flock of Christ in a humble, peaceable, and disinterested spirit, and have for a long time possessed the good opinion of all, cannot be justly dismissed from the ministry.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-44">First Epistle to the Corinthians, ch. 44</a>)</p>
+
+      <p>Clement of Rome's appeal is echoed by the phrase of the apostle Paul in his epistle to the Romans:</p>
+
+      <blockquote>
+      <p>"Be of the same mind toward one another. Do not set your mind on high things, but <strong><mark>associate with the humble</mark></strong>. Do not be wise in your own opinion." (<a href="https://bibleox.com/en/eng-nkjv/rim/12/#L16">Rom. 12:16</a>)</p>
+      </blockquote>
+
+      <h3>The preservation of the visible unity of the Church</h3>
+
+      <blockquote>
+      <p>Let us therefore implore forgiveness for all those transgressions which through any [suggestion] of the adversary we have committed. And <strong>those who have been the leaders of sedition and disagreement ought to have respect to the common hope. For such as live in fear and love <mark>would rather that they themselves than their neighbours should be involved in suffering</mark>. And <mark>they prefer to bear blame themselves, rather than that the concord which has been well and piously handed down to us should suffer</mark>. For it is better that a man should acknowledge his transgressions than that he should harden his heart</strong>, as the hearts of those were hardened who stirred up sedition against Moses the servant of God, and whose condemnation was made manifest [unto all]. For they went down alive into Hades, and death swallowed them up.</p>
+
+      <p>&lt;…&gt;</p>
+
+      <p>Who then among you is noble-minded? who compassionate? who full of love? <strong><mark>Let him declare, «If on my account sedition and disagreement and schisms have arisen, I will depart, I will go away whithersoever ye desire, and I will do whatever the majority commands; only let the flock of Christ live on terms of peace with the presbyters set over it.»</mark></strong> He that acts thus shall procure to himself great glory in the Lord; and every place will welcome him. For «the earth is the Lord's, and the fulness thereof.» These things they who live a godly life, that is never to be repented of, both have done and always will do.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-51">51</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-54">54</a>)</p>
+
+      <h3>A call to obedience to the priesthood</h3>
+
+      <p>The epistle to the Corinthians was written because of the revolt of certain people against the presbyters appointed by the apostles. Clement first praises the Corinthians for their former obedience to the priesthood:</p>
+
+      <blockquote>
+      <p>For ye did all things without respect of persons, and walked in the commandments of God, being obedient to those who had the rule over you, and giving all fitting honour to the presbyters among you.</p>
+
+      <p>…</p>
+
+      <p>Moreover, ye were all distinguished by humility, and were in no respect puffed up with pride, but yielded obedience rather than extorted it, and were more willing to give than to receive.</p>
+
+      <p>…</p>
+
+      <p>Thus a profound and abundant peace was given to you all, and ye had an insatiable desire for doing good</p>
+
+      <p>…</p>
+
+      <p>Every kind of faction and schism was abominable in your sight.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-1">1</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-2">2</a>)</p>
+
+      <p>But then he begins to rebuke them for the sedition and to call them to obedience to the presbyters appointed by the apostles:</p>
+
+      <blockquote>
+      <p><strong>the worthless rose up against the honoured, those of no reputation against such as were renowned, the foolish against the wise, the young against those advanced in years</strong>. For this reason righteousness and peace are now far departed from you, inasmuch as <strong>every one abandons the fear of God, and is become blind in His faith</strong>, neither walks in the ordinances of His appointment, nor acts a part becoming a Christian, but walks after his own wicked lusts, <strong>resuming the practice of an unrighteous and ungodly envy</strong>, by which death itself entered into the world.</p>
+
+      <p>…</p>
+
+      <p>It is right, therefore, that we should not leave the post which His will has assigned us. <strong><mark>Let us rather offend those men who are foolish, and inconsiderate, and lifted up, and who glory in the pride of their speech, than [offend] God</mark></strong>. Let us reverence the Lord Jesus Christ, whose blood was given for us; <strong>let us esteem <mark>those who have the rule over us</mark>; let us honour <mark>the aged among us</mark></strong>; let us train up the young men in the fear of God</p>
+
+      <p>….</p>
+
+      <p><strong><mark>It is right and holy therefore, men and brethren, rather to obey God than to follow those who, through pride and sedition, have become the leaders of a detestable emulation</mark></strong>. For <strong><mark>we shall incur no slight injury, but rather great danger, if we rashly yield ourselves to the inclinations of men who aim at exciting strife and tumults</mark></strong>, so as to draw us away from what is good.</p>
+
+      <p>…</p>
+
+      <p>Let us therefore implore forgiveness for all those transgressions which through any [suggestion] of the adversary we have committed. And <strong>those who have been the leaders of sedition and disagreement ought to have respect to the common hope. For such as live in fear and love <mark>would rather that they themselves than their neighbours should be involved in suffering</mark></strong>. And <strong><mark>they prefer to bear blame themselves, rather than that the concord which has been well and piously handed down to us should suffer</mark></strong>. For <strong>it is better that a man should acknowledge his transgressions than that he should harden his heart</strong>, as the hearts of those were hardened who stirred up sedition against Moses the servant of God, and whose condemnation was made manifest [unto all]. For they went down alive into Hades, and death swallowed them up.</p>
+
+      <p>…</p>
+
+      <p>Who then among you is noble-minded? who compassionate? who full of love? <strong><mark>Let him declare, «If on my account sedition and disagreement and schisms have arisen, I will depart, I will go away whithersoever ye desire, and I will do whatever the majority commands; only let the flock of Christ live on terms of peace with the presbyters set over it.»</mark></strong> He that acts thus shall procure to himself great glory in the Lord; and every place will welcome him. For «the earth is the Lord's, and the fulness thereof.» These things they who live a godly life, that is never to be repented of, both have done and always will do.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-3">3</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-21">21</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-14">14</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-51">51</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-54">54</a>)</p>
+
+      <h3>The rebels hypocritically speak of peace</h3>
+
+      <blockquote>
+      <p><strong>Let us cleave, therefore, to those who cultivate peace with godliness, and not to those who hypocritically profess to desire it</strong></p>
+
+      <p>….</p>
+
+      <p>For <strong>Christ is of those who are humble-minded, and not of those who exalt themselves over His flock</strong></p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-15">15</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-16">16</a>)</p>
+
+      <h3>Christians sometimes sinned</h3>
+
+      <p>Christians sometimes sinned, including against one another:</p>
+
+      <blockquote>
+      <p>Full of holy designs, ye did, with true earnestness of mind and a godly confidence, stretch forth your hands to God Almighty, <strong>beseeching Him to be merciful unto you, if ye had been guilty of any involuntary <mark>transgression</mark></strong>.</p>
+
+      <p>…</p>
+
+      <p>Ye were sincere and uncorrupted, and <strong><mark>forgetful of injuries between one another</mark></strong>.</p>
+
+      <p>…</p>
+
+      <p>Ye <strong><mark>mourned over the transgressions of your neighbours</mark></strong>: <strong><mark>their deficiencies</mark></strong> you deemed your own.</p>
+
+      <p>…</p>
+
+      <p>the worthless rose up against the honoured, those of no reputation against such as were renowned, the foolish against the wise, the young against those advanced in years. For this reason righteousness and peace are now far departed from you, inasmuch as every one abandons the fear of God, and is become blind in His faith, neither walks in the ordinances of His appointment, nor acts a part becoming a Christian, but <strong><mark>walks after his own wicked lusts, resuming the practice of an unrighteous and ungodly envy</mark></strong>, by which death itself entered into the world.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-2">2</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-3">3</a>)</p>
+
+      <h3>Care that the community attain salvation (it is not yet saved)</h3>
+
+      <blockquote>
+      <p>Day and night <strong><mark>ye were anxious for the whole brotherhood</mark></strong>, <strong><mark>that the number</mark></strong> of God's elect <strong><mark>might be saved</mark></strong> with mercy and a good conscience.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-2">First Epistle to the Corinthians, ch. 2</a>)</p>
+
+      <h3>The saints, after parting from the body, are alive and in a holy place</h3>
+
+      <p>Peter and Paul passed into the holy place:</p>
+
+      <blockquote>
+      <p>Peter, through unrighteous envy, endured not one or two, but numerous labours and when he had at length suffered martyrdom, <strong><mark>departed to the place of glory due to him</mark></strong>. Owing to envy, Paul also obtained the reward of patient endurance, after being seven times thrown into captivity, compelled to flee, and stoned. After preaching both in the east and west, he gained the illustrious reputation due to his faith, having taught righteousness to the whole world, and come to the extreme limit of the west, and suffered martyrdom under the prefects. Thus <strong><mark>was he removed from the world, and went into the holy place</mark></strong>, having proved himself a striking example of patience.</p>
+
+      <p>…</p>
+
+      <p><strong><mark>To these men</mark></strong> who spent their lives in the practice of holiness, <strong><mark>there is to be added a great multitude of the elect</mark></strong>, who, having through envy endured many indignities and tortures, furnished us with a most excellent example.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1">First Epistle to the Corinthians</a>, ch. <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-5">5</a>, <a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-6">6</a>)</p>
+
+      <h3>He calls for submission to the will of God (against Calvinism)</h3>
+
+      <blockquote>
+      <p>Wherefore, <strong>let us yield obedience to His excellent and glorious will</strong>; and imploring His mercy and loving-kindness, while we forsake all fruitless labours, and strife, and envy, which leads to death, let us turn and have recourse to His compassions.</p>
+      </blockquote>
+
+      <p>(<a href="https://bibleox.com/en/en/w/ClemRm_Kor1#HH-9">First Epistle to the Corinthians, ch. 9</a>)</p>
+    references: |-
+      <ol>
+      <li><p>First Clement 21: the English translation has «let us honour the aged among us»; the Greek reads τοὺς πρεσβυτέρους τιμήσωμεν, «let us honour the presbyters», and the Russian page has «presbyters». The quotation follows the English text; the note is given because the whole passage concerns the presbyters.</p></li>
+      <li><p>First Clement 35: the electronic text of the English translation reads «if our understanding be fixed by faith rewards God»; the Greek is πιστῶς πρὸς τὸν θεόν, «faithfully towards God», and the quotation follows the printed ANF text («faith towards God»).</p></li>
+      <li><p>First Clement 36: the English translation has «in which we find our Saviour»; the Greek τὸ σωτήριον ἡμῶν means «our salvation», as the Russian page renders it.</p></li>
+      </ol><p>The quotations from the First Epistle of Clement are given from the English translation already published on this site (Ante-Nicene Fathers, ed. A. Roberts and J. Donaldson), verbatim save for the evident misprints of the electronic text, which are corrected here (for example «has done sol» for «has done so», «bishops s» for «bishops», «blame-lessly» for «blamelessly», «command-merits» for «commandments», «neighhours» for «neighbours», «and there would be strife» for «that there would be strife», «sin- offerings» for «sin-offerings», «faith rewards God» for «faith towards God»); the text of the work itself is left unchanged. The main emphases of the Russian page are reproduced on the corresponding English words. The quotation from Irenaeus is taken from the site's English translation of Against Heresies III.3.3; the words of the apostle Paul (Rom. 12:16) and the reference to Phil. 4:3 are given from the New King James Version published on the site.</p><p>Some features of the Russian page should be noted. It quotes the 1860 Russian translation, whose wording sometimes differs from the English translation used here; where the difference is important, it is stated in the notes. The Russian page also prints the chapter summaries of its edition («Chapter 40. Let us keep the order established by God in the Church» and the like); these summaries are not part of Clement's text and are omitted here, the chapter numbers being given in the citations after each quotation. In the chain of quotations on salvation the Russian page adds the scriptural reference (Isa. 40:10; 62:11; Rev. 22:12) to Clement's quotation of Isaiah; the English text of the epistle gives no reference, and it is not added here.</p><p>Translation: Rodion Vlasov, with the use of AI, from the <a href="https://bibleox.com/en/ru/w/%D0%9A%D0%BB%D0%B8%D0%BC%D0%B5%D0%BD%D1%82_%D0%A0%D0%B8%D0%BC%D1%81%D0%BA%D0%B8%D0%B9">Russian reference page</a>.</p>
