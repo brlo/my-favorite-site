@@ -137,6 +137,7 @@ tk:
     es: 'Ispança'
     fa: 'Parsça'
     ge-sch: 'Nemesçe'
+    fr-lsg: 'Fransuzça'
     hi: 'Hindi'
     jp-ni: 'Ýaponça'
     ko: 'Koreýçe'
@@ -261,6 +262,7 @@ tk:
         hi-ov: 'hindi terjime (O.V.)'
         ko-nkrv: 'koreý terjime (NKRV)'
         ge-sch: 'nemes terjime (SCH)'
+        fr-lsg: 'fransuz terjime (LSG, 1910)'
         arab-avd: 'arap terjime (AVD)'
       nz:
         ru: 'sinodal terjime (RST)'
@@ -283,6 +285,7 @@ tk:
         hi-ov: 'hindi terjime (O.V., 2016)'
         ko-nkrv: 'koreý terjime (NKRV, 1998)'
         ge-sch: 'nemes terjime (SCH, 1951)'
+        fr-lsg: 'fransuz terjime (LSG, 1910)'
         arab-avd: 'arap terjime (AVD, 1999)'
 
   menu:

@@ -137,6 +137,7 @@ ko:
     es: '스페인어'
     fa: '페르시아어'
     ge-sch: '독일어'
+    fr-lsg: '프랑스어'
     hi: '힌디어'
     jp-ni: '일본어'
     ko: '한국어'
@@ -261,6 +262,7 @@ ko:
         hi-ov: '힌디어 번역 (O.V.)'
         ko-nkrv: '한국어 번역 (NKRV)'
         ge-sch: '독일어 번역 (SCH)'
+        fr-lsg: '프랑스어 번역 (LSG, 1910)'
         arab-avd: '아랍어 번역 (AVD)'
       nz:
         ru: '시노달 번역 (RST)'
@@ -283,6 +285,7 @@ ko:
         hi-ov: '힌디어 번역 (O.V., 2016)'
         ko-nkrv: '한국어 번역 (NKRV, 1998)'
         ge-sch: '독일어 번역 (SCH, 1951)'
+        fr-lsg: '프랑스어 번역 (LSG, 1910)'
         arab-avd: '아랍어 번역 (AVD, 1999)'
 
   menu:

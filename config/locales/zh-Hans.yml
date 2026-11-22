@@ -138,6 +138,7 @@ zh-Hans:
     es: '西班牙语'
     fa: '波斯语'
     ge-sch: '德语'
+    fr-lsg: '法语'
     hi: '印地语'
     jp-ni: '日语'
     ko: '韩语'
@@ -262,6 +263,7 @@ zh-Hans:
         hi-ov: '印地语译本 (O.V.)'
         ko-nkrv: '韩语译本 (NKRV)'
         ge-sch: '德语译本 (SCH)'
+        fr-lsg: '法语译本 (LSG, 1910)'
         arab-avd: '阿拉伯语译本 (AVD)'
       nz:
         ru: '主教公会译本 (RST)'
@@ -284,6 +286,7 @@ zh-Hans:
         hi-ov: '印地语译本 (O.V., 2016)'
         ko-nkrv: '韩语译本 (NKRV, 1998)'
         ge-sch: '德语译本 (SCH, 1951)'
+        fr-lsg: '法语译本 (LSG, 1910)'
         arab-avd: '阿拉伯语译本 (AVD, 1999)'
 
   menu:

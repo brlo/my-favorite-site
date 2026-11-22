@@ -15,6 +15,7 @@ const LOCALE_TO_BIB = {
   ru: 'ru', sr: 'ru', tk: 'ru', uz: 'ru', uk: 'ru', be: 'ru', kk: 'ru',
   en: 'eng-nkjv', he: 'heb-osm', el: 'gr-lxx-byz', grc: 'gr-lxx-byz',
   ja: 'jp-ni', 'zh-Hans': 'cn-cuv', 'zh-Hant': 'cn-cuvt', de: 'ge-sch', ar: 'arab-avd',
+  fr: 'fr-lsg',
   ko: 'ko-nkrv', hi: 'hi-ov',
 }
 export const bibForLocale = (loc) => LOCALE_TO_BIB[loc] || 'eng-nkjv'
@@ -24,7 +25,7 @@ const BIB_TO_LOCALE = {
   ru: 'ru', 'csl-ru': 'ru', 'csl-pnm': 'ru', 'en-nrsv': 'en', 'eng-nkjv': 'en',
   'heb-osm': 'he', 'gr-lxx-byz': 'el', 'jp-ni': 'ja', 'cn-sb': 'zh-Hans', 'cn-sbt': 'zh-Hant',
   'cn-cuv': 'zh-Hans', 'cn-cuvt': 'zh-Hant',
-  'ge-sch': 'de', 'arab-avd': 'ar', 'ko-nkrv': 'ko', 'hi-ov': 'hi',
+  'ge-sch': 'de', 'arab-avd': 'ar', 'ko-nkrv': 'ko', 'hi-ov': 'hi', 'fr-lsg': 'fr',
 }
 export const localeForBib = (tr) => BIB_TO_LOCALE[tr] || 'en'
 

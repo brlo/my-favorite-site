@@ -7,6 +7,7 @@ class BibleLinker
     'en'      => 'en-nrsv',
     'ja'      => 'jp-ni',
     'de'      => 'ge-sch',
+    'fr'      => 'fr-lsg',
     'zh-Hans' => 'cn-cuv',
     'zh-Hant' => 'cn-cuvt',
     'ko'      => 'ko-nkrv',

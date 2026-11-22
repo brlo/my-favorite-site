@@ -145,6 +145,7 @@ en:
     es: 'Spanish'
     fa: 'Persian'
     ge-sch: 'German'
+    fr-lsg: 'French'
     hi: 'Hindi'
     jp-ni: 'Japanese'
     ko: 'Korean'
@@ -271,6 +272,7 @@ en:
         hi-ov: 'Hindi Translation (O.V.)'
         ko-nkrv: 'Korean Translation (NKRV)'
         ge-sch: 'German Translation (SCH)'
+        fr-lsg: 'French Translation (LSG, 1910)'
         arab-avd: 'Arabic Translation (AVD)'
       nz:
         ru: 'Synodal Translation (RST)'
@@ -291,6 +293,7 @@ en:
         hi-ov: 'Hindi Translation (O.V., 2016)'
         ko-nkrv: 'Korean Translation (NKRV, 1998)'
         ge-sch: 'German Translation (SCH, 1951)'
+        fr-lsg: 'French Translation (LSG, 1910)'
         arab-avd: 'Arabic Translation (AVD, 1999)'
 
   menu:

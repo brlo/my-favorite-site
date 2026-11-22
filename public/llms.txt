@@ -2,7 +2,7 @@
 
 > Free, non-commercial Orthodox Christian site (since 2022): the complete Bible in 19 translations across 12 languages (Russian Synodal, Church Slavonic, English NRSV and NKJV, Japanese, Chinese, Korean, Hindi, Arabic, German, Greek Septuagint, Hebrew, Greek interlinears) together with a wiki-like library of articles — Bible quote collections, Church Fathers, Ecumenical Councils, worship, apologetics and polemics in defense of the Orthodox faith, and guidance for Protestants seeking the Orthodox Church. One article tree, progressively translated into many languages; Russian is the original and most complete version. No ads, no paywall.
 
-Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 languages; articles exist in Russian, English, Japanese, Chinese, Korean, Hindi and ancient languages (Latin, Ancient Greek, Coptic, Church Slavonic, Old/Middle French, Classical Armenian) — coverage varies, Russian is the reference version, and articles in different languages are translations of the same document, not independent texts.
+Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 languages; articles exist in Russian, English, Japanese, Chinese, Korean, Hindi, French and ancient languages (Latin, Ancient Greek, Coptic, Church Slavonic, Old/Middle French, Classical Armenian) — coverage varies, Russian is the reference version, and articles in different languages are translations of the same document, not independent texts.
 
 ## URL structure
 
@@ -28,6 +28,7 @@ Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 la
 - [Hindi Orthodox Version](https://bibleox.com/hi/hi-ov/mf/1/)
 - [Arabic, Van Dyck](https://bibleox.com/ar/arab-avd/mf/1/)
 - [German, Schlachter](https://bibleox.com/de/ge-sch/mf/1/)
+- [French, Louis Segond (LSG, 1910)](https://bibleox.com/fr/fr-lsg/mf/1/) — no deuterocanonical books; the Johannine Comma (1 John 5:7) is absent.
 - [Greek: Septuagint OT + Byzantine-text NT](https://bibleox.com/el/gr-lxx-byz/mf/1/)
 - [Hebrew OT + Greek NT](https://bibleox.com/he/heb-osm/mf/1/)
 - Greek interlinear (word by word): [→ Russian](https://bibleox.com/ru/gr-ru/mf/1/), [→ English](https://bibleox.com/en/gr-en/mf/1/), [→ Japanese](https://bibleox.com/ja/gr-jp/mf/1/)
@@ -45,6 +46,7 @@ Indexes of the article library (each lists all sections in that language):
 - [Русский](https://bibleox.com/ru/ru/w/links_ru) — the complete library: Church Fathers, councils, icons, temples, manuscripts, prayers, music, burials, authors.
 - [English](https://bibleox.com/en/en/w/links_en)
 - [हिन्दी](https://bibleox.com/hi/hi/w/links_hi)
+- [Français](https://bibleox.com/fr/fr/w/links_fr) — icons, temples, Christian burials and inscriptions, biblical manuscripts; the rest is being translated.
 
 Bible quote collections — topical apologetics ("what the Bible says about…"), the largest article tree on the site:
 

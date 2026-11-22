@@ -137,6 +137,7 @@ de:
     es: 'Spanisch'
     fa: 'Persisch'
     ge-sch: 'Deutsch'
+    fr-lsg: 'Französisch'
     hi: 'Hindi'
     jp-ni: 'Japanisch'
     ko: 'Koreanisch'
@@ -261,6 +262,7 @@ de:
         hi-ov: 'Hindi-Übersetzung (O.V.)'
         ko-nkrv: 'koreanische Übersetzung (NKRV)'
         ge-sch: 'deutsche Übersetzung (SCH)'
+        fr-lsg: 'französische Übersetzung (LSG, 1910)'
         arab-avd: 'arabische Übersetzung (AVD)'
       nz:
         ru: 'Synodalübersetzung (RST)'
@@ -283,6 +285,7 @@ de:
         hi-ov: 'Hindi-Übersetzung (O.V., 2016)'
         ko-nkrv: 'koreanische Übersetzung (NKRV, 1998)'
         ge-sch: 'deutsche Übersetzung (SCH, 1951)'
+        fr-lsg: 'französische Übersetzung (LSG, 1910)'
         arab-avd: 'arabische Übersetzung (AVD, 1999)'
 
   menu:

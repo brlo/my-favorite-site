@@ -47,6 +47,23 @@ TEMPLATE = [
 
 # Названия пунктов по языкам. Ключи — из TEMPLATE.
 TITLES = {
+  'fr' => {
+    library: 'Bibliothèque',
+    church_writers: '📚 Ouvrages des anciens chrétiens',
+    councils: '📃 Conciles',
+    icons: '🖼️ Icônes',
+    churches: '🪨 Temples',
+    burials: 'Sépultures et inscriptions chrétiennes',
+    manuscripts: '📜 Manuscrits bibliques',
+    prayers: '🙏 Prières',
+    music: '🎵 Musique',
+    kitchen: '🍞 Cuisine de carême',
+    quotes: 'Recueils de citations',
+    biblical_quotes: '📜 Citations bibliques',
+    fathers_quotes: "📖 Citations des Pères de l'Église",
+    articles: "Articles sur l'Écriture et la Tradition",
+    authors: '📄 Publications d’auteurs'
+  },
   'zh-Hant' => {
     library: '圖書館',
     church_writers: '📚 古代基督教著作',

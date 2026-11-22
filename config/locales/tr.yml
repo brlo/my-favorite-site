@@ -137,6 +137,7 @@ tr:
     es: 'İspanyolca'
     fa: 'Farsça'
     ge-sch: 'Almanca'
+    fr-lsg: 'Fransızca'
     hi: 'Hintçe'
     jp-ni: 'Japonca'
     ko: 'Korece'
@@ -261,6 +262,7 @@ tr:
         hi-ov: 'Hintçe çeviri (O.V.)'
         ko-nkrv: 'Korece çeviri (NKRV)'
         ge-sch: 'Almanca çeviri (SCH)'
+        fr-lsg: 'Fransızca çeviri (LSG, 1910)'
         arab-avd: 'Arapça çeviri (AVD)'
       nz:
         ru: 'Sinodal çeviri (RST)'
@@ -283,6 +285,7 @@ tr:
         hi-ov: 'Hintçe çeviri (O.V., 2016)'
         ko-nkrv: 'Korece çeviri (NKRV, 1998)'
         ge-sch: 'Almanca çeviri (SCH, 1951)'
+        fr-lsg: 'Fransızca çeviri (LSG, 1910)'
         arab-avd: 'Arapça çeviri (AVD, 1999)'
 
   menu:

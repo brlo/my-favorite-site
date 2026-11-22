@@ -137,6 +137,7 @@ ja:
     es: 'スペイン語'
     fa: 'ペルシア語'
     ge-sch: 'ドイツ語'
+    fr-lsg: 'フランス語'
     hi: 'ヒンディー語'
     jp-ni: '日本語'
     ko: '韓国語'
@@ -263,6 +264,7 @@ ja:
         hi-ov: 'ヒンディー語訳 (O.V.)'
         ko-nkrv: '韓国語訳 (NKRV)'
         ge-sch: 'ドイツ語訳 (SCH)'
+        fr-lsg: 'フランス語訳 (LSG, 1910)'
         arab-avd: 'アラビア語訳 (AVD)'
       nz:
         ru: 'シノド翻訳 (RST)'
@@ -283,6 +285,7 @@ ja:
         hi-ov: 'ヒンディー語訳 (O.V., 2016)'
         ko-nkrv: '韓国語訳 (NKRV, 1998)'
         ge-sch: 'ドイツ語訳 (SCH, 1951)'
+        fr-lsg: 'フランス語訳 (LSG, 1910)'
         arab-avd: 'アラビア語訳 (AVD, 1999)'
 
   menu:

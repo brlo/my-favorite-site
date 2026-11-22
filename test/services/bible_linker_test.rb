@@ -63,8 +63,15 @@ class BibleLinkerTest < ActiveSupport::TestCase
     assert_equal '<p>Ин. 99:1</p>', link('<p>Ин. 99:1</p>')
   end
 
+  test "French articles link to the Segond Bible" do
+    assert_includes link('<p>(Jean 3:16)</p>', 'fr'), 'href="/fr/fr-lsg/in/3#L16"'
+    assert_includes link('<p>(1 Co 13:4)</p>', 'fr'), 'href="/fr/fr-lsg/1kor/13#L4"'
+    assert_includes link('<p>(Ps 22:2)</p>', 'fr'), 'href="/fr/fr-lsg/ps/22#L2"'
+    assert_includes link('<p>(Éphésiens 2:8-9)</p>', 'fr'), 'href="/fr/fr-lsg/ef/2#L8-9"'
+  end
+
   test "leaves text of languages without a Bible as is" do
-    assert_equal '<p>Мф. 20:13</p>', link('<p>Мф. 20:13</p>', 'fr')
+    assert_equal '<p>Мф. 20:13</p>', link('<p>Мф. 20:13</p>', 'sw')
   end
 
   test "page body_rendered gets the links while body stays clean" do

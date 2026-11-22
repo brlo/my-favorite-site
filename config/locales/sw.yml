@@ -137,6 +137,7 @@ sw:
     es: 'Kihispania'
     fa: 'Kiajemi'
     ge-sch: 'Kijerumani'
+    fr-lsg: 'Kifaransa'
     hi: 'Kihindi'
     jp-ni: 'Kijapani'
     ko: 'Kikorea'
@@ -261,6 +262,7 @@ sw:
         hi-ov: 'tafsiri ya Kihindi (O.V.)'
         ko-nkrv: 'tafsiri ya Kikorea (NKRV)'
         ge-sch: 'tafsiri ya Kijerumani (SCH)'
+        fr-lsg: 'tafsiri ya Kifaransa (LSG, 1910)'
         arab-avd: 'tafsiri ya Kiarabu (AVD)'
       nz:
         ru: 'tafsiri ya sinodi (RST)'
@@ -283,6 +285,7 @@ sw:
         hi-ov: 'tafsiri ya Kihindi (O.V., 2016)'
         ko-nkrv: 'tafsiri ya Kikorea (NKRV, 1998)'
         ge-sch: 'tafsiri ya Kijerumani (SCH, 1951)'
+        fr-lsg: 'tafsiri ya Kifaransa (LSG, 1910)'
         arab-avd: 'tafsiri ya Kiarabu (AVD, 1999)'
 
   menu:

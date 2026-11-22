@@ -137,6 +137,7 @@ uz:
     es: 'Ispancha'
     fa: 'Forscha'
     ge-sch: 'Nemischa'
+    fr-lsg: 'Fransuzcha'
     hi: 'Hindcha'
     jp-ni: 'Yaponcha'
     ko: 'Koreyscha'
@@ -261,6 +262,7 @@ uz:
         hi-ov: 'hindcha tarjima (O.V.)'
         ko-nkrv: 'koreyscha tarjima (NKRV)'
         ge-sch: 'nemischa tarjima (SCH)'
+        fr-lsg: 'fransuzcha tarjima (LSG, 1910)'
         arab-avd: 'arabcha tarjima (AVD)'
       nz:
         ru: 'sinodal tarjima (RST)'
@@ -283,6 +285,7 @@ uz:
         hi-ov: 'hindcha tarjima (O.V., 2016)'
         ko-nkrv: 'koreyscha tarjima (NKRV, 1998)'
         ge-sch: 'nemischa tarjima (SCH, 1951)'
+        fr-lsg: 'fransuzcha tarjima (LSG, 1910)'
         arab-avd: 'arabcha tarjima (AVD, 1999)'
 
   menu:

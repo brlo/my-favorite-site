@@ -137,6 +137,7 @@ vi:
     es: 'Tiếng Tây Ban Nha'
     fa: 'Tiếng Ba Tư'
     ge-sch: 'Tiếng Đức'
+    fr-lsg: 'Tiếng Pháp'
     hi: 'Tiếng Hindi'
     jp-ni: 'Tiếng Nhật'
     ko: 'Tiếng Hàn'
@@ -261,6 +262,7 @@ vi:
         hi-ov: 'bản dịch tiếng Hindi (O.V.)'
         ko-nkrv: 'bản dịch tiếng Hàn (NKRV)'
         ge-sch: 'bản dịch tiếng Đức (SCH)'
+        fr-lsg: 'bản dịch tiếng Pháp (LSG, 1910)'
         arab-avd: 'bản dịch tiếng Ả Rập (AVD)'
       nz:
         ru: 'bản dịch Synod (RST)'
@@ -283,6 +285,7 @@ vi:
         hi-ov: 'bản dịch tiếng Hindi (O.V., 2016)'
         ko-nkrv: 'bản dịch tiếng Hàn (NKRV, 1998)'
         ge-sch: 'bản dịch tiếng Đức (SCH, 1951)'
+        fr-lsg: 'bản dịch tiếng Pháp (LSG, 1910)'
         arab-avd: 'bản dịch tiếng Ả Rập (AVD, 1999)'
 
   menu:

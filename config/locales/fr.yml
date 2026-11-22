@@ -119,6 +119,244 @@ fr:
     fro: 'Ancien français'  # Старофранцузский (IX–XIII вв.)
     xcl: 'Arménien classique (Grabar)'
 
+  books:
+    short:
+      gen: Gen
+      ish: Ex
+      lev: Lv
+      chis: Nb
+      vtor: Dt
+      nav: Jos
+      sud: Jg
+      ruf: Rt
+      1ts: 1 S
+      2ts: 2 S
+      3ts: 1 R
+      4ts: 2 R
+      1par: 1 Ch
+      2par: 2 Ch
+      ezd: Esd
+      neem: Ne
+      2ezd: 2 Esd
+      tov: Tb
+      iudf: Jdt
+      esf: Est
+      pr: Pr
+      ekl: Qo
+      pp: Ct
+      prs: Sg
+      prsir: Si
+      iov: Jb
+      is: Is
+      ier: Jr
+      pier: Lm
+      pos: Let Jr
+      var: Ba
+      iez: Ez
+      dan: Dn
+      os: Os
+      iol: Jl
+      am: Am
+      av: Ab
+      ion: Jon
+      mih: Mi
+      naum: Na
+      avm: Ha
+      sof: So
+      ag: Ag
+      zah: Za
+      mal: Ml
+      1mak: 1 M
+      2mak: 2 M
+      3mak: 3 M
+      3ezd: 3 Esd
+      ps: Ps
+      mf: Mt
+      mk: Mc
+      lk: Lc
+      in: Jn
+      act: Ac
+      iak: Jc
+      1pet: 1 P
+      2pet: 2 P
+      1in: 1 Jn
+      2in: 2 Jn
+      3in: 3 Jn
+      iud: Jude
+      rim: Rm
+      1kor: 1 Co
+      2kor: 2 Co
+      gal: Ga
+      ef: Ep
+      fil: Ph
+      kol: Col
+      1sol: 1 Th
+      2sol: 2 Th
+      1tim: 1 Tm
+      2tim: 2 Tm
+      tit: Tt
+      fm: Phm
+      evr: He
+      otkr: Ap
+
+    mid:
+      gen: Genèse
+      ish: Exode
+      lev: Lévitique
+      chis: Nombres
+      vtor: Deutéronome
+      nav: Josué
+      sud: Juges
+      ruf: Ruth
+      1ts: 1 Samuel
+      2ts: 2 Samuel
+      3ts: 1 Rois
+      4ts: 2 Rois
+      1par: 1 Chroniques
+      2par: 2 Chroniques
+      ezd: Esdras
+      neem: Néhémie
+      2ezd: 2 Esdras
+      tov: Tobit
+      iudf: Judith
+      esf: Esther
+      pr: Proverbes
+      ekl: Ecclésiaste
+      pp: Cantique des cantiques
+      prs: Sagesse
+      prsir: Siracide
+      iov: Job
+      is: Isaïe
+      ier: Jérémie
+      pier: Lamentations
+      pos: Lettre de Jérémie
+      var: Baruch
+      iez: Ézéchiel
+      dan: Daniel
+      os: Osée
+      iol: Joël
+      am: Amos
+      av: Abdias
+      ion: Jonas
+      mih: Michée
+      naum: Nahum
+      avm: Habacuc
+      sof: Sophonie
+      ag: Aggée
+      zah: Zacharie
+      mal: Malachie
+      1mak: 1 Maccabées
+      2mak: 2 Maccabées
+      3mak: 3 Maccabées
+      3ezd: 3 Esdras
+      ps: Psaumes
+      mf: Matthieu
+      mk: Marc
+      lk: Luc
+      in: Jean
+      act: Actes
+      iak: Jacques
+      1pet: 1 Pierre
+      2pet: 2 Pierre
+      1in: 1 Jean
+      2in: 2 Jean
+      3in: 3 Jean
+      iud: Jude
+      rim: Romains
+      1kor: 1 Corinthiens
+      2kor: 2 Corinthiens
+      gal: Galates
+      ef: Éphésiens
+      fil: Philippiens
+      kol: Colossiens
+      1sol: 1 Thessaloniciens
+      2sol: 2 Thessaloniciens
+      1tim: 1 Timothée
+      2tim: 2 Timothée
+      tit: Tite
+      fm: Philémon
+      evr: Hébreux
+      otkr: Apocalypse
+
+    full:
+      gen: Genèse
+      ish: Exode
+      lev: Lévitique
+      chis: Nombres
+      vtor: Deutéronome
+      nav: Josué
+      sud: Juges
+      ruf: Ruth
+      1ts: 1 Samuel
+      2ts: 2 Samuel
+      3ts: 1 Rois
+      4ts: 2 Rois
+      1par: 1 Chroniques
+      2par: 2 Chroniques
+      ezd: Esdras
+      neem: Néhémie
+      2ezd: 2 Esdras
+      tov: Tobit
+      iudf: Judith
+      esf: Esther
+      pr: Proverbes
+      ekl: Ecclésiaste
+      pp: Cantique des cantiques
+      prs: Sagesse de Salomon
+      prsir: Siracide (Ecclésiastique)
+      iov: Job
+      is: Isaïe
+      ier: Jérémie
+      pier: Lamentations
+      pos: Lettre de Jérémie
+      var: Baruch
+      iez: Ézéchiel
+      dan: Daniel
+      os: Osée
+      iol: Joël
+      am: Amos
+      av: Abdias
+      ion: Jonas
+      mih: Michée
+      naum: Nahum
+      avm: Habacuc
+      sof: Sophonie
+      ag: Aggée
+      zah: Zacharie
+      mal: Malachie
+      1mak: 1 Maccabées
+      2mak: 2 Maccabées
+      3mak: 3 Maccabées
+      3ezd: 3 Esdras
+      ps: Psaumes
+      mf: Évangile selon Matthieu
+      mk: Évangile selon Marc
+      lk: Évangile selon Luc
+      in: Évangile selon Jean
+      act: Actes des Apôtres
+      iak: Épître de Jacques
+      1pet: 1re épître de Pierre
+      2pet: 2e épître de Pierre
+      1in: 1re épître de Jean
+      2in: 2e épître de Jean
+      3in: 3e épître de Jean
+      iud: Épître de Jude
+      rim: Épître aux Romains
+      1kor: 1re épître aux Corinthiens
+      2kor: 2e épître aux Corinthiens
+      gal: Épître aux Galates
+      ef: Épître aux Éphésiens
+      fil: Épître aux Philippiens
+      kol: Épître aux Colossiens
+      1sol: 1re épître aux Thessaloniciens
+      2sol: 2e épître aux Thessaloniciens
+      1tim: 1re épître à Timothée
+      2tim: 2e épître à Timothée
+      tit: Épître à Tite
+      fm: Épître à Philémon
+      evr: Épître aux Hébreux
+      otkr: Apocalypse de Jean
+
   bib_translations:
     # --- Переводы
     translates: Traductions
@@ -137,6 +375,7 @@ fr:
     es: 'Espagnol'
     fa: 'Persan'
     ge-sch: 'Allemand'
+    fr-lsg: 'Français'
     hi: 'Hindi'
     jp-ni: 'Japonais'
     ko: 'Coréen'
@@ -261,6 +500,7 @@ fr:
         hi-ov: 'traduction hindie (O.V.)'
         ko-nkrv: 'traduction coréenne (NKRV)'
         ge-sch: 'traduction allemande (SCH)'
+        fr-lsg: 'traduction française (LSG, 1910)'
         arab-avd: 'traduction arabe (AVD)'
       nz:
         ru: 'traduction synodale (RST)'
@@ -283,6 +523,7 @@ fr:
         hi-ov: 'traduction hindie (O.V., 2016)'
         ko-nkrv: 'traduction coréenne (NKRV, 1998)'
         ge-sch: 'traduction allemande (SCH, 1951)'
+        fr-lsg: 'traduction française (LSG, 1910)'
         arab-avd: 'traduction arabe (AVD, 1999)'
 
   menu:
