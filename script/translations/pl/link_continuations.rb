@@ -88,8 +88,14 @@ authors.each do |author|
     by_book = book ? family.find { |pp| (r = numbers_of(pp.title)) && r.cover?(book) } : nil
     target = by_book
     # отдельные письма: номер из названия («Письмо 215», «Письма (28, 29, 246, 210)»)
-    if target.nil? && title.match?(/письм/i) && !title.match?(/Письма\s+\d+\s*[–-]/)
-      num = title[/\b(\d{2,3})\b/, 1]&.to_i
+    if target.nil? && title.match?(/письм/i)
+      rng = title.match(/(\d{1,3})\s*[–-]\s*(\d{1,3})/)
+      num = if rng
+              a, b = rng[1].to_i, rng[2].to_i
+              idx > 1 ? (a + b) / 2 : a
+            else
+              title[/\b(\d{1,3})\b/, 1]&.to_i
+            end
       target = family.find { |pp| (r = range_of(pp.title)) && r.cover?(num) } if num
     end
     unless target
