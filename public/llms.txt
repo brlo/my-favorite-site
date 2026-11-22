@@ -28,7 +28,7 @@ Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 la
 - [Hindi Orthodox Version](https://bibleox.com/hi/hi-ov/mf/1/)
 - [Arabic, Van Dyck](https://bibleox.com/ar/arab-avd/mf/1/)
 - [German, Schlachter](https://bibleox.com/de/ge-sch/mf/1/)
-- [French, Louis Segond (LSG, 1910)](https://bibleox.com/fr/fr-lsg/mf/1/) — no deuterocanonical books; the Johannine Comma (1 John 5:7) is given in square brackets.
+- [French, Louis Segond (LSG, 1910)](https://bibleox.com/fr/fr-lsg/mf/1/) — no deuterocanonical books; Orthodox readings absent from the base edition are given in square brackets (e.g. the Johannine Comma, 1 John 5:7).
 - [Greek: Septuagint OT + Byzantine-text NT](https://bibleox.com/el/gr-lxx-byz/mf/1/)
 - [Hebrew OT + Greek NT](https://bibleox.com/he/heb-osm/mf/1/)
 - Greek interlinear (word by word): [→ Russian](https://bibleox.com/ru/gr-ru/mf/1/), [→ English](https://bibleox.com/en/gr-en/mf/1/), [→ Japanese](https://bibleox.com/ja/gr-jp/mf/1/)
