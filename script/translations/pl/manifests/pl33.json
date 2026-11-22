@@ -1,0 +1,589 @@
+{
+ "volume": 33,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL33.html",
+ "out": "tmp/pl/33",
+ "works": [
+  {
+   "start": "EPISTOLA PRIMA\\b",
+   "end": "EPISTOLA XXV\\b",
+   "path": "Aug_Epistolae_1",
+   "title": "Epistolae 1–24",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+   ]
+  },
+  {
+   "start": "EPISTOLA XXV\\b",
+   "end": "EPISTOLA XXXVI\\b",
+   "path": "Aug_Epistolae_2",
+   "title": "Epistolae 25–35",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+   ]
+  },
+  {
+   "start": "EPISTOLA XXXVI\\b",
+   "end": "EPISTOLA XLIV\\b",
+   "path": "Aug_Epistolae_3",
+   "title": "Epistolae 36–43",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43
+   ]
+  },
+  {
+   "start": "EPISTOLA XLIV\\b",
+   "end": "EPISTOLA LIII\\b",
+   "path": "Aug_Epistolae_4",
+   "title": "Epistolae 44–52",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52
+   ]
+  },
+  {
+   "start": "EPISTOLA LIII\\b",
+   "end": "EPISTOLA LXVI\\b",
+   "path": "Aug_Epistolae_5",
+   "title": "Epistolae 53–65",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    53,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65
+   ]
+  },
+  {
+   "start": "EPISTOLA LXVI\\b",
+   "end": "EPISTOLA LXXX\\b",
+   "path": "Aug_Epistolae_6",
+   "title": "Epistolae 66–79",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    66,
+    67,
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79
+   ]
+  },
+  {
+   "start": "EPISTOLA LXXX\\b",
+   "end": "EPISTOLA XC\\b",
+   "path": "Aug_Epistolae_7",
+   "title": "Epistolae 80–89",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89
+   ]
+  },
+  {
+   "start": "EPISTOLA XC\\b",
+   "end": "EPISTOLA XCIV\\b",
+   "path": "Aug_Epistolae_8",
+   "title": "Epistolae 90–93",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    90,
+    91,
+    92,
+    93
+   ]
+  },
+  {
+   "start": "EPISTOLA XCIV\\b",
+   "end": "EPISTOLA CIII\\b",
+   "path": "Aug_Epistolae_9",
+   "title": "Epistolae 94–101",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    94,
+    95,
+    96,
+    97,
+    98,
+    99,
+    100,
+    101
+   ]
+  },
+  {
+   "start": "EPISTOLA CIII\\b",
+   "end": "EPISTOLA CXI\\b",
+   "path": "Aug_Epistolae_10",
+   "title": "Epistolae 103–110",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    103,
+    104,
+    105,
+    106,
+    107,
+    108,
+    109,
+    110
+   ]
+  },
+  {
+   "start": "EPISTOLA CXI\\b",
+   "end": "EPISTOLA CXX\\b",
+   "path": "Aug_Epistolae_11",
+   "title": "Epistolae 111–119",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    111,
+    112,
+    113,
+    114,
+    115,
+    116,
+    117,
+    118,
+    119
+   ]
+  },
+  {
+   "start": "EPISTOLA CXX\\b",
+   "end": "EPISTOLA CXXIX\\b",
+   "path": "Aug_Epistolae_12",
+   "title": "Epistolae 120–128",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    120,
+    121,
+    122,
+    123,
+    124,
+    125,
+    126,
+    127,
+    128
+   ]
+  },
+  {
+   "start": "EPISTOLA CXXIX\\b",
+   "end": "EPISTOLA CXXXVIII\\b",
+   "path": "Aug_Epistolae_13",
+   "title": "Epistolae 129–137",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    129,
+    130,
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137
+   ]
+  },
+  {
+   "start": "EPISTOLA CXXXVIII\\b",
+   "end": "EPISTOLA CXXXIX\\b",
+   "path": "Aug_Epistolae_14",
+   "title": "Epistola 138",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    138
+   ]
+  },
+  {
+   "start": "EPISTOLA CXXXIX\\b",
+   "end": "EPISTOLA CXLI\\b",
+   "path": "Aug_Epistolae_15",
+   "title": "Epistola 139",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    139
+   ]
+  },
+  {
+   "start": "EPISTOLA CXLI\\b",
+   "end": "EPISTOLA CXLVI\\b",
+   "path": "Aug_Epistolae_16",
+   "title": "Epistolae 141–145",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    141,
+    142,
+    143,
+    144,
+    145
+   ]
+  },
+  {
+   "start": "EPISTOLA CXLVI\\b",
+   "end": "EPISTOLA CXLIX\\b",
+   "path": "Aug_Epistolae_17",
+   "title": "Epistolae 146–148",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    146,
+    148
+   ]
+  },
+  {
+   "start": "EPISTOLA CXLIX\\b",
+   "end": "EPISTOLA CLV\\b",
+   "path": "Aug_Epistolae_18",
+   "title": "Epistolae 149–154",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    149,
+    150,
+    151,
+    152,
+    153,
+    154
+   ]
+  },
+  {
+   "start": "EPISTOLA CLV\\b",
+   "end": "EPISTOLA CLXI\\b",
+   "path": "Aug_Epistolae_19",
+   "title": "Epistolae 155–160",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    155,
+    156,
+    157,
+    158,
+    159,
+    160
+   ]
+  },
+  {
+   "start": "EPISTOLA CLXI\\b",
+   "end": "EPISTOLA CLXV\\b",
+   "path": "Aug_Epistolae_20",
+   "title": "Epistolae 161–164",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    161,
+    162,
+    163,
+    164
+   ]
+  },
+  {
+   "start": "EPISTOLA CLXV\\b",
+   "end": "EPISTOLA CLXXIII\\b",
+   "path": "Aug_Epistolae_21",
+   "title": "Epistolae 165–172",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    165,
+    168,
+    169,
+    170,
+    171,
+    172
+   ]
+  },
+  {
+   "start": "EPISTOLA CLXXIII\\b",
+   "end": "EPISTOLA CLXXXIV\\b",
+   "path": "Aug_Epistolae_22",
+   "title": "Epistolae 173–184",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    173,
+    174,
+    175,
+    176,
+    177,
+    178,
+    179,
+    180,
+    181,
+    182,
+    183,
+    184
+   ]
+  },
+  {
+   "start": "EPISTOLA CLXXXIV\\b",
+   "end": "EPISTOLA CLXXXVI\\b",
+   "path": "Aug_Epistolae_23",
+   "title": "Epistola 184",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    184
+   ]
+  },
+  {
+   "start": "EPISTOLA CLXXXVI\\b",
+   "end": "EPISTOLA CLXXXVIII\\b",
+   "path": "Aug_Epistolae_24",
+   "title": "Epistola 186",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    186
+   ]
+  },
+  {
+   "start": "EPISTOLA CLXXXVIII\\b",
+   "end": "EPISTOLA CXCIV\\b",
+   "path": "Aug_Epistolae_25",
+   "title": "Epistolae 188–193",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    188,
+    189,
+    190,
+    191,
+    192,
+    193
+   ]
+  },
+  {
+   "start": "EPISTOLA CXCIV\\b",
+   "end": "EPISTOLA CXCIX\\b",
+   "path": "Aug_Epistolae_26",
+   "title": "Epistolae 194–198",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    194,
+    195,
+    196,
+    197,
+    198
+   ]
+  },
+  {
+   "start": "EPISTOLA CXCIX\\b",
+   "end": "EPISTOLA CCV\\b",
+   "path": "Aug_Epistolae_27",
+   "title": "Epistolae 199–204",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    199,
+    200,
+    201,
+    202,
+    202,
+    203,
+    204
+   ]
+  },
+  {
+   "start": "EPISTOLA CCV\\b",
+   "end": "EPISTOLA CCXVII\\b",
+   "path": "Aug_Epistolae_28",
+   "title": "Epistolae 205–216",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    205,
+    206,
+    207,
+    208,
+    209,
+    210,
+    211,
+    212,
+    214,
+    215,
+    216
+   ]
+  },
+  {
+   "start": "EPISTOLA CCXVII\\b",
+   "end": "EPISTOLA CCXXVIII\\b",
+   "path": "Aug_Epistolae_29",
+   "title": "Epistolae 217–227",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    217,
+    218,
+    219,
+    220,
+    221,
+    222,
+    223,
+    224,
+    225,
+    226,
+    227
+   ]
+  },
+  {
+   "start": "EPISTOLA CCXXVIII\\b",
+   "end": "EPISTOLA CCXLI\\b",
+   "path": "Aug_Epistolae_30",
+   "title": "Epistolae 228–240",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    228,
+    229,
+    230,
+    231,
+    232,
+    233,
+    234,
+    235,
+    236,
+    237,
+    238,
+    239,
+    240
+   ]
+  },
+  {
+   "start": "EPISTOLA CCXLI\\b",
+   "end": "EPISTOLA CCLXVII\\b",
+   "path": "Aug_Epistolae_31",
+   "title": "Epistolae 241–266",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    241,
+    242,
+    243,
+    244,
+    245,
+    246,
+    247,
+    248,
+    249,
+    250,
+    251,
+    252,
+    253,
+    254,
+    255,
+    256,
+    257,
+    258,
+    259,
+    260,
+    261,
+    262,
+    263,
+    264,
+    265,
+    266
+   ]
+  },
+  {
+   "start": "EPISTOLA CCLXVII\\b",
+   "end": "Appendix TOMI SECUNDI",
+   "path": "Aug_Epistolae_32",
+   "title": "Epistolae 267–270",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    267,
+    268,
+    269,
+    270
+   ]
+  }
+ ]
+}

@@ -1,0 +1,47 @@
+{
+ "volume": 26,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL26.html",
+ "out": "tmp/pl/26",
+ "works": [
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN EVANGELIUM MATTHAEI",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI TRANSLATIO HOMILIARUM XXXIX ORIGENIS IN EVANGELIUM LUCAE",
+   "path": "Hier_Commentarii_in_Matthaeum",
+   "title": "Commentarii in Evangelium Matthaei",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN EPISTOLAM AD GALATAS",
+   "end": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN EPISTOLAM AD EPHESIOS",
+   "path": "Hier_Commentarii_in_Galatas",
+   "title": "Commentarii in Epistolam ad Galatas",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN EPISTOLAM AD EPHESIOS",
+   "end": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN EPISTOLAM AD TITUM",
+   "path": "Hier_Commentarii_in_Ephesios",
+   "title": "Commentarii in Epistolam ad Ephesios",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN EPISTOLAM AD TITUM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN EPISTOLAM AD PHILEMONEM",
+   "path": "Hier_Commentarii_in_Titum",
+   "title": "Commentarii in Epistolam ad Titum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN EPISTOLAM AD PHILEMONEM",
+   "end": "COMMENTARII IN LIBRUM JOB",
+   "path": "Hier_Commentarii_in_Philemonem",
+   "title": "Commentarii in Epistolam ad Philemonem",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

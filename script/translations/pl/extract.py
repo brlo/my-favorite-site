@@ -306,21 +306,24 @@ def main():
     blocks = parse_blocks(html)
     print(f'{src}: блоков {len(blocks)}')
 
-    def find_block(prefix, after=0):
+    def find_block(prefix, after=0, nth=1):
+        seen = 0
         for i in range(after, len(blocks)):
             tag, txt, _raw = blocks[i]
             if tag != 'p' and re.match(prefix, clean_heading(txt)):
-                return i
+                seen += 1
+                if seen >= nth:
+                    return i
         return None
 
     report, total = [], 0
     for w in manifest['works']:
-        start = find_block(w['start'])
+        start = find_block(w['start'], nth=int(w.get('start_nth') or 1))
         if start is None:
             print(f"!! не найден старт: {w['start']}")
             report.append(f"НЕ НАЙДЕН старт: {w['start']}")
             continue
-        end = find_block(w['end'], start + 1) if w.get('end') else len(blocks)
+        end = find_block(w['end'], start + 1, nth=int(w.get('end_nth') or 1)) if w.get('end') else len(blocks)
         if end is None:
             print(f"!! не найден конец: {w['end']} ({w['title']}) — берём до конца тома")
             end = len(blocks)

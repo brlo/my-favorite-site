@@ -1,0 +1,127 @@
+{
+ "volume": 23,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL23.html",
+ "out": "tmp/pl/23",
+ "works": [
+  {
+   "start": "VITA S. PAULI PRIMI EREMITAE",
+   "end": "VITA S. HILARIONIS",
+   "path": "Hier_Vita_Pauli",
+   "title": "Vita S. Pauli Primi Eremitae",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "VITA S. HILARIONIS",
+   "end": "VITA MALCHI MONACHI CAPTIVI",
+   "path": "Hier_Vita_Hilarionis",
+   "title": "Vita S. Hilarionis",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "VITA MALCHI MONACHI CAPTIVI",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI TRANSLATIO LATINA REGULAE SANCTI PACHOMII",
+   "path": "Hier_Vita_Malchi",
+   "title": "Vita Malchi Monachi Captivi",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI TRANSLATIO LATINA REGULAE SANCTI PACHOMII",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI DIALOGUS CONTRA LUCIFERIANOS",
+   "path": "Hier_Regula_Pachomii",
+   "title": "Regula S. Pachomii a Hieronymo Latine Reddita",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI DIALOGUS CONTRA LUCIFERIANOS",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI DE PERPETUA VIRGINITATE",
+   "path": "Hier_Dialogus_contra_Luciferianos",
+   "title": "Dialogus contra Luciferianos",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI DE PERPETUA VIRGINITATE",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI ADVERSUS JOVINIANUM LIBRI DUO",
+   "path": "Hier_De_Perpetua_Virginitate",
+   "title": "De Perpetua Virginitate B. Mariae adversus Helvidium",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI ADVERSUS JOVINIANUM LIBRI DUO",
+   "end": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, CONTRA VIGILANTIUM",
+   "path": "Hier_Adversus_Jovinianum",
+   "title": "Adversus Jovinianum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, CONTRA VIGILANTIUM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI CONTRA JOANNEM HIEROSOLYMITANUM",
+   "path": "Hier_Contra_Vigilantium",
+   "title": "Contra Vigilantium",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI CONTRA JOANNEM HIEROSOLYMITANUM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI APOLOGIA ADVERSUS LIBROS RUFINI",
+   "path": "Hier_Contra_Joannem_Hierosolymitanum",
+   "title": "Contra Joannem Hierosolymitanum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI APOLOGIA ADVERSUS LIBROS RUFINI",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI DIALOGUS ADVERSUS PELAGIANOS",
+   "path": "Hier_Apologia_adversus_Rufinum",
+   "title": "Apologia adversus Libros Rufini",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI DIALOGUS ADVERSUS PELAGIANOS",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI DE VIRIS ILLUSTRIBUS",
+   "path": "Hier_Dialogus_adversus_Pelagianos",
+   "title": "Dialogus adversus Pelagianos",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI DE VIRIS ILLUSTRIBUS",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI LIBER HEBRAICARUM QUAESTIONUM IN GENESIM",
+   "path": "Hier_De_Viris_Illustribus",
+   "title": "De Viris Illustribus",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI LIBER HEBRAICARUM QUAESTIONUM IN GENESIM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIUS IN ECCLESIASTEN",
+   "path": "Hier_Quaestiones_Hebraicae_in_Genesim",
+   "title": "Liber Hebraicarum Quaestionum in Genesim",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIUS IN ECCLESIASTEN",
+   "end": "HOMILIA PRIMA",
+   "path": "Hier_Commentarius_in_Ecclesiasten",
+   "title": "Commentarius in Ecclesiasten",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "HOMILIA PRIMA",
+   "end": "DE ORIGENIANO LEXICO NOMINUM HEBRAICORUM",
+   "path": "Hier_Homiliae_in_Canticum",
+   "title": "Homiliae in Canticum Canticorum (Origenis, interprete Hieronymo)",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

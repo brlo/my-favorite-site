@@ -1,0 +1,15 @@
+{
+ "volume": 27,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL27.html",
+ "out": "tmp/pl/27",
+ "works": [
+  {
+   "start": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, INTERPRETATIO CHRONICAE EUSEBII",
+   "end": "S. HIERONYMI CHRONICON FINIT",
+   "path": "Hier_Chronicon",
+   "title": "Chronicon (Interpretatio Chronicae Eusebii Pamphili cum Hieronymi additionibus)",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

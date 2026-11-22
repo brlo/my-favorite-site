@@ -1,0 +1,397 @@
+{
+ "volume": 22,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL22.html",
+ "out": "tmp/pl/22",
+ "works": [
+  {
+   "start": "EPISTOLA I\\b",
+   "end": "EPISTOLA XVIII\\b",
+   "path": "Hier_Epistolae_1",
+   "title": "Epistolae 1–17",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17
+   ]
+  },
+  {
+   "start": "EPISTOLA XVIII\\b",
+   "end": "EPISTOLA XXII\\b",
+   "path": "Hier_Epistolae_2",
+   "title": "Epistolae 18–21",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    18,
+    19,
+    20,
+    21
+   ]
+  },
+  {
+   "start": "EPISTOLA XXII\\b",
+   "end": "EPISTOLA XXX\\b",
+   "path": "Hier_Epistolae_3",
+   "title": "Epistolae 22–29",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29
+   ]
+  },
+  {
+   "start": "EPISTOLA XXX\\b",
+   "end": "EPISTOLA XLVI\\b",
+   "path": "Hier_Epistolae_4",
+   "title": "Epistolae 30–45",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    30,
+    31,
+    32,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45
+   ]
+  },
+  {
+   "start": "EPISTOLA XLVI\\b",
+   "end": "EPISTOLA LII\\b",
+   "path": "Hier_Epistolae_5",
+   "title": "Epistolae 46–51",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    46,
+    47,
+    48,
+    49,
+    50,
+    51
+   ]
+  },
+  {
+   "start": "EPISTOLA LII\\b",
+   "end": "EPISTOLA LVII\\b",
+   "path": "Hier_Epistolae_6",
+   "title": "Epistolae 52–56",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    52,
+    53,
+    54,
+    55,
+    56
+   ]
+  },
+  {
+   "start": "EPISTOLA LVII\\b",
+   "end": "EPISTOLA LXIV\\b",
+   "path": "Hier_Epistolae_7",
+   "title": "Epistolae 57–63",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63
+   ]
+  },
+  {
+   "start": "EPISTOLA LXIV\\b",
+   "end": "EPISTOLA LXVIII\\b",
+   "path": "Hier_Epistolae_8",
+   "title": "Epistolae 64–67",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    64,
+    65,
+    66,
+    67
+   ]
+  },
+  {
+   "start": "EPISTOLA LXVIII\\b",
+   "end": "EPISTOLA LXXVII\\b",
+   "path": "Hier_Epistolae_9",
+   "title": "Epistolae 68–76",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    68,
+    69,
+    70,
+    71,
+    72,
+    73,
+    74,
+    75,
+    76
+   ]
+  },
+  {
+   "start": "EPISTOLA LXXVII\\b",
+   "end": "EPISTOLA LXXXII\\b",
+   "path": "Hier_Epistolae_10",
+   "title": "Epistolae 77–81",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    77,
+    78,
+    79,
+    80,
+    81
+   ]
+  },
+  {
+   "start": "EPISTOLA LXXXII\\b",
+   "end": "EPISTOLA XCVI\\b",
+   "path": "Hier_Epistolae_11",
+   "title": "Epistolae 82–95",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    82,
+    83,
+    84,
+    85,
+    86,
+    87,
+    88,
+    89,
+    90,
+    91,
+    92,
+    93,
+    94,
+    95
+   ]
+  },
+  {
+   "start": "EPISTOLA XCVI\\b",
+   "end": "EPISTOLA C\\b",
+   "path": "Hier_Epistolae_12",
+   "title": "Epistolae 96–99",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    96,
+    97,
+    98,
+    99
+   ]
+  },
+  {
+   "start": "EPISTOLA C\\b",
+   "end": "EPISTOLA CVI\\b",
+   "path": "Hier_Epistolae_13",
+   "title": "Epistolae 100–105",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    100,
+    101,
+    102,
+    103,
+    104,
+    105
+   ]
+  },
+  {
+   "start": "EPISTOLA CVI\\b",
+   "end": "EPISTOLA CVIII\\b",
+   "path": "Hier_Epistolae_14",
+   "title": "Epistolae 106–107",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    106,
+    107
+   ]
+  },
+  {
+   "start": "EPISTOLA CVIII\\b",
+   "end": "EPISTOLA CXII\\b",
+   "path": "Hier_Epistolae_15",
+   "title": "Epistolae 108–111",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    108,
+    109,
+    110,
+    111
+   ]
+  },
+  {
+   "start": "EPISTOLA CXII\\b",
+   "end": "EPISTOLA CXVIII\\b",
+   "path": "Hier_Epistolae_16",
+   "title": "Epistolae 112–117",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    112,
+    113,
+    114,
+    115,
+    116,
+    117
+   ]
+  },
+  {
+   "start": "EPISTOLA CXVIII\\b",
+   "end": "EPISTOLA CXX\\b",
+   "path": "Hier_Epistolae_17",
+   "title": "Epistolae 118–119",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    118,
+    119
+   ]
+  },
+  {
+   "start": "EPISTOLA CXX\\b",
+   "end": "EPISTOLA CXXI\\b",
+   "path": "Hier_Epistolae_18",
+   "title": "Epistola 120",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    120
+   ]
+  },
+  {
+   "start": "EPISTOLA CXXI\\b",
+   "end": "EPISTOLA CXXIII\\b",
+   "path": "Hier_Epistolae_19",
+   "title": "Epistolae 121–122",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    121,
+    122
+   ]
+  },
+  {
+   "start": "EPISTOLA CXXIII\\b",
+   "end": "EPISTOLA CXXVII\\b",
+   "path": "Hier_Epistolae_20",
+   "title": "Epistolae 123–126",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    123,
+    124,
+    125,
+    126
+   ]
+  },
+  {
+   "start": "EPISTOLA CXXVII\\b",
+   "end": "EPISTOLA CXXXI\\b",
+   "path": "Hier_Epistolae_21",
+   "title": "Epistolae 127–130",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    127,
+    128,
+    129,
+    130
+   ]
+  },
+  {
+   "start": "EPISTOLA CXXXI\\b",
+   "end": "EPISTOLA CXL\\b",
+   "path": "Hier_Epistolae_22",
+   "title": "Epistolae 131–139",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    131,
+    132,
+    133,
+    134,
+    135,
+    136,
+    137,
+    138,
+    139
+   ]
+  },
+  {
+   "start": "EPISTOLA CXL\\b",
+   "end": "EPISTOLA CXLVIII\\b",
+   "path": "Hier_Epistolae_23",
+   "title": "Epistolae 140–147",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    140,
+    141,
+    142,
+    143,
+    144,
+    145,
+    146,
+    147
+   ]
+  },
+  {
+   "start": "EPISTOLA CXLVIII\\b",
+   "end": "D. JOANNIS MARTIANAEI MONACHI BENEDICTINIE",
+   "path": "Hier_Epistolae_24",
+   "title": "Epistolae 148–150",
+   "split": "none",
+   "drop_em": true,
+   "letters": [
+    148,
+    149,
+    150
+   ]
+  }
+ ]
+}

@@ -1,0 +1,865 @@
+{
+ "lang": "la",
+ "list": "church_writers_la",
+ "volume": 26,
+ "source_url": "https://azbyka.ru/otechnik/Patrologija/PL23.html",
+ "author": {
+  "path": "UoFc_Hieronymus_Stridonensis_saeculo_IV",
+  "title": "Hieronymus Stridonensis, saeculo IV",
+  "title_sub": "sanctus, beatus (~347-419), presbyter et doctor Ecclesiae, Sacrae Scripturae in Latinum interpres",
+  "ru": "r6fC_Иероним_Стридонский_IV_век",
+  "menu_folder": "Saeculum IV",
+  "menu_replace": "Hieronymus Stridonensis, sanctus, beatus (~347-419)",
+  "menu_title": "Hieronymus Stridonensis, sanctus, beatus (~347-419)",
+  "body_file": "tmp/pl/23/jerome_body.html",
+  "references": "<p><strong>Fons:</strong> biographia e pagina Russica «Иероним Стридонский» (<a href=\"https://bibleox.com/ru/ru/w/r6fC_Иероним_Стридонский_IV_век\">bibleox.com</a>) translata.</p>"
+ },
+ "folders": [
+  {
+   "title": "Vitae",
+   "priority": 1
+  },
+  {
+   "title": "Polemica",
+   "priority": 2
+  },
+  {
+   "title": "Exegetica",
+   "priority": 3
+  },
+  {
+   "title": "Historica",
+   "priority": 4
+  },
+  {
+   "title": "Monastica",
+   "priority": 5
+  },
+  {
+   "title": "Epistolae",
+   "priority": 6
+  }
+ ],
+ "works": [
+  {
+   "fragment": "Hier_Vita_Pauli",
+   "volume": 23,
+   "folder": "Vitae",
+   "title": "Vita S. Pauli Primi Eremitae",
+   "priority": 1,
+   "path": "Hier_Vita_Pauli",
+   "ru": "g76K_Жизнь_Павла_Пустынника"
+  },
+  {
+   "fragment": "Hier_Vita_Hilarionis",
+   "volume": 23,
+   "folder": "Vitae",
+   "title": "Vita S. Hilarionis",
+   "priority": 2,
+   "path": "Hier_Vita_Hilarionis",
+   "ru": "9ofy_Жизнь_святого_Илариона"
+  },
+  {
+   "fragment": "Hier_Vita_Malchi",
+   "volume": 23,
+   "folder": "Vitae",
+   "title": "Vita Malchi Monachi Captivi",
+   "priority": 3,
+   "path": "Hier_Vita_Malchi",
+   "ru": "K3RD_Жизнь_пленного_монаха_Малха"
+  },
+  {
+   "fragment": "Hier_Regula_Pachomii",
+   "volume": 23,
+   "folder": "Monastica",
+   "title": "Regula S. Pachomii a Hieronymo Latine Reddita",
+   "priority": 1,
+   "path": "Hier_Regula_Pachomii",
+   "ru": "muOa_Предисловие_блаженного_Иеронима_к_сделанному_им_латинскому_переводу_правил_св_Пахомия",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Dialogus_contra_Luciferianos",
+   "volume": 23,
+   "folder": "Polemica",
+   "title": "Dialogus contra Luciferianos",
+   "priority": 1,
+   "path": "Hier_Dialogus_contra_Luciferianos",
+   "ru": "H5qb_Разговор_против_люцифериан"
+  },
+  {
+   "fragment": "Hier_De_Perpetua_Virginitate",
+   "volume": 23,
+   "folder": "Polemica",
+   "title": "De Perpetua Virginitate B. Mariae adversus Helvidium",
+   "priority": 2,
+   "path": "Hier_De_Perpetua_Virginitate",
+   "ru": "sWy9_О_Приснодевстве_блаженной_Марии"
+  },
+  {
+   "fragment": "Hier_Adversus_Jovinianum",
+   "volume": 23,
+   "folder": "Polemica",
+   "title": "Adversus Jovinianum",
+   "priority": 3,
+   "path": "Hier_Adversus_Jovinianum",
+   "ru": "AQN4_Две_книги_против_Иовиниана",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Contra_Vigilantium",
+   "volume": 23,
+   "folder": "Polemica",
+   "title": "Contra Vigilantium",
+   "priority": 6,
+   "path": "Hier_Contra_Vigilantium",
+   "ru": "rKmV_Книга_против_Вигилянция"
+  },
+  {
+   "fragment": "Hier_Contra_Joannem_Hierosolymitanum",
+   "volume": 23,
+   "folder": "Polemica",
+   "title": "Contra Joannem Hierosolymitanum",
+   "priority": 7,
+   "path": "Hier_Contra_Joannem_Hierosolymitanum",
+   "ru": "kRca_Книга_против_Иоанна_Иерусалимского_к_Паммахию"
+  },
+  {
+   "fragment": "Hier_Apologia_adversus_Rufinum",
+   "volume": 23,
+   "folder": "Polemica",
+   "title": "Apologia adversus Libros Rufini",
+   "priority": 8,
+   "path": "Hier_Apologia_adversus_Rufinum",
+   "ru": "l6Sa_Апология_против_книг_Руфина_посланная_к_Паммахию_и_Марцелле",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Dialogus_adversus_Pelagianos",
+   "volume": 23,
+   "folder": "Polemica",
+   "title": "Dialogus adversus Pelagianos",
+   "priority": 10,
+   "path": "Hier_Dialogus_adversus_Pelagianos",
+   "ru": "2PqO_Разговор_против_пелагиан",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_De_Viris_Illustribus",
+   "volume": 23,
+   "folder": "Historica",
+   "title": "De Viris Illustribus",
+   "priority": 1,
+   "path": "Hier_De_Viris_Illustribus",
+   "ru": "BWHE_О_знаменитых_мужах",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Quaestiones_Hebraicae_in_Genesim",
+   "volume": 23,
+   "folder": "Exegetica",
+   "title": "Liber Hebraicarum Quaestionum in Genesim",
+   "priority": 1,
+   "path": "Hier_Quaestiones_Hebraicae_in_Genesim",
+   "ru": "9qsf_Еврейские_вопросы_на_Книгу_Бытия",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Commentarius_in_Ecclesiasten",
+   "volume": 23,
+   "folder": "Exegetica",
+   "title": "Commentarius in Ecclesiasten",
+   "priority": 2,
+   "path": "Hier_Commentarius_in_Ecclesiasten",
+   "ru": "MKir_Толкование_на_книгу_Екклезиаст",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Homiliae_in_Canticum",
+   "volume": 23,
+   "folder": "Exegetica",
+   "title": "Homiliae in Canticum Canticorum (Origenis, interprete Hieronymo)",
+   "priority": 3,
+   "path": "Hier_Homiliae_in_Canticum",
+   "ru": "m13G_Беседы_на_Песнь_Песней"
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Isaiam",
+   "volume": 24,
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Hier_Commentarii_in_Isaiam_1",
+     "title": "Commentarii in Isaiam, Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1,
+     "ru": "Do8B_Толкование_на_книгу_пророка_Исайи_1"
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_2",
+     "title": "Commentarii in Isaiam, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 2
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_3",
+     "title": "Commentarii in Isaiam, Liber TERTIUS",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 3
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_4",
+     "title": "Commentarii in Isaiam, Liber QUARTUS",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER QUINTUS",
+     "priority": 4
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_5",
+     "title": "Commentarii in Isaiam, Liber QUINTUS",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER SEXTUS",
+     "priority": 5
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_6",
+     "title": "Commentarii in Isaiam, Liber SEXTUS",
+     "first": "LIBER SEXTUS",
+     "last": "LIBER SEPTIMUS",
+     "priority": 6
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_7",
+     "title": "Commentarii in Isaiam, Liber SEPTIMUS",
+     "first": "LIBER SEPTIMUS",
+     "last": "LIBER OCTAVUS",
+     "priority": 7
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_8",
+     "title": "Commentarii in Isaiam, Liber OCTAVUS",
+     "first": "LIBER OCTAVUS",
+     "last": "LIBER NONUS",
+     "priority": 8
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_9",
+     "title": "Commentarii in Isaiam, Liber NONUS",
+     "first": "LIBER NONUS",
+     "last": "LIBER DECIMUS",
+     "priority": 9
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_10",
+     "title": "Commentarii in Isaiam, Liber DECIMUS",
+     "first": "LIBER DECIMUS",
+     "last": "LIBER UNDECIMUS",
+     "priority": 10
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_11",
+     "title": "Commentarii in Isaiam, Liber UNDECIMUS",
+     "first": "LIBER UNDECIMUS",
+     "last": "LIBER DUODECIMUS",
+     "priority": 11
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_12",
+     "title": "Commentarii in Isaiam, Liber DUODECIMUS",
+     "first": "LIBER DUODECIMUS",
+     "last": "LIBER DECIMUS TERTIUS",
+     "priority": 12
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_13",
+     "title": "Commentarii in Isaiam, Liber DECIMUS TERTIUS",
+     "first": "LIBER DECIMUS TERTIUS",
+     "last": "LIBER DECIMUS QUARTUS",
+     "priority": 13
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_14",
+     "title": "Commentarii in Isaiam, Liber DECIMUS QUARTUS",
+     "first": "LIBER DECIMUS QUARTUS",
+     "last": "LIBER DECIMUS QUINTUS",
+     "priority": 14
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_15",
+     "title": "Commentarii in Isaiam, Liber DECIMUS QUINTUS",
+     "first": "LIBER DECIMUS QUINTUS",
+     "last": "LIBER DECIMUS SEXTUS",
+     "priority": 15
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_16",
+     "title": "Commentarii in Isaiam, Liber DECIMUS SEXTUS",
+     "first": "LIBER DECIMUS SEXTUS",
+     "last": "LIBER DECIMUS SEPTIMUS",
+     "priority": 16
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_17",
+     "title": "Commentarii in Isaiam, Liber DECIMUS SEPTIMUS",
+     "first": "LIBER DECIMUS SEPTIMUS",
+     "last": "LIBER DECIMUS OCTAVUS",
+     "priority": 17
+    },
+    {
+     "path": "Hier_Commentarii_in_Isaiam_18",
+     "title": "Commentarii in Isaiam, Liber DECIMUS OCTAVUS",
+     "first": "LIBER DECIMUS OCTAVUS",
+     "last": null,
+     "priority": 18
+    }
+   ],
+   "max_kb": 120
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Jeremiam",
+   "volume": 24,
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Hier_Commentarii_in_Jeremiam_1",
+     "title": "Commentarii in Jeremiam, Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1,
+     "ru": "0eAX_Шесть_книг_толкований_на_пророка_Иеремию_1"
+    },
+    {
+     "path": "Hier_Commentarii_in_Jeremiam_2",
+     "title": "Commentarii in Jeremiam, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 2
+    },
+    {
+     "path": "Hier_Commentarii_in_Jeremiam_3",
+     "title": "Commentarii in Jeremiam, Liber TERTIUS",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 3
+    },
+    {
+     "path": "Hier_Commentarii_in_Jeremiam_4",
+     "title": "Commentarii in Jeremiam, Liber QUARTUS",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER QUINTUS",
+     "priority": 4
+    },
+    {
+     "path": "Hier_Commentarii_in_Jeremiam_5",
+     "title": "Commentarii in Jeremiam, Liber QUINTUS",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER SEXTUS",
+     "priority": 5
+    },
+    {
+     "path": "Hier_Commentarii_in_Jeremiam_6",
+     "title": "Commentarii in Jeremiam, Liber SEXTUS",
+     "first": "LIBER SEXTUS",
+     "last": null,
+     "priority": 6
+    }
+   ],
+   "max_kb": 120
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Ezechielem",
+   "volume": 25,
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Hier_Commentarii_in_Ezechielem_1",
+     "title": "Commentarii in Ezechielem, Libri PRIMUS–QUARTUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER QUINTUS",
+     "priority": 1,
+     "ru": "LU0F_Четырнадцать_книг_толкований_на_пророка_Иезекииля_1"
+    },
+    {
+     "path": "Hier_Commentarii_in_Ezechielem_2",
+     "title": "Commentarii in Ezechielem, Libri QUINTUS–OCTAVUS",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER NONUS",
+     "priority": 2,
+     "ru": "oxpj_Четырнадцать_книг_толкований_на_пророка_Иезекииля_2"
+    },
+    {
+     "path": "Hier_Commentarii_in_Ezechielem_3",
+     "title": "Commentarii in Ezechielem, Libri NONUS–DUODECIMUS",
+     "first": "LIBER NONUS",
+     "last": "LIBER DECIMUS TERTIUS",
+     "priority": 3,
+     "ru": "VxNS_Четырнадцать_книг_толкований_на_пророка_Иезекииля_3"
+    },
+    {
+     "path": "Hier_Commentarii_in_Ezechielem_4",
+     "title": "Commentarii in Ezechielem, Libri DECIMUS TERTIUS–DECIMUS QUARTUS",
+     "first": "LIBER DECIMUS TERTIUS",
+     "last": null,
+     "priority": 4,
+     "ru": "3C0M_Четырнадцать_книг_толкований_на_пророка_Иезекииля_4"
+    }
+   ],
+   "max_kb": 130
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Danielem",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Danielem",
+   "title": "Commentarii in Danielem",
+   "priority": 5,
+   "ru": "x4AQ_Толкование_на_книги_пророков_Даниила_Осии_Иоиля_1",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_In_Lamentationes_Jeremiae",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_In_Lamentationes_Jeremiae",
+   "title": "In Lamentationes Jeremiae",
+   "priority": 6
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Osee",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Osee",
+   "title": "Commentarii in Osee",
+   "priority": 7,
+   "ru": "DBVJ_Толкование_на_книги_пророков_Даниила_Осии_Иоиля_2",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Joelem",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Joelem",
+   "title": "Commentarii in Joelem",
+   "priority": 10,
+   "ru": "bIDp_Толкование_на_книги_пророков_Даниила_Осии_Иоиля_3",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Amos",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Amos",
+   "title": "Commentarii in Amos",
+   "priority": 11,
+   "ru": "UDn7_Три_книги_толкований_на_пророка_Амоса",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Abdiam",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Abdiam",
+   "title": "Commentarii in Abdiam",
+   "priority": 14,
+   "ru": "hnyS_Толкование_на_книгу_пророка_Авдия"
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Jonam",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Jonam",
+   "title": "Commentarii in Jonam",
+   "priority": 15,
+   "ru": "URWu_Толкование_на_книгу_пророка_Ионы"
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Michaeam",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Michaeam",
+   "title": "Commentarii in Michaeam",
+   "priority": 16,
+   "ru": "JDf9_Две_книги_толкований_на_пророка_Михея",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Naum",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Naum",
+   "title": "Commentarii in Naum",
+   "priority": 18,
+   "ru": "dzSG_Книга_толкований_на_пророка_Наума"
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Abacuc",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Abacuc",
+   "title": "Commentarii in Abacuc",
+   "priority": 19,
+   "ru": "87Pk_Две_книги_толкований_на_пророка_Аввакума_к_Хроматию",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Sophoniam",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Sophoniam",
+   "title": "Commentarii in Sophoniam",
+   "priority": 21,
+   "ru": "En5L_Толкование_на_пророка_Софонию",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Aggaeum",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Aggaeum",
+   "title": "Commentarii in Aggaeum",
+   "priority": 23,
+   "ru": "WvlR_Толкование_на_пророка_Аггея"
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Zachariam",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Zachariam",
+   "title": "Commentarii in Zachariam",
+   "priority": 24,
+   "ru": "MQpb_Толкование_на_пророка_Захарию",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Malachiam",
+   "volume": 25,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Malachiam",
+   "title": "Commentarii in Malachiam",
+   "priority": 27,
+   "ru": "14Tc_Толкование_на_пророка_Малахию",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Matthaeum",
+   "volume": 26,
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Hier_Commentarii_in_Matthaeum_1",
+     "title": "Commentarii in Matthaeum, Libri PRIMUS–SECUNDUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER TERTIUS",
+     "priority": 1,
+     "ru": "8eZv_Толкование_на_Евангелие_по_Матфею_1"
+    },
+    {
+     "path": "Hier_Commentarii_in_Matthaeum_2",
+     "title": "Commentarii in Matthaeum, Libri TERTIUS–QUARTUS",
+     "first": "LIBER TERTIUS",
+     "last": null,
+     "priority": 2,
+     "ru": "TKNx_Толкование_на_Евангелие_по_Матфею_2"
+    }
+   ],
+   "max_kb": 120
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Galatas",
+   "volume": 26,
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Hier_Commentarii_in_Galatas_1",
+     "title": "Commentarii in Galatas, Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 3,
+     "ru": "TRPi_Три_книги_толкований_на_послание_к_Галатам"
+    },
+    {
+     "path": "Hier_Commentarii_in_Galatas_2",
+     "title": "Commentarii in Galatas, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 4
+    },
+    {
+     "path": "Hier_Commentarii_in_Galatas_3",
+     "title": "Commentarii in Galatas, Liber TERTIUS",
+     "first": "LIBER TERTIUS",
+     "last": null,
+     "priority": 5
+    }
+   ],
+   "max_kb": 120
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Ephesios",
+   "volume": 26,
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Hier_Commentarii_in_Ephesios_1",
+     "title": "Commentarii in Ephesios, Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 6
+    },
+    {
+     "path": "Hier_Commentarii_in_Ephesios_2",
+     "title": "Commentarii in Ephesios, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 7
+    },
+    {
+     "path": "Hier_Commentarii_in_Ephesios_3",
+     "title": "Commentarii in Ephesios, Liber TERTIUS",
+     "first": "LIBER TERTIUS",
+     "last": null,
+     "priority": 8
+    }
+   ],
+   "max_kb": 120
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Titum",
+   "volume": 26,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Titum",
+   "title": "Commentarii in Titum",
+   "priority": 9,
+   "max_kb": 110
+  },
+  {
+   "fragment": "Hier_Commentarii_in_Philemonem",
+   "volume": 26,
+   "folder": "Exegetica",
+   "path": "Hier_Commentarii_in_Philemonem",
+   "title": "Commentarii in Philemonem",
+   "priority": 12
+  },
+  {
+   "fragment": "Hier_Chronicon",
+   "volume": 27,
+   "folder": "Historica",
+   "path": "Hier_Chronicon",
+   "title": "Chronicon (Interpretatio Chronicae Eusebii Pamphili)",
+   "priority": 2,
+   "ru": "kjv4_Хроника_блаженного_Иеронима",
+   "max_kb": 130
+  },
+  {
+   "fragment": "Hier_Epistolae_1",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_1",
+   "title": "Epistolae 1–17",
+   "priority": 1,
+   "ru": "uA9f_Письма_143_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_2",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_2",
+   "title": "Epistolae 18–21",
+   "priority": 2,
+   "ru": "uA9f_Письма_143_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_3",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_3",
+   "title": "Epistolae 22–29",
+   "priority": 3,
+   "ru": "uA9f_Письма_143_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_4",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_4",
+   "title": "Epistolae 30–45",
+   "priority": 4,
+   "ru": "uA9f_Письма_143_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_5",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_5",
+   "title": "Epistolae 46–51",
+   "priority": 5,
+   "ru": "y1Yf_Письма_4486_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_6",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_6",
+   "title": "Epistolae 52–56",
+   "priority": 6,
+   "ru": "y1Yf_Письма_4486_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_7",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_7",
+   "title": "Epistolae 57–63",
+   "priority": 7,
+   "ru": "y1Yf_Письма_4486_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_8",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_8",
+   "title": "Epistolae 64–67",
+   "priority": 8,
+   "ru": "y1Yf_Письма_4486_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_9",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_9",
+   "title": "Epistolae 68–76",
+   "priority": 9,
+   "ru": "y1Yf_Письма_4486_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_10",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_10",
+   "title": "Epistolae 77–81",
+   "priority": 10,
+   "ru": "y1Yf_Письма_4486_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_11",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_11",
+   "title": "Epistolae 82–95",
+   "priority": 11,
+   "ru": "y1Yf_Письма_4486_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_12",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_12",
+   "title": "Epistolae 96–99",
+   "priority": 12,
+   "ru": "u9HM_Письма_87117_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_13",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_13",
+   "title": "Epistolae 100–105",
+   "priority": 13,
+   "ru": "u9HM_Письма_87117_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_14",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_14",
+   "title": "Epistolae 106–107",
+   "priority": 14,
+   "ru": "u9HM_Письма_87117_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_15",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_15",
+   "title": "Epistolae 108–111",
+   "priority": 15,
+   "ru": "u9HM_Письма_87117_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_16",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_16",
+   "title": "Epistolae 112–117",
+   "priority": 16,
+   "ru": "u9HM_Письма_87117_1"
+  },
+  {
+   "fragment": "Hier_Epistolae_17",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_17",
+   "title": "Epistolae 118–119",
+   "priority": 17
+  },
+  {
+   "fragment": "Hier_Epistolae_18",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_18",
+   "title": "Epistola 120",
+   "priority": 18
+  },
+  {
+   "fragment": "Hier_Epistolae_19",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_19",
+   "title": "Epistolae 121–122",
+   "priority": 19
+  },
+  {
+   "fragment": "Hier_Epistolae_20",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_20",
+   "title": "Epistolae 123–126",
+   "priority": 20
+  },
+  {
+   "fragment": "Hier_Epistolae_21",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_21",
+   "title": "Epistolae 127–130",
+   "priority": 21
+  },
+  {
+   "fragment": "Hier_Epistolae_22",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_22",
+   "title": "Epistolae 131–139",
+   "priority": 22
+  },
+  {
+   "fragment": "Hier_Epistolae_23",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_23",
+   "title": "Epistolae 140–147",
+   "priority": 23
+  },
+  {
+   "fragment": "Hier_Epistolae_24",
+   "volume": 22,
+   "folder": "Epistolae",
+   "path": "Hier_Epistolae_24",
+   "title": "Epistolae 148–150",
+   "priority": 24
+  }
+ ]
+}

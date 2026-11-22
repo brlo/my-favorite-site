@@ -1,0 +1,23 @@
+{
+ "volume": 46,
+ "source": "tmp/pl/46/prepped_46.html",
+ "out": "tmp/pl/46",
+ "works": [
+  {
+   "start": "SANCTI AURELII AUGUSTINI HIPPONENSIS EPISCOPI Sermones inediti",
+   "end": "SANCTI AURELII AUGUSTINI, HIPPONENSIS EPISCOPI SERMONES X EX COD. CASSINEN",
+   "path": "Aug_Sermones_Inediti",
+   "title": "Sermones inediti",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AURELII AUGUSTINI, HIPPONENSIS EPISCOPI SERMONES X EX COD. CASSINEN",
+   "end": "INDEX SUPLEMENTI",
+   "path": "Aug_Sermones_X_ex_Cod_Cassinensi",
+   "title": "Sermones X ex Codice Cassinensi",
+   "split": "h2",
+   "drop_em": true
+  }
+ ]
+}

@@ -412,3 +412,35 @@ episcopus Carthaginensis» (по RU `title_sub`/первой строке био
 5. Крупные труды дробятся (письма — по группам, Testimonia — по книгам). Принято.
 6. Названия трудов — латинизированные, как в Migne; письма — по группам внутри одной папки
    «Epistolae». Принято.
+- **Августин, PL 33 — готово (32 страницы)**: Epistolae 1–270, по ~110 КБ с заголовками-
+  диапазонами («Epistolae 25–35»); привязаны русские письма 28/29/210/246, 130, 194, 204,
+  214, 217, 258 (по одной странице-диапазону на русский оригинал). Приложение тома
+  («epistolae falso praenotatae») не берём.
+- **Августин, PL 46 — готово (6 страниц)**: Sermones inediti (SERMONES ADMIXTIS QUIBUSDAM
+  DUBIIS) и Sermones X ex Codice Cassinensi. PL 47 — том критического аппарата и «Scripta
+  dubia, supposititia, spuria», собственных текстов Августина в нём нет, поэтому пропущен.
+- **Иероним, PL 23 — готово (30 страниц)**: Vita S. Pauli, Vita S. Hilarionis, Vita Malchi,
+  Regula S. Pachomii (перевод), Dialogus contra Luciferianos, De Perpetua Virginitate
+  (Adversus Helvidium), Adversus Jovinianum (2 книги), Contra Vigilantium, Contra Joannem
+  Hierosolymitanum, Apologia adversus Rufinum, Dialogus adversus Pelagianos, De Viris
+  Illustribus, Quaestiones Hebraicae in Genesim, Commentarius in Ecclesiasten, Homiliae in
+  Canticum (Ориген в переводе Иеронима). Авторская страница — существующая `UoFc_…`,
+  дозаполнена биографией.
+- **Иероним, PL 24 — готово (26 страниц)**: Commentarii in Isaiam (18 книг, по книге),
+  Commentarii in Jeremiam (6 книг). Переводы бесед Оригена на Исаию не берём.
+- **Иероним, PL 25 — готово (47 страниц)**: In Ezechielem (14 книг, 4 блока с русскими
+  парами), In Danielem, In Lamentationes, 12 малых пророков (Osee, Joel, Amos, Abdias,
+  Jonas, Michaeas, Naum, Habacuc, Sophonias, Aggaeus, Zacharias, Malachias) — у каждого
+  своя русская страница. «Eruditionis Hieronymianae defensio» (полемика с Леклерком)
+  — редакционное приложение, не берём.
+- **Иероним, PL 26 — готово (15 страниц)**: In Matthaeum (2 части, русские пары),
+  In Galatas (3 книги), In Ephesios (3), In Titum, In Philemonem. Беседы Оригена на Луку,
+  «Commentarii in Job» и «Psalmi» (подложные) не берём.
+- **Иероним, PL 27 — готово (3 страницы)**: Chronicon (Interpretatio Chronicae Eusebii
+  Pamphili) до 14-го года Валента; продолжение Проспера и критические «Castigationes»
+  не берём.
+- **Иероним, PL 22 — готово (24 страницы)**: Epistolae 1–154 по ~110 КБ, привязаны русские
+  своды «Письма 1–43», «44–86», «87–117».
+- **Иероним PL 28–30 — к разбору**: PL 29 — Псалтирь/предисловия (библейский материал),
+  PL 30 — подложные письма и гомилии (Пелагий, «De Assumptione» и т. п.); PL 28 требует
+  инвентаризации.

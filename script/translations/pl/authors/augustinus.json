@@ -50,6 +50,10 @@
   {
    "title": "Contra Pelagianos",
    "priority": 9
+  },
+  {
+   "title": "Epistolae",
+   "priority": 10
   }
  ],
  "works": [
@@ -2738,6 +2742,287 @@
     }
    ],
    "max_kb": 120
+  },
+  {
+   "fragment": "Aug_Epistolae_1",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_1",
+   "title": "Epistolae 1–24",
+   "priority": 1
+  },
+  {
+   "fragment": "Aug_Epistolae_2",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_2",
+   "title": "Epistolae 25–35",
+   "priority": 2,
+   "ru": "SnNT_Письма_28_29_246_210"
+  },
+  {
+   "fragment": "Aug_Epistolae_3",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_3",
+   "title": "Epistolae 36–43",
+   "priority": 3
+  },
+  {
+   "fragment": "Aug_Epistolae_4",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_4",
+   "title": "Epistolae 44–52",
+   "priority": 4
+  },
+  {
+   "fragment": "Aug_Epistolae_5",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_5",
+   "title": "Epistolae 53–65",
+   "priority": 5
+  },
+  {
+   "fragment": "Aug_Epistolae_6",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_6",
+   "title": "Epistolae 66–79",
+   "priority": 6
+  },
+  {
+   "fragment": "Aug_Epistolae_7",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_7",
+   "title": "Epistolae 80–89",
+   "priority": 7
+  },
+  {
+   "fragment": "Aug_Epistolae_8",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_8",
+   "title": "Epistolae 90–93",
+   "priority": 8
+  },
+  {
+   "fragment": "Aug_Epistolae_9",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_9",
+   "title": "Epistolae 94–101",
+   "priority": 9
+  },
+  {
+   "fragment": "Aug_Epistolae_10",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_10",
+   "title": "Epistolae 103–110",
+   "priority": 10
+  },
+  {
+   "fragment": "Aug_Epistolae_11",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_11",
+   "title": "Epistolae 111–119",
+   "priority": 11
+  },
+  {
+   "fragment": "Aug_Epistolae_12",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_12",
+   "title": "Epistolae 120–128",
+   "priority": 12
+  },
+  {
+   "fragment": "Aug_Epistolae_13",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_13",
+   "title": "Epistolae 129–137",
+   "priority": 13,
+   "ru": "V5as_Письмо_130_к_Пробе"
+  },
+  {
+   "fragment": "Aug_Epistolae_14",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_14",
+   "title": "Epistola 138",
+   "priority": 14
+  },
+  {
+   "fragment": "Aug_Epistolae_15",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_15",
+   "title": "Epistola 139",
+   "priority": 15
+  },
+  {
+   "fragment": "Aug_Epistolae_16",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_16",
+   "title": "Epistolae 141–145",
+   "priority": 16
+  },
+  {
+   "fragment": "Aug_Epistolae_17",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_17",
+   "title": "Epistolae 146–148",
+   "priority": 17
+  },
+  {
+   "fragment": "Aug_Epistolae_18",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_18",
+   "title": "Epistolae 149–154",
+   "priority": 18
+  },
+  {
+   "fragment": "Aug_Epistolae_19",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_19",
+   "title": "Epistolae 155–160",
+   "priority": 19
+  },
+  {
+   "fragment": "Aug_Epistolae_20",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_20",
+   "title": "Epistolae 161–164",
+   "priority": 20
+  },
+  {
+   "fragment": "Aug_Epistolae_21",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_21",
+   "title": "Epistolae 165–172",
+   "priority": 21
+  },
+  {
+   "fragment": "Aug_Epistolae_22",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_22",
+   "title": "Epistolae 173–184",
+   "priority": 22
+  },
+  {
+   "fragment": "Aug_Epistolae_23",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_23",
+   "title": "Epistola 184",
+   "priority": 23
+  },
+  {
+   "fragment": "Aug_Epistolae_24",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_24",
+   "title": "Epistola 186",
+   "priority": 24
+  },
+  {
+   "fragment": "Aug_Epistolae_25",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_25",
+   "title": "Epistolae 188–193",
+   "priority": 25
+  },
+  {
+   "fragment": "Aug_Epistolae_26",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_26",
+   "title": "Epistolae 194–198",
+   "priority": 26,
+   "ru": "PYwx_Письмо_194_к_римскому_пресвитеру_Сиксту"
+  },
+  {
+   "fragment": "Aug_Epistolae_27",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_27",
+   "title": "Epistolae 199–204",
+   "priority": 27,
+   "ru": "M95u_Отрывок_из_письма_блж_Августина_к_Дульценцию_204"
+  },
+  {
+   "fragment": "Aug_Epistolae_28",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_28",
+   "title": "Epistolae 205–216",
+   "priority": 28,
+   "ru": "8Yph_Письмо_214_к_Валентину_Адруметскому_1е"
+  },
+  {
+   "fragment": "Aug_Epistolae_29",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_29",
+   "title": "Epistolae 217–227",
+   "priority": 29,
+   "ru": "iqPM_Письмо_217_К_Виталию_Карфагенскому"
+  },
+  {
+   "fragment": "Aug_Epistolae_30",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_30",
+   "title": "Epistolae 228–240",
+   "priority": 30
+  },
+  {
+   "fragment": "Aug_Epistolae_31",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_31",
+   "title": "Epistolae 241–266",
+   "priority": 31,
+   "ru": "oDOy_Письмо_258_К_Марциану"
+  },
+  {
+   "fragment": "Aug_Epistolae_32",
+   "volume": 33,
+   "folder": "Epistolae",
+   "path": "Aug_Epistolae_32",
+   "title": "Epistolae 267–270",
+   "priority": 32
+  },
+  {
+   "fragment": "Aug_Sermones_Inediti",
+   "volume": 46,
+   "folder": "Sermones",
+   "path": "Aug_Sermones_Inediti",
+   "title": "Sermones inediti",
+   "priority": 1,
+   "max_kb": 110
+  },
+  {
+   "fragment": "Aug_Sermones_X_ex_Cod_Cassinensi",
+   "volume": 46,
+   "folder": "Sermones",
+   "path": "Aug_Sermones_X_ex_Cod_Cassinensi",
+   "title": "Sermones X ex Codice Cassinensi",
+   "priority": 2,
+   "max_kb": 110
   }
  ]
 }

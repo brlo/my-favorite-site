@@ -1,0 +1,128 @@
+{
+ "volume": 25,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL25.html",
+ "out": "tmp/pl/25",
+ "works": [
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN EZECHIELEM PROPHETAM LIBRI QUATUORDECIM",
+   "end": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN DANIELEM PROPHETAM",
+   "path": "Hier_Commentarii_in_Ezechielem",
+   "title": "Commentarii in Ezechielem",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN DANIELEM PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, TRANSLATIO HOMILIARUM ORIGENIS IN JEREMIAM",
+   "path": "Hier_Commentarii_in_Danielem",
+   "title": "Commentarii in Danielem",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "IN LAMENTATIONES JEREMIAE",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN OSEE",
+   "path": "Hier_In_Lamentationes_Jeremiae",
+   "title": "In Lamentationes Jeremiae",
+   "split": "none",
+   "drop_em": true,
+   "start_nth": 2
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN OSEE PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN JOELEM PROPHETAM",
+   "path": "Hier_Commentarii_in_Osee",
+   "title": "Commentarii in Osee",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN JOELEM PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN AMOS PROPHETAM",
+   "path": "Hier_Commentarii_in_Joelem",
+   "title": "Commentarii in Joelem",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN AMOS PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN ABDIAM PROPHETAM",
+   "path": "Hier_Commentarii_in_Amos",
+   "title": "Commentarii in Amos",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN ABDIAM PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN JONAM PROPHETAM",
+   "path": "Hier_Commentarii_in_Abdiam",
+   "title": "Commentarii in Abdiam",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN JONAM PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN MICHAEAM PROPHETAM",
+   "path": "Hier_Commentarii_in_Jonam",
+   "title": "Commentarii in Jonam",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN MICHAEAM PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN NAUM PROPHETAM",
+   "path": "Hier_Commentarii_in_Michaeam",
+   "title": "Commentarii in Michaeam",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN NAUM PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN ABACUC PROPHETAM",
+   "path": "Hier_Commentarii_in_Naum",
+   "title": "Commentarii in Naum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN ABACUC PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN SOPHONIAM PROPHETAM",
+   "path": "Hier_Commentarii_in_Abacuc",
+   "title": "Commentarii in Abacuc",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN SOPHONIAM PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN AGGAEUM PROPHETAM",
+   "path": "Hier_Commentarii_in_Sophoniam",
+   "title": "Commentarii in Sophoniam",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI, STRIDONENSIS PRESBYTERI, COMMENTARIORUM IN AGGAEUM PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN ZACHARIAM PROPHETAM",
+   "path": "Hier_Commentarii_in_Aggaeum",
+   "title": "Commentarii in Aggaeum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN ZACHARIAM PROPHETAM",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN MALACHIAM PROPHETAM",
+   "path": "Hier_Commentarii_in_Zachariam",
+   "title": "Commentarii in Zachariam",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN MALACHIAM PROPHETAM",
+   "end": "ERUDITIONIS HIERONYMIANAE DEFENSIO",
+   "path": "Hier_Commentarii_in_Malachiam",
+   "title": "Commentarii in Malachiam",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

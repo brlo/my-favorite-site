@@ -1,0 +1,23 @@
+{
+ "volume": 24,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL24.html",
+ "out": "tmp/pl/24",
+ "works": [
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN ISAIAM PROPHETAM LIBRI DUODEVIGINTI",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN JEREMIAM PROPHETAM LIBRI SEX",
+   "path": "Hier_Commentarii_in_Isaiam",
+   "title": "Commentarii in Isaiam Prophetam",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI COMMENTARIORUM IN JEREMIAM PROPHETAM LIBRI SEX",
+   "end": "S. EUSEBII HIERONYMI STRIDONENSIS PRESBYTERI TRANSLATIO HOMILIARUM NOVEM IN VISIONES ISAIAE",
+   "path": "Hier_Commentarii_in_Jeremiam",
+   "title": "Commentarii in Jeremiam Prophetam",
+   "split": "h2:books",
+   "drop_em": true
+  }
+ ]
+}
