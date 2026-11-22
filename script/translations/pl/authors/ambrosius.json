@@ -354,6 +354,84 @@
      "priority": 27
     }
    ]
+  },
+  {
+   "fragment": "Ambr_Expositio_Evangelii_secundum_Lucam",
+   "volume": 15,
+   "folder": "Exegetica",
+   "max_kb": 100,
+   "parts": [
+    {
+     "path": "Ambr_In_Lucam_1",
+     "title": "Expositio Evangelii secundum Lucam, Prologus et Liber I",
+     "first": "PROLOGUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 31
+    },
+    {
+     "path": "Ambr_In_Lucam_2",
+     "title": "Expositio Evangelii secundum Lucam, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 32
+    },
+    {
+     "path": "Ambr_In_Lucam_3",
+     "title": "Expositio Evangelii secundum Lucam, Liber III",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 33
+    },
+    {
+     "path": "Ambr_In_Lucam_4",
+     "title": "Expositio Evangelii secundum Lucam, Liber IV",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER QUINTUS",
+     "priority": 34
+    },
+    {
+     "path": "Ambr_In_Lucam_5",
+     "title": "Expositio Evangelii secundum Lucam, Liber V",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER SEXTUS",
+     "priority": 35
+    },
+    {
+     "path": "Ambr_In_Lucam_6",
+     "title": "Expositio Evangelii secundum Lucam, Liber VI",
+     "first": "LIBER SEXTUS",
+     "last": "LIBER SEPTIMUS",
+     "priority": 36
+    },
+    {
+     "path": "Ambr_In_Lucam_7",
+     "title": "Expositio Evangelii secundum Lucam, Liber VII",
+     "first": "LIBER SEPTIMUS",
+     "last": "LIBER OCTAVUS",
+     "priority": 37
+    },
+    {
+     "path": "Ambr_In_Lucam_8",
+     "title": "Expositio Evangelii secundum Lucam, Liber VIII",
+     "first": "LIBER OCTAVUS",
+     "last": "LIBER NONUS",
+     "priority": 38
+    },
+    {
+     "path": "Ambr_In_Lucam_9",
+     "title": "Expositio Evangelii secundum Lucam, Liber IX",
+     "first": "LIBER NONUS",
+     "last": "LIBER DECIMUS",
+     "priority": 39
+    },
+    {
+     "path": "Ambr_In_Lucam_10",
+     "title": "Expositio Evangelii secundum Lucam, Liber X",
+     "first": "LIBER DECIMUS",
+     "last": null,
+     "priority": 40
+    }
+   ]
   }
  ]
 }

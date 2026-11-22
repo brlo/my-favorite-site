@@ -9,6 +9,13 @@
    "path": "Ambr_Expositio_in_Psalmum_CXVIII",
    "title": "Expositio in Psalmum CXVIII",
    "split": "h2"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI EXPOSITIO EVANGELII SECUNDUM LUCAM LIBRIS X COMPREHENSA",
+   "end": "COMMENTARIUS IN CANTICA CANTICORUM",
+   "path": "Ambr_Expositio_Evangelii_secundum_Lucam",
+   "title": "Expositio Evangelii secundum Lucam",
+   "split": "h2:books"
   }
  ]
 }

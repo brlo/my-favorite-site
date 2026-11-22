@@ -19,11 +19,18 @@
   De Elia et Jejunio, De Nabuthe, De Tobia, De Interpellatione Job et David (4 книги),
   Apologia David, Apologia Altera, Enarrationes in XII Psalmos (7 страниц по псалмам).
   Из них 6 совпадают с русскими трудами, остальные — подлинные, но без русского перевода.
-- **Амвросий, PL 15 (в работе)**: Expositio in Psalmum CXVIII — 7 страниц по «Sermones».
-  Expositio Evangelii secundum Lucam (~1,8 МБ латыни) — следующий шаг, дробить по книгам
-  I–X и главам. Из тома PL 15 не берём: «Commentarius in Cantica Canticorum» — компиляция
+- **Амвросий, PL 15 — готово и на проде**: Expositio in Psalmum CXVIII (7 страниц по
+  «Sermones») и Expositio Evangelii secundum Lucam (12 страниц: книги I–X, Liber VII и X
+  дополнительно поделены пополам). Всего у Амвросия 53 страницы трудов.
+  Из тома PL 15 не берём: «Commentarius in Cantica Canticorum» — компиляция
   Гийома Сен-Тьеррийского из Амвросия, не его труд; «De Excidio urbis Hierosolymitanae» —
   Migne сам пишет, что бенедиктинцы его Амвросию не приписывают (авторство спорно).
+- **Амвросий, PL 16 — следующий том** (инвентарь готов): De Officiis (3 кн.), De Virginibus (3),
+  De Viduis, De Virginitate, De Institutione Virginis, Exhortatio Virginitatis, De Mysteriis,
+  De Sacramentis (6), De Poenitentia (2), De Fide (5), De Spiritu Sancto (3),
+  De Incarnationis Dominicae Sacramento, Epistolae, De Excessu Fratris (2),
+  De Obitu Valentiniani, De Obitu Theodosii, Hymni. Не берём «De Lapsu Virginis Consecratae» —
+  Spuria (Амвросию не принадлежит).
 - **Иларий отложен**: из 5 русских трудов 3 — фрагменты («Единение верующих с Богом»,
   «О Троице (фрагменты)» с разбивкой 1,1–13 / 12,52–57 / 1,8, «Изъяснение тайн. Кн. 1»),
   для них нужна пораздельная привязка к De Trinitate и Tractatus Mysteriorum; «Против Авксентия»

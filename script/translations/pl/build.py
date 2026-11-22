@@ -54,6 +54,23 @@ def clean_page(body: str) -> str:
     return body
 
 
+def split_paragraphs(body: str, max_bytes: int):
+    """Режет тело на куски не больше max_bytes по границам <p>, близко к равным."""
+    parts = [p for p in re.split(r'(?=<p>)', body) if p.strip()]
+    total, n = len(body), max(2, int(len(body) / max_bytes) + (1 if len(body) % max_bytes else 0))
+    target = total / n
+    chunks, cur, acc = [], [], 0
+    for p in parts:
+        if cur and acc + len(p) > target and len(chunks) < n - 1:
+            chunks.append(''.join(cur))
+            cur, acc = [], 0
+        cur.append(p)
+        acc += len(p)
+    if cur:
+        chunks.append(''.join(cur))
+    return chunks
+
+
 def marker_range(html: str):
     ms = MARKER_RE.findall(html)
     if not ms:
@@ -145,6 +162,24 @@ def main():
     pages = []
     missing_letters = []
     filled_letters = []
+    max_kb = cfg.get('max_kb')
+
+    def add_page(path, title, body, priority, folder, ru, dubium, vol, limit_kb=None):
+        note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + (DUBIUM_NOTE if dubium else '')
+        limit = (limit_kb or max_kb) and (limit_kb or max_kb) * 1024
+        if limit and len(body) > limit:
+            chunks = split_paragraphs(body, limit)
+            for i, chunk in enumerate(chunks, 1):
+                pages.append({'path': f'{path}_{i}', 'title': f'{title} ({i}/{len(chunks)})',
+                              'ru': ru, 'folder': folder, 'priority': priority,
+                              'body': chunk, 'references': SOURCE_TPL.format(cols=cols_str(chunk), url=cfg['source_url']) +
+                              (DUBIUM_NOTE if dubium else ''),
+                              'page_type': 1, 'seo_kind': 'book', 'cols': cols_str(chunk), 'volume': vol})
+                print(f"{title} ({i}/{len(chunks)})"[:60].ljust(62) + f"{len(chunk)//1024:>4} КБ")
+            return
+        pages.append({'path': path, 'title': title, 'ru': ru, 'folder': folder, 'priority': priority,
+                      'body': body, 'references': note, 'page_type': 1, 'seo_kind': 'book',
+                      'cols': cols_str(body), 'volume': vol})
 
     for w in cfg['works']:
         vol = w.get('volume', vol_default)
@@ -154,10 +189,7 @@ def main():
             body, _miss, _fill = fill_empty_letters(src)
             filled_letters += _fill
             body = clean_page(tidy(body))
-            note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + (DUBIUM_NOTE if dubium else '')
-            pages.append({'path': w['path'], 'title': w['title'], 'ru': w.get('ru'), 'folder': w['folder'],
-                          'priority': w['priority'], 'body': body, 'references': note,
-                          'page_type': 1, 'seo_kind': 'book', 'cols': cols_str(body), 'volume': vol})
+            add_page(w['path'], w['title'], body, w['priority'], w['folder'], w.get('ru'), dubium, vol, w.get('max_kb'))
             continue
 
         secs = sections(src)
@@ -176,10 +208,8 @@ def main():
             missing_letters += miss
             filled_letters += fill
             body = clean_page(tidy(chunk))
-            note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + (DUBIUM_NOTE if dubium else '')
-            pages.append({'path': part['path'], 'title': part['title'], 'ru': w.get('ru'), 'folder': w['folder'],
-                          'priority': part['priority'], 'body': body, 'references': note,
-                          'page_type': 1, 'seo_kind': 'book', 'cols': cols_str(body), 'volume': vol})
+            add_page(part['path'], part['title'], body, part['priority'], w['folder'],
+                     w.get('ru'), dubium, vol, w.get('max_kb'))
             print(f"{part['title']:<32} {len(body)//1024:>4} КБ  coll. {cols_str(body):<12} h2={body.count('<h2>')}")
 
     if filled_letters:
