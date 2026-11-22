@@ -223,17 +223,14 @@ vi:
     click_on_verse__ending: ''
     search_was_return_zero_results: 'Không tìm thấy kết quả nào. Kiểm tra xem có phải đã chọn sai ngôn ngữ văn bản không?'
     page_search_was_return_zero_results: 'Không tìm thấy kết quả nào.'
-    bibleox_translated: Văn bản được chuẩn bị bởi cộng đồng bibleox
+    bibleox_translated_badge: AI + con người
+    bibleox_translated: Bản dịch này được thực hiện như thế nào
     bibleox_translated_desc: |
-      Chúng tôi muốn văn bản này có thể tiếp cận được với mọi người - đó là lý do chúng tôi chuẩn bị bản dịch này.
+      Vì thường không có bản dịch sẵn, chúng tôi tự thực hiện bản dịch của mình — với sự hỗ trợ của AI. AI chuẩn bị bản nháp từ các văn bản gốc (nếu có), dựa trên hướng dẫn chi tiết của con người, bảng thuật ngữ và các bản dịch của con người đã có. Những bản dịch này sau đó được kiểm tra và, nếu cần, chỉnh sửa.
 
-      Thật không may, không phải lúc nào cũng tìm được bản dịch sẵn có, vì vậy chúng tôi tự tạo ra chúng.
-      Cả công cụ tự động và con người đều làm việc này. Bạn cũng có thể giúp đỡ!
+      Có thể còn chỗ chưa mượt, nhưng chúng tôi cố gắng giữ độ chính xác về giáo lý.
 
-      Một số phần có thể không hoàn hảo, nhưng chúng tôi đã cố gắng giữ nguyên ý nghĩa chính xác.
-
-      Nếu bạn phát hiện sai sót hoặc muốn cải thiện văn bản - chúng tôi hoan nghênh phê bình! Tốt hơn nữa - hãy tham gia cộng đồng và đề xuất chỉnh sửa của bạn.
-      Giống như tài liệu Wikipedia, văn bản này được phân phối tự do theo giấy phép CC BY-SA.
+      Phát hiện lỗi? Chúng tôi sẽ biết ơn nếu bạn gửi nhận xét vào chat. Văn bản được phân phối tự do theo giấy phép CC BY-SA.
 
   breadcrumbs:
     bible: 'Kinh Thánh'

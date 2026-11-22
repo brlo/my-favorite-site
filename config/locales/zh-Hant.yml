@@ -224,17 +224,14 @@ zh-Hant:
     click_on_verse__ending: 鍵可多選。
     search_was_return_zero_results: 什麼都沒找到。 檢查是否選擇了錯誤的文本語言？
     page_search_was_return_zero_results: 什麼都沒找到。
-    bibleox_translated: 本文由bibleox社區準備
+    bibleox_translated_badge: AI＋人工
+    bibleox_translated: 這份譯文是如何製作的
     bibleox_translated_desc: |
-      我們希望每個人都能閱讀這個文本，所以我們準備了這份翻譯。
+      由於往往找不到現成的譯文，我們便自己製作——藉助 AI。AI 依據詳細的人工指令、術語表和已有的人工譯文，從原文（如果有的話）準備初稿。之後，這些譯文會經過檢查，並在必要時加以修訂。
 
-      可惜的是，並非總能找到現成的翻譯，所以我們自己製作。
-      自動工具和人工都在為此努力。你也可以幫忙！
+      可能仍有不夠完善之處，但我們力求保持教義上的準確。
 
-      某些部分可能聽起來不夠完美，但我們盡力保持了意義的準確性。
-
-      如果您發現錯誤或想改進文本 — 歡迎批評！更好的方式是加入社區並提出修改建議。
-      和維基百科的內容一樣，本文採用CC BY-SA許可自由分發。
+      發現錯誤？歡迎把意見發到聊天中，我們將不勝感激。本文採用 CC BY-SA 許可自由分發。
 
   breadcrumbs:
     bible: 聖經

@@ -936,43 +936,59 @@ a.bib-comment:hover {
 /* МЕТКА BIBLEOX с объяснениями */
 
 .translation-notice {
-    display: inline-block;
-    margin: 0 0 0 6px;
-    position: relative;
-    vertical-align: middle;
-    top: -2px;
+    display: block;
+    margin: 10px 0 0;
+    text-align: center;
 }
 
-.translation-icon {
+.translation-badge {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0;
-    border: 0;
+    padding: 4px 5px;
+    border: 1px solid var(--text-tag);
     border-radius: 4px;
-    background: none;
-    color: inherit;
+    background: transparent;
+    color: var(--text-tag);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
     cursor: help;
-    opacity: 0.5;
-    transition: opacity 0.2s ease;
+    transition: background-color 0.15s ease, box-shadow 0.2s ease;
 }
 
-.translation-notice:hover .translation-icon,
-.translation-notice:focus-within .translation-icon,
-.translation-notice.is-open .translation-icon {
-    opacity: 1;
+.translation-notice:hover .translation-badge,
+.translation-notice:focus-within .translation-badge,
+.translation-notice.is-open .translation-badge {
+    background-color: rgba(168, 80, 30, 0.07);
 }
 
-.translation-icon:focus-visible {
-    opacity: 1;
+.translation-badge:focus-visible {
     outline: 2px solid var(--blue);
     outline-offset: 2px;
 }
 
-.translation-icon svg {
-    display: block;
-    width: 20px;
-    height: 20px;
+#title-sub + .translation-notice {
+    margin-top: -10px;
+}
+
+/* В тёмной теме метка слегка светится */
+.night-mode .translation-badge {
+    color: var(--text-tag);
+    border-color: var(--text-tag);
+    background-color: rgba(0, 218, 124, 0.045);
+    box-shadow: 0 0 1px rgba(0, 218, 124, 0.45);
+}
+
+.night-mode .translation-notice:hover .translation-badge,
+.night-mode .translation-notice:focus-within .translation-badge,
+.night-mode .translation-notice.is-open .translation-badge {
+    color: var(--text-tag);
+    background-color: rgba(0, 218, 124, 0.08);
+    box-shadow: 0 0 2px rgba(0, 218, 124, 0.6);
 }
 
 /* Подсказка позиционируется скриптом (position: fixed), поэтому длинный
@@ -1017,7 +1033,7 @@ a.bib-comment:hover {
     margin-bottom: 8px;
 }
 
-/* Стрелочка с рамкой; --arrow-left выставляет скрипт у центра иконки */
+/* Стрелочка с рамкой; --arrow-left выставляет скрипт у центра бейджа */
 .translation-tooltip::before,
 .translation-tooltip::after {
     content: "";

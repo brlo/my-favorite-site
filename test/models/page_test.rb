@@ -450,6 +450,31 @@ class PageTest < ActiveSupport::TestCase
     assert_equal [news.id], Page.news_feed.pluck(:id)
   end
 
+  # --- is_page_author? ---
+
+  test "is_page_author? is true only for SEO person pages" do
+    assert create_page(seo_kind: 'person').is_page_author?
+    assert_not create_page(seo_kind: 'book').is_page_author?
+    assert_not create_page.is_page_author?
+  end
+
+  test "is_page_author? sees the person flag on a sibling translation" do
+    author = create_page(seo_kind: 'person', lang: 'en')
+    translation = create_page(lang: 'ko', group_lang_id: author.group_lang_id)
+
+    assert translation.is_page_author?
+  end
+
+  test "is_page_author? recognizes an author page under a links section" do
+    links = create_page(path: 'links_ru', page_type: 4)
+    section = create_page(parent: links, page_type: 4)
+    author = create_page(parent: section)
+    work = create_page(parent: author)
+
+    assert author.is_page_author?
+    assert_not work.is_page_author?
+  end
+
   test "propagate_is_news copies the flag to all translations" do
     ru = create_page(lang: 'ru', is_news: true)
     en = create_page(lang: 'en', group_lang_id: ru.group_lang_id)

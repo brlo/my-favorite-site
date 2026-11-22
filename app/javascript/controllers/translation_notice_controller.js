@@ -1,10 +1,10 @@
 import { Controller } from "@hotwired/stimulus"
 
-// Подсказка к метке «текст подготовлен bibleox-сообществом».
+// Подсказка к бейджу «ИИ + человек».
 // Держим её в position: fixed и прижимаем к краям экрана, чтобы длинный
 // текст не растягивал страницу на узких экранах.
 export default class extends Controller {
-  static targets = ["icon", "tooltip"]
+  static targets = ["trigger", "tooltip"]
 
   connect() {
     this.isOpen = false
@@ -20,7 +20,7 @@ export default class extends Controller {
 
   show(event) {
     // фокус с клавиатуры показываем, фокус от тапа/клика мышью — нет
-    if (event?.type === "focusin" && !this.iconTarget.matches(":focus-visible")) return
+    if (event?.type === "focusin" && !this.triggerTarget.matches(":focus-visible")) return
     this.open()
   }
 
@@ -69,7 +69,7 @@ export default class extends Controller {
     this.isOpen = true
     this.element.classList.add("is-open")
     this.tooltipTarget.classList.add("is-open")
-    this.iconTarget.setAttribute("aria-expanded", "true")
+    this.triggerTarget.setAttribute("aria-expanded", "true")
     this.reposition()
 
     document.addEventListener("click", this.closeOutside)
@@ -84,7 +84,7 @@ export default class extends Controller {
     this.isOpen = false
     this.element.classList.remove("is-open")
     this.tooltipTarget.classList.remove("is-open", "is-above")
-    this.iconTarget.setAttribute("aria-expanded", "false")
+    this.triggerTarget.setAttribute("aria-expanded", "false")
 
     document.removeEventListener("click", this.closeOutside)
     document.removeEventListener("keydown", this.closeOnEscape)
@@ -104,8 +104,8 @@ export default class extends Controller {
   reposition() {
     if (!this.isOpen) return
 
-    const iconRect = this.iconTarget.getBoundingClientRect()
-    if (iconRect.bottom < 0 || iconRect.top > window.innerHeight) {
+    const triggerRect = this.triggerTarget.getBoundingClientRect()
+    if (triggerRect.bottom < 0 || triggerRect.top > window.innerHeight) {
       this.close()
       return
     }
@@ -116,14 +116,14 @@ export default class extends Controller {
     const padding = 8
     const gap = 6
 
-    let left = iconRect.left + iconRect.width / 2 - tooltipRect.width / 2
+    let left = triggerRect.left + triggerRect.width / 2 - tooltipRect.width / 2
     left = Math.min(Math.max(padding, left), Math.max(padding, viewportWidth - tooltipRect.width - padding))
 
-    let top = iconRect.bottom + gap
+    let top = triggerRect.bottom + gap
     let isAbove = false
 
-    if (top + tooltipRect.height > viewportHeight - padding && iconRect.top - gap - tooltipRect.height >= padding) {
-      top = iconRect.top - gap - tooltipRect.height
+    if (top + tooltipRect.height > viewportHeight - padding && triggerRect.top - gap - tooltipRect.height >= padding) {
+      top = triggerRect.top - gap - tooltipRect.height
       isAbove = true
     }
 
@@ -135,7 +135,7 @@ export default class extends Controller {
     this.tooltipTarget.style.top = `${Math.round(top)}px`
 
     const arrowLeft = Math.min(
-      Math.max(16, iconRect.left + iconRect.width / 2 - left),
+      Math.max(16, triggerRect.left + triggerRect.width / 2 - left),
       tooltipRect.width - 16
     )
     this.tooltipTarget.style.setProperty("--arrow-left", `${Math.round(arrowLeft)}px`)

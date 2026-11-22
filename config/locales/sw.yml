@@ -223,17 +223,14 @@ sw:
     click_on_verse__ending: ''
     search_was_return_zero_results: Hakuna kilichopatikana. Angalia ikiwa lugha ya maandishi haikuchaguliwa sawa?
     page_search_was_return_zero_results: Hakuna kilichopatikana.
-    bibleox_translated: Maandishi yaliyotayarishwa na jamii ya bibleox
+    bibleox_translated_badge: AI + mtu
+    bibleox_translated: Tafsiri hii ilitayarishwa vipi
     bibleox_translated_desc: |
-      Tunataka maandishi haya yapatikane kwa kila mtu - ndiyo sababu tumeandaa tafsiri hii.
+      Kwa kuwa mara nyingi hakuna tafsiri zilizo tayari, tunatengeneza zetu wenyewe — kwa msaada wa AI. AI huandaa rasimu kutoka kwa maandishi ya awali (ikiwa yapo), ikitegemea maelekezo ya kina ya kibinadamu, kamusi ya maneno na tafsiri za kibinadamu zilizopo. Tafsiri hizo hukaguliwa baadaye na, inapohitajika, hurekebishwa.
 
-      Kwa bahati mbaya, si rahisi kila mara kupata tafsiri zilizokamilika, kwa hivyo tunazitengeneza wenyewe.
-      Zana za kiotomatiki na wanadamu wote hufanya kazi hii. Wewe pia unaweza kusaidia!
+      Kunaweza kuwa na kasoro, lakini tunajitahidi kuhifadhi usahihi wa mafundisho.
 
-      Baadhi ya sehemu zinaweza kusikika bila kukamilika, lakini tumekuwa makini kuhakikisha ufasaha wa maana.
-
-      Ukigundua makosa au ukihitaji kuboresha maandishi - maoni yako yanakaribishwa! Bora zaidi - jiunge na jamii na pendekeza mabadiliko yako.
-      Kama vyanzo vya Wikipedia, maandishi haya yanapatikana kwa uhuru chini ya leseni ya CC BY-SA.
+      Umeona makosa? Tutashukuru ikiwa utatuma maoni yako kwenye chat. Maandishi yanasambazwa kwa uhuru chini ya leseni ya CC BY-SA.
 
   breadcrumbs:
     bible: Maandiko

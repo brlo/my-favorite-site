@@ -144,10 +144,21 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     get '/ru/ru/w/bibleox_text'
 
     assert_response :success
-    assert_select 'button.translation-icon[aria-expanded="false"]'
-    assert_select 'button.translation-icon[aria-describedby="translation-tooltip"]'
-    assert_select 'button.translation-icon[aria-controls="translation-tooltip"]'
+    assert_select 'button.translation-badge[aria-expanded="false"]', text: /ИИ \+ человек/
+    assert_select 'button.translation-badge[aria-describedby="translation-tooltip"]'
+    assert_select 'button.translation-badge[aria-controls="translation-tooltip"]'
     assert_select '#translation-tooltip[role="tooltip"]'
+    assert_select '#translation-tooltip .title', text: 'Как подготовлен этот перевод'
+    assert_select '#translation-tooltip p', count: 3
+  end
+
+  test "bibleox translation badge is hidden on author pages" do
+    create_published(path: 'bibleox_author', is_bibleox: true, seo_kind: 'person')
+    get '/ru/ru/w/bibleox_author'
+
+    assert_response :success
+    assert_select 'button.translation-badge', count: 0
+    assert_select '#translation-tooltip', count: 0
   end
 
   test "table of contents uses height-based auto-collapse" do

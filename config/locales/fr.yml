@@ -461,17 +461,14 @@ fr:
     click_on_verse__ending: ''
     search_was_return_zero_results: 'Aucun résultat trouvé. Vérifiez si la langue du texte est correcte.'
     page_search_was_return_zero_results: 'Aucun résultat trouvé.'
-    bibleox_translated: Texte préparé par la communauté bibleox
+    bibleox_translated_badge: IA + humain
+    bibleox_translated: Comment cette traduction a été réalisée
     bibleox_translated_desc: |
-      Nous voulons que ce texte soit accessible à tous — c'est pourquoi nous avons préparé cette traduction.
+      Comme il n'existe souvent pas de traductions toutes prêtes, nous réalisons les nôtres — avec l'aide de l'IA. L'IA prépare une ébauche à partir des textes originaux (lorsqu'ils sont disponibles), en s'appuyant sur des instructions humaines détaillées, un glossaire et des traductions humaines existantes. Ces traductions sont ensuite vérifiées et, si nécessaire, révisées.
 
-      Malheureusement, il n'est pas toujours possible de trouver des traductions toutes prêtes, alors nous les créons nous-mêmes.
-      Des outils automatiques et des humains y travaillent. Vous pouvez aussi aider !
+      Des imperfections sont possibles, mais nous nous efforçons de préserver l'exactitude doctrinale.
 
-      Certaines parties peuvent ne pas sembler parfaites, mais nous avons essayé de préserver la précision du sens.
-
-      Si vous remarquez une inexactitude ou souhaitez améliorer le texte — les critiques sont bienvenues ! Mieux encore — rejoignez la communauté et proposez vos modifications.
-      Comme les contenus de Wikipédia, ce texte est diffusé librement sous licence CC BY-SA.
+      Vous avez remarqué des erreurs ? Nous vous serions reconnaissants de nous envoyer vos remarques dans le chat. Le texte est diffusé librement sous licence CC BY-SA.
 
   breadcrumbs:
     bible: Écriture

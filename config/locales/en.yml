@@ -235,17 +235,14 @@ en:
     click_on_verse__ending: ''
     search_was_return_zero_results: Nothing found. Check if the wrong text language is selected?
     page_search_was_return_zero_results: Nothing found.
-    bibleox_translated: Text prepared by the bibleox community
+    bibleox_translated_badge: AI + human
+    bibleox_translated: How this translation was made
     bibleox_translated_desc: |
-      We want this text to be accessible to everyone — that's why we've prepared this translation.
+      Since ready-made translations often do not exist, we make our own — using AI. AI prepares a draft from the original texts (where available), relying on detailed human instructions, a glossary, and existing human translations. These translations are then reviewed and, where necessary, revised.
 
-      Unfortunately, it's not always possible to find ready-made translations, so we create them ourselves.
-      Both automated tools and humans work on this. You can help too!
+      Some rough edges are possible, but we try to preserve doctrinal accuracy.
 
-      Some parts might not sound perfect, but we've tried to preserve the accuracy of the meaning.
-
-      If you notice an inaccuracy or want to improve the text — criticism is welcome! Even better — join the community and suggest your edits.
-      Like Wikipedia materials, this text is freely available under the CC BY-SA license.
+      Spotted errors? We would be grateful if you send your comments to the chat. The text is distributed freely under the CC BY-SA license.
 
   breadcrumbs:
     bible: Scripture

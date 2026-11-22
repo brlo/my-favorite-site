@@ -214,6 +214,16 @@ class Page < ApplicationRecord
   def is_page_menu?; self.page_type.to_i == 4; end
   # страница с разбивкой на стихи
   def is_page_verses?; self.page_type.to_i == 5; end
+  # страница автора (SEO person); у части переводов флаг не проставлен,
+  # поэтому смотрим ещё и соседние переводы той же группы
+  def is_page_author?
+    return true if self.seo_kind == 'person'
+    return true if ::Page.where(group_lang_id: self.group_lang_id, seo_kind: 'person').exists?
+
+    # отцы в разделе «Труды...» лежат вторым уровнем под links_<locale>:
+    # links_XX → раздел → автор → труды
+    self.parent&.parent&.path.to_s.start_with?('links_')
+  end
 
   def menu
     if self.page_type.to_i == PAGE_TYPES['список']
