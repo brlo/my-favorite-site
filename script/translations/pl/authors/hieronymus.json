@@ -190,7 +190,7 @@
    "parts": [
     {
      "path": "Hier_Commentarii_in_Isaiam_1",
-     "title": "Commentarii in Isaiam, Liber PRIMUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber PRIMUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 1,
@@ -198,125 +198,126 @@
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_2",
-     "title": "Commentarii in Isaiam, Liber SECUNDUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber SECUNDUS",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS",
      "priority": 2
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_3",
-     "title": "Commentarii in Isaiam, Liber TERTIUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber TERTIUS",
      "first": "LIBER TERTIUS",
      "last": "LIBER QUARTUS",
      "priority": 3
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_4",
-     "title": "Commentarii in Isaiam, Liber QUARTUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber QUARTUS",
      "first": "LIBER QUARTUS",
      "last": "LIBER QUINTUS",
      "priority": 4
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_5",
-     "title": "Commentarii in Isaiam, Liber QUINTUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber QUINTUS",
      "first": "LIBER QUINTUS",
      "last": "LIBER SEXTUS",
      "priority": 5
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_6",
-     "title": "Commentarii in Isaiam, Liber SEXTUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber SEXTUS",
      "first": "LIBER SEXTUS",
      "last": "LIBER SEPTIMUS",
      "priority": 6
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_7",
-     "title": "Commentarii in Isaiam, Liber SEPTIMUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber SEPTIMUS",
      "first": "LIBER SEPTIMUS",
      "last": "LIBER OCTAVUS",
      "priority": 7
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_8",
-     "title": "Commentarii in Isaiam, Liber OCTAVUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber OCTAVUS",
      "first": "LIBER OCTAVUS",
      "last": "LIBER NONUS",
      "priority": 8
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_9",
-     "title": "Commentarii in Isaiam, Liber NONUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber NONUS",
      "first": "LIBER NONUS",
      "last": "LIBER DECIMUS",
      "priority": 9
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_10",
-     "title": "Commentarii in Isaiam, Liber DECIMUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber DECIMUS",
      "first": "LIBER DECIMUS",
      "last": "LIBER UNDECIMUS",
      "priority": 10
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_11",
-     "title": "Commentarii in Isaiam, Liber UNDECIMUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber UNDECIMUS",
      "first": "LIBER UNDECIMUS",
      "last": "LIBER DUODECIMUS",
      "priority": 11
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_12",
-     "title": "Commentarii in Isaiam, Liber DUODECIMUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber DUODECIMUS",
      "first": "LIBER DUODECIMUS",
      "last": "LIBER DECIMUS TERTIUS",
      "priority": 12
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_13",
-     "title": "Commentarii in Isaiam, Liber DECIMUS TERTIUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber DECIMUS TERTIUS",
      "first": "LIBER DECIMUS TERTIUS",
      "last": "LIBER DECIMUS QUARTUS",
      "priority": 13
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_14",
-     "title": "Commentarii in Isaiam, Liber DECIMUS QUARTUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber DECIMUS QUARTUS",
      "first": "LIBER DECIMUS QUARTUS",
      "last": "LIBER DECIMUS QUINTUS",
      "priority": 14
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_15",
-     "title": "Commentarii in Isaiam, Liber DECIMUS QUINTUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber DECIMUS QUINTUS",
      "first": "LIBER DECIMUS QUINTUS",
      "last": "LIBER DECIMUS SEXTUS",
      "priority": 15
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_16",
-     "title": "Commentarii in Isaiam, Liber DECIMUS SEXTUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber DECIMUS SEXTUS",
      "first": "LIBER DECIMUS SEXTUS",
      "last": "LIBER DECIMUS SEPTIMUS",
      "priority": 16
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_17",
-     "title": "Commentarii in Isaiam, Liber DECIMUS SEPTIMUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber DECIMUS SEPTIMUS",
      "first": "LIBER DECIMUS SEPTIMUS",
      "last": "LIBER DECIMUS OCTAVUS",
      "priority": 17
     },
     {
      "path": "Hier_Commentarii_in_Isaiam_18",
-     "title": "Commentarii in Isaiam, Liber DECIMUS OCTAVUS",
+     "title": "Commentarii in Isaiam Prophetam, Commentarii in Isaiam, Liber DECIMUS OCTAVUS",
      "first": "LIBER DECIMUS OCTAVUS",
      "last": null,
      "priority": 18
     }
    ],
-   "max_kb": 120
+   "max_kb": 120,
+   "title": "Commentarii in Isaiam Prophetam"
   },
   {
    "fragment": "Hier_Commentarii_in_Jeremiam",
@@ -325,7 +326,7 @@
    "parts": [
     {
      "path": "Hier_Commentarii_in_Jeremiam_1",
-     "title": "Commentarii in Jeremiam, Liber PRIMUS",
+     "title": "Commentarii in Jeremiam Prophetam, Commentarii in Jeremiam, Liber PRIMUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 1,
@@ -333,41 +334,42 @@
     },
     {
      "path": "Hier_Commentarii_in_Jeremiam_2",
-     "title": "Commentarii in Jeremiam, Liber SECUNDUS",
+     "title": "Commentarii in Jeremiam Prophetam, Commentarii in Jeremiam, Liber SECUNDUS",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS",
      "priority": 2
     },
     {
      "path": "Hier_Commentarii_in_Jeremiam_3",
-     "title": "Commentarii in Jeremiam, Liber TERTIUS",
+     "title": "Commentarii in Jeremiam Prophetam, Commentarii in Jeremiam, Liber TERTIUS",
      "first": "LIBER TERTIUS",
      "last": "LIBER QUARTUS",
      "priority": 3
     },
     {
      "path": "Hier_Commentarii_in_Jeremiam_4",
-     "title": "Commentarii in Jeremiam, Liber QUARTUS",
+     "title": "Commentarii in Jeremiam Prophetam, Commentarii in Jeremiam, Liber QUARTUS",
      "first": "LIBER QUARTUS",
      "last": "LIBER QUINTUS",
      "priority": 4
     },
     {
      "path": "Hier_Commentarii_in_Jeremiam_5",
-     "title": "Commentarii in Jeremiam, Liber QUINTUS",
+     "title": "Commentarii in Jeremiam Prophetam, Commentarii in Jeremiam, Liber QUINTUS",
      "first": "LIBER QUINTUS",
      "last": "LIBER SEXTUS",
      "priority": 5
     },
     {
      "path": "Hier_Commentarii_in_Jeremiam_6",
-     "title": "Commentarii in Jeremiam, Liber SEXTUS",
+     "title": "Commentarii in Jeremiam Prophetam, Commentarii in Jeremiam, Liber SEXTUS",
      "first": "LIBER SEXTUS",
      "last": null,
      "priority": 6
     }
    ],
-   "max_kb": 120
+   "max_kb": 120,
+   "title": "Commentarii in Jeremiam Prophetam"
   },
   {
    "fragment": "Hier_Commentarii_in_Ezechielem",
@@ -407,7 +409,8 @@
      "ru": "3C0M_Четырнадцать_книг_толкований_на_пророка_Иезекииля_4"
     }
    ],
-   "max_kb": 130
+   "max_kb": 130,
+   "title": "Commentarii in Ezechielem"
   },
   {
    "fragment": "Hier_Commentarii_in_Danielem",
@@ -550,7 +553,7 @@
    "parts": [
     {
      "path": "Hier_Commentarii_in_Matthaeum_1",
-     "title": "Commentarii in Matthaeum, Libri PRIMUS–SECUNDUS",
+     "title": "Commentarii in Evangelium Matthaei, Commentarii in Matthaeum, Libri PRIMUS–SECUNDUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER TERTIUS",
      "priority": 1,
@@ -558,14 +561,15 @@
     },
     {
      "path": "Hier_Commentarii_in_Matthaeum_2",
-     "title": "Commentarii in Matthaeum, Libri TERTIUS–QUARTUS",
+     "title": "Commentarii in Evangelium Matthaei, Commentarii in Matthaeum, Libri TERTIUS–QUARTUS",
      "first": "LIBER TERTIUS",
      "last": null,
      "priority": 2,
      "ru": "TKNx_Толкование_на_Евангелие_по_Матфею_2"
     }
    ],
-   "max_kb": 120
+   "max_kb": 120,
+   "title": "Commentarii in Evangelium Matthaei"
   },
   {
    "fragment": "Hier_Commentarii_in_Galatas",
@@ -574,7 +578,7 @@
    "parts": [
     {
      "path": "Hier_Commentarii_in_Galatas_1",
-     "title": "Commentarii in Galatas, Liber PRIMUS",
+     "title": "Commentarii in Epistolam ad Galatas, Commentarii in Galatas, Liber PRIMUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 3,
@@ -582,20 +586,21 @@
     },
     {
      "path": "Hier_Commentarii_in_Galatas_2",
-     "title": "Commentarii in Galatas, Liber SECUNDUS",
+     "title": "Commentarii in Epistolam ad Galatas, Commentarii in Galatas, Liber SECUNDUS",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS",
      "priority": 4
     },
     {
      "path": "Hier_Commentarii_in_Galatas_3",
-     "title": "Commentarii in Galatas, Liber TERTIUS",
+     "title": "Commentarii in Epistolam ad Galatas, Commentarii in Galatas, Liber TERTIUS",
      "first": "LIBER TERTIUS",
      "last": null,
      "priority": 5
     }
    ],
-   "max_kb": 120
+   "max_kb": 120,
+   "title": "Commentarii in Epistolam ad Galatas"
   },
   {
    "fragment": "Hier_Commentarii_in_Ephesios",
@@ -604,27 +609,28 @@
    "parts": [
     {
      "path": "Hier_Commentarii_in_Ephesios_1",
-     "title": "Commentarii in Ephesios, Liber PRIMUS",
+     "title": "Commentarii in Epistolam ad Ephesios, Commentarii in Ephesios, Liber PRIMUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 6
     },
     {
      "path": "Hier_Commentarii_in_Ephesios_2",
-     "title": "Commentarii in Ephesios, Liber SECUNDUS",
+     "title": "Commentarii in Epistolam ad Ephesios, Commentarii in Ephesios, Liber SECUNDUS",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS",
      "priority": 7
     },
     {
      "path": "Hier_Commentarii_in_Ephesios_3",
-     "title": "Commentarii in Ephesios, Liber TERTIUS",
+     "title": "Commentarii in Epistolam ad Ephesios, Commentarii in Ephesios, Liber TERTIUS",
      "first": "LIBER TERTIUS",
      "last": null,
      "priority": 8
     }
    ],
-   "max_kb": 120
+   "max_kb": 120,
+   "title": "Commentarii in Epistolam ad Ephesios"
   },
   {
    "fragment": "Hier_Commentarii_in_Titum",

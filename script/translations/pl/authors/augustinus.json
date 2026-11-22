@@ -84,7 +84,8 @@
      "last": null,
      "priority": 3
     }
-   ]
+   ],
+   "title": "De Doctrina Christiana"
   },
   {
    "fragment": "Aug_De_Vera_Religione",
@@ -114,7 +115,8 @@
      "last": null,
      "priority": 2
     }
-   ]
+   ],
+   "title": "De Genesi contra Manichaeos"
   },
   {
    "fragment": "Aug_De_Genesi_ad_Litteram_Imperfectus",
@@ -173,7 +175,8 @@
      "priority": 9
     }
    ],
-   "max_kb": 130
+   "max_kb": 130,
+   "title": "De Genesi ad Litteram"
   },
   {
    "fragment": "Aug_Locutiones_in_Heptateuchum",
@@ -239,7 +242,8 @@
      "last": null,
      "priority": 17
     }
-   ]
+   ],
+   "title": "Quaestiones in Heptateuchum"
   },
   {
    "fragment": "Aug_Annotationes_in_Job",
@@ -295,7 +299,8 @@
      "priority": 22
     }
    ],
-   "max_kb": 120
+   "max_kb": 120,
+   "title": "De Consensu Evangelistarum"
   },
   {
    "fragment": "Aug_De_Sermone_Domini_in_Monte",
@@ -316,7 +321,8 @@
      "last": null,
      "priority": 24
     }
-   ]
+   ],
+   "title": "De Sermone Domini in Monte"
   },
   {
    "fragment": "Aug_Quaestiones_Evangeliorum",
@@ -339,7 +345,8 @@
      "priority": 2,
      "ru": "7CkL_Дополнение_к_сочинению_Две_книги_Евангельских_вопросов_Книга_2"
     }
-   ]
+   ],
+   "title": "Quaestiones Evangeliorum"
   },
   {
    "fragment": "Aug_In_Ioannem",
@@ -349,117 +356,118 @@
    "parts": [
     {
      "path": "Aug_In_Ioannem_1",
-     "title": "In Ioannis Evangelium, Tractatus I–VIII",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus I–VIII",
      "first": "TRACTATUS I. In illud Joannis, In princi",
      "last": "TRACTATUS IX. In eamdem Evangelii lectio",
      "priority": 3
     },
     {
      "path": "Aug_In_Ioannem_2",
-     "title": "In Ioannis Evangelium, Tractatus IX–XVI",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus IX–XVI",
      "first": "TRACTATUS IX. In eamdem Evangelii lectio",
      "last": "TRACTATUS XVII. Ab eo quod scriptum est,",
      "priority": 4
     },
     {
      "path": "Aug_In_Ioannem_3",
-     "title": "In Ioannis Evangelium, Tractatus XVII–XXIV",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus XVII–XXIV",
      "first": "TRACTATUS XVII. Ab eo quod scriptum est,",
      "last": "TRACTATUS XXV. Ab eo quod scriptum est, ",
      "priority": 5
     },
     {
      "path": "Aug_In_Ioannem_4",
-     "title": "In Ioannis Evangelium, Tractatus XXV–XXXII",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus XXV–XXXII",
      "first": "TRACTATUS XXV. Ab eo quod scriptum est, ",
      "last": "TRACTATUS XXXIII. Ab eo loco Evangelii, ",
      "priority": 6
     },
     {
      "path": "Aug_In_Ioannem_5",
-     "title": "In Ioannis Evangelium, Tractatus XXXIII–XL",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus XXXIII–XL",
      "first": "TRACTATUS XXXIII. Ab eo loco Evangelii, ",
      "last": "TRACTATUS XLI. Rursum in illud, Dicebat ",
      "priority": 7
     },
     {
      "path": "Aug_In_Ioannem_6",
-     "title": "In Ioannis Evangelium, Tractatus XLI–XLVIII",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus XLI–XLVIII",
      "first": "TRACTATUS XLI. Rursum in illud, Dicebat ",
      "last": "TRACTATUS XLIX. Ab eo quod legitur, Erat",
      "priority": 8
     },
     {
      "path": "Aug_In_Ioannem_7",
-     "title": "In Ioannis Evangelium, Tractatus XLIX–LVI",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus XLIX–LVI",
      "first": "TRACTATUS XLIX. Ab eo quod legitur, Erat",
      "last": "TRACTATUS LVII. Quonam modo Ecclesia tim",
      "priority": 9
     },
     {
      "path": "Aug_In_Ioannem_8",
-     "title": "In Ioannis Evangelium, Tractatus LVII–LXIV",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus LVII–LXIV",
      "first": "TRACTATUS LVII. Quonam modo Ecclesia tim",
      "last": "TRACTATUS LXV. In id quod Dominus ait, M",
      "priority": 10
     },
     {
      "path": "Aug_In_Ioannem_9",
-     "title": "In Ioannis Evangelium, Tractatus LXV–LXXII",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus LXV–LXXII",
      "first": "TRACTATUS LXV. In id quod Dominus ait, M",
      "last": "TRACTATUS LXXIII. Item in eamdem lection",
      "priority": 11
     },
     {
      "path": "Aug_In_Ioannem_10",
-     "title": "In Ioannis Evangelium, Tractatus LXXIII–LXXX",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus LXXIII–LXXX",
      "first": "TRACTATUS LXXIII. Item in eamdem lection",
      "last": "TRACTATUS LXXXI. De eo quod ait, Manete ",
      "priority": 12
     },
     {
      "path": "Aug_In_Ioannem_11",
-     "title": "In Ioannis Evangelium, Tractatus LXXXI–LXXXVIII",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus LXXXI–LXXXVIII",
      "first": "TRACTATUS LXXXI. De eo quod ait, Manete ",
      "last": "TRACTATUS LXXXIX. De eo quod dicit Domin",
      "priority": 13
     },
     {
      "path": "Aug_In_Ioannem_12",
-     "title": "In Ioannis Evangelium, Tractatus LXXXIX–XCVI",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus LXXXIX–XCVI",
      "first": "TRACTATUS LXXXIX. De eo quod dicit Domin",
      "last": "TRACTATUS XCVII. In eamdem lectionem",
      "priority": 14
     },
     {
      "path": "Aug_In_Ioannem_13",
-     "title": "In Ioannis Evangelium, Tractatus XCVII–CIV",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus XCVII–CIV",
      "first": "TRACTATUS XCVII. In eamdem lectionem",
      "last": "TRACTATUS CV. Ab eo quod Dominus ait, Ut",
      "priority": 15
     },
     {
      "path": "Aug_In_Ioannem_14",
-     "title": "In Ioannis Evangelium, Tractatus CV–CXII",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus CV–CXII",
      "first": "TRACTATUS CV. Ab eo quod Dominus ait, Ut",
      "last": "TRACTATUS CXIII. Ab eo quod legitur, Et ",
      "priority": 16
     },
     {
      "path": "Aug_In_Ioannem_15",
-     "title": "In Ioannis Evangelium, Tractatus CXIII–CXX",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus CXIII–CXX",
      "first": "TRACTATUS CXIII. Ab eo quod legitur, Et ",
      "last": "TRACTATUS CXXI. De eo quod sequitur, Abi",
      "priority": 17
     },
     {
      "path": "Aug_In_Ioannem_16",
-     "title": "In Ioannis Evangelium, Tractatus CXXI–CXXIV",
+     "title": "In Ioannis Evangelium Tractatus CXXIV, In Ioannis Evangelium, Tractatus CXXI–CXXIV",
      "first": "TRACTATUS CXXI. De eo quod sequitur, Abi",
      "last": null,
      "priority": 18
     }
-   ]
+   ],
+   "title": "In Ioannis Evangelium Tractatus CXXIV"
   },
   {
    "fragment": "Aug_In_Epistolam_Ioannis",
@@ -469,26 +477,27 @@
    "parts": [
     {
      "path": "Aug_In_Epistolam_Ioannis_1",
-     "title": "In Epistolam Ioannis, I–IV",
+     "title": "In Epistolam Ioannis ad Parthos Tractatus, In Epistolam Ioannis, I–IV",
      "first": "TRACTATUS I. De eo quod Joannes scribit,",
      "last": "TRACTATUS V. In id quod sequitur, Omnis ",
      "priority": 9
     },
     {
      "path": "Aug_In_Epistolam_Ioannis_2",
-     "title": "In Epistolam Ioannis, V–VII",
+     "title": "In Epistolam Ioannis ad Parthos Tractatus, In Epistolam Ioannis, V–VII",
      "first": "TRACTATUS V. In id quod sequitur, Omnis ",
      "last": "TRACTATUS VIII. De eo quod sequitur, Si ",
      "priority": 10
     },
     {
      "path": "Aug_In_Epistolam_Ioannis_3",
-     "title": "In Epistolam Ioannis, VIII–X",
+     "title": "In Epistolam Ioannis ad Parthos Tractatus, In Epistolam Ioannis, VIII–X",
      "first": "TRACTATUS VIII. De eo quod sequitur, Si ",
      "last": null,
      "priority": 11
     }
-   ]
+   ],
+   "title": "In Epistolam Ioannis ad Parthos Tractatus"
   },
   {
    "fragment": "Aug_Expositio_Propositionum_ad_Romanos",
@@ -1349,7 +1358,7 @@
    "volume": 39,
    "folder": "Sermones",
    "path": "Aug_Sermones39_7",
-   "title": "Sermones 391–2",
+   "title": "Sermones 392–396",
    "priority": 7
   },
   {
@@ -1680,7 +1689,8 @@
      "last": "EPISTOLA AVITI AD PALCHONIUM",
      "priority": 22
     }
-   ]
+   ],
+   "title": "De Civitate Dei"
   },
   {
    "fragment": "Aug_De_Haeresibus",
@@ -1795,68 +1805,69 @@
    "parts": [
     {
      "path": "Aug_Contra_Faustum_1",
-     "title": "Libri PRIMUS–QUARTUS",
+     "title": "Contra Faustum Manichaeum, Libri PRIMUS–QUARTUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER QUINTUS",
      "priority": 1
     },
     {
      "path": "Aug_Contra_Faustum_2",
-     "title": "Libri QUINTUS–OCTAVUS",
+     "title": "Contra Faustum Manichaeum, Libri QUINTUS–OCTAVUS",
      "first": "LIBER QUINTUS",
      "last": "LIBER NONUS",
      "priority": 2
     },
     {
      "path": "Aug_Contra_Faustum_3",
-     "title": "Libri NONUS–DUODECIMUS",
+     "title": "Contra Faustum Manichaeum, Libri NONUS–DUODECIMUS",
      "first": "LIBER NONUS",
      "last": "LIBER TERTIUS DECIMUS",
      "priority": 3
     },
     {
      "path": "Aug_Contra_Faustum_4",
-     "title": "Libri TERTIUS DECIMUS–SEXTUS DECIMUS",
+     "title": "Contra Faustum Manichaeum, Libri TERTIUS DECIMUS–SEXTUS DECIMUS",
      "first": "LIBER TERTIUS DECIMUS",
      "last": "LIBER DECIMUS SEPTIMUS",
      "priority": 4
     },
     {
      "path": "Aug_Contra_Faustum_5",
-     "title": "Libri DECIMUS SEPTIMUS–VIGESIMUS",
+     "title": "Contra Faustum Manichaeum, Libri DECIMUS SEPTIMUS–VIGESIMUS",
      "first": "LIBER DECIMUS SEPTIMUS",
      "last": "LIBER VIGESIMUS PRIMUS",
      "priority": 5
     },
     {
      "path": "Aug_Contra_Faustum_6",
-     "title": "Libri VIGESIMUS PRIMUS–VIGESIMUS QUARTUS",
+     "title": "Contra Faustum Manichaeum, Libri VIGESIMUS PRIMUS–VIGESIMUS QUARTUS",
      "first": "LIBER VIGESIMUS PRIMUS",
      "last": "LIBER VIGESIMUS QUINTUS",
      "priority": 6
     },
     {
      "path": "Aug_Contra_Faustum_7",
-     "title": "Libri VIGESIMUS QUINTUS–VIGESIMUS OCTAVUS",
+     "title": "Contra Faustum Manichaeum, Libri VIGESIMUS QUINTUS–VIGESIMUS OCTAVUS",
      "first": "LIBER VIGESIMUS QUINTUS",
      "last": "LIBER VIGESIMUS NONUS",
      "priority": 7
     },
     {
      "path": "Aug_Contra_Faustum_8",
-     "title": "Libri VIGESIMUS NONUS–TRIGESIMUS SECUNDUS",
+     "title": "Contra Faustum Manichaeum, Libri VIGESIMUS NONUS–TRIGESIMUS SECUNDUS",
      "first": "LIBER VIGESIMUS NONUS",
      "last": "LIBER TRIGESIMUS TERTIUS",
      "priority": 8
     },
     {
      "path": "Aug_Contra_Faustum_9",
-     "title": "Liber TRIGESIMUS TERTIUS",
+     "title": "Contra Faustum Manichaeum, Liber TRIGESIMUS TERTIUS",
      "first": "LIBER TRIGESIMUS TERTIUS",
      "last": null,
      "priority": 9
     }
-   ]
+   ],
+   "title": "Contra Faustum Manichaeum"
   },
   {
    "fragment": "Aug_Contra_Adversarium_Legis",
@@ -1865,19 +1876,20 @@
    "parts": [
     {
      "path": "Aug_Contra_Adversarium_Legis_1",
-     "title": "Liber PRIMUS",
+     "title": "Contra Adversarium Legis et Prophetarum, Liber PRIMUS",
      "first": "LIBER PRIMUS. In quo Veteris Testamenti ",
      "last": "LIBER SECUNDUS. In quo Novi Testamenti l",
      "priority": 1
     },
     {
      "path": "Aug_Contra_Adversarium_Legis_2",
-     "title": "Liber SECUNDUS",
+     "title": "Contra Adversarium Legis et Prophetarum, Liber SECUNDUS",
      "first": "LIBER SECUNDUS. In quo Novi Testamenti l",
      "last": null,
      "priority": 2
     }
-   ]
+   ],
+   "title": "Contra Adversarium Legis et Prophetarum"
   },
   {
    "fragment": "Aug_Contra_Maximinum",
@@ -1886,19 +1898,20 @@
    "parts": [
     {
      "path": "Aug_Contra_Maximinum_1",
-     "title": "Liber PRIMUS",
+     "title": "Contra Maximinum Haereticum, Liber PRIMUS",
      "first": "LIBER PRIMUS . Ostendit Augustinus, ea q",
      "last": "LIBER SECUNDUS . Refelluntur singillatim",
      "priority": 1
     },
     {
      "path": "Aug_Contra_Maximinum_2",
-     "title": "Liber SECUNDUS",
+     "title": "Contra Maximinum Haereticum, Liber SECUNDUS",
      "first": "LIBER SECUNDUS . Refelluntur singillatim",
      "last": null,
      "priority": 2
     }
-   ]
+   ],
+   "title": "Contra Maximinum Haereticum"
   },
   {
    "fragment": "Aug_De_Trinitate",
@@ -1907,7 +1920,7 @@
    "parts": [
     {
      "path": "Aug_De_Trinitate_1",
-     "title": "Liber PRIMUS",
+     "title": "De Trinitate, Liber PRIMUS",
      "first": "LIBER PRIMUS. In quo secundum Scripturas",
      "last": "LIBER SECUNDUS. Rursum defendit Augustin",
      "priority": 1,
@@ -1915,103 +1928,104 @@
     },
     {
      "path": "Aug_De_Trinitate_2",
-     "title": "Liber SECUNDUS",
+     "title": "De Trinitate, Liber SECUNDUS",
      "first": "LIBER SECUNDUS. Rursum defendit Augustin",
      "last": "PROOEMIUM",
      "priority": 2
     },
     {
      "path": "Aug_De_Trinitate_3",
-     "title": "Liber TERTIUS",
+     "title": "De Trinitate, Liber TERTIUS",
      "first": "PROOEMIUM",
      "last": "PROOEMIUM",
      "priority": 3
     },
     {
      "path": "Aug_De_Trinitate_4",
-     "title": "Liber QUARTUS",
+     "title": "De Trinitate, Liber QUARTUS",
      "first": "PROOEMIUM",
      "last": "PROOEMIUM",
      "priority": 4
     },
     {
      "path": "Aug_De_Trinitate_5",
-     "title": "Liber QUINTUS",
+     "title": "De Trinitate, Liber QUINTUS",
      "first": "PROOEMIUM",
      "last": "LIBER SEXTUS. In quo proposita quaestion",
      "priority": 5
     },
     {
      "path": "Aug_De_Trinitate_6",
-     "title": "Liber SEXTUS",
+     "title": "De Trinitate, Liber SEXTUS",
      "first": "LIBER SEXTUS. In quo proposita quaestion",
      "last": "LIBER SEPTIMUS. In quo superioris libri ",
      "priority": 6
     },
     {
      "path": "Aug_De_Trinitate_7",
-     "title": "Liber SEPTIMUS",
+     "title": "De Trinitate, Liber SEPTIMUS",
      "first": "LIBER SEPTIMUS. In quo superioris libri ",
      "last": "LIBER OCTAVUS. In quo ratione reddita mo",
      "priority": 7
     },
     {
      "path": "Aug_De_Trinitate_8",
-     "title": "Liber OCTAVUS",
+     "title": "De Trinitate, Liber OCTAVUS",
      "first": "LIBER OCTAVUS. In quo ratione reddita mo",
      "last": "PROOEMIUM",
      "priority": 8
     },
     {
      "path": "Aug_De_Trinitate_9",
-     "title": "Liber NONUS",
+     "title": "De Trinitate, Liber NONUS",
      "first": "PROOEMIUM",
      "last": "LIBER DECIMUS, In quo trinitatem aliam i",
      "priority": 9
     },
     {
      "path": "Aug_De_Trinitate_10",
-     "title": "Liber DECIMUS",
+     "title": "De Trinitate, Liber DECIMUS",
      "first": "LIBER DECIMUS, In quo trinitatem aliam i",
      "last": "LIBER UNDECIMUS. Trinitatis imago quaeda",
      "priority": 10
     },
     {
      "path": "Aug_De_Trinitate_11",
-     "title": "Liber UNDECIMUS",
+     "title": "De Trinitate, Liber UNDECIMUS",
      "first": "LIBER UNDECIMUS. Trinitatis imago quaeda",
      "last": "LIBER DUODECIMUS. In quo praemissa disti",
      "priority": 11
     },
     {
      "path": "Aug_De_Trinitate_12",
-     "title": "Liber DUODECIMUS",
+     "title": "De Trinitate, Liber DUODECIMUS",
      "first": "LIBER DUODECIMUS. In quo praemissa disti",
      "last": "LIBER TERTIUS DECIMUS. Prosequitur de sc",
      "priority": 12
     },
     {
      "path": "Aug_De_Trinitate_13",
-     "title": "Liber TERTIUS DECIMUS",
+     "title": "De Trinitate, Liber TERTIUS DECIMUS",
      "first": "LIBER TERTIUS DECIMUS. Prosequitur de sc",
      "last": "LIBER QUARTUS DECIMUS. De sapientia homi",
      "priority": 13
     },
     {
      "path": "Aug_De_Trinitate_14",
-     "title": "Liber QUARTUS DECIMUS",
+     "title": "De Trinitate, Liber QUARTUS DECIMUS",
      "first": "LIBER QUARTUS DECIMUS. De sapientia homi",
      "last": "LIBER QUINTUS DECIMUS. Principio, quid i",
      "priority": 14
     },
     {
      "path": "Aug_De_Trinitate_15",
-     "title": "Liber QUINTUS DECIMUS",
+     "title": "De Trinitate, Liber QUINTUS DECIMUS",
      "first": "LIBER QUINTUS DECIMUS. Principio, quid i",
      "last": null,
      "priority": 15
     }
-   ]
+   ],
+   "title": "De Trinitate"
   },
   {
    "fragment": "Aug_De_Diversis_Quaestionibus_LXXXIII",
@@ -2242,14 +2256,14 @@
    "parts": [
     {
      "path": "Aug_Contra_Epistolam_Parmeniani_1",
-     "title": "Libri PRIMUS–SECUNDUS",
+     "title": "Contra Epistolam Parmeniani, Libri PRIMUS–SECUNDUS",
      "first": "LIBER PRIMUS. Occurrit criminationibus e",
      "last": "LIBER TERTIUS. Reliqua tractantur loca S",
      "priority": 2
     },
     {
      "path": "Aug_Contra_Epistolam_Parmeniani_2",
-     "title": "Liber TERTIUS",
+     "title": "Contra Epistolam Parmeniani, Liber TERTIUS",
      "first": "LIBER TERTIUS. Reliqua tractantur loca S",
      "last": null,
      "priority": 3
@@ -2265,28 +2279,28 @@
    "parts": [
     {
      "path": "Mw8R_De_Baptismo_contra_Donatistas",
-     "title": "Libri PRIMUS–SECUNDUS",
+     "title": "De Baptismo contra Donatistas, Libri PRIMUS–SECUNDUS",
      "first": "LIBER PRIMUS. Probat posse extra catholi",
      "last": "LIBER TERTIUS. Refellenda ea suscipit, q",
      "priority": 3
     },
     {
      "path": "Aug_De_Baptismo_contra_Donatistas_2",
-     "title": "Libri TERTIUS–QUARTUS",
+     "title": "De Baptismo contra Donatistas, Libri TERTIUS–QUARTUS",
      "first": "LIBER TERTIUS. Refellenda ea suscipit, q",
      "last": "LIBER QUINTUS. Postremam partem examinat",
      "priority": 4
     },
     {
      "path": "Aug_De_Baptismo_contra_Donatistas_3",
-     "title": "Libri QUINTUS–SEXTUS",
+     "title": "De Baptismo contra Donatistas, Libri QUINTUS–SEXTUS",
      "first": "LIBER QUINTUS. Postremam partem examinat",
      "last": "LIBER SEPTIMUS. In quo caeterae sententi",
      "priority": 5
     },
     {
      "path": "Aug_De_Baptismo_contra_Donatistas_4",
-     "title": "Liber SEPTIMUS",
+     "title": "De Baptismo contra Donatistas, Liber SEPTIMUS",
      "first": "LIBER SEPTIMUS. In quo caeterae sententi",
      "last": null,
      "priority": 6
@@ -2303,21 +2317,21 @@
    "parts": [
     {
      "path": "Aug_Contra_Litteras_Petiliani_1",
-     "title": "Liber PRIMUS",
+     "title": "Contra Litteras Petiliani, Liber PRIMUS",
      "first": "LIBER PRIMUS . Scriptus forma epistolae ",
      "last": "LIBER SECUNDUS . In quo ad omnia et sing",
      "priority": 7
     },
     {
      "path": "Aug_Contra_Litteras_Petiliani_2",
-     "title": "Liber SECUNDUS",
+     "title": "Contra Litteras Petiliani, Liber SECUNDUS",
      "first": "LIBER SECUNDUS . In quo ad omnia et sing",
      "last": "LIBER TERTIUS. Refellit Augustinus secun",
      "priority": 8
     },
     {
      "path": "Aug_Contra_Litteras_Petiliani_3",
-     "title": "Liber TERTIUS",
+     "title": "Contra Litteras Petiliani, Liber TERTIUS",
      "first": "LIBER TERTIUS. Refellit Augustinus secun",
      "last": null,
      "priority": 9
@@ -2334,28 +2348,28 @@
    "parts": [
     {
      "path": "Aug_Contra_Cresconium_1",
-     "title": "Liber PRIMUS",
+     "title": "Contra Cresconium Grammaticum, Liber PRIMUS",
      "first": "LIBER PRIMUS. Epistolam Cresconii pro Pe",
      "last": "LIBER SECUNDUS. Examinat dicta alia Epis",
      "priority": 10
     },
     {
      "path": "Aug_Contra_Cresconium_2",
-     "title": "Liber SECUNDUS",
+     "title": "Contra Cresconium Grammaticum, Liber SECUNDUS",
      "first": "LIBER SECUNDUS. Examinat dicta alia Epis",
      "last": "LIBER TERTIUS. Reliquam partem Epistolae",
      "priority": 11
     },
     {
      "path": "Aug_Contra_Cresconium_3",
-     "title": "Liber TERTIUS",
+     "title": "Contra Cresconium Grammaticum, Liber TERTIUS",
      "first": "LIBER TERTIUS. Reliquam partem Epistolae",
      "last": "LIBER QUARTUS. Ad omnes rursum Epistolae",
      "priority": 12
     },
     {
      "path": "Aug_Contra_Cresconium_4",
-     "title": "Liber QUARTUS",
+     "title": "Contra Cresconium Grammaticum, Liber QUARTUS",
      "first": "LIBER QUARTUS. Ad omnes rursum Epistolae",
      "last": null,
      "priority": 13
@@ -2412,14 +2426,14 @@
    "parts": [
     {
      "path": "Aug_Contra_Gaudentium_1",
-     "title": "Liber PRIMUS",
+     "title": "Contra Gaudentium Donatistarum Episcopum, Liber PRIMUS",
      "first": "LIBER PRIMUS. In quo Gaudentii duae ad D",
      "last": "LIBER SECUNDUS. Gaudentii contra superio",
      "priority": 19
     },
     {
      "path": "Aug_Contra_Gaudentium_2",
-     "title": "Liber SECUNDUS",
+     "title": "Contra Gaudentium Donatistarum Episcopum, Liber SECUNDUS",
      "first": "LIBER SECUNDUS. Gaudentii contra superio",
      "last": null,
      "priority": 20
@@ -2436,21 +2450,21 @@
    "parts": [
     {
      "path": "Aug_De_Peccatorum_Meritis_1",
-     "title": "Liber PRIMUS",
+     "title": "De Peccatorum Meritis et Remissione, Liber PRIMUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 1
     },
     {
      "path": "Aug_De_Peccatorum_Meritis_2",
-     "title": "Liber SECUNDUS",
+     "title": "De Peccatorum Meritis et Remissione, Liber SECUNDUS",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS, SEU AD EUMDEM MARCELLINUM",
      "priority": 2
     },
     {
      "path": "Aug_De_Peccatorum_Meritis_3",
-     "title": "Liber TERTIUS",
+     "title": "De Peccatorum Meritis et Remissione, Liber TERTIUS",
      "first": "LIBER TERTIUS, SEU AD EUMDEM MARCELLINUM",
      "last": null,
      "priority": 3
@@ -2501,14 +2515,14 @@
    "parts": [
     {
      "path": "Aug_De_Nuptiis_et_Concupiscentia_1",
-     "title": "Liber PRIMUS",
+     "title": "De Nuptiis et Concupiscentia, Liber PRIMUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 8
     },
     {
      "path": "Aug_De_Nuptiis_et_Concupiscentia_2",
-     "title": "Liber SECUNDUS",
+     "title": "De Nuptiis et Concupiscentia, Liber SECUNDUS",
      "first": "LIBER SECUNDUS",
      "last": null,
      "priority": 9
@@ -2525,14 +2539,14 @@
    "parts": [
     {
      "path": "Aug_De_Anima_et_ejus_Origine_1",
-     "title": "Libri PRIMUS–SECUNDUS",
+     "title": "De Anima et ejus Origine, Libri PRIMUS–SECUNDUS",
      "first": "LIBER PRIMUS. AD RENATUM MONACHUM",
      "last": "LIBER TERTIUS. AD VINCENTIUM VICTOREM",
      "priority": 10
     },
     {
      "path": "Aug_De_Anima_et_ejus_Origine_2",
-     "title": "Libri TERTIUS–QUARTUS",
+     "title": "De Anima et ejus Origine, Libri TERTIUS–QUARTUS",
      "first": "LIBER TERTIUS. AD VINCENTIUM VICTOREM",
      "last": null,
      "priority": 11
@@ -2548,14 +2562,14 @@
    "parts": [
     {
      "path": "Aug_Contra_Duas_Epistolas_Pelagianorum_1",
-     "title": "Libri PRIMUS–SECUNDUS",
+     "title": "Contra Duas Epistolas Pelagianorum, Libri PRIMUS–SECUNDUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER TERTIUS",
      "priority": 12
     },
     {
      "path": "Aug_Contra_Duas_Epistolas_Pelagianorum_2",
-     "title": "Libri TERTIUS–QUARTUS",
+     "title": "Contra Duas Epistolas Pelagianorum, Libri TERTIUS–QUARTUS",
      "first": "LIBER TERTIUS",
      "last": null,
      "priority": 13
@@ -2571,42 +2585,42 @@
    "parts": [
     {
      "path": "Aug_Contra_Julianum_1",
-     "title": "Liber PRIMUS",
+     "title": "Contra Julianum, Liber PRIMUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 14
     },
     {
      "path": "Aug_Contra_Julianum_2",
-     "title": "Liber SECUNDUS",
+     "title": "Contra Julianum, Liber SECUNDUS",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS",
      "priority": 15
     },
     {
      "path": "Aug_Contra_Julianum_3",
-     "title": "Liber TERTIUS",
+     "title": "Contra Julianum, Liber TERTIUS",
      "first": "LIBER TERTIUS",
      "last": "LIBER QUARTUS",
      "priority": 16
     },
     {
      "path": "Aug_Contra_Julianum_4",
-     "title": "Liber QUARTUS",
+     "title": "Contra Julianum, Liber QUARTUS",
      "first": "LIBER QUARTUS",
      "last": "LIBER QUINTUS",
      "priority": 17
     },
     {
      "path": "Aug_Contra_Julianum_5",
-     "title": "Liber QUINTUS",
+     "title": "Contra Julianum, Liber QUINTUS",
      "first": "LIBER QUINTUS",
      "last": "LIBER SEXTUS",
      "priority": 18
     },
     {
      "path": "Aug_Contra_Julianum_6",
-     "title": "Liber SEXTUS",
+     "title": "Contra Julianum, Liber SEXTUS",
      "first": "LIBER SEXTUS",
      "last": null,
      "priority": 19
@@ -2658,90 +2672,91 @@
    "parts": [
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_1",
-     "title": "Contra Secundam Juliani Responsionem, Liber PRIMUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber PRIMUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 3
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_2",
-     "title": "Contra Secundam Juliani Responsionem, Liber SECUNDUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber SECUNDUS",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS",
      "priority": 4
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_3",
-     "title": "Contra Secundam Juliani Responsionem, Liber TERTIUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber TERTIUS",
      "first": "LIBER TERTIUS",
      "last": "LIBER QUARTUS",
      "priority": 5
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_4",
-     "title": "Contra Secundam Juliani Responsionem, Liber QUARTUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber QUARTUS",
      "first": "LIBER QUARTUS",
      "last": "LIBER QUINTUS",
      "priority": 6
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_5",
-     "title": "Contra Secundam Juliani Responsionem, Liber QUINTUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber QUINTUS",
      "first": "LIBER QUINTUS",
      "last": "LIBER SEXTUS",
      "priority": 7
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_6",
-     "title": "Contra Secundam Juliani Responsionem, Liber SEXTUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber SEXTUS",
      "first": "LIBER SEXTUS",
      "last": "LIBER PRIMUS. In quo Pelagianorum primum",
      "priority": 8
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_7",
-     "title": "Contra Secundam Juliani Responsionem, Liber PRIMUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber PRIMUS",
      "first": "LIBER PRIMUS. In quo Pelagianorum primum",
      "last": "LIBER SECUNDUS. Refellitur secundum dogm",
      "priority": 9
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_8",
-     "title": "Contra Secundam Juliani Responsionem, Liber SECUNDUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber SECUNDUS",
      "first": "LIBER SECUNDUS. Refellitur secundum dogm",
      "last": "LIBER TERTIUS. Adversus tertium dogma Pe",
      "priority": 10
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_9",
-     "title": "Contra Secundam Juliani Responsionem, Liber TERTIUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber TERTIUS",
      "first": "LIBER TERTIUS. Adversus tertium dogma Pe",
      "last": "LIBER QUARTUS. Contra quartum dogma Pela",
      "priority": 11
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_10",
-     "title": "Contra Secundam Juliani Responsionem, Liber QUARTUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber QUARTUS",
      "first": "LIBER QUARTUS. Contra quartum dogma Pela",
      "last": "LIBER QUINTUS. Adversus quintum dogma Pe",
      "priority": 12
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_11",
-     "title": "Contra Secundam Juliani Responsionem, Liber QUINTUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber QUINTUS",
      "first": "LIBER QUINTUS. Adversus quintum dogma Pe",
      "last": "LIBER SEXTUS. In quo de praedestinatione",
      "priority": 13
     },
     {
      "path": "Aug_Contra_Secundam_Juliani_Responsionem_12",
-     "title": "Contra Secundam Juliani Responsionem, Liber SEXTUS",
+     "title": "Contra Secundam Juliani Responsionem Opus Imperfectum, Contra Secundam Juliani Responsionem, Liber SEXTUS",
      "first": "LIBER SEXTUS. In quo de praedestinatione",
      "last": null,
      "priority": 14
     }
    ],
-   "max_kb": 120
+   "max_kb": 120,
+   "title": "Contra Secundam Juliani Responsionem Opus Imperfectum"
   },
   {
    "fragment": "Aug_Epistolae_1",

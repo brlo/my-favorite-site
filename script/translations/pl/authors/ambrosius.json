@@ -88,7 +88,8 @@
      "last": null,
      "priority": 6
     }
-   ]
+   ],
+   "title": "Hexaemeron"
   },
   {
    "fragment": "Ambr_De_Isaac_et_Anima",
@@ -155,7 +156,8 @@
      "last": null,
      "priority": 2
     }
-   ]
+   ],
+   "title": "De Cain et Abel"
   },
   {
    "fragment": "Ambr_De_Noe_et_Arca",
@@ -182,7 +184,8 @@
      "last": null,
      "priority": 2
     }
-   ]
+   ],
+   "title": "De Abraham"
   },
   {
    "fragment": "Ambr_De_Benedictionibus_Patriarcharum",
@@ -244,7 +247,8 @@
      "last": null,
      "priority": 4
     }
-   ]
+   ],
+   "title": "De Interpellatione Job et David"
   },
   {
    "fragment": "Ambr_Apologia_David",
@@ -266,54 +270,55 @@
    "parts": [
     {
      "path": "Ambr_Enarrationes_in_XII_Psalmos_1",
-     "title": "Enarratio in Psalmum I",
+     "title": "Enarrationes in XII Psalmos Davidicos, Enarratio in Psalmum I",
      "first": "IN PSALMUM PRIMUM",
      "last": "IN PSALMUM XXXV",
      "priority": 14
     },
     {
      "path": "Ambr_Enarrationes_in_XII_Psalmos_2",
-     "title": "Enarratio in Psalmos XXXV–XXXVI",
+     "title": "Enarrationes in XII Psalmos Davidicos, Enarratio in Psalmos XXXV–XXXVI",
      "first": "IN PSALMUM XXXV",
      "last": "IN PSALMUM XXXVII",
      "priority": 15
     },
     {
      "path": "Ambr_Enarrationes_in_XII_Psalmos_3",
-     "title": "Enarratio in Psalmum XXXVII",
+     "title": "Enarrationes in XII Psalmos Davidicos, Enarratio in Psalmum XXXVII",
      "first": "IN PSALMUM XXXVII",
      "last": "IN PSALMUM XXXVIII",
      "priority": 16
     },
     {
      "path": "Ambr_Enarrationes_in_XII_Psalmos_4",
-     "title": "Enarratio in Psalmos XXXVIII–XXXIX",
+     "title": "Enarrationes in XII Psalmos Davidicos, Enarratio in Psalmos XXXVIII–XXXIX",
      "first": "IN PSALMUM XXXVIII",
      "last": "IN PSALMUM XL ENARRATIO",
      "priority": 17
     },
     {
      "path": "Ambr_Enarrationes_in_XII_Psalmos_5",
-     "title": "Enarratio in Psalmum XL",
+     "title": "Enarrationes in XII Psalmos Davidicos, Enarratio in Psalmum XL",
      "first": "IN PSALMUM XL ENARRATIO",
      "last": "IN PSALMUM XLIII",
      "priority": 18
     },
     {
      "path": "Ambr_Enarrationes_in_XII_Psalmos_6",
-     "title": "Enarratio in Psalmum XLIII",
+     "title": "Enarrationes in XII Psalmos Davidicos, Enarratio in Psalmum XLIII",
      "first": "IN PSALMUM XLIII",
      "last": "IN PSALMUM XLV ENARRATIO",
      "priority": 19
     },
     {
      "path": "Ambr_Enarrationes_in_XII_Psalmos_7",
-     "title": "Enarrationes in Psalmos XLV–LXI",
+     "title": "Enarrationes in XII Psalmos Davidicos, Enarrationes in Psalmos XLV–LXI",
      "first": "IN PSALMUM XLV ENARRATIO",
      "last": null,
      "priority": 20
     }
-   ]
+   ],
+   "title": "Enarrationes in XII Psalmos Davidicos"
   },
   {
    "fragment": "Ambr_Expositio_in_Psalmum_CXVIII",
@@ -369,7 +374,8 @@
      "last": null,
      "priority": 27
     }
-   ]
+   ],
+   "title": "Expositio in Psalmum CXVIII"
   },
   {
    "fragment": "Ambr_Expositio_Evangelii_secundum_Lucam",
@@ -447,7 +453,8 @@
      "last": null,
      "priority": 40
     }
-   ]
+   ],
+   "title": "Expositio Evangelii secundum Lucam"
   },
   {
    "fragment": "Ambr_De_Officiis",
@@ -456,35 +463,36 @@
    "parts": [
     {
      "path": "Ambr_De_Officiis_1",
-     "title": "De Officiis, Liber I",
+     "title": "De Officiis Ministrorum, De Officiis, Liber I",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 2
     },
     {
      "path": "Ambr_De_Officiis_2",
-     "title": "De Officiis, Liber II",
+     "title": "De Officiis Ministrorum, De Officiis, Liber II",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS",
      "priority": 3
     },
     {
      "path": "Ambr_De_Officiis_3",
-     "title": "De Officiis, Liber III",
+     "title": "De Officiis Ministrorum, De Officiis, Liber III",
      "first": "LIBER TERTIUS",
      "last": "CONCLUSIO",
      "priority": 4
     },
     {
      "path": "Ambr_De_Officiis_4",
-     "title": "De Officiis, Conclusio",
+     "title": "De Officiis Ministrorum, De Officiis, Conclusio",
      "first": "CONCLUSIO",
      "last": null,
      "priority": 5
     }
    ],
    "ru": "Muld_Об_обязанностях_1",
-   "max_kb": 110
+   "max_kb": 110,
+   "title": "De Officiis Ministrorum"
   },
   {
    "fragment": "Ambr_De_Virginibus",
@@ -569,7 +577,8 @@
      "priority": 4
     }
    ],
-   "ru": "hRFw_О_покаянии_две_книги"
+   "ru": "hRFw_О_покаянии_две_книги",
+   "title": "De Poenitentia"
   },
   {
    "fragment": "Ambr_De_Fide",
@@ -578,42 +587,43 @@
    "parts": [
     {
      "path": "Ambr_De_Fide_1",
-     "title": "De Fide, Liber PRIMUS",
+     "title": "De Fide ad Gratianum Augustum, De Fide, Liber PRIMUS",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 1
     },
     {
      "path": "Ambr_De_Fide_2",
-     "title": "De Fide, Liber SECUNDUS",
+     "title": "De Fide ad Gratianum Augustum, De Fide, Liber SECUNDUS",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS",
      "priority": 2
     },
     {
      "path": "Ambr_De_Fide_3",
-     "title": "De Fide, Liber TERTIUS",
+     "title": "De Fide ad Gratianum Augustum, De Fide, Liber TERTIUS",
      "first": "LIBER TERTIUS",
      "last": "LIBER QUARTUS",
      "priority": 3
     },
     {
      "path": "Ambr_De_Fide_4",
-     "title": "De Fide, Liber QUARTUS",
+     "title": "De Fide ad Gratianum Augustum, De Fide, Liber QUARTUS",
      "first": "LIBER QUARTUS",
      "last": "LIBER QUINTUS",
      "priority": 4
     },
     {
      "path": "Ambr_De_Fide_5",
-     "title": "De Fide, Liber QUINTUS",
+     "title": "De Fide ad Gratianum Augustum, De Fide, Liber QUINTUS",
      "first": "LIBER QUINTUS",
      "last": null,
      "priority": 5
     }
    ],
    "ru": "FN2q_О_вере",
-   "max_kb": 100
+   "max_kb": 100,
+   "title": "De Fide ad Gratianum Augustum"
   },
   {
    "fragment": "Ambr_De_Spiritu_Sancto",
@@ -643,7 +653,8 @@
     }
    ],
    "ru": "ER4J_О_Святом_Духе",
-   "max_kb": 100
+   "max_kb": 100,
+   "title": "De Spiritu Sancto"
   },
   {
    "fragment": "Ambr_De_Incarnationis_Dominicae_Sacramento",
@@ -672,20 +683,21 @@
    "parts": [
     {
      "path": "Ambr_De_Excessu_Fratris_1",
-     "title": "De Excessu Fratris, Liber I",
+     "title": "De Excessu Fratris sui Satyri, De Excessu Fratris, Liber I",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
      "priority": 1
     },
     {
      "path": "Ambr_De_Excessu_Fratris_2",
-     "title": "De Excessu Fratris, Liber II",
+     "title": "De Excessu Fratris sui Satyri, De Excessu Fratris, Liber II",
      "first": "LIBER SECUNDUS",
      "last": null,
      "priority": 2
     }
    ],
-   "ru": "VaoB_О_смерти_брата_две_книги"
+   "ru": "VaoB_О_смерти_брата_две_книги",
+   "title": "De Excessu Fratris sui Satyri"
   },
   {
    "fragment": "Ambr_De_Obitu_Valentiniani",

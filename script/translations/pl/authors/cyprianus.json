@@ -73,7 +73,8 @@
      "priority": 6
     }
    ],
-   "letters_supplement": "tmp/pl/3/supplements"
+   "letters_supplement": "tmp/pl/3/supplements",
+   "title": "Epistolae"
   },
   {
    "fragment": "CpCr_Ad_Fortunatum",
@@ -106,26 +107,27 @@
    "parts": [
     {
      "path": "CpCr_Testimonia_1",
-     "title": "Testimoniorum Liber I",
+     "title": "Testimoniorum Libri Tres adversus Iudaeos, Testimoniorum Liber I",
      "first": null,
      "last": "LIBER SECUNDUS",
      "priority": 3
     },
     {
      "path": "CpCr_Testimonia_2",
-     "title": "Testimoniorum Liber II",
+     "title": "Testimoniorum Libri Tres adversus Iudaeos, Testimoniorum Liber II",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS",
      "priority": 4
     },
     {
      "path": "CpCr_Testimonia_3",
-     "title": "Testimoniorum Liber III",
+     "title": "Testimoniorum Libri Tres adversus Iudaeos, Testimoniorum Liber III",
      "first": "LIBER TERTIUS",
      "last": null,
      "priority": 5
     }
-   ]
+   ],
+   "title": "Testimoniorum Libri Tres adversus Iudaeos"
   },
   {
    "fragment": "CpCr_De_Unitate_Ecclesiae",

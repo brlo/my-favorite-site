@@ -38,26 +38,27 @@
    "parts": [
     {
      "path": "Cass_Institutiones_1",
-     "title": "Institutiones, Libri I–IV",
+     "title": "De Coenobiorum Institutis, Institutiones, Libri I–IV",
      "first": "LIBER PRIMUS",
      "last": "LIBER QUINTUS",
      "priority": 1
     },
     {
      "path": "Cass_Institutiones_2",
-     "title": "Institutiones, Libri V–VIII",
+     "title": "De Coenobiorum Institutis, Institutiones, Libri V–VIII",
      "first": "LIBER QUINTUS",
      "last": "LIBER NONUS",
      "priority": 2
     },
     {
      "path": "Cass_Institutiones_3",
-     "title": "Institutiones, Libri IX–XII",
+     "title": "De Coenobiorum Institutis, Institutiones, Libri IX–XII",
      "first": "LIBER NONUS",
      "last": null,
      "priority": 3
     }
-   ]
+   ],
+   "title": "De Coenobiorum Institutis"
   },
   {
    "fragment": "Cass_Collatio_1",
@@ -263,55 +264,56 @@
    "parts": [
     {
      "path": "Cass_De_Incarnatione_1",
-     "title": "De Incarnatione, Praefatio et Liber I",
+     "title": "De Incarnatione Christi contra Nestorium, De Incarnatione, Praefatio et Liber I",
      "first": "Praefatio",
      "last": "LIBER SECUNDUS",
      "priority": 1
     },
     {
      "path": "Cass_De_Incarnatione_2",
-     "title": "De Incarnatione, Liber Secundus",
+     "title": "De Incarnatione Christi contra Nestorium, De Incarnatione, Liber Secundus",
      "first": "LIBER SECUNDUS",
      "last": "LIBER TERTIUS",
      "priority": 2
     },
     {
      "path": "Cass_De_Incarnatione_3",
-     "title": "De Incarnatione, Liber Tertius",
+     "title": "De Incarnatione Christi contra Nestorium, De Incarnatione, Liber Tertius",
      "first": "LIBER TERTIUS",
      "last": "LIBER QUARTUS",
      "priority": 3
     },
     {
      "path": "Cass_De_Incarnatione_4",
-     "title": "De Incarnatione, Liber Quartus",
+     "title": "De Incarnatione Christi contra Nestorium, De Incarnatione, Liber Quartus",
      "first": "LIBER QUARTUS",
      "last": "LIBER QUINTUS",
      "priority": 4
     },
     {
      "path": "Cass_De_Incarnatione_5",
-     "title": "De Incarnatione, Liber Quintus",
+     "title": "De Incarnatione Christi contra Nestorium, De Incarnatione, Liber Quintus",
      "first": "LIBER QUINTUS",
      "last": "LIBER SEXTUS",
      "priority": 5
     },
     {
      "path": "Cass_De_Incarnatione_6",
-     "title": "De Incarnatione, Liber Sextus",
+     "title": "De Incarnatione Christi contra Nestorium, De Incarnatione, Liber Sextus",
      "first": "LIBER SEXTUS",
      "last": "LIBER SEPTIMUS",
      "priority": 6
     },
     {
      "path": "Cass_De_Incarnatione_7",
-     "title": "De Incarnatione, Liber Septimus",
+     "title": "De Incarnatione Christi contra Nestorium, De Incarnatione, Liber Septimus",
      "first": "LIBER SEPTIMUS",
      "last": null,
      "priority": 7
     }
    ],
-   "max_kb": 100
+   "max_kb": 100,
+   "title": "De Incarnatione Christi contra Nestorium"
   }
  ]
 }

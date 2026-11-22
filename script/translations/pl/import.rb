@@ -16,6 +16,7 @@
 #
 # Повторный прогон безопасен: существующие страницы пропускаются (с --update — обновляются).
 require 'json'
+require_relative 'menu_tidy'
 
 path = ARGV[0] or abort 'usage: import.rb PLAN.json [DRY_RUN=1] [UPDATE=1] [PUBLISH=1]'
 is_dry_run = ENV['DRY_RUN'].present?
@@ -145,6 +146,8 @@ if is_prune && author
     log << "удалено лишних пунктов меню: #{stale.size}"
   end
 end
+
+::MenuTidy.tidy_author(author) if author && !is_dry_run
 
 puts log
 puts "страниц: #{plan['pages'].size}, автор: #{a['path']}"
