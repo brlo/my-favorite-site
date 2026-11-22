@@ -1,0 +1,207 @@
+{
+ "volume": 40,
+ "source": "tmp/pl/40/prepped_40.html",
+ "out": "tmp/pl/40",
+ "works": [
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE DIVERSIS QUAESTIONIBUS LXXXIII",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI De Diversis Quaestionibus AD SIMPLICIANUM",
+   "path": "Aug_De_Diversis_Quaestionibus_LXXXIII",
+   "title": "De Diversis Quaestionibus LXXXIII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI De Diversis Quaestionibus AD SIMPLICIANUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE OCTO DULCITII QUAESTIONIBUS",
+   "path": "Aug_De_Diversis_Quaestionibus_ad_Simplicianum",
+   "title": "De Diversis Quaestionibus ad Simplicianum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE OCTO DULCITII QUAESTIONIBUS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE FIDE RERUM QUAE NON VIDENTUR",
+   "path": "Aug_De_Octo_Dulcitii_Quaestionibus",
+   "title": "De Octo Dulcitii Quaestionibus",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE FIDE RERUM QUAE NON VIDENTUR",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE FIDE ET SYMBOLO",
+   "path": "Aug_De_Fide_Rerum_quae_non_Videntur",
+   "title": "De Fide Rerum quae non Videntur",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE FIDE ET SYMBOLO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE FIDE ET OPERIBUS",
+   "path": "Aug_De_Fide_et_Symbolo",
+   "title": "De Fide et Symbolo",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE FIDE ET OPERIBUS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI ENCHIRIDION AD LAURENTIUM",
+   "path": "Aug_De_Fide_et_Operibus",
+   "title": "De Fide et Operibus",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI ENCHIRIDION AD LAURENTIUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE AGONE CHRISTIANO",
+   "path": "Aug_Enchiridion",
+   "title": "Enchiridion ad Laurentium de Fide Spe et Caritate",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE AGONE CHRISTIANO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CATECHIZANDIS RUDIBUS",
+   "path": "Aug_De_Agone_Christiano",
+   "title": "De Agone Christiano",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CATECHIZANDIS RUDIBUS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CONTINENTIA",
+   "path": "Aug_De_Catechizandis_Rudibus",
+   "title": "De Catechizandis Rudibus",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CONTINENTIA",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE BONO CONJUGALI",
+   "path": "Aug_De_Continentia",
+   "title": "De Continentia",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE BONO CONJUGALI",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE SANCTA VIRGINITATE",
+   "path": "Aug_De_Bono_Conjugali",
+   "title": "De Bono Conjugali",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE SANCTA VIRGINITATE",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE BONO VIDUITATIS",
+   "path": "Aug_De_Sancta_Virginitate",
+   "title": "De Sancta Virginitate",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE BONO VIDUITATIS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CONJUGIIS ADULTERINIS",
+   "path": "Aug_De_Bono_Viduitatis",
+   "title": "De Bono Viduitatis",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CONJUGIIS ADULTERINIS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE MENDACIO",
+   "path": "Aug_De_Conjugiis_Adulterinis",
+   "title": "De Conjugiis Adulterinis ad Pollentium",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE MENDACIO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA MENDACIUM",
+   "path": "Aug_De_Mendacio",
+   "title": "De Mendacio",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA MENDACIUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE OPERE MONACHORUM",
+   "path": "Aug_Contra_Mendacium",
+   "title": "Contra Mendacium ad Consentium",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE OPERE MONACHORUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE DIVINATIONE DAEMONUM",
+   "path": "Aug_De_Opere_Monachorum",
+   "title": "De Opere Monachorum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE DIVINATIONE DAEMONUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CURA PRO MORTUIS GERENDA",
+   "path": "Aug_De_Divinatione_Daemonum",
+   "title": "De Divinatione Daemonum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CURA PRO MORTUIS GERENDA",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE PATIENTIA",
+   "path": "Aug_De_Cura_pro_Mortuis_Gerenda",
+   "title": "De Cura pro Mortuis Gerenda ad Paulinum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE PATIENTIA",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE SYMBOLO SERMO AD CATECHUMENOS",
+   "path": "Aug_De_Patientia",
+   "title": "De Patientia",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE SYMBOLO SERMO AD CATECHUMENOS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI SERMO DE DISCIPLINA CHRISTIANA",
+   "path": "Aug_De_Symbolo_Sermo",
+   "title": "De Symbolo Sermo ad Catechumenos",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI SERMO DE DISCIPLINA CHRISTIANA",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CANTICO NOVO",
+   "path": "Aug_Sermo_de_Disciplina_Christiana",
+   "title": "Sermo de Disciplina Christiana",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CANTICO NOVO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE UTILITATE JEJUNII",
+   "path": "Aug_De_Cantico_Novo",
+   "title": "De Cantico Novo et de Reditu ad Coelestem Patriam",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE UTILITATE JEJUNII",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE URBIS EXCIDIO SERMO",
+   "path": "Aug_De_Utilitate_Jejunii",
+   "title": "De Utilitate Jejunii Sermo",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE URBIS EXCIDIO SERMO",
+   "end": "APPENDIX TOMI SEXTI OPERUM",
+   "path": "Aug_De_Urbis_Excidio",
+   "title": "De Urbis Excidio Sermo",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

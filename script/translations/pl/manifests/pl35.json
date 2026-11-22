@@ -1,0 +1,56 @@
+{
+ "volume": 35,
+ "source": "tmp/pl/35/prepped_35.html",
+ "out": "tmp/pl/35",
+ "works": [
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI QUAESTIONUM EVANGELIORUM LIBRI DUO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI QUAESTIONUM SEPTEMDECIM IN EVANGELIUM SECUNDUM MATTH",
+   "path": "Aug_Quaestiones_Evangeliorum",
+   "title": "Quaestiones Evangeliorum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI IN JOANNIS EVANGELIUM TRACTATUS CXXIV",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI IN EPISTOLAM JOANNIS AD PARTHOS TRACTATUS DECEM",
+   "path": "Aug_In_Ioannem",
+   "title": "In Ioannis Evangelium Tractatus CXXIV",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI IN EPISTOLAM JOANNIS AD PARTHOS TRACTATUS DECEM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI EXPOSITIO QUARUMDAM PROPOSITIONUM EX EPISTOLA AD ROMANOS",
+   "path": "Aug_In_Epistolam_Ioannis",
+   "title": "In Epistolam Ioannis ad Parthos Tractatus",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI EXPOSITIO QUARUMDAM PROPOSITIONUM EX EPISTOLA AD ROMANOS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI EPISTOLAE AD ROMANOS INCHOATA EXPOSITIO",
+   "path": "Aug_Expositio_Propositionum_ad_Romanos",
+   "title": "Expositio Propositionum ex Epistola ad Romanos",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI EPISTOLAE AD ROMANOS INCHOATA EXPOSITIO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI EPISTOLAE AD GALATAS",
+   "path": "Aug_Epistolae_ad_Romanos_Inchoata_Expositio",
+   "title": "Epistolae ad Romanos Inchoata Expositio",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI EPISTOLAE AD GALATAS",
+   "end": "Appendix tertii tomi OPERUM S. AUGUSTINI",
+   "path": "Aug_Expositio_Epistolae_ad_Galatas",
+   "title": "Expositio Epistolae ad Galatas",
+   "split": "none",
+   "drop_em": true,
+   "keep_preface": true
+  }
+ ]
+}

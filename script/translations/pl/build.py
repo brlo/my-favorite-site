@@ -229,6 +229,15 @@ def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
     cfg = json.load(open(sys.argv[1], encoding='utf-8'))
+    # третий аргумент (или VOLUME=) — собрать план только по одному тому
+    only_volume = None
+    if len(sys.argv) > 2:
+        only_volume = int(sys.argv[2])
+    elif os.environ.get('VOLUME'):
+        only_volume = int(os.environ['VOLUME'])
+    if only_volume:
+        cfg['works'] = [w for w in cfg['works'] if w.get('volume', cfg['volume']) == only_volume]
+        cfg['volume'] = only_volume
     vol_default = cfg['volume']
     vol = vol_default
     base = os.path.join('tmp/pl', str(vol))
@@ -319,13 +328,13 @@ def main():
     a = cfg['author']
     author_body = open(a['body_file'], encoding='utf-8').read()
     plan = {
-        'lang': cfg['lang'], 'list': cfg['list'],
+        'lang': cfg['lang'], 'list': cfg['list'], 'volume': only_volume or vol_default,
         'author': {**{k: a[k] for k in ('path', 'title', 'title_sub', 'ru', 'menu_folder', 'menu_replace', 'menu_title', 'references')},
                    'body': author_body, 'page_type': 4, 'seo_kind': 'person'},
         'folders': cfg['folders'],
         'pages': pages,
     }
-    out = os.path.join(base, 'plan.json')
+    out = os.path.join(base, f'plan_v{only_volume}.json' if only_volume else 'plan.json')
     json.dump(plan, open(out, 'w', encoding='utf-8'), ensure_ascii=False, indent=1)
     total = sum(len(p['body']) for p in pages)
     print(f'\nстраниц: {len(pages)} (+ автор), текста ~{total/1024:.0f} КБ → {out}')

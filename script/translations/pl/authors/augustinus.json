@@ -32,8 +32,16 @@
    "priority": 4
   },
   {
-   "title": "Monastica",
+   "title": "Enarrationes in Psalmos",
    "priority": 5
+  },
+  {
+   "title": "Monastica",
+   "priority": 6
+  },
+  {
+   "title": "Sermones",
+   "priority": 7
   }
  ],
  "works": [
@@ -297,6 +305,1912 @@
      "priority": 24
     }
    ]
+  },
+  {
+   "fragment": "Aug_Quaestiones_Evangeliorum",
+   "volume": 35,
+   "folder": "Exegetica",
+   "ru": "OKVt_Две_книги_Евангельских_вопросов",
+   "parts": [
+    {
+     "path": "Aug_Quaestiones_Evangeliorum_1",
+     "title": "Quaestiones Evangeliorum, Liber I (Matthaeus)",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Aug_Quaestiones_Evangeliorum_2",
+     "title": "Quaestiones Evangeliorum, Liber II (Lucas)",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 2,
+     "ru": "7CkL_Дополнение_к_сочинению_Две_книги_Евангельских_вопросов_Книга_2"
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_In_Ioannem",
+   "volume": 35,
+   "folder": "Exegetica",
+   "ru": "2imO_Рассуждения_на_Евангелие_от_Иоанна",
+   "parts": [
+    {
+     "path": "Aug_In_Ioannem_1",
+     "title": "In Ioannis Evangelium, Tractatus I–VIII",
+     "first": "TRACTATUS I. In illud Joannis, In princi",
+     "last": "TRACTATUS IX. In eamdem Evangelii lectio",
+     "priority": 3
+    },
+    {
+     "path": "Aug_In_Ioannem_2",
+     "title": "In Ioannis Evangelium, Tractatus IX–XVI",
+     "first": "TRACTATUS IX. In eamdem Evangelii lectio",
+     "last": "TRACTATUS XVII. Ab eo quod scriptum est,",
+     "priority": 4
+    },
+    {
+     "path": "Aug_In_Ioannem_3",
+     "title": "In Ioannis Evangelium, Tractatus XVII–XXIV",
+     "first": "TRACTATUS XVII. Ab eo quod scriptum est,",
+     "last": "TRACTATUS XXV. Ab eo quod scriptum est, ",
+     "priority": 5
+    },
+    {
+     "path": "Aug_In_Ioannem_4",
+     "title": "In Ioannis Evangelium, Tractatus XXV–XXXII",
+     "first": "TRACTATUS XXV. Ab eo quod scriptum est, ",
+     "last": "TRACTATUS XXXIII. Ab eo loco Evangelii, ",
+     "priority": 6
+    },
+    {
+     "path": "Aug_In_Ioannem_5",
+     "title": "In Ioannis Evangelium, Tractatus XXXIII–XL",
+     "first": "TRACTATUS XXXIII. Ab eo loco Evangelii, ",
+     "last": "TRACTATUS XLI. Rursum in illud, Dicebat ",
+     "priority": 7
+    },
+    {
+     "path": "Aug_In_Ioannem_6",
+     "title": "In Ioannis Evangelium, Tractatus XLI–XLVIII",
+     "first": "TRACTATUS XLI. Rursum in illud, Dicebat ",
+     "last": "TRACTATUS XLIX. Ab eo quod legitur, Erat",
+     "priority": 8
+    },
+    {
+     "path": "Aug_In_Ioannem_7",
+     "title": "In Ioannis Evangelium, Tractatus XLIX–LVI",
+     "first": "TRACTATUS XLIX. Ab eo quod legitur, Erat",
+     "last": "TRACTATUS LVII. Quonam modo Ecclesia tim",
+     "priority": 9
+    },
+    {
+     "path": "Aug_In_Ioannem_8",
+     "title": "In Ioannis Evangelium, Tractatus LVII–LXIV",
+     "first": "TRACTATUS LVII. Quonam modo Ecclesia tim",
+     "last": "TRACTATUS LXV. In id quod Dominus ait, M",
+     "priority": 10
+    },
+    {
+     "path": "Aug_In_Ioannem_9",
+     "title": "In Ioannis Evangelium, Tractatus LXV–LXXII",
+     "first": "TRACTATUS LXV. In id quod Dominus ait, M",
+     "last": "TRACTATUS LXXIII. Item in eamdem lection",
+     "priority": 11
+    },
+    {
+     "path": "Aug_In_Ioannem_10",
+     "title": "In Ioannis Evangelium, Tractatus LXXIII–LXXX",
+     "first": "TRACTATUS LXXIII. Item in eamdem lection",
+     "last": "TRACTATUS LXXXI. De eo quod ait, Manete ",
+     "priority": 12
+    },
+    {
+     "path": "Aug_In_Ioannem_11",
+     "title": "In Ioannis Evangelium, Tractatus LXXXI–LXXXVIII",
+     "first": "TRACTATUS LXXXI. De eo quod ait, Manete ",
+     "last": "TRACTATUS LXXXIX. De eo quod dicit Domin",
+     "priority": 13
+    },
+    {
+     "path": "Aug_In_Ioannem_12",
+     "title": "In Ioannis Evangelium, Tractatus LXXXIX–XCVI",
+     "first": "TRACTATUS LXXXIX. De eo quod dicit Domin",
+     "last": "TRACTATUS XCVII. In eamdem lectionem",
+     "priority": 14
+    },
+    {
+     "path": "Aug_In_Ioannem_13",
+     "title": "In Ioannis Evangelium, Tractatus XCVII–CIV",
+     "first": "TRACTATUS XCVII. In eamdem lectionem",
+     "last": "TRACTATUS CV. Ab eo quod Dominus ait, Ut",
+     "priority": 15
+    },
+    {
+     "path": "Aug_In_Ioannem_14",
+     "title": "In Ioannis Evangelium, Tractatus CV–CXII",
+     "first": "TRACTATUS CV. Ab eo quod Dominus ait, Ut",
+     "last": "TRACTATUS CXIII. Ab eo quod legitur, Et ",
+     "priority": 16
+    },
+    {
+     "path": "Aug_In_Ioannem_15",
+     "title": "In Ioannis Evangelium, Tractatus CXIII–CXX",
+     "first": "TRACTATUS CXIII. Ab eo quod legitur, Et ",
+     "last": "TRACTATUS CXXI. De eo quod sequitur, Abi",
+     "priority": 17
+    },
+    {
+     "path": "Aug_In_Ioannem_16",
+     "title": "In Ioannis Evangelium, Tractatus CXXI–CXXIV",
+     "first": "TRACTATUS CXXI. De eo quod sequitur, Abi",
+     "last": null,
+     "priority": 18
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_In_Epistolam_Ioannis",
+   "volume": 35,
+   "folder": "Exegetica",
+   "ru": "2eAt_Толкование_на_послание_Иоанна_к_Парфянам",
+   "parts": [
+    {
+     "path": "Aug_In_Epistolam_Ioannis_1",
+     "title": "In Epistolam Ioannis, I–IV",
+     "first": "TRACTATUS I. De eo quod Joannes scribit,",
+     "last": "TRACTATUS V. In id quod sequitur, Omnis ",
+     "priority": 9
+    },
+    {
+     "path": "Aug_In_Epistolam_Ioannis_2",
+     "title": "In Epistolam Ioannis, V–VII",
+     "first": "TRACTATUS V. In id quod sequitur, Omnis ",
+     "last": "TRACTATUS VIII. De eo quod sequitur, Si ",
+     "priority": 10
+    },
+    {
+     "path": "Aug_In_Epistolam_Ioannis_3",
+     "title": "In Epistolam Ioannis, VIII–X",
+     "first": "TRACTATUS VIII. De eo quod sequitur, Si ",
+     "last": null,
+     "priority": 11
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_Expositio_Propositionum_ad_Romanos",
+   "volume": 35,
+   "folder": "Exegetica",
+   "path": "Aug_Expositio_Propositionum_ad_Romanos",
+   "title": "Expositio Propositionum ex Epistola ad Romanos",
+   "priority": 12
+  },
+  {
+   "fragment": "Aug_Epistolae_ad_Romanos_Inchoata_Expositio",
+   "volume": 35,
+   "folder": "Exegetica",
+   "path": "Aug_Epistolae_ad_Romanos_Inchoata_Expositio",
+   "title": "Epistolae ad Romanos Inchoata Expositio",
+   "priority": 13
+  },
+  {
+   "fragment": "Aug_Expositio_Epistolae_ad_Galatas",
+   "volume": 35,
+   "folder": "Exegetica",
+   "path": "Aug_Expositio_Epistolae_ad_Galatas",
+   "title": "Expositio Epistolae ad Galatas",
+   "priority": 14,
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_Enarr_1",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_1",
+   "title": "Enarrationes in Psalmos II–VII",
+   "priority": 1,
+   "max_kb": 140,
+   "ru": "rAYR_Толкование_на_1й_Псалом"
+  },
+  {
+   "fragment": "Aug_Enarr_2",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_2",
+   "title": "Enarrationes in Psalmos VIII–XVIII",
+   "priority": 2,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_3",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_3",
+   "title": "Enarrationes in Psalmos XIX–XXVI",
+   "priority": 3,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_4",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_4",
+   "title": "Enarrationes in Psalmos XXVII–XXX",
+   "priority": 4,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_5",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_5",
+   "title": "Enarratio in Psalmum XXXI",
+   "priority": 5,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_6",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_6",
+   "title": "Enarratio in Psalmum XXXII",
+   "priority": 6,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_7",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_7",
+   "title": "Enarrationes in Psalmos XXXIII–XXXIV",
+   "priority": 7,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_8",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_8",
+   "title": "Enarratio in Psalmum XXXV",
+   "priority": 8,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_9",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_9",
+   "title": "Enarratio in Psalmum XXXVI",
+   "priority": 9,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_10",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_10",
+   "title": "Enarrationes in Psalmos XXXVII–XXXVIII",
+   "priority": 10,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_11",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_11",
+   "title": "Enarrationes in Psalmos XXXIX–XLI",
+   "priority": 11,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_12",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_12",
+   "title": "Enarrationes in Psalmos XLII–XLIV",
+   "priority": 12,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_13",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_13",
+   "title": "Enarrationes in Psalmos XLV–XLVII",
+   "priority": 13,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_14",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_14",
+   "title": "Enarrationes in Psalmos XLVIII–XLIX",
+   "priority": 14,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_15",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_15",
+   "title": "Enarrationes in Psalmos L–LIII",
+   "priority": 15,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_16",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_16",
+   "title": "Enarrationes in Psalmos LIV–LV",
+   "priority": 16,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_17",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_17",
+   "title": "Enarrationes in Psalmos LVI–LVII",
+   "priority": 17,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_18",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_18",
+   "title": "Enarrationes in Psalmos LVIII–LX",
+   "priority": 18,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_19",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_19",
+   "title": "Enarrationes in Psalmos LXI–LXIII",
+   "priority": 19,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_20",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_20",
+   "title": "Enarrationes in Psalmos LXIV–LXVI",
+   "priority": 20,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_21",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_21",
+   "title": "Enarratio in Psalmum LXVII",
+   "priority": 21,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_22",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_22",
+   "title": "Enarrationes in Psalmos LXVIII–LXIX",
+   "priority": 22,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_23",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_23",
+   "title": "Enarrationes in Psalmos LXX–LXXI",
+   "priority": 23,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_24",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_24",
+   "title": "Enarrationes in Psalmos LXXII–LXXIV",
+   "priority": 24,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_25",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_25",
+   "title": "Enarrationes in Psalmos LXXV–LXXVI",
+   "priority": 25,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_26",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_26",
+   "title": "Enarrationes in Psalmos LXXVII–LXXVIII",
+   "priority": 26,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_27",
+   "volume": 36,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr36_27",
+   "title": "Enarratio in Psalmum LXXIX",
+   "priority": 27,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_1",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_1",
+   "title": "Enarrationes in Psalmos LXXX–LXXXIII",
+   "priority": 1,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_2",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_2",
+   "title": "Enarrationes in Psalmos LXXXIV–LXXXVI",
+   "priority": 2,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_3",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_3",
+   "title": "Enarrationes in Psalmos LXXXVII–LXXXIX",
+   "priority": 3,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_4",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_4",
+   "title": "Enarrationes in Psalmos XC–XCII",
+   "priority": 4,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_5",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_5",
+   "title": "Enarrationes in Psalmos XCIII–XCIV",
+   "priority": 5,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_6",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_6",
+   "title": "Enarrationes in Psalmos XCV–XCVIII",
+   "priority": 6,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_7",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_7",
+   "title": "Enarrationes in Psalmos XCIX–CI",
+   "priority": 7,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_8",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_8",
+   "title": "Enarratio in Psalmum CII",
+   "priority": 8,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_9",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_9",
+   "title": "Enarratio in Psalmum CIII",
+   "priority": 9,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_10",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_10",
+   "title": "Enarrationes in Psalmos CIV–CVII",
+   "priority": 10,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_11",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_11",
+   "title": "Enarrationes in Psalmos CVIII–CXII",
+   "priority": 11,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_12",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_12",
+   "title": "Enarrationes in Psalmos CXIII–CXVII",
+   "priority": 12,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_13",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_13",
+   "title": "Enarratio in Psalmum CXVIII",
+   "priority": 13,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_14",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_14",
+   "title": "Enarrationes in Psalmos CXIX–CXXII",
+   "priority": 14,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_15",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_15",
+   "title": "Enarrationes in Psalmos CXXIII–CXXVI",
+   "priority": 15,
+   "max_kb": 140,
+   "ru": "G9ph_Толкование_на_Псалом_125й"
+  },
+  {
+   "fragment": "Aug_Enarr_16",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_16",
+   "title": "Enarrationes in Psalmos CXXVII–CXXX",
+   "priority": 16,
+   "max_kb": 140,
+   "ru": "G9ph_Толкование_на_Псалом_125й"
+  },
+  {
+   "fragment": "Aug_Enarr_17",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_17",
+   "title": "Enarrationes in Psalmos CXXXI–CXXXIV",
+   "priority": 17,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_18",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_18",
+   "title": "Enarrationes in Psalmos CXXXV–CXXXVII",
+   "priority": 18,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_19",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_19",
+   "title": "Enarrationes in Psalmos CXXXVIII–CXXXIX",
+   "priority": 19,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_20",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_20",
+   "title": "Enarrationes in Psalmos CXL–CXLII",
+   "priority": 20,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_21",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_21",
+   "title": "Enarrationes in Psalmos CXLIII–CXLV",
+   "priority": 21,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_22",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_22",
+   "title": "Enarrationes in Psalmos CXLVI–CXLVII",
+   "priority": 22,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Enarr_23",
+   "volume": 37,
+   "folder": "Enarrationes in Psalmos",
+   "path": "Aug_Enarr37_23",
+   "title": "Enarrationes in Psalmos CXLVIII–CL",
+   "priority": 23,
+   "max_kb": 140
+  },
+  {
+   "fragment": "Aug_Sermones38_1",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_1",
+   "title": "Sermones 1–6",
+   "priority": 1
+  },
+  {
+   "fragment": "Aug_Sermones38_2",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_2",
+   "title": "Sermones 7–11",
+   "priority": 2
+  },
+  {
+   "fragment": "Aug_Sermones38_3",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_3",
+   "title": "Sermones 12–19",
+   "priority": 3
+  },
+  {
+   "fragment": "Aug_Sermones38_4",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_4",
+   "title": "Sermones 20–25",
+   "priority": 4
+  },
+  {
+   "fragment": "Aug_Sermones38_5",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_5",
+   "title": "Sermones 26–33",
+   "priority": 5
+  },
+  {
+   "fragment": "Aug_Sermones38_6",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_6",
+   "title": "Sermones 34–40",
+   "priority": 6
+  },
+  {
+   "fragment": "Aug_Sermones38_7",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_7",
+   "title": "Sermones 41–45",
+   "priority": 7
+  },
+  {
+   "fragment": "Aug_Sermones38_8",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_8",
+   "title": "Sermo 46",
+   "priority": 8
+  },
+  {
+   "fragment": "Aug_Sermones38_9",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_9",
+   "title": "Sermones 47–50",
+   "priority": 9
+  },
+  {
+   "fragment": "Aug_Sermones38_10",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_10",
+   "title": "Sermones 51–52",
+   "priority": 10
+  },
+  {
+   "fragment": "Aug_Sermones38_11",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_11",
+   "title": "Sermones 53–59",
+   "priority": 11
+  },
+  {
+   "fragment": "Aug_Sermones38_12",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_12",
+   "title": "Sermones 60–68",
+   "priority": 12
+  },
+  {
+   "fragment": "Aug_Sermones38_13",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_13",
+   "title": "Sermones 69–74",
+   "priority": 13
+  },
+  {
+   "fragment": "Aug_Sermones38_14",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_14",
+   "title": "Sermones 75–81",
+   "priority": 14
+  },
+  {
+   "fragment": "Aug_Sermones38_15",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_15",
+   "title": "Sermones 82–87",
+   "priority": 15
+  },
+  {
+   "fragment": "Aug_Sermones38_16",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_16",
+   "title": "Sermones 88–92",
+   "priority": 16
+  },
+  {
+   "fragment": "Aug_Sermones38_17",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_17",
+   "title": "Sermones 93–101",
+   "priority": 17
+  },
+  {
+   "fragment": "Aug_Sermones38_18",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_18",
+   "title": "Sermones 102–112",
+   "priority": 18
+  },
+  {
+   "fragment": "Aug_Sermones38_19",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_19",
+   "title": "Sermones 113–123",
+   "priority": 19
+  },
+  {
+   "fragment": "Aug_Sermones38_20",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_20",
+   "title": "Sermones 124–128",
+   "priority": 20
+  },
+  {
+   "fragment": "Aug_Sermones38_21",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_21",
+   "title": "Sermones 129–136",
+   "priority": 21
+  },
+  {
+   "fragment": "Aug_Sermones38_22",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_22",
+   "title": "Sermones 137–144",
+   "priority": 22
+  },
+  {
+   "fragment": "Aug_Sermones38_23",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_23",
+   "title": "Sermones 145–152",
+   "priority": 23
+  },
+  {
+   "fragment": "Aug_Sermones38_24",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_24",
+   "title": "Sermones 153–157",
+   "priority": 24
+  },
+  {
+   "fragment": "Aug_Sermones38_25",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_25",
+   "title": "Sermones 158–163",
+   "priority": 25
+  },
+  {
+   "fragment": "Aug_Sermones38_26",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_26",
+   "title": "Sermones 164–170",
+   "priority": 26
+  },
+  {
+   "fragment": "Aug_Sermones38_27",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_27",
+   "title": "Sermones 171–178",
+   "priority": 27
+  },
+  {
+   "fragment": "Aug_Sermones38_28",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_28",
+   "title": "Sermones 179–188",
+   "priority": 28
+  },
+  {
+   "fragment": "Aug_Sermones38_29",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_29",
+   "title": "Sermones 189–207",
+   "priority": 29
+  },
+  {
+   "fragment": "Aug_Sermones38_30",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_30",
+   "title": "Sermones 208–216",
+   "priority": 30
+  },
+  {
+   "fragment": "Aug_Sermones38_31",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_31",
+   "title": "Sermones 217–236",
+   "priority": 31
+  },
+  {
+   "fragment": "Aug_Sermones38_32",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_32",
+   "title": "Sermones 237–247",
+   "priority": 32
+  },
+  {
+   "fragment": "Aug_Sermones38_33",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_33",
+   "title": "Sermones 248–258",
+   "priority": 33
+  },
+  {
+   "fragment": "Aug_Sermones38_34",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_34",
+   "title": "Sermones 259–268",
+   "priority": 34
+  },
+  {
+   "fragment": "Aug_Sermones38_35",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_35",
+   "title": "Sermones 269–277",
+   "priority": 35
+  },
+  {
+   "fragment": "Aug_Sermones38_36",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_36",
+   "title": "Sermones 278–287",
+   "priority": 36
+  },
+  {
+   "fragment": "Aug_Sermones38_37",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_37",
+   "title": "Sermones 288–293",
+   "priority": 37
+  },
+  {
+   "fragment": "Aug_Sermones38_38",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_38",
+   "title": "Sermones 294–298",
+   "priority": 38
+  },
+  {
+   "fragment": "Aug_Sermones38_39",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_39",
+   "title": "Sermones 299–306",
+   "priority": 39
+  },
+  {
+   "fragment": "Aug_Sermones38_40",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_40",
+   "title": "Sermones 307–322",
+   "priority": 40
+  },
+  {
+   "fragment": "Aug_Sermones38_41",
+   "volume": 38,
+   "folder": "Sermones",
+   "path": "Aug_Sermones38_41",
+   "title": "Sermones 323–340",
+   "priority": 41
+  },
+  {
+   "fragment": "Aug_Sermones39_1",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_1",
+   "title": "Sermones 341–348",
+   "priority": 1
+  },
+  {
+   "fragment": "Aug_Sermones39_2",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_2",
+   "title": "Sermones 349–353",
+   "priority": 2
+  },
+  {
+   "fragment": "Aug_Sermones39_3",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_3",
+   "title": "Sermones 354–360",
+   "priority": 3
+  },
+  {
+   "fragment": "Aug_Sermones39_4",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_4",
+   "title": "Sermones 361–362",
+   "priority": 4
+  },
+  {
+   "fragment": "Aug_Sermones39_5",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_5",
+   "title": "Sermones 363–375",
+   "priority": 5
+  },
+  {
+   "fragment": "Aug_Sermones39_6",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_6",
+   "title": "Sermones 376–390",
+   "priority": 6
+  },
+  {
+   "fragment": "Aug_Sermones39_7",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_7",
+   "title": "Sermones 391–2",
+   "priority": 7
+  },
+  {
+   "fragment": "Aug_Sermones39_8",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_8",
+   "title": "Sermones 3–15",
+   "priority": 8
+  },
+  {
+   "fragment": "Aug_Sermones39_9",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_9",
+   "title": "Sermones 16–29",
+   "priority": 9
+  },
+  {
+   "fragment": "Aug_Sermones39_10",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_10",
+   "title": "Sermones 30–43",
+   "priority": 10
+  },
+  {
+   "fragment": "Aug_Sermones39_11",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_11",
+   "title": "Sermones 44–61",
+   "priority": 11
+  },
+  {
+   "fragment": "Aug_Sermones39_12",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_12",
+   "title": "Sermones 62–74",
+   "priority": 12
+  },
+  {
+   "fragment": "Aug_Sermones39_13",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_13",
+   "title": "Sermones 75–90",
+   "priority": 13
+  },
+  {
+   "fragment": "Aug_Sermones39_14",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_14",
+   "title": "Sermones 91–104",
+   "priority": 14
+  },
+  {
+   "fragment": "Aug_Sermones39_15",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_15",
+   "title": "Sermones 105–117",
+   "priority": 15
+  },
+  {
+   "fragment": "Aug_Sermones39_16",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_16",
+   "title": "Sermones 118–134",
+   "priority": 16
+  },
+  {
+   "fragment": "Aug_Sermones39_17",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_17",
+   "title": "Sermones 135–153",
+   "priority": 17
+  },
+  {
+   "fragment": "Aug_Sermones39_18",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_18",
+   "title": "Sermones 154–171",
+   "priority": 18
+  },
+  {
+   "fragment": "Aug_Sermones39_19",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_19",
+   "title": "Sermones 172–194",
+   "priority": 19
+  },
+  {
+   "fragment": "Aug_Sermones39_20",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_20",
+   "title": "Sermones 195–209",
+   "priority": 20
+  },
+  {
+   "fragment": "Aug_Sermones39_21",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_21",
+   "title": "Sermones 210–229",
+   "priority": 21
+  },
+  {
+   "fragment": "Aug_Sermones39_22",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_22",
+   "title": "Sermones 230–246",
+   "priority": 22
+  },
+  {
+   "fragment": "Aug_Sermones39_23",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_23",
+   "title": "Sermones 247–261",
+   "priority": 23
+  },
+  {
+   "fragment": "Aug_Sermones39_24",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_24",
+   "title": "Sermones 262–273",
+   "priority": 24
+  },
+  {
+   "fragment": "Aug_Sermones39_25",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_25",
+   "title": "Sermones 274–287",
+   "priority": 25
+  },
+  {
+   "fragment": "Aug_Sermones39_26",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_26",
+   "title": "Sermones 288–299",
+   "priority": 26
+  },
+  {
+   "fragment": "Aug_Sermones39_27",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_27",
+   "title": "Sermones 300–314",
+   "priority": 27
+  },
+  {
+   "fragment": "Aug_Sermones39_28",
+   "volume": 39,
+   "folder": "Sermones",
+   "path": "Aug_Sermones39_28",
+   "title": "Sermones 315–317",
+   "priority": 28
+  },
+  {
+   "fragment": "Aug_De_Civitate_Dei",
+   "volume": 41,
+   "folder": "Dogmatica",
+   "parts": [
+    {
+     "path": "Aug_De_Civitate_Dei_1",
+     "title": "De Civitate Dei, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1,
+     "ru": "3wS5_О_граде_Божием_1"
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_2",
+     "title": "De Civitate Dei, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 2
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_3",
+     "title": "De Civitate Dei, Liber III",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 3
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_4",
+     "title": "De Civitate Dei, Liber IV",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER QUINTUS",
+     "priority": 4
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_5",
+     "title": "De Civitate Dei, Liber V",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER SEXTUS",
+     "priority": 5
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_6",
+     "title": "De Civitate Dei, Liber VI",
+     "first": "LIBER SEXTUS",
+     "last": "LIBER SEPTIMUS",
+     "priority": 6
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_7",
+     "title": "De Civitate Dei, Liber VII",
+     "first": "LIBER SEPTIMUS",
+     "last": "LIBER OCTAVUS",
+     "priority": 7
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_8",
+     "title": "De Civitate Dei, Liber VIII",
+     "first": "LIBER OCTAVUS",
+     "last": "LIBER NONUS",
+     "priority": 8
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_9",
+     "title": "De Civitate Dei, Liber IX",
+     "first": "LIBER NONUS",
+     "last": "LIBER DECIMUS",
+     "priority": 9
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_10",
+     "title": "De Civitate Dei, Liber X",
+     "first": "LIBER DECIMUS",
+     "last": "LIBER UNDECIMUS",
+     "priority": 10
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_11",
+     "title": "De Civitate Dei, Liber XI",
+     "first": "LIBER UNDECIMUS",
+     "last": "LIBER DUODECIMUS",
+     "priority": 11
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_12",
+     "title": "De Civitate Dei, Liber XII",
+     "first": "LIBER DUODECIMUS",
+     "last": "LIBER DECIMUS TERTIUS",
+     "priority": 12
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_13",
+     "title": "De Civitate Dei, Liber XIII",
+     "first": "LIBER DECIMUS TERTIUS",
+     "last": "LIBER QUARTUS DECIMUS",
+     "priority": 13
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_14",
+     "title": "De Civitate Dei, Liber XIV",
+     "first": "LIBER QUARTUS DECIMUS",
+     "last": "LIBER QUINTUS DECIMUS",
+     "priority": 14
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_15",
+     "title": "De Civitate Dei, Liber XV",
+     "first": "LIBER QUINTUS DECIMUS",
+     "last": "LIBER DECIMUS SEXTUS",
+     "priority": 15
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_16",
+     "title": "De Civitate Dei, Liber XVI",
+     "first": "LIBER DECIMUS SEXTUS",
+     "last": "LIBER DECIMUS SEPTIMUS",
+     "priority": 16
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_17",
+     "title": "De Civitate Dei, Liber XVII",
+     "first": "LIBER DECIMUS SEPTIMUS",
+     "last": "LIBER DECIMUS OCTAVUS",
+     "priority": 17
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_18",
+     "title": "De Civitate Dei, Liber XVIII",
+     "first": "LIBER DECIMUS OCTAVUS",
+     "last": "LIBER DECIMUS NONUS",
+     "priority": 18
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_19",
+     "title": "De Civitate Dei, Liber XIX",
+     "first": "LIBER DECIMUS NONUS",
+     "last": "LIBER VIGESIMUS",
+     "priority": 19
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_20",
+     "title": "De Civitate Dei, Liber XX",
+     "first": "LIBER VIGESIMUS",
+     "last": "LIBER VIGESIMUS PRIMUS",
+     "priority": 20
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_21",
+     "title": "De Civitate Dei, Liber XXI",
+     "first": "LIBER VIGESIMUS PRIMUS",
+     "last": "LIBER VIGESIMUS SECUNDUS",
+     "priority": 21
+    },
+    {
+     "path": "Aug_De_Civitate_Dei_22",
+     "title": "De Civitate Dei, Liber XXII",
+     "first": "LIBER VIGESIMUS SECUNDUS",
+     "last": "EPISTOLA AVITI AD PALCHONIUM",
+     "priority": 22
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_De_Haeresibus",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Haeresibus",
+   "title": "De Haeresibus ad Quodvultdeum",
+   "priority": 1
+  },
+  {
+   "fragment": "Aug_Tractatus_adversus_Judaeos",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_Tractatus_adversus_Judaeos",
+   "title": "Tractatus adversus Judaeos",
+   "priority": 2
+  },
+  {
+   "fragment": "Aug_De_Utilitate_Credendi",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Utilitate_Credendi",
+   "title": "De Utilitate Credendi ad Honoratum",
+   "priority": 3
+  },
+  {
+   "fragment": "Aug_De_Duabus_Animabus",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Duabus_Animabus",
+   "title": "De Duabus Animabus contra Manichaeos",
+   "priority": 4
+  },
+  {
+   "fragment": "Aug_Acta_contra_Fortunatum",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_Acta_contra_Fortunatum",
+   "title": "Acta seu Disputatio contra Fortunatum",
+   "priority": 5
+  },
+  {
+   "fragment": "Aug_Contra_Adimantum",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_Contra_Adimantum",
+   "title": "Contra Adimantum Manichaei Discipulum",
+   "priority": 6,
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_Contra_Epistolam_Manichaei",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_Contra_Epistolam_Manichaei",
+   "title": "Contra Epistolam Manichaei quam vocant Fundamenti",
+   "priority": 7
+  },
+  {
+   "fragment": "Aug_De_Actis_cum_Felice",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Actis_cum_Felice",
+   "title": "De Actis cum Felice Manichaeo",
+   "priority": 20
+  },
+  {
+   "fragment": "Aug_De_Natura_Boni",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Natura_Boni",
+   "title": "De Natura Boni contra Manichaeos",
+   "priority": 21,
+   "ru": "lt2c_О_природе_блага_против_манихеев"
+  },
+  {
+   "fragment": "Aug_Contra_Secundinum",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_Contra_Secundinum",
+   "title": "Contra Secundinum Manichaeum",
+   "priority": 22
+  },
+  {
+   "fragment": "Aug_Ad_Orosium",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_Ad_Orosium",
+   "title": "Ad Orosium contra Priscillianistas et Origenistas",
+   "priority": 30
+  },
+  {
+   "fragment": "Aug_Contra_Sermonem_Arianorum",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_Contra_Sermonem_Arianorum",
+   "title": "Contra Sermonem Arianorum",
+   "priority": 31
+  },
+  {
+   "fragment": "Aug_Collatio_cum_Maximino",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "path": "Aug_Collatio_cum_Maximino",
+   "title": "Collatio cum Maximino Arianorum Episcopo",
+   "priority": 32
+  },
+  {
+   "fragment": "Aug_Contra_Faustum",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "parts": [
+    {
+     "path": "Aug_Contra_Faustum_1",
+     "title": "Libri PRIMUS–QUARTUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER QUINTUS",
+     "priority": 1
+    },
+    {
+     "path": "Aug_Contra_Faustum_2",
+     "title": "Libri QUINTUS–OCTAVUS",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER NONUS",
+     "priority": 2
+    },
+    {
+     "path": "Aug_Contra_Faustum_3",
+     "title": "Libri NONUS–DUODECIMUS",
+     "first": "LIBER NONUS",
+     "last": "LIBER TERTIUS DECIMUS",
+     "priority": 3
+    },
+    {
+     "path": "Aug_Contra_Faustum_4",
+     "title": "Libri TERTIUS DECIMUS–SEXTUS DECIMUS",
+     "first": "LIBER TERTIUS DECIMUS",
+     "last": "LIBER DECIMUS SEPTIMUS",
+     "priority": 4
+    },
+    {
+     "path": "Aug_Contra_Faustum_5",
+     "title": "Libri DECIMUS SEPTIMUS–VIGESIMUS",
+     "first": "LIBER DECIMUS SEPTIMUS",
+     "last": "LIBER VIGESIMUS PRIMUS",
+     "priority": 5
+    },
+    {
+     "path": "Aug_Contra_Faustum_6",
+     "title": "Libri VIGESIMUS PRIMUS–VIGESIMUS QUARTUS",
+     "first": "LIBER VIGESIMUS PRIMUS",
+     "last": "LIBER VIGESIMUS QUINTUS",
+     "priority": 6
+    },
+    {
+     "path": "Aug_Contra_Faustum_7",
+     "title": "Libri VIGESIMUS QUINTUS–VIGESIMUS OCTAVUS",
+     "first": "LIBER VIGESIMUS QUINTUS",
+     "last": "LIBER VIGESIMUS NONUS",
+     "priority": 7
+    },
+    {
+     "path": "Aug_Contra_Faustum_8",
+     "title": "Libri VIGESIMUS NONUS–TRIGESIMUS SECUNDUS",
+     "first": "LIBER VIGESIMUS NONUS",
+     "last": "LIBER TRIGESIMUS TERTIUS",
+     "priority": 8
+    },
+    {
+     "path": "Aug_Contra_Faustum_9",
+     "title": "Liber TRIGESIMUS TERTIUS",
+     "first": "LIBER TRIGESIMUS TERTIUS",
+     "last": null,
+     "priority": 9
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_Contra_Adversarium_Legis",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "parts": [
+    {
+     "path": "Aug_Contra_Adversarium_Legis_1",
+     "title": "Liber PRIMUS",
+     "first": "LIBER PRIMUS. In quo Veteris Testamenti ",
+     "last": "LIBER SECUNDUS. In quo Novi Testamenti l",
+     "priority": 1
+    },
+    {
+     "path": "Aug_Contra_Adversarium_Legis_2",
+     "title": "Liber SECUNDUS",
+     "first": "LIBER SECUNDUS. In quo Novi Testamenti l",
+     "last": null,
+     "priority": 2
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_Contra_Maximinum",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "parts": [
+    {
+     "path": "Aug_Contra_Maximinum_1",
+     "title": "Liber PRIMUS",
+     "first": "LIBER PRIMUS . Ostendit Augustinus, ea q",
+     "last": "LIBER SECUNDUS . Refelluntur singillatim",
+     "priority": 1
+    },
+    {
+     "path": "Aug_Contra_Maximinum_2",
+     "title": "Liber SECUNDUS",
+     "first": "LIBER SECUNDUS . Refelluntur singillatim",
+     "last": null,
+     "priority": 2
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_De_Trinitate",
+   "volume": 42,
+   "folder": "Dogmatica",
+   "parts": [
+    {
+     "path": "Aug_De_Trinitate_1",
+     "title": "Liber PRIMUS",
+     "first": "LIBER PRIMUS. In quo secundum Scripturas",
+     "last": "LIBER SECUNDUS. Rursum defendit Augustin",
+     "priority": 1,
+     "ru": "wAsK_О_Троице"
+    },
+    {
+     "path": "Aug_De_Trinitate_2",
+     "title": "Liber SECUNDUS",
+     "first": "LIBER SECUNDUS. Rursum defendit Augustin",
+     "last": "PROOEMIUM",
+     "priority": 2
+    },
+    {
+     "path": "Aug_De_Trinitate_3",
+     "title": "Liber TERTIUS",
+     "first": "PROOEMIUM",
+     "last": "PROOEMIUM",
+     "priority": 3
+    },
+    {
+     "path": "Aug_De_Trinitate_4",
+     "title": "Liber QUARTUS",
+     "first": "PROOEMIUM",
+     "last": "PROOEMIUM",
+     "priority": 4
+    },
+    {
+     "path": "Aug_De_Trinitate_5",
+     "title": "Liber QUINTUS",
+     "first": "PROOEMIUM",
+     "last": "LIBER SEXTUS. In quo proposita quaestion",
+     "priority": 5
+    },
+    {
+     "path": "Aug_De_Trinitate_6",
+     "title": "Liber SEXTUS",
+     "first": "LIBER SEXTUS. In quo proposita quaestion",
+     "last": "LIBER SEPTIMUS. In quo superioris libri ",
+     "priority": 6
+    },
+    {
+     "path": "Aug_De_Trinitate_7",
+     "title": "Liber SEPTIMUS",
+     "first": "LIBER SEPTIMUS. In quo superioris libri ",
+     "last": "LIBER OCTAVUS. In quo ratione reddita mo",
+     "priority": 7
+    },
+    {
+     "path": "Aug_De_Trinitate_8",
+     "title": "Liber OCTAVUS",
+     "first": "LIBER OCTAVUS. In quo ratione reddita mo",
+     "last": "PROOEMIUM",
+     "priority": 8
+    },
+    {
+     "path": "Aug_De_Trinitate_9",
+     "title": "Liber NONUS",
+     "first": "PROOEMIUM",
+     "last": "LIBER DECIMUS, In quo trinitatem aliam i",
+     "priority": 9
+    },
+    {
+     "path": "Aug_De_Trinitate_10",
+     "title": "Liber DECIMUS",
+     "first": "LIBER DECIMUS, In quo trinitatem aliam i",
+     "last": "LIBER UNDECIMUS. Trinitatis imago quaeda",
+     "priority": 10
+    },
+    {
+     "path": "Aug_De_Trinitate_11",
+     "title": "Liber UNDECIMUS",
+     "first": "LIBER UNDECIMUS. Trinitatis imago quaeda",
+     "last": "LIBER DUODECIMUS. In quo praemissa disti",
+     "priority": 11
+    },
+    {
+     "path": "Aug_De_Trinitate_12",
+     "title": "Liber DUODECIMUS",
+     "first": "LIBER DUODECIMUS. In quo praemissa disti",
+     "last": "LIBER TERTIUS DECIMUS. Prosequitur de sc",
+     "priority": 12
+    },
+    {
+     "path": "Aug_De_Trinitate_13",
+     "title": "Liber TERTIUS DECIMUS",
+     "first": "LIBER TERTIUS DECIMUS. Prosequitur de sc",
+     "last": "LIBER QUARTUS DECIMUS. De sapientia homi",
+     "priority": 13
+    },
+    {
+     "path": "Aug_De_Trinitate_14",
+     "title": "Liber QUARTUS DECIMUS",
+     "first": "LIBER QUARTUS DECIMUS. De sapientia homi",
+     "last": "LIBER QUINTUS DECIMUS. Principio, quid i",
+     "priority": 14
+    },
+    {
+     "path": "Aug_De_Trinitate_15",
+     "title": "Liber QUINTUS DECIMUS",
+     "first": "LIBER QUINTUS DECIMUS. Principio, quid i",
+     "last": null,
+     "priority": 15
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_De_Diversis_Quaestionibus_LXXXIII",
+   "volume": 40,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Diversis_Quaestionibus_LXXXIII",
+   "title": "De Diversis Quaestionibus LXXXIII",
+   "priority": 1,
+   "ru": "u0xf_О_83х_различных_вопросах_в_одной_книгеБогословие_Экзегетика_Этика",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_De_Diversis_Quaestionibus_ad_Simplicianum",
+   "volume": 40,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Diversis_Quaestionibus_ad_Simplicianum",
+   "title": "De Diversis Quaestionibus ad Simplicianum",
+   "priority": 2,
+   "ru": "EMsO_О_различных_вопросах",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_De_Octo_Dulcitii_Quaestionibus",
+   "volume": 40,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Octo_Dulcitii_Quaestionibus",
+   "title": "De Octo Dulcitii Quaestionibus",
+   "priority": 3
+  },
+  {
+   "fragment": "Aug_De_Fide_Rerum_quae_non_Videntur",
+   "volume": 40,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Fide_Rerum_quae_non_Videntur",
+   "title": "De Fide Rerum quae non Videntur",
+   "priority": 4
+  },
+  {
+   "fragment": "Aug_De_Fide_et_Symbolo",
+   "volume": 40,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Fide_et_Symbolo",
+   "title": "De Fide et Symbolo",
+   "priority": 5,
+   "ru": "bEYA_О_Символе_Веры"
+  },
+  {
+   "fragment": "Aug_De_Fide_et_Operibus",
+   "volume": 40,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Fide_et_Operibus",
+   "title": "De Fide et Operibus",
+   "priority": 6
+  },
+  {
+   "fragment": "Aug_Enchiridion",
+   "volume": 40,
+   "folder": "Dogmatica",
+   "path": "Aug_Enchiridion",
+   "title": "Enchiridion ad Laurentium de Fide Spe et Caritate",
+   "priority": 7,
+   "ru": "h7gm_Энхиридион_Лаврентию_о_вере_надежде_и_любви",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_De_Agone_Christiano",
+   "volume": 40,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Agone_Christiano",
+   "title": "De Agone Christiano",
+   "priority": 8,
+   "ru": "ILCR_О_Христианской_борьбе"
+  },
+  {
+   "fragment": "Aug_De_Catechizandis_Rudibus",
+   "volume": 40,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Catechizandis_Rudibus",
+   "title": "De Catechizandis Rudibus",
+   "priority": 9,
+   "ru": "2IVd_Об_обучении_оглашаемых"
+  },
+  {
+   "fragment": "Aug_De_Continentia",
+   "volume": 40,
+   "folder": "Moralia",
+   "path": "Aug_De_Continentia",
+   "title": "De Continentia",
+   "priority": 10
+  },
+  {
+   "fragment": "Aug_De_Bono_Conjugali",
+   "volume": 40,
+   "folder": "Moralia",
+   "path": "Aug_De_Bono_Conjugali",
+   "title": "De Bono Conjugali",
+   "priority": 11
+  },
+  {
+   "fragment": "Aug_De_Sancta_Virginitate",
+   "volume": 40,
+   "folder": "Moralia",
+   "path": "Aug_De_Sancta_Virginitate",
+   "title": "De Sancta Virginitate",
+   "priority": 12
+  },
+  {
+   "fragment": "Aug_De_Bono_Viduitatis",
+   "volume": 40,
+   "folder": "Moralia",
+   "path": "Aug_De_Bono_Viduitatis",
+   "title": "De Bono Viduitatis",
+   "priority": 13
+  },
+  {
+   "fragment": "Aug_De_Conjugiis_Adulterinis",
+   "volume": 40,
+   "folder": "Moralia",
+   "path": "Aug_De_Conjugiis_Adulterinis",
+   "title": "De Conjugiis Adulterinis ad Pollentium",
+   "priority": 14,
+   "ru": "ZSLO_О_прелюбодейных_браках"
+  },
+  {
+   "fragment": "Aug_De_Mendacio",
+   "volume": 40,
+   "folder": "Moralia",
+   "path": "Aug_De_Mendacio",
+   "title": "De Mendacio",
+   "priority": 15
+  },
+  {
+   "fragment": "Aug_Contra_Mendacium",
+   "volume": 40,
+   "folder": "Moralia",
+   "path": "Aug_Contra_Mendacium",
+   "title": "Contra Mendacium ad Consentium",
+   "priority": 16
+  },
+  {
+   "fragment": "Aug_De_Opere_Monachorum",
+   "volume": 40,
+   "folder": "Moralia",
+   "path": "Aug_De_Opere_Monachorum",
+   "title": "De Opere Monachorum",
+   "priority": 17
+  },
+  {
+   "fragment": "Aug_De_Divinatione_Daemonum",
+   "volume": 40,
+   "folder": "Dogmatica",
+   "path": "Aug_De_Divinatione_Daemonum",
+   "title": "De Divinatione Daemonum",
+   "priority": 18
+  },
+  {
+   "fragment": "Aug_De_Cura_pro_Mortuis_Gerenda",
+   "volume": 40,
+   "folder": "Moralia",
+   "path": "Aug_De_Cura_pro_Mortuis_Gerenda",
+   "title": "De Cura pro Mortuis Gerenda ad Paulinum",
+   "priority": 19
+  },
+  {
+   "fragment": "Aug_De_Patientia",
+   "volume": 40,
+   "folder": "Moralia",
+   "path": "Aug_De_Patientia",
+   "title": "De Patientia",
+   "priority": 20
+  },
+  {
+   "fragment": "Aug_De_Symbolo_Sermo",
+   "volume": 40,
+   "folder": "Sermones",
+   "path": "Aug_De_Symbolo_Sermo",
+   "title": "De Symbolo Sermo ad Catechumenos",
+   "priority": 21,
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_Sermo_de_Disciplina_Christiana",
+   "volume": 40,
+   "folder": "Sermones",
+   "path": "Aug_Sermo_de_Disciplina_Christiana",
+   "title": "Sermo de Disciplina Christiana",
+   "priority": 22
+  },
+  {
+   "fragment": "Aug_De_Cantico_Novo",
+   "volume": 40,
+   "folder": "Sermones",
+   "path": "Aug_De_Cantico_Novo",
+   "title": "De Cantico Novo et de Reditu ad Coelestem Patriam",
+   "priority": 23
+  },
+  {
+   "fragment": "Aug_De_Utilitate_Jejunii",
+   "volume": 40,
+   "folder": "Sermones",
+   "path": "Aug_De_Utilitate_Jejunii",
+   "title": "De Utilitate Jejunii Sermo",
+   "priority": 24
+  },
+  {
+   "fragment": "Aug_De_Urbis_Excidio",
+   "volume": 40,
+   "folder": "Sermones",
+   "path": "Aug_De_Urbis_Excidio",
+   "title": "De Urbis Excidio Sermo",
+   "priority": 25
   }
  ]
 }

@@ -1,0 +1,231 @@
+{
+ "volume": 39,
+ "source": "tmp/pl/39/prepped_39.html",
+ "out": "tmp/pl/39",
+ "works": [
+  {
+   "start": "SERMO CCCXLI\\b",
+   "end": "SERMO CCCXLIX\\b",
+   "path": "Aug_Sermones39_1",
+   "title": "Sermones 341–348",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCCXLIX\\b",
+   "end": "SERMO CCCLIV\\b",
+   "path": "Aug_Sermones39_2",
+   "title": "Sermones 349–353",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCCLIV\\b",
+   "end": "SERMO CCCLXI\\b",
+   "path": "Aug_Sermones39_3",
+   "title": "Sermones 354–360",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCCLXI\\b",
+   "end": "SERMO CCCLXIII\\b",
+   "path": "Aug_Sermones39_4",
+   "title": "Sermones 361–362",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCCLXIII\\b",
+   "end": "SERMO CCCLXXVI\\b",
+   "path": "Aug_Sermones39_5",
+   "title": "Sermones 363–375",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCCLXXVI\\b",
+   "end": "SERMO CCCXCI\\b",
+   "path": "Aug_Sermones39_6",
+   "title": "Sermones 376–390",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCCXCI\\b",
+   "end": "SERMO III\\b",
+   "path": "Aug_Sermones39_7",
+   "title": "Sermones 391–2",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO III\\b",
+   "end": "SERMO XVI\\b",
+   "path": "Aug_Sermones39_8",
+   "title": "Sermones 3–15",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO XVI\\b",
+   "end": "SERMO XXX\\b",
+   "path": "Aug_Sermones39_9",
+   "title": "Sermones 16–29",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO XXX\\b",
+   "end": "SERMO XLIV\\b",
+   "path": "Aug_Sermones39_10",
+   "title": "Sermones 30–43",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO XLIV\\b",
+   "end": "SERMO LXII\\b",
+   "path": "Aug_Sermones39_11",
+   "title": "Sermones 44–61",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO LXII\\b",
+   "end": "SERMO LXXV\\b",
+   "path": "Aug_Sermones39_12",
+   "title": "Sermones 62–74",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO LXXV\\b",
+   "end": "SERMO XCI\\b",
+   "path": "Aug_Sermones39_13",
+   "title": "Sermones 75–90",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO XCI\\b",
+   "end": "SERMO CV\\b",
+   "path": "Aug_Sermones39_14",
+   "title": "Sermones 91–104",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CV\\b",
+   "end": "SERMO CXVIII\\b",
+   "path": "Aug_Sermones39_15",
+   "title": "Sermones 105–117",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CXVIII\\b",
+   "end": "SERMO CXXXV\\b",
+   "path": "Aug_Sermones39_16",
+   "title": "Sermones 118–134",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CXXXV\\b",
+   "end": "SERMO CLIV\\b",
+   "path": "Aug_Sermones39_17",
+   "title": "Sermones 135–153",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CLIV\\b",
+   "end": "SERMO CLXXII\\b",
+   "path": "Aug_Sermones39_18",
+   "title": "Sermones 154–171",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CLXXII\\b",
+   "end": "SERMO CXCV\\b",
+   "path": "Aug_Sermones39_19",
+   "title": "Sermones 172–194",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CXCV\\b",
+   "end": "SERMO CCX\\b",
+   "path": "Aug_Sermones39_20",
+   "title": "Sermones 195–209",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCX\\b",
+   "end": "SERMO CCXXX\\b",
+   "path": "Aug_Sermones39_21",
+   "title": "Sermones 210–229",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCXXX\\b",
+   "end": "SERMO CCXLVII\\b",
+   "path": "Aug_Sermones39_22",
+   "title": "Sermones 230–246",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCXLVII\\b",
+   "end": "SERMO CCLXII\\b",
+   "path": "Aug_Sermones39_23",
+   "title": "Sermones 247–261",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCLXII\\b",
+   "end": "SERMO CCLXXIV\\b",
+   "path": "Aug_Sermones39_24",
+   "title": "Sermones 262–273",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCLXXIV\\b",
+   "end": "SERMO CCLXXXVIII\\b",
+   "path": "Aug_Sermones39_25",
+   "title": "Sermones 274–287",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCLXXXVIII\\b",
+   "end": "SERMO CCC\\b",
+   "path": "Aug_Sermones39_26",
+   "title": "Sermones 288–299",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCC\\b",
+   "end": "SERMO CCCXV\\b",
+   "path": "Aug_Sermones39_27",
+   "title": "Sermones 300–314",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SERMO CCCXV\\b",
+   "end": null,
+   "path": "Aug_Sermones39_28",
+   "title": "Sermones 315–317",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

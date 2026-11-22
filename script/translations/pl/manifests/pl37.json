@@ -1,0 +1,191 @@
+{
+ "volume": 37,
+ "source": "tmp/pl/37/prepped_37.html",
+ "out": "tmp/pl/37",
+ "works": [
+  {
+   "start": "IN PSALMUM LXXX ENARRATIO",
+   "end": "IN PSALMUM LXXXIV ENARRATIO",
+   "path": "Aug_Enarr_1",
+   "title": "Enarrationes in Psalmos LXXX–LXXXIII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXXXIV ENARRATIO",
+   "end": "IN PSALMUM LXXXVII ENARRATIO",
+   "path": "Aug_Enarr_2",
+   "title": "Enarrationes in Psalmos LXXXIV–LXXXVI",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXXXVII ENARRATIO",
+   "end": "IN PSALMUM XC ENARRATIO",
+   "path": "Aug_Enarr_3",
+   "title": "Enarrationes in Psalmos LXXXVII–LXXXIX",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XC ENARRATIO",
+   "end": "IN PSALMUM XCIII ENARRATIO",
+   "path": "Aug_Enarr_4",
+   "title": "Enarrationes in Psalmos XC–XCII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XCIII ENARRATIO",
+   "end": "IN PSALMUM XCV ENARRATIO",
+   "path": "Aug_Enarr_5",
+   "title": "Enarrationes in Psalmos XCIII–XCIV",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XCV ENARRATIO",
+   "end": "IN PSALMUM XCIX ENARRATIO",
+   "path": "Aug_Enarr_6",
+   "title": "Enarrationes in Psalmos XCV–XCVIII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XCIX ENARRATIO",
+   "end": "IN PSALMUM CII ENARRATIO",
+   "path": "Aug_Enarr_7",
+   "title": "Enarrationes in Psalmos XCIX–CI",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CII ENARRATIO",
+   "end": "IN PSALMUM CIII ENARRATIO",
+   "path": "Aug_Enarr_8",
+   "title": "Enarratio in Psalmum CII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CIII ENARRATIO",
+   "end": "IN PSALMUM CIV ENARRATIO",
+   "path": "Aug_Enarr_9",
+   "title": "Enarratio in Psalmum CIII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CIV ENARRATIO",
+   "end": "IN PSALMUM CVIII ENARRATIO",
+   "path": "Aug_Enarr_10",
+   "title": "Enarrationes in Psalmos CIV–CVII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CVIII ENARRATIO",
+   "end": "IN PSALMUM CXIII ENARRATIO",
+   "path": "Aug_Enarr_11",
+   "title": "Enarrationes in Psalmos CVIII–CXII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXIII ENARRATIO",
+   "end": "IN PSALMUM CXVIII ENARRATIO",
+   "path": "Aug_Enarr_12",
+   "title": "Enarrationes in Psalmos CXIII–CXVII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXVIII ENARRATIO",
+   "end": "IN PSALMUM CXIX ENARRATIO",
+   "path": "Aug_Enarr_13",
+   "title": "Enarratio in Psalmum CXVIII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXIX ENARRATIO",
+   "end": "IN PSALMUM CXXIII ENARRATIO",
+   "path": "Aug_Enarr_14",
+   "title": "Enarrationes in Psalmos CXIX–CXXII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXXIII ENARRATIO",
+   "end": "IN PSALMUM CXXVII ENARRATIO",
+   "path": "Aug_Enarr_15",
+   "title": "Enarrationes in Psalmos CXXIII–CXXVI",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXXVII ENARRATIO",
+   "end": "IN PSALMUM CXXXI ENARRATIO",
+   "path": "Aug_Enarr_16",
+   "title": "Enarrationes in Psalmos CXXVII–CXXX",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXXXI ENARRATIO",
+   "end": "IN PSALMUM CXXXV ENARRATIO",
+   "path": "Aug_Enarr_17",
+   "title": "Enarrationes in Psalmos CXXXI–CXXXIV",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXXXV ENARRATIO",
+   "end": "IN PSALMUM CXXXVIII ENARRATIO",
+   "path": "Aug_Enarr_18",
+   "title": "Enarrationes in Psalmos CXXXV–CXXXVII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXXXVIII ENARRATIO",
+   "end": "IN PSALMUM CXL ENARRATIO",
+   "path": "Aug_Enarr_19",
+   "title": "Enarrationes in Psalmos CXXXVIII–CXXXIX",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXL ENARRATIO",
+   "end": "IN PSALMUM CXLIII ENARRATIO",
+   "path": "Aug_Enarr_20",
+   "title": "Enarrationes in Psalmos CXL–CXLII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXLIII ENARRATIO",
+   "end": "IN PSALMUM CXLVI ENARRATIO",
+   "path": "Aug_Enarr_21",
+   "title": "Enarrationes in Psalmos CXLIII–CXLV",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXLVI ENARRATIO",
+   "end": "IN PSALMUM CXLVIII ENARRATIO",
+   "path": "Aug_Enarr_22",
+   "title": "Enarrationes in Psalmos CXLVI–CXLVII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM CXLVIII ENARRATIO",
+   "end": null,
+   "path": "Aug_Enarr_23",
+   "title": "Enarrationes in Psalmos CXLVIII–CL",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

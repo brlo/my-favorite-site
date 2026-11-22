@@ -1,0 +1,143 @@
+{
+ "volume": 42,
+ "source": "tmp/pl/42/prepped_42.html",
+ "out": "tmp/pl/42",
+ "works": [
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE HAERESIBUS AD QUODVULTDEUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI TRACTATUS ADVERSUS JUDAEOS",
+   "path": "Aug_De_Haeresibus",
+   "title": "De Haeresibus ad Quodvultdeum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI TRACTATUS ADVERSUS JUDAEOS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE UTILITATE CREDENDI",
+   "path": "Aug_Tractatus_adversus_Judaeos",
+   "title": "Tractatus adversus Judaeos",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE UTILITATE CREDENDI",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE DUABUS ANIMABUS",
+   "path": "Aug_De_Utilitate_Credendi",
+   "title": "De Utilitate Credendi ad Honoratum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE DUABUS ANIMABUS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI ACTA SEU DISPUTATIO CONTRA FORTUNATUM",
+   "path": "Aug_De_Duabus_Animabus",
+   "title": "De Duabus Animabus contra Manichaeos",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI ACTA SEU DISPUTATIO CONTRA FORTUNATUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA ADIMANTUM",
+   "path": "Aug_Acta_contra_Fortunatum",
+   "title": "Acta seu Disputatio contra Fortunatum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA ADIMANTUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA EPISTOLAM MANICHAEI",
+   "path": "Aug_Contra_Adimantum",
+   "title": "Contra Adimantum Manichaei Discipulum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA EPISTOLAM MANICHAEI",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA FAUSTUM",
+   "path": "Aug_Contra_Epistolam_Manichaei",
+   "title": "Contra Epistolam Manichaei quam vocant Fundamenti",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA FAUSTUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE ACTIS CUM FELICE",
+   "path": "Aug_Contra_Faustum",
+   "title": "Contra Faustum Manichaeum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE ACTIS CUM FELICE",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE NATURA BONI",
+   "path": "Aug_De_Actis_cum_Felice",
+   "title": "De Actis cum Felice Manichaeo",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE NATURA BONI",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA SECUNDINUM",
+   "path": "Aug_De_Natura_Boni",
+   "title": "De Natura Boni contra Manichaeos",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA SECUNDINUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA ADVERSARIUM LEGIS",
+   "path": "Aug_Contra_Secundinum",
+   "title": "Contra Secundinum Manichaeum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA ADVERSARIUM LEGIS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI AD OROSIUM",
+   "path": "Aug_Contra_Adversarium_Legis",
+   "title": "Contra Adversarium Legis et Prophetarum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI AD OROSIUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA SERMONEM ARIANORUM",
+   "path": "Aug_Ad_Orosium",
+   "title": "Ad Orosium contra Priscillianistas et Origenistas",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA SERMONEM ARIANORUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI COLLATIO CUM MAXIMINO",
+   "path": "Aug_Contra_Sermonem_Arianorum",
+   "title": "Contra Sermonem Arianorum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI COLLATIO CUM MAXIMINO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA MAXIMINUM",
+   "path": "Aug_Collatio_cum_Maximino",
+   "title": "Collatio cum Maximino Arianorum Episcopo",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA MAXIMINUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE TRINITATE",
+   "path": "Aug_Contra_Maximinum",
+   "title": "Contra Maximinum Haereticum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE TRINITATE",
+   "end": "ADVERSUS QUINQUE HAERESES",
+   "path": "Aug_De_Trinitate",
+   "title": "De Trinitate",
+   "split": "h2:books",
+   "drop_em": true
+  }
+ ]
+}

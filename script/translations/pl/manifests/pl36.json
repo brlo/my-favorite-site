@@ -1,0 +1,223 @@
+{
+ "volume": 36,
+ "source": "tmp/pl/36/prepped_36.html",
+ "out": "tmp/pl/36",
+ "works": [
+  {
+   "start": "PSALMI PRIMI ENARRATIO",
+   "end": "IN PSALMUM VIII ENARRATIO. In finem pro torcu",
+   "path": "Aug_Enarr_1",
+   "title": "Enarratio in Psalmum I",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM VIII ENARRATIO. In finem pro torcu",
+   "end": "ENARRATIO I. In finem, Psalmus ipsi David",
+   "path": "Aug_Enarr_2",
+   "title": "Enarrationes in Psalmos VIII–XVIII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "ENARRATIO I. In finem, Psalmus ipsi David",
+   "end": "ENARRATIO II. SERMO AD PLEBEM",
+   "path": "Aug_Enarr_3",
+   "title": "Enarrationes in Psalmos XIX–XXVI",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "ENARRATIO II. SERMO AD PLEBEM",
+   "end": "ENARRATIO I. In finem, Psalmus ipsi David ecs",
+   "path": "Aug_Enarr_4",
+   "title": "Enarrationes in Psalmos XXVII–XXX",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "ENARRATIO I. In finem, Psalmus ipsi David ecs",
+   "end": "ENARRATIO II. SERMO AD PLEBEM",
+   "path": "Aug_Enarr_5",
+   "title": "Enarratio in Psalmum XXXI",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "ENARRATIO II. SERMO AD PLEBEM",
+   "end": "IN PSALMUM XXXIII ENARRATIO",
+   "path": "Aug_Enarr_6",
+   "title": "Enarratio in Psalmum XXXII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XXXIII ENARRATIO",
+   "end": "IN PSALMUM XXXV ENARRATIO. SERMO HABITUS FORT",
+   "path": "Aug_Enarr_7",
+   "title": "Enarrationes in Psalmos XXXIII–XXXIV",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XXXV ENARRATIO. SERMO HABITUS FORT",
+   "end": "IN PSALMUM XXXVI ENARRATIO",
+   "path": "Aug_Enarr_8",
+   "title": "Enarratio in Psalmum XXXV",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XXXVI ENARRATIO",
+   "end": "IN PSALMUM XXXVII ENARRATIO. SERMO AD POPULUM",
+   "path": "Aug_Enarr_9",
+   "title": "Enarratio in Psalmum XXXVI",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XXXVII ENARRATIO. SERMO AD POPULUM",
+   "end": "IN PSALMUM XXXIX ENARRATIO. SERMO AD POPULUM",
+   "path": "Aug_Enarr_10",
+   "title": "Enarrationes in Psalmos XXXVII–XXXVIII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XXXIX ENARRATIO. SERMO AD POPULUM",
+   "end": "IN PSALMUM XLII ENARRATIO. SERMO AD POPULUM. ",
+   "path": "Aug_Enarr_11",
+   "title": "Enarrationes in Psalmos XXXIX–XLI",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XLII ENARRATIO. SERMO AD POPULUM. ",
+   "end": "IN PSALMUM XLV ENARRATIO. SERMO AD PLEBEM",
+   "path": "Aug_Enarr_12",
+   "title": "Enarrationes in Psalmos XLII–XLIV",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XLV ENARRATIO. SERMO AD PLEBEM",
+   "end": "IN PSALMUM XLVIII ENARRATIO",
+   "path": "Aug_Enarr_13",
+   "title": "Enarrationes in Psalmos XLV–XLVII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM XLVIII ENARRATIO",
+   "end": "IN PSALMUM L ENARRATIO. SERMO",
+   "path": "Aug_Enarr_14",
+   "title": "Enarrationes in Psalmos XLVIII–XLIX",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM L ENARRATIO. SERMO",
+   "end": "IN PSALMUM LIV ENARRATIO. SERMO AD PLEBEM",
+   "path": "Aug_Enarr_15",
+   "title": "Enarrationes in Psalmos L–LIII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LIV ENARRATIO. SERMO AD PLEBEM",
+   "end": "IN PSALMUM LVI ENARRATIO. SERMO AD PLEBEM",
+   "path": "Aug_Enarr_16",
+   "title": "Enarrationes in Psalmos LIV–LV",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LVI ENARRATIO. SERMO AD PLEBEM",
+   "end": "IN PSALMUM LVIII ENARRATIO",
+   "path": "Aug_Enarr_17",
+   "title": "Enarrationes in Psalmos LVI–LVII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LVIII ENARRATIO",
+   "end": "IN PSALMUM LXI ENARRATIO. SERMO AD PLEBEM",
+   "path": "Aug_Enarr_18",
+   "title": "Enarrationes in Psalmos LVIII–LX",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXI ENARRATIO. SERMO AD PLEBEM",
+   "end": "IN PSALMUM LXIV ENARRATIO. SERMO AD PLEBEM",
+   "path": "Aug_Enarr_19",
+   "title": "Enarrationes in Psalmos LXI–LXIII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXIV ENARRATIO. SERMO AD PLEBEM",
+   "end": "IN PSALMUM LXVII ENARRATIO",
+   "path": "Aug_Enarr_20",
+   "title": "Enarrationes in Psalmos LXIV–LXVI",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXVII ENARRATIO",
+   "end": "IN PSALMUM LXVIII ENARRATIO",
+   "path": "Aug_Enarr_21",
+   "title": "Enarratio in Psalmum LXVII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXVIII ENARRATIO",
+   "end": "IN PSALMUM LXX ENARRATIO",
+   "path": "Aug_Enarr_22",
+   "title": "Enarrationes in Psalmos LXVIII–LXIX",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXX ENARRATIO",
+   "end": "IN PSALMUM LXXII ENARRATIO. SERMO",
+   "path": "Aug_Enarr_23",
+   "title": "Enarrationes in Psalmos LXX–LXXI",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXXII ENARRATIO. SERMO",
+   "end": "IN PSALMUM LXXV ENARRATIO. SERMO AD PLEBEM",
+   "path": "Aug_Enarr_24",
+   "title": "Enarrationes in Psalmos LXXII–LXXIV",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXXV ENARRATIO. SERMO AD PLEBEM",
+   "end": "IN PSALMUM LXXVII ENARRATIO",
+   "path": "Aug_Enarr_25",
+   "title": "Enarrationes in Psalmos LXXV–LXXVI",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXXVII ENARRATIO",
+   "end": "IN PSALMUM LXXIX ENARRATIO. SERMO",
+   "path": "Aug_Enarr_26",
+   "title": "Enarrationes in Psalmos LXXVII–LXXVIII",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "IN PSALMUM LXXIX ENARRATIO. SERMO",
+   "end": "EXPLICIT TOMI QUARTI PARS PRIOR",
+   "path": "Aug_Enarr_27",
+   "title": "Enarratio in Psalmum LXXIX",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

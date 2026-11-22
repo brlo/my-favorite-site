@@ -1,0 +1,15 @@
+{
+ "volume": 41,
+ "source": "tmp/pl/41/prepped_41.html",
+ "out": "tmp/pl/41",
+ "works": [
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI AD MARCELLINUM DE CIVITATE DEI",
+   "end": null,
+   "path": "Aug_De_Civitate_Dei",
+   "title": "De Civitate Dei",
+   "split": "h2:books",
+   "drop_em": true
+  }
+ ]
+}

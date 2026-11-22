@@ -56,6 +56,34 @@
   Фиваида → Coll. XI, Нижний Египет → Coll. XVIII. Из тома PL 50 не берём чужие труды
   (Vigilius, Fastidius, Coelestinus, Eucherius, Hilarius Arelatensis).
   Варианты чтения в квадратных скобках вида «[Lips. in marg. …]» вырезаются (`strip_apparatus`).
+- **Августин, PL 35 — готово (25 страниц)**: Quaestiones Evangeliorum (2 книги; вторая часть
+  привязана ко второму русскому переводу книги II), In Ioannis Evangelium Tractatus CXXIV
+  (15 страниц по 8 трактатов), In Epistolam Ioannis ad Parthos (3), Expositio Propositionum
+  ex Epistola ad Romanos, Epistolae ad Romanos Inchoata Expositio, Expositio Epistolae ad
+  Galatas (2). Не взят «Quaestiones XVII in Matthaeum» — Migne сам считает его сомнительным
+  (нет в Retractationes), русского перевода нет.
+- **Августин, PL 36–37 — готово (31 + 26 страниц)**: Enarrationes in Psalmos, сгруппированы
+  по ~110 КБ с заголовками-диапазонами («Enarrationes in Psalmos I–VII»); пути разделены по
+  томам (`Aug_Enarr36_*`, `Aug_Enarr37_*`). Русские пары: Пс. 1 → `rAYR`, Пс. 125 → `G9ph`.
+- **Августин, PL 38–39 — готово (41 + 28 страниц)**: Sermones (нумерация 1–340 и 341–396,
+  плюс отдельная серия 270–317 в конце PL 39), по ~110 КБ с заголовками «Sermones 1–6» и т. п.
+- **Августин, PL 40 — готово (30 страниц)**: De Diversis Quaestionibus LXXXIII (3),
+  ad Simplicianum (2), De Octo Dulcitii Quaestionibus, De Fide Rerum quae non Videntur,
+  De Fide et Symbolo, De Fide et Operibus, Enchiridion (2), De Agone Christiano,
+  De Catechizandis Rudibus, De Continentia, De Bono Conjugali, De Sancta Virginitate,
+  De Bono Viduitatis, De Conjugiis Adulterinis (2), De Mendacio, Contra Mendacium,
+  De Opere Monachorum, De Divinatione Daemonum, De Cura pro Mortuis, De Patientia,
+  De Symbolo (2), Sermo de Disciplina Christiana, De Cantico Novo (2), De Utilitate Jejunii,
+  De Urbis Excidio. Приложение тома («Appendix… subdititia quaedam opuscula») не берём.
+- **Августин, PL 41 — готово (22 страницы)**: De Civitate Dei, по книге на страницу;
+  Liber I привязан к русскому «О граде Божием #1». Приложения (письма о перенесении мощей
+  св. Стефана) не берём.
+- **Августин, PL 42 — готово (40 страниц)**: De Trinitate (15 книг + проэмии), Contra Faustum
+  (33 книги по 4 на страницу), Contra Maximinum (2), Contra Adversarium Legis (2),
+  De Haeresibus, Tractatus adversus Judaeos, De Utilitate Credendi, De Duabus Animabus,
+  Acta contra Fortunatum, Contra Adimantum (2), Contra Epistolam Manichaei, De Actis cum
+  Felice, De Natura Boni, Contra Secundinum, Ad Orosium, Contra Sermonem Arianorum,
+  Collatio cum Maximino. Приложения тома (списки подложных трактатов) не берём.
 - **Августин, PL 34 — готово (42 страницы)**: De Doctrina Christiana (3), De Vera Religione
   (существующая страница обновлена), De Genesi contra Manichaeos (2), De Genesi ad Litteram
   Imperfectus, De Genesi ad Litteram (6 частей по 2 книги), Locutiones in Heptateuchum (2),
