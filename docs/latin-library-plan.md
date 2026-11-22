@@ -48,6 +48,14 @@
   Книга 1» — Tractatus Mysteriorum найден только в 1887 г. и в Migne (PL 9–10) отсутствует.
   (Историческая заметка: раньше Иларий был отложен из-за фрагментов — теперь они собраны
   по номерам глав, см. выше.)
+- **Иоанн Кассиан — готово (35 страниц)**: De Coenobiorum Institutis (3 страницы по книги:
+  I–IV, V–VIII, IX–XII; книги I–IV поделены), все 24 Collationes отдельными страницами
+  (Collatio I…XXIV по 17–70 КБ), De Incarnatione Christi contra Nestorium (7 книг + префаций
+  к Льву; Liber I поделён). Русские своды «Собеседований» привязаны к первой конференции
+  каждой группы: скитская #1 → Coll. I, скитская #2 → Coll. IX (она начинается с её главы 3),
+  Фиваида → Coll. XI, Нижний Египет → Coll. XVIII. Из тома PL 50 не берём чужие труды
+  (Vigilius, Fastidius, Coelestinus, Eucherius, Hilarius Arelatensis).
+  Варианты чтения в квадратных скобках вида «[Lips. in marg. …]» вырезаются (`strip_apparatus`).
 - Чего в PL 4 нет: тексты 14 писем (XLI, XLII, XLIII, XLV, XLVIII, XLIX, LII, LVII, LIX,
   LXVIII, LXX, LXXII, LXXIII, LXXVI). Migne сам отсылает их к тому III — в тексте стоят
   заглушки, номера перечислены в примечаниях. Достать их из PL 3 — следующая задача.

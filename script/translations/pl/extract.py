@@ -140,7 +140,7 @@ CAP_RE = re.compile(r'^CAP(UT)?\.?\s')
 SKIP_PARAGRAPH = re.compile(r'^(\(?(Vid|Cf)\b|\((?:C[,\sGS]*)\)\*?\.?$|\d+$)')
 
 
-def extract_work(blocks, start_idx, end_idx, path, title, split_mode, drop_em=False, skip_paragraphs=0):
+def extract_work(blocks, start_idx, end_idx, path, title, split_mode, drop_em=False, skip_paragraphs=0, keep_preface=False):
     out = []
     skipped = []
     body_started = False
@@ -166,7 +166,8 @@ def extract_work(blocks, start_idx, end_idx, path, title, split_mode, drop_em=Fa
                 if split_mode.startswith('h2') and BOOK_RE.match(h):
                     out.append(('h', h))
                 continue
-            if EDITORIAL_HEAD.match(h) or EDITORIAL_TAIL.search(h):
+            if (EDITORIAL_HEAD.match(h) or EDITORIAL_TAIL.search(h)) \
+                    and not (keep_preface and re.match(r'^Praefatio\b', h, re.I)):
                 skipped.append(h)
                 arg_budget = 1 if re.match(r'^ARGUMENTUM', h, re.I) else 0
                 skip_until_heading = arg_budget == 0
@@ -325,7 +326,7 @@ def main():
         if w.get('verses'):
             body, stats = extract_verses(html, w['start'], w.get('end'))
         else:
-            body, stats = extract_work(blocks, start, end, w['path'], w['title'], w.get('split', 'none'), bool(w.get('drop_em')), int(w.get('skip_paragraphs') or 0))
+            body, stats = extract_work(blocks, start, end, w['path'], w['title'], w.get('split', 'none'), bool(w.get('drop_em')), int(w.get('skip_paragraphs') or 0), bool(w.get('keep_preface')))
         open(os.path.join(out_dir, w['path'] + '.html'), 'w', encoding='utf-8').write(body + '\n')
         json.dump({**stats, 'title': w['title'], 'start': w['start'], 'end': w.get('end'),
                    'blocks': [start, end]},

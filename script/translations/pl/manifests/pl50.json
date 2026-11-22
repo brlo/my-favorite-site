@@ -1,0 +1,16 @@
+{
+ "volume": 50,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL50.html",
+ "out": "tmp/pl/50",
+ "works": [
+  {
+   "start": "JOANNIS CASSIANI MASSILIENSIS PRESBYTERI DE INCARNATIONE CHRISTI",
+   "end": "APPENDICES",
+   "path": "Cass_De_Incarnatione",
+   "title": "De Incarnatione Christi contra Nestorium",
+   "split": "h2:books",
+   "drop_em": true,
+   "keep_preface": true
+  }
+ ]
+}

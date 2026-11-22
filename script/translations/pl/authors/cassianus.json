@@ -1,0 +1,317 @@
+{
+ "lang": "la",
+ "list": "church_writers_la",
+ "volume": 49,
+ "source_url": "https://azbyka.ru/otechnik/Patrologija/PL49.html",
+ "author": {
+  "path": "Cass_Ioannes_Cassianus",
+  "title": "Ioannes Cassianus Romanus, saeculo IV–V",
+  "title_sub": "sanctus (~360-435), monachus et scriptor asceticus, monachismi in Gallia institutor",
+  "ru": "49Rq_Иоанн_Кассиан_Римлянин_IVV_вв",
+  "menu_folder": "Saeculum IV",
+  "menu_replace": "Ioannes Cassianus Romanus, sanctus (IV s. - V s.)",
+  "menu_title": "Ioannes Cassianus Romanus, sanctus (IV s. - V s.)",
+  "body_file": "tmp/pl/49/cassian_body.html",
+  "references": "<p><strong>Fons:</strong> biographia (contracta) e pagina Russica «Иоанн Кассиан Римлянин» (<a href=\"https://bibleox.com/ru/ru/w/49Rq_Иоанн_Кассиан_Римлянин_IVV_вв\">bibleox.com</a>) translata.</p>"
+ },
+ "folders": [
+  {
+   "title": "Institutiones",
+   "priority": 1
+  },
+  {
+   "title": "Collationes",
+   "priority": 2
+  },
+  {
+   "title": "De Incarnatione",
+   "priority": 3
+  }
+ ],
+ "works": [
+  {
+   "fragment": "Cass_Institutiones",
+   "volume": 49,
+   "folder": "Institutiones",
+   "ru": "W2qj_О_постановлениях_монастырских",
+   "max_kb": 120,
+   "parts": [
+    {
+     "path": "Cass_Institutiones_1",
+     "title": "Institutiones, Libri I–IV",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER QUINTUS",
+     "priority": 1
+    },
+    {
+     "path": "Cass_Institutiones_2",
+     "title": "Institutiones, Libri V–VIII",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER NONUS",
+     "priority": 2
+    },
+    {
+     "path": "Cass_Institutiones_3",
+     "title": "Institutiones, Libri IX–XII",
+     "first": "LIBER NONUS",
+     "last": null,
+     "priority": 3
+    }
+   ]
+  },
+  {
+   "fragment": "Cass_Collatio_1",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_1",
+   "title": "Collatio I. De Monachi Intentione Ac Fine",
+   "priority": 1,
+   "ru": "MmvV_Собеседования_египетских_подвижников_Писания_к_10ти_110_посланным_к_епископу_Леонтию_и_Елладию_собеседованиям_отцов_пребывавших_в_скитской_пустыне_1"
+  },
+  {
+   "fragment": "Cass_Collatio_2",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_2",
+   "title": "Collatio II. De Discretione",
+   "priority": 2
+  },
+  {
+   "fragment": "Cass_Collatio_3",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_3",
+   "title": "Collatio III. De Tribus Abrenuntiationibus",
+   "priority": 3
+  },
+  {
+   "fragment": "Cass_Collatio_4",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_4",
+   "title": "Collatio IV. De Concupiscentia Carnis Et Spiritus",
+   "priority": 4
+  },
+  {
+   "fragment": "Cass_Collatio_5",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_5",
+   "title": "Collatio V. De Octo Principalibus Vitiis",
+   "priority": 5
+  },
+  {
+   "fragment": "Cass_Collatio_6",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_6",
+   "title": "Collatio VI. De Nece Sanctorum",
+   "priority": 6
+  },
+  {
+   "fragment": "Cass_Collatio_7",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_7",
+   "title": "Collatio VII. De Animae Mobilitate Et Spiritalibus Nequitiis",
+   "priority": 7
+  },
+  {
+   "fragment": "Cass_Collatio_8",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_8",
+   "title": "Collatio VIII. De Principatibus Seu Potestatibus",
+   "priority": 8
+  },
+  {
+   "fragment": "Cass_Collatio_9",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_9",
+   "title": "Collatio IX. De Oratione",
+   "priority": 9,
+   "ru": "coPJ_Собеседования_египетских_подвижников_Писания_к_10ти_110_посланным_к_епископу_Леонтию_и_Елладию_собеседованиям_отцов_пребывавших_в_скитской_пустыне_2"
+  },
+  {
+   "fragment": "Cass_Collatio_10",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_10",
+   "title": "Collatio X. De Oatione",
+   "priority": 10
+  },
+  {
+   "fragment": "Cass_Collatio_11",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_11",
+   "title": "Collatio XI. De Perfectione",
+   "priority": 11,
+   "ru": "Uovl_Собеседования_египетских_подвижников_Писания_к_7ми_1117_другим_посланным_к_епископу_Гонорату_и_Евхерию_собеседованиям_отцов_живших_в_египетской_пустыне_Фиваиде"
+  },
+  {
+   "fragment": "Cass_Collatio_12",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_12",
+   "title": "Collatio XII. De Castitate",
+   "priority": 12
+  },
+  {
+   "fragment": "Cass_Collatio_13",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_13",
+   "title": "Collatio XIII. De Protectione Dei",
+   "priority": 13
+  },
+  {
+   "fragment": "Cass_Collatio_14",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_14",
+   "title": "Collatio XIV. De Spiritali Scientia",
+   "priority": 14
+  },
+  {
+   "fragment": "Cass_Collatio_15",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_15",
+   "title": "Collatio XV. De Charismatibus Divinis",
+   "priority": 15
+  },
+  {
+   "fragment": "Cass_Collatio_16",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_16",
+   "title": "Collatio XVI.",
+   "priority": 16
+  },
+  {
+   "fragment": "Cass_Collatio_17",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_17",
+   "title": "Collatio XVII. De Definiendo",
+   "priority": 17
+  },
+  {
+   "fragment": "Cass_Collatio_18",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_18",
+   "title": "Collatio XVIII. De Tribus Antiquis Generibus Monachorum, Et Quarto Nuper Exorto",
+   "priority": 18,
+   "ru": "pJyq_Собеседования_египетских_подвижников_Писания_к_7ми_1824_последним_посланным_к_Иовиниану_Миневрию_Леонтию_и_Феодору_собеседованиям_отцов_обитавших_в_пределах_Нижнего_Египта"
+  },
+  {
+   "fragment": "Cass_Collatio_19",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_19",
+   "title": "Collatio XIX. De Fine Coenobitae Et Eremitae",
+   "priority": 19
+  },
+  {
+   "fragment": "Cass_Collatio_20",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_20",
+   "title": "Collatio XX. De Poenitentiae Fine Et Satisfactione",
+   "priority": 20
+  },
+  {
+   "fragment": "Cass_Collatio_21",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_21",
+   "title": "Collatio XXI. De Remissione Quinquagesimae",
+   "priority": 21
+  },
+  {
+   "fragment": "Cass_Collatio_22",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_22",
+   "title": "Collatio XXII. De Nocturnis Illusionibus",
+   "priority": 22
+  },
+  {
+   "fragment": "Cass_Collatio_23",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_23",
+   "title": "Collatio XXIII.",
+   "priority": 23
+  },
+  {
+   "fragment": "Cass_Collatio_24",
+   "volume": 49,
+   "folder": "Collationes",
+   "path": "Cass_Collatio_24",
+   "title": "Collatio XXIV. De Mortificatione",
+   "priority": 24
+  },
+  {
+   "fragment": "Cass_De_Incarnatione",
+   "volume": 50,
+   "folder": "De Incarnatione",
+   "ru": "xhIX_О_Воплощении_Господа_против_Нестория_Семь_книг",
+   "parts": [
+    {
+     "path": "Cass_De_Incarnatione_1",
+     "title": "De Incarnatione, Praefatio et Liber I",
+     "first": "Praefatio",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Cass_De_Incarnatione_2",
+     "title": "De Incarnatione, Liber Secundus",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 2
+    },
+    {
+     "path": "Cass_De_Incarnatione_3",
+     "title": "De Incarnatione, Liber Tertius",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 3
+    },
+    {
+     "path": "Cass_De_Incarnatione_4",
+     "title": "De Incarnatione, Liber Quartus",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER QUINTUS",
+     "priority": 4
+    },
+    {
+     "path": "Cass_De_Incarnatione_5",
+     "title": "De Incarnatione, Liber Quintus",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER SEXTUS",
+     "priority": 5
+    },
+    {
+     "path": "Cass_De_Incarnatione_6",
+     "title": "De Incarnatione, Liber Sextus",
+     "first": "LIBER SEXTUS",
+     "last": "LIBER SEPTIMUS",
+     "priority": 6
+    },
+    {
+     "path": "Cass_De_Incarnatione_7",
+     "title": "De Incarnatione, Liber Septimus",
+     "first": "LIBER SEPTIMUS",
+     "last": null,
+     "priority": 7
+    }
+   ],
+   "max_kb": 100
+  }
+ ]
+}

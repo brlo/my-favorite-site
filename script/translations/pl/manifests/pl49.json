@@ -1,0 +1,207 @@
+{
+ "volume": 49,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL49.html",
+ "out": "tmp/pl/49",
+ "works": [
+  {
+   "start": "JOANNIS CASSIANI ABBATIS MASSILIENSIS DE COENOBIORUM INSTITUTIS",
+   "end": "COLLATIO PRIMA",
+   "path": "Cass_Institutiones",
+   "title": "De Coenobiorum Institutis",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO PRIMA, Quae est prima abbatis M",
+   "end": "COLLATIO SECUNDA Quae est secunda abbati",
+   "path": "Cass_Collatio_1",
+   "title": "Collatio I. De Monachi Intentione Ac Fine",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO SECUNDA Quae est secunda abbati",
+   "end": "COLLATIO TERTIA, Quae est abbatis Paphnu",
+   "path": "Cass_Collatio_2",
+   "title": "Collatio II. De Discretione",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO TERTIA, Quae est abbatis Paphnu",
+   "end": "COLLATIO QUARTA, Quae est abbatis Daniel",
+   "path": "Cass_Collatio_3",
+   "title": "Collatio III. De Tribus Abrenuntiationibus",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO QUARTA, Quae est abbatis Daniel",
+   "end": "COLLATIO QUINTA Quae est abbatis Serapio",
+   "path": "Cass_Collatio_4",
+   "title": "Collatio IV. De Concupiscentia Carnis Et Spiritus",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO QUINTA Quae est abbatis Serapio",
+   "end": "COLLATIO SEXTA, Quae est Theodori abbati",
+   "path": "Cass_Collatio_5",
+   "title": "Collatio V. De Octo Principalibus Vitiis",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO SEXTA, Quae est Theodori abbati",
+   "end": "COLLATIO SEPTIMA, Quae est prima Sereni ",
+   "path": "Cass_Collatio_6",
+   "title": "Collatio VI. De Nece Sanctorum",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO SEPTIMA, Quae est prima Sereni ",
+   "end": "COLLATIO OCTAVA, Quae est secunda abbati",
+   "path": "Cass_Collatio_7",
+   "title": "Collatio VII. De Animae Mobilitate Et Spiritalibus Nequitiis",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO OCTAVA, Quae est secunda abbati",
+   "end": "COLLATIO NONA, Quae est prima abbatis Is",
+   "path": "Cass_Collatio_8",
+   "title": "Collatio VIII. De Principatibus Seu Potestatibus",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO NONA, Quae est prima abbatis Is",
+   "end": "COLLATIO DECIMA, Quae est secunda abbati",
+   "path": "Cass_Collatio_9",
+   "title": "Collatio IX. De Oratione",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO DECIMA, Quae est secunda abbati",
+   "end": "COLLATIO UNDECIMA, Quae est prima abbati",
+   "path": "Cass_Collatio_10",
+   "title": "Collatio X. De Oatione",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO UNDECIMA, Quae est prima abbati",
+   "end": "COLLATIO DUODECIMA, Quae est secunda abb",
+   "path": "Cass_Collatio_11",
+   "title": "Collatio XI. De Perfectione",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO DUODECIMA, Quae est secunda abb",
+   "end": "COLLATIO DECIMA TERTIA, Quae est tertia ",
+   "path": "Cass_Collatio_12",
+   "title": "Collatio XII. De Castitate",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO DECIMA TERTIA, Quae est tertia ",
+   "end": "COLLATIO DECIMA QUARTA, Quae est prima a",
+   "path": "Cass_Collatio_13",
+   "title": "Collatio XIII. De Protectione Dei",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO DECIMA QUARTA, Quae est prima a",
+   "end": "COLLATIO DECIMA QUINTA, Quae est secunda",
+   "path": "Cass_Collatio_14",
+   "title": "Collatio XIV. De Spiritali Scientia",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO DECIMA QUINTA, Quae est secunda",
+   "end": "COLLATIO DECIMA SEXTA, Quae est prima ab",
+   "path": "Cass_Collatio_15",
+   "title": "Collatio XV. De Charismatibus Divinis",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO DECIMA SEXTA, Quae est prima ab",
+   "end": "COLLATIO DECIMA SEPTIMA, Quae est secund",
+   "path": "Cass_Collatio_16",
+   "title": "Collatio XVI.",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO DECIMA SEPTIMA, Quae est secund",
+   "end": "COLLATIO DECIMA OCTAVA, Quae est Piammon",
+   "path": "Cass_Collatio_17",
+   "title": "Collatio XVII. De Definiendo",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO DECIMA OCTAVA, Quae est Piammon",
+   "end": "COLLATIO DECIMA NONA, Quae est abbatis J",
+   "path": "Cass_Collatio_18",
+   "title": "Collatio XVIII. De Tribus Antiquis Generibus Monachorum, Et Quarto Nuper Exorto",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO DECIMA NONA, Quae est abbatis J",
+   "end": "COLLATIO VIGESIMA, Quae est abbatis Pinu",
+   "path": "Cass_Collatio_19",
+   "title": "Collatio XIX. De Fine Coenobitae Et Eremitae",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO VIGESIMA, Quae est abbatis Pinu",
+   "end": "COLLATIO VIGESIMA PRIMA, Quae est prima ",
+   "path": "Cass_Collatio_20",
+   "title": "Collatio XX. De Poenitentiae Fine Et Satisfactione",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO VIGESIMA PRIMA, Quae est prima ",
+   "end": "COLLATIO VIGESIMA SECUNDA, Quae est secu",
+   "path": "Cass_Collatio_21",
+   "title": "Collatio XXI. De Remissione Quinquagesimae",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO VIGESIMA SECUNDA, Quae est secu",
+   "end": "COLLATIO VIGESIMA TERTIA, Quae est terti",
+   "path": "Cass_Collatio_22",
+   "title": "Collatio XXII. De Nocturnis Illusionibus",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO VIGESIMA TERTIA, Quae est terti",
+   "end": "COLLATIO VIGESIMA QUARTA, Quae est terti",
+   "path": "Cass_Collatio_23",
+   "title": "Collatio XXIII.",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "COLLATIO VIGESIMA QUARTA, Quae est terti",
+   "end": "COLLATIONES. PARS PRIMA",
+   "path": "Cass_Collatio_24",
+   "title": "Collatio XXIV. De Mortificatione",
+   "split": "h2",
+   "drop_em": true
+  }
+ ]
+}

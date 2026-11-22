@@ -40,7 +40,35 @@ EDIT_TAIL = re.compile(r'\s*\((?:S\.\s*)?(?:Aug|Hier|Ambr|Greg|Cypr|Tert)[^)]{0,
 SUMMARY_INLINE = re.compile(r'^(<p>)(\d{1,3})\.\s[^<]{0,400}?---\s*')
 
 
+SIGLUM_RE = re.compile(r'\b(?:Lips|Pamel|Baluz|Oxon|Erasm|Rig|Lam|Bod|Voss|Coustant|Galland|'
+                       r'Manut|Morell|Cellar)\.\s')
+
+
+def strip_apparatus(body: str) -> str:
+    """Убирает квадратные скобки с вариантами чтения (в т.ч. с вложенными маркерами столбцов)."""
+    out, i = [], 0
+    while i < len(body):
+        if body[i] != '[':
+            out.append(body[i]); i += 1; continue
+        depth, j = 0, i
+        while j < len(body):
+            if body[j] == '[':
+                depth += 1
+            elif body[j] == ']':
+                depth -= 1
+                if depth == 0:
+                    break
+            j += 1
+        seg = body[i:j + 1]
+        if SIGLUM_RE.search(seg):
+            i = j + 1
+        else:
+            out.append(seg); i = j + 1
+    return ''.join(out)
+
+
 def clean_page(body: str) -> str:
+    body = strip_apparatus(body)                # варианты чтения в квадратных скобках
     # «1. Резюме главы.---Текст» -> «1. Текст»
     body = re.sub(r'(<p>)(\d{1,3})\.\s[^<]{0,400}?---\s*', r'\1\2. ', body)
     """Убирает редакторские примечания Migne, попавшие в тело (фрагменты, ссылки в конце)."""
