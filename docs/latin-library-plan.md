@@ -19,6 +19,11 @@
   De Elia et Jejunio, De Nabuthe, De Tobia, De Interpellatione Job et David (4 книги),
   Apologia David, Apologia Altera, Enarrationes in XII Psalmos (7 страниц по псалмам).
   Из них 6 совпадают с русскими трудами, остальные — подлинные, но без русского перевода.
+- **Амвросий, PL 15 (в работе)**: Expositio in Psalmum CXVIII — 7 страниц по «Sermones».
+  Expositio Evangelii secundum Lucam (~1,8 МБ латыни) — следующий шаг, дробить по книгам
+  I–X и главам. Из тома PL 15 не берём: «Commentarius in Cantica Canticorum» — компиляция
+  Гийома Сен-Тьеррийского из Амвросия, не его труд; «De Excidio urbis Hierosolymitanae» —
+  Migne сам пишет, что бенедиктинцы его Амвросию не приписывают (авторство спорно).
 - **Иларий отложен**: из 5 русских трудов 3 — фрагменты («Единение верующих с Богом»,
   «О Троице (фрагменты)» с разбивкой 1,1–13 / 12,52–57 / 1,8, «Изъяснение тайн. Кн. 1»),
   для них нужна пораздельная привязка к De Trinitate и Tractatus Mysteriorum; «Против Авксентия»

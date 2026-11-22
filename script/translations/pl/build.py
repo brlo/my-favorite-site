@@ -132,11 +132,12 @@ def main():
     if len(sys.argv) < 2:
         sys.exit(__doc__)
     cfg = json.load(open(sys.argv[1], encoding='utf-8'))
-    vol = cfg['volume']
+    vol_default = cfg['volume']
+    vol = vol_default
     base = os.path.join('tmp/pl', str(vol))
 
-    def fragment(name):
-        path = os.path.join(base, name + '.html')
+    def fragment(name, vol=None):
+        path = os.path.join('tmp/pl', str(vol or vol_default), name + '.html')
         if not os.path.exists(path):
             sys.exit(f'нет фрагмента {path}')
         return open(path, encoding='utf-8').read()
@@ -146,7 +147,8 @@ def main():
     filled_letters = []
 
     for w in cfg['works']:
-        src = fragment(w['fragment'])
+        vol = w.get('volume', vol_default)
+        src = fragment(w['fragment'], vol)
         dubium = bool(w.get('dubium'))
         if not w.get('parts'):
             body, _miss, _fill = fill_empty_letters(src)
@@ -155,7 +157,7 @@ def main():
             note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + (DUBIUM_NOTE if dubium else '')
             pages.append({'path': w['path'], 'title': w['title'], 'ru': w.get('ru'), 'folder': w['folder'],
                           'priority': w['priority'], 'body': body, 'references': note,
-                          'page_type': 1, 'seo_kind': 'book', 'cols': cols_str(body)})
+                          'page_type': 1, 'seo_kind': 'book', 'cols': cols_str(body), 'volume': vol})
             continue
 
         secs = sections(src)
@@ -177,7 +179,7 @@ def main():
             note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + (DUBIUM_NOTE if dubium else '')
             pages.append({'path': part['path'], 'title': part['title'], 'ru': w.get('ru'), 'folder': w['folder'],
                           'priority': part['priority'], 'body': body, 'references': note,
-                          'page_type': 1, 'seo_kind': 'book', 'cols': cols_str(body)})
+                          'page_type': 1, 'seo_kind': 'book', 'cols': cols_str(body), 'volume': vol})
             print(f"{part['title']:<32} {len(body)//1024:>4} КБ  coll. {cols_str(body):<12} h2={body.count('<h2>')}")
 
     if filled_letters:

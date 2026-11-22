@@ -298,6 +298,62 @@
      "priority": 20
     }
    ]
+  },
+  {
+   "fragment": "Ambr_Expositio_in_Psalmum_CXVIII",
+   "volume": 15,
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Ambr_Expositio_in_Psalmum_CXVIII_1",
+     "title": "Expositio in Psalmum CXVIII, Prologus et Sermones I–III",
+     "first": "PROLOGUS",
+     "last": "SERMO QUARTUS. Daleth",
+     "priority": 21
+    },
+    {
+     "path": "Ambr_Expositio_in_Psalmum_CXVIII_2",
+     "title": "Expositio in Psalmum CXVIII, Sermones IV–VII",
+     "first": "SERMO QUARTUS. Daleth",
+     "last": "SERMO OCTAVUS. Heth",
+     "priority": 22
+    },
+    {
+     "path": "Ambr_Expositio_in_Psalmum_CXVIII_3",
+     "title": "Expositio in Psalmum CXVIII, Sermones VIII–X",
+     "first": "SERMO OCTAVUS. Heth",
+     "last": "SERMO UNDECIMUS. Caph",
+     "priority": 23
+    },
+    {
+     "path": "Ambr_Expositio_in_Psalmum_CXVIII_4",
+     "title": "Expositio in Psalmum CXVIII, Sermones XI–XIII",
+     "first": "SERMO UNDECIMUS. Caph",
+     "last": "SERMO QUARTUS DECIMUS",
+     "priority": 24
+    },
+    {
+     "path": "Ambr_Expositio_in_Psalmum_CXVIII_5",
+     "title": "Expositio in Psalmum CXVIII, Sermones XIV–XV",
+     "first": "SERMO QUARTUS DECIMUS",
+     "last": "SERMO DECIMUS SEXTUS",
+     "priority": 25
+    },
+    {
+     "path": "Ambr_Expositio_in_Psalmum_CXVIII_6",
+     "title": "Expositio in Psalmum CXVIII, Sermones XVI–XVIII",
+     "first": "SERMO DECIMUS SEXTUS",
+     "last": "SERMO VIGESIMUS. Resch",
+     "priority": 26
+    },
+    {
+     "path": "Ambr_Expositio_in_Psalmum_CXVIII_7",
+     "title": "Expositio in Psalmum CXVIII, Sermones XIX–XXII",
+     "first": "SERMO VIGESIMUS. Resch",
+     "last": null,
+     "priority": 27
+    }
+   ]
   }
  ]
 }

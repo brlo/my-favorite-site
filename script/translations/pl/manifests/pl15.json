@@ -1,0 +1,14 @@
+{
+ "volume": 15,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL15.html",
+ "out": "tmp/pl/15",
+ "works": [
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI IN PSALMUM DAVID CXVIII EXPOSITIO",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI EXPOSITIO EVANGELII SECUNDUM LUCAM",
+   "path": "Ambr_Expositio_in_Psalmum_CXVIII",
+   "title": "Expositio in Psalmum CXVIII",
+   "split": "h2"
+  }
+ ]
+}

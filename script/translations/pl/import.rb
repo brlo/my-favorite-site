@@ -100,8 +100,9 @@ plan.fetch('folders', []).each do |f|
 end
 
 plan.fetch('pages').each do |w|
-  ru = ::Page.find_by(lang: 'ru', path_low: w['ru'].to_s.downcase)
-  log << "! #{w['path']}: нет ru-страницы #{w['ru']}" unless ru
+  # ru-страница необязательна: труд может быть взят по подлинности (без русского перевода)
+  ru = w['ru'].presence && ::Page.find_by(lang: 'ru', path_low: w['ru'].downcase)
+  log << "! #{w['path']}: нет ru-страницы #{w['ru']}" if w['ru'].present? && !ru
   page = ::Page.find_by(lang: LANG, path_low: w['path'].downcase)
   next log << "пропуск #{w['path']}: уже есть" if page && !is_update
 
