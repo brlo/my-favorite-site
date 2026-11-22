@@ -28,7 +28,7 @@ Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 la
 - [Hindi Orthodox Version](https://bibleox.com/hi/hi-ov/mf/1/)
 - [Arabic, Van Dyck](https://bibleox.com/ar/arab-avd/mf/1/)
 - [German, Schlachter](https://bibleox.com/de/ge-sch/mf/1/)
-- [French, Louis Segond (LSG, 1910)](https://bibleox.com/fr/fr-lsg/mf/1/) — no deuterocanonical books; the Johannine Comma (1 John 5:7) is absent.
+- [French, Louis Segond (LSG, 1910)](https://bibleox.com/fr/fr-lsg/mf/1/) — no deuterocanonical books; the Johannine Comma (1 John 5:7) is given in square brackets.
 - [Greek: Septuagint OT + Byzantine-text NT](https://bibleox.com/el/gr-lxx-byz/mf/1/)
 - [Hebrew OT + Greek NT](https://bibleox.com/he/heb-osm/mf/1/)
 - Greek interlinear (word by word): [→ Russian](https://bibleox.com/ru/gr-ru/mf/1/), [→ English](https://bibleox.com/en/gr-en/mf/1/), [→ Japanese](https://bibleox.com/ja/gr-jp/mf/1/)
@@ -46,7 +46,7 @@ Indexes of the article library (each lists all sections in that language):
 - [Русский](https://bibleox.com/ru/ru/w/links_ru) — the complete library: Church Fathers, councils, icons, temples, manuscripts, prayers, music, burials, authors.
 - [English](https://bibleox.com/en/en/w/links_en)
 - [हिन्दी](https://bibleox.com/hi/hi/w/links_hi)
-- [Français](https://bibleox.com/fr/fr/w/links_fr) — icons, temples, Christian burials and inscriptions, biblical manuscripts; the rest is being translated.
+- [Français](https://bibleox.com/fr/fr/w/links_fr) — icons, temples, Christian burials and inscriptions, biblical manuscripts, Lenten cooking; the rest is being translated.
 
 Bible quote collections — topical apologetics ("what the Bible says about…"), the largest article tree on the site:
 
