@@ -936,9 +936,10 @@ a.bib-comment:hover {
 /* МЕТКА BIBLEOX с объяснениями */
 
 .translation-notice {
-    display: block;
-    margin: 10px 0 0;
-    text-align: center;
+    display: flex;
+    justify-content: center;
+    width: fit-content;
+    margin: 10px auto 0;
 }
 
 .translation-badge {
@@ -946,10 +947,10 @@ a.bib-comment:hover {
     align-items: center;
     justify-content: center;
     padding: 4px 5px;
-    border: 1px solid var(--text-tag);
+    border: 1px solid var(--badge-accent);
     border-radius: 4px;
-    background: transparent;
-    color: var(--text-tag);
+    background-color: transparent;
+    color: var(--badge-accent);
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
     font-weight: 500;
@@ -957,13 +958,14 @@ a.bib-comment:hover {
     letter-spacing: 0.02em;
     white-space: nowrap;
     cursor: help;
-    transition: background-color 0.15s ease, box-shadow 0.2s ease;
+    transition: background-color 0.15s ease, color 0.15s ease, border-color 0.15s ease, box-shadow 0.2s ease;
 }
 
 .translation-notice:hover .translation-badge,
 .translation-notice:focus-within .translation-badge,
 .translation-notice.is-open .translation-badge {
-    background-color: rgba(168, 80, 30, 0.07);
+    background-color: var(--badge-accent);
+    color: var(--bg-body);
 }
 
 .translation-badge:focus-visible {
@@ -977,18 +979,19 @@ a.bib-comment:hover {
 
 /* В тёмной теме метка слегка светится */
 .night-mode .translation-badge {
-    color: var(--text-tag);
-    border-color: var(--text-tag);
-    background-color: rgba(0, 218, 124, 0.045);
-    box-shadow: 0 0 1px rgba(0, 218, 124, 0.45);
+    color: var(--badge-accent);
+    border-color: var(--badge-accent);
+    background-color: transparent;
+    box-shadow: 0 0 2px rgba(0, 218, 124, 0.45), inset 0 0 2px rgba(0, 218, 124, 0.45);
 }
 
 .night-mode .translation-notice:hover .translation-badge,
 .night-mode .translation-notice:focus-within .translation-badge,
 .night-mode .translation-notice.is-open .translation-badge {
-    color: var(--text-tag);
-    background-color: rgba(0, 218, 124, 0.08);
-    box-shadow: 0 0 2px rgba(0, 218, 124, 0.6);
+    color: var(--bg-body);
+    border-color: var(--badge-accent);
+    background-color: var(--badge-accent);
+    box-shadow: 0 0 3px rgba(0, 218, 124, 0.6), inset 0 0 3px rgba(0, 218, 124, 0.6);
 }
 
 /* Подсказка позиционируется скриптом (position: fixed), поэтому длинный
@@ -1425,6 +1428,7 @@ color: #ff8888;
   --bg-card: #ffffff;
   --bg-tag: transparent;
   --text-tag: #a8501e;
+  --badge-accent: #72529d;
   --border-main: #e5e7eb;
   --text-primary: #111827;
   --text-secondary: #6b7280;
@@ -1437,6 +1441,7 @@ body.night-mode {
   --bg-card: #3a3d44;
   --bg-tag: transparent;
   --text-tag: #00da7c;
+  --badge-accent: #00da7c;
   --border-main: #4a5160;
   --text-primary: #abb2bf;
   --text-secondary: #6b7280;
