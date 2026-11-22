@@ -1,0 +1,103 @@
+{
+ "volume": 44,
+ "source": "tmp/pl/44/prepped_44.html",
+ "out": "tmp/pl/44",
+ "works": [
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI, DE PECCATORUM MERITIS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE NATURA ET GRATIA",
+   "path": "Aug_De_Peccatorum_Meritis",
+   "title": "De Peccatorum Meritis et Remissione",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE NATURA ET GRATIA",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI Id episcopos Eutropium et Paulum",
+   "path": "Aug_De_Natura_et_Gratia",
+   "title": "De Natura et Gratia",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI Id episcopos Eutropium et Paulum",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GESTIS PELAGII",
+   "path": "Aug_De_Perfectione_Justitiae",
+   "title": "De Perfectione Justitiae",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GESTIS PELAGII",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GRATIA CHRISTI ET DE PECCATO ORIGINALI",
+   "path": "Aug_De_Gestis_Pelagii",
+   "title": "De Gestis Pelagii",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GRATIA CHRISTI ET DE PECCATO ORIGINALI",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE NUPTIIS ET CONCUPISCENTIA",
+   "path": "Aug_De_Gratia_Christi",
+   "title": "De Gratia Christi et de Peccato Originali",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE NUPTIIS ET CONCUPISCENTIA",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE ANIMA ET EJUS ORIGINE",
+   "path": "Aug_De_Nuptiis_et_Concupiscentia",
+   "title": "De Nuptiis et Concupiscentia",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE ANIMA ET EJUS ORIGINE",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA DUAS EPISTOLAS PELAGIANORUM",
+   "path": "Aug_De_Anima_et_ejus_Origine",
+   "title": "De Anima et ejus Origine",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA DUAS EPISTOLAS PELAGIANORUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA JULIANUM",
+   "path": "Aug_Contra_Duas_Epistolas_Pelagianorum",
+   "title": "Contra Duas Epistolas Pelagianorum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA JULIANUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GRATIA ET LIBERO ARBITRIO",
+   "path": "Aug_Contra_Julianum",
+   "title": "Contra Julianum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GRATIA ET LIBERO ARBITRIO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CORREPTIONE ET GRATIA",
+   "path": "Aug_De_Gratia_et_Libero_Arbitrio",
+   "title": "De Gratia et Libero Arbitrio",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE CORREPTIONE ET GRATIA",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE PRAEDESTINATIONE SANCTORUM",
+   "path": "Aug_De_Correptione_et_Gratia",
+   "title": "De Correptione et Gratia",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE PRAEDESTINATIONE SANCTORUM",
+   "end": null,
+   "path": "Aug_De_Praedestinatione_Sanctorum",
+   "title": "De Praedestinatione Sanctorum",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

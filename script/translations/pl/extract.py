@@ -264,7 +264,7 @@ def word_pattern(text: str) -> str:
     return r'[\s\S]{0,120}?'.join(words)
 
 
-def extract_verses(html: str, start: str, end: str | None):
+def extract_verses(html: str, start: str, end: str | None, heading_re: str | None = r"HYMNUS"):
     """Труды-стихи (гимны): текст набран строками через <br>, а не абзацами."""
     i = re.search(word_pattern(start), html)
     if not i:
@@ -278,10 +278,11 @@ def extract_verses(html: str, start: str, end: str | None):
                       'empty_sections': [], 'skipped': [], 'skipped_count': 0}
     for m in re.finditer(r'<h4[^>]*>(.*?)</h4>((?:(?!<h4).)*)', chunk, re.S | re.I):
         head = clean_heading(text_of(m.group(1)))
-        if not re.match(r'HYMNUS\b', head, re.I):
+        if heading_re and not re.match(heading_re, head, re.I):
             continue
-        out.append(f'<h2>{head}</h2>')
-        stats['h2'] += 1
+        if heading_re:
+            out.append(f'<h2>{head}</h2>')
+            stats['h2'] += 1
         for line in re.split(r'<br\s*/?>', m.group(2), flags=re.I):
             line = text_of(line)
             if not line:
@@ -324,7 +325,7 @@ def main():
             print(f"!! не найден конец: {w['end']} ({w['title']}) — берём до конца тома")
             end = len(blocks)
         if w.get('verses'):
-            body, stats = extract_verses(html, w['start'], w.get('end'))
+            body, stats = extract_verses(html, w['start'], w.get('end'), w.get('verse_heading', r'HYMNUS'))
         else:
             body, stats = extract_work(blocks, start, end, w['path'], w['title'], w.get('split', 'none'), bool(w.get('drop_em')), int(w.get('skip_paragraphs') or 0), bool(w.get('keep_preface')))
         open(os.path.join(out_dir, w['path'] + '.html'), 'w', encoding='utf-8').write(body + '\n')

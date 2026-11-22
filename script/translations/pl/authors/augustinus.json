@@ -42,6 +42,14 @@
   {
    "title": "Sermones",
    "priority": 7
+  },
+  {
+   "title": "Contra Donatistas",
+   "priority": 8
+  },
+  {
+   "title": "Contra Pelagianos",
+   "priority": 9
   }
  ],
  "works": [
@@ -2211,6 +2219,423 @@
    "path": "Aug_De_Urbis_Excidio",
    "title": "De Urbis Excidio Sermo",
    "priority": 25
+  },
+  {
+   "fragment": "Aug_Psalmus_contra_partem_Donati",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "Psalmus contra Partem Donati",
+   "priority": 1,
+   "path": "Aug_Psalmus_contra_partem_Donati",
+   "verses": true
+  },
+  {
+   "fragment": "Aug_Contra_Epistolam_Parmeniani",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "Contra Epistolam Parmeniani",
+   "priority": 2,
+   "parts": [
+    {
+     "path": "Aug_Contra_Epistolam_Parmeniani_1",
+     "title": "Libri PRIMUS–SECUNDUS",
+     "first": "LIBER PRIMUS. Occurrit criminationibus e",
+     "last": "LIBER TERTIUS. Reliqua tractantur loca S",
+     "priority": 2
+    },
+    {
+     "path": "Aug_Contra_Epistolam_Parmeniani_2",
+     "title": "Liber TERTIUS",
+     "first": "LIBER TERTIUS. Reliqua tractantur loca S",
+     "last": null,
+     "priority": 3
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_De_Baptismo_contra_Donatistas",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "De Baptismo contra Donatistas",
+   "priority": 3,
+   "parts": [
+    {
+     "path": "Mw8R_De_Baptismo_contra_Donatistas",
+     "title": "Libri PRIMUS–SECUNDUS",
+     "first": "LIBER PRIMUS. Probat posse extra catholi",
+     "last": "LIBER TERTIUS. Refellenda ea suscipit, q",
+     "priority": 3
+    },
+    {
+     "path": "Aug_De_Baptismo_contra_Donatistas_2",
+     "title": "Libri TERTIUS–QUARTUS",
+     "first": "LIBER TERTIUS. Refellenda ea suscipit, q",
+     "last": "LIBER QUINTUS. Postremam partem examinat",
+     "priority": 4
+    },
+    {
+     "path": "Aug_De_Baptismo_contra_Donatistas_3",
+     "title": "Libri QUINTUS–SEXTUS",
+     "first": "LIBER QUINTUS. Postremam partem examinat",
+     "last": "LIBER SEPTIMUS. In quo caeterae sententi",
+     "priority": 5
+    },
+    {
+     "path": "Aug_De_Baptismo_contra_Donatistas_4",
+     "title": "Liber SEPTIMUS",
+     "first": "LIBER SEPTIMUS. In quo caeterae sententi",
+     "last": null,
+     "priority": 6
+    }
+   ],
+   "max_kb": 120
+  },
+  {
+   "fragment": "Aug_Contra_Litteras_Petiliani",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "Contra Litteras Petiliani",
+   "priority": 7,
+   "parts": [
+    {
+     "path": "Aug_Contra_Litteras_Petiliani_1",
+     "title": "Liber PRIMUS",
+     "first": "LIBER PRIMUS . Scriptus forma epistolae ",
+     "last": "LIBER SECUNDUS . In quo ad omnia et sing",
+     "priority": 7
+    },
+    {
+     "path": "Aug_Contra_Litteras_Petiliani_2",
+     "title": "Liber SECUNDUS",
+     "first": "LIBER SECUNDUS . In quo ad omnia et sing",
+     "last": "LIBER TERTIUS. Refellit Augustinus secun",
+     "priority": 8
+    },
+    {
+     "path": "Aug_Contra_Litteras_Petiliani_3",
+     "title": "Liber TERTIUS",
+     "first": "LIBER TERTIUS. Refellit Augustinus secun",
+     "last": null,
+     "priority": 9
+    }
+   ],
+   "max_kb": 120
+  },
+  {
+   "fragment": "Aug_Contra_Cresconium",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "Contra Cresconium Grammaticum",
+   "priority": 10,
+   "parts": [
+    {
+     "path": "Aug_Contra_Cresconium_1",
+     "title": "Liber PRIMUS",
+     "first": "LIBER PRIMUS. Epistolam Cresconii pro Pe",
+     "last": "LIBER SECUNDUS. Examinat dicta alia Epis",
+     "priority": 10
+    },
+    {
+     "path": "Aug_Contra_Cresconium_2",
+     "title": "Liber SECUNDUS",
+     "first": "LIBER SECUNDUS. Examinat dicta alia Epis",
+     "last": "LIBER TERTIUS. Reliquam partem Epistolae",
+     "priority": 11
+    },
+    {
+     "path": "Aug_Contra_Cresconium_3",
+     "title": "Liber TERTIUS",
+     "first": "LIBER TERTIUS. Reliquam partem Epistolae",
+     "last": "LIBER QUARTUS. Ad omnes rursum Epistolae",
+     "priority": 12
+    },
+    {
+     "path": "Aug_Contra_Cresconium_4",
+     "title": "Liber QUARTUS",
+     "first": "LIBER QUARTUS. Ad omnes rursum Epistolae",
+     "last": null,
+     "priority": 13
+    }
+   ],
+   "max_kb": 120
+  },
+  {
+   "fragment": "Aug_De_Unico_Baptismo",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "De Unico Baptismo contra Petilianum",
+   "priority": 14,
+   "path": "Aug_De_Unico_Baptismo"
+  },
+  {
+   "fragment": "Aug_Breviculus_Collationis",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "Breviculus Collationis cum Donatistis",
+   "priority": 15,
+   "path": "Aug_Breviculus_Collationis"
+  },
+  {
+   "fragment": "Aug_Ad_Donatistas_post_Collationem",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "Ad Donatistas post Collationem",
+   "priority": 16,
+   "path": "Aug_Ad_Donatistas_post_Collationem"
+  },
+  {
+   "fragment": "Aug_Sermo_ad_Caesareensis_Ecclesiae_Plebem",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "Sermo ad Caesareensis Ecclesiae Plebem",
+   "priority": 17,
+   "path": "Aug_Sermo_ad_Caesareensis_Ecclesiae_Plebem"
+  },
+  {
+   "fragment": "Aug_De_Gestis_cum_Emerito",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "De Gestis cum Emerito",
+   "priority": 18,
+   "path": "Aug_De_Gestis_cum_Emerito"
+  },
+  {
+   "fragment": "Aug_Contra_Gaudentium",
+   "volume": 43,
+   "folder": "Contra Donatistas",
+   "title": "Contra Gaudentium Donatistarum Episcopum",
+   "priority": 19,
+   "parts": [
+    {
+     "path": "Aug_Contra_Gaudentium_1",
+     "title": "Liber PRIMUS",
+     "first": "LIBER PRIMUS. In quo Gaudentii duae ad D",
+     "last": "LIBER SECUNDUS. Gaudentii contra superio",
+     "priority": 19
+    },
+    {
+     "path": "Aug_Contra_Gaudentium_2",
+     "title": "Liber SECUNDUS",
+     "first": "LIBER SECUNDUS. Gaudentii contra superio",
+     "last": null,
+     "priority": 20
+    }
+   ],
+   "max_kb": 110
+  },
+  {
+   "fragment": "Aug_De_Peccatorum_Meritis",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "De Peccatorum Meritis et Remissione",
+   "priority": 1,
+   "parts": [
+    {
+     "path": "Aug_De_Peccatorum_Meritis_1",
+     "title": "Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Aug_De_Peccatorum_Meritis_2",
+     "title": "Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS, SEU AD EUMDEM MARCELLINUM",
+     "priority": 2
+    },
+    {
+     "path": "Aug_De_Peccatorum_Meritis_3",
+     "title": "Liber TERTIUS",
+     "first": "LIBER TERTIUS, SEU AD EUMDEM MARCELLINUM",
+     "last": null,
+     "priority": 3
+    }
+   ],
+   "max_kb": 110
+  },
+  {
+   "fragment": "Aug_De_Natura_et_Gratia",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "De Natura et Gratia",
+   "priority": 4,
+   "path": "Aug_De_Natura_et_Gratia",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_De_Perfectione_Justitiae",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "De Perfectione Justitiae",
+   "priority": 5,
+   "path": "Aug_De_Perfectione_Justitiae"
+  },
+  {
+   "fragment": "Aug_De_Gestis_Pelagii",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "De Gestis Pelagii",
+   "priority": 6,
+   "path": "Aug_De_Gestis_Pelagii"
+  },
+  {
+   "fragment": "Aug_De_Gratia_Christi",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "De Gratia Christi et de Peccato Originali",
+   "priority": 7,
+   "path": "Aug_De_Gratia_Christi",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_De_Nuptiis_et_Concupiscentia",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "De Nuptiis et Concupiscentia",
+   "priority": 8,
+   "parts": [
+    {
+     "path": "Aug_De_Nuptiis_et_Concupiscentia_1",
+     "title": "Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 8
+    },
+    {
+     "path": "Aug_De_Nuptiis_et_Concupiscentia_2",
+     "title": "Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 9
+    }
+   ],
+   "ru": "NS5G_О_супружестве_и_похоти"
+  },
+  {
+   "fragment": "Aug_De_Anima_et_ejus_Origine",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "De Anima et ejus Origine",
+   "priority": 10,
+   "parts": [
+    {
+     "path": "Aug_De_Anima_et_ejus_Origine_1",
+     "title": "Libri PRIMUS–SECUNDUS",
+     "first": "LIBER PRIMUS. AD RENATUM MONACHUM",
+     "last": "LIBER TERTIUS. AD VINCENTIUM VICTOREM",
+     "priority": 10
+    },
+    {
+     "path": "Aug_De_Anima_et_ejus_Origine_2",
+     "title": "Libri TERTIUS–QUARTUS",
+     "first": "LIBER TERTIUS. AD VINCENTIUM VICTOREM",
+     "last": null,
+     "priority": 11
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_Contra_Duas_Epistolas_Pelagianorum",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "Contra Duas Epistolas Pelagianorum",
+   "priority": 12,
+   "parts": [
+    {
+     "path": "Aug_Contra_Duas_Epistolas_Pelagianorum_1",
+     "title": "Libri PRIMUS–SECUNDUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER TERTIUS",
+     "priority": 12
+    },
+    {
+     "path": "Aug_Contra_Duas_Epistolas_Pelagianorum_2",
+     "title": "Libri TERTIUS–QUARTUS",
+     "first": "LIBER TERTIUS",
+     "last": null,
+     "priority": 13
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_Contra_Julianum",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "Contra Julianum",
+   "priority": 14,
+   "parts": [
+    {
+     "path": "Aug_Contra_Julianum_1",
+     "title": "Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 14
+    },
+    {
+     "path": "Aug_Contra_Julianum_2",
+     "title": "Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 15
+    },
+    {
+     "path": "Aug_Contra_Julianum_3",
+     "title": "Liber TERTIUS",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 16
+    },
+    {
+     "path": "Aug_Contra_Julianum_4",
+     "title": "Liber QUARTUS",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER QUINTUS",
+     "priority": 17
+    },
+    {
+     "path": "Aug_Contra_Julianum_5",
+     "title": "Liber QUINTUS",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER SEXTUS",
+     "priority": 18
+    },
+    {
+     "path": "Aug_Contra_Julianum_6",
+     "title": "Liber SEXTUS",
+     "first": "LIBER SEXTUS",
+     "last": null,
+     "priority": 19
+    }
+   ],
+   "max_kb": 120
+  },
+  {
+   "fragment": "Aug_De_Gratia_et_Libero_Arbitrio",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "De Gratia et Libero Arbitrio",
+   "priority": 20,
+   "path": "Aug_De_Gratia_et_Libero_Arbitrio",
+   "ru": "jW3L_О_благодати_и_свободном_решении"
+  },
+  {
+   "fragment": "Aug_De_Correptione_et_Gratia",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "De Correptione et Gratia",
+   "priority": 21,
+   "path": "Aug_De_Correptione_et_Gratia",
+   "ru": "j74N_Об_упреке_и_благодатиDe_correptione_et_Gratiaк_Валентину_и_с_ним_монахам_адруметским_в_одной_книге"
+  },
+  {
+   "fragment": "Aug_De_Praedestinatione_Sanctorum",
+   "volume": 44,
+   "folder": "Contra Pelagianos",
+   "title": "De Praedestinatione Sanctorum",
+   "priority": 22,
+   "path": "Aug_De_Praedestinatione_Sanctorum",
+   "ru": "s0bL_О_предопределении_святых"
   }
  ]
 }

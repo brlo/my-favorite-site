@@ -254,6 +254,9 @@ def main():
     max_kb = cfg.get('max_kb')
 
     def add_page(path, title, body, priority, folder, ru, dubium, vol, limit_kb=None, no_markers=False, dubium_note=None):
+        if not body.strip():
+            print(f"  (пропуск пустой страницы: {title})")
+            return
         note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + ((dubium_note or DUBIUM_NOTE) if dubium else '')
         limit = (limit_kb or max_kb) and (limit_kb or max_kb) * 1024
         if limit and len(body) > limit:

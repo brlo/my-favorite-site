@@ -56,6 +56,17 @@
   Фиваида → Coll. XI, Нижний Египет → Coll. XVIII. Из тома PL 50 не берём чужие труды
   (Vigilius, Fastidius, Coelestinus, Eucherius, Hilarius Arelatensis).
   Варианты чтения в квадратных скобках вида «[Lips. in marg. …]» вырезаются (`strip_apparatus`).
+- **Августин, PL 43 — готово (31 страница)**: антидонатистские труды — Psalmus contra partem
+  Donati (стихи), Contra Epistolam Parmeniani (2), De Baptismo contra Donatistas (4; первая
+  часть — существующая страница `Mw8R_…`), Contra Litteras Petiliani (3), Contra Cresconium (4),
+  De Unico Baptismo, Breviculus Collationis, Ad Donatistas post Collationem, Sermo ad
+  Caesareensis plebem, De Gestis cum Emerito, Contra Gaudentium (2 книги, вторая поделена).
+- **Августин, PL 44 — готово (30 страниц)**: антипелагианские — De Peccatorum Meritis (3),
+  De Natura et Gratia, De Perfectione Justitiae, De Gestis Pelagii, De Gratia Christi,
+  De Nuptiis et Concupiscentia (2), De Anima et ejus Origine (2), Contra Duas Epistolas
+  Pelagianorum (2), Contra Julianum (6), De Gratia et Libero Arbitrio, De Correptione et
+  Gratia, De Praedestinatione Sanctorum. Русские пары: «О супружестве и похоти»,
+  «О благодати и свободном решении», «Об упреке и благодати», «О предопределении святых».
 - **Августин, PL 35 — готово (25 страниц)**: Quaestiones Evangeliorum (2 книги; вторая часть
   привязана ко второму русскому переводу книги II), In Ioannis Evangelium Tractatus CXXIV
   (15 страниц по 8 трактатов), In Epistolam Ioannis ad Parthos (3), Expositio Propositionum

@@ -1,0 +1,97 @@
+{
+ "volume": 43,
+ "source": "tmp/pl/43/prepped_43.html",
+ "out": "tmp/pl/43",
+ "works": [
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI PSALMUS CONTRA PARTEM DONATI",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA EPISTOLAM PARMENIANI",
+   "path": "Aug_Psalmus_contra_partem_Donati",
+   "title": "Psalmus contra Partem Donati",
+   "split": "none",
+   "drop_em": true,
+   "verses": true,
+   "verse_heading": null
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA EPISTOLAM PARMENIANI",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE BAPTISMO CONTRA DONATISTAS",
+   "path": "Aug_Contra_Epistolam_Parmeniani",
+   "title": "Contra Epistolam Parmeniani",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE BAPTISMO CONTRA DONATISTAS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA LITTERAS PETILIANI",
+   "path": "Aug_De_Baptismo_contra_Donatistas",
+   "title": "De Baptismo contra Donatistas",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA LITTERAS PETILIANI",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA CRESCONIUM",
+   "path": "Aug_Contra_Litteras_Petiliani",
+   "title": "Contra Litteras Petiliani",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA CRESCONIUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE UNICO BAPTISMO",
+   "path": "Aug_Contra_Cresconium",
+   "title": "Contra Cresconium Grammaticum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE UNICO BAPTISMO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI BREVICULUS COLLATIONIS CUM DONATISTIS",
+   "path": "Aug_De_Unico_Baptismo",
+   "title": "De Unico Baptismo contra Petilianum",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI BREVICULUS COLLATIONIS CUM DONATISTIS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI AD DONATISTAS POST COLLATIONEM",
+   "path": "Aug_Breviculus_Collationis",
+   "title": "Breviculus Collationis cum Donatistis",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI AD DONATISTAS POST COLLATIONEM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI SERMO AD CAESAREENSIS ECCLESIAE PLEBEM",
+   "path": "Aug_Ad_Donatistas_post_Collationem",
+   "title": "Ad Donatistas post Collationem",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI SERMO AD CAESAREENSIS ECCLESIAE PLEBEM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GESTIS CUM EMERITO",
+   "path": "Aug_Sermo_ad_Caesareensis_Ecclesiae_Plebem",
+   "title": "Sermo ad Caesareensis Ecclesiae Plebem",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GESTIS CUM EMERITO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA GAUDENTIUM",
+   "path": "Aug_De_Gestis_cum_Emerito",
+   "title": "De Gestis cum Emerito",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI CONTRA GAUDENTIUM",
+   "end": null,
+   "path": "Aug_Contra_Gaudentium",
+   "title": "Contra Gaudentium Donatistarum Episcopum",
+   "split": "h2:books",
+   "drop_em": true
+  }
+ ]
+}
