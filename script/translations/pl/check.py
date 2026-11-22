@@ -30,7 +30,7 @@ def check(page, volume):
     # дополнительные тома, на которые ссылаются примечания (добор писем из t. 3)
     allowed = {str(volume)} | set(re.findall(r't\.\s*(\d+),\s*coll', page.get('references', '')))
     markers = re.findall(r'\[PL(\d+)\.(\d+)([A-Z]?)\]', body)
-    if not markers:
+    if not markers and not page.get('no_markers'):
         errors.append('нет маркеров столбцов')
     else:
         vols = {v for v, _, _ in markers}

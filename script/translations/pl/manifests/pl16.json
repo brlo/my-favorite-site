@@ -1,0 +1,144 @@
+{
+ "volume": 16,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL16.html",
+ "out": "tmp/pl/16",
+ "works": [
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE OFFICIIS MINISTRORUM LIBRI TRES",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE VIRGINIBUS",
+   "path": "Ambr_De_Officiis",
+   "title": "De Officiis Ministrorum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE VIRGINIBUS AD MARCELLINAM",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE VIDUIS",
+   "path": "Ambr_De_Virginibus",
+   "title": "De Virginibus ad Marcellinam",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE VIDUIS LIBER UNUS",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE VIRGINITATE LIBER",
+   "path": "Ambr_De_Viduis",
+   "title": "De Viduis",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE VIRGINITATE LIBER UNUS",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE INSTITUTIONE VIRGINIS",
+   "path": "Ambr_De_Virginitate",
+   "title": "De Virginitate",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE INSTITUTIONE VIRGINIS",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI EXHORTATIO VIRGINITATIS",
+   "path": "Ambr_De_Institutione_Virginis",
+   "title": "De Institutione Virginis et S. Mariae Virginitate Perpetua",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI EXHORTATIO VIRGINITATIS",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE LAPSU VIRGINIS",
+   "path": "Ambr_Exhortatio_Virginitatis",
+   "title": "Exhortatio Virginitatis",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE MYSTERIIS LIBER UNUS",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE SACRAMENTIS",
+   "path": "Ambr_De_Mysteriis",
+   "title": "De Mysteriis",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE SACRAMENTIS LIBRI SEX",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE POENITENTIA",
+   "path": "Ambr_De_Sacramentis",
+   "title": "De Sacramentis",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE POENITENTIA, LIBRI DUO",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE FIDE AD GRATIANUM",
+   "path": "Ambr_De_Poenitentia",
+   "title": "De Poenitentia",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE FIDE AD GRATIANUM AUGUSTUM",
+   "end": "SANCTI AMBROSII, MEDIOLANENSIS EPISCOPI, DE SPIRITU SANCTO",
+   "path": "Ambr_De_Fide",
+   "title": "De Fide ad Gratianum Augustum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII, MEDIOLANENSIS EPISCOPI, DE SPIRITU SANCTO",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE INCARNATIONIS",
+   "path": "Ambr_De_Spiritu_Sancto",
+   "title": "De Spiritu Sancto",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE INCARNATIONIS DOMINICAE SACRAMENTO",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI EPISTOLAE IN DUAS CLASSES",
+   "path": "Ambr_De_Incarnationis_Dominicae_Sacramento",
+   "title": "De Incarnationis Dominicae Sacramento",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI EPISTOLAE IN DUAS CLASSES",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE EXCESSU FRATRIS",
+   "path": "Ambr_Epistolae",
+   "title": "Epistolae",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE EXCESSU FRATRIS SUI SATYRI",
+   "end": "SANCTI AMBROSII, MEDIOLANENSIS EPISCOPI, DE OBITU VALENTINIANI",
+   "path": "Ambr_De_Excessu_Fratris",
+   "title": "De Excessu Fratris sui Satyri",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII, MEDIOLANENSIS EPISCOPI, DE OBITU VALENTINIANI CONSOLATIO",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE OBITU THEODOSII",
+   "path": "Ambr_De_Obitu_Valentiniani",
+   "title": "De Obitu Valentiniani Consolatio",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE OBITU THEODOSII ORATIO",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI HYMNI",
+   "path": "Ambr_De_Obitu_Theodosii",
+   "title": "De Obitu Theodosii Oratio",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI HYMNI",
+   "end": "ELENCHUS MANUSCRIPTORUM",
+   "path": "Ambr_Hymni",
+   "title": "Hymni",
+   "split": "h2",
+   "verses": true,
+   "drop_em": true
+  }
+ ]
+}

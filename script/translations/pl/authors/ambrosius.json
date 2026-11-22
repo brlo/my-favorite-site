@@ -22,6 +22,22 @@
   {
    "title": "Moralia",
    "priority": 2
+  },
+  {
+   "title": "Dogmatica",
+   "priority": 3
+  },
+  {
+   "title": "Epistolae",
+   "priority": 4
+  },
+  {
+   "title": "Sermones",
+   "priority": 5
+  },
+  {
+   "title": "Hymni",
+   "priority": 6
   }
  ],
  "works": [
@@ -432,6 +448,271 @@
      "priority": 40
     }
    ]
+  },
+  {
+   "fragment": "Ambr_De_Officiis",
+   "volume": 16,
+   "folder": "Moralia",
+   "parts": [
+    {
+     "path": "Ambr_De_Officiis_1",
+     "title": "De Officiis, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 2
+    },
+    {
+     "path": "Ambr_De_Officiis_2",
+     "title": "De Officiis, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 3
+    },
+    {
+     "path": "Ambr_De_Officiis_3",
+     "title": "De Officiis, Liber III",
+     "first": "LIBER TERTIUS",
+     "last": "CONCLUSIO",
+     "priority": 4
+    },
+    {
+     "path": "Ambr_De_Officiis_4",
+     "title": "De Officiis, Conclusio",
+     "first": "CONCLUSIO",
+     "last": null,
+     "priority": 5
+    }
+   ],
+   "ru": "Muld_Об_обязанностях_1",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Ambr_De_Virginibus",
+   "volume": 16,
+   "folder": "Moralia",
+   "path": "Ambr_De_Virginibus",
+   "title": "De Virginibus ad Marcellinam",
+   "priority": 6,
+   "ru": "FIyd_О_девственницах"
+  },
+  {
+   "fragment": "Ambr_De_Viduis",
+   "volume": 16,
+   "folder": "Moralia",
+   "path": "Ambr_De_Viduis",
+   "title": "De Viduis",
+   "priority": 7,
+   "ru": "gB8v_О_вдовицах"
+  },
+  {
+   "fragment": "Ambr_De_Virginitate",
+   "volume": 16,
+   "folder": "Moralia",
+   "path": "Ambr_De_Virginitate",
+   "title": "De Virginitate",
+   "priority": 8,
+   "ru": "qCKc_О_девстве"
+  },
+  {
+   "fragment": "Ambr_De_Institutione_Virginis",
+   "volume": 16,
+   "folder": "Moralia",
+   "path": "Ambr_De_Institutione_Virginis",
+   "title": "De Institutione Virginis et S. Mariae Virginitate Perpetua",
+   "priority": 9,
+   "ru": "CUa2_О_наставлении_девы_и_о_приснодевстве_Святой_Марии"
+  },
+  {
+   "fragment": "Ambr_Exhortatio_Virginitatis",
+   "volume": 16,
+   "folder": "Moralia",
+   "path": "Ambr_Exhortatio_Virginitatis",
+   "title": "Exhortatio Virginitatis",
+   "priority": 10,
+   "ru": "l62I_Увещание_к_девству"
+  },
+  {
+   "fragment": "Ambr_De_Mysteriis",
+   "volume": 16,
+   "folder": "Dogmatica",
+   "path": "Ambr_De_Mysteriis",
+   "title": "De Mysteriis",
+   "priority": 1,
+   "ru": "Амвросий_Медиоланский-О_тайнах"
+  },
+  {
+   "fragment": "Ambr_De_Sacramentis",
+   "volume": 16,
+   "folder": "Dogmatica",
+   "path": "Ambr_De_Sacramentis",
+   "title": "De Sacramentis",
+   "priority": 2,
+   "ru": "Амвросий_Медиоланский-О_таинствах"
+  },
+  {
+   "fragment": "Ambr_De_Poenitentia",
+   "volume": 16,
+   "folder": "Dogmatica",
+   "parts": [
+    {
+     "path": "Ambr_De_Poenitentia_1",
+     "title": "De Poenitentia, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 3
+    },
+    {
+     "path": "Ambr_De_Poenitentia_2",
+     "title": "De Poenitentia, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 4
+    }
+   ],
+   "ru": "hRFw_О_покаянии_две_книги"
+  },
+  {
+   "fragment": "Ambr_De_Fide",
+   "volume": 16,
+   "folder": "Dogmatica",
+   "parts": [
+    {
+     "path": "Ambr_De_Fide_1",
+     "title": "De Fide, Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Ambr_De_Fide_2",
+     "title": "De Fide, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 2
+    },
+    {
+     "path": "Ambr_De_Fide_3",
+     "title": "De Fide, Liber TERTIUS",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 3
+    },
+    {
+     "path": "Ambr_De_Fide_4",
+     "title": "De Fide, Liber QUARTUS",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER QUINTUS",
+     "priority": 4
+    },
+    {
+     "path": "Ambr_De_Fide_5",
+     "title": "De Fide, Liber QUINTUS",
+     "first": "LIBER QUINTUS",
+     "last": null,
+     "priority": 5
+    }
+   ],
+   "ru": "FN2q_О_вере",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Ambr_De_Spiritu_Sancto",
+   "volume": 16,
+   "folder": "Dogmatica",
+   "parts": [
+    {
+     "path": "Ambr_De_Spiritu_Sancto_1",
+     "title": "De Spiritu Sancto, Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Ambr_De_Spiritu_Sancto_2",
+     "title": "De Spiritu Sancto, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 2
+    },
+    {
+     "path": "Ambr_De_Spiritu_Sancto_3",
+     "title": "De Spiritu Sancto, Liber TERTIUS",
+     "first": "LIBER TERTIUS",
+     "last": null,
+     "priority": 3
+    }
+   ],
+   "ru": "ER4J_О_Святом_Духе",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Ambr_De_Incarnationis_Dominicae_Sacramento",
+   "volume": 16,
+   "folder": "Dogmatica",
+   "path": "Ambr_De_Incarnationis_Dominicae_Sacramento",
+   "title": "De Incarnationis Dominicae Sacramento",
+   "priority": 6,
+   "ru": "MVqB_О_тайне_Господнего_воплощения",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Ambr_Epistolae",
+   "volume": 16,
+   "folder": "Epistolae",
+   "path": "Ambr_Epistolae",
+   "title": "Epistolae",
+   "priority": 1,
+   "ru": "c8ud_Письма_153_1",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Ambr_De_Excessu_Fratris",
+   "volume": 16,
+   "folder": "Sermones",
+   "parts": [
+    {
+     "path": "Ambr_De_Excessu_Fratris_1",
+     "title": "De Excessu Fratris, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Ambr_De_Excessu_Fratris_2",
+     "title": "De Excessu Fratris, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 2
+    }
+   ],
+   "ru": "VaoB_О_смерти_брата_две_книги"
+  },
+  {
+   "fragment": "Ambr_De_Obitu_Valentiniani",
+   "volume": 16,
+   "folder": "Sermones",
+   "path": "Ambr_De_Obitu_Valentiniani",
+   "title": "De Obitu Valentiniani Consolatio",
+   "priority": 3,
+   "ru": "pm6M_Слово_утешительное_на_смерть_императора_Валентиниана_Младшего"
+  },
+  {
+   "fragment": "Ambr_De_Obitu_Theodosii",
+   "volume": 16,
+   "folder": "Sermones",
+   "path": "Ambr_De_Obitu_Theodosii",
+   "title": "De Obitu Theodosii Oratio",
+   "priority": 4,
+   "ru": "1TUg_Слово_на_смерть_Феодосия_Великого"
+  },
+  {
+   "fragment": "Ambr_Hymni",
+   "volume": 16,
+   "folder": "Hymni",
+   "path": "Ambr_Hymni",
+   "title": "Hymni",
+   "priority": 1,
+   "ru": "PkL4_Гимны"
   }
  ]
 }

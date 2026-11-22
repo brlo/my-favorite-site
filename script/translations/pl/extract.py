@@ -140,7 +140,7 @@ CAP_RE = re.compile(r'^CAP(UT)?\.?\s')
 SKIP_PARAGRAPH = re.compile(r'^(\(?(Vid|Cf)\b|\((?:C[,\sGS]*)\)\*?\.?$|\d+$)')
 
 
-def extract_work(blocks, start_idx, end_idx, path, title, split_mode):
+def extract_work(blocks, start_idx, end_idx, path, title, split_mode, drop_em=False):
     out = []
     skipped = []
     body_started = False
@@ -186,6 +186,10 @@ def extract_work(blocks, start_idx, end_idx, path, title, split_mode):
             p = clean_paragraph(txt)
         if not p:
             continue
+        if drop_em and is_em_only(raw) and len(p) < 600 \
+                and not re.match(r'^(\[PL[^\]]*\]\s*)*\d+\.', p) \
+                and not re.match(r'^(In |Apud |Item |Psalm|Evangel|Scriptum|Testimon|Cantic)', p, re.I):
+            skipped.append('резюме: ' + p[:50]); continue
         if not body_started:
             skipped.append(p[:60])
             continue
@@ -249,6 +253,41 @@ def extract_work(blocks, start_idx, end_idx, path, title, split_mode):
     return html, stats
 
 
+def word_pattern(text: str) -> str:
+    """Шаблон заголовка с допуском на теги и переносы между словами."""
+    words = [re.escape(w) for w in text.split()]
+    return r'[\s\S]{0,120}?'.join(words)
+
+
+def extract_verses(html: str, start: str, end: str | None):
+    """Труды-стихи (гимны): текст набран строками через <br>, а не абзацами."""
+    i = re.search(word_pattern(start), html)
+    if not i:
+        return '', {'markers': 0, 'paragraphs': 0, 'chars': 0, 'h2': 0, 'h3': 0,
+                    'empty_sections': [], 'skipped': [], 'skipped_count': 0}
+    start_pos = i.start()
+    j = re.search(word_pattern(end), html[start_pos:]) if end else None
+    end_pos = start_pos + j.start() if j else len(html)
+    chunk = html[start_pos:end_pos]
+    out, stats = [], {'markers': 0, 'paragraphs': 0, 'chars': 0, 'h2': 0, 'h3': 0,
+                      'empty_sections': [], 'skipped': [], 'skipped_count': 0}
+    for m in re.finditer(r'<h4[^>]*>(.*?)</h4>((?:(?!<h4).)*)', chunk, re.S | re.I):
+        head = clean_heading(text_of(m.group(1)))
+        if not re.match(r'HYMNUS\b', head, re.I):
+            continue
+        out.append(f'<h2>{head}</h2>')
+        stats['h2'] += 1
+        for line in re.split(r'<br\s*/?>', m.group(2), flags=re.I):
+            line = text_of(line)
+            if not line:
+                continue
+            out.append(f'<p>{line}</p>')
+    body = '\n'.join(out)
+    stats['chars'] = len(TAG_RE.sub('', body))
+    stats['paragraphs'] = len(out) - stats['h2']
+    return body, stats
+
+
 def main():
     if len(sys.argv) < 3 or sys.argv[1] != 'extract':
         sys.exit(__doc__)
@@ -279,7 +318,10 @@ def main():
         if end is None:
             print(f"!! не найден конец: {w['end']} ({w['title']}) — берём до конца тома")
             end = len(blocks)
-        body, stats = extract_work(blocks, start, end, w['path'], w['title'], w.get('split', 'none'))
+        if w.get('verses'):
+            body, stats = extract_verses(html, w['start'], w.get('end'))
+        else:
+            body, stats = extract_work(blocks, start, end, w['path'], w['title'], w.get('split', 'none'), bool(w.get('drop_em')))
         open(os.path.join(out_dir, w['path'] + '.html'), 'w', encoding='utf-8').write(body + '\n')
         json.dump({**stats, 'title': w['title'], 'start': w['start'], 'end': w.get('end'),
                    'blocks': [start, end]},

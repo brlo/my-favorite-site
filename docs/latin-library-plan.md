@@ -25,12 +25,15 @@
   Из тома PL 15 не берём: «Commentarius in Cantica Canticorum» — компиляция
   Гийома Сен-Тьеррийского из Амвросия, не его труд; «De Excidio urbis Hierosolymitanae» —
   Migne сам пишет, что бенедиктинцы его Амвросию не приписывают (авторство спорно).
-- **Амвросий, PL 16 — следующий том** (инвентарь готов): De Officiis (3 кн.), De Virginibus (3),
+- **Амвросий, PL 16 — готово (42 страницы)**: De Officiis (3 кн., Liber I поделён), De Virginibus,
   De Viduis, De Virginitate, De Institutione Virginis, Exhortatio Virginitatis, De Mysteriis,
-  De Sacramentis (6), De Poenitentia (2), De Fide (5), De Spiritu Sancto (3),
-  De Incarnationis Dominicae Sacramento, Epistolae, De Excessu Fratris (2),
-  De Obitu Valentiniani, De Obitu Theodosii, Hymni. Не берём «De Lapsu Virginis Consecratae» —
-  Spuria (Амвросию не принадлежит).
+  De Sacramentis, De Poenitentia (2 кн.), De Fide (5 кн., V поделена), De Spiritu Sancto (3),
+  De Incarnationis Dominicae Sacramento (2), Epistolae (10 страниц по номерам писем),
+  De Excessu Fratris (2), De Obitu Valentiniani, De Obitu Theodosii, Hymni (12 гимнов стихами).
+  Не взято: «De Lapsu Virginis Consecratae» — Spuria; «Fragmentum ex Theodoretо» — греческий
+  текст (место в греческой библиотеке).
+  Мелкие редакторские резюме глав Migne (курсивные абзацы вроде «Episcopi proprium munus,
+  docere…») вырезаются флагом `drop_em`; нумерованные абзацы и цитаты Писания сохраняются.
 - **Иларий отложен**: из 5 русских трудов 3 — фрагменты («Единение верующих с Богом»,
   «О Троице (фрагменты)» с разбивкой 1,1–13 / 12,52–57 / 1,8, «Изъяснение тайн. Кн. 1»),
   для них нужна пораздельная привязка к De Trinitate и Tractatus Mysteriorum; «Против Авксентия»

@@ -55,21 +55,66 @@ def clean_page(body: str) -> str:
 
 
 def split_paragraphs(body: str, max_bytes: int):
-    """Режет тело на куски не больше max_bytes по границам <p>, близко к равным."""
-    parts = [p for p in re.split(r'(?=<p>)', body) if p.strip()]
-    total, n = len(body), max(2, int(len(body) / max_bytes) + (1 if len(body) % max_bytes else 0))
-    target = total / n
-    chunks, cur, acc = [], [], 0
-    for p in parts:
-        if cur and acc + len(p) > target and len(chunks) < n - 1:
-            chunks.append(''.join(cur))
-            cur, acc = [], 0
-        cur.append(p)
-        acc += len(p)
-    if cur:
-        chunks.append(''.join(cur))
-    return chunks
+    """Режет тело на куски не больше max_bytes: сначала по <h2>, внутри крупного раздела — по <p>."""
+    def chunks_of(parts, limit):
+        total, n = sum(len(p) for p in parts), max(2, int(sum(len(p) for p in parts) / limit) + 1)
+        target = total / n
+        out, cur, acc = [], [], 0
+        for p in parts:
+            if cur and acc + len(p) > target and len(out) < n - 1:
+                out.append(''.join(cur)); cur, acc = [], 0
+            cur.append(p); acc += len(p)
+        if cur:
+            out.append(''.join(cur))
+        return out
 
+    def merge_tiny(chunks):
+        """Сливает куски без текста (один заголовок) с соседними."""
+        def tlen(c):
+            return len(re.sub(r'<[^>]+>', '', c).strip())
+        out, pending = [], ''
+        for c in chunks:
+            if tlen(c) < 400:
+                if out:
+                    out[-1] += c
+                else:
+                    pending += c
+                continue
+            out.append(pending + c)
+            pending = ''
+        if pending:
+            if out:
+                out[-1] += pending
+            else:
+                out.append(pending)
+        return out
+
+    if '<h2>' in body:
+        secs = [x for x in re.split(r'(?=<h2>)', body) if x.strip()]
+        groups, cur, acc = [], [], 0
+        for sec in secs:
+            if len(sec) > max_bytes:            # отдельный раздел больше лимита — режем по абзацам
+                if cur:
+                    groups.append(''.join(cur)); cur, acc = [], 0
+                groups += chunks_of([p for p in re.split(r'(?=<p>)', sec) if p.strip()], max_bytes)
+                continue
+            if cur and acc + len(sec) > max_bytes:
+                groups.append(''.join(cur)); cur, acc = [], 0
+            cur.append(sec); acc += len(sec)
+        if cur:
+            groups.append(''.join(cur))
+        return merge_tiny(groups)
+    return merge_tiny(chunks_of([p for p in re.split(r'(?=<p>)', body) if p.strip()], max_bytes))
+
+
+def range_title(title: str, chunk: str, i: int, n: int):
+    """Подпись куска: для писем — по номерам, иначе «(i/n)»."""
+    text = re.sub(r'<[^>]+>', ' ', chunk)
+    nums = re.findall(r'EPISTOLA\s+([IVXLC]+)\b', text)
+    if len(nums) >= 2:
+        first = 'I' if 'PRIMA CLASSIS' in text[:3000] else nums[0]
+        return f'{title} {first}–{nums[-1]}'
+    return f'{title} ({i}/{n})'
 
 def marker_range(html: str):
     ms = MARKER_RE.findall(html)
@@ -164,13 +209,14 @@ def main():
     filled_letters = []
     max_kb = cfg.get('max_kb')
 
-    def add_page(path, title, body, priority, folder, ru, dubium, vol, limit_kb=None):
+    def add_page(path, title, body, priority, folder, ru, dubium, vol, limit_kb=None, no_markers=False):
         note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + (DUBIUM_NOTE if dubium else '')
         limit = (limit_kb or max_kb) and (limit_kb or max_kb) * 1024
         if limit and len(body) > limit:
             chunks = split_paragraphs(body, limit)
             for i, chunk in enumerate(chunks, 1):
-                pages.append({'path': f'{path}_{i}', 'title': f'{title} ({i}/{len(chunks)})',
+                chunk_title = range_title(title, chunk, i, len(chunks))
+                pages.append({'path': f'{path}_{i}', 'title': chunk_title,
                               'ru': ru, 'folder': folder, 'priority': priority,
                               'body': chunk, 'references': SOURCE_TPL.format(cols=cols_str(chunk), url=cfg['source_url']) +
                               (DUBIUM_NOTE if dubium else ''),
@@ -189,27 +235,32 @@ def main():
             body, _miss, _fill = fill_empty_letters(src)
             filled_letters += _fill
             body = clean_page(tidy(body))
-            add_page(w['path'], w['title'], body, w['priority'], w['folder'], w.get('ru'), dubium, vol, w.get('max_kb'))
+            add_page(w['path'], w['title'], body, w['priority'], w['folder'], w.get('ru'), dubium, vol, w.get('max_kb'), bool(w.get('verses')))
             continue
 
         secs = sections(src)
         heads = [heading_of(s) for s in secs]
+        prev_end = 0
         for part in w['parts']:
             if part['first'] is None:
                 start = 0
             else:
-                start = next(i for i, h in enumerate(heads) if h.startswith(part['first']))
+                start = next(i for i, h in enumerate(heads) if i >= prev_end and h.startswith(part['first']))
             if part['last'] is None:
                 end = len(secs)
             else:
-                end = next(i for i, h in enumerate(heads) if h.startswith(part['last']))
+                end = next(i for i, h in enumerate(heads) if i > start and h.startswith(part['last']))
+            prev_end = end
             chunk = ''.join(secs[start:end])
+            if len(re.sub(r'<[^>]+>', '', chunk)) < 1500:
+                print(f"  (пропуск пустой части: {part['title']})")
+                continue
             chunk, miss, fill = fill_empty_letters(chunk)
             missing_letters += miss
             filled_letters += fill
             body = clean_page(tidy(chunk))
             add_page(part['path'], part['title'], body, part['priority'], w['folder'],
-                     w.get('ru'), dubium, vol, w.get('max_kb'))
+                     w.get('ru'), dubium, vol, w.get('max_kb'), bool(w.get('verses')))
             print(f"{part['title']:<32} {len(body)//1024:>4} КБ  coll. {cols_str(body):<12} h2={body.count('<h2>')}")
 
     if filled_letters:
