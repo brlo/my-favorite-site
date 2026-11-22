@@ -56,6 +56,13 @@
   Фиваида → Coll. XI, Нижний Египет → Coll. XVIII. Из тома PL 50 не берём чужие труды
   (Vigilius, Fastidius, Coelestinus, Eucherius, Hilarius Arelatensis).
   Варианты чтения в квадратных скобках вида «[Lips. in marg. …]» вырезаются (`strip_apparatus`).
+- **Августин, PL 34 — готово (42 страницы)**: De Doctrina Christiana (3), De Vera Religione
+  (существующая страница обновлена), De Genesi contra Manichaeos (2), De Genesi ad Litteram
+  Imperfectus, De Genesi ad Litteram (6 частей по 2 книги), Locutiones in Heptateuchum (2),
+  Quaestiones in Heptateuchum (7 книг, большие поделены), Annotationes in Job (2),
+  Speculum de Scriptura Sacra (4), De Consensu Evangelistarum (4 книги, II и III поделены),
+  De Sermone Domini in Monte (2). Русские пары: Христианская наука, Об истинной религии,
+  О книге Бытия, Зерцало, О согласии евангелистов.
 - **Августин, PL 32 — готово (26 страниц)**: Retractationes (2), Confessiones (5 по книгам),
   Contra Academicos (2), De Beata Vita, De Ordine (2), Soliloquia, De Immortalitate Animae,
   De Quantitate Animae (2), De Musica (3), De Magistro, De Libero Arbitrio (3),

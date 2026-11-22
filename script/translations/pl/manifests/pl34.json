@@ -1,0 +1,95 @@
+{
+ "volume": 34,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL34.html",
+ "out": "tmp/pl/34",
+ "works": [
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE DOCTRINA CHRISTIANA LIBRI QUATUOR",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE VERA RELIGIONE",
+   "path": "Aug_De_Doctrina_Christiana",
+   "title": "De Doctrina Christiana",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE VERA RELIGIONE",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GENESI CONTRA MANICHAEOS LIBRI DUO",
+   "path": "Aug_De_Vera_Religione",
+   "title": "De Vera Religione",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GENESI CONTRA MANICHAEOS LIBRI DUO",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GENESI AD LITTERAM IMPERFECTUS",
+   "path": "Aug_De_Genesi_contra_Manichaeos",
+   "title": "De Genesi contra Manichaeos",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GENESI AD LITTERAM IMPERFECTUS",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GENESI AD LITTERAM LIBRI DUODECIM",
+   "path": "Aug_De_Genesi_ad_Litteram_Imperfectus",
+   "title": "De Genesi ad Litteram Imperfectus",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE GENESI AD LITTERAM LIBRI DUODECIM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI In Heptateuchum LOCUTIONUM LIBRI SEPTEM",
+   "path": "Aug_De_Genesi_ad_Litteram",
+   "title": "De Genesi ad Litteram",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI In Heptateuchum LOCUTIONUM LIBRI SEPTEM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI QUAESTIONUM In Heptateuchum LIBRI SEPTEM",
+   "path": "Aug_Locutiones_in_Heptateuchum",
+   "title": "Locutiones in Heptateuchum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI QUAESTIONUM In Heptateuchum LIBRI SEPTEM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI ANNOTATIONUM IN JOB",
+   "path": "Aug_Quaestiones_in_Heptateuchum",
+   "title": "Quaestiones in Heptateuchum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI ANNOTATIONUM IN JOB",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI de Scriptura sacra SPECULUM",
+   "path": "Aug_Annotationes_in_Job",
+   "title": "Annotationes in Job",
+   "split": "none",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI de Scriptura sacra SPECULUM",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI De Consensu EVANGELISTARUM LIBRI QUATUOR",
+   "path": "Aug_Speculum",
+   "title": "Speculum de Scriptura Sacra",
+   "split": "h2",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI De Consensu EVANGELISTARUM LIBRI QUATUOR",
+   "end": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE SERMONE DOMINI IN MONTE",
+   "path": "Aug_De_Consensu_Evangelistarum",
+   "title": "De Consensu Evangelistarum",
+   "split": "h2:books",
+   "drop_em": true
+  },
+  {
+   "start": "S. AURELII AUGUSTINI HIPPONENSIS EPISCOPI DE SERMONE DOMINI IN MONTE",
+   "end": null,
+   "path": "Aug_De_Sermone_Domini_in_Monte",
+   "title": "De Sermone Domini in Monte",
+   "split": "h2:books",
+   "drop_em": true
+  }
+ ]
+}

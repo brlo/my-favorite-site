@@ -1,8 +1,8 @@
 {
  "lang": "la",
  "list": "church_writers_la",
- "volume": 32,
- "source_url": "https://azbyka.ru/otechnik/Patrologija/PL32.html",
+ "volume": 34,
+ "source_url": "https://azbyka.ru/otechnik/Patrologija/PL34.html",
  "author": {
   "path": "I3i4_Aurelius_Augustinus_sanctus_354430",
   "title": "Aurelius Augustinus, beatus (354-430)",
@@ -28,252 +28,275 @@
    "priority": 3
   },
   {
-   "title": "Monastica",
+   "title": "Exegetica",
    "priority": 4
+  },
+  {
+   "title": "Monastica",
+   "priority": 5
   }
  ],
  "works": [
   {
-   "fragment": "Aug_Confessiones",
-   "volume": 32,
-   "folder": "Autobiographica",
+   "fragment": "Aug_De_Doctrina_Christiana",
+   "volume": 34,
+   "folder": "Dogmatica",
+   "ru": "29CP_Христианская_наука_или_Основания_Герменевтики_и_Церковного_красноречия",
    "parts": [
     {
-     "path": "Aug_Confessiones_1",
-     "title": "Confessiones, Libri I–III",
+     "path": "Aug_De_Doctrina_Christiana_1",
+     "title": "De Doctrina Christiana, Libri I–II",
      "first": "LIBER PRIMUS",
-     "last": "LIBER QUARTUS",
+     "last": "LIBER TERTIUS",
      "priority": 1
     },
     {
-     "path": "Aug_Confessiones_2",
-     "title": "Confessiones, Libri IV–VI",
-     "first": "LIBER QUARTUS",
-     "last": "LIBER SEPTIMUS",
+     "path": "Aug_De_Doctrina_Christiana_2",
+     "title": "De Doctrina Christiana, Liber III",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
      "priority": 2
     },
     {
-     "path": "Aug_Confessiones_3",
-     "title": "Confessiones, Libri VII–IX",
-     "first": "LIBER SEPTIMUS",
-     "last": "LIBER DECIMUS",
+     "path": "Aug_De_Doctrina_Christiana_3",
+     "title": "De Doctrina Christiana, Liber IV",
+     "first": "LIBER QUARTUS",
+     "last": null,
      "priority": 3
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_De_Vera_Religione",
+   "volume": 34,
+   "folder": "Dogmatica",
+   "path": "FcUY_De_Vera_Religione",
+   "title": "De Vera Religione",
+   "priority": 4,
+   "ru": "zkE4_Об_истинной_религии"
+  },
+  {
+   "fragment": "Aug_De_Genesi_contra_Manichaeos",
+   "volume": 34,
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Aug_De_Genesi_contra_Manichaeos_1",
+     "title": "De Genesi contra Manichaeos, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
     },
     {
-     "path": "Aug_Confessiones_4",
-     "title": "Confessiones, Libri X–XI",
-     "first": "LIBER DECIMUS",
-     "last": "LIBER DUODECIMUS",
+     "path": "Aug_De_Genesi_contra_Manichaeos_2",
+     "title": "De Genesi contra Manichaeos, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 2
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_De_Genesi_ad_Litteram_Imperfectus",
+   "volume": 34,
+   "folder": "Exegetica",
+   "path": "Aug_De_Genesi_ad_Litteram_Imperfectus",
+   "title": "De Genesi ad Litteram Imperfectus",
+   "priority": 3
+  },
+  {
+   "fragment": "Aug_De_Genesi_ad_Litteram",
+   "volume": 34,
+   "folder": "Exegetica",
+   "ru": "wTrI_О_книге_Бытия_1",
+   "parts": [
+    {
+     "path": "Aug_De_Genesi_ad_Litteram_1",
+     "title": "De Genesi ad Litteram, Libri I–II",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER TERTIUS",
      "priority": 4
     },
     {
-     "path": "Aug_Confessiones_5",
-     "title": "Confessiones, Libri XII–XIII",
-     "first": "LIBER DUODECIMUS",
-     "last": null,
+     "path": "Aug_De_Genesi_ad_Litteram_2",
+     "title": "De Genesi ad Litteram, Libri III–IV",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUINTUS",
      "priority": 5
-    }
-   ],
-   "ru": "VbeR_Исповедь_1"
-  },
-  {
-   "fragment": "Aug_Retractationes",
-   "volume": 32,
-   "folder": "Autobiographica",
-   "parts": [
+    },
     {
-     "path": "Aug_Retractationes_1",
-     "title": "Retractationes, Prologus et Liber I",
-     "first": "Prologus",
-     "last": "LIBER SECUNDUS",
+     "path": "Aug_De_Genesi_ad_Litteram_3",
+     "title": "De Genesi ad Litteram, Libri V–VI",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER SEPTIMUS",
      "priority": 6
     },
     {
-     "path": "Aug_Retractationes_2",
-     "title": "Retractationes, Liber II",
-     "first": "LIBER SECUNDUS",
-     "last": null,
+     "path": "Aug_De_Genesi_ad_Litteram_4",
+     "title": "De Genesi ad Litteram, Libri VII–VIII",
+     "first": "LIBER SEPTIMUS",
+     "last": "LIBER NONUS",
      "priority": 7
-    }
-   ]
-  },
-  {
-   "fragment": "Aug_Contra_Academicos",
-   "volume": 32,
-   "folder": "Philosophica",
-   "parts": [
-    {
-     "path": "Aug_Contra_Academicos_1",
-     "title": "Contra Academicos, Libri I–II",
-     "first": "LIBER PRIMUS",
-     "last": "LIBER TERTIUS",
-     "priority": 1
     },
     {
-     "path": "Aug_Contra_Academicos_2",
-     "title": "Contra Academicos, Liber III",
-     "first": "LIBER TERTIUS",
-     "last": null,
-     "priority": 2
-    }
-   ],
-   "ru": "soHQ_Против_академиков"
-  },
-  {
-   "fragment": "Aug_De_Beata_Vita",
-   "volume": 32,
-   "folder": "Philosophica",
-   "path": "Aug_De_Beata_Vita",
-   "title": "De Beata Vita",
-   "priority": 3,
-   "ru": "M0Cz_О_блаженной_жизни"
-  },
-  {
-   "fragment": "Aug_De_Ordine",
-   "volume": 32,
-   "folder": "Philosophica",
-   "parts": [
-    {
-     "path": "Aug_De_Ordine_1",
-     "title": "De Ordine, Liber I",
-     "first": "LIBER PRIMUS",
-     "last": "LIBER SECUNDUS",
-     "priority": 4
+     "path": "Aug_De_Genesi_ad_Litteram_5",
+     "title": "De Genesi ad Litteram, Libri IX–X",
+     "first": "LIBER NONUS",
+     "last": "LIBER UNDECIMUS",
+     "priority": 8
     },
     {
-     "path": "Aug_De_Ordine_2",
-     "title": "De Ordine, Liber II",
-     "first": "LIBER SECUNDUS",
+     "path": "Aug_De_Genesi_ad_Litteram_6",
+     "title": "De Genesi ad Litteram, Libri XI–XII",
+     "first": "LIBER UNDECIMUS",
      "last": null,
-     "priority": 5
-    }
-   ],
-   "ru": "v4kz_О_порядке"
-  },
-  {
-   "fragment": "Aug_Soliloquia",
-   "volume": 32,
-   "folder": "Philosophica",
-   "path": "Aug_Soliloquia",
-   "title": "Soliloquia",
-   "priority": 6,
-   "ru": "gYDZ_Монологи",
-   "max_kb": 100
-  },
-  {
-   "fragment": "Aug_De_Immortalitate_Animae",
-   "volume": 32,
-   "folder": "Philosophica",
-   "path": "Aug_De_Immortalitate_Animae",
-   "title": "De Immortalitate Animae",
-   "priority": 7,
-   "ru": "lAoB_О_бессмертии_души"
-  },
-  {
-   "fragment": "Aug_De_Quantitate_Animae",
-   "volume": 32,
-   "folder": "Philosophica",
-   "path": "Aug_De_Quantitate_Animae",
-   "title": "De Quantitate Animae",
-   "priority": 8,
-   "ru": "DCeK_О_количестве_души",
-   "max_kb": 100
-  },
-  {
-   "fragment": "Aug_De_Musica",
-   "volume": 32,
-   "folder": "Philosophica",
-   "parts": [
-    {
-     "path": "Aug_De_Musica_1",
-     "title": "De Musica, Libri I–II",
-     "first": "LIBER PRIMUS",
-     "last": "LIBER TERTIUS",
      "priority": 9
-    },
-    {
-     "path": "Aug_De_Musica_2",
-     "title": "De Musica, Libri III–IV",
-     "first": "LIBER TERTIUS",
-     "last": "LIBER QUINTUS",
-     "priority": 10
-    },
-    {
-     "path": "Aug_De_Musica_3",
-     "title": "De Musica, Libri V–VI",
-     "first": "LIBER QUINTUS",
-     "last": null,
-     "priority": 11
     }
    ],
-   "ru": "ZLVb_6_книг_о_музыке_1"
+   "max_kb": 130
   },
   {
-   "fragment": "Aug_De_Magistro",
-   "volume": 32,
-   "folder": "Philosophica",
-   "path": "Aug_De_Magistro",
-   "title": "De Magistro",
-   "priority": 12,
-   "ru": "8MYB_Об_учителе"
+   "fragment": "Aug_Locutiones_in_Heptateuchum",
+   "volume": 34,
+   "folder": "Exegetica",
+   "path": "Aug_Locutiones_in_Heptateuchum",
+   "title": "Locutiones in Heptateuchum",
+   "priority": 10,
+   "max_kb": 120
   },
   {
-   "fragment": "Aug_De_Libero_Arbitrio",
-   "volume": 32,
-   "folder": "Philosophica",
+   "fragment": "Aug_Quaestiones_in_Heptateuchum",
+   "volume": 34,
+   "folder": "Exegetica",
+   "max_kb": 120,
    "parts": [
     {
-     "path": "Aug_De_Libero_Arbitrio_1",
-     "title": "De Libero Arbitrio, Liber I",
+     "path": "Aug_Quaestiones_in_Heptateuchum_1",
+     "title": "Quaestiones in Heptateuchum, Liber I",
      "first": "LIBER PRIMUS",
      "last": "LIBER SECUNDUS",
+     "priority": 11
+    },
+    {
+     "path": "Aug_Quaestiones_in_Heptateuchum_2",
+     "title": "Quaestiones in Heptateuchum, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 12
+    },
+    {
+     "path": "Aug_Quaestiones_in_Heptateuchum_3",
+     "title": "Quaestiones in Heptateuchum, Liber III",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
      "priority": 13
     },
     {
-     "path": "Aug_De_Libero_Arbitrio_2",
-     "title": "De Libero Arbitrio, Liber II",
-     "first": "LIBER SECUNDUS",
-     "last": "LIBER TERTIUS",
+     "path": "Aug_Quaestiones_in_Heptateuchum_4",
+     "title": "Quaestiones in Heptateuchum, Liber IV",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER QUINTUS",
      "priority": 14
     },
     {
-     "path": "Aug_De_Libero_Arbitrio_3",
-     "title": "De Libero Arbitrio, Liber III",
-     "first": "LIBER TERTIUS",
-     "last": null,
+     "path": "Aug_Quaestiones_in_Heptateuchum_5",
+     "title": "Quaestiones in Heptateuchum, Liber V",
+     "first": "LIBER QUINTUS",
+     "last": "LIBER SEXTUS",
      "priority": 15
-    }
-   ],
-   "ru": "0GDi_О_свободе_воли"
-  },
-  {
-   "fragment": "Aug_De_Moribus",
-   "volume": 32,
-   "folder": "Dogmatica",
-   "parts": [
-    {
-     "path": "Aug_De_Moribus_1",
-     "title": "De Moribus Ecclesiae Catholicae, Liber I",
-     "first": "LIBER PRIMUS",
-     "last": "LIBER SECUNDUS",
-     "priority": 1
     },
     {
-     "path": "Aug_De_Moribus_2",
-     "title": "De Moribus Ecclesiae Catholicae, Liber II",
-     "first": "LIBER SECUNDUS",
+     "path": "Aug_Quaestiones_in_Heptateuchum_6",
+     "title": "Quaestiones in Heptateuchum, Liber VI",
+     "first": "LIBER SEXTUS",
+     "last": "LIBER SEPTIMUS",
+     "priority": 16
+    },
+    {
+     "path": "Aug_Quaestiones_in_Heptateuchum_7",
+     "title": "Quaestiones in Heptateuchum, Liber VII",
+     "first": "LIBER SEPTIMUS",
      "last": null,
-     "priority": 2
+     "priority": 17
     }
    ]
   },
   {
-   "fragment": "Aug_Regula",
-   "volume": 32,
-   "folder": "Monastica",
-   "path": "Aug_Regula",
-   "title": "Regula ad Servos Dei",
-   "priority": 1
+   "fragment": "Aug_Annotationes_in_Job",
+   "volume": 34,
+   "folder": "Exegetica",
+   "path": "Aug_Annotationes_in_Job",
+   "title": "Annotationes in Job",
+   "priority": 18,
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_Speculum",
+   "volume": 34,
+   "folder": "Dogmatica",
+   "path": "Aug_Speculum",
+   "title": "Speculum de Scriptura Sacra",
+   "priority": 5,
+   "ru": "wrKE_Зерцало_из_Священного_Писания_1",
+   "max_kb": 110
+  },
+  {
+   "fragment": "Aug_De_Consensu_Evangelistarum",
+   "volume": 34,
+   "folder": "Exegetica",
+   "ru": "c74k_О_согласии_евангелистов_1",
+   "parts": [
+    {
+     "path": "Aug_De_Consensu_Evangelistarum_1",
+     "title": "De Consensu Evangelistarum, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 19
+    },
+    {
+     "path": "Aug_De_Consensu_Evangelistarum_2",
+     "title": "De Consensu Evangelistarum, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 20
+    },
+    {
+     "path": "Aug_De_Consensu_Evangelistarum_3",
+     "title": "De Consensu Evangelistarum, Liber III",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 21
+    },
+    {
+     "path": "Aug_De_Consensu_Evangelistarum_4",
+     "title": "De Consensu Evangelistarum, Liber IV",
+     "first": "LIBER QUARTUS",
+     "last": null,
+     "priority": 22
+    }
+   ],
+   "max_kb": 120
+  },
+  {
+   "fragment": "Aug_De_Sermone_Domini_in_Monte",
+   "volume": 34,
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Aug_De_Sermone_Domini_in_Monte_1",
+     "title": "De Sermone Domini in Monte, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 23
+    },
+    {
+     "path": "Aug_De_Sermone_Domini_in_Monte_2",
+     "title": "De Sermone Domini in Monte, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 24
+    }
+   ]
   }
  ]
 }
