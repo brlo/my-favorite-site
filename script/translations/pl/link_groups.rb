@@ -16,7 +16,8 @@ Dir[File.expand_path('authors/*.json', __dir__)].sort.each do |file|
             end
     pairs.each do |la_path, ru_path|
       next if la_path.blank? || ru_path.blank?
-      la = ::Page.find_by(lang: lang, path_low: la_path.downcase)
+      la = ::Page.find_by(lang: lang, path_low: la_path.downcase) ||
+           ::Page.where(lang: lang).where("path_low LIKE ?", "#{la_path.downcase}\_%").order(:id).first
       ru = ::Page.find_by(lang: 'ru', path_low: ru_path.downcase)
       next unless la && ru
       next if la.group_lang_id == ru.group_lang_id
