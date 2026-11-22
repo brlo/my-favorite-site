@@ -43,6 +43,35 @@
     </section>
   <% end %>
 
+  <% if @reactions_total %>
+    <section id="reactions" class="dash-card">
+      <h2 class="dash-card__title">
+        Последние реакции
+        <span class="dash-card__total">Всего: <%= @reactions_total %> · за 7 дней: <%= @reactions_week %></span>
+      </h2>
+      <p class="dash-card__lead">
+        Лайки статей и новостей. Одна реакция на IP: повторное нажатие снимает её,
+        выбор другого вида заменяет прежний, поэтому это число читателей, а не просмотров.
+      </p>
+
+      <% if @reactions.any? %>
+        <ul class="dash-list">
+          <%= render partial: 'admin/dashboard/reaction', collection: @reactions, as: :reaction %>
+        </ul>
+        <p class="dash-card__footer dash-reaction-summary">
+          По видам:
+          <% @reaction_counts.each do |kind, count| %>
+            <span class="dash-reaction-summary__item" title="<%= t("news.reactions.#{kind}") %>">
+              <span aria-hidden="true"><%= ::PageReaction::KINDS[kind] %></span> <%= count %>
+            </span>
+          <% end %>
+        </p>
+      <% else %>
+        <p class="dash-card__empty">Пока никто не отреагировал.</p>
+      <% end %>
+    </section>
+  <% end %>
+
   <section class="dash-card">
     <h2 class="dash-card__title">Посещения за неделю</h2>
     <p class="dash-card__lead">

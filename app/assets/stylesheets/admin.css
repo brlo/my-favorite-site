@@ -517,6 +517,31 @@
   text-align: center;
 }
 
+/* Последние реакции: вид реакции подписан словом, итоги по видам — в подвале карточки */
+.admin-ui .dash-reaction {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.admin-ui .dash-reaction__label {
+  color: var(--text-secondary);
+  font-size: .78rem;
+}
+
+.admin-ui .dash-reaction-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  color: var(--text-secondary);
+  font-size: .8rem;
+}
+
+.admin-ui .dash-reaction-summary__item {
+  white-space: nowrap;
+}
+
 /* Вспомогательные карточки недельной и вчерашней статистики */
 .admin-ui .dash-stat-grid {
   display: grid;

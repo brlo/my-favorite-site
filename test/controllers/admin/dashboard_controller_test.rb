@@ -42,6 +42,44 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_no_match(/Популярные статьи/, response.body)
   end
 
+  test 'сводка показывает последние реакции с видом, статьёй и временем' do
+    page = create_page(title: 'Про сборник библейских цитат', is_published: true)
+    PageReaction.create!(page: page, kind: 'like', ip_digest: 'digest-1', created_at: 2.hours.ago)
+    PageReaction.create!(page: page, kind: 'useful', ip_digest: 'digest-2', created_at: 1.hour.ago)
+
+    get '/admin'
+    assert_response :success
+
+    assert_select '#reactions' do
+      assert_select '.dash-card__total', text: /Всего: 2.*за 7 дней: 2/m
+      assert_select '.dash-list__row', count: 2
+      assert_select '.dash-list__main a', text: 'Про сборник библейских цитат'
+      # свежая реакция сверху
+      assert_select '.dash-list__row:first-child .dash-reaction__label', text: 'Полезно'
+      assert_select '.dash-list__row:first-child .dash-list__meta', text: /\d{4}-\d{2}-\d{2} \d{2}:\d{2}/
+      assert_select '.dash-reaction-summary', text: /👍 1/
+      assert_select '.dash-reaction-summary', text: /❤️ 1/
+    end
+  end
+
+  test 'без реакций сводка показывает пустое состояние' do
+    get '/admin'
+    assert_response :success
+    assert_select '#reactions .dash-card__empty', text: 'Пока никто не отреагировал.'
+    assert_select '#reactions .dash-list', count: 0
+  end
+
+  test 'реакция на скрытую статью выводится с бейджем скрытой' do
+    page = create_page(title: 'Черновик', is_published: false)
+    PageReaction.create!(page: page, kind: 'thanks', ip_digest: 'digest-3')
+
+    get '/admin'
+    assert_response :success
+
+    assert_select '#reactions .dash-list__main a', text: 'Черновик'
+    assert_select '#reactions .dash-list__row', text: /скрыта/
+  end
+
   test 'сводка показывает читаемые сейчас страницы на всех языках и книги Библии' do
     ru = create_page(title: 'Русская читаемая', lang: 'ru', is_published: true)
     en = create_page(title: 'English read now', lang: 'en', is_published: true)
@@ -76,6 +114,7 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     get '/admin'
     assert_response :success
     assert_select '#reading-now', count: 0
+    assert_select '#reactions', count: 0
   end
 
   private

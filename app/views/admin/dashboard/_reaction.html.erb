@@ -1,0 +1,19 @@
+<%# locals: reaction: — одна реакция читателя с видом, статьёй и временем %>
+<% page = reaction.page %>
+<% label = t("news.reactions.#{reaction.kind}") %>
+<li class="dash-list__row">
+  <span class="dash-list__main">
+    <span class="dash-reaction" title="<%= label %>">
+      <span aria-hidden="true"><%= ::PageReaction::KINDS[reaction.kind] %></span>
+      <span class="dash-reaction__label"><%= label %></span>
+    </span>
+    <% if page %>
+      <%= link_to page.title, edit_admin_page_path(page), title: page_lang_string_full(page.lang) %>
+      <span class="dash-badge"><%= page.lang %></span>
+      <%= admin_page_badges(page) %>
+    <% else %>
+      <span class="dash-list__title">Статья удалена</span>
+    <% end %>
+  </span>
+  <span class="dash-list__meta"><%= admin_time(reaction.created_at) %></span>
+</li>
