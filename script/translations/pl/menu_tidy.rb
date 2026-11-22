@@ -45,7 +45,7 @@ module MenuTidy
 
   def valid_roman?(str)
     s = str.to_s.upcase
-    return false if s.empty? || s.length > 6 || !s.match?(/\A[IVXLC]+\z/)
+    return false if s.empty? || s.length > 12 || !s.match?(/\A[IVXLC]+\z/)
     roman_to_i(s).positive?
   end
 
@@ -53,7 +53,7 @@ module MenuTidy
   def convert(title)
     t = title.to_s.strip
     WORDS.sort_by { |k, _| -k.length }.each do |word, num|
-      t = t.gsub(/\b#{Regexp.escape(word)}\b/, num.to_s)
+      t = t.gsub(/\b#{Regexp.escape(word)}\b/i, num.to_s)
     end
     t = t.gsub(/\b(#{KEYWORDS.join('|')})\s+([IVXLC]+)(\s*[–-]\s*([IVXLC]+))?/) do
       head, from, dash, to = Regexp.last_match(1), Regexp.last_match(2), Regexp.last_match(3), Regexp.last_match(4)
@@ -68,6 +68,15 @@ module MenuTidy
     t = t.gsub(/\(([IVXLC]+)\)/) { valid_roman?(Regexp.last_match(1)) ? "(#{roman_to_i(Regexp.last_match(1))})" : Regexp.last_match(0) }
     t = t.gsub(/\A([IVXLC]+)(?=[\s.,;:)]|\z)/) { valid_roman?(Regexp.last_match(1)) ? roman_to_i(Regexp.last_match(1)).to_s : Regexp.last_match(0) }
     t = t.gsub(/([IVXLC]+)\z/) { valid_roman?(Regexp.last_match(1)) ? roman_to_i(Regexp.last_match(1)).to_s : Regexp.last_match(0) }
+    # оставшиеся отдельные римские токены (LXXXIII, CXXIV) — тоже в арабские
+    { 'LIBER' => 'Liber', 'LIBRI' => 'Libri', 'TRACTATUS' => 'Tractatus', 'SERMO' => 'Sermo',
+      'SERMONES' => 'Sermones', 'EPISTOLA' => 'Epistola', 'EPISTOLAE' => 'Epistolae',
+      'PSALMUS' => 'Psalmus', 'CAPUT' => 'Caput' }.each { |up, normal| t = t.gsub(/\b#{up}\b/, normal) }
+    t = t.gsub(/\b([IVXLC]{2,})\b/) do
+      s = Regexp.last_match(1)
+      n = valid_roman?(s) ? roman_to_i(s) : nil
+      n && n <= 300 ? n.to_s : s
+    end
     t.gsub(/\s+/, ' ').strip
   end
 
@@ -144,8 +153,8 @@ module MenuTidy
       sf_children = items.select { |m| m.parent_id == sf.id }.sort_by { |m| sort_key(m) }
       sf_children.each_with_index do |ch, idx|
         title = page_title(ch) || ch.title
-        _b, label = split_title(title, sf.title)
-        label = convert(label).presence || convert(title)
+        label = strip_work_prefix(title, sf.title)
+        label = convert(title) if label.blank?
         update(ch, { title: label, priority: idx + 1 }, dry)
       end
     end
@@ -206,12 +215,49 @@ module MenuTidy
     end
   end
 
-  def run!(lang: 'la', list_path: 'church_writers_la', dry: false, author_path: nil)
+  def common_prefix(a, b)
+    la = a.to_s.downcase
+    lb = b.to_s.downcase
+    n = 0
+    n += 1 while n < la.length && n < lb.length && la[n] == lb[n]
+    n
+  end
+
+  def strip_work_prefix(title, work_title)
+    t = title.to_s.strip
+    wt = work_title.to_s.strip
+    if wt.present? && t.downcase.start_with?(wt.downcase)
+      t = t[wt.length..]
+    elsif wt.present? && (n = common_prefix(t, wt)) >= 8
+      t = t[n..]
+    end
+    convert(t.sub(/\A[,\s–—-]+/, '').strip)
+  end
+
+  # нормализация уже существующих пунктов меню у всех латинских авторов (без перестроения)
+  def normalize_titles!(lang: 'la', list_path: 'church_writers_la', dry: false)
+    list = ::Page.find_by(lang: lang, path_low: list_path.downcase) or return
+    ::Page.where(lang: lang, parent_id: list.id, page_type: 4).find_each do |author|
+      ::Menu.where(page_id: author.id).where.not(path: [nil, '']).find_each do |m|
+        new_title = convert(m.title)
+        next if new_title == m.title
+        if dry
+          puts "  [#{m.id}] #{m.title.inspect} → #{new_title.inspect}"
+        else
+          m.update!(title: new_title)
+        end
+      end
+    end
+  end
+
+  def run!(lang: 'la', list_path: 'church_writers_la', dry: false, author_path: nil, skip_paths: [])
     list = ::Page.find_by(lang: lang, path_low: list_path.downcase)
     return puts("нет списка #{list_path}") unless list
 
     scope = ::Page.where(lang: lang, parent_id: list.id, page_type: 4)
     scope = scope.where(path_low: author_path.downcase) if author_path
+    skip = skip_paths.map(&:downcase)
+    scope = scope.where.not(path_low: skip) if skip.any?
     scope.order(:id).each do |author|
       puts "== #{author.title}"
       tidy_author(author, dry: dry)

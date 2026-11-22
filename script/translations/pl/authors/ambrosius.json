@@ -34,10 +34,6 @@
   {
    "title": "Sermones",
    "priority": 5
-  },
-  {
-   "title": "Hymni",
-   "priority": 6
   }
  ],
  "works": [
@@ -720,7 +716,7 @@
   {
    "fragment": "Ambr_Hymni",
    "volume": 16,
-   "folder": "Hymni",
+   "folder": null,
    "path": "Ambr_Hymni",
    "title": "Hymni",
    "priority": 1,

@@ -58,6 +58,248 @@
  ],
  "works": [
   {
+   "fragment": "Aug_Confessiones",
+   "volume": 32,
+   "folder": "Autobiographica",
+   "parts": [
+    {
+     "path": "Aug_Confessiones_1",
+     "title": "Confessiones, Libri I–III",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER QUARTUS",
+     "priority": 1,
+     "ru": "VbeR_Исповедь_1"
+    },
+    {
+     "path": "Aug_Confessiones_2",
+     "title": "Confessiones, Libri IV–VI",
+     "first": "LIBER QUARTUS",
+     "last": "LIBER SEPTIMUS",
+     "priority": 2
+    },
+    {
+     "path": "Aug_Confessiones_3",
+     "title": "Confessiones, Libri VII–IX",
+     "first": "LIBER SEPTIMUS",
+     "last": "LIBER DECIMUS",
+     "priority": 3
+    },
+    {
+     "path": "Aug_Confessiones_4",
+     "title": "Confessiones, Libri X–XI",
+     "first": "LIBER DECIMUS",
+     "last": "LIBER DUODECIMUS",
+     "priority": 4
+    },
+    {
+     "path": "Aug_Confessiones_5",
+     "title": "Confessiones, Libri XII–XIII",
+     "first": "LIBER DUODECIMUS",
+     "last": null,
+     "priority": 5
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_Retractationes",
+   "volume": 32,
+   "folder": "Autobiographica",
+   "parts": [
+    {
+     "path": "Aug_Retractationes_1",
+     "title": "Retractationes, Prologus et Liber I",
+     "first": "Prologus",
+     "last": "LIBER SECUNDUS",
+     "priority": 6
+    },
+    {
+     "path": "Aug_Retractationes_2",
+     "title": "Retractationes, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 7
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_Contra_Academicos",
+   "volume": 32,
+   "folder": "Philosophica",
+   "parts": [
+    {
+     "path": "Aug_Contra_Academicos_1",
+     "title": "Contra Academicos, Libri I–II",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER TERTIUS",
+     "priority": 1,
+     "ru": "soHQ_Против_академиков"
+    },
+    {
+     "path": "Aug_Contra_Academicos_2",
+     "title": "Contra Academicos, Liber III",
+     "first": "LIBER TERTIUS",
+     "last": null,
+     "priority": 2
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_De_Beata_Vita",
+   "volume": 32,
+   "folder": "Philosophica",
+   "path": "Aug_De_Beata_Vita",
+   "title": "De Beata Vita",
+   "priority": 3,
+   "ru": "M0Cz_О_блаженной_жизни"
+  },
+  {
+   "fragment": "Aug_De_Ordine",
+   "volume": 32,
+   "folder": "Philosophica",
+   "parts": [
+    {
+     "path": "Aug_De_Ordine_1",
+     "title": "De Ordine, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 4,
+     "ru": "v4kz_О_порядке"
+    },
+    {
+     "path": "Aug_De_Ordine_2",
+     "title": "De Ordine, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 5
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_Soliloquia",
+   "volume": 32,
+   "folder": "Philosophica",
+   "path": "Aug_Soliloquia",
+   "title": "Soliloquia",
+   "priority": 6,
+   "ru": "gYDZ_Монологи",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_De_Immortalitate_Animae",
+   "volume": 32,
+   "folder": "Philosophica",
+   "path": "Aug_De_Immortalitate_Animae",
+   "title": "De Immortalitate Animae",
+   "priority": 7,
+   "ru": "lAoB_О_бессмертии_души"
+  },
+  {
+   "fragment": "Aug_De_Quantitate_Animae",
+   "volume": 32,
+   "folder": "Philosophica",
+   "path": "Aug_De_Quantitate_Animae",
+   "title": "De Quantitate Animae",
+   "priority": 8,
+   "ru": "DCeK_О_количестве_души",
+   "max_kb": 100
+  },
+  {
+   "fragment": "Aug_De_Musica",
+   "volume": 32,
+   "folder": "Philosophica",
+   "parts": [
+    {
+     "path": "Aug_De_Musica_1",
+     "title": "De Musica, Libri I–II",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER TERTIUS",
+     "priority": 9,
+     "ru": "ZLVb_6_книг_о_музыке_1"
+    },
+    {
+     "path": "Aug_De_Musica_2",
+     "title": "De Musica, Libri III–IV",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUINTUS",
+     "priority": 10
+    },
+    {
+     "path": "Aug_De_Musica_3",
+     "title": "De Musica, Libri V–VI",
+     "first": "LIBER QUINTUS",
+     "last": null,
+     "priority": 11
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_De_Magistro",
+   "volume": 32,
+   "folder": "Philosophica",
+   "path": "Aug_De_Magistro",
+   "title": "De Magistro",
+   "priority": 12,
+   "ru": "8MYB_Об_учителе"
+  },
+  {
+   "fragment": "Aug_De_Libero_Arbitrio",
+   "volume": 32,
+   "folder": "Philosophica",
+   "parts": [
+    {
+     "path": "Aug_De_Libero_Arbitrio_1",
+     "title": "De Libero Arbitrio, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 13,
+     "ru": "0GDi_О_свободе_воли"
+    },
+    {
+     "path": "Aug_De_Libero_Arbitrio_2",
+     "title": "De Libero Arbitrio, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 14
+    },
+    {
+     "path": "Aug_De_Libero_Arbitrio_3",
+     "title": "De Libero Arbitrio, Liber III",
+     "first": "LIBER TERTIUS",
+     "last": null,
+     "priority": 15
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_De_Moribus",
+   "volume": 32,
+   "folder": "Dogmatica",
+   "parts": [
+    {
+     "path": "Aug_De_Moribus_1",
+     "title": "De Moribus Ecclesiae Catholicae, Liber I",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Aug_De_Moribus_2",
+     "title": "De Moribus Ecclesiae Catholicae, Liber II",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 2
+    }
+   ]
+  },
+  {
+   "fragment": "Aug_Regula",
+   "volume": 32,
+   "folder": "Monastica",
+   "path": "Aug_Regula",
+   "title": "Regula ad Servos Dei",
+   "priority": 1
+  },
+  {
    "fragment": "Aug_De_Doctrina_Christiana",
    "volume": 34,
    "folder": "Dogmatica",

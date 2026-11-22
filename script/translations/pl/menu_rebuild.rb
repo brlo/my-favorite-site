@@ -13,6 +13,15 @@ load File.expand_path('menu_tidy.rb', __dir__)
 module MenuRebuild
   module_function
 
+  # длина общего префикса (без регистра)
+  def common_prefix(a, b)
+    la = a.to_s.downcase
+    lb = b.to_s.downcase
+    n = 0
+    n += 1 while n < la.length && n < lb.length && la[n] == lb[n]
+    n
+  end
+
   def part_label(page_title, work_title)
     t = page_title.to_s.strip
     wt = work_title.to_s.strip
@@ -20,8 +29,13 @@ module MenuRebuild
       t = t.split(',', 2).last
     elsif wt.present? && t.downcase.start_with?(wt.downcase)
       t = t[wt.length..]
+    elsif wt.present? && (n = common_prefix(t, wt)) >= 8
+      t = t[n..]
     end
     t = t.sub(/\A[,\s–—-]+/, '').strip
+    if (m = t.match(/\b(Libri|Liber|Tractatus|Epistolae|Sermo|Sermones|Caput|Capitula)\b/)) && m.begin(0).positive?
+      t = t[m.begin(0)..]
+    end
     if (m = t.match(/\A\((\d+\s*\/\s*\d+)\)\z/))
       t = m[1]
     end
@@ -44,6 +58,9 @@ module MenuRebuild
       return MenuTidy.convert(rest) if rest.present?
     end
     if f.casecmp?('Enarrationes in Psalmos') && (m = t.match(/\AEnarratio(?:nes)? in Psalm(?:um|os)\s+(.+)\z/i))
+      return MenuTidy.convert(m[1])
+    end
+    if f.casecmp?('Collationes') && (m = t.match(/\ACollatio\s+(.+)\z/i))
       return MenuTidy.convert(m[1])
     end
     MenuTidy.convert(t)
@@ -82,6 +99,16 @@ module MenuRebuild
     author = ::Page.find_by(lang: lang, path_low: apath.downcase)
     return puts("! нет автора #{apath}") unless author
     puts "== #{author.title}"
+    # лишние дубли пунктов на один и тот же путь
+    ::Menu.where(page_id: author.id).where.not(path: [nil, '']).group(:path).having('count(*) > 1').pluck(:path).each do |pth|
+      ids = ::Menu.where(page_id: author.id, path: pth).order(:id).pluck(:id)
+      next if ids.size < 2
+      if dry
+        puts "  дубль пункта #{pth}: оставить #{ids.first}, удалить #{ids[1..].join(',')}"
+      else
+        ::Menu.where(id: ids[1..]).delete_all
+      end
+    end
     pages_by_path = ::Page.where(lang: lang, parent_id: author.id).to_a
                          .each_with_object({}) { |p, h| h[p.path.downcase] = p }
 
@@ -119,9 +146,11 @@ module MenuRebuild
 
     # 3. пункты
     counter = Hash.new(0)
+    per_folder = works.group_by { |w, _pages| w['folder'] }
     works.each do |w, pages|
       folder = dry ? nil : folder_menus[w['folder']]
-      if pages.size > 1
+      single_work_folder = per_folder[w['folder']].size == 1
+      if pages.size > 1 && !single_work_folder
         sub_title = display_title(work_title(w))
         sub = nil
         counter[w['folder']] += 1
@@ -140,6 +169,17 @@ module MenuRebuild
             m = ::Menu.where(page_id: author.id, path: p.path).first
             m ||= ::Menu.create!(page_id: author.id, title: label, path: p.path, is_empty: false, priority: idx + 1)
             m.update!(parent_id: sub.id, title: label, priority: idx + 1)
+          end
+        end
+      elsif pages.size > 1 && single_work_folder
+        pages.each_with_index do |p, idx|
+          label = part_label(p.title, work_title(w)).presence || (idx + 1).to_s
+          if dry
+            puts "  #{w['folder']} / #{label}  (#{p.path})"
+          else
+            m = ::Menu.where(page_id: author.id, path: p.path).first
+            m ||= ::Menu.create!(page_id: author.id, title: label, path: p.path, is_empty: false, priority: idx + 1)
+            m.update!(parent_id: folder&.id, title: label, priority: idx + 1)
           end
         end
       else
@@ -166,8 +206,4 @@ module MenuRebuild
   end
 end
 
-files = Dir[File.expand_path('authors/*.json', __dir__)]
-if ENV['AUTHOR'].present?
-  files = files.select { |f| File.basename(f, '.json') == ENV['AUTHOR'] }
-end
-MenuRebuild.run!(files.sort, dry: ENV['DRY_RUN'].present?)
+# запуск: menu_rebuild_run.rb
