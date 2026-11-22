@@ -31,6 +31,29 @@ def tidy(html: str) -> str:
     return html.strip()
 
 
+FRAGMENT_NOTE = re.compile(r'^(Citat hoc fragmentum|Hoc fragmentum|Haec autem verba pertinere|'
+                           r'Citatum hoc|Fragmentum istud)', re.I)
+EDIT_TAIL = re.compile(r'\s*\((?:S\.\s*)?(?:Aug|Hier|Ambr|Greg|Cypr|Tert)[^)]{0,90}'
+                       r'(?:l\.|lib\.|cap\.|epist\.)[^)]*\)\.?\s*$')
+
+
+def clean_page(body: str) -> str:
+    """Убирает редакторские примечания Migne, попавшие в тело (фрагменты, ссылки в конце)."""
+    parts = re.split(r'(?=<p>)', body)
+    kept = []
+    for part in parts:
+        m = re.match(r'<p>(.*?)</p>', part, re.S)
+        if m and FRAGMENT_NOTE.match(re.sub(r'^\[PL[\d.]+[A-Z]?\]\s*', '', m.group(1))):
+            continue
+        kept.append(part)
+    body = ''.join(kept).strip()
+    # редакторская ссылка в конце последнего абзаца: «… (S. Aug., l. II …, c. 5).»
+    m = re.search(r'<p>((?:(?!</p>).)*)</p>\s*$', body, re.S)
+    if m and EDIT_TAIL.search(m.group(1)):
+        body = body[:m.start(1)] + EDIT_TAIL.sub('', m.group(1)) + body[m.end(1):]
+    return body
+
+
 def marker_range(html: str):
     ms = MARKER_RE.findall(html)
     if not ms:
@@ -128,9 +151,9 @@ def main():
         if not w.get('parts'):
             body, _miss, _fill = fill_empty_letters(src)
             filled_letters += _fill
-            body = tidy(body)
+            body = clean_page(tidy(body))
             note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + (DUBIUM_NOTE if dubium else '')
-            pages.append({'path': w['path'], 'title': w['title'], 'ru': w['ru'], 'folder': w['folder'],
+            pages.append({'path': w['path'], 'title': w['title'], 'ru': w.get('ru'), 'folder': w['folder'],
                           'priority': w['priority'], 'body': body, 'references': note,
                           'page_type': 1, 'seo_kind': 'book', 'cols': cols_str(body)})
             continue
@@ -150,9 +173,9 @@ def main():
             chunk, miss, fill = fill_empty_letters(chunk)
             missing_letters += miss
             filled_letters += fill
-            body = tidy(chunk)
+            body = clean_page(tidy(chunk))
             note = SOURCE_TPL.format(cols=cols_str(body), url=cfg['source_url']) + (DUBIUM_NOTE if dubium else '')
-            pages.append({'path': part['path'], 'title': part['title'], 'ru': w['ru'], 'folder': w['folder'],
+            pages.append({'path': part['path'], 'title': part['title'], 'ru': w.get('ru'), 'folder': w['folder'],
                           'priority': part['priority'], 'body': body, 'references': note,
                           'page_type': 1, 'seo_kind': 'book', 'cols': cols_str(body)})
             print(f"{part['title']:<32} {len(body)//1024:>4} КБ  coll. {cols_str(body):<12} h2={body.count('<h2>')}")

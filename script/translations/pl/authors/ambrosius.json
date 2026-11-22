@@ -113,6 +113,191 @@
    "path": "Ambr_De_Fuga_Saeculi",
    "title": "De Fuga Saeculi",
    "priority": 1
+  },
+  {
+   "fragment": "Ambr_De_Paradiso",
+   "folder": "Exegetica",
+   "path": "Ambr_De_Paradiso",
+   "title": "De Paradiso",
+   "priority": 3
+  },
+  {
+   "fragment": "Ambr_De_Cain_et_Abel",
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Ambr_De_Cain_et_Abel_1",
+     "title": "De Cain et Abel, Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Ambr_De_Cain_et_Abel_2",
+     "title": "De Cain et Abel, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 2
+    }
+   ]
+  },
+  {
+   "fragment": "Ambr_De_Noe_et_Arca",
+   "folder": "Exegetica",
+   "path": "Ambr_De_Noe_et_Arca",
+   "title": "De Noe et Arca",
+   "priority": 5
+  },
+  {
+   "fragment": "Ambr_De_Abraham",
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Ambr_De_Abraham_1",
+     "title": "De Abraham, Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Ambr_De_Abraham_2",
+     "title": "De Abraham, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": null,
+     "priority": 2
+    }
+   ]
+  },
+  {
+   "fragment": "Ambr_De_Benedictionibus_Patriarcharum",
+   "folder": "Exegetica",
+   "path": "Ambr_De_Benedictionibus_Patriarcharum",
+   "title": "De Benedictionibus Patriarcharum",
+   "priority": 7
+  },
+  {
+   "fragment": "Ambr_De_Elia_et_Jejunio",
+   "folder": "Exegetica",
+   "path": "Ambr_De_Elia_et_Jejunio",
+   "title": "De Elia et Jejunio",
+   "priority": 8
+  },
+  {
+   "fragment": "Ambr_De_Nabuthe",
+   "folder": "Exegetica",
+   "path": "Ambr_De_Nabuthe",
+   "title": "De Nabuthe Jezraelita",
+   "priority": 9
+  },
+  {
+   "fragment": "Ambr_De_Tobia",
+   "folder": "Exegetica",
+   "path": "Ambr_De_Tobia",
+   "title": "De Tobia",
+   "priority": 10
+  },
+  {
+   "fragment": "Ambr_De_Interpellatione_Job_et_David",
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Ambr_De_Interpellatione_Job_et_David_1",
+     "title": "De Interpellatione Job et David, Liber PRIMUS",
+     "first": "LIBER PRIMUS",
+     "last": "LIBER SECUNDUS",
+     "priority": 1
+    },
+    {
+     "path": "Ambr_De_Interpellatione_Job_et_David_2",
+     "title": "De Interpellatione Job et David, Liber SECUNDUS",
+     "first": "LIBER SECUNDUS",
+     "last": "LIBER TERTIUS",
+     "priority": 2
+    },
+    {
+     "path": "Ambr_De_Interpellatione_Job_et_David_3",
+     "title": "De Interpellatione Job et David, Liber TERTIUS",
+     "first": "LIBER TERTIUS",
+     "last": "LIBER QUARTUS",
+     "priority": 3
+    },
+    {
+     "path": "Ambr_De_Interpellatione_Job_et_David_4",
+     "title": "De Interpellatione Job et David, Liber QUARTUS",
+     "first": "LIBER QUARTUS",
+     "last": null,
+     "priority": 4
+    }
+   ]
+  },
+  {
+   "fragment": "Ambr_Apologia_David",
+   "folder": "Exegetica",
+   "path": "Ambr_Apologia_David",
+   "title": "Apologia Prophetae David ad Theodosium",
+   "priority": 12
+  },
+  {
+   "fragment": "Ambr_Apologia_Altera_David",
+   "folder": "Exegetica",
+   "path": "Ambr_Apologia_Altera_David",
+   "title": "Apologia Altera Prophetae David",
+   "priority": 13
+  },
+  {
+   "fragment": "Ambr_Enarrationes_in_XII_Psalmos",
+   "folder": "Exegetica",
+   "parts": [
+    {
+     "path": "Ambr_Enarrationes_in_XII_Psalmos_1",
+     "title": "Enarratio in Psalmum I",
+     "first": "IN PSALMUM PRIMUM",
+     "last": "IN PSALMUM XXXV",
+     "priority": 14
+    },
+    {
+     "path": "Ambr_Enarrationes_in_XII_Psalmos_2",
+     "title": "Enarratio in Psalmos XXXV–XXXVI",
+     "first": "IN PSALMUM XXXV",
+     "last": "IN PSALMUM XXXVII",
+     "priority": 15
+    },
+    {
+     "path": "Ambr_Enarrationes_in_XII_Psalmos_3",
+     "title": "Enarratio in Psalmum XXXVII",
+     "first": "IN PSALMUM XXXVII",
+     "last": "IN PSALMUM XXXVIII",
+     "priority": 16
+    },
+    {
+     "path": "Ambr_Enarrationes_in_XII_Psalmos_4",
+     "title": "Enarratio in Psalmos XXXVIII–XXXIX",
+     "first": "IN PSALMUM XXXVIII",
+     "last": "IN PSALMUM XL ENARRATIO",
+     "priority": 17
+    },
+    {
+     "path": "Ambr_Enarrationes_in_XII_Psalmos_5",
+     "title": "Enarratio in Psalmum XL",
+     "first": "IN PSALMUM XL ENARRATIO",
+     "last": "IN PSALMUM XLIII",
+     "priority": 18
+    },
+    {
+     "path": "Ambr_Enarrationes_in_XII_Psalmos_6",
+     "title": "Enarratio in Psalmum XLIII",
+     "first": "IN PSALMUM XLIII",
+     "last": "IN PSALMUM XLV ENARRATIO",
+     "priority": 19
+    },
+    {
+     "path": "Ambr_Enarrationes_in_XII_Psalmos_7",
+     "title": "Enarrationes in Psalmos XLV–LXI",
+     "first": "IN PSALMUM XLV ENARRATIO",
+     "last": null,
+     "priority": 20
+    }
+   ]
   }
  ]
 }

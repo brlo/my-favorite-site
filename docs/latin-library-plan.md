@@ -12,12 +12,13 @@
   Письма и «Testimonia» раздроблены (4 и 3 страницы), потому что длинные страницы тяжело
   читать с телефона; вторая и следующие части получили отдельные группы языков.
 - **Киприан на проде** (деплой + импорт 22.11): 23 страницы, все 200.
-- **Амвросий, бат 2 (в dev)**: PL 14 — 12 страниц: автор (`Ambr_Ambrosius_Mediolanensis`) и
-  11 трудов в папках «Exegetica» / «Moralia»: Hexaemeron (6 книг отдельными страницами),
-  De Isaac et Anima, De Bono Mortis, De Jacob et Vita Beata, De Joseph Patriarcha, De Fuga Saeculi.
-  Из 19 трудов PL 14 с русскими совпали 6 — остальные (De Paradiso, De Cain et Abel, De Noe,
-  De Abraham, De Benedictionibus, De Elia, De Nabuthe, De Tobia, Apologiae David, Enarrationes
-  in XII Psalmos) в русской библиотеке отсутствуют.
+- **Амвросий, бат 2**: PL 14 — автор (`Ambr_Ambrosius_Mediolanensis`) и **все 18 подлинных
+  трудов тома** (34 страницы): Hexaemeron (6 книг), De Paradiso, De Cain et Abel (2 книги),
+  De Noe et Arca, De Abraham (2), De Isaac et Anima, De Bono Mortis, De Fuga Saeculi,
+  De Jacob et Vita Beata, De Joseph Patriarcha, De Benedictionibus Patriarcharum,
+  De Elia et Jejunio, De Nabuthe, De Tobia, De Interpellatione Job et David (4 книги),
+  Apologia David, Apologia Altera, Enarrationes in XII Psalmos (7 страниц по псалмам).
+  Из них 6 совпадают с русскими трудами, остальные — подлинные, но без русского перевода.
 - **Иларий отложен**: из 5 русских трудов 3 — фрагменты («Единение верующих с Богом»,
   «О Троице (фрагменты)» с разбивкой 1,1–13 / 12,52–57 / 1,8, «Изъяснение тайн. Кн. 1»),
   для них нужна пораздельная привязка к De Trinitate и Tractatus Mysteriorum; «Против Авксентия»
@@ -33,8 +34,12 @@
 
 ## 1. Правило отбора
 
-1. Берём только тех авторов и только те труды, у которых уже есть страница в **русской**
-   библиотеке (`church_writers`, id 363).
+1. Берём труд, если он **есть в русской библиотеке** (`church_writers`, id 363) **или**
+   **достоверно принадлежит автору** (подлинность по Prolegomena Migne и современной
+   науке). Spuria/Dubia — только при наличии русской страницы и с пометкой в примечаниях.
+   Так в бат Амвросия вошли и труды без русского перевода (De Paradiso, De Cain et Abel,
+   De Noe et Arca, De Abraham, De Benedictionibus, De Elia, De Nabuthe, De Tobia,
+   De Interpellatione Job et David, Apologiae David, Enarrationes in XII Psalmos).
 2. Текст труда — только Migne (Patrologia Latina) с azbyka.ru. Других изданий не подмешиваем;
    уже существующие `la`-страницы (Harvey для Иринея, CSEL для Викентия) не переписываем.
 3. Страница автора на латыни — **только «дата памяти + биография»** с русской страницы

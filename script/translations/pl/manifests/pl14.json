@@ -44,6 +44,90 @@
    "path": "Ambr_De_Joseph",
    "title": "De Joseph Patriarcha",
    "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE PARADISO",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE CAIN ET ABEL",
+   "path": "Ambr_De_Paradiso",
+   "title": "De Paradiso",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE CAIN ET ABEL",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE NOE ET ARCA",
+   "path": "Ambr_De_Cain_et_Abel",
+   "title": "De Cain et Abel",
+   "split": "h2:books"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE NOE ET ARCA",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE ABRAHAM",
+   "path": "Ambr_De_Noe_et_Arca",
+   "title": "De Noe et Arca",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE ABRAHAM",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE ISAAC ET ANIMA",
+   "path": "Ambr_De_Abraham",
+   "title": "De Abraham",
+   "split": "h2:books"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE BENEDICTIONIBUS PATRIARCHARUM",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE ELIA ET JEJUNIO",
+   "path": "Ambr_De_Benedictionibus_Patriarcharum",
+   "title": "De Benedictionibus Patriarcharum",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE ELIA ET JEJUNIO",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE NABUTHE",
+   "path": "Ambr_De_Elia_et_Jejunio",
+   "title": "De Elia et Jejunio",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE NABUTHE JEZRAELITA",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE TOBIA",
+   "path": "Ambr_De_Nabuthe",
+   "title": "De Nabuthe Jezraelita",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE TOBIA",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE INTERPELLATIONE JOB ET DAVID",
+   "path": "Ambr_De_Tobia",
+   "title": "De Tobia",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI DE INTERPELLATIONE JOB ET DAVID",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI APOLOGIA PROPHETAE DAVID AD THEODOSIUM",
+   "path": "Ambr_De_Interpellatione_Job_et_David",
+   "title": "De Interpellatione Job et David",
+   "split": "h2:books"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI APOLOGIA PROPHETAE DAVID AD THEODOSIUM",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI APOLOGIA ALTERA PROPHETAE DAVID",
+   "path": "Ambr_Apologia_David",
+   "title": "Apologia Prophetae David ad Theodosium",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI APOLOGIA ALTERA PROPHETAE DAVID",
+   "end": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI ENARRATIONES IN XII PSALMOS",
+   "path": "Ambr_Apologia_Altera_David",
+   "title": "Apologia Altera Prophetae David",
+   "split": "none"
+  },
+  {
+   "start": "SANCTI AMBROSII MEDIOLANENSIS EPISCOPI ENARRATIONES IN XII PSALMOS",
+   "end": null,
+   "path": "Ambr_Enarrationes_in_XII_Psalmos",
+   "title": "Enarrationes in XII Psalmos Davidicos",
+   "split": "h2"
   }
  ]
 }
