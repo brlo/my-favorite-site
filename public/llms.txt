@@ -45,8 +45,11 @@ Indexes of the article library (each lists all sections in that language):
 
 - [Русский](https://bibleox.com/ru/ru/w/links_ru) — the complete library: Church Fathers, councils, icons, temples, manuscripts, prayers, music, burials, authors.
 - [English](https://bibleox.com/en/en/w/links_en)
-- [हिन्दी](https://bibleox.com/hi/hi/w/links_hi)
+- [हिन्दी](https://bibleox.com/hi/hi/w/links_hi) — icons, temples, Christian burials and inscriptions, biblical manuscripts, Lenten cooking; the rest is being translated.
 - [Français](https://bibleox.com/fr/fr/w/links_fr) — icons, temples, Christian burials and inscriptions, biblical manuscripts, Lenten cooking; the rest is being translated.
+- [العربية](https://bibleox.com/ar/ar/w/links_ar) — icons, temples, Christian burials and inscriptions, biblical manuscripts, Lenten cooking; the rest is being translated.
+- [Español](https://bibleox.com/es/es/w/links_es) — icons, temples, Christian burials and inscriptions, biblical manuscripts, Lenten cooking; the rest is being translated.
+- [فارسی](https://bibleox.com/fa/fa/w/links_fa) — icons, temples, Christian burials and inscriptions, biblical manuscripts, Lenten cooking; the rest is being translated.
 
 Bible quote collections — topical apologetics ("what the Bible says about…"), the largest article tree on the site:
 

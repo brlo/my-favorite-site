@@ -7,19 +7,39 @@ import json, re, sys, html as H
 
 D = 'tmp/trad/'
 LABELS = {  # подписи ссылок на картинки
-  'крупнее': dict(en='larger', ja='拡大', ko='크게 보기', de='größer', zh='放大', el='μεγέθυνση'),
-  'ещё крупнее': dict(en='even larger', ja='さらに拡大', ko='더 크게 보기', de='noch größer', zh='再放大', el='μεγαλύτερη μεγέθυνση'),
-  'ещё рупнее': dict(en='even larger', ja='さらに拡大', ko='더 크게 보기', de='noch größer', zh='再放大', el='μεγαλύτερη μεγέθυνση'),
-  'версия': dict(en='version', ja='別版', ko='다른 사진', de='Version', zh='版本', el='εκδοχή'),
-  'кверсия': dict(en='version', ja='別版', ko='다른 사진', de='Version', zh='版本', el='εκδοχή'),
-  'другая версия': dict(en='another version', ja='別版', ko='다른 사진', de='andere Version', zh='另一版本', el='άλλη εκδοχή'),
-  'обратная сторона': dict(en='reverse side', ja='裏面', ko='뒷면', de='Rückseite', zh='背面', el='πίσω όψη'),
-  'вид сверху': dict(en='top view', ja='上から', ko='위에서 본 모습', de='Ansicht von oben', zh='俯视', el='κάτοψη'),
-  'вид сбоку': dict(en='side view', ja='側面', ko='옆에서 본 모습', de='Seitenansicht', zh='侧视', el='πλάγια όψη'),
-  'внешний план': dict(en='exterior', ja='外観', ko='외관', de='Außenansicht', zh='外观', el='εξωτερική όψη'),
-  'доп. фото': dict(en='extra photo', ja='追加写真', ko='추가 사진', de='weiteres Foto', zh='补充照片', el='επιπλέον φωτογραφία'),
+  'крупнее': dict(en='larger', ja='拡大', ko='크게 보기', de='größer', zh='放大', el='μεγέθυνση',
+                  fr='agrandir', ar='تكبير', es='ampliar', fa='بزرگ‌تر', hi='बड़ा करें'),
+  'ещё крупнее': dict(en='even larger', ja='さらに拡大', ko='더 크게 보기', de='noch größer', zh='再放大',
+                      el='μεγαλύτερη μεγέθυνση', fr='encore plus grand', ar='تكبير أكبر', es='aún más grande',
+                      fa='بزرگ‌تر', hi='और बड़ा'),
+  'ещё рупнее': dict(en='even larger', ja='さらに拡大', ko='더 크게 보기', de='noch größer', zh='再放大',
+                     el='μεγαλύτερη μεγέθυνση', fr='encore plus grand', ar='تكبير أكبر', es='aún más grande',
+                     fa='بزرگ‌تر', hi='और बड़ा'),
+  'версия': dict(en='version', ja='別版', ko='다른 사진', de='Version', zh='版本', el='εκδοχή',
+                 fr='version', ar='نسخة', es='versión', fa='نسخه', hi='संस्करण'),
+  'кверсия': dict(en='version', ja='別版', ko='다른 사진', de='Version', zh='版本', el='εκδοχή',
+                  fr='version', ar='نسخة', es='versión', fa='نسخه', hi='संस्करण'),
+  'другая версия': dict(en='another version', ja='別版', ko='다른 사진', de='andere Version', zh='另一版本',
+                        el='άλλη εκδοχή', fr='autre version', ar='نسخة أخرى', es='otra versión',
+                        fa='نسخهٔ دیگر', hi='दूसरा संस्करण'),
+  'обратная сторона': dict(en='reverse side', ja='裏面', ko='뒷면', de='Rückseite', zh='背面', el='πίσω όψη',
+                           fr='revers', ar='الوجه الخلفي', es='reverso', fa='روی دیگر', hi='पिछला भाग'),
+  'вид сверху': dict(en='top view', ja='上から', ko='위에서 본 모습', de='Ansicht von oben', zh='俯视',
+                     el='κάτοψη', fr='vue de dessus', ar='منظر من الأعلى', es='vista superior',
+                     fa='نمای از بالا', hi='ऊपर से दृश्य'),
+  'вид сбоку': dict(en='side view', ja='側面', ko='옆에서 본 모습', de='Seitenansicht', zh='侧视',
+                    el='πλάγια όψη', fr='vue de côté', ar='منظر جانبي', es='vista lateral',
+                    fa='نمای از پهلو', hi='पार्श्व दृश्य'),
+  'внешний план': dict(en='exterior', ja='外観', ko='외관', de='Außenansicht', zh='外观', el='εξωτερική όψη',
+                       fr='vue extérieure', ar='منظر خارجي', es='exterior', fa='نمای بیرونی', hi='बाहरी दृश्य'),
+  'доп. фото': dict(en='extra photo', ja='追加写真', ko='추가 사진', de='weiteres Foto', zh='补充照片',
+                    el='επιπλέον φωτογραφία', fr='photo suppl.', ar='صورة إضافية', es='foto adicional',
+                    fa='عکس اضافی', hi='अतिरिक्त तस्वीर'),
 }
-LANGS = dict(en=('en', 'en-nrsv'), ja=('ja', 'jp-ni'), ko=('ko', 'ko-nkrv'), de=('de', 'ge-sch'), zh=('zh-Hans', 'cn-sb'), el=('el', 'gr-lxx-byz'))
+# lang: (локаль, код Библии). Библии нет (es, fa) — ссылки на стихи не строим, остаётся подпись.
+LANGS = dict(en=('en', 'en-nrsv'), ja=('ja', 'jp-ni'), ko=('ko', 'ko-nkrv'), de=('de', 'ge-sch'),
+             zh=('zh-Hans', 'cn-sb'), el=('el', 'gr-lxx-byz'), fr=('fr', 'fr-lsg'),
+             ar=('ar', 'arab-avd'), hi=('hi', 'hi-ov'), es=('es', None), fa=('fa', None))
 BIBLE = re.compile(r'^https?://bibleox\.com/ru/(?:ru/)?([a-z0-9]+)/(\d+)/?(?:#L([\d,\-]+))?$')
 IMG_HREF = re.compile(r'res\.bibleox\.com|\.(jpe?g|png|webp|gif)$', re.I)
 BLOCK = re.compile(r'<(h2|h3|h4|p|li)>(.*?)</\1>', re.S)
@@ -77,8 +97,10 @@ def build(name, lang):
   def blink(book, ch, vs, lab=None):
     b = bib
     if book.startswith('gr '): b, book = 'gr-lxx-byz', book[3:]  # книги нет в Библии языка: греческий текст
-    href = f'https://bibleox.com/{loc}/{b}/{book}/{ch}/' + (f'#L{vs}' if vs else '')
-    return f'<a href="{href}">{lab or (short.get(book, book) + " " + ch + (":" + vs if vs else ""))}</a>'
+    label_text = lab or (short.get(book, book) + " " + ch + (":" + vs if vs else ""))
+    # персидский: цифры в подписи — персидские, как в текстах fa
+    text = label_text.translate(str.maketrans('0123456789', '۰۱۲۳۴۵۶۷۸۹')) if loc == 'fa' else label_text
+    return f'<a href="https://bibleox.com/{loc}/{b}/{book}/{ch}/' + (f'#L{vs}' if vs else '') + f'">{text}</a>' if b else text
   def fill(sid, s, ph):
     def rep(m):
       k, ov = m.group(1), m.group(2)
