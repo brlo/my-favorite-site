@@ -1,0 +1,40 @@
+<%# Выбор языка интерфейса: правый верхний угол шапки.
+    Кнопка — иконка глобуса и код текущего языка, пункты списка — обычные
+    ссылки: они работают и без JS, и с клавиатуры, и открываются в новой вкладке. %>
+<% current = ::I18n.locale.to_s %>
+<div id="ui-lang" class="ui-lang" data-controller="ui-lang">
+  <button type="button"
+          class="ui-lang__toggle"
+          title="<%= t('menu.locale') %>"
+          aria-label="<%= t('menu.locale') %>: <%= ui_lang_name(current) %>"
+          aria-expanded="false"
+          aria-controls="ui-lang-menu"
+          data-ui-lang-target="button"
+          data-action="click->ui-lang#toggle">
+    <svg class="ui-lang__globe" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+         stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M3 12h18"/>
+      <ellipse cx="12" cy="12" rx="4.4" ry="9"/>
+    </svg>
+    <span class="ui-lang__code"><%= ui_lang_code(current) %></span>
+  </button>
+
+  <ul id="ui-lang-menu" class="ui-lang__menu hidden"
+      data-ui-lang-target="menu"
+      data-action="click->ui-lang#keepAnchor">
+    <% ::ALL_LOCALES.each_key do |lang| %>
+      <% is_current = lang == current %>
+      <li>
+        <a class="ui-lang__item<%= ' selected' if is_current %>"
+           href="<%= ui_lang_switch_path(lang) %>"
+           hreflang="<%= lang %>" lang="<%= lang %>"
+           <% if is_current %>aria-current="true"<% end %>>
+          <span class="ui-lang__flag"><%= ::FLAG_BY_LANG[lang] %></span>
+          <span class="ui-lang__name"><%= ui_lang_name(lang) %></span>
+          <% if is_current %><span class="ui-lang__check" aria-hidden="true">✓</span><% end %>
+        </a>
+      </li>
+    <% end %>
+  </ul>
+</div>

@@ -101,6 +101,29 @@ module ApplicationHelper
     end
   end
 
+  # Название языка интерфейса на нём самом (для списка языков в шапке),
+  # а если универсального названия нет — локализованное.
+  def ui_lang_name(lang_code)
+    ::PAGE_LANGS[lang_code.to_s] || I18n.t("page_translations.#{lang_code}")
+  end
+
+  # Код текущего языка интерфейса для иконки в шапке: zh-Hans -> ZH
+  def ui_lang_code(lang_code = I18n.locale)
+    lang_code.to_s.split('-').first.upcase
+  end
+
+  # Адрес текущей страницы с другим языком интерфейса: меняем только первый
+  # сегмент пути (локаль), страница/стих/якорь остаются те же.
+  # PATH_INFO роутер нормализует и срезает хвостовой слэш, поэтому берём
+  # исходный адрес запроса: канонические адреса сайта заканчиваются на "/".
+  def ui_lang_switch_path(lang_code)
+    path = request.get_header('REQUEST_URI').presence || request.original_fullpath
+    path = path.to_s.sub(%r{\Ahttps?://[^/]+}, '').split('?', 2).first
+    rest = path.sub(%r{\A/[^/]+}, '')
+    result = "/#{lang_code}#{rest}"
+    request.query_string.present? ? "#{result}?#{request.query_string}" : result
+  end
+
   # # <%= bbx_select_tag :locale,
   # #   [['English', 'en', { data: { progress: 100 } }],
   # #    ['Русский', 'ru', { data: { progress: 45 } }]],

@@ -31,6 +31,26 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select '#h1-title[lang="zh-Hans"]'
   end
 
+  test "interface language switcher is in the header and keeps the page path" do
+    create_published(title: 'Беседа о любви', path: 'beseda')
+    get '/ru/ru/w/beseda?from=search'
+
+    assert_response :success
+    assert_select 'header #ui-lang', count: 1
+    assert_select '#ui-lang a[href="/en/ru/w/beseda?from=search"]', count: 1
+    assert_select '#ui-lang a[hreflang="en"]', text: /English/
+    assert_select '#ui-lang a[aria-current="true"]', count: 1
+    assert_select 'footer #ui-lang', count: 0
+    assert_select '#change-ui-lang-area', count: 0
+  end
+
+  test "interface language switcher lists every interface language" do
+    get '/ru/'
+
+    assert_response :success
+    assert_select '#ui-lang-menu a', count: ::ALL_LOCALES.size
+  end
+
   test "root redirects to language home with 301" do
     get '/'
     assert_response :moved_permanently

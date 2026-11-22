@@ -392,26 +392,98 @@ html.has-audio-player #popup-notif { bottom: calc(var(--audio-player-h, 90px) + 
   color: red;
 } */
 
-/* ЯЗЫК UI: выбор языка кнопочек в подвале */
-dd#change-ui-lang-area {
-  display: inline-block;
-  min-height: 65px;
-  font-size: 0.7em;
-  padding: 0 0 15px 0;
+/* ЯЗЫК UI: выбор языка интерфейса в правом верхнем углу шапки.
+   Стоит в .container, а не в nav: nav — горизонтальный скроллер
+   (overflow), и выпадающий список внутри него обрезался бы. */
+.ui-lang {
+  position: absolute;
+  top: 6px;
+  inset-inline-end: 6px;
+  z-index: 3;
 }
 
-dd#change-ui-lang-area label {
-  display: inline-block;
-  padding: 5px 0;
+.ui-lang__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  padding: 6px 8px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: #808667;
+  font: inherit;
+  font-size: 14px;
+  line-height: 1;
+  cursor: pointer;
+}
+.ui-lang__toggle:hover { background: #00000010; color: #8c6964; }
+.ui-lang__toggle:focus-visible {
+  outline: 2px solid #8c6964;
+  outline-offset: 1px;
+  color: #8c6964;
+}
+.ui-lang__globe { display: block; width: 20px; height: 20px; }
+.ui-lang__code {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .06em;
 }
 
-dd#change-ui-lang-area .choices__inner {
-  border-radius: 4px;
-  padding: 0;
-  padding-bottom: 0 !important;
-  min-height: 30px;
-  min-width: 225px;
+.ui-lang__menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  inset-inline-end: 0;
+  width: 250px;
+  max-width: calc(100vw - 20px);
+  /* без min(): SassC в проде/тестах не умеет смешивать px и vh */
+  max-height: 70vh;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  margin: 0;
+  padding: 6px 0;
+  list-style: none;
+  background: #fff;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-shadow: 0 6px 18px #0000001f;
+  text-align: start;
 }
+
+/* селекторы с .ui-lang впереди: иначе цвет перебивают общие a.selected и .night-mode a */
+.ui-lang .ui-lang__item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 12px;
+  color: #4a4535;
+  font-size: 14px;
+  text-decoration: none;
+}
+.ui-lang .ui-lang__item:hover { background: #f2f2f266; }
+.ui-lang .ui-lang__item:focus-visible {
+  background: #f2f2f266;
+  outline: 2px solid #8c6964;
+  outline-offset: -2px;
+}
+.ui-lang .ui-lang__item.selected { background: #a7b77455; font-weight: 600; }
+.ui-lang__flag { flex: none; width: 1.5em; text-align: center; }
+.ui-lang__name { flex: 1; }
+.ui-lang__check { color: #3b82f6; font-weight: 700; }
+
+/* на высоких экранах список не должен растягиваться на пол-страницы */
+@media (min-height: 700px) {
+  .ui-lang__menu { max-height: 460px; }
+}
+
+.night-mode .ui-lang__toggle { color: #8ea7c9; }
+.night-mode .ui-lang__toggle:hover,
+.night-mode .ui-lang__toggle:focus-visible { background: #ffffff12; color: #7dc3ff; }
+.night-mode .ui-lang__menu { background: #2f3541; border-color: #4b5361; }
+.night-mode .ui-lang .ui-lang__item { color: #d5d9e0; }
+.night-mode .ui-lang .ui-lang__item:hover,
+.night-mode .ui-lang .ui-lang__item:focus-visible { background: #ffffff10; }
+.night-mode .ui-lang .ui-lang__item.selected { background: #59b68255; }
 
 .logo img {
   width: 200px;
