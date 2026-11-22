@@ -41,10 +41,13 @@
   (это Амброзиастер), «De XLII mansionibus», «In Symbolum», «De fide orthodoxa», сборник
   проповедей, «De Poenitentia» и «De Spiritu Sancto» (подложные), «Acta Sebastiani»,
   «De vocatione gentium», «De moribus Brachmanorum», «Hymni attributi» и др. — не берём.
-- **Иларий отложен**: из 5 русских трудов 3 — фрагменты («Единение верующих с Богом»,
-  «О Троице (фрагменты)» с разбивкой 1,1–13 / 12,52–57 / 1,8, «Изъяснение тайн. Кн. 1»),
-  для них нужна пораздельная привязка к De Trinitate и Tractatus Mysteriorum; «Против Авксентия»
-  и «Беседа на псалом 130» находятся в PL 9–10 без проблем. Вернуться к нему после бата Амвросия.
+- **Иларий — готово (4 страницы)**: Liber contra Auxentium (PL 10), Tractatus in Psalmum CXXX
+  (PL 9), De Unitate Fidelium cum Deo (De Trinitate VIII, 13–16) и De Trinitate (fragmenta:
+  I, 1–13 по нумерации русского перевода = Migne I, 1–12; XII, 52, 53, 57; I, 8).
+  Фрагменты собираются `excerpt.py` по номерам книг и глав. Не взятo: «Изъяснение тайн.
+  Книга 1» — Tractatus Mysteriorum найден только в 1887 г. и в Migne (PL 9–10) отсутствует.
+  (Историческая заметка: раньше Иларий был отложен из-за фрагментов — теперь они собраны
+  по номерам глав, см. выше.)
 - Чего в PL 4 нет: тексты 14 писем (XLI, XLII, XLIII, XLV, XLVIII, XLIX, LII, LVII, LIX,
   LXVIII, LXX, LXXII, LXXIII, LXXVI). Migne сам отсылает их к тому III — в тексте стоят
   заглушки, номера перечислены в примечаниях. Достать их из PL 3 — следующая задача.

@@ -31,7 +31,7 @@ from html import unescape
 
 TAG_RE = re.compile(r'<[^>]+>')
 MARKER_RE = re.compile(r'\[PL(\d+)\.(\d+[A-Z]?)\]')
-LEADING_NUM_RE = re.compile(r'^\s*\d{1,4}\.?\s+(?=[A-Z\[])')
+LEADING_NUM_RE = re.compile(r'^\s*\d{1,4}(?:\s*[-,–]\s*\d{1,4})?\.?\s*(?=[A-Z\[])')
 SIGLA_RE = re.compile(r'\((?:[CGS](?:\s*,\s*[CGS])*)\)\*?')
 EDIT_REF_RE = re.compile(
     r'\s*\((?:Erasm|Pamel|Rig|Baluz|Paris|Pariss|Oxon|Lips|Coustant|Galland|Routh|Bod|Lam|'

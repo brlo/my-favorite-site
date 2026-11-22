@@ -37,7 +37,12 @@ EDIT_TAIL = re.compile(r'\s*\((?:S\.\s*)?(?:Aug|Hier|Ambr|Greg|Cypr|Tert)[^)]{0,
                        r'(?:l\.|lib\.|cap\.|epist\.)[^)]*\)\.?\s*$')
 
 
+SUMMARY_INLINE = re.compile(r'^(<p>)(\d{1,3})\.\s[^<]{0,400}?---\s*')
+
+
 def clean_page(body: str) -> str:
+    # «1. Резюме главы.---Текст» -> «1. Текст»
+    body = re.sub(r'(<p>)(\d{1,3})\.\s[^<]{0,400}?---\s*', r'\1\2. ', body)
     """Убирает редакторские примечания Migne, попавшие в тело (фрагменты, ссылки в конце)."""
     parts = re.split(r'(?=<p>)', body)
     kept = []

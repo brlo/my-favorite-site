@@ -1,0 +1,56 @@
+{
+ "lang": "la",
+ "list": "church_writers_la",
+ "volume": 10,
+ "source_url": "https://azbyka.ru/otechnik/Patrologija/PL10.html",
+ "author": {
+  "path": "Hil_Hilarius_Pictaviensis",
+  "title": "Hilarius Pictaviensis, saeculo IV",
+  "title_sub": "sanctus (~315-367), episcopus Pictaviensis, Ecclesiae pater, contra Arianos defensor",
+  "ru": "97nZ_Иларий_Пиктавийский_святитель_315367",
+  "menu_folder": "Saeculum IV",
+  "menu_replace": "Sanctus Hilarius Pictaviensis (~315–367)",
+  "menu_title": "Sanctus Hilarius Pictaviensis (~315–367)",
+  "body_file": "tmp/pl/10/hilary_body.html",
+  "references": "<p><strong>Fons:</strong> biographia e pagina Russica «Иларий Пиктавийский» (<a href=\"https://bibleox.com/ru/ru/w/97nZ_Иларий_Пиктавийский_святитель_315367\">bibleox.com</a>) translata.</p>"
+ },
+ "folders": [],
+ "works": [
+  {
+   "fragment": "Hil_Contra_Auxentium",
+   "volume": 10,
+   "folder": null,
+   "path": "Hil_Contra_Auxentium",
+   "title": "Liber contra Auxentium",
+   "priority": 1,
+   "ru": "VtDG_Против_ариан_или_Против_Авксентия"
+  },
+  {
+   "fragment": "Hil_Tractatus_in_Psalmum_CXXX",
+   "volume": 9,
+   "folder": null,
+   "path": "Hil_Tractatus_in_Psalmum_CXXX",
+   "title": "Tractatus in Psalmum CXXX",
+   "priority": 2,
+   "ru": "EAJa_Беседа_на_псалом_130"
+  },
+  {
+   "fragment": "Hil_De_Unitate_Fidelium",
+   "volume": 10,
+   "folder": null,
+   "path": "Hil_De_Unitate_Fidelium",
+   "title": "De Unitate Fidelium cum Deo",
+   "priority": 3,
+   "ru": "ElJM_Единение_верующих_с_Богом"
+  },
+  {
+   "fragment": "Hil_De_Trinitate_Fragmenta",
+   "volume": 10,
+   "folder": null,
+   "path": "Hil_De_Trinitate_Fragmenta",
+   "title": "De Trinitate (fragmenta)",
+   "priority": 4,
+   "ru": "r6LM_О_Троице_фрагменты"
+  }
+ ]
+}

@@ -1,0 +1,15 @@
+{
+ "volume": 9,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL9.html",
+ "out": "tmp/pl/9",
+ "works": [
+  {
+   "start": "PSALMUS CXXX. Canticum graduum",
+   "end": "PSALMUS CXXXI. Canticum graduum",
+   "path": "Hil_Tractatus_in_Psalmum_CXXX",
+   "title": "Tractatus in Psalmum CXXX",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}

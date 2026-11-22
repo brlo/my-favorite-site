@@ -1,0 +1,15 @@
+{
+ "volume": 10,
+ "source": "/Users/brlo/Desktop/Библеокс/PL/greek_replaced/PL10.html",
+ "out": "tmp/pl/10",
+ "works": [
+  {
+   "start": "SANCTI HILARII CONTRA ARIANOS, VEL AUXENTIUM",
+   "end": "FRAGMENTA EX LIBRO",
+   "path": "Hil_Contra_Auxentium",
+   "title": "Liber contra Auxentium",
+   "split": "none",
+   "drop_em": true
+  }
+ ]
+}
