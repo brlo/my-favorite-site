@@ -154,6 +154,10 @@ class VersesController < ApplicationController
     )
 
     @content_lang = chapter.content_lang
+    # переключатель кальки jp-box (кука, чтобы держаться при переходе по главам)
+    if params[:calque].present?
+      cookies[:calque] = { value: params[:calque] == 'orthodox' ? 'orthodox' : 'common', expires: 1.year.from_now }
+    end
     @is_interliner = chapter.is_interliner?
     @int_content_lang = chapter.interliner_tr_code
     @no_index = true if chapter.no_index?
@@ -190,7 +194,7 @@ class VersesController < ApplicationController
   # Результаты поиска по Писанию (до 3000 стихов)
   def fetch_search_results
     searcher =
-      if @search_lang.in?(%w[jp-ni jp-joc cn-sb cn-sbt cn-cuv cn-cuvt ko-nkrv arab-avd heb-osm gr-lxx-byz]) || @search_accuracy == 'exact'
+      if @search_lang.in?(%w[jp-ni jp-joc jp-box cn-sb cn-sbt cn-cuv cn-cuvt ko-nkrv arab-avd heb-osm gr-lxx-byz]) || @search_accuracy == 'exact'
         ::VerseSearchPgroonga
       else
         ::VerseSearch

@@ -142,6 +142,7 @@ ko:
     hi: '힌디어'
     jp-ni: '일본어'
     jp-joc: '일본어'
+    jp-box: '일본어'
     ko: '한국어'
     ru: '러시아어'
     sr: '세르비아어'
@@ -255,6 +256,7 @@ ko:
 
         jp-ni: '일본어 번역 (JP-NI)'
         jp-joc: '일본 정교회역 (JOC)'
+        jp-box: '일본어 Bibleox 역 (BOX)'
         cn-sb: '중국어 번역 (SB)'
         cn-cuv: '중국어 번역 (CUV)'
         cn-cuvt: '중국어 번역 (CUV-T)'
@@ -279,6 +281,7 @@ ko:
 
         jp-ni: '일본어 번역 (JP-NI, 1987)'
         jp-joc: '일본 정교회역 (JOC, 1901)'
+        jp-box: '일본어 Bibleox 역 (BOX, 2026)'
         cn-sb: '중국어 번역 (SB, 1968)'
         cn-cuv: '중국어 번역 (CUV, 1919)'
         cn-cuvt: '중국어 번역 (CUV-T, 1919)'

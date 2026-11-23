@@ -400,7 +400,7 @@ html.has-audio-player #popup-notif { bottom: calc(var(--audio-player-h, 90px) + 
    (overflow), и выпадающий список внутри него обрезался бы. */
 .ui-lang {
   position: absolute;
-  top: 6px;
+  top: 23px;
   inset-inline-end: 6px;
   z-index: 3;
 }
@@ -640,6 +640,71 @@ input.search-tree-input {
 
 j {
   color: #c54a4a;
+}
+
+/* слова Богородицы */
+mo {
+  color: #2f6fb0;
+}
+
+.night-mode mo {
+  color: #7fb2e5;
+}
+
+/* jp-box: сноска-звёздочка к слову (пояснение из data['notes']) */
+.bib-note {
+  position: relative;
+  font-size: .6em;
+  vertical-align: super;
+  margin-left: .1em;
+  cursor: help;
+  color: #6b7280;
+  font-style: normal;
+}
+.bib-note::after {
+  content: attr(data-tip);
+  position: absolute;
+  left: 0;
+  top: 1.7em;
+  z-index: 60;
+  width: max-content;
+  max-width: min(88vw, 30em);
+  overflow-wrap: anywhere;
+  padding: .5em .7em;
+  border-radius: .4em;
+  background: #2b2b2b;
+  color: #fff;
+  font-size: 1.8em;
+  line-height: 1.55;
+  font-weight: normal;
+  white-space: normal;
+  text-align: left;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity .12s;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
+  pointer-events: none;
+}
+
+body.night-mode .bib-note {
+  color: #9aa3ad;
+}
+.bib-note.tip-left::after {
+  left: auto;
+  right: 0;
+}
+.bib-note.tip-up::after {
+  top: auto;
+  bottom: 1.7em;
+}
+.bib-note:hover::after,
+.bib-note:focus::after {
+  opacity: 1;
+  visibility: visible;
+}
+.night-mode .bib-note::after {
+  background: #eee;
+  color: #111;
 }
 
 .night-mode b,

@@ -142,6 +142,7 @@ sw:
     hi: 'Kihindi'
     jp-ni: 'Kijapani'
     jp-joc: 'Kijapani'
+    jp-box: 'Kijapani'
     ko: 'Kikorea'
     ru: 'Kirusi'
     sr: 'Kiserbia'
@@ -255,6 +256,7 @@ sw:
 
         jp-ni: 'tafsiri ya Kijapani (JP-NI)'
         jp-joc: 'tafsiri ya Kijapani ya Kiorthodoksi (JOC)'
+        jp-box: 'tafsiri ya Kijapani ya Bibleox (BOX)'
         cn-sb: 'tafsiri ya Kichina (SB)'
         cn-cuv: 'tafsiri ya Kichina (CUV)'
         cn-cuvt: 'tafsiri ya Kichina (CUV-T)'
@@ -279,6 +281,7 @@ sw:
 
         jp-ni: 'tafsiri ya Kijapani (JP-NI, 1987)'
         jp-joc: 'tafsiri ya Kijapani ya Kiorthodoksi (JOC, 1901)'
+        jp-box: 'tafsiri ya Kijapani ya Bibleox (BOX, 2026)'
         cn-sb: 'tafsiri ya Kichina (SB, 1968)'
         cn-cuv: 'tafsiri ya Kichina (CUV, 1919)'
         cn-cuvt: 'tafsiri ya Kichina (CUV-T, 1919)'

@@ -143,6 +143,7 @@ zh-Hans:
     hi: '印地语'
     jp-ni: '日语'
     jp-joc: '日语'
+    jp-box: '日语'
     ko: '韩语'
     ru: '俄语'
     sr: '塞尔维亚语'
@@ -256,6 +257,7 @@ zh-Hans:
 
         jp-ni: '日语译本 (JP-NI)'
         jp-joc: '日本正教会译本 (JOC)'
+        jp-box: '日语 Bibleox 译本 (BOX)'
         cn-sb: '中文译本 (SB)'
         cn-cuv: '中文译本 (CUV)'
         cn-cuvt: '中文译本 (CUV-T)'
@@ -280,6 +282,7 @@ zh-Hans:
 
         jp-ni: '日语译本 (JP-NI, 1987)'
         jp-joc: '日本正教会译本 (JOC, 1901)'
+        jp-box: '日语 Bibleox 译本 (BOX, 2026)'
         cn-sb: '中文译本 (SB, 1968)'
         cn-cuv: '中文译本 (CUV, 1919)'
         cn-cuvt: '中文译本 (CUV-T, 1919)'

@@ -142,6 +142,7 @@ tr:
     hi: 'Hintçe'
     jp-ni: 'Japonca'
     jp-joc: 'Japonca'
+    jp-box: 'Japonca'
     ko: 'Korece'
     ru: 'Rusça'
     sr: 'Sırpça'
@@ -255,6 +256,7 @@ tr:
 
         jp-ni: 'Japonca çeviri (JP-NI)'
         jp-joc: 'Japon Ortodoks çevirisi (JOC)'
+        jp-box: 'Japon Bibleox çevirisi (BOX)'
         cn-sb: 'Çince çeviri (SB)'
         cn-cuv: 'Çince çeviri (CUV)'
         cn-cuvt: 'Çince çeviri (CUV-T)'
@@ -279,6 +281,7 @@ tr:
 
         jp-ni: 'Japonca çeviri (JP-NI, 1987)'
         jp-joc: 'Japon Ortodoks çevirisi (JOC, 1901)'
+        jp-box: 'Japon Bibleox çevirisi (BOX, 2026)'
         cn-sb: 'Çince çeviri (SB, 1968)'
         cn-cuv: 'Çince çeviri (CUV, 1919)'
         cn-cuvt: 'Çince çeviri (CUV-T, 1919)'

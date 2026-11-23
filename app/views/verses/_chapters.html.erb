@@ -14,6 +14,10 @@
     <a href="<%= my_bib_link_to("/#{@book_code}/1/") %>" id='current-book' data-action='books-menu#show'><%= ::I18n.t("books.full.#{@book_code}") %></a>
   </h1>
 
+  <% if @content_lang == 'jp-box' %>
+    <%= render(partial: 'verses/translation_badge') %>
+  <% end %>
+
 <% if @verses.none? %>
   <div class='error'><%= ::I18n.t("errors.no_translation_for_this_book") %></div>
 </div>

@@ -59,7 +59,7 @@
          data-controller="furigana-converter ruby-copy"
          data-action="copy->ruby-copy#copy"
          data-furigana-container>
-      <%= t('quote_start', locale: @locale_by_bib) %><span class="furigana-text"><%= sanitize(@main_verses.map(&:text).join(' '), tags: []) %></span><%= t('quote_end', locale: @locale_by_bib) %><%= t('space_between_quote_and_bracket', locale: @locale_by_bib) %><%= t('bracket_start', locale: @locale_by_bib) %><a href="<%= "/#{locale}/#{current_bib_lang}/#{ v.book }/#{ v.chapter }#L#{ v.line }-#{v_last.line}" %>"><%= ::I18n.t("books.short.#{ v.book }", locale: @locale_by_bib) %>. <%= v.chapter %>:<%= v.line %>-<%= v_last.line %></a><%= t('bracket_end', locale: @locale_by_bib) %>
+      <%= t('quote_start', locale: @locale_by_bib) %><span class="furigana-text"><%= sanitize(@main_verses.map { |v| verse_text_for_display(v) }.join(' '), tags: []) %></span><%= t('quote_end', locale: @locale_by_bib) %><%= t('space_between_quote_and_bracket', locale: @locale_by_bib) %><%= t('bracket_start', locale: @locale_by_bib) %><a href="<%= "/#{locale}/#{current_bib_lang}/#{ v.book }/#{ v.chapter }#L#{ v.line }-#{v_last.line}" %>"><%= ::I18n.t("books.short.#{ v.book }", locale: @locale_by_bib) %>. <%= v.chapter %>:<%= v.line %>-<%= v_last.line %></a><%= t('bracket_end', locale: @locale_by_bib) %>
     </div>
   <% end %>
 

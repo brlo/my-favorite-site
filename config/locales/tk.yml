@@ -142,6 +142,7 @@ tk:
     hi: 'Hindi'
     jp-ni: 'Ýaponça'
     jp-joc: 'Ýaponça'
+    jp-box: 'Ýaponça'
     ko: 'Koreýçe'
     ru: 'Rusça'
     sr: 'Serbçe'
@@ -255,6 +256,7 @@ tk:
 
         jp-ni: 'ýapon terjime (JP-NI)'
         jp-joc: 'ýapon prawoslaw terjimesi (JOC)'
+        jp-box: 'ýapon Bibleox terjimesi (BOX)'
         cn-sb: 'hytaý terjime (SB)'
         cn-cuv: 'hytaý terjime (CUV)'
         cn-cuvt: 'hytaý terjime (CUV-T)'
@@ -279,6 +281,7 @@ tk:
 
         jp-ni: 'ýapon terjime (JP-NI, 1987)'
         jp-joc: 'ýapon prawoslaw terjimesi (JOC, 1901)'
+        jp-box: 'ýapon Bibleox terjimesi (BOX, 2026)'
         cn-sb: 'hytaý terjime (SB, 1968)'
         cn-cuv: 'hytaý terjime (CUV, 1919)'
         cn-cuvt: 'hytaý terjime (CUV-T, 1919)'

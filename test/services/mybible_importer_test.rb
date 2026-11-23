@@ -6,6 +6,10 @@ class MybibleImporterTest < ActiveSupport::TestCase
     assert_equal 'अब्राहम की सन्तान, दाऊद की सन्तान, <j>यीशु</j> <i>मसीह</i>।', MybibleImporter.clean(orig)
   end
 
+  test "keeps words of Jesus and of the Theotokos" do
+    assert_equal '<j>Я</j> и <mo>Она</mo>', MybibleImporter.clean('<j>Я</j> и <mo>Она</mo>')
+  end
+
   test "drops poetry line markers and verse numbers inside psalms" do
     orig = '<pb/><e>दाऊद का भजन</e> <pb/><t> <n>[1]</n> यहोवा मेरा चरवाहा है, मुझे कुछ </t><t>घटी न होगी। </t>'
     assert_equal 'दाऊद का भजन यहोवा मेरा चरवाहा है, मुझे कुछ घटी न होगी।', MybibleImporter.clean(orig)

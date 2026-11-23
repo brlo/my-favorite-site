@@ -380,6 +380,7 @@ fr:
     hi: 'Hindi'
     jp-ni: 'Japonais'
     jp-joc: 'Japonais'
+    jp-box: 'Japonais'
     ko: 'Coréen'
     ru: 'Russe'
     sr: 'Serbe'
@@ -493,6 +494,7 @@ fr:
 
         jp-ni: 'traduction japonaise (JP-NI)'
         jp-joc: 'traduction japonaise orthodoxe (JOC)'
+        jp-box: 'traduction japonaise Bibleox (BOX)'
         cn-sb: 'traduction chinoise (SB)'
         cn-cuv: 'traduction chinoise (CUV)'
         cn-cuvt: 'traduction chinoise (CUV-T)'
@@ -517,6 +519,7 @@ fr:
 
         jp-ni: 'traduction japonaise (JP-NI, 1987)'
         jp-joc: 'traduction japonaise orthodoxe (JOC, 1901)'
+        jp-box: 'traduction japonaise Bibleox (BOX, 2026)'
         cn-sb: 'traduction chinoise (SB, 1968)'
         cn-cuv: 'traduction chinoise (CUV, 1919)'
         cn-cuvt: 'traduction chinoise (CUV-T, 1919)'

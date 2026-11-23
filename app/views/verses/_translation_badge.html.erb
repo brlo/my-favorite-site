@@ -1,0 +1,21 @@
+<%# Бейдж «ИИ + человек» на странице главы jp-box.
+    Ведёт на страницу «О переводе», а при наведении/фокусе показывает подсказку. %>
+<div class="translation-notice"
+     data-controller="translation-notice"
+     data-action="pointerenter->translation-notice#pointerEnter pointerleave->translation-notice#pointerLeave">
+  <a class="translation-badge translation-badge-link"
+     href="<%= my_page_link_to("/#{::JP_BOX_ABOUT_PATH}", page_lang: 'ru') %>"
+     aria-describedby="jp-box-badge-tooltip"
+     aria-expanded="false"
+     data-translation-notice-target="trigger"
+     data-action="pointerdown->translation-notice#pointerDown focusin->translation-notice#show focusout->translation-notice#hide keydown.esc->translation-notice#hide">
+    <%= t('tips.bibleox_translated_badge') %>
+  </a>
+  <div class="translation-tooltip" id="jp-box-badge-tooltip" role="tooltip"
+       data-translation-notice-target="tooltip">
+    <span class="title"><%= t('tips.bibleox_translated') %></span>
+    <% t('tips.bibleox_translated_desc').split(/\n{2,}/).each do |paragraph| %>
+      <p><%= paragraph.squish %></p>
+    <% end %>
+  </div>
+</div>

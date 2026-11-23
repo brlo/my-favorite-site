@@ -36,4 +36,30 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal 'ltr', direction_for_lang('gr-lxx-byz')
     assert_equal 'ltr', direction_for_lang('ru')
   end
+
+  test "jp_box_text applies the orthodox calque to names" do
+    text = "パウロとテモテは、イエス・キリストの僕である。ヨセフとマリア、インマヌエル。"
+    assert_equal(
+      "パワェルとティモフェイは、イイスス・ハリストスの僕である。イオシフとマリヤ、エムマヌイル。",
+      jp_box_text(text, true)
+    )
+    assert_equal text, jp_box_text(text, false)
+  end
+
+  test "jp_box_text calques the Old Testament names" do
+    assert_equal "アウラムとサライ、ファラオン", jp_box_text("アブラムとサライ、ファラオ", true)
+    assert_equal "アウラアムとイサアク、イオシフ", jp_box_text("アブラハムとイサク、ヨセフ", true)
+  end
+
+  test "jp_box_text keeps words that only look like names" do
+    assert_equal(
+      "反キリストとユダヤ人、ヨナタン、アポロニア、アポロス",
+      jp_box_text("反キリストとユダヤ人、ヨナタン、アポロニア、アポロ", true)
+    )
+  end
+
+  test "jp_box_text resolves the paired calque markers" do
+    assert_equal "聖神[せいしん]", jp_box_text("{聖霊[せいれい]|聖神[せいしん]}", true)
+    assert_equal "聖霊[せいれい]", jp_box_text("{聖霊[せいれい]|聖神[せいしん]}", false)
+  end
 end

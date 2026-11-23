@@ -18,6 +18,7 @@
               'arab-avd' => {short: 'AVD'},
               'jp-ni'    => {short: 'N.Interc'},
               'jp-joc'   => {short: 'JOC'},
+              'jp-box'   => {short: 'Bibleox'},
               'cn-sb'  => {short: 'SB'},
               'cn-sbt'  => {short: 'SB-T'},
               'cn-cuv'  => {short: 'CUV'},
@@ -59,6 +60,14 @@
 
 
   <div class='right-group'>
+    <% if current_bib_lang() == 'jp-box' %>
+      <a class='bar-el btn calque-toggle<%= ' off' unless calque_orthodox? %>' id='btn-calque'
+         href='<%= calque_toggle_path %>'
+         title='<%= t('calque.hint', default: '日本正教会の伝統的な用語で表示する／戻す') %>'
+         aria-label='<%= t('calque.hint', default: '日本正教会の伝統的な用語で表示する／戻す') %>'>
+        <%= t('calque.btn', default: '伝統表記') %>
+      </a>
+    <% end %>
     <% if @has_furigana %>
       <div class='bar-el btn furigana-toggle<%= ' off' if @furigana_off %>' id='btn-furigana'
            data-controller='furigana-toggle'

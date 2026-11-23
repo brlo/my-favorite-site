@@ -968,6 +968,11 @@ a.bib-comment:hover {
     color: var(--bg-body);
 }
 
+.translation-badge-link {
+    cursor: pointer;
+    text-decoration: none;
+}
+
 .translation-badge:focus-visible {
     outline: 2px solid var(--blue);
     outline-offset: 2px;

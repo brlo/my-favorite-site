@@ -35,6 +35,7 @@
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <% if @content_lang == 'jp-box' %><meta name="turbo-cache-control" content="no-cache"><% end %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <style type="text/css">
       @font-face {font-family: 'Ponomar';src: url('<%= my_res_link_to('/fonts/PonomarUnicode.otf') %>') format("opentype");font-display: swap;}
@@ -44,6 +45,7 @@
 
   <body
     class="<%= 'night-mode' if @is_night_mode %>"
+    <% if @content_lang == 'jp-box' %>data-calque="<%= calque_orthodox? ? 'orthodox' : 'common' %>"<% end %>
     data-controller="books-menu metrics landing visit-beacon<%= ' chat-unread' if chat_notification_member %>"
     data-action="click->books-menu#clickOutside"
     data-chat-unread-url-value="<%= chat_unread_path(locale: I18n.locale) %>"
@@ -275,5 +277,37 @@
 <%= content_for?(:end_of_page) ? yield(:end_of_page) : '' %>
     <% if @no_index != true %>
     <% end %>
-  </body>
+    <% if @content_lang == 'jp-box' %>
+    <script>
+      (function () {
+        var KEY = 'calque';
+        function cookieMode() {
+          var m = document.cookie.match(/(?:^|;\s*)calque=([^;]+)/);
+          return m && m[1] === 'orthodox' ? 'orthodox' : 'common';
+        }
+        function settle() {
+          var el = document.body;
+          if (!el || !el.dataset.calque) return;
+          var param = new URLSearchParams(window.location.search).get('calque');
+          var want = null;
+          try { want = localStorage.getItem(KEY); } catch (e) {}
+          if (!want) want = (param === 'orthodox' || param === 'common') ? param : cookieMode();
+          if (want === el.dataset.calque) return;
+          var url = new URL(window.location.href);
+          url.searchParams.set('calque', want);
+          window.location.replace(url.toString());
+        }
+        document.addEventListener('DOMContentLoaded', settle);
+        document.addEventListener('turbo:load', settle);
+        window.addEventListener('pageshow', settle);
+        document.addEventListener('click', function (e) {
+          var btn = e.target.closest && e.target.closest('#btn-calque');
+          if (!btn) return;
+          var m = (btn.getAttribute('href') || '').match(/calque=(orthodox|common)/);
+          try { localStorage.setItem(KEY, m ? m[1] : 'orthodox'); } catch (err) {}
+        }, true);
+      })();
+    </script>
+  <% end %>
+</body>
 </html>

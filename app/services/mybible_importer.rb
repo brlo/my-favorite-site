@@ -13,6 +13,7 @@ class MybibleImporter
   def self.search_text(text, lang)
     s = ::Rails::Html::FullSanitizer.new.sanitize(text.to_s).gsub("\u00AD", '')
     s = s.gsub(/\[([\p{Hiragana}\p{Katakana}ー]+)\]/, '') if lang == 'ja'
+    s = s.gsub(/\{\{\d+\}\}/, '') # маркеры сносок jp-box {{1}}, {{2}}
     s
   end
 
@@ -46,7 +47,7 @@ class MybibleImporter
     # заголовок, у которого потерялось начало "<n>[" (бывает в корейском модуле)
     s.sub!(%r{\A[^<]*\]</n>}, '')
     s.gsub!(%r{<(/?)J>}, '<\1j>')
-    s.gsub!(%r{</?(?!(?:i|j)>)[a-zA-Z]+\s*/?>}, '')
+    s.gsub!(%r{</?(?!(?:i|j|mo)>)[a-zA-Z]+\s*/?>}, '')
     # корейский "공동번역": метки сносок "ㄱ)" в тексте и сами сноски "(ㄱ. ...)" в конце стиха
     s.sub!(/\s*\([ㄱ-ㅎ]\..*\z/m, '')
     s.gsub!(/[ㄱ-ㅎ]\)\s?/, '')

@@ -26,7 +26,7 @@
         <tbody>
           <% @verses.each.with_index do |v, i| %>
             <% if v.line == 0 %>
-              <tr><td colspan='3' class='zero-verse <%= font_classes %>'><%= sanitize(v.text) %></tr>
+              <tr><td colspan='3' class='zero-verse <%= font_classes %>'><%= sanitize(verse_text_for_display(v)) %></tr>
             <% else %>
               <tr>
                 <td class='verse-line'
@@ -50,7 +50,7 @@
                     data-action="click->verse-highlighter#lineTextClicked"
                     data-verse-highlighter-target="verseText">
 
-                  <%= sanitize(v.text, tags: %w(j e i br ruby rb rt)) %>
+                  <%= wrap_bible_notes(sanitize(verse_text_for_display(v), tags: %w(j mo e i br ruby rb rt)), (v.data || {})['notes']) %>
 
                   <% if @comments[v.line] %>
                     <a class='bib-comment'
