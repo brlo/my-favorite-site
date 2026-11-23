@@ -119,6 +119,21 @@ class VersesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, 'Бог есть любовь.'
   end
 
+  test "main page uses quotes of the Bible language" do
+    create_verse(tr_code: 'jp-joc', lang: 'ja', book: '1in', book_id: 690, line: 1, zavet: false,
+                 text: '初[はじ]めに言[ことば]があった。')
+    get '/ja/jp-joc/'
+    assert_response :success
+    assert_match(/「<span class="furigana-text">初\[はじ\]め/, response.body)
+    assert_match(%r{</span>」（<a href="/ja/jp-joc/1in/1#L1-1">}, response.body)
+
+    create_verse(book: '1in', book_id: 690, line: 1, text: 'Бог есть любовь.')
+    get '/ru/'
+    assert_response :success
+    assert_match(/«<span class="furigana-text">Бог есть любовь\.<\/span>»/, response.body)
+    assert_match(%r{» \(<a href="/ru/ru/1in/1#L1-1">}, response.body)
+  end
+
   test "main page marks furigana text and shows the toggle" do
     create_verse(tr_code: 'jp-joc', lang: 'ja', book: '1in', book_id: 690, line: 1, zavet: false,
                  text: '初[はじ]めに言[ことば]があった。')
