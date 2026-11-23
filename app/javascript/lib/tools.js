@@ -14,6 +14,39 @@ export const stripDots = (str) => {
       return ( str || '' ).replace( /^[\s\.\,\?\!\;]+|[\s\.\,\;]+$/g, '' );
     }
 
+// Текст узла, где <ruby>漢字<rt>かんじ</rt></ruby> превращается в «漢字[かんじ]»
+export const textWithFurigana = (node) => {
+  if (!node) return ''
+  if (node.nodeType === 3) return node.nodeValue || ''
+  if (node.nodeType !== 1) return ''
+  const tag = node.tagName.toLowerCase()
+  if (tag === 'rt' || tag === 'rp' || tag === 'script' || tag === 'style') return ''
+  if (tag === 'ruby') {
+    const rt = node.querySelector('rt')
+    const reading = rt ? rt.textContent.trim() : ''
+    const base = Array.from(node.childNodes)
+      .filter((child) => !(child.nodeType === 1 && ['rt', 'rp'].includes(child.tagName.toLowerCase())))
+      .map(textWithFurigana)
+      .join('')
+    return reading ? `${base}[${reading}]` : base
+  }
+  return Array.from(node.childNodes).map(textWithFurigana).join('')
+}
+
+// Заменяет <ruby> в корне на текст с квадратными скобками (для копирования выделения)
+export const replaceRubyWithText = (root) => {
+  root.querySelectorAll('ruby').forEach((ruby) => {
+    const rt = ruby.querySelector('rt')
+    const reading = rt ? rt.textContent.trim() : ''
+    const base = Array.from(ruby.childNodes)
+      .filter((child) => !(child.nodeType === 1 && ['rt', 'rp'].includes(child.tagName.toLowerCase())))
+      .map((child) => child.textContent || '')
+      .join('')
+    ruby.replaceWith(document.createTextNode(reading ? `${base}[${reading}]` : base))
+  })
+  return root
+}
+
 export const copyText = (text) => {
   var dummy = document.createElement('input');
 

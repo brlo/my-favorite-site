@@ -1,6 +1,6 @@
 import { Controller } from "@hotwired/stimulus"
 import notifications from "services/notifications_service"
-import { strip, stripDots, copyText, copyTextLink } from "lib/tools"
+import { strip, stripDots, copyText, copyTextLink, textWithFurigana } from "lib/tools"
 import { t, t_cont } from "lib/localization"
 
 export default class extends Controller {
@@ -102,7 +102,7 @@ export default class extends Controller {
           chunks.push('<...>')
         }
       }
-      chunks.push(strip(line.textContent))
+      chunks.push(strip(textWithFurigana(line)))
       prevLineNumb = currentLineNumb
     }
 
