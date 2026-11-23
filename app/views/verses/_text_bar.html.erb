@@ -65,7 +65,7 @@
            data-action='click->furigana-toggle#toggle'
            role='button' aria-pressed='<%= !@furigana_off %>'
            title='<%= t('furigana') %>' aria-label='<%= t('furigana') %>'>
-        <span class='furigana-toggle-icon'>あ</span>
+        <span class='furigana-toggle-icon'>あ</span><%= t('furigana') %>
       </div>
     <% end %>
     <% if @cite_max.to_i > 0 %>

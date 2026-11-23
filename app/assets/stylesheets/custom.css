@@ -166,7 +166,7 @@ header .container, footer .container {
 }
 #text-bar .bar-el.btn:hover { background-color: #ebeae0; }
 #text-bar .furigana-toggle { padding: 0 8px; }
-#text-bar .furigana-toggle-icon { font-size: 16px; line-height: 1; }
+#text-bar .furigana-toggle-icon { font-size: 16px; line-height: 1; margin-inline-end: 4px; }
 #text-bar .furigana-toggle.off { opacity: .35; }
 .no-furigana rt { display: none; }
 
