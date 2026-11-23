@@ -134,6 +134,8 @@ class VersesController < ApplicationController
 
     # Первые три стиха из 1ИН, для главной страницы
     @main_verses = ::Verse.where(tr_code: @current_bib_lang, book: '1in', chapter: 1, line: [1,2,3]).order(line: :asc).to_a
+    @has_furigana = @main_verses.any? { |v| v.text.to_s.include?('[') }
+    @furigana_off = cookies[:furigana] == '0'
 
     @page_title = ::I18n.t('root_page.title')
     @meta_description = ::I18n.t('about_site_short')

@@ -16,6 +16,8 @@ export default class extends Controller {
   apply(off) {
     this.element.classList.toggle('off', off)
     this.element.setAttribute('aria-pressed', String(!off))
-    document.getElementById('chapter-text')?.classList.toggle('no-furigana', off)
+    document.querySelectorAll('[data-furigana-container]').forEach((el) => {
+      el.classList.toggle('no-furigana', off)
+    })
   }
 }

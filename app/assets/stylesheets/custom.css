@@ -168,7 +168,7 @@ header .container, footer .container {
 #text-bar .furigana-toggle { padding: 0 8px; }
 #text-bar .furigana-toggle-icon { font-size: 16px; line-height: 1; }
 #text-bar .furigana-toggle.off { opacity: .35; }
-#chapter-text.no-furigana rt { display: none; }
+.no-furigana rt { display: none; }
 
 .night-mode #text-bar .bar-el.btn a { color: #ccc; }
 .night-mode #text-bar .bar-el.btn {

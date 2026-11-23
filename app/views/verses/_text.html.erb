@@ -8,6 +8,7 @@
   <div id='chapter-text'
        class='<%= 'cite-off' if cite_map_off? %> <%= 'no-furigana' if @furigana_off %>'
        data-controller="verse-highlighter citations ruby-copy"
+       data-furigana-container
        data-action="copy->ruby-copy#copy"
        data-citations-url-value="<%= my_bib_link_to("/citations/#{@book_code}/#{@chapter}") %>"
        data-verse-highlighter-select-bar-outlet="#select-bar-container">

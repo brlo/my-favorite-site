@@ -52,8 +52,12 @@
   <%= render(partial: 'verses/text_bar') %>
 
   <% if @main_verses.any? %>
-    <div class='pre-bible-text <%= font_classes %>' lang="<%= @locale_by_bib %>" dir="<%= content_direction %>">
-      "<%= sanitize(@main_verses.map(&:text).join(' '), tags: []) %>"
+    <div class='pre-bible-text <%= font_classes %> <%= 'no-furigana' if @furigana_off %>'
+         lang="<%= @locale_by_bib %>" dir="<%= content_direction %>"
+         data-controller="furigana-converter ruby-copy"
+         data-action="copy->ruby-copy#copy"
+         data-furigana-container>
+      "<span class="furigana-text"><%= sanitize(@main_verses.map(&:text).join(' '), tags: []) %></span>"
       <% v = @main_verses.first %>
       <% v_last = @main_verses.last %>
       (<a href="<%= "/#{locale}/#{current_bib_lang}/#{ v.book }/#{ v.chapter }#L#{ v.line }-#{v_last.line}" %>"><%= ::I18n.t("books.short.#{ v.book }", locale: @locale_by_bib) %>. <%= v.chapter %>:<%= v.line %>-<%= v_last.line %></a>)

@@ -119,6 +119,15 @@ class VersesControllerTest < ActionDispatch::IntegrationTest
     assert_includes response.body, 'Бог есть любовь.'
   end
 
+  test "main page marks furigana text and shows the toggle" do
+    create_verse(tr_code: 'jp-joc', lang: 'ja', book: '1in', book_id: 690, line: 1, zavet: false,
+                 text: '初[はじ]めに言[ことば]があった。')
+    get '/ja/jp-joc/'
+    assert_response :success
+    assert_select '.pre-bible-text .furigana-text', text: /初\[はじ\]め/
+    assert_select '#btn-furigana'
+  end
+
   # --- редиректы ---
 
   test "old url without content language redirects to the current one" do
