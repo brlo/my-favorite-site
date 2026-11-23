@@ -433,6 +433,15 @@ module ApplicationHelper
     s.gsub(/ユダ(?!ヤ)/, 'イウダ')              # ユダヤ не трогаем
   end
 
+  # Статья «О переводе» jp-box на языке читателя: исходная — ru, есть ja.
+  # Для языков без перевода отдаём ru (как было раньше).
+  def jp_box_about_page
+    ru = ::Page.find_by(lang: 'ru', path_low: ::JP_BOX_ABOUT_PATH.downcase)
+    return nil unless ru
+
+    ::Page.find_by(lang: I18n.locale.to_s, group_lang_id: ru.group_lang_id) || ru
+  end
+
   # Текст стиха для показа: у jp-box раскрываем кальку, у прочих переводов — как есть
   def verse_text_for_display(verse)
     verse.tr_code == 'jp-box' ? jp_box_text(verse.text) : verse.text

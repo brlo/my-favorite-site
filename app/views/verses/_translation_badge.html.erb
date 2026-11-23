@@ -1,10 +1,11 @@
+<% about = jp_box_about_page %>
 <%# Бейдж «ИИ + человек» на странице главы jp-box.
     Ведёт на страницу «О переводе», а при наведении/фокусе показывает подсказку. %>
 <div class="translation-notice"
      data-controller="translation-notice"
      data-action="pointerenter->translation-notice#pointerEnter pointerleave->translation-notice#pointerLeave">
   <a class="translation-badge translation-badge-link"
-     href="<%= my_page_link_to("/#{::JP_BOX_ABOUT_PATH}", page_lang: 'ru') %>"
+     href="<%= my_page_link_to("/#{about&.path || ::JP_BOX_ABOUT_PATH}", page_lang: about&.lang || 'ru') %>"
      aria-describedby="jp-box-badge-tooltip"
      aria-expanded="false"
      data-translation-notice-target="trigger"
