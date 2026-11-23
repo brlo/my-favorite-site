@@ -83,10 +83,10 @@ pages:
   update: true
 - src: 9XTO618Z_Апостолы_через_возложение_рук_поставили_священство
   path: Ordination-by-the-laying-on-of-hands
-  title: The apostles ordained the priesthood by the laying on of hands
+  title: The ordination of the priesthood
   menu:
     parent: Composition of the Church
-    title: Ordination by the laying on of hands
+    title: The ordination of the priesthood
     priority: 3
   body: '<h2>1st century</h2><h3>Clement of Rome, hieromartyr († c. 101)</h3><blockquote><p><strong>The
     apostles have preached the Gospel to us</strong> from <strong>the Lord Jesus Christ</strong>;
@@ -258,6 +258,7 @@ pages:
     of the Holy Fathers are cited from the English translations held in this site’s
     library where available; otherwise they are translated from the Russian.</p>"
   update: true
+  title_sub: Quotes of the Holy Fathers on the grace-filled ordination of the priesthood
 - src: qeuY_Епископы__преемники_апостолов
   path: Bishops-the-successors-of-the-apostles
   title: The bishops — the successors of the apostles
