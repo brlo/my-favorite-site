@@ -9,6 +9,13 @@ class MybibleImporter
 
   def self.call(...) = new(...).perform
 
+  # Текст для поиска: без html-тегов и без японских чтений в скобках (初[はじ]め -> 初め).
+  def self.search_text(text, lang)
+    s = ::Rails::Html::FullSanitizer.new.sanitize(text.to_s).gsub("\u00AD", '')
+    s = s.gsub(/\[([\p{Hiragana}\p{Katakana}ー]+)\]/, '') if lang == 'ja'
+    s
+  end
+
   # fixes - замены в тексте модуля, например {'침례' => '세례'}, если составитель модуля исказил перевод
   def initialize(file, tr_code:, lang:, is_replace: false, fixes: {})
     @file = file
@@ -61,7 +68,7 @@ class MybibleImporter
         next
       end
 
-      text_search = sanitizer.sanitize(text).gsub("\u00AD", '')
+      text_search = self.class.search_text(text, @lang)
       {
         tr_code: @tr_code, lang: @lang, book_id: book_id.to_i, book: book, zavet: ::BOOKS[book][:zavet] == 2,
         chapter: chapter.to_i, line: verse.to_i, address: "#{book}:#{chapter.to_i}:#{verse.to_i}",

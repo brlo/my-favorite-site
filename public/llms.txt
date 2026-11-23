@@ -1,6 +1,6 @@
 # Bibleox
 
-> Free, non-commercial Orthodox Christian site (since 2022): the complete Bible in 19 translations across 12 languages (Russian Synodal, Church Slavonic, English NRSV and NKJV, Japanese, Chinese, Korean, Hindi, Arabic, German, Greek Septuagint, Hebrew, Greek interlinears) together with a wiki-like library of articles — Bible quote collections, Church Fathers, Ecumenical Councils, worship, apologetics and polemics in defense of the Orthodox faith, and guidance for Protestants seeking the Orthodox Church. One article tree, progressively translated into many languages; Russian is the original and most complete version. No ads, no paywall.
+> Free, non-commercial Orthodox Christian site (since 2022): the Bible in 18 translations across 12 languages (Russian Synodal, Church Slavonic, English NRSV and NKJV, Japanese, Chinese, Korean, Hindi, Arabic, German, Greek Septuagint, Hebrew) together with Greek interlinears and a wiki-like library of articles — Bible quote collections, Church Fathers, Ecumenical Councils, worship, apologetics and polemics in defense of the Orthodox faith, and guidance for Protestants seeking the Orthodox Church. One article tree, progressively translated into many languages; Russian is the original and most complete version. No ads, no paywall.
 
 Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 languages; articles exist in Russian, English, Japanese, Chinese, Korean, Hindi, French and ancient languages (Latin, Ancient Greek, Coptic, Church Slavonic, Old/Middle French, Classical Armenian) — coverage varies, Russian is the reference version, and articles in different languages are translations of the same document, not independent texts.
 
@@ -22,6 +22,7 @@ Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 la
 - [Church Slavonic, Elizabeth Bible (ELZ)](https://bibleox.com/ru/csl-pnm/mf/1/)
 - [Church Slavonic with Russian glosses (ELZ-RU)](https://bibleox.com/ru/csl-ru/mf/1/)
 - [Japanese, New Interconfessional Translation](https://bibleox.com/ja/jp-ni/mf/1/)
+- [Japanese, Japanese Orthodox Translation](https://bibleox.com/ja/jp-joc/mf/1/) — New Testament and Psalms complete; Old Testament: liturgical readings only
 - [Chinese, Studium Biblicum (思高本), simplified](https://bibleox.com/zh-Hans/cn-sb/mf/1/), [traditional](https://bibleox.com/zh-Hant/cn-sbt/mf/1/)
 - [Chinese Union Version (和合本), simplified](https://bibleox.com/zh-Hans/cn-cuv/mf/1/), [traditional](https://bibleox.com/zh-Hant/cn-cuvt/mf/1/)
 - [Korean Revised Version (개역개정, NKRV)](https://bibleox.com/ko/ko-nkrv/mf/1/) — no deuterocanonical books; New Testament from the critical text.

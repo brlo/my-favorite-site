@@ -122,7 +122,7 @@ export const convertToRuby = (text) => {
   // - НЕ захватываем запятые, точки и другие знаки препинания
   // - Затем [хирагана/катакана]
   return text.replace(
-    /([\u4e00-\u9fff\u3400-\u4dbf]+)\[([\u3040-\u309f\u30a0-\u30ff]+)\]/g,
+    /([\u4e00-\u9fff\u3400-\u4dbf\u3005]+)\[([\u3040-\u309f\u30a0-\u30ff]+)\]/g,
     (match, kanji, furigana) => {
       return `<ruby><rb>${kanji}</rb><rt>${furigana}</rt></ruby>`
     }

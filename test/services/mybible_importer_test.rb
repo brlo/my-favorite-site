@@ -25,6 +25,12 @@ class MybibleImporterTest < ActiveSupport::TestCase
     assert_equal '그 무렵에 "내가 내 아들을 불러 내었다"고 하신 말씀', MybibleImporter.clean(orig)
   end
 
+  test "removes Japanese furigana readings from the search text" do
+    assert_equal '初めに言があった。', MybibleImporter.search_text('初[はじ]めに言[ことば]があった。', 'ja')
+    assert_equal '聖霊', MybibleImporter.search_text('聖霊[せいれー]', 'ja')
+    assert_equal '初[はじ]め', MybibleImporter.search_text('初[はじ]め', 'ru')
+  end
+
   test "keeps a verse that closes a bracketed passage opened in an earlier verse" do
     orig = '대답하되 주여 없나이다 예수께서 이르시되 나도 너를 정죄하지 아니하노니 가서 다시는 죄를 범하지 말라 하시니라]</n>'
     assert_equal '대답하되 주여 없나이다 예수께서 이르시되 나도 너를 정죄하지 아니하노니 가서 다시는 죄를 범하지 말라 하시니라]', MybibleImporter.clean(orig)

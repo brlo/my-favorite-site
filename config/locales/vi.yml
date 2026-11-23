@@ -140,6 +140,7 @@ vi:
     fr-lsg: 'Tiếng Pháp'
     hi: 'Tiếng Hindi'
     jp-ni: 'Tiếng Nhật'
+    jp-joc: 'Tiếng Nhật'
     ko: 'Tiếng Hàn'
     ru: 'Tiếng Nga'
     sr: 'Tiếng Serbia'
@@ -252,6 +253,7 @@ vi:
         gr-jp: 'bản dịch sát nghĩa tiếng Nhật (bibleox, 2025)'
 
         jp-ni: 'bản dịch tiếng Nhật (JP-NI)'
+        jp-joc: 'bản dịch tiếng Nhật Chính thống giáo (JOC)'
         cn-sb: 'bản dịch tiếng Trung (SB)'
         cn-cuv: 'bản dịch tiếng Trung (CUV)'
         cn-cuvt: 'bản dịch tiếng Trung (CUV-T)'
@@ -275,6 +277,7 @@ vi:
         gr-jp: 'bản dịch sát nghĩa tiếng Nhật (bibleox, 2025)'
 
         jp-ni: 'bản dịch tiếng Nhật (JP-NI, 1987)'
+        jp-joc: 'bản dịch tiếng Nhật Chính thống giáo (JOC, 1901)'
         cn-sb: 'bản dịch tiếng Trung (SB, 1968)'
         cn-cuv: 'bản dịch tiếng Trung (CUV, 1919)'
         cn-cuvt: 'bản dịch tiếng Trung (CUV-T, 1919)'

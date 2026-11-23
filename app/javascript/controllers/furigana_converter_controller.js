@@ -7,7 +7,7 @@ export default class extends Controller {
   }
 
   convert() {
-    const elements = this.element.querySelectorAll('.verse-text')
+    const elements = this.element.querySelectorAll('.verse-text, .zero-verse')
 
     elements.forEach(el => {
       if (el.dataset.rubyConverted) return

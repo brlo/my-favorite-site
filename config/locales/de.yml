@@ -140,6 +140,7 @@ de:
     fr-lsg: 'Französisch'
     hi: 'Hindi'
     jp-ni: 'Japanisch'
+    jp-joc: 'Japanisch'
     ko: 'Koreanisch'
     ru: 'Russisch'
     sr: 'Serbisch'
@@ -252,6 +253,7 @@ de:
         gr-jp: 'japanische Interlinearübersetzung (bibleox, 2025)'
 
         jp-ni: 'japanische Übersetzung (JP-NI)'
+        jp-joc: 'japanische orthodoxe Übersetzung (JOC)'
         cn-sb: 'chinesische Übersetzung (SB)'
         cn-cuv: 'chinesische Übersetzung (CUV)'
         cn-cuvt: 'chinesische Übersetzung (CUV-T)'
@@ -275,6 +277,7 @@ de:
         gr-jp: 'japanische Interlinearübersetzung (bibleox, 2025)'
 
         jp-ni: 'japanische Übersetzung (JP-NI, 1987)'
+        jp-joc: 'japanische orthodoxe Übersetzung (JOC, 1901)'
         cn-sb: 'chinesische Übersetzung (SB, 1968)'
         cn-cuv: 'chinesische Übersetzung (CUV, 1919)'
         cn-cuvt: 'chinesische Übersetzung (CUV-T, 1919)'

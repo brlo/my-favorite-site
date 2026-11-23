@@ -140,6 +140,7 @@ uz:
     fr-lsg: 'Fransuzcha'
     hi: 'Hindcha'
     jp-ni: 'Yaponcha'
+    jp-joc: 'Yaponcha'
     ko: 'Koreyscha'
     ru: 'Ruscha'
     sr: 'Serbcha'
@@ -252,6 +253,7 @@ uz:
         gr-jp: 'yaponcha satrma-satr tarjima (bibleox, 2025)'
 
         jp-ni: 'yaponcha tarjima (JP-NI)'
+        jp-joc: 'yapon pravoslav tarjimasi (JOC)'
         cn-sb: 'xitoycha tarjima (SB)'
         cn-cuv: 'xitoycha tarjima (CUV)'
         cn-cuvt: 'xitoycha tarjima (CUV-T)'
@@ -275,6 +277,7 @@ uz:
         gr-jp: 'yaponcha satrma-satr tarjima (bibleox, 2025)'
 
         jp-ni: 'yaponcha tarjima (JP-NI, 1987)'
+        jp-joc: 'yapon pravoslav tarjimasi (JOC, 1901)'
         cn-sb: 'xitoycha tarjima (SB, 1968)'
         cn-cuv: 'xitoycha tarjima (CUV, 1919)'
         cn-cuvt: 'xitoycha tarjima (CUV-T, 1919)'

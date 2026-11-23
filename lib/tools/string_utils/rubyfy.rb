@@ -8,7 +8,7 @@ module Tools
       def self.call(text)
         return text unless text.present?
 
-        text.gsub(/([\p{Han}]+)\[([\p{Hiragana}\p{Katakana}]+)\]/) do
+        text.gsub(/([\p{Han}々]+)\[([\p{Hiragana}\p{Katakana}ー]+)\]/) do
           "<ruby><rb>#{$1}</rb><rt>#{$2}</rt></ruby>".html_safe
         end
       end

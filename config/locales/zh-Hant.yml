@@ -141,6 +141,7 @@ zh-Hant:
     fr-lsg: '法語'
     hi: '印地語'
     jp-ni: '日語'
+    jp-joc: '日語'
     ko: '韓語'
     ru: '俄語'
     sr: '塞爾維亞語'
@@ -253,6 +254,7 @@ zh-Hant:
         gr-jp: '日語逐詞譯本 (bibleox, 2025)'
 
         jp-ni: '日語譯本 (JP-NI)'
+        jp-joc: '日本正教會譯本 (JOC)'
         cn-sb: '中文譯本 (SB)'
         cn-cuv: '中文譯本 (CUV)'
         cn-cuvt: '中文譯本 (CUV-T)'
@@ -276,6 +278,7 @@ zh-Hant:
         gr-jp: '日語逐詞譯本 (bibleox, 2025)'
 
         jp-ni: '日語譯本 (JP-NI, 1987)'
+        jp-joc: '日本正教會譯本 (JOC, 1901)'
         cn-sb: '中文譯本 (SB, 1968)'
         cn-cuv: '中文譯本 (CUV, 1919)'
         cn-cuvt: '中文譯本 (CUV-T, 1919)'
