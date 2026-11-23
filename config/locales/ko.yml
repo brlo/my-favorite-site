@@ -19,6 +19,7 @@ ko:
   about_translations: "성경 번역본"
   fast_search: '구절 검색 또는 약 2:16'
   voice: 음성으로 듣기
+  furigana: '후리가나'
   quote_start: '“'
   quote_end: '”'
   bracket_start: '('

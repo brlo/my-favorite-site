@@ -6,7 +6,7 @@
   <div id='chapter-title' class='hidden' data-title='<%= @page_title %>'></div>
 
   <div id='chapter-text'
-       class='<%= 'cite-off' if cite_map_off? %>'
+       class='<%= 'cite-off' if cite_map_off? %> <%= 'no-furigana' if @furigana_off %>'
        data-controller="verse-highlighter citations"
        data-citations-url-value="<%= my_bib_link_to("/citations/#{@book_code}/#{@chapter}") %>"
        data-verse-highlighter-select-bar-outlet="#select-bar-container">

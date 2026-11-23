@@ -19,6 +19,7 @@ tr:
   about_translations: "Kutsal Yazı çevirileri"
   fast_search: 'İfade ara ya da Yak 2 16'
   voice: Seslendir
+  furigana: 'Furigana'
   quote_start: '“'
   quote_end: '”'
   bracket_start: '('

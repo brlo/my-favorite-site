@@ -59,6 +59,15 @@
 
 
   <div class='right-group'>
+    <% if @has_furigana %>
+      <div class='bar-el btn furigana-toggle<%= ' off' if @furigana_off %>' id='btn-furigana'
+           data-controller='furigana-toggle'
+           data-action='click->furigana-toggle#toggle'
+           role='button' aria-pressed='<%= !@furigana_off %>'
+           title='<%= t('furigana') %>' aria-label='<%= t('furigana') %>'>
+        <span class='furigana-toggle-icon'>あ</span>
+      </div>
+    <% end %>
     <% if @cite_max.to_i > 0 %>
       <div class='bar-el btn cite-toggle<%= ' off' if cite_map_off? %>' id='btn-cite-map'
            data-controller='cite-toggle'

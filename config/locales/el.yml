@@ -19,6 +19,7 @@ el:
   about_translations: "Μεταφράσεις της Αγίας Γραφής"
   fast_search: Γρήγορη αναζήτηση
   voice: φωνή
+  furigana: 'Φουριγκάνα'
   quote_start: '«'
   quote_end: '»'
   bracket_start: '('

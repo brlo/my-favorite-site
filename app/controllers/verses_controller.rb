@@ -166,6 +166,8 @@ class VersesController < ApplicationController
     @audio_next_file = chapter.audio_file(chapter.chapter + 1)
     @audio_next_title = chapter.audio_title(chapter.chapter + 1)
     @verses = chapter.verses
+    @has_furigana = @verses.any? { |v| v.text.to_s.include?('[') }
+    @furigana_off = cookies[:furigana] == '0'
     @verses_gr = chapter.verses_gr
     @comments = chapter.comments
     @cite_counts = chapter.cite_counts

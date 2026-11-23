@@ -19,6 +19,7 @@ ar:
   about_translations: "ترجمات الكتاب المقدس"
   fast_search: بحث سريع
   voice: صوت
+  furigana: 'فوريغانا'
   audio:
     play: تشغيل
     pause: إيقاف مؤقت

@@ -27,6 +27,31 @@ class VersesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "furigana toggle is shown only for text with furigana" do
+    create_verse(tr_code: 'jp-joc', lang: 'ja', book: 'mf', book_id: 470, chapter: 1, line: 1, zavet: false,
+                 text: 'ダワィドの子[こ]、イイスス ハリストスの族[ぞく]譜[ふ]。')
+    get '/ja/jp-joc/mf/1/'
+    assert_response :success
+    assert_select '#btn-furigana:not(.off)'
+    assert_select '#chapter-text:not(.no-furigana)'
+
+    create_verse(tr_code: 'eng-nkjv', lang: 'en', book: 'gen', book_id: 10, chapter: 1, line: 1, zavet: true,
+                 text: 'In the beginning God created the heaven and the earth.')
+    get '/ru/eng-nkjv/gen/1/'
+    assert_response :success
+    assert_select '#btn-furigana', count: 0
+  end
+
+  test "furigana can be disabled by cookie" do
+    create_verse(tr_code: 'jp-joc', lang: 'ja', book: 'mf', book_id: 470, chapter: 1, line: 1, zavet: false,
+                 text: 'ダワィドの子[こ]。')
+    cookies[:furigana] = '0'
+    get '/ja/jp-joc/mf/1/'
+    assert_response :success
+    assert_select '#btn-furigana.off'
+    assert_select '#chapter-text.no-furigana'
+  end
+
   test "chapter in a language other than the UI is not indexed" do
     create_verse(tr_code: 'eng-nkjv', lang: 'en')
     get '/ru/eng-nkjv/gen/1/'
