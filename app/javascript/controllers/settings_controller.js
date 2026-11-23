@@ -32,7 +32,7 @@ export default class extends Controller {
       '3': 'text-large'
     }[textSizeFromCookies] || 'text-medium'
 
-    this.textSizeArticles().forEach((el) => {
+    this.textSizeElements().forEach((el) => {
       el.classList.remove('text-small', 'text-medium', 'text-large')
       el.classList.add(correctClass)
     })
@@ -110,7 +110,7 @@ export default class extends Controller {
     btn.classList.add('active')
 
     // Меняем класс у всех статей с текстом
-    this.textSizeArticles().forEach((el) => {
+    this.textSizeElements().forEach((el) => {
       el.classList.remove('text-small', 'text-medium', 'text-large')
       el.classList.add(newTextSizeClass)
     })
@@ -139,9 +139,9 @@ export default class extends Controller {
     return false;
   }
 
-  // Статьи, к которым применяется выбранный размер текста
-  textSizeArticles() {
-    return document.querySelectorAll('article[data-text-size]')
+  // Статьи и цитата на главной, к которым применяется выбранный размер текста
+  textSizeElements() {
+    return document.querySelectorAll('article[data-text-size], .pre-bible-text')
   }
 
   // Получить активную кнопку размера текста

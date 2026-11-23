@@ -769,6 +769,10 @@ body.night-mode {
   font-size: 0.9em !important;
 }
 
+.pre-bible-text.text-small { font-size: 0.9em !important; }
+.pre-bible-text.text-medium { font-size: 1.1em !important; }
+.pre-bible-text.text-large { font-size: 1.3em !important; }
+
 a#current-book {
   cursor: default;
 }
