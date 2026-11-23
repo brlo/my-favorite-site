@@ -14,8 +14,9 @@ export const stripDots = (str) => {
       return ( str || '' ).replace( /^[\s\.\,\?\!\;]+|[\s\.\,\;]+$/g, '' );
     }
 
-// Текст узла, где <ruby>漢字<rt>かんじ</rt></ruby> превращается в «漢字[かんじ]»
-export const textWithFurigana = (node) => {
+// Текст узла, где <ruby>漢字<rt>かんじ</rt></ruby> превращается в «漢字[かんじ]».
+// withReadings=false — вернуть только основание, без чтения (когда фуригана скрыта).
+export const textWithFurigana = (node, withReadings = true) => {
   if (!node) return ''
   if (node.nodeType === 3) return node.nodeValue || ''
   if (node.nodeType !== 1) return ''
@@ -23,21 +24,22 @@ export const textWithFurigana = (node) => {
   if (tag === 'rt' || tag === 'rp' || tag === 'script' || tag === 'style') return ''
   if (tag === 'ruby') {
     const rt = node.querySelector('rt')
-    const reading = rt ? rt.textContent.trim() : ''
+    const reading = withReadings && rt ? rt.textContent.trim() : ''
     const base = Array.from(node.childNodes)
       .filter((child) => !(child.nodeType === 1 && ['rt', 'rp'].includes(child.tagName.toLowerCase())))
-      .map(textWithFurigana)
+      .map((child) => textWithFurigana(child, withReadings))
       .join('')
     return reading ? `${base}[${reading}]` : base
   }
-  return Array.from(node.childNodes).map(textWithFurigana).join('')
+  return Array.from(node.childNodes).map((child) => textWithFurigana(child, withReadings)).join('')
 }
 
-// Заменяет <ruby> в корне на текст с квадратными скобками (для копирования выделения)
-export const replaceRubyWithText = (root) => {
+// Заменяет <ruby> в корне на текст с квадратными скобками (для копирования выделения).
+// withReadings=false — оставить только основание.
+export const replaceRubyWithText = (root, withReadings = true) => {
   root.querySelectorAll('ruby').forEach((ruby) => {
     const rt = ruby.querySelector('rt')
-    const reading = rt ? rt.textContent.trim() : ''
+    const reading = withReadings && rt ? rt.textContent.trim() : ''
     const base = Array.from(ruby.childNodes)
       .filter((child) => !(child.nodeType === 1 && ['rt', 'rp'].includes(child.tagName.toLowerCase())))
       .map((child) => child.textContent || '')

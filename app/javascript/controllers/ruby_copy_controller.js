@@ -15,7 +15,8 @@ export default class extends Controller {
 
     const div = document.createElement('div')
     div.appendChild(fragment)
-    replaceRubyWithText(div)
+    const withReadings = !this.element.closest('.no-furigana')
+    replaceRubyWithText(div, withReadings)
 
     // временно в DOM, чтобы innerText сохранил переносы строк таблицы/абзацев
     div.style.position = 'fixed'

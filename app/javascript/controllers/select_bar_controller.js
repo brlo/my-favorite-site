@@ -93,6 +93,7 @@ export default class extends Controller {
 
     if (selectedLines < 1) return ''
 
+    const withReadings = !document.querySelector('[data-furigana-container].no-furigana')
     let chunks = []
     let prevLineNumb = 0
     for (const line of selectedLines) {
@@ -102,7 +103,7 @@ export default class extends Controller {
           chunks.push('<...>')
         }
       }
-      chunks.push(strip(textWithFurigana(line)))
+      chunks.push(strip(textWithFurigana(line, withReadings)))
       prevLineNumb = currentLineNumb
     }
 
