@@ -37,6 +37,27 @@ class ApplicationHelperTest < ActionView::TestCase
     assert_equal 'ltr', direction_for_lang('ru')
   end
 
+  # Иероглифы мельче латиницы, поэтому азиатским переводам включаем крупный шрифт
+  test "CJK translations get the enlarged font class" do
+    %w[jp-ni jp-joc jp-box gr-jp cn-sb cn-sbt cn-cuv cn-cuvt ko-nkrv arab-avd heb-osm].each do |code|
+      @current_bib_lang = code
+      @font_custom_classes = nil
+      assert_equal 'text-detailed', font_classes, "expected text-detailed for #{code}"
+    end
+  end
+
+  test "non-CJK translations keep the normal font class" do
+    %w[ru eng-nkjv ge-sch fr-lsg hi-ov].each do |code|
+      @current_bib_lang = code
+      @font_custom_classes = nil
+      assert_equal '', font_classes, "expected no extra class for #{code}"
+    end
+
+    @current_bib_lang = 'csl-pnm'
+    @font_custom_classes = nil
+    assert_equal 'csl', font_classes
+  end
+
   test "jp_box_text applies the orthodox calque to names" do
     text = "パウロとテモテは、イエス・キリストの僕である。ヨセフとマリア、インマヌエル。"
     assert_equal(
