@@ -6,7 +6,10 @@
 # DIR    — куда выгружать (по умолчанию tmp/q_batch/<slug папки>).
 #
 # Пишет:
-#   DIR/meta.tsv          — path RU, path EN (если перевод есть), title, КБ, цитат
+#   DIR/meta.tsv          — path RU, path EN (если перевод есть), title, КБ, цитат; далее для заготовки
+#                           YAML: title и priority/gold пункта RU-меню, title_sub и meta_desc RU-страницы
+#                           (заголовок, подзаголовок и мета описания зеркалятся из RU-страницы,
+#                           заголовок пункта меню — из RU-меню; они не обязаны совпадать)
 #   DIR/ru/<RU path>.html — тело RU-статьи из БД (эталон)
 #   DIR/en_orig/<EN path>.html — текущее тело перевода (если есть)
 #   DIR/links/<RU path>.txt    — ссылки RU, кандидаты EN-ссылок на стихи и страницы библиотеки
@@ -55,6 +58,9 @@ SHORT = I18n.t('books.short', locale: lang.to_sym).transform_keys(&:to_s)
 en_by_group = Page.where(lang: lang, group_lang_id: articles.map { _1[1].group_lang_id }.compact).index_by(&:group_lang_id)
 
 def norm_label(s) = s.to_s.gsub('.', '').gsub(/[\u00a0\u2009\u200a\s]+/, ' ').strip
+def cell(s) = s.to_s.gsub(/[\t\r\n]+/, ' ').strip
+
+META_HEAD = %w[ru_path en_path title kb quotes menu_title menu_priority menu_gold title_sub meta_desc]
 
 meta = []
 articles.each do |menu, ru|
@@ -79,9 +85,10 @@ articles.each do |menu, ru|
   File.write(File.join(dir, 'links', "#{ru.path}.txt"), lines.join("\n") + "\n")
 
   kb = (ru.body.to_s.size / 1024.0).round
-  meta << [ru.path, en&.path.to_s, ru.title.gsub("\t", ' '), kb, ru.body.to_s.scan(/<blockquote/).size].join("\t")
+  meta << [ru.path, en&.path.to_s, cell(ru.title), kb, ru.body.to_s.scan(/<blockquote/).size,
+           cell(menu.title), menu.priority, menu.is_gold ? 'gold' : '', cell(ru.title_sub), cell(ru.meta_desc)].join("\t")
 end
-File.write(File.join(dir, 'meta.tsv'), "ru_path\ten_path\ttitle\tkb\tquotes\n#{meta.join("\n")}\n")
+File.write(File.join(dir, 'meta.tsv'), "#{META_HEAD.join("\t")}\n#{meta.join("\n")}\n")
 puts "партия: #{folder.title} — статей #{articles.size}, выгружено в #{dir}"
-puts meta
+puts meta.map { |l| l.split("\t").first(5).join("\t") }
 puts "дальше: исполнители пишут #{dir}/out/<EN path>.html; проверка q_parity.rb ... --draft #{dir}/out"
