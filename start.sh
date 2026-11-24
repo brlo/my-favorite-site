@@ -18,7 +18,8 @@ cd `dirname $mypath`
 
 case "$RUN_MOD" in
 "prod")
-    bundle install
+    # гемы ставим, только если в томе их (или нужных версий) нет
+    bundle check || bundle install
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
     ./bin/bib_assets_remove.sh
     echo '=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-='
@@ -42,7 +43,7 @@ case "$RUN_MOD" in
     exec bundle exec puma -C config/puma.rb -e production
     ;;
 "dev")
-    bundle install
+    bundle check || bundle install
     bundle exec rake tmp:clear
     bundle exec rake assets:clobber
     bundle exec rake assets:clean

@@ -11,7 +11,9 @@ services:
       - 'PYTHONUNBUFFERED=1'
     volumes:
       - .:/app
-      - gems-volume:/usr/local/bundle
+      # том с гемами: путь должен совпадать с BUNDLE_PATH из Dockerfile,
+      # иначе гемы остаются в слое контейнера и ставятся заново при пересоздании
+      - gems-volume:/home/app/gems
     ports:
       - '80:3000'
     depends_on:
