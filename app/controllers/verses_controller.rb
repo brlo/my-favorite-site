@@ -2,6 +2,8 @@ class VersesController < ApplicationController
   skip_before_action :require_login_and_activation
 
   before_action :require_admin, only: %w[update update_interlinear_word]
+  # переключатель кальки jp-box: кука, чтобы режим держался при переходах
+  before_action :set_calque_cookie, only: %w[index]
 
   # https://github.com/rails/actionpack-page_caching
   # caches_page :index
@@ -121,6 +123,12 @@ class VersesController < ApplicationController
 
   private
 
+  def set_calque_cookie
+    return if params[:calque].blank?
+
+    cookies[:calque] = { value: params[:calque] == 'orthodox' ? 'orthodox' : 'common', expires: 1.year.from_now }
+  end
+
   # ГЛАВНАЯ СТРАНИЦА
   def show_main_page
     # для работы переключателя языка
@@ -154,10 +162,6 @@ class VersesController < ApplicationController
     )
 
     @content_lang = chapter.content_lang
-    # переключатель кальки jp-box (кука, чтобы держаться при переходе по главам)
-    if params[:calque].present?
-      cookies[:calque] = { value: params[:calque] == 'orthodox' ? 'orthodox' : 'common', expires: 1.year.from_now }
-    end
     @is_interliner = chapter.is_interliner?
     @int_content_lang = chapter.interliner_tr_code
     @no_index = true if chapter.no_index?

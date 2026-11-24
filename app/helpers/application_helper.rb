@@ -460,9 +460,16 @@ module ApplicationHelper
     end.html_safe
   end
 
-  # Ссылка-переключатель кальки для text-bar
+  # Ссылка-переключатель кальки для text-bar.
+  # На главной перевода (и других страницах без главы) @book_code/@chapter пустые —
+  # тогда возвращаемся на текущий адрес, иначе получалось /ja/jp-box///?calque=…
   def calque_toggle_path
-    "#{my_bib_link_to("/#{@book_code}/#{@chapter}/")}?calque=#{calque_orthodox? ? 'common' : 'orthodox'}"
+    base = if @book_code.present? && @chapter.present?
+             my_bib_link_to("/#{@book_code}/#{@chapter}/")
+           else
+             request.path
+           end
+    "#{base}?calque=#{calque_orthodox? ? 'common' : 'orthodox'}"
   end
 
   # OLD VERSION
