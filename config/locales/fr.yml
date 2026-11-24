@@ -32,7 +32,7 @@ fr:
   root_page:
     title: 'Bible et Sainte Tradition'
     headers:
-      bible: 'Sainte Écriture'
+      bible: 'Bible'
       tradition: 'Sainte Tradition'
 
   bible_page:

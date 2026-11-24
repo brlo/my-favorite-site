@@ -32,7 +32,7 @@ tr:
   root_page:
     title: 'Kutsal Kitap ve Kutsal Gelenek'
     headers:
-      bible: 'Kutsal Yazılar'
+      bible: 'Kutsal Kitap'
       tradition: 'Kutsal Gelenek'
 
   bible_page:

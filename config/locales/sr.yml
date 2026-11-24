@@ -32,7 +32,7 @@ sr:
   root_page:
     title: 'Библија и Свето Предање'
     headers:
-      bible: 'Свето Писмо'
+      bible: 'Библија'
       tradition: 'Свето Предање'
 
   bible_page:

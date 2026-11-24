@@ -32,7 +32,7 @@ it:
   root_page:
     title: 'Bibbia e Sacra Tradizione'
     headers:
-      bible: 'Sacra Scrittura'
+      bible: 'Bibbia'
       tradition: 'Sacra Tradizione'
 
   bible_page:

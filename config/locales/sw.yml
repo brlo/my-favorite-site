@@ -32,7 +32,7 @@ sw:
   root_page:
     title: 'Biblia na Mapokeo Matakatifu'
     headers:
-      bible: 'Maandiko Matakatifu'
+      bible: 'Biblia'
       tradition: 'Mapokeo Matakatifu'
 
   bible_page:

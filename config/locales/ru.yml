@@ -216,7 +216,7 @@ ru:
   root_page:
     title: 'Библия и Священное Предание'
     headers:
-      bible: 'Библия — Священное Писание'
+      bible: 'Библия'
       tradition: 'Священное Предание'
 
   bible_page:

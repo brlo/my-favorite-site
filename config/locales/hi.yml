@@ -32,7 +32,7 @@ hi:
   root_page:
     title: 'बाइबिल और पवित्र परंपरा'
     headers:
-      bible: 'पवित्र शास्त्र'
+      bible: 'बाइबिल'
       tradition: 'पवित्र परंपरा'
 
   bible_page:

@@ -32,7 +32,7 @@ ko:
   root_page:
     title: '성경과 성전(聖傳)'
     headers:
-      bible: '성경(聖經)'
+      bible: '성경'
       tradition: '성전(聖傳)'
 
   bible_page:
