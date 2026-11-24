@@ -165,8 +165,37 @@ header .container, footer .container {
   background-color: #f6f4e4;
 }
 #text-bar .bar-el.btn:hover { background-color: #ebeae0; }
+#text-bar .tb-ruby-ico-wrap {
+  display: flex;
+  align-items: center;
+}
+#text-bar .tb-ruby-ico {
+  display: none;
+  fill: currentColor;
+  font-family: inherit;
+}
+/* иконка показывает состояние: с фуриганой (включено) или без (выключено) */
+#text-bar .furigana-toggle:not(.off) .tb-ruby-ico--on { display: block; }
+#text-bar .furigana-toggle.off .tb-ruby-ico--off { display: block; }
+
+/* На узких экранах строка «язык + кнопки» переносится, а не растягивает страницу:
+   подписи кнопок короткие и одинаковые на всех ширинах. */
+@media (max-width: 720px) {
+  #text-bar {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  #text-bar .right-group {
+    gap: 8px;
+  }
+  #text-bar .bar-el.btn {
+    padding: 0 9px;
+  }
+  #text-bar .bbx-select { max-width: 60vw; }
+}
 #text-bar .furigana-toggle { padding: 0 8px; }
-#text-bar .furigana-toggle.off { opacity: .35; }
+#text-bar .furigana-toggle.off { opacity: .55; }
+#text-bar .calque-toggle.off { opacity: .55; }
 /* Фуригану скрываем только там, где она бывает: в тексте стихов и в цитате на
    главной. Глушить все <rt> подряд нельзя: в подстрочнике над греческими
    словами стоят переводы — при выключенной фуригане они тоже пропадали. */
