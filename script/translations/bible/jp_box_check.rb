@@ -9,6 +9,9 @@ book = ENV['BOOK'].presence || 'mk'
 # тексту и добавляются к набору.
 base_tr = ::BOOKS[book][:zavet] == 1 ? 'gr-lxx-byz' : 'jp-ni'
 ps_gaps = { 9 => (21..38).to_a, 113 => (19..26).to_a }
+# gr-lxx-byz дублирует закон 5:20–26 в 6:1–6 (дефект модуля). По решению пользователя
+# держимся csl-ru: закон стоит один раз, в главе 6, поэтому 5:20–26 в переводе опущены.
+ot_gaps = { 'lev' => { 5 => (20..26).to_a } }
 
 problems = []
 total = 0
@@ -23,6 +26,7 @@ chapters.each do |ch|
     # в gr-lxx-byz у Пс 115 текст сдвинут на 9 строк (1–9 стоят как «.»), сверяем с ru
     base = ::Verse.where(tr_code: 'ru', book: 'ps', chapter: 115).pluck(:line).sort if ch == 115
   end
+  base -= ot_gaps.dig(book, ch).to_a
   rows = ::Verse.where(tr_code: 'jp-box', book: book, chapter: ch).order(:line).to_a
   total += rows.size
   got = rows.map(&:line).sort
