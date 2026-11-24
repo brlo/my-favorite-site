@@ -9,7 +9,7 @@ folders:
 pages:
 - src: vSjwoAU7_Учение_православной_Церкви_о_почитании_святых
   path: Church-teaching-on-veneration-of-saints
-  title: The Church's teaching on the veneration of saints
+  title: The teaching of the Orthodox Church on the veneration of saints
   menu:
     parent: The heavenly Church/Veneration of the saints
     title: The Church's teaching on the veneration of saints
@@ -185,7 +185,7 @@ pages:
   update: true
 - src: 8DB3Cmih_учение_Православной_Церкви_о_молитвах_святым
   path: Church-teaching-on-prayers-to-saints
-  title: The Church's teaching on prayers to saints
+  title: The teaching of the Orthodox Church on prayers to the saints
   menu:
     parent: The heavenly Church/Invocation of the saints
     title: The Church's teaching on prayers to saints
@@ -225,6 +225,10 @@ pages:
 - src: Дева_Мария-Богородица
   path: The-Virgin-Mary-Mother-of-God
   title: The Virgin Mary — the Mother of God
+  title_sub: Quotes of the Holy Fathers on the Virgin Mary, the Mother of God, the
+    Theotokos
+  meta_desc: Quotes of the Holy Fathers on the Virgin Mary, the Mother of God, the
+    Theotokos
   menu:
     parent: The heavenly Church/Veneration of the Mother of God
     title: The Virgin Mary — the Mother of God
@@ -359,29 +363,32 @@ pages:
     birth naturally, but <strong>endured nothing. The seal of virginity was not broken
     either by the conception of Christ or by the birth</strong>.</p></blockquote><p>(Works,
     42, a discourse against heretics)</p><h3>St Gregory the Theologian, archbishop
-    of Constantinople (c. 325–389)</h3><blockquote><p>…by the whole man and God the
-    whole man was recreated, who had fallen under sin. If <strong><mark>anyone does
-    not acknowledge Mary as the Mother of God, he is cut off from the Godhead</mark></strong>.
-    If anyone says that Christ passed through the Virgin as through a pipe, and was
-    not formed in her divinely together with humanly: divinely, as born without a
-    man, humanly, as born according to the law of gestation, he is likewise impious.
-    If anyone says that in the Virgin a man was formed who afterwards gave place to
-    God, he is condemned, for this means not to acknowledge the birth of God, but
-    to flee from the birth. If anyone introduces two sons – one from God and the Father,
-    and the other from the Mother, and not one and the same, let him lose the adoption
-    promised to the orthodox. For although there are two natures – God and man (as
-    in man soul and body), yet not two sons, not two gods</p></blockquote><p>(Letter
-    3. To the presbyter Cledonius against Apollinarius – the first)</p><blockquote><p>Therefore,
-    with him who so thinks and teaches do thou also, like me, hold communion, but
-    turn away from those who hold another teaching and count them aliens to God and
-    to the catholic Church. And since the question is also proposed concerning the
-    divine humanization or incarnation of God, assure everyone about me that <strong><mark>the
-    Son of God, born of the Father and afterwards of the Holy Virgin Mary</mark></strong>,
-    I join into one and do not name two sons, but worship the one and the same in
-    undivided divinity and in undivided honour. But if anyone does not agree now,
-    or will not agree hereafter with this, he will give answer to God in the day of
-    judgment.</p></blockquote><p>(Letter 4. To Cledonius against Apollinarius – the
-    second)</p><h2>5th century</h2><h3>St Cyril of Alexandria, archbishop (376–444)</h3><blockquote><p>Deceivers
+    of Constantinople (c. 325–389)</h3><blockquote><p>…that by One and the Same Person,
+    Who was perfect Man and also God, the entire humanity fallen through sin might
+    be created anew. If <strong><mark>anyone does not believe that Holy Mary is the
+    Mother of God, he is severed from the Godhead</mark></strong>. If anyone should
+    assert that He passed through the Virgin as through a channel, and was not at
+    once divinely and humanly formed in her (divinely, because without the intervention
+    of a man; humanly, because in accordance with the laws of gestation), he is in
+    like manner godless. If any assert that the Manhood was formed and afterward was
+    clothed with the Godhead, he too is to be condemned. For this were not a Generation
+    of God, but a shirking of generation. If any introduce the notion of Two Sons,
+    one of God the Father, the other of the Mother, and discredits the Unity and Identity,
+    may he lose his part in the adoption promised to those who believe aright. For
+    God and Man are two natures, as also soul and body are; but there are not two
+    Sons or two Gods.</p></blockquote><p>(<a href="https://bibleox.com/en/en/w/gregory_naz-select-letters#HH-To-Cledonius-the-Priest-Against-Apollinarius">Letter
+    to Cledonius the priest, against Apollinarius (Ep. 101)</a>)</p><blockquote><p>Receive
+    then to communion those who think and teach thus, as I also do; but those who
+    are otherwise minded refuse, and hold them as strangers to God and the Catholic
+    Church. And since a question has also been mooted concerning the Divine Assumption
+    of humanity, or Incarnation, state this also clearly to all concerning me, that
+    I join in One <strong><mark>the Son, who was begotten of the Father, and afterward
+    of the Virgin Mary</mark></strong>, and that I do not call Him two Sons, but worship
+    Him as One and the same in undivided Godhead and honour. But if anyone does not
+    assent to this statement, either now or hereafter, he shall give account to God
+    at the day of judgment.</p></blockquote><p>(<a href="https://bibleox.com/en/en/w/gregory_naz-select-letters#HH-Against-Apollinarius-The-Second-Letter-to-Cledonius">Select
+    Letters, To Cledonius the priest, against Apollinarius (Ep. 102)</a>)</p><h2>5th
+    century</h2><h3>St Cyril of Alexandria, archbishop (376–444)</h3><blockquote><p>Deceivers
     and seducers of the hearts of hearers are those who affirm that God the Word,
     having accepted (the flesh) of a man, passed through the Holy Virgin, and that
     this man was created by God the Word Himself. Such men do not understand the mystery
@@ -537,6 +544,8 @@ pages:
 - src: j5s76Vbr_Приснодевство_Божией_Матери
   path: The-Ever-virginity-of-the-Mother-of-God
   title: The Ever-virginity of the Mother of God
+  title_sub: Quotes of the Holy Fathers on the virginity of the Mother of God
+  meta_desc: Quotes of the Holy Fathers on the virginity of the Mother of God
   menu:
     parent: The heavenly Church/Veneration of the Mother of God
     title: The Ever-virginity of the Mother of God
@@ -765,6 +774,10 @@ pages:
 - src: Ku053iAD_Почитание_Божией_Матери
   path: The-veneration-of-the-Mother-of-God
   title: The veneration of the Mother of God
+  title_sub: Quotes of the Holy Fathers on the veneration of the Virgin Mary, the
+    Theotokos
+  meta_desc: Quotes of the Holy Fathers on the veneration of the Virgin Mary, the
+    Theotokos
   menu:
     parent: The heavenly Church/Veneration of the Mother of God
     title: The veneration of the Mother of God
@@ -953,6 +966,7 @@ pages:
 - src: QtYUoE3y_Чины_ангельские
   path: The-ranks-of-the-angels
   title: The ranks of the angels
+  meta_desc: Quotes of the Holy Fathers on the ranks of the angels
   menu:
     parent: The heavenly Church/Veneration of the holy angels
     title: The ranks of the angels
@@ -1076,7 +1090,7 @@ pages:
   update: true
 - src: W8qp2HTD_Умершие_христиане__члены_Христовой_Церкви
   path: The-departed-members-of-Christ-Church
-  title: The departed Christians — members of the Church
+  title: Departed Christians — members of the Church of Christ
   menu:
     parent: The heavenly Church/Prayers for the departed
     title: The departed Christians — members of the Church
@@ -1224,10 +1238,10 @@ pages:
   update: true
 - src: Fz5Yy1Pv_Господь_освобождает_от_уз_ада
   path: The-Lord-frees-from-the-bonds-of-hades
-  title: The Lord frees from the bonds of hades
+  title: The Lord frees from the bonds of Hades
   menu:
     parent: The heavenly Church/Prayers for the departed
-    title: The Lord frees from the bonds of hades
+    title: The Lord frees from the bonds of Hades
     priority: 5
   body: "<h2>4th century</h2><h3>St John Chrysostom, archbishop of Constantinople
     (c. 347–407)</h3><blockquote><p><em>If </em><strong><em>he has departed</em></strong><em>
@@ -1347,7 +1361,7 @@ pages:
   update: true
 - src: QiEFzLfP_Примеры_молитвенного_поминовения_усопших
   path: Examples-of-prayerful-commemoration
-  title: Examples of prayers for the departed
+  title: Examples of the prayerful commemoration of the departed
   menu:
     parent: The heavenly Church/Prayers for the departed
     title: Examples of prayers for the departed

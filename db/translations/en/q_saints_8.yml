@@ -8,6 +8,8 @@ pages:
 - src: 91USaqiJ_молитвы_за_умерших
   path: Prayers-for-the-departed
   title: Prayers for the departed (the reposed)
+  title_sub: Quotes of the Holy Fathers on prayers for the departed (the reposed)
+  meta_desc: Quotes of the Holy Fathers on prayers for the departed (the reposed)
   menu:
     parent: The heavenly Church/Prayers for the departed
     title: Prayers for the departed (the reposed)
@@ -123,7 +125,9 @@ pages:
   update: true
 - src: мытарства-цитаты-святых-отцов
   path: The-toll-houses
-  title: The toll-houses (post-mortem trials of the soul)
+  title: The toll-houses
+  title_sub: Post-mortem trials of the soul
+  meta_desc: Quotes of the Holy Fathers on the toll-houses
   menu:
     parent: The soul and the state of the departed
     title: The toll-houses (post-mortem trials of the soul)

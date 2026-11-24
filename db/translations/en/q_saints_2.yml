@@ -18,7 +18,7 @@ pages:
   title: The Church — a visible unity
   menu:
     parent: Church
-    title: The Church — a visible unity
+    title: Unity (visible)
     priority: 3
   body: '<h2>1st century</h2><h3>St Clement of Rome, hieromartyr († c. 101)</h3><blockquote><p><em>It
     is right, therefore, that we should not leave the post which His will has assigned
@@ -576,6 +576,8 @@ pages:
 - src: трёхчинная-священническая-иерархия
   path: Three-orders-of-the-priesthood
   title: The three orders of the priesthood
+  title_sub: 'Quotes of the Holy Fathers. The three orders of the Church’s priestly
+    hierarchy: bishop, presbyter, deacon'
   menu:
     parent: Composition of the Church
     title: The three orders of the priesthood

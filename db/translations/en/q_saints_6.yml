@@ -630,7 +630,8 @@ pages:
   update: true
 - src: освящение-материи-цитаты-святых-отцов
   path: Sanctification-of-matter
-  title: The holy and the sanctification of matter
+  title: The sanctification of matter (created substance)
+  title_sub: Quotes of the Holy Fathers on the sanctification of matter
   menu:
     parent: Sanctification of created matter
     title: The holy and the sanctification of matter
@@ -797,6 +798,8 @@ pages:
 - src: 2VK8wQY9_Бессмертие_души
   path: Immortality-of-the-soul
   title: The immortality of the soul
+  title_sub: Quotes of the Holy Fathers on the immortality of the soul
+  meta_desc: Quotes of the Holy Fathers on the immortality of the soul
   menu:
     parent: The soul and the state of the departed
     title: The immortality of the soul
@@ -905,7 +908,7 @@ pages:
   update: true
 - src: 0Gzp6SJE_Об_отношении_к_еретикам
   path: Attitude-towards-heretics
-  title: Attitude towards heretics
+  title: Should heretics be persecuted?
   menu:
     parent: Awaiting distribution
     title: Attitude towards heretics
@@ -1136,6 +1139,7 @@ pages:
 - src: кадило_фимиам
   path: Censer-and-incense
   title: The censer (incense)
+  meta_desc: Quotes on the censer and incense
   menu:
     parent: Awaiting distribution
     title: The censer (incense)

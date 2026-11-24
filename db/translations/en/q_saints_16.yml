@@ -136,7 +136,8 @@ pages:
   update: true
 - src: MJAwLyfu_Церковь_Христова_состоит_из_земной_и_небесной
   path: Church-earthly-and-heavenly
-  title: The Church — earthly and heavenly
+  title: The Church of Christ consists of the earthly and the heavenly
+  meta_desc: Quotes of the Holy Fathers on the earthly and the heavenly Church
   menu:
     parent: Church
     title: The Church — earthly and heavenly
@@ -376,7 +377,7 @@ pages:
   update: true
 - src: LdGoZwD8_Церковь_Христова_имеет_внешнюю_сторону
   path: Outward-side-of-the-Church
-  title: The outward side of the Church
+  title: The Church of Christ has an outward side
   menu:
     parent: Church
     title: The outward side of the Church

@@ -49,7 +49,7 @@ pages:
   update: true
 - src: почитание-мощей-цитаты-святых
   path: Veneration-of-relics
-  title: Veneration of relics (the remains of the saints)
+  title: The veneration of relics
   menu:
     parent: Relics of the saints
     title: Veneration of relics (the remains of the saints)
@@ -67,6 +67,7 @@ pages:
 - src: почитание-святых
   path: Veneration-of-the-saints
   title: Veneration of the saints
+  meta_desc: Quotes of the Holy Fathers on the veneration of the saints
   menu:
     parent: The heavenly Church/Veneration of the saints
     title: Veneration of the saints
@@ -243,6 +244,7 @@ pages:
 - src: xYrPTAfn_Святые_молитвенно_ходатайствуют
   path: Prayers-to-the-saints
   title: Prayers to the saints
+  title_sub: The communion of the earthly and the heavenly Church
   menu:
     parent: The heavenly Church/Invocation of the saints
     title: Prayers to the saints

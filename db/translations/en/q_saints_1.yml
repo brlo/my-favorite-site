@@ -348,8 +348,8 @@ pages:
 - src: QEkdGi8h_Заповедь_о_держании_апостольских_преданий
   path: QEkdGi8h_Keep_the_Tradition
   title: The command to keep the Tradition
-  title_sub: Quotes of the holy Fathers on the need to keep the Tradition firmly
-  meta_desc: Quotes of the holy Fathers on the need to firmly keep the Tradition
+  title_sub: Quotes of the Holy Fathers on the need to keep the Tradition firmly
+  meta_desc: Quotes of the Holy Fathers on the need to firmly keep the Tradition
   menu:
     parent: Holy Scripture
     title: The command to keep the Tradition
@@ -433,8 +433,10 @@ pages:
   update: true
 - src: удаление_от_еретиков
   path: Departing-from-heretics
-  title: Departing from heretics (the violators of the Tradition)
-  meta_desc: Quotes of the holy Fathers of the 1st–20th centuries on departing from
+  title: Departing from the violators of the Tradition (heretics)
+  title_sub: Quotes of the Holy Fathers on the need for protection against those who
+    teach false doctrines (heresies)
+  meta_desc: Quotes of the Holy Fathers of the 1st–20th centuries on departing from
     heretics and violators of the apostolic Tradition, from Ignatius the God-bearer
     and Justin to St Luke of Crimea and Joseph the Hesychast.
   menu:
@@ -469,6 +471,7 @@ pages:
 - src: ZUXJhklM_Как_правильно_понимать_Библию
   path: ZUXJhklM_How_to_understand_Scripture
   title: How to understand the Scripture
+  title_sub: Or, what is the criterion for the correct understanding of the Bible
   meta_desc: 'How to understand the Scripture: the Fathers on the interpretation of
     the Bible — Polycarp, Clement of Alexandria, Athanasius, Epiphanius, Cyril of
     Jerusalem, Jerome, the councils, and Russian saints.'
@@ -504,7 +507,7 @@ pages:
 - src: S9vzFOMh_Установление_канона_Священного_Писания
   path: S9vzFOMh_Biblical_canon
   title: The Biblical canon
-  meta_desc: 'The biblical canon in the testimony of the holy Fathers: Papias, Justin,
+  meta_desc: 'The biblical canon in the testimony of the Holy Fathers: Papias, Justin,
     Melito, the Muratorian Canon, Tertullian, Athanasius, Gregory the Theologian,
     Amphilochius of Iconium, the councils, John of Damascus and the Epistle of the
     Patriarchs.'
@@ -1004,7 +1007,8 @@ pages:
 - src: Необходимость-Предания
   path: Necessity-of-Tradition
   title: The necessity of the Tradition
-  meta_desc: 'The necessity of Sacred Tradition in the testimony of the holy Fathers:
+  title_sub: Quotes of the Holy Fathers on the necessity of Sacred Tradition
+  meta_desc: 'The necessity of Sacred Tradition in the testimony of the Holy Fathers:
     Papias, Irenaeus, Clement of Alexandria, Tertullian, Epiphanius, Athanasius, Chrysostom,
     Cyril of Jerusalem, Basil the Great, Jerome, Vincent of Lérins, John of Damascus,
     Theophylact of Ohrid and Russian saints.'
@@ -1981,7 +1985,7 @@ pages:
 - src: Отмена_Закона_Моисея
   path: Abolition-of-the-Law-of-Moses
   title: The abolition of the Law of Moses
-  meta_desc: Quotes of the holy Fathers and church writers on the abolition of the
+  meta_desc: Quotes of the Holy Fathers and church writers on the abolition of the
     Law of Moses
   menu:
     parent: Holy Scripture
@@ -2006,8 +2010,8 @@ pages:
   path: Consent-of-the-Fathers
   title: The consent of the Fathers
   title_sub: 'Or, in other words: consensus patrum (Consensus patrum). Quotes of the
-    holy Fathers and church writers.'
-  meta_desc: On how the Church keeps the teaching of the holy Fathers
+    Holy Fathers and church writers.'
+  meta_desc: On how the Church keeps the teaching of the Holy Fathers
   menu:
     parent: Holy Scripture
     title: Consent of the Fathers

@@ -4,10 +4,14 @@ list: en-saints-q
 pages:
 - src: caEeLGWP_Жертвенное_значение_евхаристии
   path: Eucharist-sacrificial-meaning
-  title: The Sacrificial Meaning of the Eucharist
+  title: The sacrificial meaning of the Eucharist
+  title_sub: Quotes of the Holy Fathers on the offering of the sacrifice (of bread
+    and wine) in the Eucharist
+  meta_desc: Quotes of the Holy Fathers on the offering of the sacrifice (of bread
+    and wine) in the Eucharist
   menu:
     parent: Sacraments of the Church/Eucharist (Communion)
-    title: The Sacrificial Meaning of the Eucharist
+    title: The sacrificial meaning of the Eucharist
     priority: 5
   body: '<h2>1st century</h2><h3>Clement of Rome, hieromartyr (early 1st century –
     101)</h3><blockquote><p><em>Our apostles also knew through our Lord Jesus Christ

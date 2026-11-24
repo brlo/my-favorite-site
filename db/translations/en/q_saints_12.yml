@@ -9,10 +9,12 @@ folders:
 pages:
 - src: ew9Dk6So_Говорение_на_языках
   path: The-Gift-of-Tongues
-  title: The Gift of Tongues
+  title: The gift of tongues
+  title_sub: Quotes of the Holy Fathers on the gift of speaking in other tongues
+  meta_desc: Quotes of the Holy Fathers on other tongues and heresies
   menu:
     parent: Speaking in Tongues
-    title: The Gift of Tongues
+    title: The gift of tongues
     priority: 1
   body: '<h2>2nd century</h2><h3>St Irenaeus of Lyons, hieromartyr († late 2nd c.)</h3><p>Christians
     miraculously spoke in foreign languages:</p><blockquote><p>For this reason does
@@ -358,10 +360,10 @@ pages:
   update: true
 - src: L18uU36a_Вечность_мучений_грешников
   path: Hell-the-Endlessness-of-Torment
-  title: Hell — the Endlessness of Torment
+  title: Hell — the endlessness of torment
   menu:
     parent: Retribution of the righteous and the wicked
-    title: Hell — the Endlessness of Torment
+    title: The eternity of the torment of sinners
     priority: 3
   body: '<h2>1st century</h2><h3>St Ignatius the God-bearer, bishop of Antioch, hieromartyr
     (c. 35–107)</h3><blockquote><p><em>“If, then, those who do this as respects the
@@ -933,6 +935,10 @@ pages:
 - src: соборные-осуждения-католицизма-и-протестантизма
   path: Conciliar-condemnation-of-Catholicism-and-Protestantism
   title: The Orthodox Conciliar Condemnation of Catholicism and Protestantism
+  title_sub: Definitions of the Orthodox councils against Catholic and Protestant
+    teachings
+  meta_desc: Definitions of the Orthodox councils against Catholic and Protestant
+    teachings
   menu:
     parent: Awaiting distribution
     title: The Orthodox Conciliar Condemnation of Catholicism and Protestantism

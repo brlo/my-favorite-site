@@ -8,6 +8,7 @@ pages:
 - src: Бог-Троица
   path: God-the-Trinity
   title: God the Trinity
+  title_sub: Quotes of the Holy Fathers on the one God in three Persons
   menu:
     parent: God
     title: God the Trinity
@@ -290,6 +291,8 @@ pages:
 - src: Сын_Божий-Бог_и_человек
   path: The-Son-of-God-God-and-Man
   title: The Son of God — God and Man
+  title_sub: Quotes of the Holy Fathers and church writers on the divine and human
+    nature of the Son of God
   menu:
     parent: God
     title: The Son of God — God and Man
@@ -1396,6 +1399,8 @@ pages:
 - src: Святой-Дух-Бог
   path: The-Holy-Spirit-God
   title: The Holy Spirit — God
+  title_sub: Quotes of the Holy Fathers that the Holy Spirit is God
+  meta_desc: Quotes of the Holy Fathers that the Holy Spirit is God
   menu:
     parent: God
     title: The Holy Spirit — God

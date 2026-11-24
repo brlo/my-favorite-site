@@ -5,6 +5,7 @@ pages:
 - src: церковь-небесная
   path: The-heavenly-Church
   title: The heavenly Church
+  title_sub: Quotes of the Holy Fathers on the life of the saints in heaven with Christ
   menu:
     parent: Church
     title: The heavenly Church
