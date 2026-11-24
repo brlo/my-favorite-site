@@ -167,7 +167,12 @@ header .container, footer .container {
 #text-bar .bar-el.btn:hover { background-color: #ebeae0; }
 #text-bar .furigana-toggle { padding: 0 8px; }
 #text-bar .furigana-toggle.off { opacity: .35; }
-.no-furigana rt { display: none; }
+/* Фуригану скрываем только там, где она бывает: в тексте стихов и в цитате на
+   главной. Глушить все <rt> подряд нельзя: в подстрочнике над греческими
+   словами стоят переводы — при выключенной фуригане они тоже пропадали. */
+.no-furigana .verse-text rt,
+.no-furigana .zero-verse rt,
+.no-furigana .furigana-text rt { display: none; }
 
 .night-mode #text-bar .bar-el.btn a { color: #ccc; }
 .night-mode #text-bar .bar-el.btn {
