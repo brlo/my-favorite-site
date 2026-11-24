@@ -661,48 +661,31 @@ mo {
   color: #6b7280;
   font-style: normal;
 }
-.bib-note::after {
-  content: attr(data-tip);
-  position: absolute;
-  left: 0;
-  top: 1.7em;
-  z-index: 60;
-  width: max-content;
-  max-width: min(88vw, 30em);
-  overflow-wrap: anywhere;
-  padding: .5em .7em;
+/* jp-box: подсказка к сноске. Позиционируется JS (bib_notes_controller):
+   фиксированные координаты и отступ от краёв экрана — не вылезает за границы.
+   Текст мельче основного, чтобы подсказка не занимала пол-экрана. */
+.bib-note-tip {
+  position: fixed;
+  z-index: 80;
+  max-width: 22rem; /* без min(): sassc падает на смешении vw и rem */
+  padding: .45em .65em;
   border-radius: .4em;
   background: #2b2b2b;
   color: #fff;
-  font-size: 1.8em;
-  line-height: 1.55;
+  font-size: .9rem;
+  line-height: 1.5;
   font-weight: normal;
-  white-space: normal;
   text-align: left;
-  opacity: 0;
-  visibility: hidden;
-  transition: opacity .12s;
+  overflow-wrap: anywhere;
   box-shadow: 0 4px 14px rgba(0, 0, 0, .3);
   pointer-events: none;
 }
 
-body.night-mode .bib-note {
-  color: #9aa3ad;
+@media (max-width: 24rem) {
+  .bib-note-tip { max-width: 92vw; }
 }
-.bib-note.tip-left::after {
-  left: auto;
-  right: 0;
-}
-.bib-note.tip-up::after {
-  top: auto;
-  bottom: 1.7em;
-}
-.bib-note:hover::after,
-.bib-note:focus::after {
-  opacity: 1;
-  visibility: visible;
-}
-.night-mode .bib-note::after {
+
+.night-mode .bib-note-tip {
   background: #eee;
   color: #111;
 }

@@ -46,7 +46,7 @@
   <body
     class="<%= 'night-mode' if @is_night_mode %>"
     <% if @content_lang == 'jp-box' %>data-calque="<%= calque_orthodox? ? 'orthodox' : 'common' %>"<% end %>
-    data-controller="books-menu metrics landing visit-beacon<%= ' chat-unread' if chat_notification_member %>"
+    data-controller="books-menu metrics landing visit-beacon bib-notes<%= ' chat-unread' if chat_notification_member %>"
     data-action="click->books-menu#clickOutside"
     data-chat-unread-url-value="<%= chat_unread_path(locale: I18n.locale) %>"
     data-chat-unread-interval-value="60000"
