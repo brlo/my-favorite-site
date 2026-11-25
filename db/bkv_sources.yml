@@ -117,6 +117,9 @@ imported:
       - { work: "De praescriptione haereticorum", url: "https://bkv.unifr.ch/de/works/cpl-5/versions/die-prozesseinreden-gegen-die-haretiker-bkv", page: "Tertullian_De_praescriptione" }
       - { work: "De corona militis", url: "https://bkv.unifr.ch/de/works/cpl-21/versions/vom-kranze-des-soldaten-bkv", page: "Tertullian_De_corona" }
       - { work: "De idololatria", url: "https://bkv.unifr.ch/de/works/cpl-23/versions/uber-den-gotzendienst-bkv", page: "Tertullian_De_idololatria" }
+      - { work: "De oratione", url: "https://bkv.unifr.ch/de/works/cpl-7/versions/uber-das-gebet-bkv", page: "Tertullian_De_oratione" }
+      - { work: "De patientia", url: "https://bkv.unifr.ch/de/works/cpl-9/versions/uber-die-geduld-bkv", page: "Tertullian_De_patientia" }
+      - { work: "De paenitentia", url: "https://bkv.unifr.ch/de/works/cpl-10/versions/uber-die-busse-bkv", page: "Tertullian_De_paenitentia" }
 
   - author: "Gregor von Nyssa"
     translator: "BKV-Ausgabe / Heinrich Hand"

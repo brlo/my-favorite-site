@@ -18,6 +18,9 @@ SOURCES = {
     'prae': ('Die Prozesseinreden gegen die Häretiker', 'https://bkv.unifr.ch/de/works/cpl-5/versions/die-prozesseinreden-gegen-die-haretiker-bkv'),
     'cor': ('Vom Kranze des Soldaten', 'https://bkv.unifr.ch/de/works/cpl-21/versions/vom-kranze-des-soldaten-bkv'),
     'idol': ('Über den Götzendienst', 'https://bkv.unifr.ch/de/works/cpl-23/versions/uber-den-gotzendienst-bkv'),
+    'orat': ('Über das Gebet', 'https://bkv.unifr.ch/de/works/cpl-7/versions/uber-das-gebet-bkv'),
+    'pat': ('Über die Geduld', 'https://bkv.unifr.ch/de/works/cpl-9/versions/uber-die-geduld-bkv'),
+    'paen': ('Über die Buße', 'https://bkv.unifr.ch/de/works/cpl-10/versions/uber-die-busse-bkv'),
 }
 
 
@@ -85,6 +88,9 @@ pages:
 {page('37Jr_О_прескрипции_против_еретиков_1', 'Tertullian_De_praescriptione', 'Die Prozesseinreden gegen die Häretiker', 'prae', 7)}
 {page('iPSC_О_венце_воина', 'Tertullian_De_corona', 'Vom Kranze des Soldaten', 'cor', 8)}
 {page('cVDs_Об_идолопоклонстве', 'Tertullian_De_idololatria', 'Über den Götzendienst', 'idol', 9)}
+{page('S9zX_О_молитве', 'Tertullian_De_oratione', 'Über das Gebet', 'orat', 10)}
+{page('NdP5_О_терпении', 'Tertullian_De_patientia', 'Über die Geduld', 'pat', 11)}
+{page('JqFh_О_покаянии', 'Tertullian_De_paenitentia', 'Über die Buße', 'paen', 12)}
 '''
     for name, text in (('tert_author.yml', author), ('tert_works.yml', works)):
         path = os.path.join(DB, name)

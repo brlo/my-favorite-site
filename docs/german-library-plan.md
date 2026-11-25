@@ -308,7 +308,9 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Über die Auferstehung des Fleisches» (63 гл.), «Über die Seele» (58 гл.),
   «Gegen Praxeas» (31 гл.), «Apologeticum» (48 гл.), «Über die Taufe» (20 гл.),
   «Die Prozesseinreden gegen die Häretiker» (44 гл.), «Vom Kranze des Soldaten»
-  (15 гл.), «Über den Götzendienst» (24 гл.); меню — «2. Jahrhundert» → «Werke». Права: `pd`.
+  (15 гл.), «Über den Götzendienst» (24 гл.), «Über das Gebet» (29 гл.),
+  «Über die Geduld» (16 гл.), «Über die Buße» (12 гл.); меню — «2. Jahrhundert»
+  → «Werke». Права: `pd`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).
