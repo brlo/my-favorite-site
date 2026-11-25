@@ -35,6 +35,8 @@ SOURCES = {
     'minuc': {'mode': 'chapters'},
     'arist': {'mode': 'chapters'},
     'diog': {'mode': 'chapters'},
+    'athen_res': {'mode': 'chapters'},
+    'athen_supp': {'mode': 'chapters'},
     'barn': {'mode': 'chapters'},
     'did': {'mode': 'chapters'},
 }

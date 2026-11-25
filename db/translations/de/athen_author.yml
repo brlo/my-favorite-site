@@ -1,0 +1,16 @@
+# Афинагор Афинский: страница автора (немецкая библиотека, с английского)
+# Сборка: script/translations/de/build_athenagoras.py
+
+lang: de
+src_lang: en
+list: "Kirchenvaeter"
+pages:
+
+  - src: "Athenagoras_of_Athens"
+    path: "Athenagoras_von_Athen"
+    title: "Athenagoras von Athen, 2. Jh."
+    title_sub: "Christlicher Philosoph und Apologet (~133–190)"
+    menu: { parent: "2. Jahrhundert", title: "Athenagoras von Athen, Philosoph und Apologet (~133–190)", priority: 7 }
+    update: true
+    body: |-
+      <h2>Biographie</h2><p>Athenagoras von Athen (um 133 – um 190) war ein christlicher Philosoph und Apologet des 2. Jahrhunderts. Über sein Leben ist fast nichts bekannt; einer späteren Überlieferung zufolge war er ein Philosoph, der zum Christentum bekehrt wurde, als er die Schriften las mit der Absicht, gegen sie zu schreiben.</p><p>Um 177 richtete er an die Kaiser Marc Aurel und Commodus „Bittschrift für die Christen“, in der er die Anschuldigungen des Atheismus, des Kannibalismus und der Blutschande gegen die Christen widerlegt und die christliche Lehre vom einen Gott und der Heiligen Dreifaltigkeit darlegt. Er schrieb auch die Abhandlung „Über die Auferstehung der Toten“. Seine Schriften zeichnen sich durch einen klaren philosophischen Stil und einen ruhigen, vernünftigen Ton aus.</p>

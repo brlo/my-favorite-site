@@ -18,8 +18,8 @@ translators:
     dates: ""
     works: ["Athenagoras, Supplicatio", "Athenagoras, De resurrectione"]
     year: 1913
-    status: check
-    evidence: "нужна дата смерти (предположительно 1841–1914)"
+    status: free_bkv
+    evidence: "BKV copyrights: тексты вне копирайта; издание 1913"
   - name: "Aloys Hartl"
     dates: ""
     works: ["Laktanz"]

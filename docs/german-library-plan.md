@@ -256,5 +256,10 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   страница-труд под списком, пункт — в «Werke unbekannter Autoren» →
   «Übriges», как в RU. Права: `free_bkv`.
 
+- **Афинагор Афинский** (`Athenagoras_von_Athen`, `Athenagoras_Bittschrift`,
+  `Athenagoras_Auferstehung`): автор — с EN-страницы (RU-эталона нет);
+  обе апологии BKV 1913, пер. Anselm Eberhard (96 КБ и 76 КБ), меню —
+  во «2. Jahrhundert», труды в папке «Werke». Права: `free_bkv`.
+
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).
