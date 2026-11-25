@@ -200,7 +200,7 @@ def main():
     write_yaml(
         os.path.join(DB, 'kl_00.yml'),
         'Климент Римский: автор и два послания (партия 1, немецкая библиотека)',
-        [{'path': '1. Jahrhundert', 'priority': 1}, {'path': '2. Jahrhundert', 'priority': 2}],
+        [{'path': '1. Jahrhundert', 'priority': 1}],
         [klemens] + klemens_works)
     write_yaml(
         os.path.join(DB, 'ig_00.yml'),

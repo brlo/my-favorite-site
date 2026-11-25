@@ -11,7 +11,7 @@
   уже имеет структуру 3/9/2/1.
 - **Пилот сделан (dev, 25.11)**: страница-список `Kirchenvaeter`
   («Werke der alten heiligen Väter und Kirchenlehrer», id 7975) + папки
-  «1. Jahrhundert» / «2. Jahrhundert» + три автора и 11 трудов, 15 страниц:
+  «1. Jahrhundert» + три автора и 11 трудов, 15 страниц:
   Климент (автор, 1-е и 2-е послания), Игнатий (автор, 7 писем),
   Поликарп (автор, послание к Филиппийцам, мученичество). Все 200 на dev.
 - Пункт меню «📚 Schriften der alten Christen» в `links_de` теперь ведёт на
@@ -188,7 +188,8 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 ## 9. Что сделано в пилоте (dev)
 
 - Страница-список: `Kirchenvaeter` (id 7975), `page_type 4`, группа русского
-  `church_writers`; меню: «1. Jahrhundert», «2. Jahrhundert».
+  `church_writers`; меню: «1. Jahrhundert» (пустая папка «2. Jahrhundert» убрана,
+  пока в ней нет авторов — иначе она висит серой над первым веком).
 - Авторы: `Klemens_von_Rom`, `Ignatius_von_Antiochien`, `Polykarp_von_Smyrna`.
 - Труды: `KlemRm_Kor1`, `KlemRm_Kor2`; `IgnAnt_Eph/Mag/Trall/Rom/Philad/Smyrn/Pol`;
   `PlkSm_Phil`, `PlkSm_Martyr`.

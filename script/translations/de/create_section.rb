@@ -49,7 +49,7 @@ else
   puts "пункт меню уже ведёт на #{list.path}"
 end
 
-[['1. Jahrhundert', 1], ['2. Jahrhundert', 2]].each do |title, priority|
+[['1. Jahrhundert', 1]].each do |title, priority|
   if ::Menu.exists?(page_id: list.id, parent_id: nil, title: title)
     puts "папка уже есть: #{title}"
   else

@@ -5,7 +5,6 @@ lang: de
 list: Kirchenvaeter
 folders:
   - { path: "1. Jahrhundert", priority: 1 }
-  - { path: "2. Jahrhundert", priority: 2 }
 pages:
 
   - src: "Климент_Римский"
