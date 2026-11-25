@@ -1,0 +1,14 @@
+# Труды I века неизвестных авторов (немецкая библиотека)
+# Сборка: script/translations/de/build_didache.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "1-век-труды-неизвестных-авторов"
+    path: "Werke_unbekannter_Autoren_des_1_Jahrhunderts"
+    title: "Werke unbekannter Autoren des 1. Jahrhunderts"
+    menu: { parent: "1. Jahrhundert", title: "Werke unbekannter Autoren des 1. Jahrhunderts", replace: "Werke unbekannter Autoren des 1. Jahrhunderts", priority: 250 }
+    update: true
+    body: |-
+      <p>Es gibt eine Reihe alter Texte, deren Urheberschaft sich nicht sicher feststellen lässt. Es werden verschiedene Versionen vorgeschlagen. Diese Werke des 1. Jahrhunderts werden dieser Seite zugeordnet.</p>

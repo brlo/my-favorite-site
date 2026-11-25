@@ -1,0 +1,38 @@
+# Варнава, апостол: страница автора (немецкая библиотека)
+# Сборка: script/translations/de/build_barnabas.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "Апостол_Варнава"
+    path: "Barnabas"
+    title: "Barnabas, Apostel, 1. Jh."
+    title_sub: "Apostel aus den Siebzig, Gründer der Kirche von Zypern, Begleiter des Apostels Paulus auf seinen Missionsreisen († um 57)"
+    menu: { parent: "1. Jahrhundert", title: "Barnabas, Apostel, 1. Jh.", replace: "Barnabas, Apostel, 1. Jh.", priority: 16 }
+    update: true
+    body: |-
+      <h2>Biografie</h2>
+      <p>Gedenktage: 4. (17.) Januar (Synaxis der siebzig Apostel), 11. (24.) Juni</p>
+      <p>Barnabas („Sohn des Trostes“) – diesen Beinamen gaben ihm die Apostel wegen seiner großzügigen Spenden zugunsten der christlichen Gemeinde; der ursprüngliche Name des Apostels war Joses. Barnabas stammte von der Insel Zypern. Zum ersten Mal wird er in der Apostelgeschichte erwähnt: „Joses aber, von den Aposteln zubenannt Barnabas (das heißt übersetzt: ‚Sohn des Trostes‘), ein Levit, aus Cypern gebürtig, der einen Acker hatte, verkaufte ihn, brachte das Geld und legte es den Aposteln zu Füßen“ (Apg 4,36–37). Kirchenschriftsteller (Klemens von Alexandrien, der heilige Epiphanius) schreiben, dass Barnabas in seiner Jugend von seinen Eltern nach Jerusalem geschickt wurde, um bei dem berühmten jüdischen Gelehrten Gamaliel zu lernen, wo er zusammen mit Saulus (dem Apostel Paulus) studierte.</p>
+      <p>Er teilte mit dem Apostel Paulus die Mühen der Mission und nahm am Apostelkonzil des Jahres 51 in Jerusalem teil, später aber schieden sich ihre Wege. Zum letzten Mal wird er im Neuen Testament im Zusammenhang mit seiner Abreise nach Zypern erwähnt.</p>
+      <p>Im Jahr 488 wurden seine Reliquien beim Kloster des heiligen Barnabas in Salamis aufgefunden.</p>
+      <h2>Hymnographie</h2>
+      <p>Tropar der Apostel Bartholomäus und Barnabas, Ton 3:</p>
+      <blockquote><p>Eine vom Feuer begeisterte Zunge habt ihr in der Kraft des Geistes empfangen, / und überall verkündet ihr das im Fleisch gekommene Wort; / um dessentwillen der eine enthauptet, / der andere aber mit Steinen gesteinigt wurde, / und ihr seid die Zierde des Apostelchores, / Bartholomäus und Barnabas; / darum verehren wir euer Gedächtnis und bitten: // bittet Christus Gott, uns Vergebung der Sünden zu schenken.</p></blockquote>
+      <p>Kondak des Apostels Barnabas, Ton 3</p>
+      <blockquote><p>Des Herrn wahrhaftigster Diener warst du, / und als der erste der siebzig Apostel bist du erschienen, / erleuchtet hast du auch mit Paulus deine Predigt, / allen Christus, den Heiland, verkündend; / darum feiern wir mit Lobgesängen // dein göttliches Gedächtnis, Barnabas.</p></blockquote>
+      <h2>Glaube</h2>
+      <h3>Christus wird kommen zur Auferstehung der Toten und zum Gericht</h3>
+      <blockquote><p><strong><mark>Er wird die Toten auferwecken und sie richten</mark></strong></p></blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/Barnabasbrief">Brief des Barnabas, Kap. 5</a>)</p>
+      <blockquote><p>Doch nachdem wir die oben dargelegten Gebote des Herrn erkannt haben, ziemt es sich, ihnen gemäß zu wandeln. Denn wer sie erfüllt, wird im Reiche Gottes verherrlicht werden; wer aber anderes wählt, wird mit seinen Werken zugrunde gehen. Dazu ist die Auferstehung, dazu die Vergeltung. &lt;…&gt; Denn <strong><mark>nahe ist der Tag, an dem alles mit dem Gottlosen vergehen wird. Nahe ist der Herr und sein Lohn</mark></strong>.</p></blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/Barnabasbrief">Brief des Barnabas, Kap. 21</a>)</p>
+      <h3>Die Notwendigkeit der Werke zum Heil</h3>
+      <blockquote><p><strong>Der Weg des Lichtes ist dieser. Wer auf diesem Weg den bestimmten Ort erreichen will</strong>, der muss danach <strong><mark>durch seine Werke</mark></strong> streben</p></blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/Barnabasbrief">Brief des Barnabas, Kap. 21</a>)</p>
+      <blockquote><p>Doch nachdem wir <strong><mark>die Gebote</mark></strong> des Herrn, die oben dargelegt wurden, erkannt haben, ziemt es sich, ihnen gemäß zu wandeln. Denn <strong><mark>wer sie erfüllt, wird verherrlicht werden</mark></strong> im Reiche Gottes; <strong><mark>wer aber anderes wählt, wird zugrunde gehen</mark></strong> mit seinen Werken. Dazu ist die Auferstehung, dazu die Vergeltung. &lt;…&gt; Denn nahe ist der Tag, an dem alles mit dem Gottlosen vergehen wird. Nahe ist der Herr und sein Lohn.</p></blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/Barnabasbrief">Brief des Barnabas, Kap. 21</a>)</p>
+      <h3>Die Taufe schenkt Vergebung der Sünden</h3>
+      <blockquote><p>Lasst uns nun untersuchen, ob es dem Herrn wohlgefiel, zuvor über das Wasser der Gnade und über das Kreuz zu offenbaren. Über das Wasser ist dem Volk Israel geschrieben, wie es jene <strong><mark>Taufe, die Vergebung der Sünden schenkt</mark></strong> nicht annehmen, sondern für sich andere verordnen wird (Mk 7,4). &lt;…&gt; Das bedeutet, dass <strong><mark>wir in das Wasser hinabsteigen, voll von Sünden und Unreinheit</mark>, und <mark>aus ihm heraufsteigen mit einem Gewinn – mit Furcht im Herzen und mit Hoffnung auf Jesus im Geist</mark></strong>.</p></blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/Barnabasbrief">Brief des Barnabas, Kap. 11</a>)</p>

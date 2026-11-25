@@ -41,6 +41,9 @@ work_paths = ::Page.where(lang: lang, page_type: 1).pluck(:path)
 ::Menu.where(page_id: list.id, path: work_paths).find_each do |menu|
   page = ::Page.find_by(lang: lang, path: menu.path)
   next unless page && ru_parent_author?(page)
+  # дополнительный пункт-ссылка в меню списка допустим, если труд уже есть
+  # в меню своего автора (так у Дидахе: автор + «Катехизис»)
+  next if ::Menu.exists?(page_id: page.parent_id, path: page.path)
 
   problems << "пункт труда в меню списка: #{menu.title} -> #{menu.path}"
 end

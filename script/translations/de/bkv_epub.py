@@ -34,6 +34,8 @@ SOURCES = {
     'ign': {'mode': 'letters'},
     'minuc': {'mode': 'chapters'},
     'arist': {'mode': 'chapters'},
+    'barn': {'mode': 'chapters'},
+    'did': {'mode': 'chapters'},
 }
 
 FOOTNOTE_DEF = re.compile(r'\[\^\d+\]:.*$', re.S)
