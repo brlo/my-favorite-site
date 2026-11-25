@@ -60,6 +60,8 @@ def page_yaml(page, first=False):
     if page.get('title_sub'):
         lines.append('    title_sub: %s' % yaml_quoted(page['title_sub']))
     lines.append('    meta_desc: %s' % yaml_quoted(page['meta_desc']))
+    if page.get('copy_cover'):
+        lines.append('    copy_cover: true')
     if page.get('menu'):
         menu = page['menu']
         parts = ['parent: %s' % yaml_quoted(menu['parent']), 'title: %s' % yaml_quoted(menu['title'])]
@@ -75,8 +77,9 @@ def page_yaml(page, first=False):
     return '\n'.join(lines)
 
 
-def write_yaml(path, header, folders, pages):
-    lines = ['# ' + header, '# Сборка: script/translations/de/build_pilot.py', '', 'lang: de', 'list: Kirchenvaeter']
+def write_yaml(path, header, list_path, folders, pages):
+    lines = ['# ' + header, '# Сборка: script/translations/de/build_pilot.py', '', 'lang: de',
+             'list: %s' % yaml_quoted(list_path)]
     if folders:
         lines.append('folders:')
         for folder in folders:
@@ -99,6 +102,7 @@ def main():
         'title': 'Klemens von Rom, 1. Jh.',
         'title_sub': 'Hieromärtyrer († um 101), Bischof von Rom, Schüler der Apostel',
         'meta_desc': 'Klemens von Rom, Hieromärtyrer, Bischof von Rom, einer der Männer der apostolischen Zeit († um 101).',
+        'copy_cover': True,
         'menu': {'parent': '1. Jahrhundert', 'title': 'Klemens von Rom', 'priority': 1},
         'body': author_body('klemens.html'),
     }
@@ -108,7 +112,7 @@ def main():
             'path': 'KlemRm_Kor1',
             'title': 'Erster Brief an die Korinther',
             'meta_desc': 'Erster Brief des Klemens von Rom an die Gemeinde von Korinth (um 96–97), deutsche Übersetzung von Franz Zeller (1918).',
-            'menu': {'parent': '1. Jahrhundert/Klemens von Rom', 'title': 'Erster Brief an die Korinther', 'priority': 1},
+            'menu': {'parent': 'Briefe', 'title': 'Erster Brief an die Korinther', 'priority': 1},
             'body': work_body(
                 '<p><em>Der erste Brief des Klemens von Rom an die Gemeinde von Korinth (um 96–97).</em></p>',
                 read('clem1.html'),
@@ -119,7 +123,7 @@ def main():
             'path': 'KlemRm_Kor2',
             'title': 'Zweiter Brief an die Korinther',
             'meta_desc': 'Der dem Klemens von Rom zugeschriebene zweite Brief an die Korinther, eine Homilie aus dem 2. Jahrhundert, deutsch von Franz Zeller (1918).',
-            'menu': {'parent': '1. Jahrhundert/Klemens von Rom', 'title': 'Zweiter Brief an die Korinther', 'priority': 2},
+            'menu': {'parent': 'Briefe', 'title': 'Zweiter Brief an die Korinther', 'priority': 2},
             'body': work_body(
                 '<p><em>Der dem Klemens von Rom zugeschriebene zweite Brief an die Korinther – eine Homilie aus dem 2. Jahrhundert.</em></p>',
                 read('clem2.html'),
@@ -133,6 +137,7 @@ def main():
         'title': 'Ignatius von Antiochien, 1. Jh.',
         'title_sub': 'Hieromärtyrer (um 35–107), Bischof von Antiochien, Gottesträger',
         'meta_desc': 'Hieromärtyrer (um 35–107), Bischof von Antiochien.',
+        'copy_cover': True,
         'menu': {'parent': '1. Jahrhundert', 'title': 'Ignatius von Antiochien', 'priority': 2},
         'body': author_body('ignatius.html'),
         'references': '<ol><li><p><a href="https://bibleox.com/de/de/w/IgnAnt_Rom#HH-4">Ignatius von Antiochien, Brief an die Römer, Kap. 4, 3</a></p></li></ol>',
@@ -153,7 +158,7 @@ def main():
             'path': path,
             'title': title,
             'meta_desc': '%s des Ignatius von Antiochien, deutsche Übersetzung von Franz Zeller (1918).' % title,
-            'menu': {'parent': '1. Jahrhundert/Ignatius von Antiochien', 'title': title, 'priority': priority},
+            'menu': {'parent': 'Briefe', 'title': title, 'priority': priority},
             'body': work_body(
                 '<p><em>Ignatius von Antiochien, %s.</em></p>' % title,
                 read(key + '.html'),
@@ -166,6 +171,7 @@ def main():
         'title': 'Polykarp von Smyrna, 1.–2. Jh.',
         'title_sub': 'Hieromärtyrer (69–155), Bischof von Smyrna, Schüler des Apostels Johannes',
         'meta_desc': 'Polykarp, Bischof von Smyrna, Hieromärtyrer (69–155), Schüler des Johannes des Theologen.',
+        'copy_cover': True,
         'menu': {'parent': '1. Jahrhundert', 'title': 'Polykarp von Smyrna', 'priority': 3},
         'body': author_body('polykarp.html'),
     }
@@ -177,7 +183,7 @@ def main():
             'path': 'PlkSm_Phil',
             'title': 'An die Philipper',
             'meta_desc': 'Brief des heiligen Polykarp von Smyrna an die Gemeinde von Philippi, deutsche Übersetzung von Franz Zeller (1918).',
-            'menu': {'parent': '2. Jahrhundert/Polykarp von Smyrna', 'title': 'An die Philipper', 'priority': 1},
+            'menu': {'parent': 'Briefe', 'title': 'An die Philipper', 'priority': 1},
             'body': work_body(
                 '<p><em>Brief des heiligen Polykarp von Smyrna an die Gemeinde von Philippi.</em></p>',
                 read('polyk.html'),
@@ -188,7 +194,7 @@ def main():
             'path': 'PlkSm_Martyr',
             'title': 'Martyrium des heiligen Polykarp',
             'meta_desc': 'Rundbrief der Kirche von Smyrna über das Martyrium des heiligen Polykarp, Bischofs von Smyrna († um 155).',
-            'menu': {'parent': '2. Jahrhundert/Polykarp von Smyrna', 'title': 'Martyrium des heiligen Polykarp', 'priority': 2},
+            'menu': {'parent': 'Briefe', 'title': 'Martyrium des heiligen Polykarp', 'priority': 2},
             'body': work_body(
                 '',
                 martyrdom_html,
@@ -197,19 +203,24 @@ def main():
         },
     ]
 
-    write_yaml(
-        os.path.join(DB, 'kl_00.yml'),
-        'Климент Римский: автор и два послания (партия 1, немецкая библиотека)',
-        [{'path': '1. Jahrhundert', 'priority': 1}],
-        [klemens] + klemens_works)
-    write_yaml(
-        os.path.join(DB, 'ig_00.yml'),
-        'Игнатий Богоносец: автор и семь писем (партия 1, немецкая библиотека)',
-        [], [ignatius] + ign_works)
-    write_yaml(
-        os.path.join(DB, 'pl_00.yml'),
-        'Поликарп Смирнский: автор, послание и мученичество (партия 1, немецкая библиотека)',
-        [], [polykarp] + polyk_works)
+    write_yaml(os.path.join(DB, 'kl_author.yml'),
+               'Климент Римский: страница автора (партия 1, немецкая библиотека)',
+               'Kirchenvaeter', [], [klemens])
+    write_yaml(os.path.join(DB, 'kl_works.yml'),
+               'Климент Римский: два послания (партия 1, немецкая библиотека)',
+               'Klemens_von_Rom', [{'path': 'Briefe', 'priority': 1}], klemens_works)
+    write_yaml(os.path.join(DB, 'ig_author.yml'),
+               'Игнатий Богоносец: страница автора (партия 1, немецкая библиотека)',
+               'Kirchenvaeter', [], [ignatius])
+    write_yaml(os.path.join(DB, 'ig_works.yml'),
+               'Игнатий Богоносец: семь писем (партия 1, немецкая библиотека)',
+               'Ignatius_von_Antiochien', [{'path': 'Briefe', 'priority': 1}], ign_works)
+    write_yaml(os.path.join(DB, 'pl_author.yml'),
+               'Поликарп Смирнский: страница автора (партия 1, немецкая библиотека)',
+               'Kirchenvaeter', [], [polykarp])
+    write_yaml(os.path.join(DB, 'pl_works.yml'),
+               'Поликарп Смирнский: послание и мученичество (партия 1, немецкая библиотека)',
+               'Polykarp_von_Smyrna', [{'path': 'Briefe', 'priority': 1}], polyk_works)
 
 
 if __name__ == '__main__':

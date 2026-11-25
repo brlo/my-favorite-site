@@ -58,17 +58,6 @@ end
   end
 end
 
-# seo_kind авторов — как у русских страниц (запускать после импорта партии)
-{ 'Klemens_von_Rom' => 'person', 'Ignatius_von_Antiochien' => 'person',
-  'Polykarp_von_Smyrna' => 'person' }.each do |path, kind|
-  page = ::Page.find_by(lang: lang, path: path)
-  next unless page
-  next if page.seo_kind == kind
-
-  page.update!(seo_kind: kind)
-  puts "seo_kind: #{path} -> #{kind}"
-end
-
 puts
 puts "меню #{list.path}:"
 ::Menu.where(page_id: list.id).order(:parent_id, :priority).each do |item|

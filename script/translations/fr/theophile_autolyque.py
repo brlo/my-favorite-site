@@ -116,6 +116,18 @@ def page_yaml(p):
     return '\n'.join(lines)
 
 
+def write_yaml(path, header, list_path, pages, folders=None):
+    head = ['# ' + header, '# Сборка: script/translations/fr/theophile_autolyque.py', '',
+            'lang: fr', 'list: %s' % yaml_quoted(list_path)]
+    if folders:
+        head.append('folders:')
+        head += ['  - { path: %s, priority: %d }' % (yaml_quoted(f['path']), f['priority']) for f in folders]
+    head += ['pages:', '']
+    with open(path, 'w', encoding='utf-8') as f:
+        f.write('\n'.join(head) + '\n' + '\n\n'.join(page_yaml(p) for p in pages) + '\n')
+    print('написан', os.path.relpath(path, ROOT), os.path.getsize(path), 'байт')
+
+
 def main():
     author = open(os.path.join(AUTHORS, 'theophile.html'), encoding='utf-8').read().strip()
     pages = [
@@ -135,21 +147,20 @@ def main():
             'title': 'À Autolyque',
             'title_sub': '',
             'meta_desc': 'Trois livres à Autolyque de Théophile d’Antioche, traduction de M. de Genoude (1838).',
-            'menu': {'parent': "IIe siècle/Théophile d'Antioche, saint (†183)", 'title': 'À Autolyque', 'priority': 1},
+            'menu': {'parent': 'Œuvres apologétiques', 'title': 'À Autolyque', 'priority': 1},
             'body': work_body(),
         },
     ]
     pages[1].pop('title_sub')
 
     os.makedirs(DB, exist_ok=True)
-    path = os.path.join(DB, 'theophile.yml')
-    head = ['# Théophile d\'Antioche: автор и «À Autolyque» (fr, Wikisource/Genoude 1838)',
-            '# Сборка: script/translations/fr/theophile_autolyque.py', '',
-            'lang: fr', 'list: %s' % yaml_quoted('4saQ_Ouvrages_des_anciens_chrétiens'), 'pages:', '']
-    with open(path, 'w', encoding='utf-8') as f:
-        f.write('\n'.join(head) + '\n' + '\n\n'.join(page_yaml(p) for p in pages) + '\n')
-    print('написан', os.path.relpath(path, ROOT), os.path.getsize(path), 'байт')
-    print('импорт: bin/rails pages:import_translations FILE=db/translations/fr/theophile.yml PUBLISH=1')
+    write_yaml(os.path.join(DB, 'theophile_author.yml'),
+               'Théophile d\'Antioche: страница автора (fr, Wikisource/Genoude 1838)',
+               '4saQ_Ouvrages_des_anciens_chrétiens', [pages[0]])
+    write_yaml(os.path.join(DB, 'theophile_works.yml'),
+               'Théophile d\'Antioche: «À Autolyque» (fr, Wikisource/Genoude 1838)',
+               'Théophile_d_Antioche', [pages[1]],
+               folders=[{'path': 'Œuvres apologétiques', 'priority': 1}])
 
 
 if __name__ == '__main__':

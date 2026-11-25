@@ -1,0 +1,28 @@
+# Théophile d'Antioche: страница автора (fr, Wikisource/Genoude 1838)
+# Сборка: script/translations/fr/theophile_autolyque.py
+
+lang: fr
+list: "4saQ_Ouvrages_des_anciens_chrétiens"
+pages:
+
+  - src: "Феофил_Антиохийский"
+    path: "Théophile_d_Antioche"
+    title: "Théophile d’Antioche, IIe siècle"
+    title_sub: "saint, écrivain chrétien, apologète et polémiste (†183)"
+    meta_desc: ""
+    menu: { parent: "IIe siècle", title: "Théophile d'Antioche, saint (†183)", replace: "Théophile d'Antioche, saint (†183)", priority: 2 }
+    update: true
+    body: |-
+      <h2>Biographie</h2>
+
+      <p>Mémoire : 13 (26) octobre</p>
+
+      <p>Théophile d’Antioche (en grec Θεόφιλος Ἀντιοχείας) naquit en Syrie. Selon l’« Histoire ecclésiastique » d’Eusèbe, Théophile fut le sixième évêque d’Antioche après les apôtres.</p>
+
+      <p>Il était issu d’une famille païenne. Homme cultivé, il étudia la littérature grecque. Cela se voit dans son unique ouvrage conservé (À Autolyque) : il y cite les poètes, les historiens et les philosophes païens. Avant d’embrasser le christianisme, il étudia les livres de l’Ancien Testament (surtout les prophétiques). Il fut ensuite convaincu de la supériorité incontestable du christianisme sur les autres religions. Ses contemporains Justin le Philosophe, Athénagore d’Athènes et Tatien parvinrent au christianisme par des chemins semblables. Païen, Théophile était un adversaire acharné du christianisme ; ayant embrassé la foi chrétienne, il en devint un défenseur et un confesseur fervent.</p>
+
+      <p>Il occupa le siège d’Antioche en 168. On ne sait pas exactement combien de temps Théophile fut évêque. On sait qu’il mourut sous le règne de l’empereur romain Commode, dans les années 180.</p>
+
+      <p>Malheureusement, tous les nombreux écrits de Théophile ont été perdus. On sait seulement que, parmi eux, se trouvaient des écrits contre les hérétiques (le gnosticisme, la doctrine de Marcion), contre les païens, des écrits apologétiques et polémiques.</p>
+
+      <p>C’est Théophile qui, le premier, employa le terme « Trinité » dans ses écrits : « Les trois jours [de la création], — dit l’apologète, — qui précédèrent [la création] des luminaires, sont les figures de la Trinité (τύποι είσι της τριάδος) : Dieu, son Verbe et sa Sagesse. »</p>

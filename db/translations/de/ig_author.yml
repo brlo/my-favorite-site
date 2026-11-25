@@ -1,0 +1,254 @@
+# Игнатий Богоносец: страница автора (партия 1, немецкая библиотека)
+# Сборка: script/translations/de/build_pilot.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "Игнатий_Антиохийский"
+    # page_type и edit_mode наследуются от русской страницы-оригинала
+    path: "Ignatius_von_Antiochien"
+    title: "Ignatius von Antiochien, 1. Jh."
+    title_sub: "Hieromärtyrer (um 35–107), Bischof von Antiochien, Gottesträger"
+    meta_desc: "Hieromärtyrer (um 35–107), Bischof von Antiochien."
+    copy_cover: true
+    menu: { parent: "1. Jahrhundert", title: "Ignatius von Antiochien", priority: 2 }
+    update: true
+    body: |-
+      <p>Der Abschnitt mit den Werken des Ignatius des Gottesträgers <strong>in griechischer Sprache</strong>: <a href="https://bibleox.com/de/grc/w/%CE%99%CE%B3%CE%BD%CE%AC%CF%84%CE%B9%CE%BF%CF%82_%CE%98%CE%B5%CE%BF%CF%86%CF%8C%CF%81%CE%BF%CF%82_%CE%91%CE%BD%CF%84%CE%B9%CE%BF%CF%87%CE%B5%CE%AF%CE%B1%CF%82/">hier entlang</a>. Der Wechsel in andere Sprachen ist ebenfalls oben über der Werkliste möglich.</p>
+      <p><strong>Gedenktage</strong>: 20. Dezember (2. Januar), 29. Januar (11. Februar)</p>
+      <h2>Biografie</h2>
+      <p>Über das Leben des Ignatius ist wenig bekannt. Es gibt eine Überlieferung, dass gerade er jenes Kindlein war, das Christus auf seine Arme nahm und segnete (Mt 18,2–5). Die meisten Forscher halten dies jedoch für eine Erfindung.</p>
+      <p>Einige halten ihn aufgrund des Sprachstils seiner Briefe für einen Syrer. Offensichtlich war er einer der ersten christlichen Autoren nichtjüdischer Herkunft oder jedenfalls ein Autor, der nicht in die Kultur der jüdischen Religion hineingewachsen war. Nach der „Kirchengeschichte“ des Eusebius von Caesarea wurde er unter der Herrschaft Trajans in Antiochia verhaftet und zur Hinrichtung nach Rom geschickt. Während der Reise schrieb er sieben Briefe an die Gemeinden, durch die sein Weg führte (Ephesus, Magnesia, Tralles, Philadelphia, Smyrna und Rom), sowie <a href="https://bibleox.com/de/de/w/IgnAnt_Pol">einen Brief</a> <a href="https://bibleox.com/de/de/w/Polykarp_von_Smyrna">an Polykarp von Smyrna</a>. In Rom angekommen, wurde er am 20. Dezember 107 den Löwen zum Fraß vorgeworfen.</p>
+      <p>Polykarp schreibt über einen Brief des Ignatius:</p>
+      <blockquote><p>„<strong>Ihr habt mir geschrieben, und auch Ignatius</strong>, dass, wenn jemand von uns nach Syrien reist, er auch eure Briefe dorthin bringen soll“ (<a href="https://bibleox.com/de/de/w/PlkSm_Phil">PlkSm_Phil 55</a>)</p></blockquote>
+      <p>Polykarp sammelt die Briefe des Ignatius und alles, was über ihn bekannt ist, indem er diese Werke abschreibt und verbreitet:</p>
+      <blockquote><p>„<strong>Die Briefe des Ignatius, die er uns geschickt hat, und die anderen</strong>, soweit wir sie besitzen, <strong>haben wir euch geschickt</strong>, wie ihr es verlangt habt: sie sind diesem unserem Brief beigefügt. Ihr könnt daraus großen Nutzen ziehen. Denn sie enthalten den Glauben, die Geduld und jede Erbauung in unserem Herrn. <strong>Was ihr Zuverlässiges über Ignatius selbst und seine Begleiter erfahrt, das teilt uns mit</strong>“ (<a href="https://bibleox.com/de/de/w/PlkSm_Phil">PlkSm_Phil 57–59</a>)</p></blockquote>
+      <p>Auch Eusebius von Caesarea (3.–4. Jahrhundert) schreibt ausführlich über Ignatius, zählt seine sieben Briefe auf und zitiert einige „Wort für Wort“:</p>
+      <blockquote>
+      <p>5. So schrieb er, als er sich in Smyrna aufhielt, wo Polykarp war, einen Brief an die Gemeinde von <strong>Ephesus</strong> und erwähnte dabei ihren Hirten Onesimus; einen weiteren nach <strong>Magnesia</strong> am Mäander (hier erwähnt er Bischof Damas) und noch einen nach <strong>Tralles</strong>, wo nach seiner Angabe Polybius die Leitung hatte.</p>
+      <p>6. Er schrieb auch an die Gemeinde in <strong>Rom</strong> und bat darin, nicht für ihn einzutreten und ihn nicht der Hoffnung auf das ersehnte Martyrium zu berauben. Es lohnt sich, zur Bestätigung des Gesagten einen kurzen Auszug anzuführen. Hier ist sein Brief Wort für Wort:</p>
+      <p>&lt;zitiert den größten Teil des Briefes&gt;</p>
+      <p>10. So schrieb er aus der genannten Stadt an die aufgezählten Gemeinden. Als er bereits außerhalb Syriens war, schrieb er aus Troas an die Einwohner von <strong>Philadelphia</strong> und <strong>nach Smyrna</strong> – an die Gemeinde und besonders an ihren Vorsteher <strong>Polykarp</strong>. Da er ihn gut als einen apostolischen Mann kannte, vertraute er, ein guter und wahrer Hirte, ihm seine antiochenische Herde an und bat ihn, sich eifrig um sie zu kümmern.</p>
+      <p>11. Derselbe sagt im Brief an die Einwohner von Smyrna über Christus (ich weiß nicht, woher er diese Nachricht genommen hat): „Ich weiß und glaube, dass er nach der Auferstehung im Fleische erschienen ist. Und als er zu Petrus und denen, die bei ihm waren, kam, sagte er: ‚Berührt mich, seht, dass ich kein körperloser Geist bin.‘ Sie berührten ihn sogleich und glaubten.“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/en/en/w/eusebius-the-church-history-3#HH-Ignatius-and-His-Epistles">Kirchengeschichte, Buch 3, 36 (englisch)</a>)</p>
+      <p>Auch Eusebius führt ein Zitat aus einem verlorenen Brief des Irenäus von Lyon (2. Jahrhundert) an, in dem Irenäus den Brief des Ignatius an die Römer zitiert:</p>
+      <blockquote>
+      <p>12. Auch <strong>Irenäus wusste von seinem Martyrium; er erwähnt seine Briefe</strong> und sagt: „Wie einer der Unsrigen [im Brief <strong>an die Römer</strong>] gesagt hat, der wegen des Bekenntnisses zu Gott den Tieren zum Fraß verurteilt wurde: ‚Ich bin Weizen des Herrn, und die Zähne der Tiere mahlen mich, damit ich zu reinem Mehl werde‘[1].“</p>
+      <p>13. Und auch Polykarp erinnert im selben Zusammenhang in seinem Brief an die Philipper daran.</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/en/en/w/eusebius-the-church-history-3#HH-Ignatius-and-His-Epistles">Kirchengeschichte, Buch 3, 36 (englisch)</a>)</p>
+      <p>Die Briefe des Ignatius zählt auch der heilige <a href="https://bibleox.com/en/en/w/3v5Z_Jerome_of_Stridon_4th_c">Hieronymus von Stridon (englisch)</a> (~347–419) auf:</p>
+      <blockquote><p>Ignatius, der dritte Bischof der Kirche von Antiochia nach dem Apostel Petrus, wurde nach Rom geschickt, und als er nach Smyrna gelangte, wo Polykarp, ein Schüler des Johannes, Bischof war, schrieb er einen Brief <strong>an die Epheser</strong>, einen weiteren <strong>an die Magnesier</strong>, einen dritten <strong>an die Trallianer</strong>, einen vierten <strong>an die Römer</strong>, und als er von dort abreiste, schrieb er <strong>an die Philadelphier</strong>, <strong>an die Einwohner von Smyrna</strong> und <strong>an Polykarp</strong>, dem er die Kirche von Antiochia anvertraute.</p></blockquote>
+      <p>(<a href="https://azbyka.ru/otechnik/Ieronim_Stridonskij/o_znamenityh/1_9#sel=63:1,63:52">Über berühmte Männer</a>)</p>
+
+      <h2>Glaube</h2>
+      <h3>Christus – Gott</h3>
+      <blockquote>
+      <p>„Für sie gibt es nur einen Arzt, <strong>den leiblichen und den geistlichen, den gezeugten und den ungezeugten, <mark>Gott im Fleisch</mark>, im Tode das wahre Leben, von Maria und von Gott, zuerst dem Leiden unterworfen und dann davon frei, <mark>unseren Herrn Jesus Christus</mark></strong>“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Eph">IgnAnt_Eph 32–33</a>)</p>
+      </blockquote>
+      <blockquote>
+      <p>„Denn <strong><mark>unser Gott Jesus Christus</mark></strong> wurde nach Gottes Fügung von Maria aus dem Samen Davids empfangen, aber vom Heiligen Geist“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Eph">IgnAnt_Eph 72</a>)</p>
+      </blockquote>
+      <blockquote>
+      <p>„Von dieser Zeit an begann alle Zauberei zu fallen und jedes Band des Bösen zu zerreißen, die Unwissenheit zu vergehen und das alte Reich zu zerfallen: denn <strong><mark>Gott</mark></strong><mark> </mark><strong><mark>erschien in menschlicher Gestalt</mark></strong> zur Erneuerung des ewigen Lebens“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Eph">IgnAnt_Eph 77</a>)</p>
+      </blockquote>
+      <blockquote>
+      <p>„(‚Denn das Sichtbare ist zeitlich, … das Unsichtbare aber ewig‘ (2Kor 4,18).) <strong><mark>Unser Gott Jesus Christus</mark></strong> erscheint in großer Herrlichkeit, wenn er im Vater ist“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Rom">IgnAnt_Rom 15</a>)</p>
+      </blockquote>
+      <blockquote>
+      <p>„Ich preise <strong><mark>Jesus Christus, den Gott</mark></strong>, der euch so weise gemacht hat. Denn ich habe erfahren, dass ihr unerschütterlich fest im Glauben seid, gleichsam an das Kreuz des Herrn Jesus Christus genagelt mit Fleisch und Geist, in der Liebe gegründet durch das Blut Christi; und erfüllt vom Glauben an unseren Herrn, der wahrhaftig dem Fleische nach aus dem Geschlecht Davids stammt“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Smyrn">IgnAnt_Smyrn 2</a>)</p>
+      </blockquote>
+      <blockquote>
+      <p>„Ich grüße den, der würdig sein wird, nach Syrien gesandt zu werden. Die Gnade sei allezeit mit ihm und mit Polykarp, der ihn sendet! Ich wünsche euch, dass ihr allezeit im <strong><mark>Gott unserem Jesus Christus</mark></strong> gestärkt werdet“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Pol">IgnAnt_Pol 44</a>)</p>
+      </blockquote>
+      <h3>Gott wurde von Maria geboren</h3>
+      <blockquote>
+      <p>„Für sie gibt es nur einen Arzt, <strong>den leiblichen und den geistlichen, den <mark>gezeugten</mark> und den ungezeugten, <mark>Gott im Fleisch</mark>, im Tode das wahre Leben, <mark>von Maria</mark> und von Gott, zuerst dem Leiden unterworfen und dann davon frei, <mark>unseren Herrn Jesus Christus</mark></strong>“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Eph">IgnAnt_Eph 32–33</a>)</p>
+      </blockquote>
+      <h3>Die Eucharistie – nicht ein Bild, sondern das wahre Fleisch und Blut Jesu Christi</h3>
+      <p>Ignatius der Gottesträger beschuldigt die Häretiker, nicht zu glauben, dass die Eucharistie das Fleisch Jesu Christi ist, das gelitten hat und vom Vater auferweckt wurde. Ignatius sagt, dass die Häretiker dies nicht glauben. Kaum dürfte es zutreffen, dass die Häretiker nicht glauben, die Eucharistie sei nur ein Bild des Fleisches (im symbolischen Sinn). Einen Unglauben an ein Symbol auch nur zu denken ist absurd. Sie glauben gerade nicht, dass in der Eucharistie das leidende und auferstandene Fleisch Christi ist, wovon im Folgenden die Rede ist.</p>
+      <blockquote>
+      <p><em>Niemand täusche sich! Auch die himmlischen Wesen, die Herrlichkeit der Engel und die sichtbaren und unsichtbaren Mächte – auch sie </em><strong><em><mark>unterliegen dem Gericht, wenn sie nicht an das Blut Christi glauben</mark></em></strong><em>. „Wer es fassen kann, der fasse es“… Sie [die Häretiker] halten sich von der Eucharistie und vom Gebet fern, weil sie nicht anerkennen, dass </em><strong><em><mark>die Eucharistie das Fleisch des Erlösers</mark></em></strong><em><mark> </mark></em><strong><em><mark>unseres Jesus Christus ist, das für unsere Sünden gelitten hat, das aber der Vater auferweckt hat</mark></em></strong><em>, nach seiner Güte. So </em><strong><em>sterben sie, indem sie die Gabe Gottes verwerfen,</em></strong><em> in ihren Auseinandersetzungen.</em></p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Smyrn">Brief an die Smyrnäer, Kapitel 7</a>)</p>
+      <h3>Der Christ hält sich nicht für gerettet</h3>
+      <blockquote>
+      <p>„<strong><mark>Der Anfang ist gut gemacht: </mark><u><mark>werde ich</mark></u><mark> die Gnade erlangen, mein Los ungehindert zu empfangen?</mark></strong> Denn ich fürchte eure Liebe, dass sie mir nicht schade; weil euch leicht ist, was ihr tun wollt, mir aber <strong><mark>schwer, zu Gott zu gelangen</mark></strong>, wenn ihr mich bemitleidet. <strong><mark>Betet für mich, dass ich gelange</mark></strong>. Nicht nach dem Fleisch habe ich euch dies geschrieben, sondern nach dem Sinn Gottes. Wenn ich leide, so bedeutet das, dass ihr geliebt habt; wenn ich aber nicht gewürdigt werde, so habt ihr mich gehasst &lt;…&gt; Ich aber <strong>schäme mich, ein Glied von ihr genannt zu werden, denn ich bin dessen nicht würdig, als der Letzte von ihnen und als Auswurf</strong>. <strong><mark>Doch </mark><u><mark>wenn</mark></u><mark> ich Gott erreiche, so werde ich durch seine Barmherzigkeit etwas sein</mark></strong>. Es grüßt euch mein Geist und die Liebe der Gemeinden, die mich im Namen Jesu Christi aufgenommen haben, nicht wie einen Fremden“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Rom">IgnAnt_Rom 6, 44, 46–47</a>)</p>
+      </blockquote>
+      <h3>Den Christen erkennt man an seinen Werken</h3>
+      <blockquote>
+      <p>„Niemand, der den Glauben bekennt, sündigt, und niemand, der die Liebe erworben hat, hasst. Den Baum erkennt man an seiner Frucht: so werden auch <strong><mark>die, welche sich als Christen bekennen, </mark><u><mark>an ihren Werken erkannt werden</mark></u></strong>. Jetzt kommt es nicht nur auf das Bekenntnis an, sondern auf die Kraft des Glaubens, wenn jemand darin bis zum Ende bleibt. <strong><mark>Besser schweigen und sein, als reden und nicht sein</mark></strong>. Eine gute Sache ist das Lehren, wenn der, der lehrt, es auch tut“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Eph">IgnAnt_Eph 60–62</a>)</p>
+      <blockquote>
+      <p>„Die Taufe bleibe bei euch wie ein Schild; der Glaube wie ein Helm; die Liebe wie ein Speer; die Geduld wie eine vollständige Rüstung. <strong><mark>Eure Einlage seien die Werke</mark>, die euch gehören, <mark>damit</mark> ihr danach <mark>empfangt</mark>, was euch als <mark>Gewinn</mark> zukommt</strong>.“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Pol">IgnAnt_Pol 33–34</a>)</p>
+      </blockquote>
+      <h3>Das Leiden für Christus – ein Zeichen der Nähe zu Gott</h3>
+      <blockquote>
+      <p>„Und wozu habe ich mich selbst dem Tod übergeben, dem Feuer, dem Schwert, den wilden Tieren zum Fraß? Nein, <strong>wer beim Schwert ist, ist bei Gott, wer inmitten der Tiere ist, ist inmitten Gottes; wenn es nur im Namen Jesu Christi geschieht</strong>. Um an seinen Leiden teilzuhaben, ertrage ich all das, und er stärkt mich, weil er ein vollkommener Mensch geworden ist“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Smyrn">IgnAnt_Smyrn 12–13</a>)</p>
+      <h3>Ohne Bischof, Presbyter und Diakone gibt es keine Kirche</h3>
+      <p>Das heißt: eine bloße gewöhnliche Versammlung von zwei oder drei ist noch keine Kirche:</p>
+      <blockquote>
+      <p><strong><em>Alle <mark>ehrt</mark> <mark>die Diakone</mark> wie das Gebot Jesu Christi, den <mark>Bischof</mark> aber wie Jesus Christus, den Sohn Gottes des Vaters, die <mark>Presbyter</mark> aber wie die Versammlung Gottes, wie den Chor der Apostel. <mark>Ohne sie gibt es keine Kirche</mark></em></strong><em>. Ich bin überzeugt, dass auch ihr selbst so denkt.</em></p>
+      <p><em>&lt;…&gt;</em></p>
+      <p><em>ich bitte euch, nicht ich, sondern die Liebe Jesu Christi – nährt euch von der einen christlichen Speise, und von der fremden Pflanze, die die Häresie ist, wendet euch ab. Dem Gift ihrer Lehre </em><strong><em>mischen die Häretiker Jesus Christus bei, wodurch sie Vertrauen zu sich gewinnen: doch sie reichen tödliches Gift in gesüßtem Wein. Der Unwissende nimmt es bereitwillig an und empfängt mit dem verderblichen Vergnügen zugleich den Tod.</em></strong></p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Trall">Brief an die Trallianer, Kapitel 3, 6</a>)</p>
+      <blockquote>
+      <p><em>Folgt alle dem Bischof, wie Jesus Christus dem Vater, und dem Presbyterium wie den Aposteln. Die Diakone aber ehrt wie das Gebot Gottes. </em><strong><em>Ohne den Bischof tue niemand etwas, was die Kirche betrifft (</em></strong><a href="https://bibleox.com/en/en/w/councils-the-canons-of-the-holy-apostles#HH-39"><strong><em>39. Kanon der Apostel (englisch)</em></strong></a><strong><em>). Nur die Eucharistie darf als wahrhaft gelten, die vom Bischof oder von dem, dem er es selbst überlässt, gefeiert wird. <u><mark>Wo der Bischof ist</mark></u><mark>, dort soll auch das Volk sein, ebenso wie dort, wo Jesus Christus ist, </mark><u><mark>auch die katholische Kirche ist</mark></u></em></strong><em>. Es ist nicht erlaubt, ohne den Bischof zu taufen oder das Liebesmahl zu feiern; im Gegenteil, was er billigt, ist auch Gott wohlgefällig, damit jedes Werk fest und unzweifelhaft sei. Eine schöne Sache ist es, Gott und den Bischof zu kennen… Wer den Bischof ehrt, ist von Gott geehrt; </em><strong><em><mark>wer etwas ohne Wissen des Bischofs tut, dient dem Teufel</mark></em></strong></p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Smyrn">Brief an die Smyrnäer, Kapitel 8–9</a>)</p>
+      <blockquote>
+      <p><strong><em><mark>Gebt acht auf den Bischof, damit auch Gott auf euch achte</mark>. Ich bin ein Opfer für die, welche</em></strong><em> dem Bischof, den Presbytern und den Diakonen gehorchen.</em></p>
+      <p><strong><em>Und mein Teil in Gott sei gleich dem ihren.</em></strong><em> Kämpft gemeinsam, vollendet gemeinsam euren Weg, leidet gemeinsam,</em></p>
+      <p><em>ruht gemeinsam, steht gemeinsam auf, als Haushalter, Hausgenossen und Diener Gottes.</em></p>
+      <p><em>...</em></p>
+      <p><em>Ich wünsche euch, allezeit im Gott unserem Jesus Christus gestärkt zu werden. </em><strong><em>Bleibt durch ihn in der Einheit mit Gott und dem Bischof.</em></strong></p>
+      <p><em>...</em></p>
+      <p><em>Wer zur Ehre des Herrn im Fleische rein bleiben kann, der bleibe es ohne Ruhmsucht.</em></p>
+      <p><strong><em><mark>Wenn er sich aber rühmt, ist er verloren; und wenn er sich für mehr hält als den Bischof, ist er völlig zugrunde gegangen.</mark></em></strong></p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Pol">Brief an Polykarp</a>)</p>
+
+      <h3>Die dreistufige Hierarchie des Priestertums (Bischof, Presbyter und Diakone)</h3>
+      <p>Der heilige Ignatius schreibt, dass die Kirche in Syrien ohne Bischof geblieben ist, obwohl es viele Presbyter gibt, und dass der einzige Bischof Syriens Ignatius selbst war, der nun verhaftet und zur Hinrichtung nach Rom geschickt worden ist. Und offensichtlich können die Presbyter selbst keinen Bischof einsetzen, sonst hätten sie es bald getan und Syrien wäre nicht ohne Bischof geblieben:</p>
+      <blockquote>
+      <p>„Gedenkt in eurem Gebet der <strong><mark>Kirche in Syrien: statt meiner ist jetzt Gott ihr Hirte</mark>. Allein Jesus Christus wird in ihr als Bischof walten</strong>, und eure Liebe“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Rom">IgnAnt_Rom 45</a>)</p>
+      </blockquote>
+      <p>Besondere Beachtung verdient, dass der Bischof immer im Singular genannt wird, die Presbyter und Diakone aber im Plural (so auch <a href="https://bibleox.com/en/en/w/Three-orders-of-the-priesthood">bei Tertullian (englisch)</a>). Das heißt: an jedem Ort gibt es nur ein Haupt über der Kirche – den Bischof, dem viele Presbyter (wörtlich: „seine Presbyter“) sowie Diakone untergeordnet sind:</p>
+      <blockquote>
+      <p><em>Ich grüße sie mit dem Blut Jesu Christi, das den Glaubenden ewige und unaufhörliche Freude ist, besonders wenn sie in der Einheit mit dem </em><strong><em><mark>Bischof und seinen Presbytern und Diakonen</mark></em></strong><em> stehen, die nach dem Willen Jesu Christi bestellt sind und die er nach seinem Wohlgefallen durch seinen Heiligen Geist unerschütterlich befestigt hat. &lt;…&gt; So bemüht euch, nur eine Eucharistie zu haben. Denn es ist ein Fleisch unseres Herrn Jesus Christus und ein Kelch zur Einheit seines Blutes, ein Altar, wie auch </em><strong><em><mark>ein Bischof mit den Presbytern und Diakonen</mark></em></strong><em>, meinen Mitdienern, damit alles, was ihr tut, ihr in Gott tut. &lt;…&gt; Als ich unter euch war, rief ich laut aus, mit starker Stimme sprach ich: ‚Gebt acht auf </em><strong><em><mark>den Bischof, das Presbyterium und die Diakone</mark></em></strong><em>‘. &lt;…&gt; Wenn ihr wollt, so ist das für euch um des Namens Gottes willen nicht unmöglich: denn die benachbarten Kirchen haben bereits</em><strong><em><mark> Bischöfe</mark> und einige <mark>Presbyter und Diakone</mark> gesandt</em></strong></p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Philad">Brief an die Philadelphier</a>)</p>
+      <p>Ebenso auch an anderen Stellen: ein Bischof (den er mit Christus vergleicht) und ihm unterstellt viele Presbyter (die er mit den Aposteln vergleicht) und Diakone:</p>
+      <blockquote>
+      <p><strong><em>Alle <mark>ehrt</mark> <mark>die Diakone</mark> wie das Gebot Jesu Christi, den <mark>Bischof</mark> aber wie Jesus Christus, den Sohn Gottes des Vaters, die <mark>Presbyter</mark> aber wie die Versammlung Gottes, wie den Chor der Apostel. </em></strong>Ohne sie gibt es keine Kirche.<em> Ich bin überzeugt, dass auch ihr selbst so denkt.</em></p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Trall">Brief an die Trallianer, Kapitel 3, 6</a>)</p>
+      <blockquote>
+      <p><em>Folgt alle dem </em><strong><em><mark>Bischof</mark></em></strong> (der eine – Anm.),<em> wie Jesus Christus dem Vater, und dem </em><strong><em><mark>Presbyterium</mark></em></strong><em> wie den Aposteln. Die </em><strong><em><mark>Diakone</mark></em></strong><em> aber ehrt wie das Gebot Gottes. Ohne den </em><strong><em>Bischof</em></strong><em> tue niemand etwas, was die Kirche betrifft. Nur die Eucharistie darf als wahrhaft gelten, die vom Bischof oder von dem, dem er es selbst überlässt, gefeiert wird. Wo der Bischof ist, dort soll auch das Volk sein, ebenso wie dort, wo Jesus Christus ist, auch die katholische Kirche ist. Es ist nicht erlaubt, ohne den Bischof zu taufen oder das Liebesmahl zu feiern; im Gegenteil, was er billigt, ist auch Gott wohlgefällig, damit jedes Werk fest und unzweifelhaft sei. Eine schöne Sache ist es, Gott und den </em><strong><em>Bischof</em></strong><em> zu kennen… Wer den </em><strong><em>Bischof</em></strong><em> ehrt, ist von Gott geehrt; wer etwas ohne Wissen des </em><strong><em>Bischofs</em></strong><em> tut, dient dem Teufel</em></p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Smyrn">Brief an die Smyrnäer, Kapitel 8–9</a>)</p>
+      <blockquote>
+      <p><em>Gebt acht auf den Bischof, damit auch Gott auf euch achte. Ich bin ein Opfer für die, welche</em><strong><em> <mark>dem Bischof, den Presbytern und den Diakonen</mark></em></strong><em> gehorchen.</em></p>
+      <p><em>Und mein Teil in Gott sei gleich dem ihren. Kämpft gemeinsam, vollendet gemeinsam euren Weg, leidet gemeinsam,</em></p>
+      <p><em>ruht gemeinsam, steht gemeinsam auf, als Haushalter, Hausgenossen und Diener Gottes.</em></p>
+      <p><em>...</em></p>
+      <p><em>Ich wünsche euch, allezeit im Gott unserem Jesus Christus gestärkt zu werden. Bleibt durch ihn in der Einheit mit Gott und dem </em><strong><em>Bischof.</em></strong></p>
+      <p><em>...</em></p>
+      <p><em>Wer zur Ehre des Herrn im Fleische rein bleiben kann, der bleibe es ohne Ruhmsucht.</em></p>
+      <p><em>Wenn er sich aber rühmt, ist er verloren; und wenn er sich für mehr hält als den </em><strong><em>Bischof</em></strong><em>, ist er völlig zugrunde gegangen.</em></p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Pol">Brief an Polykarp</a>)</p>
+      <h3>Das Kreuz – das Werkzeug Christi und der Christen</h3>
+      <blockquote>
+      <p>„ihr <strong><mark>erhebt euch</mark> zur Höhe <mark>durch das Werkzeug</mark> Jesu Christi, das heißt <mark>durch das Kreuz</mark></strong>, vermittels des Seils des Heiligen Geistes; euer Glaube zieht euch zur Höhe, und die Liebe ist der Weg, der zu Gott hinaufführt“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Eph">IgnAnt_Eph 40–41</a>)</p>
+      </blockquote>
+      <h3>Der Wert der Einheit der Kirche</h3>
+      <blockquote>
+      <p>„<strong><mark>Strebe nach der Einheit, über die es nichts Besseres gibt</mark></strong>.“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Pol">IgnAnt_Pol 5</a>)</p>
+      <blockquote>
+      <p>„<strong><mark>liebt die Einheit</mark>, flieht die Spaltungen</strong>, seid Nachahmer Jesu Christi, wie auch er seinem Vater“. So tat ich mein Werk als ein Mensch, der zur Einheit bestimmt ist. <strong>Wo Spaltung und Zorn sind, da wohnt Gott nicht</strong>. Übrigens <strong>allen Bußfertigen <mark>vergibt der Herr, wenn sie zur Einheit</mark> Gottes und zur Versammlung des Bischofs zurückkehren</strong></p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Philad">IgnAnt_Philad 27–29</a>)</p>
+      <blockquote>
+      <p>„Denn da ich des gottgemäßen Namens gewürdigt worden bin, preise ich in eben diesen Fesseln, die ich trage, <strong>die Kirchen und bete, dass in ihnen <mark>die Einheit nach Fleisch und Geist</mark> in Jesus Christus sei</strong>, unserem ewigen Leben, <strong><mark>die Einheit des Glaubens und der Liebe</mark></strong>“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Mag">Brief an die Magnesier</a>)</p>
+      <blockquote>
+      <p>„<strong><mark>Es soll nichts zwischen euch sein, was euch trennen könnte</mark>; sondern seid in der <mark>Einheit mit dem Bischof</mark></strong> und vor denen, die sitzen, zum Bild und zur Lehre der Unvergänglichkeit“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Mag">Brief an die Magnesier</a>)</p>
+      <blockquote>
+      <p>„Gehorcht dem Bischof und einander, wie Jesus Christus dem Fleische nach dem Vater gehorchte und die Apostel Christus, dem Vater und dem Geist, <strong><mark>damit die Einheit</mark> zugleich <mark>leiblich und geistlich</mark> sei</strong>“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Mag">IgnAnt_Mag 40</a>)</p>
+      <blockquote>
+      <p>„Nicht dass ich bei euch Spaltungen gefunden hätte, im Gegenteil, eine baldige Reinigung. Denn <strong>die Gottes sind und Jesu Christi, die sind beim Bischof. Und die, <mark>welche nach ihrer Umkehr zur Einheit der Kirche kommen, werden ebenfalls Gottes sein</mark></strong>, um gemäß Jesus Christus zu leben. Täuscht euch nicht, meine Brüder! <strong>Wer dem folgt, der eine Spaltung einführt, der erbt das Reich Gottes nicht</strong>“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Philad">IgnAnt_Philad 10–12</a>)</p>
+      <blockquote>
+      <p>„<strong>Denkt nicht, dass bei euch etwas Lobenswertes entstehe, wenn ihr dies von euch aus tut</strong>; sondern in der gemeinsamen Versammlung sei bei euch ein Gebet, eine Vergebung, ein Sinn, eine Hoffnung in Liebe und in makelloser Freude“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Mag">IgnAnt_Mag 21</a>)</p>
+
+      <h3>Das Mönchtum</h3>
+      <blockquote>
+      <p>Wer zur Ehre des Herrn im Fleische rein bleiben kann, der bleibe es ohne Ruhmsucht.</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Pol#HH-5">An Polykarp, 5</a>)</p>
+      <h3>In Häresie und Spaltungen ist keine Rettung möglich</h3>
+      <blockquote>
+      <p><em>So, </em><strong><em>ihr Kinder des Lichts und der Wahrheit, <mark>flieht die Spaltung und die bösen Lehren</mark>, aber wohin der Hirte geht, dorthin geht auch ihr wie die Schafe</em></strong><em>. Denn viele Wölfe, die scheinbar Vertrauen verdienen, fangen durch verderbliches Vergnügen die ein, welche den Weg Gottes gehen; aber bei eurer Einheit werden sie keinen Platz haben. </em><strong><em>Haltet euch von den bösen Unkrautpflanzen fern, die Jesus Christus nicht wachsen lässt, denn <mark>sie sind nicht die Pflanzung des Vaters</mark>. Nicht dass ich bei euch Spaltungen gefunden hätte, im Gegenteil, eine baldige Reinigung. Denn <mark>die Gottes sind und Jesu Christi, die sind beim Bischof</mark></em></strong><em>. Und die, welche nach ihrer Umkehr zur Einheit der Kirche kommen, werden ebenfalls Gottes sein, um gemäß Jesus Christus zu leben. Täuscht euch nicht, meine Brüder! </em><strong><em><mark>Wer dem folgt, der eine Spaltung einführt, der erbt das Reich Gottes nicht. Wer an einer fremden Lehre festhält, der hat kein Mitgefühl mit dem Leiden Christi.</mark></em></strong></p>
+      <p><em>&lt;…&gt;</em></p>
+      <p><strong><em>Wo Spaltung und Zorn sind, da wohnt Gott nicht</em></strong><em>. Übrigens </em><strong><em>vergibt der Herr allen Bußfertigen,</em></strong></p>
+      <p><strong><em>wenn sie zur Einheit Gottes und zur Versammlung des Bischofs zurückkehren.</em></strong></p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Philad">Brief an die Philadelphier, 2–3</a>)</p>
+      <blockquote>
+      <p>Täuscht euch nicht, meine Brüder! Diejenigen, welche die Häuser des Reiches Gottes verderben, werden es nicht erben. Wenn aber die, welche dies am Fleisch tun, dem Tod verfallen, wie viel mehr dann, wenn <strong><mark>jemand durch böse Lehre den Glauben Gottes verdirbt, für den Jesus Christus gekreuzigt wurde? Ein solcher Mensch wird als unreiner in das unauslöschliche Feuer gehen, ebenso wie der, der ihn hört</mark></strong>.</p>
+      <p>Der Herr nahm darum das Salböl auf sein Haupt, um die Kirche mit Unvergänglichkeit zu durchduften. <strong>Salbt euch also nicht mit der übelriechenden Lehre des Fürsten dieser Welt, damit er euch nicht als Gefangene vom rechten Leben fortführt</strong>.</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Eph">Brief an die Epheser, Kapitel 16, 17</a>)</p>
+      <h3>Die Trennung von den Häretikern</h3>
+      <blockquote>
+      <p>„So <strong><mark>flieht die bösen Gewächse</mark>, die tödliche Frucht tragen: wer von ihr kostet, stirbt sogleich. Denn <mark>die Häretiker sind nicht die Pflanzung des Vaters</mark></strong>. Wären sie es, so wären sie Zweige des Kreuzes, und ihre Frucht wäre unvergänglich“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Trall">IgnAnt_Trall 30–31</a>)</p>
+      <blockquote>
+      <p>„So, ihr Kinder des Lichts und der Wahrheit, <strong><mark>flieht</mark> die Spaltung und die <mark>bösen Lehren</mark></strong>, aber wohin der Hirte geht, dorthin geht auch ihr wie die Schafe. Denn viele Wölfe, die scheinbar Vertrauen verdienen, fangen durch verderbliches Vergnügen die ein, welche den Weg Gottes gehen; aber bei eurer Einheit werden sie keinen Platz haben. <strong><mark>Haltet euch von den bösen Unkrautpflanzen fern</mark></strong>, die Jesus Christus nicht wachsen lässt, denn sie sind nicht die Pflanzung des Vaters. &lt;…&gt; <strong>Wer an einer fremden Lehre festhält, der hat kein Mitgefühl mit dem Leiden Christi</strong>“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Philad">IgnAnt_Philad 7–9, 13</a>)</p>
+      <h3>Das Leben der Seele nach dem Tod des Leibes</h3>
+      <blockquote>
+      <p>„Herrlich ist es für mich, von der Welt zu Gott hinabzugehen, um in ihm aufzuleuchten &lt;…&gt; Wenn ich mich wirklich als solcher [als Christ] erweise, so kann ich auch so genannt werden, und <strong>nur dann <mark>kann ich</mark> wahrhaft treu sein, <mark>wenn die Welt mich nicht mehr sieht</mark></strong>. Nichts <strong><mark>Sichtbares ist ewig</mark></strong>. Jetzt erst beginne ich, ein Jünger zu sein. Weder das Sichtbare noch das Unsichtbare, <strong><mark>nichts wird mich zurückhalten, zu Jesus Christus zu kommen</mark></strong>. Ich will Gott angehören: <strong>liefert mich nicht der Welt aus. Lasst mich zum reinen Licht: <mark>dort erscheinend, werde ich ein Mensch Gottes sein</mark></strong>. Lebend schreibe ich euch, brennend vor Verlangen zu sterben. Meine Liebe ist gekreuzigt, und es ist in mir kein Feuer, das die Materie liebt, sondern lebendiges Wasser, <strong>das <mark>in mir spricht und mir von innen zuruft: ‚Komm zum Vater‘</mark></strong>“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Rom">IgnAnt_Rom 10, 13–14, 29, 34, 39</a>)</p>
+      <h3>Die Aufhebung des jüdischen Gesetzes</h3>
+      <blockquote>
+      <p><strong><mark>Wenn wir bis jetzt noch nach dem jüdischen Gesetz leben, so bekennen wir dadurch offen, dass wir die Gnade nicht empfangen haben</mark></strong>. Und die göttlichsten Propheten lebten in Christus Jesus, deshalb litten sie auch Verfolgung. Von seiner Gnade erleuchtet, versicherten sie die Ungläubigen, dass es nur einen Gott gibt, der sich durch Jesus Christus, seinen Sohn, offenbart hat, welcher sein ewiges Wort ist, das nicht aus dem Schweigen hervorgegangen ist &lt;…&gt; Wenn also die, welche in der alten Ordnung der Dinge lebten, sich der neuen Hoffnung näherten und <strong><mark>nicht mehr den Sabbat hielten, sondern das Leben der Auferstehung lebten</mark></strong>, in dem auch unser Leben durch ihn und durch seinen Tod aufgeleuchtet ist – <strong>einige verwerfen es auch</strong> –, aber durch ihr Geheimnis haben wir den Anfang des Glaubens empfangen, und um ihretwillen dulden wir, um Jünger Jesu Christi, unseres einzigen Lehrers, zu sein &lt;…&gt; Da wir also <strong>seine Jünger geworden sind, lasst uns lernen, christlich zu leben</strong>. Denn wer mit einem anderen Namen als diesem genannt wird, der ist nicht Gottes. So <strong><mark>stoßt den schlechten Sauerteig aus, der alt und verdorben geworden ist, und verwandelt euch in den neuen Sauerteig, der Jesus Christus ist</mark></strong>. Werdet in ihm gesalzen, damit keiner von euch verdirbt und dann der Gestank euch nicht überführt. <strong><mark>Es ist widersinnig, Jesus Christus anzurufen und jüdisch zu leben</mark>; denn nicht an das Judentum hat das Christentum geglaubt, sondern das Judentum an das Christentum</strong>, in dem alle Völker vereint sind, die an Gott glauben.</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Mag">Brief an die Magnesier, 8–10</a>)</p>
+      <blockquote>
+      <p>„Aber <strong><mark>wenn jemand euch das Judentum verkündet, hört ihn nicht</mark>. Denn besser ist es, vom beschnittenen Menschen das Christentum zu hören als vom unbeschnittenen das Judentum</strong>. Wenn aber weder der eine noch der andere von Jesus Christus spricht, so sind sie meiner Meinung nach Säulen und Gräber der Toten, auf die nur menschliche Namen geschrieben sind“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Philad">Brief an die Philadelphier, 6</a>)</p>
+      <blockquote>
+      <p>„Aber wenn <strong><mark>jemand euch das Judentum verkündet, hört ihn nicht</mark></strong>. Denn besser ist es, vom beschnittenen Menschen das Christentum zu hören als vom unbeschnittenen das Judentum“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Philad">IgnAnt_Philad 19</a>)</p>
+      <h3>Die endlosen Qualen in der Hölle</h3>
+      <blockquote>
+      <p>„Wenn aber die, welche dies am Fleisch tun, dem Tod verfallen, wie viel mehr dann, wenn jemand durch böse Lehre den Glauben Gottes verdirbt, für den Jesus Christus gekreuzigt wurde? Ein solcher Mensch wird als unreiner <strong>in das <mark>unauslöschliche Feuer</mark> gehen</strong>, ebenso wie der, der ihn hört“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Eph">IgnAnt_Eph 67</a>)</p>
+      <h3>Ein Vorwurf an die Anhänger eines Glaubens „allein auf der Schrift“</h3>
+      <p>Er spricht von Menschen, die streiten und sich weigern zu glauben, was man ihnen nicht aus den alttestamentlichen Schriften beweisen kann, und wenn man es ihnen dann zeigt, streiten sie weiter über den Sinn des Textes. Ignatius der Gottesträger antwortet, dass zwar geschrieben steht, für ihn aber Jesus Christus und sein Glaube älter (wichtiger) sind, den der heilige Ignatius unmittelbar von den Aposteln und ihren Nachfolgern empfangen hat:</p>
+      <blockquote>
+      <p>„Ich glaube an die Gnade Jesu Christi, dass er euch von allen Fesseln gelöst hat. Aber ich bitte euch – <strong><mark>tut nichts aus Streitsucht, sondern nach der Lehre Christi</mark></strong>. Ich <strong><mark>habe von einigen die Worte gehört</mark>: ‚<mark>Wenn ich es nicht in den alten Schriften finde, so glaube ich</mark></strong> dem im Evangelium Geschriebenen nicht‘; <strong>und als ich ihnen sagte, dass es geschrieben steht, antworteten sie mir: das muss bewiesen werden. <mark>Für mich aber ist Jesus Christus das Ältere</mark></strong>, das unwandelbar Ältere – sein Kreuz, sein Tod und seine Auferstehung, <strong><mark>und sein Glaube</mark></strong>: damit wünsche ich mich bei eurem Gebet zu rechtfertigen“</p>
+      </blockquote>
+      <p>(<a href="https://bibleox.com/de/de/w/IgnAnt_Philad">IgnAnt_Philad 30–32</a>)</p>
+
+      <h2>Zur Datierung der Texte</h2>
+      <p>Es gibt mehrere Fassungen der Texte des Ignatius des Gottesträgers: die kurze, die mittlere und die lange. Die mittlere ist die älteste und verbreitetste. Diese Sammlung von Briefen erwähnt im 3.–4. Jahrhundert Eusebius von Caesarea.</p>
+      <p>Einzelne Briefe werden auch früher erwähnt. Zum Beispiel schreibt im 2. Jahrhundert der Zeitgenosse des Ignatius – Polykarp von Smyrna – über einen Brief des Ignatius:</p>
+      <blockquote><p>„<strong>Ihr habt mir geschrieben, und auch Ignatius</strong>, dass, wenn jemand von uns nach Syrien reist, er auch eure Briefe dorthin bringen soll“ (PlkSm_Phil 55)</p></blockquote>
+      <p>Polykarp sammelt die Briefe des Ignatius und alles, was über ihn bekannt ist, indem er diese Werke abschreibt und verbreitet:</p>
+      <blockquote><p>„<strong>Die Briefe des Ignatius, die er uns geschickt hat, und die anderen, soweit wir sie besitzen, haben wir euch geschickt</strong>, wie ihr es verlangt habt: sie sind diesem unserem Brief beigefügt. Ihr könnt daraus großen Nutzen ziehen. Denn sie enthalten den Glauben, die Geduld und jede Erbauung in unserem Herrn. <strong>Was ihr Zuverlässiges über Ignatius selbst und seine Begleiter erfahrt, das teilt uns mit</strong>“ (PlkSm_Phil 57–59)</p></blockquote>
+      <p>Die älteste erhaltene griechische Handschrift (5. Jahrhundert) ist der bereits oben von Polykarp erwähnte Brief an die Smyrnäer. Obwohl die griechischen Handschriften des Briefes an die Römer recht spät sind, gibt es aus dem 5. Jahrhundert Übersetzungen des Briefes an die Römer ins Syrische und Altarmenische. Es gibt auch koptische Übersetzungen aus dem 4. Jahrhundert der folgenden Briefe: an die Römer, an die Smyrnäer, an Polykarp, an die Trallianer, an die Philadelphier.</p>
+      <p>Eusebius von Caesarea (3.–4. Jahrhundert) zitiert einen verlorenen Brief des Irenäus von Lyon (2. Jahrhundert), in dem Irenäus den Brief an die Römer von Ignatius dem Gottesträger zitiert:</p>
+      <blockquote><p>12. Auch Irenäus wusste von seinem Martyrium; er erwähnt seine Briefe und sagt: „Wie einer der Unsrigen gesagt hat, der wegen des Bekenntnisses zu Gott den Tieren zum Fraß verurteilt wurde: ‚<strong>Ich bin Weizen des Herrn, und die Zähne der Tiere mahlen mich, damit ich zu reinem Mehl werde</strong>‘“ (<a href="https://bibleox.com/de/de/w/IgnAnt_Rom">IgnAnt_Rom 19</a>).</p></blockquote>
+      <p>(Kirchengeschichte, Buch 3, 36)</p>
+      <p>Eusebius zitiert die mittlere Fassung. Man kann die Texte des Eusebius und das, was wir heute haben, vergleichen. Der Unterschied ist unterstrichen (zwei hinzugefügte Wörter ändern nichts am Wesen, es werden Arten von Qualen beschrieben):</p>
+      <table class="custom-table"><colgroup></colgroup><tbody><tr><td><p><strong>Aus der Geschichte des Eusebius</strong></p><p>ἀπὸ Συρίας μέχρι Ῥώμης θηριομαχῶ διὰ γῆς καὶ θαλάσσης, νυκτὸς καὶ ἡμέρας, ἐνδεδεμένος δέκα λεοπάρδοις, ὅ ἐστιν στρατιωτικὸν τάγμα, οἳ καὶ εὐεργετούμενοι χείρονες γίνονται, ἐν δὲ τοῖς ἀδικήμασιν αὐτῶν μᾶλλον μαθητεύομαι· ἀλλ' οὐ παρὰ τοῦτο δεδικαίωμαι. ὀναίμην τῶν θηρίων τῶν ἐμοὶ ἑτοίμων, ἃ καὶ εὔχομαι σύντομά μοι εὑρεθῆναι· ἃ καὶ κολακεύσω συντόμως με καταφαγεῖν, οὐχ ὥσπερ τινῶν δειλαινόμενα οὐχ ἥψαντο, κἂν αὐτὰ δὲ ἄκοντα μὴ θέλῃ, ἐγὼ προσβιάσομαι. συγγνώμην μοι ἔχετε· τί μοι συμφέρει, ἐγὼ γινώσκω, νῦν ἄρχομαι μαθητὴς εἶναι. μηδέν με ζηλώσαι τῶν ὁρατῶν καὶ ἀοράτων, ἵνα Ἰησοῦ Χριστοῦ ἐπιτύχω· πῦρ καὶ σταυρὸς θηρίων τε συστάσεις, <strong><u>___</u></strong> σκορπισμοὶ ὀστέων, συγκοπαὶ μελῶν, ἀλεσμοὶ ὅλου τοῦ σώματος, κολάσεις τοῦ διαβόλου εἰς ἐμὲ ἐρχέσθωσαν, μόνον ἵνα Ἰησοῦ Χριστοῦ ἐπιτύχω</p><p><a href="https://bibleox.com/de/grc/w/%CE%95%CE%9A%CE%9A%CE%9B%CE%97%CE%A3%CE%99%CE%91%CE%A3%CE%A4%CE%99%CE%9A%CE%97%CE%A3_%CE%99%CE%A3%CE%A4%CE%9F%CE%A1%CE%99%CE%91%CE%A3-3/#HH-36">https://bibleox.com/de/grc/w/ΕΚΚΛΗΣΙΑΣΤΙΚΗΣ_ΙΣΤΟΡΙΑΣ-3/#HH-36</a></p></td><td><p><strong>Aus dem Brief des Ignatius</strong></p><p>Ἀπὸ Συρίας μέχρι Ῥώμης θηριομαχῶ, διὰ γῆς καὶ θαλάσσης, νυκτὸς καὶ ἡμέρας, δεδεμένος δέκα λεοπάρδοις, ὅ ἐστιν στρατιωτικὸν τάγμα· οἳ καὶ εὐεργετούμενοι χείρους γίνονται. ἐν δὲ τοῖς ἀδικήμασιν αὐτῶν μᾶλλον μαθητεύομαι, ἀλλ ̓ οὐ παρὰ τοῦτο δεδικαίωμαι. ὀναίμην τῶν θηρίων τῶν ἐμοὶ ἡτοιμασμένων καὶ εὔχομαι σύντομά μοι εὑρεθῆναι· ἃ καὶ κολακεύσω, συντόμως με καταφαγεῖν, οὐχ ὥσπερ τινῶν δειλαινόμενα οὐχ ἥψαντο. κἂν αὐτὰ δὲ ἄκοντα μη· θελήσῃ, ἐγὼ προσβιάσομαι. συγγνώμην μοι ἔχετε· τί μοι συμφέρει, ἐγὼ γινώσκω, νῦν ἄρχομαι μαθητὴς εἶναι. μηθέν με ζηλώσαι τῶν ὁρατῶν καὶ ἀοράτων, ἵνα Ἰησοῦ Χριστοῦ ἐπιτύχω. πῦρ καὶ σταυρὸς θηρίων τε συστάσεις, <strong><u>ἀνατομαί, διαιρέσεις</u></strong>, σκορπισμοὶ ὀστέων, συγκοπὴ μελῶν, ἀλεσμοὶ ὅλου τοῦ σώματος, κακαὶ κολάσεις τοῦ διαβόλου ἐπ ̓ ἐμὲ ἐρχέσθωσαν, μόνον ἵνα Ἰησοῦ Χριστοῦ ἐπιτύχω</p><p><a href="https://bibleox.com/de/grc/w/%CE%99%CE%B3%CE%BD%CE%98_%CE%A1%CF%89%CE%BC/#HH-5">https://bibleox.com/de/grc/w/ΙγνΘ_Ρωμ/#HH-5</a></p></td></tr></tbody></table>
+      <p>Man kann annehmen, dass die kurze Sammlung der Briefe des Ignatius keineswegs als Fälschung entstanden ist. In der Antike gab es die Praxis, kurze Nacherzählungen bekannter Werke zu erstellen. So stellte im 2. Jahrhundert der Schüler Justins des Philosophen (Tatian) eine Sammlung aller vier Evangelien zu einem einzigen Werk zusammen – das Diatessaron. Dies ist ein bekanntes Werk, das lange in der Kirche gelesen wurde, bisweilen sogar anstelle der Evangelien, sodass man später diese Ordnung beseitigen musste und zur Lesung des Evangeliums zurückkehrte. Das Diatessaron war nicht als Fälschung gedacht, sondern entstand einfach als zusätzliches Werk, das sich gerade auf diese Weise verbreitete.</p>
+      <p>Die Existenz des Diatessaron spricht nicht für die Falschheit der Evangelien, verschiebt nicht das Datum des Erscheinens der Evangelien ins 2. Jahrhundert, und das Diatessaron selbst erhebt keinen Anspruch auf das 1. Jahrhundert. Es ist ein Werk des 2. Jahrhunderts.</p>
+      <p>Die Texte des heiligen Märtyrers Ignatius genießen bei den Forschern ein recht hohes Vertrauen. Mehr Informationen <a href="https://azbyka.ru/otechnik/Ignatij_Antiohijskij/ignatij-antiokhijskij-episkop-muchenik-i-proiskhozhdenie-episkopata/5">hier</a>.</p>
+    references: |-
+      <ol><li><p><a href="https://bibleox.com/de/de/w/IgnAnt_Rom#HH-4">Ignatius von Antiochien, Brief an die Römer, Kap. 4, 3</a></p></li></ol>

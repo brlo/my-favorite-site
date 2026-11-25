@@ -112,9 +112,9 @@ Hennecke—Schneemelcher, BKV-переиздания XX в.) **не берём**
    `script/translations/links_structure.rb` заполнит `path` у заготовки
    «📚 Schriften der alten Christen»; либо переименовать пункт в тот же
    заголовок.
-2. **Папки веков** в меню списка — «1. Jahrhundert», «2. Jahrhundert»
-   (пункты без `path`, как «1st century» в EN). Создаются импортом
-   (`folders:`) или вручную.
+2. **Папки веков** в меню списка — «1. Jahrhundert» (пустые папки не держим:
+   «2. Jahrhundert» появится, когда в ней будет первый автор). Создаются
+   импортом (`folders:`) или вручную.
 3. **Страницы авторов** (`page_type 4`) — перевод русских страниц (RU-эталон):
    Климент (`Климент_Римский`, 31 КБ), Игнатий (`Игнатий_Антиохийский`,
    38 КБ), Поликарп (`Поликарп_Смирнский`, 19 КБ), Варнава
@@ -124,10 +124,12 @@ Hennecke—Schneemelcher, BKV-переиздания XX в.) **не берём**
    отдельной страницы автора у Ерма нет.
 4. **Труды** (`page_type 1`) — текст BKV, нумерация глав как в русском
    (главы — `<h2>`; якоря `#HH-n` HtmlRenderer строит сам).
-5. **Импорт** — YAML в `db/translations/de/`, загрузка
-   `bin/rails pages:import_translations FILE=db/translations/de/....yml
-   [DRY_RUN=1] [PUBLISH=1]`; `lang: de`, `list: Kirchenvaeter`,
-   `menu: { parent: "1. Jahrhundert", title: … }`.
+5. **Импорт** — как в en/ja/la, на автора два YAML:
+   `<author>_author.yml` — `list: Kirchenvaeter`, `menu.parent: "1. Jahrhundert"`;
+   `<author>_works.yml` — `list: <path автора>`, `folders: [{path: "Briefe"}]`,
+   у трудов `menu.parent: "Briefe"`. Тогда труды сразу дети автора и пункты —
+   в меню автора. Загрузка:
+   `bin/rails pages:import_translations FILE=... [DRY_RUN=1] [PUBLISH=1]`.
 6. **Ссылки.** Греческий оригинал — `/de/grc/w/<путь>` (корпус `grc` уже
    есть для всех этих трудов), русский/английский параллельный текст —
    переключателем языков по `group_lang_id`.
@@ -196,18 +198,17 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 - Скрипты: `script/translations/de/bkv_epub.py` (EPUB → HTML),
   `build_pilot.py` (сборка YAML), `create_section.rb` (раздел и меню),
   `authors/*.html`, `section_intro.html`, `works/martyrdom.html`.
-- YAML: `db/translations/de/kl_00.yml`, `ig_00.yml`, `pl_00.yml` (у страниц
-  `update: true` — повторный импорт обновляет их, а не пропускает).
+- YAML: `kl_author.yml` + `kl_works.yml`, `ig_author.yml` + `ig_works.yml`,
+  `pl_author.yml` + `pl_works.yml` (у страниц `update: true`).
 - Проверено на dev: все 15 страниц отдают 200, якоря `#HH-n` совпадают
   с ссылками авторских страниц, кириллицы в немецких текстах нет.
-- Меню авторов: импорт кладёт труды в меню списка, а страница автора строит
-  своё дерево из пунктов с `page_id = автор`. Поэтому после импорта запускается
-  `script/translations/author_menus.rb` — он заводит у автора категорию
-  («Briefe») с трудами и убирает дубли из меню списка. Без этого шага на
-  странице автора были только «Похожие материалы».
-- «Прочие параметры» с эталона: обложки авторов скопированы
-  (`copy_page_meta.rb`), `seo_kind=person`, «золотые» пункты меню — Климент,
-  Игнатий, Поликарп в списке и 1-е послание Климента в меню автора.
+- Труды создаются с `list` = страница автора (два YAML, как в en/ja/la),
+  поэтому они сразу дети автора (`parent_id = автор`) и их пункты — в меню
+  автора; отдельный переносчик меню не нужен.
+- «Прочие параметры» с эталона: обложки авторов — `copy_covers.rb de` (и
+  `copy_cover: true` в YAML), `seo_kind=person` — `backfill_seo_kind.rb`,
+  «золотые» пункты — `gold.rb de` (Климент, Игнатий, Поликарп в списке и
+  1-е послание Климента в меню автора).
 - Авторские страницы — полные переводы русского эталона: Климент 33 КБ,
   Игнатий 41 КБ, Поликарп 19 КБ (2/3/3 h2 и 12/17/12 h3, как в RU), ссылки
   переведены на немецкие страницы (`#HH-n`), греческие — на `/de/grc/`,

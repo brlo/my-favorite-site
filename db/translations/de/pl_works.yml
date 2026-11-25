@@ -1,161 +1,18 @@
-# Поликарп Смирнский: автор, послание и мученичество (партия 1, немецкая библиотека)
+# Поликарп Смирнский: послание и мученичество (партия 1, немецкая библиотека)
 # Сборка: script/translations/de/build_pilot.py
 
 lang: de
-list: Kirchenvaeter
+list: "Polykarp_von_Smyrna"
+folders:
+  - { path: "Briefe", priority: 1 }
 pages:
 
-  - src: "Поликарп_Смирнский"
-    # page_type и edit_mode наследуются от русской страницы-оригинала
-    path: "Polykarp_von_Smyrna"
-    title: "Polykarp von Smyrna, 1.–2. Jh."
-    title_sub: "Hieromärtyrer (69–155), Bischof von Smyrna, Schüler des Apostels Johannes"
-    meta_desc: "Polykarp, Bischof von Smyrna, Hieromärtyrer (69–155), Schüler des Johannes des Theologen."
-    menu: { parent: "1. Jahrhundert", title: "Polykarp von Smyrna", priority: 3 }
-    update: true
-    body: |-
-      <p>Den Bereich mit den Werken des Polykarp von Smyrna <strong>in griechischer Sprache</strong> finden Sie <a href="https://bibleox.com/de/grc/w/%CE%A0%CE%BF%CE%BB%CF%8D%CE%BA%CE%B1%CF%81%CF%80%CE%BF%CF%82_%CE%A3%CE%BC%CF%8D%CF%81%CE%BD%CE%B7%CF%82/">hier</a>. Die Umschaltung auf andere Sprachen ist ebenfalls oben über der Werkliste möglich.</p>
-
-      <p><strong>Gedenktag</strong>: 23. Februar (8. März)</p>
-
-      <p>Ein Schüler des heiligen Apostels und Evangelisten Johannes des Theologen, einer der Männer der apostolischen Zeit. Ein geistlicher Lehrer und Verteidiger der Reinheit des Glaubens gegen die Häresien. Einer seiner Schüler war Irenäus von Lyon, ein Hieromärtyrer.</p>
-
-      <h2>Leben</h2>
-
-      <p>Der heilige Polykarp, geboren in der zweiten Hälfte des 1. Jahrhunderts, war ein Schüler des Apostels Johannes des Theologen. Schon als Kind verlor er seine Eltern und wurde von der Christin Kallista an Kindes statt angenommen. Nach ihrem Tod verteilte er seinen gesamten Besitz an die Armen und begann ein strenges Leben zu führen. Als Bischof von Smyrna kämpfte Polykarp gegen den Gnostizismus und war der angesehenste Theologe Kleinasiens.</p>
-
-      <p>Ihm folgten zahlreiche Schüler, darunter auch Irenäus von Lyon, der sich im Westen niederließ und zum Vermittler der Theologie Polykarps in Gallien und Italien wurde. So schreibt <a href="https://bibleox.com/en/en/w/Irenaeus_of_Lyon">Irenäus von Lyon</a> (englisch) über Polykarp:</p>
-
-      <blockquote><p><strong>Polykarp</strong>, der nicht nur <strong>von den Aposteln unterrichtet worden war und mit vielen von denen verkehrte, die unseren Herrn gesehen haben, sondern auch von den Aposteln zum Bischof der Kirche von Smyrna in Asien eingesetzt wurde</strong> und den auch ich in meiner frühen Jugend gesehen habe – denn er lebte lange und beschloss dieses Leben im hohen Alter mit dem ruhmvollsten und edelsten Martyrium –, er <strong>lehrte immer</strong> <strong>das, was er von den Aposteln gelernt hatte, was auch die Kirche überliefert</strong>, und was allein wahr ist. Das bezeugen alle Kirchen Asiens sowie jene, die bis zur Gegenwart Nachfolger Polykarps gewesen sind – ein solcher Mann ist ein weit glaubwürdigerer und zuverlässigerer Zeuge der Wahrheit als Valentin, Markion und die übrigen Häretiker. Als er unter Anicet nach Rom kam, bekehrte er viele von den oben genannten Häretikern zur Kirche Gottes und verkündete, dass er von den Aposteln allein jene Wahrheit empfangen habe, die von der Kirche überliefert wird.</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/en/en/w/irenaeus-against-heresies-b3#HH-3">Gegen die Häresien, Buch III, Kap. III.4 (englisch)</a>)</p>
-
-      <p>An den heiligen Polykarp war <a href="https://bibleox.com/de/de/w/IgnAnt_Pol">einer der Briefe</a> des <a href="https://bibleox.com/de/de/w/Ignatius_von_Antiochien">Ignatius des Gottesträgers</a> gerichtet. Von Polykarp selbst ist nur ein einziges Werk erhalten – der Brief an die Philipper. Über ihn schreibt der Hieromärtyrer <a href="https://bibleox.com/en/en/w/Irenaeus_of_Lyon">Irenäus von Lyon</a> (englisch) im 2. Jahrhundert:</p>
-
-      <blockquote><p>Es gibt ein sehr gehaltvolles <strong>Schreiben Polykarps, das an die Philipper gerichtet ist</strong>, aus dem die, die es wollen und sich um ihr Heil sorgen, auch den Charakter seines Glaubens und die Verkündigung der Wahrheit erkennen können. Auch die Kirche von Ephesus, von Paulus gegründet und bis zu den Zeiten Trajans mit Johannes in ihrer Mitte, ist eine wahre Zeugin der apostolischen Überlieferung.</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/en/en/w/irenaeus-against-heresies-b3#HH-3">Irenäus von Lyon, Gegen die Häresien, III, 4 (englisch)</a>)</p>
-
-      <p>Er nahm am Streit mit Papst Anicet über den Termin des Osterfestes teil (die Gemeinden Kleinasiens feierten es am 14. Nisan, die römischen am ersten Sonntag nach dem 14. Nisan). Der Streit blieb jedoch unentschieden, was die beiden Bischöfe nicht daran hinderte, als Freunde auseinanderzugehen. Im 86. Lebensjahr wurde er verhaftet und, da er sich weigerte, Christus zu verleugnen, lebendig verbrannt. Sein Martyrium wurde im „<a href="https://bibleox.com/de/de/w/PlkSm_Martyr">Rundbrief der Kirche von Smyrna</a>“ ausführlich beschrieben.</p>
-
-      <p>Ebendort werden auch die Worte Polykarps angeführt, dass er Christus bereits 86 Jahre dient:</p>
-
-      <blockquote><p>„Der Prokonsul aber drängte und sprach: ‚Schwöre, und ich lasse dich frei; lästere Christus.‘ Polykarp aber antwortete: ‚<strong>Sechsundachtzig Jahre diene ich ihm</strong>, und er hat mir nichts zuleide getan: wie könnte ich meinen König lästern, der mich errettet hat?‘“</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Martyr#HH-9">Rundbrief der Kirche von Smyrna über Polykarp, 45</a>)</p>
-
-      <p>Über Polykarp schreibt Eusebius von Cäsarea (um 258–339), wobei er auch seinen Brief an die Philipper erwähnt und zitiert:</p>
-
-      <blockquote><p>Besonders bemerkenswert war damals in Asien <strong>Polykarp, ein Gesprächspartner der Apostel</strong>, der von denen, die den Herrn gesehen und ihm gedient hatten, zum Bischof der Kirche von Smyrna eingesetzt wurde.</p>
-      <p>&lt;…&gt;</p>
-      <p>13. Und Polykarp erinnert an denselben [Ignatius den Gottesträger] in <strong>seinem Brief an die Philipper.</strong> <strong>Wir führen seine Worte an:</strong> „Ich ermahne euch alle, zu gehorchen und zu dulden. Ihr habt mit eigenen Augen gesehen, wie nicht nur die seligen Ignatius, Rufus und Zosimus, sondern auch andere aus eurer Mitte, Paulus selbst und die übrigen Apostel, geduldig gelitten haben. Glaubt, dass sie ihren Weg nicht vergeblich gegangen sind, sondern im Glauben und in der Wahrheit, und dass sie jetzt an dem Ort sind, den der Herr ihnen bereitet hat, mit dem sie auch gelitten haben, denn sie liebten nicht die gegenwärtige Welt, sondern den, der für uns gestorben und um unseretwillen von Gott auferweckt worden ist“. <strong>Und weiter fügt er hinzu:</strong>
-      </p>
-      <p>14. „Ihr habt mir, wie auch Ignatius, geschrieben, dass, wenn jemand nach Syrien reist, er auch eure Briefe mitbringen soll. Das werde ich bei Gelegenheit tun, sei es selbst, sei es durch einen Menschen, der auch euer Bote sein wird.</p>
-      <p>15. Die Briefe des Ignatius, die er an mich geschrieben hat, und andere, die sich bei mir fanden, habe ich euch geschickt, wie ihr es aufgetragen habt: sie sind diesem Schreiben beigelegt. Ihr könnt daraus großen Nutzen ziehen: in ihnen sind Glaube, Geduld und Unterweisung, wie man dem Herrn dient“.</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/en/en/w/eusebius-the-church-history-3#HH-Ignatius-and-His-Epistles">Kirchengeschichte, Buch 3, 36 (englisch)</a>)</p>
-
-      <h2>Hymnographie</h2>
-
-      <p>Tropar, Ton 4:</p>
-
-      <blockquote><p>Teilhaftig an den Sitten der Apostel, / und auf ihrem Thron ihr Stellvertreter, / hast du, von Gott begeisterter, in der Tat / den Aufstieg zur Schau gefunden. / Darum, das Wort der Wahrheit recht verkündend, / hast du um des Glaubens willen bis aufs Blut gelitten, / heiliger Hieromärtyrer Polykarp: / bitte Christus Gott, // dass unsere Seelen gerettet werden.</p></blockquote>
-
-      <p>Kondak, Ton 1:</p>
-
-      <blockquote><p>Geistige Früchte bringst du dem Herrn dar, / weiser Polykarp, als Opfer der Tugenden; / darum wurdest du von Gott als würdiger Hierarch verherrlicht. / Deshalb singen wir heute, erleuchtet durch deine Worte, / dein preiswürdiges Gedächtnis // und verherrlichen den Herrn.</p></blockquote>
-
-      <h2>Glaube</h2>
-
-      <h3>Zum Heil sind Werke notwendig</h3>
-
-      <p>Der heilige Polykarp sagt im Anschluss an den Apostel Paulus (<a href="https://bibleox.com/de/ge-sch/ef/2/#L8-9">Eph. 2,8–9</a>) zur Kirche, dass wir durch die Gnade gerettet sind und nicht durch Werke, das heißt: Die Möglichkeit, gerettet zu werden, ist den Menschen umsonst eröffnet durch das Kreuzesopfer des Herrn Jesus Christus und seine Auferstehung, und sie ist nicht durch unsere Werke verdient. Doch diesen umsonst eröffneten Weg muss man gehen – man muss sich mühen und das Werk vollbringen. Darum wird der nicht gerettet, der den Willen Gottes nicht erfüllt und nicht nach den Geboten wandelt. Solche werden die Auferstehung zum Leben nicht erreichen, sondern zu ewigen Leiden verurteilt werden:</p>
-
-      <blockquote><p>„Ihr, die ihr ihn nicht gesehen habt, glaubt, und im Glauben freut ihr euch mit unaussprechlicher und herrlicher Freude“ (1 Petr. 1,8), – nach welcher viele zu gelangen begehren –, da ihr wisst, dass <strong>ihr durch die Gnade gerettet seid, nicht durch Werke</strong> (<a href="https://bibleox.com/de/ge-sch/ef/2/#L8-9">Eph. 2,8–9</a>), sondern nach dem Willen Gottes durch Jesus Christus</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Phil#HH-1">Brief an die Philipper, Kap. 1</a>)</p>
-
-      <blockquote><p>„Der ihn aber von den Toten auferweckt hat, <strong><mark>wird auch uns auferwecken, </mark><u><mark>wenn</mark></u><mark> wir seinen Willen erfüllen</mark></strong>, <strong><mark>nach seinen Geboten wandeln</mark></strong> und <strong>lieben, was er liebt; wenn wir uns von allem Unrecht, aller Habgier, aller Geldgier, allem üblen Nachreden, falschem Zeugnis fernhalten, ‚nicht Böses mit Bösem vergeltend‘, nicht Schmähung mit Schmähung (1 Petr. 3,9), nicht Schlag mit Schlag, nicht Fluch mit Fluch, und wenn wir bedenken, was der Herr gelehrt hat, da er sprach: ‚richtet nicht, damit ihr nicht gerichtet werdet‘ (Mt. 7,1). Vergebt, so wird euch vergeben (Lk. 6,37; Mt. 6,12. 14). Seid barmherzig, damit euch Barmherzigkeit widerfahre. ‚Mit welchem Maß ihr messt, [damit] wird euch gemessen werden‘ (Mt. 7,2; Lk. 6,38). Und selig sind die Armen und um der Gerechtigkeit willen Verfolgten, denn ihrer ist das Reich Gottes (Mt. 5,3. 10; Lk. 6,20)“</strong></p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Phil#HH-2">Brief an die Philipper, Kap. 2</a>)</p>
-
-      <blockquote><p>So wissen wir also, dass Gott nicht gespottet wird (Gal. 6,7), <strong>und müssen wandeln, wie es seines Gebotes und seiner Herrlichkeit würdig ist</strong>. Ebenso müssen die Diakone untadelig sein vor der Gerechtigkeit, als Diener Gottes und Christi und nicht der Menschen, nicht Verleumder, nicht doppelzüngig, nicht geldgierig, enthaltsam in allem, barmherzig, eifrig; <strong><mark>sie müssen handeln gemäß der Wahrheit</mark></strong> des Herrn, der aller Diener geworden ist, von dem wir, <strong><mark>wenn wir ihm in diesem Zeitalter gefallen, auch das künftige empfangen</mark></strong>, da er uns verheißen hat, uns von den Toten zu erwecken, und dass <strong><mark>wir, wenn wir würdig seiner leben und an ihn glauben, auch mit ihm herrschen werden</mark></strong>. Ebenso <strong>müssen die Jünglinge in allem untadelig sein</strong>, vor allem aber auf die Keuschheit achten und <strong>sich von jedem Laster zurückhalten</strong>.</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Phil#HH-5">Brief an die Philipper, Kap. 5</a>)</p>
-
-      <h3>Die Auslegung der Schrift in Übereinstimmung mit der Überlieferung</h3>
-
-      <blockquote><p>„Wer das Zeugnis des Kreuzes nicht anerkennt, ist vom Teufel; und <strong>wer die Worte des Herrn nach seinen eigenen Gelüsten auslegt</strong> und sagt, es gebe weder Auferstehung noch Gericht, <strong>der ist der Erstgeborene Satans</strong>. Darum lasst uns, die eitlen und falschen Lehren vieler beiseite lassend, <strong>uns dem <mark>von Anfang an überlieferten</mark> Wort zuwenden</strong>;“</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Phil#HH-7">Polykarp an die Philipper, 31–32</a>)</p>
-
-      <h3>Der Gehorsam gegenüber dem Priestertum</h3>
-
-      <blockquote><p>„Darum muss man sich von all dem enthalten und <strong>sich den Presbytern und Diakonen unterordnen wie Gott und Christus</strong>, die Jungfrauen aber sollen in untadeligem und reinem Gewissen leben“</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Phil#HH-5">Polykarp an die Philipper, 24</a>)</p>
-
-      <h3>Die entschlafenen Heiligen leben schon jetzt mit Christus im Himmel</h3>
-
-      <blockquote><p><em>„Denn er (Polykarp – Anm.), der durch Geduld den gesetzlosen Herrscher besiegt und so die Krone der Unvergänglichkeit empfangen hat und </em><strong><em><mark>nun mit den Aposteln und allen Gerechten jubelt und Gott verherrlicht</mark></em></strong><em>, den Vater, den Allmächtigen, und unseren Herrn preist, den Retter unserer Seelen und Leiber und den Hirten der allgemeinen katholischen Kirche</em></p>
-      <p><em>&lt;…&gt;</em></p>
-      <p><em>Wir wünschen euch, Brüder, dass ihr erstarket und nach dem Evangelienwort Jesu Christi wandelt, dem mit Gott dem Vater und dem Heiligen Geist die Ehre sei für das Heil der heiligen Auserwählten! Wie der selige Polykarp sein Martyrium vollendet hat, </em><strong><em><mark>so mögen auch wir in seinen Spuren im Reich Jesu Christi erfunden werden</mark></em></strong><em>“</em></p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Martyr#HH-19">Rundbrief der Kirche von Smyrna über Polykarp, 75–85</a>)</p>
-
-      <h3>Das Kommen Christi zum Gericht über die Lebenden und die Toten</h3>
-
-      <blockquote><p>„Ihm ist alles unterworfen, was im Himmel und auf Erden ist, ihm dient alles, was atmet, er <strong><mark>wird kommen als Richter der Lebenden und der Toten</mark></strong>, und sein Blut wird Gott von denen fordern, die nicht an ihn glauben“</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Phil#HH-2">Polykarp an die Philipper, 6</a>)</p>
-
-      <h3>Alle werden gerichtet werden</h3>
-
-      <blockquote><p>„Und deshalb, wenn wir den Herrn bitten, dass er uns vergebe, müssen auch wir vergeben. Denn wir alle stehen vor den Augen des Herrn und Gottes; <strong><mark>jeder von uns muss ‚vor dem Richterstuhl Christi erscheinen‘</mark></strong> und <strong><mark>jeder … wird für sich selbst Rechenschaft geben</mark></strong>“ (Röm. 14,10. 12)</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Phil#HH-6">Polykarp an die Philipper, 27</a>)</p>
-
-      <h3>Die ewigen Qualen</h3>
-
-      <blockquote><p>„Polykarp antwortete: ‚Du drohst mit einem Feuer, das eine Stunde brennt und bald erlischt, denn du kennst nicht <strong><mark>das Feuer des künftigen Gerichts und der ewigen Strafe</mark></strong>, das den Gottlosen bereitet ist. Was zögerst du? Tu, was du vorhast.‘“</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Martyr#HH-11">Rundbrief der Kirche von Smyrna über Polykarp, 51</a>)</p>
-
-      <h3>Die Meidung derer, die in die Irre führen</h3>
-
-      <blockquote><p>„Lasst uns eifrig sein im Guten, lasst uns die Ärgernisse meiden, die falschen Brüder und jene, die heuchlerisch den Namen des Herrn tragen und <strong>leichtfertige Menschen in die Irre führen</strong>“</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Phil#HH-6">Polykarp an die Philipper, 29</a>)</p>
-
-      <h3>Das Fasten</h3>
-
-      <blockquote><p>„Lasst uns ‚wachen im Gebet‘ (1 Petr. 4,7), <strong><mark>im Fasten verharren</mark></strong>; in den Gebeten lasst uns den allsehenden Gott bitten, ‚uns nicht in Versuchung zu führen‘ (Mt. 6,13), wie der Herr gesagt hat: ‚Der Geist ist willig, aber das Fleisch … ist schwach‘ (Mt. 26,41; Mk. 14,38)“</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Phil#HH-7">Polykarp an die Philipper, 32</a>)</p>
-
-      <h3>Das Gebet für die Obrigkeit</h3>
-
-      <blockquote><p>„Betet für alle Heiligen. Betet auch für <strong>die Könige, die Machthaber und die Fürsten</strong>, sogar für die, die euch verfolgen und hassen, und für die Feinde des Kreuzes, damit die Frucht eures Glaubens allen offenbar werde und ihr selbst vollkommen seid“</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Phil#HH-12">Polykarp an die Philipper, 54</a>)</p>
-
-      <h3>Die Gläubigen verehrten Polykarp</h3>
-
-      <blockquote><p>„Als der Scheiterhaufen bereitet war, zog Polykarp alle seine Kleider aus, löste seinen Gürtel und versuchte sich die Schuhe auszuziehen, was er zuvor nie selbst getan hatte; denn jedes Mal <strong><mark>beeilte sich jeder Gläubige, seinen Leib zu berühren,</mark> weil ihm für seinen guten Lebenswandel und <mark>schon vor dem Martyrium große Ehrung erwiesen wurde</mark></strong>“</p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Martyr#HH-13">Rundbrief der Kirche von Smyrna über Polykarp, 59</a>)</p>
-
-      <h3>Die Gläubigen verehrten die Reliquien Polykarps</h3>
-
-      <blockquote><p><em>„Als aber der Neider, der Verleumder und der listige Feind des Geschlechts der Gerechten die Größe seines Martyriums sah und sein von Anfang an untadeliges Leben; [als er sah], dass er mit der Krone der Unvergänglichkeit gekrönt war und den unbestreitbaren Lohn empfangen hatte, da </em><strong><em><mark>bemühte er sich, dass auch sein Leib uns nicht zuteil werde, obwohl viele dies zu tun begehrten und einen [Teil] seines heiligen Leibes zu besitzen wünschten</mark></em></strong><em>. Und so gab er Niketes, dem Vater des Herodes, dem Bruder der Alke, ein, sich an den Prokonsul zu wenden, damit er seinen Leib nicht herausgebe, damit wir, </em><strong><em>wie er sagte, den Gekreuzigten verlassend, diesen nicht zu verehren beginnen. Das wurde auf Eingebung und Drängen der Juden gesagt, die bemerkt hatten, dass wir vorhatten, ihn vom Scheiterhaufen zu nehmen, und nicht verstanden, dass <mark>wir niemals Christus verlassen können, der für das Heil aller in der Welt Geretteten litt, der Sündlose für die Sünder, noch irgendeinen anderen verehren. Denn ihn beten wir an als den Sohn Gottes; die Märtyrer aber lieben wir als Jünger und Nachahmer des Herrn würdig um ihrer unbesiegbaren Treue [zu] ihrem König und Lehrer willen</mark>.</em></strong><em> Gott gebe auch uns, ihre Gefährten und Mitschüler zu sein! Der Zenturio, der die jüdische Streitsucht sah, legte </em><strong><em>den Leib vor aller Augen, wie es bei ihnen üblich ist, und verbrannte</em></strong><em> ihn. Und so </em><strong><em><mark>nahmen wir sodann seine Gebeine, die kostbarer sind als teure Steine und edler als Gold, und legten sie an den gehörigen Ort. Dort wird der Herr uns, wenn es möglich ist, geben, dass wir uns in Freude und Jubel versammeln und den Geburtstag seines Märtyrers feiern</mark></em></strong><em>, zum Gedächtnis derer, die vor uns [für den Glauben] gekämpft haben, und zur Unterweisung und Vorbereitung für die Künftigen. Das ist [die Geschichte] des seligen Polykarp. [Obwohl] er zusammen mit denen aus Philadelphia </em><strong><em><mark>der zwölfte Märtyrer in Smyrna</mark></em></strong><em> war, wird seiner mehr als aller gedacht, so dass auch die Heiden überall von ihm reden. Er war nicht nur ein berühmter Lehrer, sondern auch ein hervorragender Märtyrer, </em><strong><em><mark>dessen Martyrium, das nach dem Evangelium Christi geschah, alle nachzuahmen begehren</mark></em></strong><em>“</em></p></blockquote>
-
-      <p>(<a href="https://bibleox.com/de/de/w/PlkSm_Martyr#HH-17">Rundbrief der Kirche von Smyrna über Polykarp, 75–85</a>)</p>
-
   - src: "ПлкСм_Фл"
+    # page_type и edit_mode наследуются от русской страницы-оригинала
     path: "PlkSm_Phil"
     title: "An die Philipper"
     meta_desc: "Brief des heiligen Polykarp von Smyrna an die Gemeinde von Philippi, deutsche Übersetzung von Franz Zeller (1918)."
-    menu: { parent: "2. Jahrhundert/Polykarp von Smyrna", title: "An die Philipper", priority: 1 }
+    menu: { parent: "Briefe", title: "An die Philipper", priority: 1 }
     update: true
     body: |-
       <p><em>Brief des heiligen Polykarp von Smyrna an die Gemeinde von Philippi.</em></p>
@@ -183,7 +40,7 @@ pages:
     path: "PlkSm_Martyr"
     title: "Martyrium des heiligen Polykarp"
     meta_desc: "Rundbrief der Kirche von Smyrna über das Martyrium des heiligen Polykarp, Bischofs von Smyrna († um 155)."
-    menu: { parent: "2. Jahrhundert/Polykarp von Smyrna", title: "Martyrium des heiligen Polykarp", priority: 2 }
+    menu: { parent: "Briefe", title: "Martyrium des heiligen Polykarp", priority: 2 }
     update: true
     body: |-
       <p><em>Rundbrief der Kirche von Smyrna über das Martyrium des heiligen Polykarp, Bischofs von Smyrna.</em></p>
