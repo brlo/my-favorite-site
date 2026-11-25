@@ -9,44 +9,24 @@
 
         <%
           bib_langs = {
-            t('dropdown.translates') => {
-              'eng-nkjv' => {short: 'NKJV'},
-              'en-nrsv'  => {short: 'NRSV'},
-              'ru'       => {short: 'RST'},
-              'csl-pnm'  => {short: 'ELZ'},
-              'csl-ru'   => {short: 'ELZ-RU'},
-              'arab-avd' => {short: 'AVD'},
-              'jp-ni'    => {short: 'N.Interc'},
-              'jp-joc'   => {short: 'JOC'},
-              'jp-box'   => {short: 'Bibleox'},
-              'cn-sb'  => {short: 'SB'},
-              'cn-sbt'  => {short: 'SB-T'},
-              'cn-cuv'  => {short: 'CUV'},
-              'cn-cuvt' => {short: 'CUV-T'},
-              'ge-sch'   => {short: 'SCH'},
-              'fr-lsg'   => {short: 'LSG'},
-              'ko-nkrv'   => {short: 'NKRV'},
-              'hi-ov'    => {short: 'O.V.'},
-            },
-            t('dropdown.interliners') => {
-              'gr-en' => {short: 'Bibleox'},
-              'gr-ru' => {short: 'Bibleox'},
-              'gr-jp' => {short: 'Bibleox'},
-            },
-            t('dropdown.encient_texts') => {
-              'gr-lxx-byz' => {short: 'LXX+Byz', is_translate: true},
-              'heb-osm' => {short: 'OSM+DHNT', is_translate: true},
-            }
+            t('dropdown.translates') => %w[
+              eng-nkjv en-nrsv ru csl-pnm csl-ru arab-avd jp-ni jp-joc jp-box
+              cn-sb cn-sbt cn-cuv cn-cuvt ge-sch fr-lsg ko-nkrv hi-ov
+            ],
+            t('dropdown.interliners') => %w[gr-en gr-ru gr-jp],
+            t('dropdown.encient_texts') => %w[gr-lxx-byz heb-osm],
           }
+          # у древних текстов помимо названия языка показываем исходное название перевода
+          ancient_tr_codes = %w[gr-lxx-byz heb-osm]
         %>
 
-        <% bib_langs.each do |select_group_name, langs| %>
+        <% bib_langs.each do |select_group_name, tr_codes| %>
           <optgroup label="<%= select_group_name %>">
-          <% langs.sort_by { |lang, _| I18n.locale.to_s == BIB_LANG_TO_LOCALE[lang] ? 0 : 1 }.each do |lang_name, attrs| %>
+          <% tr_codes.sort_by { |lang| I18n.locale.to_s == BIB_LANG_TO_LOCALE[lang] ? 0 : 1 }.each do |lang_name| %>
             <option
               value='<%= lang_name %>'
               <%= 'selected' if @current_bib_lang == lang_name %>>
-                <%= bib_lang_string_full(lang_name, short: attrs[:short], is_translate: attrs[:is_translate]) %>
+                <%= bib_lang_string_full(lang_name, short: ::BIB_LANG_SHORT[lang_name], is_translate: ancient_tr_codes.include?(lang_name)) %>
             </option>
           <% end %>
           </optgroup>

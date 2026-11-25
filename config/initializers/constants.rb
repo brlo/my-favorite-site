@@ -299,6 +299,31 @@ PRIMARY_BIB_LANG_BY_LANG = {
   'ko' => 'ko-nkrv',
 }.freeze
 
+# Переводы Библии, сгруппированные по ЯЗЫКУ ТЕКСТА (первым идёт основной перевод языка).
+# Нужна, чтобы предложить другой перевод, когда в выбранном переводе нет книги,
+# а в переводе того же языка она есть. Подстрочники (gr-*) сюда не входят: это режим
+# чтения поверх парного перевода, а не самостоятельный перевод.
+BIB_TRANSLATIONS_BY_LANG = {
+  'ru'      => %w[ru],
+  'cu'      => %w[csl-ru csl-pnm],
+  'en'      => %w[eng-nkjv en-nrsv],
+  'ja'      => %w[jp-ni jp-joc jp-box],
+  'zh-Hans' => %w[cn-cuv cn-sb],
+  'zh-Hant' => %w[cn-cuvt cn-sbt],
+  'de'      => %w[ge-sch],
+  'fr'      => %w[fr-lsg],
+  'ar'      => %w[arab-avd],
+  'hi'      => %w[hi-ov],
+  'ko'      => %w[ko-nkrv],
+  'he'      => %w[heb-osm],
+  'grc'     => %w[gr-lxx-byz],
+}.freeze
+
+# Обратная карта: код перевода -> язык текста
+BIB_LANG_BY_TRANSLATION = BIB_TRANSLATIONS_BY_LANG.each_with_object({}) do |(lang, tr_codes), result|
+  tr_codes.each { |tr_code| result[tr_code] = lang }
+end.freeze
+
 # Какой язык Библии включать для локали
 LOCALE_TO_BIB_LANG = {
   ''   => 'ru',
@@ -498,6 +523,33 @@ BIB_LANGS = {
   "gr-jp" => '日本語 (対訳)',
   "gr-ru" => 'Русский (подстрочник)',
 }
+
+# Короткие обозначения переводов Библии — то, что показываем в скобках в списке выбора
+# перевода и в ссылках на другой перевод
+BIB_LANG_SHORT = {
+  'eng-nkjv' => 'NKJV',
+  'en-nrsv'  => 'NRSV',
+  'ru'       => 'RST',
+  'csl-pnm'  => 'ELZ',
+  'csl-ru'   => 'ELZ-RU',
+  'arab-avd' => 'AVD',
+  'jp-ni'    => 'N.Interc',
+  'jp-joc'   => 'JOC',
+  'jp-box'   => 'Bibleox',
+  'cn-sb'    => 'SB',
+  'cn-sbt'   => 'SB-T',
+  'cn-cuv'   => 'CUV',
+  'cn-cuvt'  => 'CUV-T',
+  'ge-sch'   => 'SCH',
+  'fr-lsg'   => 'LSG',
+  'ko-nkrv'  => 'NKRV',
+  'hi-ov'    => 'O.V.',
+  'gr-lxx-byz' => 'LXX+Byz',
+  'heb-osm'  => 'OSM+DHNT',
+  'gr-en'    => 'Bibleox',
+  'gr-ru'    => 'Bibleox',
+  'gr-jp'    => 'Bibleox',
+}.freeze
 
 
 BOOKS = {

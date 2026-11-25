@@ -777,6 +777,7 @@ ru:
   errors:
     alert: 'Возникли ошибки'
     no_translation_for_this_book: 'В этом переводе книга отсутствует'
+    other_translations_for_book: 'Но эта книга есть в других переводах на этом же языке:'
     messages:
       taken: "has already been taken"
       mini_magick_processing_error: "Ошибка обработки изображения"

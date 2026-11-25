@@ -585,6 +585,7 @@ el:
 
   errors:
     no_translation_for_this_book: 'Δεν υπάρχει τέτοια μετάφραση για αυτό το βιβλίο'
+    other_translations_for_book: 'Αλλά αυτό το βιβλίο υπάρχει σε άλλες μεταφράσεις της ίδιας γλώσσας:'
     messages:
       taken: "has already been taken"
 

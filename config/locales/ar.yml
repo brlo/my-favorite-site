@@ -597,6 +597,7 @@ ar:
 
   errors:
     no_translation_for_this_book: 'لا توجد مثل هذه الترجمة لهذا الكتاب'
+    other_translations_for_book: 'لكن هذا الكتاب متوفر في ترجمات أخرى للغة نفسها:'
     messages:
       taken: "has already been taken"
 

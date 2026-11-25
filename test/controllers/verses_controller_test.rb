@@ -27,6 +27,23 @@ class VersesControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
   end
 
+  test "missing book offers another translation of the same language" do
+    create_verse(tr_code: 'jp-ni', lang: 'ja', book: 'os', book_id: 350, zavet: true, text: '預言')
+    get '/ja/jp-box/os/3/'
+
+    assert_response :success
+    assert_includes response.body, I18n.t('errors.other_translations_for_book', locale: :ja)
+    assert_select '.other-translations a[href="/ja/jp-ni/os/3/"]'
+  end
+
+  test "missing book without another translation of the language shows only the error" do
+    get '/ja/jp-box/3mak/1/'
+
+    assert_response :success
+    assert_includes response.body, I18n.t('errors.no_translation_for_this_book', locale: :ja)
+    assert_select '.other-translations', count: 0
+  end
+
   test "furigana toggle is shown only for text with furigana" do
     create_verse(tr_code: 'jp-joc', lang: 'ja', book: 'mf', book_id: 470, chapter: 1, line: 1, zavet: false,
                  text: 'ダワィドの子[こ]、イイスス ハリストスの族[ぞく]譜[ふ]。')

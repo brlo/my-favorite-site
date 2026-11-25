@@ -579,6 +579,7 @@ zh-Hans:
 
   errors:
     no_translation_for_this_book: '这本书没有这样的翻译'
+    other_translations_for_book: '这本书在同一语言的其他译本中也有：'
     messages:
       taken: "has already been taken"
 

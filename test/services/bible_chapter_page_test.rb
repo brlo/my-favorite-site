@@ -88,4 +88,54 @@ class BibleChapterPageTest < ActiveSupport::TestCase
   test "cache_key identifies language, book and chapter" do
     assert_equal 'ru--gen--3', chapter_page(chapter: '3').cache_key
   end
+
+  # --- книга отсутствует в переводе ---
+
+  def verse_for(tr_code:, lang:, book:, book_id:)
+    create_verse(tr_code: tr_code, lang: lang, book: book, book_id: book_id, zavet: true, text: 'стих')
+  end
+
+  test "offers other translations of the same language that have the missing book" do
+    verse_for(tr_code: 'jp-joc', lang: 'ja', book: 'os', book_id: 350)
+    verse_for(tr_code: 'jp-ni', lang: 'ja', book: 'os', book_id: 350)
+    page = chapter_page(content_lang: 'jp-box', book_code: 'os', chapter: 1, ui_locale: 'ja')
+
+    assert page.book_missing?
+    # основной перевод языка — первым
+    assert_equal %w[jp-ni jp-joc], page.other_translations_for_book
+  end
+
+  test "does not offer a translation where the book is missing too" do
+    verse_for(tr_code: 'jp-ni', lang: 'ja', book: 'os', book_id: 350)
+    page = chapter_page(content_lang: 'jp-box', book_code: '3mak', chapter: 1, ui_locale: 'ja')
+
+    assert page.book_missing?
+    assert_equal [], page.other_translations_for_book
+  end
+
+  test "does not offer translations of another language" do
+    verse_for(tr_code: 'ru', lang: 'ru', book: 'os', book_id: 350)
+    page = chapter_page(content_lang: 'jp-box', book_code: 'os', chapter: 1, ui_locale: 'ja')
+
+    assert page.book_missing?
+    assert_equal [], page.other_translations_for_book
+  end
+
+  test "does not offer another translation when the book exists but the chapter is empty" do
+    verse_for(tr_code: 'jp-box', lang: 'ja', book: 'os', book_id: 350)
+    verse_for(tr_code: 'jp-ni', lang: 'ja', book: 'os', book_id: 350)
+    page = chapter_page(content_lang: 'jp-box', book_code: 'os', chapter: 12, ui_locale: 'ja')
+
+    assert page.verses.empty?
+    assert_not page.book_missing?
+    assert_equal [], page.other_translations_for_book
+  end
+
+  test "interlinear looks for the missing book in translations of the paired language" do
+    verse_for(tr_code: 'en-nrsv', lang: 'en', book: 'tov', book_id: 170)
+    page = chapter_page(content_lang: 'gr-en', book_code: 'tov', chapter: 1, ui_locale: 'en')
+
+    assert page.book_missing?
+    assert_equal %w[en-nrsv], page.other_translations_for_book
+  end
 end

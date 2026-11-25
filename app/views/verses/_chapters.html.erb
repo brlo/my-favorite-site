@@ -20,6 +20,14 @@
 
 <% if @verses.none? %>
   <div class='error'><%= ::I18n.t("errors.no_translation_for_this_book") %></div>
+  <% if @other_translations.present? %>
+    <div class='other-translations'>
+      <div class='small hint'><%= ::I18n.t('errors.other_translations_for_book') %></div>
+      <% @other_translations.each do |tr_code| %>
+        <a href="<%= bible_chapter_link(@book_code, tr_code, @chapter) %>"><%= bib_lang_string_full(tr_code, short: ::BIB_LANG_SHORT[tr_code]) %></a>
+      <% end %>
+    </div>
+  <% end %>
 </div>
 <% else %>
   <div class='small hint'><%= @is_psalm ? ::I18n.t('psalms') : ::I18n.t('chapters') %></div>

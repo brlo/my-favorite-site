@@ -589,6 +589,7 @@ de:
 
   errors:
     no_translation_for_this_book: 'Für dieses Buch gibt es keine solche Übersetzung'
+    other_translations_for_book: 'Dieses Buch gibt es aber in anderen Übersetzungen derselben Sprache:'
     messages:
       taken: "has already been taken"
 

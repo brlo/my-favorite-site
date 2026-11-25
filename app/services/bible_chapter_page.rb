@@ -24,6 +24,34 @@ class BibleChapterPage
     INTERLINEAR_TR_CODES[content_lang]
   end
 
+  # Перевод, из которого берётся основной текст: у подстрочника — парный перевод
+  def reading_tr_code
+    interliner_tr_code || content_lang
+  end
+
+  # Книги нет в этом переводе совсем (а не просто пустая глава)
+  def book_missing?
+    return false if verses.any?
+
+    @book_missing = ::Verse.where(tr_code: reading_tr_code, book: book_code).none? if @book_missing.nil?
+    @book_missing
+  end
+
+  # Книга есть в других переводах на том же языке: их коды, основной перевод языка — первым.
+  # Пустой массив, если книги нет ни в одном переводе этого языка.
+  def other_translations_for_book
+    return [] unless book_missing?
+
+    lang = ::BIB_LANG_BY_TRANSLATION[reading_tr_code]
+    return [] if lang.blank?
+
+    candidates = ::BIB_TRANSLATIONS_BY_LANG[lang] - [reading_tr_code]
+    return [] if candidates.empty?
+
+    present = ::Verse.where(tr_code: candidates, book: book_code).distinct.pluck(:tr_code)
+    candidates & present
+  end
+
   def is_psalm?
     book_code == 'ps'
   end

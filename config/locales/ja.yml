@@ -589,6 +589,7 @@ ja:
 
   errors:
     no_translation_for_this_book: 'この本にはそのような翻訳はありません'
+    other_translations_for_book: 'この本は同じ言語の他の翻訳で読めます：'
     messages:
       taken: "has already been taken"
 

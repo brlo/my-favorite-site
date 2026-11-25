@@ -174,9 +174,10 @@ module ApplicationHelper
     "/#{I18n.locale}/#{current_bib_lang()}#{path}"
   end
 
-  # Ссылка на главу Библии в том переводе, который сейчас читают (блок «Читают сейчас»)
-  def bible_chapter_link(book_code, content_lang)
-    "/#{I18n.locale}/#{content_lang}/#{book_code}/1/"
+  # Ссылка на главу Библии в указанном переводе (блок «Читают сейчас»,
+  # предложение открыть книгу в другом переводе)
+  def bible_chapter_link(book_code, content_lang, chapter = 1)
+    "/#{I18n.locale}/#{content_lang}/#{book_code}/#{chapter}/"
   end
 
   # Делает ссылку с указанной локалью (текущей)
