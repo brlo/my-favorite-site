@@ -261,5 +261,10 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   обе апологии BKV 1913, пер. Anselm Eberhard (96 КБ и 76 КБ), меню —
   во «2. Jahrhundert», труды в папке «Werke». Права: `free_bkv`.
 
+- **Ипполит Римский** (`Hippolyt_von_Rom`, `Hippolyt_Antichrist`): автор —
+  перевод RU (977 байт), обложка с RU; «Über Christus und den Antichrist»,
+  BKV 1872, пер. Valentin Gröne, 73 КБ; меню — «3. Jahrhundert» →
+  «Exegetische Werke». Права: `pd`.
+
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

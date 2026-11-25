@@ -1,0 +1,16 @@
+# Ипполит Римский: страница автора (немецкая библиотека)
+# Сборка: script/translations/de/build_hippolytus.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "nPd5_Ипполит_Римский_IIIII_вв"
+    path: "Hippolyt_von_Rom"
+    title: "Hippolyt von Rom, 2.–3. Jh."
+    title_sub: "Hieromärtyrer (170–235), frühchristlicher Schriftsteller; oft mit einem der römischen Märtyrer, einem Presbyter oder Bischof, identifiziert."
+    copy_cover: true
+    menu: { parent: "3. Jahrhundert", title: "Hippolyt von Rom, Hieromärtyrer (~170–235)", replace: "Hippolyt von Rom, Hieromärtyrer (~170–235)", priority: 3 }
+    update: true
+    body: |-
+      <p>Über den heiligen Hippolyt sind sehr wenige historische Nachrichten erhalten. Sie sind bruchstückhaft und lückenhaft, zudem weichen die in den Werken verschiedener Autoren festgehaltenen Angaben über ihn in vielem voneinander ab, was es unmöglich macht, seine Person genau zu identifizieren und ein vollständiges und zuverlässiges Verzeichnis seiner Schriften zu erstellen. Nach der verbreitetsten Hypothese war Hippolyt der Führer des rigoristischen Teils der römischen Kirche, der gegen den heiligen Märtyrer Callistus, den römischen Bischof, auftrat und in Rom eine alternative Gemeinde gründete, die auch während der beiden folgenden Pontifikate fortbestand. Dennoch zeigt der gegenwärtige Stand der Forschung zu diesem Problem, dass seine Lösung durch keine Kombination der vorhandenen Quellen möglich ist. Vielleicht erfolgte im 6. Jahrhundert eine Identifizierung dieser heiligen Person mit dem heiligen Märtyrer Hippolyt, der an der Via Tiburtina begraben wurde.</p>
