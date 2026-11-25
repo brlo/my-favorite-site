@@ -271,5 +271,11 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Lobrede auf Origenes» (19 глав); в «Werke» также заготовки
   «Übertragung des Ekklesiastes» и «An Theopompus…», как в RU. Права: `free_bkv`.
 
+- **Киприан Карфагенский** (`Cyprian_von_Karthago`): автор — перевод RU
+  (11 КБ), обложка с RU; три трактата BKV 1918, пер. Julius Baer:
+  «Über die Einheit der katholischen Kirche» (48 КБ), «Über die Sterblichkeit»
+  (37 КБ), «Über Eifersucht und Neid» (28 КБ); меню — «3. Jahrhundert» →
+  «Abhandlungen». Права: `free_bkv`.
+
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).
