@@ -29,9 +29,9 @@ uebriges = folder(unknown, 'Übriges', 4, apply)
 
 if apply
   didache = ::Menu.find_by(page_id: unknown.id, path: 'Didache_Lehre_der_zwolf_Apostel')
-  if didache
+  if didache && (didache.parent_id != unterweisungen.id || didache.priority != 1)
     puts "Didache: parent #{didache.parent_id} -> #{unterweisungen.id}"
-    didache.update!(parent_id: unterweisungen.id, priority: 1) if didache.parent_id != unterweisungen.id || didache.priority != 1
+    didache.update!(parent_id: unterweisungen.id, priority: 1)
   end
 
   barn = ::Menu.find_by(page_id: unknown.id, path: 'Barnabasbrief')
@@ -41,6 +41,19 @@ if apply
                    path: 'Barnabasbrief', priority: 5, is_gold: false)
   else
     barn.update!(parent_id: uebriges.id, priority: 5) if barn.parent_id != uebriges.id || barn.priority != 5
+  end
+
+  herm = ::Menu.find_by(page_id: unknown.id, path: 'Hirte_des_Hermas') ||
+         ::Menu.find_by(page_id: list.id, path: 'Hirte_des_Hermas')
+  if herm.nil?
+    if ::Page.exists?(lang: 'de', path: 'Hirte_des_Hermas')
+      puts 'создать: Hirte des Hermas в «Übriges»'
+      ::Menu.create!(page_id: unknown.id, parent_id: uebriges.id, title: 'Hirte des Hermas',
+                     path: 'Hirte_des_Hermas', priority: 10, is_gold: false)
+    end
+  elsif herm.page_id != unknown.id || herm.parent_id != uebriges.id || herm.priority != 10
+    puts "Hirte des Hermas: перенести в «Übriges»"
+    herm.update!(page_id: unknown.id, parent_id: uebriges.id, priority: 10)
   end
 
   removed = ::Menu.where(page_id: author.id).delete_all
