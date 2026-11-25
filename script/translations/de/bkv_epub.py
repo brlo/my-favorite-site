@@ -32,6 +32,7 @@ SOURCES = {
     'clem2': {'mode': 'chapters'},
     'polyk': {'mode': 'chapters'},
     'ign': {'mode': 'letters'},
+    'minuc': {'mode': 'chapters'},
 }
 
 FOOTNOTE_DEF = re.compile(r'\[\^\d+\]:.*$', re.S)
@@ -85,12 +86,28 @@ def para_html(p):
     return '<p>%s</p>' % inner
 
 
+ROMAN = {'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000}
+
+
+def roman_number(text):
+    total = 0
+    prev = 0
+    for ch in reversed(text.upper()):
+        value = ROMAN.get(ch, 0)
+        total += -value if value < prev else value
+        prev = max(prev, value)
+    return total
+
+
 def chapter_number(heading):
     text = ''.join(heading.itertext()).strip()
     m = re.match(r'(\d+)\.', text)
-    if not m:
-        return None
-    return int(m.group(1))
+    if m:
+        return int(m.group(1))
+    m = re.match(r'([IVXLCDM]+)\.', text)
+    if m:
+        return roman_number(m.group(1))
+    return None
 
 
 def chapters_html(container):

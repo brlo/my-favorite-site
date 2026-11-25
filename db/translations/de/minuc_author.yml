@@ -1,0 +1,15 @@
+# Минуций Феликс: страница автора (немецкая библиотека)
+# Сборка: script/translations/de/build_minucius.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "Марк_Минуций_Феликс"
+    path: "Minuzius_Felix"
+    title: "Minucius Felix, 3. Jh."
+    title_sub: "(† um 250)"
+    menu: { parent: "3. Jahrhundert", title: "Minucius Felix († um 250)", replace: "Minucius Felix († um 250)", priority: 3 }
+    update: true
+    body: |-
+      <h2>Biographie</h2><p>Der Lateiner Marcus Minucius Felix wurde in Afrika als Heide geboren. Er erhielt eine gute rhetorische Ausbildung und wurde römischer Anwalt. Er bekehrte sich erst im reifen Alter zum Christentum, erschüttert durch die erhabene Lehre des Evangeliums und den Mut der christlichen Märtyrer.</p>

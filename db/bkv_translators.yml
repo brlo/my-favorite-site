@@ -1,0 +1,34 @@
+# Права переводчиков BKV (проверка перед импортом немецких/французских текстов).
+# status: pd — смерть подтверждена и PD; free_bkv — BKV прямо пишет, что тексты
+# вне копирайта (плюс издание ≤1930); check — нужен ещё источник.
+translators:
+  - name: "Alfons Müller"
+    dates: ""
+    works: ["Minucius Felix, Octavius"]
+    year: 1913
+    status: free_bkv
+    evidence: "BKV copyrights: «Die Texte der BKV unterstehen meines Wissens keinem Copyright mehr»; издание 1913"
+  - name: "Ernst Klebba"
+    dates: "1871–1930"
+    works: ["Irenäus von Lyon, Contra Haereses", "Irenäus von Lyon, Demonstratio"]
+    year: 1912
+    status: pd
+    evidence: "NK ČR: Ernst Klebba, 1871-1930"
+  - name: "Anselm Eberhard"
+    dates: ""
+    works: ["Athenagoras, Supplicatio", "Athenagoras, De resurrectione"]
+    year: 1913
+    status: check
+    evidence: "нужна дата смерти (предположительно 1841–1914)"
+  - name: "Aloys Hartl"
+    dates: ""
+    works: ["Laktanz"]
+    year: 1919
+    status: check
+    evidence: "дата смерти не найдена"
+  - name: "J. Leitl"
+    dates: ""
+    works: ["Theophilus von Antiochien, Ad Autolycum"]
+    year: 1913
+    status: check
+    evidence: "дата смерти не подтверждена"
