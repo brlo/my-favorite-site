@@ -371,9 +371,9 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     list = create_published(title: 'Книга', path: 'similar_long_list', page_type: 4)
     root = Menu.create!(page_id: list.id, title: 'Раздел меню')
     first = nil
+    titles = %w[Введение Обзор Разбор Итоги Дополнение Примечание Приложение Уточнение Пример Вывод Заключение]
 
-    11.times do |i|
-      title = "Глава #{i + 1}"
+    titles.each_with_index do |title, i|
       path = "similar_long_ch#{i + 1}"
       first ||= create_published(title: title, path: path, parent_id: list.id)
       Menu.create!(page_id: list.id, parent_id: root.id, title: title, path: path, priority: i + 1)
@@ -394,8 +394,7 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     root = Menu.create!(page_id: list.id, title: 'Раздел меню')
     first = nil
 
-    3.times do |i|
-      title = "Глава #{i + 1}"
+    %w[Введение Обзор Разбор].each_with_index do |title, i|
       path = "similar_short_ch#{i + 1}"
       first ||= create_published(title: title, path: path, parent_id: list.id)
       Menu.create!(page_id: list.id, parent_id: root.id, title: title, path: path, priority: i + 1)
@@ -411,11 +410,11 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
   test "regular similar materials are rendered below the page text bar" do
     list = create_published(title: 'Книга', path: 'links_list', page_type: 4)
     root = Menu.create!(page_id: list.id, title: 'Раздел меню')
-    first = create_published(title: 'Глава 1', path: 'links_ch1', parent_id: list.id,
+    first = create_published(title: 'Глава первая', path: 'links_ch1', parent_id: list.id,
                              links: { 'Другое' => '/other' })
-    create_published(title: 'Глава 2', path: 'links_ch2', parent_id: list.id)
-    Menu.create!(page_id: list.id, parent_id: root.id, title: 'Глава 1', path: 'links_ch1', priority: 1)
-    Menu.create!(page_id: list.id, parent_id: root.id, title: 'Глава 2', path: 'links_ch2', priority: 2)
+    create_published(title: 'Глава вторая', path: 'links_ch2', parent_id: list.id)
+    Menu.create!(page_id: list.id, parent_id: root.id, title: 'Глава первая', path: 'links_ch1', priority: 1)
+    Menu.create!(page_id: list.id, parent_id: root.id, title: 'Глава вторая', path: 'links_ch2', priority: 2)
 
     get "/ru/ru/w/#{first.path}"
 
@@ -433,6 +432,27 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     3.times do |i|
       title = "##{i + 1}"
       path = "part_ch#{i + 1}"
+      first ||= create_published(title: title, path: path, parent_id: list.id,
+                                 links: { 'Другое' => '/other' })
+      Menu.create!(page_id: list.id, parent_id: root.id, title: title, path: path, priority: i + 1)
+    end
+
+    get "/ru/ru/w/#{first.path}"
+
+    assert_response :success
+    assert_select '#chapter-header #links-sub ~ .similar-materials'
+    assert_select '.same-subject-static', text: 'Часть'
+    assert_select '.same-subject-toggle span', text: 'Часть'
+  end
+
+  test "titles with a shared word and a part number are rendered as parts under page links" do
+    list = create_published(title: 'Книга', path: 'numbered_parts_list', page_type: 4)
+    root = Menu.create!(page_id: list.id, title: 'Раздел меню')
+    first = nil
+
+    %w[I II III].each_with_index do |number, i|
+      title = "Книга #{number}"
+      path = "numbered_part_ch#{i + 1}"
       first ||= create_published(title: title, path: path, parent_id: list.id,
                                  links: { 'Другое' => '/other' })
       Menu.create!(page_id: list.id, parent_id: root.id, title: title, path: path, priority: i + 1)

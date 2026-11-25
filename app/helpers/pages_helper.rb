@@ -1,6 +1,14 @@
 module PagesHelper
   CHAT_INVITE_MIN_TEXT_LENGTH = 2000
 
+  # Первое слово заголовка: «Глава 1» -> «Глава»
+  FIRST_TITLE_WORD = /\A\p{L}+/
+  # Римский номер части (IV, XII). Только заглавные буквы и целое слово, чтобы обычные слова
+  # («Didache», «Life») не принимались за номер.
+  ROMAN_PART_NUMBER = /(?=[IVXLCDM])M{0,4}(?:CM|CD|D?C{0,3})(?:XC|XL|L?X{0,3})(?:IX|IV|V?I{0,3})(?![[:alpha:]])/
+  # Номер части после общего первого слова: арабский (1, 12) или римский (IV, XII)
+  PART_NUMBER = /\A[^\p{L}]*(?:\d+|#{ROMAN_PART_NUMBER.source})/
+
   # Градиент подложки под заголовок на обложке: внизу почти непрозрачный, кверху сходит на нет
   def cover_overlay_gradient_style(page)
     r, g, b = page.cover_overlay_rgb
@@ -21,10 +29,22 @@ module PagesHelper
     text.to_s.strip.match?(/\A\d{1,3}\z/)
   end
 
-  # Если все пункты «Похожих материалов» — только цифры/спецсимволы (#1, #2, 3),
+  # Если все пункты «Похожих материалов» — только цифры/спецсимволы (#1, #2, 3)
+  # или начинаются с одного слова и номера части («Глава 1», «Книга IV»),
   # то это переключатель частей одного материала, а не похожие страницы.
   def similar_materials_part?(chapters)
-    chapters.present? && chapters.all? { |title, _path, _gold| title.to_s.match?(/\A[^\p{L}]+\z/) }
+    return false if chapters.blank?
+
+    titles = chapters.map { |title, _path, _gold| title.to_s.strip }
+    return true if titles.all? { |title| title.match?(/\A[^\p{L}]+\z/) }
+    return false if titles.any?(&:blank?)
+
+    first_word = titles.first[FIRST_TITLE_WORD]&.downcase
+    return false if first_word.nil?
+
+    titles.all? do |title|
+      title[FIRST_TITLE_WORD]&.downcase == first_word && title.sub(FIRST_TITLE_WORD, '').match?(PART_NUMBER)
+    end
   end
 
   def similar_materials_title(chapters)
