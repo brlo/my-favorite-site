@@ -10,7 +10,13 @@ book = ENV['BOOK'].presence || 'mk'
 # Иеремия и Плач перенумерованы по славяно-синодальному порядку глав (решение автора),
 # поэтому набор стихов для них сверяем с csl-ru, а не с греческим модулем.
 base_tr = if ::BOOKS[book][:zavet] == 1
-            %w[ier pier iez dan os iol].include?(book) ? 'csl-ru' : 'gr-lxx-byz'
+            if book == '3mak'
+              'ru' # в csl-ru 3-й Маккавейской нет; нумерация — по Синодальному
+            elsif %w[ier pier iez dan os iol naum ag mal mih zah 1mak 2mak].include?(book)
+              'csl-ru'
+            else
+              'gr-lxx-byz'
+            end
           else
             'jp-ni'
           end
