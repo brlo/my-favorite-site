@@ -48,11 +48,15 @@ work_paths = ::Page.where(lang: lang, page_type: 1).pluck(:path)
   problems << "пункт труда в меню списка: #{menu.title} -> #{menu.path}"
 end
 
-# 3. Авторы с трудами, но без своего меню.
+# 3. Авторы с трудами, у которых ни один труд не стоит в меню.
+# (Бывает намеренно: «Послание Варнавы» лежит в «Трудах неизвестных авторов»,
+# а страница автора остаётся без ссылки из библиотеки.)
 ::Page.where(lang: lang, parent_id: list.id, page_type: 4).find_each do |author|
-  next if ::Page.where(parent_id: author.id, page_type: 1).none?
+  works = ::Page.where(parent_id: author.id, page_type: 1)
+  next if works.none?
+  next if works.any? { |work| ::Menu.exists?(path: work.path) }
 
-  problems << "у автора есть труды, но нет меню: #{author.path}" if ::Menu.where(page_id: author.id).none?
+  problems << "у автора есть труды, но ни один не стоит в меню: #{author.path}"
 end
 
 # 4. Дубли пунктов с одним путём в одной папке.

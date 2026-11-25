@@ -9,7 +9,8 @@ pages:
     path: "Barnabas"
     title: "Barnabas, Apostel, 1. Jh."
     title_sub: "Apostel aus den Siebzig, Gründer der Kirche von Zypern, Begleiter des Apostels Paulus auf seinen Missionsreisen († um 57)"
-    menu: { parent: "1. Jahrhundert", title: "Barnabas, Apostel, 1. Jh.", replace: "Barnabas, Apostel, 1. Jh.", priority: 16 }
+    # В RU страница автора намеренно без ссылки из библиотеки (авторство спорно);
+    # после импорта меню правит script/translations/de/unknown_authors_menu.rb.
     update: true
     body: |-
       <h2>Biografie</h2>

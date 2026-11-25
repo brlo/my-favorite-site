@@ -31,6 +31,8 @@ def main():
             + body + SOURCE)
     parent = f'''# Труды I века неизвестных авторов (немецкая библиотека)
 # Сборка: script/translations/de/build_didache.py
+# После импорта меню (категории «Unterweisungen»/«Übriges») правит
+# script/translations/de/unknown_authors_menu.rb.
 
 lang: de
 list: "Kirchenvaeter"
@@ -46,6 +48,8 @@ pages:
 '''
     works = f'''# Дидахе (немецкая библиотека)
 # Сборка: script/translations/de/build_didache.py
+# После импорта меню (категории «Unterweisungen»/«Übriges») правит
+# script/translations/de/unknown_authors_menu.rb.
 
 lang: de
 list: "Werke_unbekannter_Autoren_des_1_Jahrhunderts"

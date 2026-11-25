@@ -238,11 +238,13 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 
 - **Дидахе** (`Didache_Lehre_der_zwolf_Apostel`): «Lehre der zwölf Apostel»,
   BKV 1918, пер. Franz Zeller, 16 глав; страница-родитель «Werke unbekannter
-  Autoren des 1. Jahrhunderts» — перевод RU; пункт в «1. Jahrhundert» и второй
-  пункт в «Katechismus», как в RU.
+  Autoren des 1. Jahrhunderts» — перевод RU. В меню: «Unterweisungen» внутри
+  этой страницы и второй пункт в «Katechismus» — как в RU.
 - **Варнава** (`Barnabas`, `Barnabasbrief`): автор — перевод RU (4,6 КБ),
-  «Barnabasbrief» — BKV 1918, пер. Franz Zeller, 21 глава; меню в
-  «1. Jahrhundert». Права: `free_bkv`.
+  «Barnabasbrief» — BKV 1918, пер. Franz Zeller, 21 глава. Как в RU, авторство
+  спорно: страница автора **без ссылки из библиотеки**, а послание лежит в
+  «Werke unbekannter Autoren» → «Übriges» (прямая ссылка). Меню правит
+  `script/translations/de/unknown_authors_menu.rb`. Права: `free_bkv`.
 
 Осталось из партии 1: Варнава, Дидахе, Ерм, Диогнет, Аристид (тексты BKV есть),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).
