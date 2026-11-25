@@ -10,12 +10,13 @@
       <% else %>
         <% _class.push('menu-unit', 'menu-link') %>
         <% is_link_target = true%>
-        <% if (item[:is_gold] && item[:priority] == 1 && item[:title] =~ /Иисус Христос/); _class.push('God') end %>
+        <% if (item[:is_gold] && item[:path].present? && item[:priority] == 1 && item[:title] =~ /Иисус Христос/); _class.push('God') end %>
         <% item[:is_empty] ? _class.push('not-exist') : nil %>
         <% item[:path].blank? ? _class.push('not-exist') : nil %>
       <% end %>
 
-      <% item[:is_gold] ? _class.push('gold') : nil %>
+      <%# золотым выделяем только пункты, которые ведут на статью %>
+      <% (item[:is_gold] && item[:path].present?) ? _class.push('gold') : nil %>
       <%# Серые пункты выглядят для всех одинаково, но ссылкой работают только у админа %>
       <% is_clickable = !_class.include?('not-exist') || current_user&.is_admin? %>
 

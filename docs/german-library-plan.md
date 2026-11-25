@@ -231,5 +231,10 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   глав) и `Irenaeus_Demonstratio`; меню — во «2. Jahrhundert». Права: `pd`
   (Klebba 1871–1930).
 
+- **Аристид Афинский** (`Aristides_von_Athen`, `Aristides_Apologie`):
+  «Apologie», BKV 1913, пер. Kaspar Julius (BKV: вне копирайта; издание 1913),
+  17 глав; страница автора — перевод RU, меню — во «2. Jahrhundert».
+  Права: `free_bkv`.
+
 Осталось из партии 1: Варнава, Дидахе, Ерм, Диогнет, Аристид (тексты BKV есть),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

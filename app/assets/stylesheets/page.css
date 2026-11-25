@@ -423,6 +423,18 @@
   color: #ffe86b !important;
   background: #ffd70014;
 }
+
+/* Заготовка без статьи не должна выглядеть золотой, даже если is_gold остался. */
+.menu-tree .menu-link.not-exist.gold span,
+.menu-tree .menu-link.not-exist.gold a:hover span {
+  color: #AAAAAA !important;
+  background-color: #80808015 !important;
+}
+.night-mode .menu-tree .menu-link.not-exist.gold span,
+.night-mode .menu-tree .menu-link.not-exist.gold a:hover span {
+  color: #61afef !important;
+  background-color: #80808015 !important;
+}
 .night-mode .menu-tree .menu-link.gold a:hover span {
   background: #ffd70020;
 }
