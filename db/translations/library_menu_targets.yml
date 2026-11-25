@@ -1,0 +1,860 @@
+---
+- parent: I век (создание новозаветной Церкви)
+  title: Игнатий Богоносец, священномученик (~35-107)
+  path: Игнатий_Антиохийский
+  priority: 40
+  is_gold: true
+  group: 65a6a542dba77200015a5fdf
+  de_path: Ignatius_von_Antiochien
+  de_title: Ignatius von Antiochien, 1. Jh.
+  fr_path: vjrY_Ignace_le_Théophore_Ier_siècle
+  fr_title: Ignace le Théophore, Ier siècle
+- parent: I век (создание новозаветной Церкви)
+  title: Кодрат (I-II вв)
+  path: Кодрат
+  priority: 200
+  is_gold: false
+  group: 65f2fa27dba77200018deda1
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: II век
+  title: Папий Иерапольский, священномученик (~70-155)
+  path: Папий_Иерапольский
+  priority: 5
+  is_gold: false
+  group: 65f31107dba772000151cb5f
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: II век
+  title: Аристид, святой, философ Афинский (I-II в)
+  path: Аристид_Афинский
+  priority: 6
+  is_gold: false
+  group: 65f31330dba772000151cb63
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Поликарп Смирнский, священномученик (69-155)
+  path: Поликарп_Смирнский
+  priority: 42
+  is_gold: true
+  group: 65e98c71dba7720001f1fd63
+  de_path: Polykarp_von_Smyrna
+  de_title: Polykarp von Smyrna, 1.–2. Jh.
+  fr_path: PlKp_Polycarpe_de_Smyrne_Ier_IIe_siècle
+  fr_title: Polycarpe de Smyrne, Ier–IIe siècle
+- parent: II век
+  title: Иустин Философ, мученик (~100-165)
+  path: Иустин_Философ_мученик
+  priority: 2
+  is_gold: false
+  group: 65e5f78cdba772000167c3d6
+  de_path: ''
+  de_title: ''
+  fr_path: JsNp_Justin_le_Philosophe_IIe_siècle
+  fr_title: Justin le Philosophe, IIe siècle
+- parent: II век
+  title: Феофил Антиохийский, святитель (†183)
+  path: Феофил_Антиохийский
+  priority: 3
+  is_gold: false
+  group: 65f30a40dba772000151cb59
+  de_path: ''
+  de_title: ''
+  fr_path: Théophile_d_Antioche
+  fr_title: Théophile d’Antioche, IIe siècle
+- parent: II век
+  title: Мелитон Сардийский, святитель (~100-180)
+  path: Мелитон_Сардийский
+  priority: 3
+  is_gold: false
+  group: 65f89494dba77200019e20ac
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: II век
+  title: Ириней Лионский, священномученик (~130-202)
+  path: Ириней_Лионский
+  priority: 4
+  is_gold: true
+  group: 65fa104edba77200019e20af
+  de_path: ''
+  de_title: ''
+  fr_path: IrLn_Irénée_de_Lyon_IIe_siècle
+  fr_title: Irénée de Lyon, IIe siècle
+- parent: II век
+  title: Климент Александрийский, пресвитер (~150-215)
+  path: Климент_Александрийский
+  priority: 15
+  is_gold: false
+  group: 65f04d55dba77200019e75a7
+  de_path: ''
+  de_title: ''
+  fr_path: ClAl_Clément_dAlexandrie_IIe_IIIe_siècle
+  fr_title: Clément d’Alexandrie, IIe–IIIe siècle
+- parent: II век
+  title: Тертуллиан (~155-220)
+  path: тертуллиан
+  priority: 20
+  is_gold: false
+  group: 672e67e9dba77200018b0d65
+  de_path: ''
+  de_title: ''
+  fr_path: Trll_Tertullien_IIe_IIIe_siècle
+  fr_title: Tertullien, IIe–IIIe siècle
+- parent: III век
+  title: Ипполит Римский, священномученик (~170-235)
+  path: nPd5_Ипполит_Римский_IIIII_вв
+  priority: 3
+  is_gold: false
+  group: 682b71038a1f83d06eebe73a
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: III век
+  title: Дионисий Александрийский, священномученик (кон. II в. - 264/5)
+  path: JeAs_Дионисий_Александрийский_III_век
+  priority: 3
+  is_gold: false
+  group: 6836c940fdfcc47bd42bbcb1
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: III век
+  title: Киприан Карфагенский, священномученик (~200-258)
+  path: Киприан_Карфагенский_III_век
+  priority: 1
+  is_gold: true
+  group: 67180918dba77200010f5485
+  de_path: ''
+  de_title: ''
+  fr_path: CpCr_Cyprien_de_Carthage_IIIe_siècle
+  fr_title: Cyprien de Carthage, IIIe siècle
+- parent: III век
+  title: Григорий Чудотворец, епископ Неокесарийский, святитель (~213-270)
+  path: oJSu_Григорий_Чудотворец_III_век
+  priority: 2
+  is_gold: false
+  group: 6836c0eafdfcc47bd42bbc92
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: III век
+  title: Петр Александрийский, священномученик (†311)
+  path: koN0_Петр_Александрийский_священномученик_311
+  priority: 4
+  is_gold: false
+  group: 68277d688a1f83d06eebe6bf
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: III век
+  title: Александр Александрийский, святитель (~250-326)
+  path: B4ds_Александр_Александрийский_III_век
+  priority: 5
+  is_gold: false
+  group: 6836c646fdfcc47bd42bbca1
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: III век
+  title: Мефодий Олимпийский, епископ Патарский, священномученик (~260-312)
+  path: n2QN_Мефодий_Олимпийский_IIIIV_вв
+  priority: 6
+  is_gold: false
+  group: 6827802d8a1f83d06eebe6c5
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Афанасий Великий, святитель (~295-373)
+  path: Афанасий-Великий
+  priority: 2
+  is_gold: true
+  group: 662b365adba772000172ce31
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Макарий Великий, Египетский, преподобный (~300-391)
+  path: DM59_Макарий_Великий_Египетский_IV_век
+  priority: 4
+  is_gold: false
+  group: 683724c2fdfcc47bd42bbced
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Ефрем Сирин, преподобный (~306-373)
+  path: LAUq_Ефрем_Сирин_преподобный_306373
+  priority: 4
+  is_gold: false
+  group: 68306e71b14f95d283cf70b4
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Кирилл Иерусалимский, святитель (315-386)
+  path: rXYx_Кирилл_Иерусалимский_IV_век
+  priority: 5
+  is_gold: false
+  group: 6835fab3fdfcc47bd42bbc89
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Марк Подвижник, преподобный (IV в. - V в.)
+  path: YN17_Марк_Подвижник_IVV_вв
+  priority: 6
+  is_gold: false
+  group: 6835dcdf970e7ccaae1ff400
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Григорий Богослов (Назианзин), святитель (~325-389)
+  path: uSyc_Григорий_Богослов_IV_век
+  priority: 5
+  is_gold: true
+  group: 68372a1dfdfcc47bd42bbcfc
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Василий Великий, святитель (~329-379)
+  path: mz9h_Василий_Великий_IV_век
+  priority: 5
+  is_gold: true
+  group: 68373a6afdfcc47bd42bbd18
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Иоанн Златоуст, святитель (~347-407)
+  path: Иоанн_Златоуст
+  priority: 5
+  is_gold: true
+  group: 66c352c7dba77200017adfc8
+  de_path: ''
+  de_title: ''
+  fr_path: 56Vd_Jean_Chrysostome_IVe_siècle
+  fr_title: Jean Chrysostome, IVe siècle
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Иероним Стридонский, преподобный, блаженный (~347-419)
+  path: r6fC_Иероним_Стридонский_IV_век
+  priority: 8
+  is_gold: false
+  group: 68374fcafdfcc47bd42bbd38
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Амвросий Медиоланский, святитель (~339-397)
+  path: Амвросий_Медиоланский
+  priority: 6
+  is_gold: false
+  group: 65fc45afdba77200014bec27
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Амфилохий Иконийский, святитель (~340-394)
+  path: Амфилохий_Иконийский_IV_век
+  priority: 6
+  is_gold: false
+  group: 67d408451d39e0315ace4b26
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: V век
+  title: Иоанн Кассиан Римлянин, преподобный (IV в. - V в.)
+  path: 49Rq_Иоанн_Кассиан_Римлянин_IVV_вв
+  priority: 9
+  is_gold: false
+  group: 68375245fdfcc47bd42bbd45
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: II век
+  title: Аполлоний Римский, мученик (†~183)
+  path: Аполлоний_Римский_сенатор
+  priority: 9
+  is_gold: false
+  group: 65f30422dba772000151cb4b
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Труды I века неизвестных авторов
+  path: 1-век-труды-неизвестных-авторов
+  priority: 250
+  is_gold: false
+  group: 65f03532dba77200019e7597
+  de_path: ''
+  de_title: ''
+  fr_path: 2Cdc_Œuvres_du_Ier_siècle_dauteurs_inconnus
+  fr_title: Œuvres du Ier siècle d'auteurs inconnus
+- parent: III век
+  title: Марк Минуций Феликс (†~250)
+  path: Марк_Минуций_Феликс
+  priority: 3
+  is_gold: false
+  group: 65f3169cdba772000151cb69
+  de_path: ''
+  de_title: ''
+  fr_path: MnFl_Minucius_Felix_IIIe_siècle
+  fr_title: Minucius Felix, IIIe siècle
+- parent: III век
+  title: Антоний Великий, преподобный (~251-356)
+  path: N8Mz_Антоний_Великий_IIIIV_вв
+  priority: 10
+  is_gold: false
+  group: 68287c6a8a1f83d06eebe6ea
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Серапион Тмуитский, епископ (IV век)
+  path: Серапион_Тмуитский
+  priority: 3
+  is_gold: false
+  group: 666c0364dba772000134cf7d
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Евсевий Кесарийский, епископ (~258-339)
+  path: Евсевий_Кесарийский_(Памфил),_IV_век
+  priority: 1
+  is_gold: false
+  group: 6720cd45dba7720001619853
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: XI век (отпадение Римской Церкви от Православия)
+  title: Нестор Летописец, преподобный (~1056-1114)
+  path: Нестор_Летописец_XI_век
+  priority: 1
+  is_gold: false
+  group: 6720deb6dba772000161986c
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Константин Великий, равноапостольный (272-337)
+  path: Константин_Великий_IV_век
+  priority: 4
+  is_gold: false
+  group: 6723ab3edba7720001619883
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: V век
+  title: Викентий Леринский, преподобный († до 450)
+  path: Викентий_Леринский_V_век
+  priority: 3
+  is_gold: false
+  group: 6729fc4fdba772000187f5aa
+  de_path: ''
+  de_title: ''
+  fr_path: Ogb1_Vincent_de_Lérins_Ve_siècle
+  fr_title: Vincent de Lérins, Ve siècle
+- parent: Катехизис
+  title: Николай Сербский, святитель (XX век)
+  path: Ivu0_Православный_катехизис__Николай_Сербский_Велимирович_святитель_18801956
+  priority: 25
+  is_gold: false
+  group: 6889e7e7f2f271e15c182ed3
+  de_path: ''
+  de_title: ''
+  fr_path: hCXq_Nicolas_de_Serbie_Velimirović_XXe_s
+  fr_title: Nicolas de Serbie (Velimirović), XXe s.
+- parent: Катехизис
+  title: Дидахе (I-II век)
+  path: Дидахе
+  priority: 1
+  is_gold: false
+  group: 65f04807dba77200019e75a5
+  de_path: ''
+  de_title: ''
+  fr_path: rHXL_Didachè_IIIe_s
+  fr_title: Didachè
+- parent: VII век
+  title: Иоанн Лествичник, преподобный (~579-649)
+  path: Иоанн-Лествичник
+  priority: 1
+  is_gold: false
+  group: 675ad537dba7720001cd0df5
+  de_path: ''
+  de_title: ''
+  fr_path: sD1b_Jean_Climaque_VIIe_siècle
+  fr_title: Jean Climaque, VIIe siècle
+- parent: Катехизис
+  title: Филарет Московский (Дроздов), святитель (XIX век)
+  path: Пространный_Катехизис_Православной_Церкви_Филарет_Московский_Дроздов
+  priority: 15
+  is_gold: false
+  group: 675b0a39dba7720001cd0e07
+  de_path: ''
+  de_title: ''
+  fr_path: gRIG_Philarète_de_Moscou_Drozdov_saint_XIXe_s
+  fr_title: Philarète de Moscou (Drozdov), saint (XIXe s)
+- parent: XVII век
+  title: Послание патриархов (1672, 1732)
+  path: послание-патриархов-1672-1723
+  priority: 5
+  is_gold: true
+  group: 675c7856dba7720001cd0e10
+  de_path: ''
+  de_title: ''
+  fr_path: ZSkH_LÉpitre_des_patriarches_1672_1732
+  fr_title: LÉpitre des patriarches (1672, 1732)
+- parent: V век
+  title: Аврелий Августин,  блаженный (354-430)
+  path: Аврелий_Августин
+  priority: 1
+  is_gold: false
+  group: 67c6e6f7dba7720001a4ab2e
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: VIII век
+  title: Иоанн Дамаскин, преподобный (~675-754)
+  path: aOY9_Иоанн_Дамаскин_VIIVIII_вв
+  priority: 1
+  is_gold: false
+  group: 68287e0a8a1f83d06eebe6f4
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: XIV век
+  title: Григорий Палама, святитель (~1296-1357)
+  path: q3RP_Григорий_Палама_XIV_век
+  priority: 1
+  is_gold: false
+  group: 68303dbcb14f95d283cf704c
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: XIX век
+  title: Игнатий (Брянчанинов), святитель (1807–1867)
+  path: Ds4O_Игнатий_Брянчанинов_XIX_век
+  priority: 1
+  is_gold: false
+  group: 6830543db14f95d283cf7096
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: XIX век
+  title: Феофан Затворник, святитель (1815–1894)
+  path: Tg07_Феофан_Затворник_XIX_век
+  priority: 2
+  is_gold: false
+  group: 68305974b14f95d283cf709b
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: XIX век
+  title: Иоанн Кронштадтский (Сергиев), праведный (1829–1908)
+  path: tWnU_Иоанн_Кронштадтский_Сергиев_XIX_век
+  priority: 5
+  is_gold: false
+  group: 68307800b14f95d283cf70ca
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: VI век
+  title: Авва Дорофей, преподобный († кон. VI в.)
+  path: OFKU_Авва_Дорофей_VI_век
+  priority: 1
+  is_gold: false
+  group: 6835a1cff8e2f2ea4426c267
+  de_path: ''
+  de_title: ''
+  fr_path: jJ5h_Abba_Dorothée_VIe_siècle
+  fr_title: Abba Dorothée, VIe siècle
+- parent: V век
+  title: Кирилл Александрийский, святитель (376-444)
+  path: g1QT_Кирилл_Александрийский_V_век
+  priority: 2
+  is_gold: false
+  group: 683730d2fdfcc47bd42bbcff
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: VII век
+  title: Исаак Сирин Ниневийский, преподобный (~640-700)
+  path: 6Qyq_Исаак_Сирин_VII_век
+  priority: 9
+  is_gold: false
+  group: 6837696bfdfcc47bd42bbd4e
+  de_path: ''
+  de_title: ''
+  fr_path: O4iF_Isaac_le_Syrien_VIIᵉ_siècle
+  fr_title: Isaac le Syrien, VIIᵉ siècle
+- parent: I век (создание новозаветной Церкви)
+  title: Пётр, апостол (~I в. до РХ - 67 г.)
+  path: Пётр_апостол_I_век
+  priority: 7
+  is_gold: true
+  group: 6841cbb790dbccea55cb177a
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Павел, апостол (~10-67)
+  path: GC9J_Павел_апостол_I_век
+  priority: 2
+  is_gold: true
+  group: 683adcaae8add755fcd3f058
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Иаков, апостол (~I в. - 42 г.)
+  path: QlqV_Иаков_апостол_I_век
+  priority: 5
+  is_gold: true
+  group: 6841c3f490dbccea55cb1778
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Иоанн, апостол (~10-100)
+  path: roel_Иоанн_апостол_I_век
+  priority: 15
+  is_gold: true
+  group: 6848b9bb90dbccea55cb17da
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Лука, евангелист (~1-84)
+  path: xmzi_Лука_евангелист_I_век
+  priority: 13
+  is_gold: true
+  group: 6848b6c990dbccea55cb17d6
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Марк, евангелист (~ I в. - 63 г.)
+  path: nWtg_Марк_евангелист_I_век
+  priority: 11
+  is_gold: true
+  group: 6848b3c590dbccea55cb17d4
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Матфей, евангелист (~ I в. - 60 г.)
+  path: tgWd_Матфей_евангелист_I_век
+  priority: 10
+  is_gold: true
+  group: 6848573e90dbccea55cb17d0
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Иуда, апостол (~I в. до РХ - 80 г.)
+  path: lqfu_Иуда_апостол_I_век
+  priority: 14
+  is_gold: true
+  group: 6848b85290dbccea55cb17d8
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: III век
+  title: Ориген (~185-253)
+  path: Ориген
+  priority: 3
+  is_gold: false
+  group: 685e31fa6d60798de5b14431
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Григорий Нисский, святитель (~331-394)
+  path: Григорий_Нисский
+  priority: 5
+  is_gold: false
+  group: 688116330675acebcc0cfe7c
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Астерий Амасийский, святитель († до 431)
+  path: UCY2_Астерий_Амасийский_IVV_вв
+  priority: 15
+  is_gold: false
+  group: 6881e638ebc3896a603f53de
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: V век
+  title: Феодорит Кирский, блаженный (~386-457)
+  path: FmY5_Феодорит_Кирский_блаженный_386457
+  priority: 6
+  is_gold: false
+  group: 6881f0bbebc3896a603f53f4
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Епифаний Кипрский, святитель (~315-403)
+  path: K60r_Епифаний_Кипрский_IV_век
+  priority: 8
+  is_gold: false
+  group: 68820d88ebc3896a603f547f
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Иларий Пиктавийский, святитель (~315-367)
+  path: 97nZ_Иларий_Пиктавийский_святитель_315367
+  priority: 8
+  is_gold: false
+  group: 6883c5482f4c80b83f14ad07
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: XX век
+  title: Николай Сербский (Велимирович), святитель (1880-1956)
+  path: gD2R_Николай_Сербский_Велимирович_святитель_18801956
+  priority: 1
+  is_gold: false
+  group: 6889e7e7f2f271e15c182ed3
+  de_path: ''
+  de_title: ''
+  fr_path: hCXq_Nicolas_de_Serbie_Velimirović_XXe_s
+  fr_title: Nicolas de Serbie (Velimirović), XXe s.
+- parent: XVI век
+  title: Иеремия II, патриарх Константинопольский, ответ реформаторам (1576)
+  path: IZSj_Иеремия_II_патриарх_Константинопольский_ответ_реформаторам_1576_1581
+  priority: 1
+  is_gold: false
+  group: 688a7266f2f271e15c182f02
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: VII век
+  title: Софроний, святитель, патриарх Иерусалимский (~560-638)
+  path: B6VW_Софроний_святитель_патриарх_Иерусалимский_560638
+  priority: 6
+  is_gold: false
+  group: 688b2c14f2f271e15c182f31
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: II век
+  title: Мураториев канон
+  path: Мураториев_канон
+  priority: 25
+  is_gold: false
+  group: 688ce919f2f271e15c182f43
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: XI век (отпадение Римской Церкви от Православия)
+  title: Контекст событий 1054 года
+  path: VuAM_Контекст_событий_1054_года
+  priority: 50
+  is_gold: false
+  group: 688e0649f2f271e15c182f4d
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: Сборники изречений
+  title: 300 слов мудрости
+  path: oblN_300_слов_мудрости
+  priority: 1
+  is_gold: false
+  group: 6890ff42f2f271e15c18306f
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: VI век
+  title: Павел Силенциарий, поэт (~520-575)
+  path: Павел_Силенциарий_VI_век
+  priority: 50
+  is_gold: false
+  group: 689c844ac3f0c4be1bd42e35
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: XVII век
+  title: Димитрий Ростовский (Туптало), святитель (1651-1709)
+  path: 5Ofj_Димитрий_Ростовский_Туптало_XVII_век
+  priority: 2
+  is_gold: false
+  group: 689f4f27c3f0c4be1bd42e69
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IX век (конец эпохи Вселенских Соборов)
+  title: Феодор Студит, преподобный (~759-826)
+  path: 0UJu_Феодор_Студит_IX_век
+  priority: 5
+  is_gold: false
+  group: 68ae039eb80340b0f5320cd0
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IX век (конец эпохи Вселенских Соборов)
+  title: Фотий, святитель, патриарх Константинопольский (~820-896)
+  path: Sx7p_Фотий_Константинопольский_IX_век
+  priority: 15
+  is_gold: false
+  group: 68aeb79345c75323d28a5c93
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: VII век
+  title: Максим Исповедник, преподобный (580-662)
+  path: RX1y_Максим_Исповедник_VII_век
+  priority: 25
+  is_gold: false
+  group: 68aebadb45c75323d28a5c99
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: IV век (прекращение римских гонений на христиан, начало эпохи Вселенских
+    Соборов)
+  title: Исидор Пелусиот, преподобный (~350-435)
+  path: sIGb_Исидор_Пелусиот_преподобный_350-435
+  priority: 500
+  is_gold: false
+  group: 68bc09b36594f46d35a87de3
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: XVIII век
+  title: Тихон Задонский, чудотворец (1724-1783)
+  path: TpnD_Тихон_Соколов_епископ_Воронежский_и_Елецкий_Задонский_чудотворец_17241783
+  priority: 1
+  is_gold: false
+  group: 68f2ada5205184ec278d6c24
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: V век
+  title: Нил Синайский, преподобный (†450)
+  path: HhDX_Нил_Синайский_V_век
+  priority: 50
+  is_gold: false
+  group: 691a470f205184ec278d6e87
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Анания, епископ Дамаска (I век)
+  path: Анания-епископ-Дамаска-I-век
+  priority: 18
+  is_gold: true
+  group: 6995b31705805d0f8c2f799d
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''
+- parent: I век (создание новозаветной Церкви)
+  title: Климент Римский, священномученик (†~101)
+  path: Климент_Римский
+  priority: 39
+  is_gold: true
+  group: 65eecc78dba772000192607f
+  de_path: Klemens_von_Rom
+  de_title: Klemens von Rom, 1. Jh.
+  fr_path: ClRm_Clément_de_Rome_Ier_siècle
+  fr_title: Clément de Rome, Ier siècle
+- parent: II век
+  title: Егезипп (~110-180)
+  path: 1HDX_Егезипп_II_век
+  priority: 3
+  is_gold: false
+  group: 1fIudwSij8
+  de_path: ''
+  de_title: ''
+  fr_path: ''
+  fr_title: ''

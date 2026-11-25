@@ -1,5 +1,7 @@
 # Переводы статей
 
+> Для святоотеческой библиотеки на новом языке сначала `docs/library-pipeline.md`.
+
 Рабочая инструкция для агентов при переводе/правке статей (в т.ч. через импорт YAML). Для китайского проекта см. также `docs/chinese-translations.md`, для японского — `docs/japanese-translations.md`; для английского проекта святых отцов — `docs/english-translation-plan.md` (цитаты — `docs/english-quotes-project.md`, библиотека — `docs/english-library-project.md`).
 
 - Переводы одной статьи связаны общим `group_lang_id`. Текст — только в `body`: главы `<h2>`, абзацы, сноски `[n]` в тексте и `<ol>` с примечаниями в `references`. Поле `verses` (разбивка на строки, как в Библии) устарело — не заполнять.
@@ -18,6 +20,8 @@
 - Импортер не перемещает пункты меню между папками (только путь/заголовок): при переносе статьи в другой раздел править `menus.parent_id` руками.
 - Структура меню раздела «Предание» (`links_<язык>`) едина для всех языков: `docs/menu-structure.md`, проверка — `script/translations/links_structure.rb`.
 - **Структурные страницы** (страница-список раздела, авторские страницы, входы в цитатники) — всегда полный перевод русского эталона, а не собственный текст. Устройство проверено на en/ja/ko/la — см. `docs/english-library-project.md`, `docs/latin-library-plan.md`, `docs/japanese-translations.md`: на автора два YAML. `<author>_author.yml` — `list: <список раздела>`, `menu.parent` — век (папка-заготовка); `<author>_works.yml` — `list: <path автора>`, `folders` — категории трудов, `menu.parent` — категория. Тогда труды сразу создаются детьми автора (`parent_id = автор`), а пункты попадают в **меню автора**; отдельного «переносчика» меню не нужно.
+- Структуру библиотеки проверяет `script/translations/check_library_structure.rb LANG` (труд под списком, пункт труда в меню списка, автор без меню, дубли).
+- Меню библиотеки по векам наполняется снимком RU: `script/translations/fill_library_menus.rb LANG [APPLY=1] [RESET=1]` (данные — `db/translations/library_menu_*.yml`); отсутствующие авторы заводятся заготовками без `path`.
 - Обложка — `copy_cover: true` в YAML автора (на проде скопируется при импорте) или `script/translations/copy_covers.rb LANG`; «золотые» пункты — `script/translations/gold.rb LANG`; `seo_kind` — `script/seo/backfill_seo_kind.rb` (и `mark_seo_kinds_pass2.rb` для авторов без годов). `title_sub` и «век» — переводить/ставить вручную по RU-эталону.
 
 ## Обновление отдельной статьи на проде

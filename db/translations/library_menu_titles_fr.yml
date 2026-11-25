@@ -1,0 +1,169 @@
+---
+- path: Игнатий_Антиохийский
+  title: Ignace le Théophore, hiéromartyr (~35-107)
+- path: Кодрат
+  title: Quadratus (Ier–IIe siècle)
+- path: Папий_Иерапольский
+  title: Papias de Hiérapolis, hiéromartyr (~70-155)
+- path: Аристид_Афинский
+  title: Aristide, saint, philosophe athénien (Ier–IIe siècle)
+- path: Поликарп_Смирнский
+  title: Polycarpe de Smyrne, hiéromartyr (69-155)
+- path: Иустин_Философ_мученик
+  title: Justin le Philosophe, martyr (~100-165)
+- path: Феофил_Антиохийский
+  title: Théophile d’Antioche, saint (†183)
+- path: Мелитон_Сардийский
+  title: Méliton de Sardes, saint (~100-180)
+- path: Ириней_Лионский
+  title: Irénée de Lyon, hiéromartyr (~130-202)
+- path: Климент_Александрийский
+  title: Clément d’Alexandrie, prêtre (~150-215)
+- path: тертуллиан
+  title: Tertullien (~155-220)
+- path: nPd5_Ипполит_Римский_IIIII_вв
+  title: Hippolyte de Rome, hiéromartyr (~170-235)
+- path: JeAs_Дионисий_Александрийский_III_век
+  title: Denys d’Alexandrie, hiéromartyr (fin du IIe siècle – 264/5)
+- path: Киприан_Карфагенский_III_век
+  title: Cyprien de Carthage, hiéromartyr (~200-258)
+- path: oJSu_Григорий_Чудотворец_III_век
+  title: Grégoire le Thaumaturge, évêque de Néocésarée, saint (~213-270)
+- path: koN0_Петр_Александрийский_священномученик_311
+  title: Pierre d’Alexandrie, hiéromartyr (†311)
+- path: B4ds_Александр_Александрийский_III_век
+  title: Alexandre d’Alexandrie, saint (~250-326)
+- path: n2QN_Мефодий_Олимпийский_IIIIV_вв
+  title: Méthode d’Olympe, évêque de Patare, hiéromartyr (~260-312)
+- path: Афанасий-Великий
+  title: Athanase le Grand, saint (~295-373)
+- path: DM59_Макарий_Великий_Египетский_IV_век
+  title: Macaire le Grand, l’Égyptien, vénérable (~300-391)
+- path: LAUq_Ефрем_Сирин_преподобный_306373
+  title: Éphrem le Syrien, vénérable (~306-373)
+- path: rXYx_Кирилл_Иерусалимский_IV_век
+  title: Cyrille de Jérusalem, saint (315-386)
+- path: YN17_Марк_Подвижник_IVV_вв
+  title: Marc l’Ascète, vénérable (IVe–Ve siècle)
+- path: uSyc_Григорий_Богослов_IV_век
+  title: Grégoire le Théologien (de Nazianze), saint (~325-389)
+- path: mz9h_Василий_Великий_IV_век
+  title: Basile le Grand, saint (~329-379)
+- path: Иоанн_Златоуст
+  title: Jean Chrysostome, saint (~347-407)
+- path: r6fC_Иероним_Стридонский_IV_век
+  title: Jérôme de Stridon, vénérable, bienheureux (~347-419)
+- path: Амвросий_Медиоланский
+  title: Ambroise de Milan, saint (~339-397)
+- path: Амфилохий_Иконийский_IV_век
+  title: Amphiloque d’Iconium, saint (~340-394)
+- path: 49Rq_Иоанн_Кассиан_Римлянин_IVV_вв
+  title: Jean Cassien le Romain, vénérable (IVe–Ve siècle)
+- path: Аполлоний_Римский_сенатор
+  title: Apollonius de Rome, martyr (†~183)
+- path: 1-век-труды-неизвестных-авторов
+  title: Œuvres d’auteurs inconnus du Ier siècle
+- path: Марк_Минуций_Феликс
+  title: Minucius Felix (†~250)
+- path: N8Mz_Антоний_Великий_IIIIV_вв
+  title: Antoine le Grand, vénérable (~251-356)
+- path: Серапион_Тмуитский
+  title: Sérapion de Thmuis, évêque (IVe siècle)
+- path: Евсевий_Кесарийский_(Памфил),_IV_век
+  title: Eusèbe de Césarée, évêque (~258-339)
+- path: Нестор_Летописец_XI_век
+  title: Nestor le Chroniqueur, vénérable (~1056-1114)
+- path: Константин_Великий_IV_век
+  title: Constantin le Grand, égal aux apôtres (272-337)
+- path: Викентий_Леринский_V_век
+  title: Vincent de Lérins, vénérable († avant 450)
+- path: Ivu0_Православный_катехизис__Николай_Сербский_Велимирович_святитель_18801956
+  title: Nicolas de Serbie, saint (XXe siècle)
+- path: Дидахе
+  title: Didachè (Ier–IIe siècle)
+- path: Иоанн-Лествичник
+  title: Jean Climaque, vénérable (~579-649)
+- path: Пространный_Катехизис_Православной_Церкви_Филарет_Московский_Дроздов
+  title: Philarète de Moscou (Drozdov), saint (XIXe siècle)
+- path: послание-патриархов-1672-1723
+  title: Épître des patriarches (1672, 1732)
+- path: Аврелий_Августин
+  title: Aurèle Augustin, bienheureux (354-430)
+- path: aOY9_Иоанн_Дамаскин_VIIVIII_вв
+  title: Jean Damascène, vénérable (~675-754)
+- path: q3RP_Григорий_Палама_XIV_век
+  title: Grégoire Palamas, saint (~1296-1357)
+- path: Ds4O_Игнатий_Брянчанинов_XIX_век
+  title: Ignace Briantchaninov, saint (1807–1867)
+- path: Tg07_Феофан_Затворник_XIX_век
+  title: Théophane le Reclus, saint (1815–1894)
+- path: tWnU_Иоанн_Кронштадтский_Сергиев_XIX_век
+  title: Jean de Cronstadt (Serguiev), juste (1829–1908)
+- path: OFKU_Авва_Дорофей_VI_век
+  title: Abba Dorothée, vénérable († fin du VIe siècle)
+- path: g1QT_Кирилл_Александрийский_V_век
+  title: Cyrille d’Alexandrie, saint (376-444)
+- path: 6Qyq_Исаак_Сирин_VII_век
+  title: Isaac le Syrien de Ninive, vénérable (~640-700)
+- path: Пётр_апостол_I_век
+  title: Pierre, apôtre (~Ier siècle av. J.-C. – 67)
+- path: GC9J_Павел_апостол_I_век
+  title: Paul, apôtre (~10-67)
+- path: QlqV_Иаков_апостол_I_век
+  title: Jacques, apôtre (~Ier siècle – 42)
+- path: roel_Иоанн_апостол_I_век
+  title: Jean, apôtre (~10-100)
+- path: xmzi_Лука_евангелист_I_век
+  title: Luc, évangéliste (~1-84)
+- path: nWtg_Марк_евангелист_I_век
+  title: Marc, évangéliste (~Ier siècle – 63)
+- path: tgWd_Матфей_евангелист_I_век
+  title: Matthieu, évangéliste (~Ier siècle – 60)
+- path: lqfu_Иуда_апостол_I_век
+  title: Jude, apôtre (~Ier siècle av. J.-C. – 80)
+- path: Ориген
+  title: Origène (~185-253)
+- path: Григорий_Нисский
+  title: Grégoire de Nysse, saint (~331-394)
+- path: UCY2_Астерий_Амасийский_IVV_вв
+  title: Astérius d’Amasée, saint († avant 431)
+- path: FmY5_Феодорит_Кирский_блаженный_386457
+  title: Théodoret de Cyr, bienheureux (~386-457)
+- path: K60r_Епифаний_Кипрский_IV_век
+  title: Épiphane de Chypre, saint (~315-403)
+- path: 97nZ_Иларий_Пиктавийский_святитель_315367
+  title: Hilaire de Poitiers, saint (~315-367)
+- path: gD2R_Николай_Сербский_Велимирович_святитель_18801956
+  title: Nicolas de Serbie (Velimirović), saint (1880-1956)
+- path: IZSj_Иеремия_II_патриарх_Константинопольский_ответ_реформаторам_1576_1581
+  title: Jérémie II, patriarche de Constantinople, réponse aux réformateurs (1576)
+- path: B6VW_Софроний_святитель_патриарх_Иерусалимский_560638
+  title: Sophrone, saint, patriarche de Jérusalem (~560-638)
+- path: Мураториев_канон
+  title: Fragment de Muratori
+- path: VuAM_Контекст_событий_1054_года
+  title: Contexte des événements de 1054
+- path: oblN_300_слов_мудрости
+  title: 300 paroles de sagesse
+- path: Павел_Силенциарий_VI_век
+  title: Paul le Silentiaire, poète (~520-575)
+- path: 5Ofj_Димитрий_Ростовский_Туптало_XVII_век
+  title: Démétrius de Rostov (Tuptalo), saint (1651-1709)
+- path: 0UJu_Феодор_Студит_IX_век
+  title: Théodore Studite, vénérable (~759-826)
+- path: Sx7p_Фотий_Константинопольский_IX_век
+  title: Photius, saint, patriarche de Constantinople (~820-896)
+- path: RX1y_Максим_Исповедник_VII_век
+  title: Maxime le Confesseur, vénérable (580-662)
+- path: sIGb_Исидор_Пелусиот_преподобный_350-435
+  title: Isidore de Péluse, vénérable (~350-435)
+- path: TpnD_Тихон_Соколов_епископ_Воронежский_и_Елецкий_Задонский_чудотворец_17241783
+  title: Tikhon de Zadonsk, thaumaturge (1724-1783)
+- path: HhDX_Нил_Синайский_V_век
+  title: Nil du Sinaï, vénérable (†450)
+- path: Анания-епископ-Дамаска-I-век
+  title: Ananie, évêque de Damas (Ier siècle)
+- path: Климент_Римский
+  title: Clément de Rome, hiéromartyr (†~101)
+- path: 1HDX_Егезипп_II_век
+  title: Hégésippe (~110-180)

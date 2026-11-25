@@ -1,0 +1,169 @@
+---
+- path: Игнатий_Антиохийский
+  title: Ignatius der Gottesträger, Hieromärtyrer (~35–107)
+- path: Кодрат
+  title: Quadratus (1.–2. Jh.)
+- path: Папий_Иерапольский
+  title: Papias von Hierapolis, Hieromärtyrer (~70–155)
+- path: Аристид_Афинский
+  title: Aristides, Heiliger, Philosoph von Athen (1.–2. Jh.)
+- path: Поликарп_Смирнский
+  title: Polykarp von Smyrna, Hieromärtyrer (69–155)
+- path: Иустин_Философ_мученик
+  title: Justin der Philosoph, Märtyrer (~100–165)
+- path: Феофил_Антиохийский
+  title: Theophilus von Antiochien, Heiliger († 183)
+- path: Мелитон_Сардийский
+  title: Melito von Sardes, Heiliger (~100–180)
+- path: Ириней_Лионский
+  title: Irenäus von Lyon, Hieromärtyrer (~130–202)
+- path: Климент_Александрийский
+  title: Clemens von Alexandrien, Presbyter (~150–215)
+- path: тертуллиан
+  title: Tertullian (~155–220)
+- path: nPd5_Ипполит_Римский_IIIII_вв
+  title: Hippolyt von Rom, Hieromärtyrer (~170–235)
+- path: JeAs_Дионисий_Александрийский_III_век
+  title: Dionysius von Alexandrien, Hieromärtyrer (Ende 2. Jh. – 264/5)
+- path: Киприан_Карфагенский_III_век
+  title: Cyprian von Karthago, Hieromärtyrer (~200–258)
+- path: oJSu_Григорий_Чудотворец_III_век
+  title: Gregor der Wundertäter, Bischof von Neokaisareia, Heiliger (~213–270)
+- path: koN0_Петр_Александрийский_священномученик_311
+  title: Petrus von Alexandrien, Hieromärtyrer († 311)
+- path: B4ds_Александр_Александрийский_III_век
+  title: Alexander von Alexandrien, Heiliger (~250–326)
+- path: n2QN_Мефодий_Олимпийский_IIIIV_вв
+  title: Methodius von Olympos, Bischof von Patara, Hieromärtyrer (~260–312)
+- path: Афанасий-Великий
+  title: Athanasius der Große, Heiliger (~295–373)
+- path: DM59_Макарий_Великий_Египетский_IV_век
+  title: Makarios der Große (der Ägypter), ehrwürdiger (~300–391)
+- path: LAUq_Ефрем_Сирин_преподобный_306373
+  title: Ephräm der Syrer, ehrwürdiger (~306–373)
+- path: rXYx_Кирилл_Иерусалимский_IV_век
+  title: Kyrill von Jerusalem, Heiliger (315–386)
+- path: YN17_Марк_Подвижник_IVV_вв
+  title: Markus der Asket, ehrwürdiger (4.–5. Jh.)
+- path: uSyc_Григорий_Богослов_IV_век
+  title: Gregor der Theologe (von Nazianz), Heiliger (~325–389)
+- path: mz9h_Василий_Великий_IV_век
+  title: Basilius der Große, Heiliger (~329–379)
+- path: Иоанн_Златоуст
+  title: Johannes Chrysostomus, Heiliger (~347–407)
+- path: r6fC_Иероним_Стридонский_IV_век
+  title: Hieronymus von Stridon, ehrwürdiger, seliger (~347–419)
+- path: Амвросий_Медиоланский
+  title: Ambrosius von Mailand, Heiliger (~339–397)
+- path: Амфилохий_Иконийский_IV_век
+  title: Amphilochius von Ikonion, Heiliger (~340–394)
+- path: 49Rq_Иоанн_Кассиан_Римлянин_IVV_вв
+  title: Johannes Cassian der Römer, ehrwürdiger (4.–5. Jh.)
+- path: Аполлоний_Римский_сенатор
+  title: Apollonius von Rom, Märtyrer († um 183)
+- path: 1-век-труды-неизвестных-авторов
+  title: Werke unbekannter Autoren des 1. Jahrhunderts
+- path: Марк_Минуций_Феликс
+  title: Marcus Minucius Felix († um 250)
+- path: N8Mz_Антоний_Великий_IIIIV_вв
+  title: Antonius der Große, ehrwürdiger (~251–356)
+- path: Серапион_Тмуитский
+  title: Serapion von Thmuis, Bischof (4. Jh.)
+- path: Евсевий_Кесарийский_(Памфил),_IV_век
+  title: Eusebius von Cäsarea, Bischof (~258–339)
+- path: Нестор_Летописец_XI_век
+  title: Nestor der Chronist, ehrwürdiger (~1056–1114)
+- path: Константин_Великий_IV_век
+  title: Konstantin der Große, den Aposteln gleich (272–337)
+- path: Викентий_Леринский_V_век
+  title: Vinzenz von Lérins, ehrwürdiger († vor 450)
+- path: Ivu0_Православный_катехизис__Николай_Сербский_Велимирович_святитель_18801956
+  title: Nikolaus von Serbien, Heiliger (20. Jh.)
+- path: Дидахе
+  title: Didache (1.–2. Jh.)
+- path: Иоанн-Лествичник
+  title: Johannes Klimakos, ehrwürdiger (~579–649)
+- path: Пространный_Катехизис_Православной_Церкви_Филарет_Московский_Дроздов
+  title: Philaret von Moskau (Drozdow), Heiliger (19. Jh.)
+- path: послание-патриархов-1672-1723
+  title: Sendschreiben der Patriarchen (1672, 1732)
+- path: Аврелий_Августин
+  title: Aurelius Augustinus, seliger (354–430)
+- path: aOY9_Иоанн_Дамаскин_VIIVIII_вв
+  title: Johannes von Damaskus, ehrwürdiger (~675–754)
+- path: q3RP_Григорий_Палама_XIV_век
+  title: Gregor Palamas, Heiliger (~1296–1357)
+- path: Ds4O_Игнатий_Брянчанинов_XIX_век
+  title: Ignatius (Brjantschaninow), Heiliger (1807–1867)
+- path: Tg07_Феофан_Затворник_XIX_век
+  title: Theophan der Klausner, Heiliger (1815–1894)
+- path: tWnU_Иоанн_Кронштадтский_Сергиев_XIX_век
+  title: Johannes von Kronstadt (Sergijew), gerechter (1829–1908)
+- path: OFKU_Авва_Дорофей_VI_век
+  title: Abba Dorotheus, ehrwürdiger († Ende 6. Jh.)
+- path: g1QT_Кирилл_Александрийский_V_век
+  title: Kyrill von Alexandrien, Heiliger (376–444)
+- path: 6Qyq_Исаак_Сирин_VII_век
+  title: Isaak der Syrer von Ninive, ehrwürdiger (~640–700)
+- path: Пётр_апостол_I_век
+  title: Petrus, Apostel (~1. Jh. v. Chr. – 67)
+- path: GC9J_Павел_апостол_I_век
+  title: Paulus, Apostel (~10–67)
+- path: QlqV_Иаков_апостол_I_век
+  title: Jakobus, Apostel (~1. Jh. – 42)
+- path: roel_Иоанн_апостол_I_век
+  title: Johannes, Apostel (~10–100)
+- path: xmzi_Лука_евангелист_I_век
+  title: Lukas, Evangelist (~1–84)
+- path: nWtg_Марк_евангелист_I_век
+  title: Markus, Evangelist (~1. Jh. – 63)
+- path: tgWd_Матфей_евангелист_I_век
+  title: Matthäus, Evangelist (~1. Jh. – 60)
+- path: lqfu_Иуда_апостол_I_век
+  title: Judas, Apostel (~1. Jh. v. Chr. – 80)
+- path: Ориген
+  title: Origenes (~185–253)
+- path: Григорий_Нисский
+  title: Gregor von Nyssa, Heiliger (~331–394)
+- path: UCY2_Астерий_Амасийский_IVV_вв
+  title: Asterius von Amaseia, Heiliger († vor 431)
+- path: FmY5_Феодорит_Кирский_блаженный_386457
+  title: Theodoret von Kyros, seliger (~386–457)
+- path: K60r_Епифаний_Кипрский_IV_век
+  title: Epiphanius von Zypern, Heiliger (~315–403)
+- path: 97nZ_Иларий_Пиктавийский_святитель_315367
+  title: Hilarius von Poitiers, Heiliger (~315–367)
+- path: gD2R_Николай_Сербский_Велимирович_святитель_18801956
+  title: Nikolaus von Serbien (Velimirović), Heiliger (1880–1956)
+- path: IZSj_Иеремия_II_патриарх_Константинопольский_ответ_реформаторам_1576_1581
+  title: Jeremias II., Patriarch von Konstantinopel, Antwort an die Reformatoren (1576)
+- path: B6VW_Софроний_святитель_патриарх_Иерусалимский_560638
+  title: Sophronius, Heiliger, Patriarch von Jerusalem (~560–638)
+- path: Мураториев_канон
+  title: Muratorisches Fragment
+- path: VuAM_Контекст_событий_1054_года
+  title: Kontext der Ereignisse von 1054
+- path: oblN_300_слов_мудрости
+  title: 300 Worte der Weisheit
+- path: Павел_Силенциарий_VI_век
+  title: Paulus Silentiarius, Dichter (~520–575)
+- path: 5Ofj_Димитрий_Ростовский_Туптало_XVII_век
+  title: Demetrius von Rostow (Tuptalo), Heiliger (1651–1709)
+- path: 0UJu_Феодор_Студит_IX_век
+  title: Theodor Studites, ehrwürdiger (~759–826)
+- path: Sx7p_Фотий_Константинопольский_IX_век
+  title: Photius, Heiliger, Patriarch von Konstantinopel (~820–896)
+- path: RX1y_Максим_Исповедник_VII_век
+  title: Maximus der Bekenner, ehrwürdiger (580–662)
+- path: sIGb_Исидор_Пелусиот_преподобный_350-435
+  title: Isidor von Pelusium, ehrwürdiger (~350–435)
+- path: TpnD_Тихон_Соколов_епископ_Воронежский_и_Елецкий_Задонский_чудотворец_17241783
+  title: Tichon von Sadonsk, Wundertäter (1724–1783)
+- path: HhDX_Нил_Синайский_V_век
+  title: Nilus vom Sinai, ehrwürdiger († 450)
+- path: Анания-епископ-Дамаска-I-век
+  title: Ananias, Bischof von Damaskus (1. Jh.)
+- path: Климент_Римский
+  title: Klemens von Rom, Hieromärtyrer († um 101)
+- path: 1HDX_Егезипп_II_век
+  title: Hegesippus (~110–180)
