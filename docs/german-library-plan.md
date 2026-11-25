@@ -287,5 +287,11 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   Права: `free_bkv`.
   Реестр источников (включая будущего Оригена): `db/bkv_sources.yml`.
 
+- **Афанасий Великий** (`Athanasius_der_Große`): автор — перевод RU,
+  обложка с RU; BKV 1917, пер. Anton Stegmann / Hans Mertel:
+  «Gegen die Heiden» (132 КБ), «Über die Menschwerdung des Logos» (147 КБ),
+  «Leben des heiligen Antonius» (139 КБ); меню — «4. Jahrhundert» → «Werke».
+  Права: `free_bkv`.
+
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

@@ -14,6 +14,12 @@ translators:
     year: 1912
     status: pd
     evidence: "NK ČR: Ernst Klebba, 1871-1930"
+  - name: "Anton Stegmann / Hans Mertel"
+    dates: ""
+    works: ["Athanasius, Contra Gentes", "Athanasius, De incarnatione", "Athanasius, Vita Antonii"]
+    year: 1917
+    status: free_bkv
+    evidence: "BKV copyrights: тексты вне копирайта; издание 1917"
   - name: "Phil. Häuser"
     dates: ""
     works: ["Eusebius von Cäsarea, Kirchengeschichte"]

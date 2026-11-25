@@ -103,6 +103,15 @@ imported:
       - { work: "De habitu virginum", url: "https://bkv.unifr.ch/de/works/cpl-40/versions/uber-die-haltung-der-jungfrauen-bkv", page: "Cyprian_De_habitu_virginum" }
       - { work: "Ad Demetrianum", url: "https://bkv.unifr.ch/de/works/cpl-46/versions/an-demetrianus-bkv", page: "Cyprian_Ad_Demetrianum" }
 
+  - author: "Athanasius der Große"
+    translator: "Anton Stegmann / Hans Mertel"
+    edition: "BKV 1. Reihe, Bd. 31, München 1917"
+    rights: free_bkv
+    works:
+      - { work: "Contra Gentes", url: "https://bkv.unifr.ch/de/works/cpg-2090/versions/gegen-die-heiden-bkv", page: "Athanasius_Gegen_die_Heiden" }
+      - { work: "De incarnatione", url: "https://bkv.unifr.ch/de/works/cpg-2091/versions/uber-die-menschwerdung-des-logos-und-dessen-leibliche-erscheinung-unter-uns-bkv", page: "Athanasius_Menschwerdung" }
+      - { work: "Vita Antonii", url: "https://bkv.unifr.ch/de/works/cpg-2101/versions/leben-des-heiligen-antonius-bkv", page: "Athanasius_Leben_des_Antonius" }
+
   - author: "Eusebius von Cäsarea"
     translator: "Phil. Häuser"
     edition: "BKV 2. Reihe, Bd. 1, München 1932"

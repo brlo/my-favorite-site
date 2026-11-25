@@ -1,0 +1,70 @@
+# Афанасий Великий: страница автора (немецкая библиотека)
+# Сборка: script/translations/de/build_athanasius.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "Афанасий-Великий"
+    path: "Athanasius_der_Große"
+    title: "Athanasius der Große, 4. Jh."
+    title_sub: "Heiliger (~295–373), Erzbischof von Alexandrien, Kirchenvater und Kirchenlehrer, Verteidiger des nicäischen Glaubens"
+    copy_cover: true
+    menu: { parent: "4. Jahrhundert", title: "Athanasius der Große, Heiliger (~295–373)", replace: "Athanasius der Große, Heiliger (~295–373)", priority: 1 }
+    update: true
+    body: |-
+      <p>Der Abschnitt mit den Werken des Athanasius des Großen <strong>in griechischer Sprache</strong>: <a href="https://bibleox.com/de/grc/w/l6Yy_%CE%91%CE%B8%CE%B1%CE%BD%CE%AC%CF%83%CE%B9%CE%BF%CF%82_%CE%BF_%CE%9C%CE%AD%CE%B3%CE%B1%CF%82_4%CE%BF%CF%82_%CE%B1%CE%B9%CF%8E%CE%BD%CE%B1%CF%82/">hier entlang</a>. Der Wechsel in andere Sprachen ist ebenfalls oben über der Werkliste möglich.</p>
+      <p><strong>Gedenktage</strong>: 18. (31.) Januar, 2. (15.) Mai</p>
+      <h2>Biografie</h2>
+      <h3>Kindheit und Jugend</h3>
+      <p>Athanasius von Alexandrien wird von der Kirche als hervorragender kirchlicher Schriftsteller, großer Hierarch und Kämpfer für die Reinheit der orthodoxen Glaubenslehre verehrt.</p>
+      <p>Weder über die Eltern des Athanasius noch über das Datum seiner Geburt noch über seine Kinderjahre wissen wir mit Sicherheit etwas.</p>
+      <p>Wenn man gewissen Nachrichten folgt, so taufte er schon als kleines Kind seine Altersgenossen, gleichsam spielend. Der Ortsbischof jedoch, der von dem Geschehenen erfuhr und es erwog, erachtete diese Taufen als gültig. Wie weit diese Überlieferung der Wirklichkeit entspricht, ist schwer zu sagen. Jedenfalls gibt es keinen Grund, sie ohne weiteres als wahr anzunehmen.</p>
+      <p>Bekannt ist, dass die Kindheit des Hierarchen in die Zeit der blutigen Verfolgungen der Christen fiel. Vielleicht haben er oder seine Eltern (sofern sie Christen waren) die Folgen der diokletianischen Verfolgung am eigenen Leibe erfahren.</p>
+      <p>Der umfangreiche Horizont an allgemeinem Wissen und an Kenntnissen in den Fragen des christlichen Glaubens und der Sittlichkeit lässt annehmen, dass Athanasius in seiner Jugend eine vorzügliche weltliche Bildung erhielt und in den Wahrheiten der Heiligen Schrift und der Überlieferung unterwiesen wurde.</p>
+      <p>Ziemlich früh wurde er in den Klerus der Kirche von Alexandrien aufgenommen. Sechs Jahre lang versah er den Dienst eines Lektors und wurde sodann in die Würde des Diakons erhoben. Dieser Abschnitt seines Lebens fiel mit der Ausbreitung einer der gefährlichsten und zerstörerischsten Häresien zusammen – des Arianismus.</p>
+      <p>Athanasius war dem Bischof Alexander von Alexandrien geistlich eng verbunden, und als dieser zum Ersten Ökumenischen Konzil aufbrach, nahm er Athanasius mit sich.</p>
+      <h3>Bischöfliches Wirken</h3>
+      <p>Nach dem Tod des Bischofs Alexander, der nach verschiedenen Schätzungen in das Jahr 326 oder 328 fiel, nahm Athanasius den verwaisten Stuhl von Alexandrien ein. Zu jener Zeit war er als Mann festen Glaubens bekannt.</p>
+      <p>Seine ideologischen Gegner, die Arianer, behaupteten später, er sei unter Verletzung der kanonischen Regeln und durch eine Minderheit der Stimmen gewählt worden; doch dem war nicht so. Lüge und Verleumdung gehörten zu den verbreitetsten Mitteln, die die Häretiker gegen Athanasius einsetzten. In der Folge erhoben sie Anschuldigungen, eine abwegiger als die andere.</p>
+      <p>Neben den Schwierigkeiten, die der Kampf gegen den Arianismus mit sich brachte, hatte sich der Hierarch auch mit den Folgen des meletianischen Schismas auseinanderzusetzen.</p>
+      <p>Einige Zeit nach dem Ersten Ökumenischen Konzil fanden die arianisch gesinnten Hierarchen, indem sie sich heuchlerischer Demut und einer formell erklärten Zustimmung zur Lehre der Ökumenischen Kirche bedienten, Zugang zu Kaiser Konstantin und erlangten von ihm die Erlaubnis, aus der Verbannung zurückzukehren.</p>
+      <p>Eusebius von Nikomedien nutzte die Lage und forderte Athanasius von Alexandrien auf, den Urheber der Häresie – den gottlosen Lästerer und Häretiker Arius – in die Kirchengemeinschaft aufzunehmen. Der Hierarch verweigerte dies, wie zu erwarten war, und begriff wohl, dass die Worte der Arianer über ihre Übereinstimmung mit der Kirche nur Worte waren.</p>
+      <p>Darauf traten die Eusebianer gegen ihn in einen offenen Kampf ein. Für diesen Kampf verbündeten sie sich mit den Meletianern. Wohl wissend, dass es sinnlos war, den orthodoxen Hierarchen auf dem Feld der Theologie zu bekämpfen, da dies die wahre Haltung der Arianer zum Nizänischen Glaubensbekenntnis offenbart hätte, richteten sie ihre Bemühungen darauf, seine Person zu diskreditieren.</p>
+      <p>Zu diesem Zweck griffen sie zu erdachten und höchst exotischen Anschuldigungen: Athanasius habe die Ägypter rechtswidrig mit einer Leinensteuer belastet; er habe dem Verschwörer und Aufrührer Philumenos Gold geliefert; er führe ein unsittliches, unmoralisches Leben; er habe Ausschreitungen begangen (angeblich sei auf Befehl des Athanasius der Presbyter Ischyras geschlagen, der Altar in der Kirche umgestoßen, der Kelch zerbrochen und die Bücher verbrannt worden).</p>
+      <p>Infolge dieser Angriffe sah sich Athanasius gezwungen, persönlich mit dem Kaiser zusammenzutreffen, und das tat er auch. Entgegen dem Wunsch der Häretiker gelang es ihm, sich zu rechtfertigen und die ganze Unsinnigkeit dieser pauschalen Beschuldigungen aufzudecken.</p>
+      <p>Doch die Feinde des Athanasius dachten nicht daran, von Hass und Kampf zu lassen. Diesmal griffen sie zu einer raffinierteren Anschuldigung: Sie verbreiteten das recht seltsame Gerücht, Athanasius habe den Bischof Arsenius heimtückisch ermordet. Als Beweis zeigten sie die Hand des „Ermordeten“ vor. Und dies, obwohl Bischof Arsenius in Wirklichkeit am Leben war und sich in einem abgelegenen Kloster verborgen hielt.</p>
+      <h3>Verurteilung und Verfolgung</h3>
+      <p>Trotz der offensichtlichen Falschheit der Anschuldigungen war ein Schatten auf den alexandrinischen Hierarchen gefallen. Bald erreichten seine Feinde beim Kaiser, dass Athanasius zur Synode von Tyrus vorgeladen wurde, von der man angesichts der Haltung der Mehrheit der voraussichtlichen Teilnehmer nichts Gutes erwarten konnte. So geschah es auch. Athanasius von Alexandrien wurde des Stuhles enthoben und zur Verbannung verurteilt.</p>
+      <p>Unterdessen wurde er im November des Jahres 335 in Tyrus feierlich empfangen. Aus der Verbannung schrieb er an seine Herde, und die Gläubigen ihrerseits ließen die Versuche nicht sein, die Rückkehr des geliebten Hierarchen zu erreichen.</p>
+      <p>Im Jahr 336 starb Arius unter rätselhaften Umständen, was die Gläubigen als Gericht der göttlichen Gerechtigkeit ansahen, und im Jahr 337 folgte der Tod Kaiser Konstantins.</p>
+      <h3>Rückkehr aus der Verbannung</h3>
+      <p>Nach diesen Ereignissen wurde Athanasius durch die Bemühungen Konstantins des Jüngeren aus der Verbannung auf den alexandrinischen Bischofsstuhl zurückgeführt. Unterwegs hatte er eine Begegnung mit Kaiser Constantius. Die Einwohner Alexandriens empfingen ihn mit Freudengeschrei.</p>
+      <p>Doch die Arianer und die Meletianer wurden von neuem vom Verlangen entflammt, den Hierarchen abzusetzen. Diesmal brachten sie gegen ihn die Anschuldigung vor, er habe den alexandrinischen Bischofsstuhl ohne besonderen Beschluss einer Synode bestiegen, allein mit Erlaubnis des Kaisers.</p>
+      <p>Der heilige Athanasius berief eine Synode ein, die aus fast 100 Bischöfen bestand. Diese Synode wies die Anschuldigungen zurück, doch die Arianer beruhigten sich nicht und intrigierten weiter.</p>
+      <p>Die Eusebianer, die um das Jahr 340 eine Synode in Antiochien zustande brachten, wählten einen anderen Bischof, Gregor den Kappadozier, für den Stuhl von Alexandrien, der sodann mit Hilfe der bürgerlichen Gewalt und militärischer Macht auf den Bischofsthron erhoben wurde.</p>
+      <p>Athanasius war gezwungen, sich zu verbergen. Zuerst hielt er sich in der Umgebung Alexandriens versteckt, dann begab er sich nach Rom, wo er auf der dortigen Synode des Jahres 341 für unschuldig erklärt und gerechtfertigt wurde. Hier verbrachte er etwa drei Jahre, ohne die Verbindung zu seiner Herde zu verlieren.</p>
+      <p>Im Jahr 343 begab er sich nach Gallien und von dort zur Synode von Serdika. Die Synode bestätigte seine Unschuld. Zurückkehren jedoch konnte er nicht, da die Eusebianer, die Kaiser Constantius gegen ihn aufgebracht hatten, ein Verbot seiner Rückkehr erwirkten.</p>
+      <p>Und erst im Jahr 345, nach dem Tod Gregors des Kappadoziers, willigte Constantius, gedrängt von den Anhängern des Athanasius, in dessen Rückkehr auf den alexandrinischen Bischofsstuhl ein. Im Oktober des Jahres 346 kam der Dulder in Alexandrien an.</p>
+      <p>Einige Jahre später, besonders aber nach dem Jahr 353, wiederholten sich die Verfolgungen im Zusammenhang mit der Veränderung der politischen Lage im Land. Im Jahr 357 wurde der alexandrinische Bischofsstuhl dem arianisch gesinnten Häretiker Georg dem Kappadozier übertragen.</p>
+      <p>Athanasius aber sah sich gezwungen, in die Halblegalität überzugehen. Die kaiserlichen Behörden suchten ihn überall, doch es gelang ihm, den Ort seines Aufenthalts zu wechseln und die Spuren zu verwischen.</p>
+      <p>Die Lage besserte sich nach dem Jahr 361 mit dem Tod des Kaisers Constantius und der Ermordung Gregors des Kappadoziers.</p>
+      <p>Im darauffolgenden Jahr kehrte der heilige Athanasius erneut auf den Bischofsstuhl zurück. Er unternahm große Anstrengungen, um die Kirche von den Folgen der Gewalt der Arianer zu reinigen.</p>
+      <p>Unterdessen wollte der neue Herrscher Julian einen so starken Hirten in Alexandrien nicht sehen, und im Jahr 362 verließ Athanasius diese Stadt wieder und wurde erneut zum Heimatlosen.</p>
+      <p>Nach dem Tod Julians bestieg Jovian den Thron. Athanasius wurde in seine Rechte wiedereingesetzt. Doch bald starb Jovian, und Valens, der den Arianern zuneigte, bestieg den Thron. Es begannen die Verfolgungen der orthodoxen Bischöfe.</p>
+      <p>Athanasius verließ Alexandrien wieder und verbarg sich. Die vom Volk ausgelösten Unruhen jedoch führten dazu, dass Valens ihm die Rückkehr erlaubte und befahl, ihn in Ruhe zu lassen.</p>
+      <p>Im Jahr 366 wurde Athanasius von den Alexandrinern feierlich empfangen.</p>
+      <p>Die ihm verbleibenden Lebensjahre widmete er der Leitung seiner Herde und der Festigung der Orthodoxie. Das Herz des Heiligen hörte am 2. Mai 373 auf zu schlagen (vielleicht in der Nacht vom 2. auf den 3. Mai).</p>
+      <h2>Hymnographie</h2>
+      <p><strong>Tropar des heiligen Athanasius des Großen, Ton 3</strong></p>
+      <blockquote><p>Eine Säule der Orthodoxie bist du gewesen, / da du die Kirche durch göttliche Dogmen befestigtest, / Hierarch Athanasius; / denn indem du den Sohn als wesensgleich mit dem Vater verkündetest, / hast du den Arius beschämt. / Ehrwürdiger Vater, / flehe Christus Gott an // dass er uns das große Erbarmen schenke.</p></blockquote>
+      <p><strong>Kondak des heiligen Athanasius des Großen, Ton 2</strong></p>
+      <blockquote><p>Die Lehren der Orthodoxie hast du gepflanzt, / die Dornen der Lästerung hast du ausgerottet, / den Samen des Glaubens hast du durch den Regen des Geistes vermehrt, Ehrwürdiger, // darum preisen wir dich, Athanasius.</p></blockquote>
+      <p><strong>Tropar der heiligen Athanasius und Kyrill von Alexandrien, Ton 4</strong></p>
+      <blockquote><p>Gott unserer Väter, / der du allezeit nach deiner Milde an uns handelst, / nimm dein Erbarmen nicht von uns, / sondern durch ihre Gebete // lenke unser Leben in Frieden.</p></blockquote>
+      <p><strong>Weiterer Tropar der heiligen Athanasius und Kyrill, Erzbischöfe von Alexandrien, Ton 3</strong></p>
+      <blockquote><p>In Werken der Orthodoxie habt ihr erstrahlt, / alle Lästerung habt ihr ausgelöscht, / Sieger und Triumphatoren seid ihr geworden, / durch Frömmigkeit habt ihr alles bereichert, / die Kirche gar sehr geschmückt, / würdig habt ihr Christus Gott gefunden, // der uns das große Erbarmen schenkt.</p></blockquote>
+      <p><strong>Kondak der heiligen Athanasius und Kyrill von Alexandrien, Ton 4</strong></p>
+      <blockquote><p>Ihr größten Hierarchen der Frömmigkeit / und tapferen Vorkämpfer der Kirche Christi, / bewahret alle, die da singen: / Errette, Barmherziger, // die dich im Glauben verehren.</p></blockquote>
+      <p><strong>Kondak des heiligen Athanasius von Alexandrien, Ton 2</strong></p>
+      <blockquote><p>Die Lehren der Orthodoxie hast du gepflanzt, / die Dornen der Lästerung hast du ausgerottet, den Samen des Glaubens hast du durch den Regen des Geistes vermehrt, Ehrwürdiger, // darum preisen wir dich, Athanasius.</p></blockquote>
