@@ -297,5 +297,10 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   (28 КБ); меню — «4. Jahrhundert» → «Werke».
   Права: `free_bkv`.
 
+- **Григорий Нисский** (`Gregor_von_Nyssa`): автор — перевод RU, обложка с RU;
+  «Große Katechese» (41 гл., 167 КБ), «Abhandlung über die Ausstattung des
+  Menschen» (31 гл., 193 КБ), «Das Gebet des Herrn» (5 гл., 127 КБ);
+  меню — «4. Jahrhundert» → «Werke». Права: `free_bkv`/`pd`.
+
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

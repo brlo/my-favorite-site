@@ -14,6 +14,12 @@ translators:
     year: 1912
     status: pd
     evidence: "NK ČR: Ernst Klebba, 1871-1930"
+  - name: "Heinrich Hand"
+    dates: ""
+    works: ["Gregor von Nyssa, De opificio hominis"]
+    year: 1874
+    status: pd
+    evidence: "издание 1874"
   - name: "Jos. Fisch"
     dates: ""
     works: ["Athanasius, Apologia contra Arianos"]
