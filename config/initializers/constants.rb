@@ -234,6 +234,7 @@ BIB_LANG_TO_LOCALE = {
   'csl-pnm'    => 'ru',
   'heb-osm'    => 'he',
   'gr-lxx-byz' => 'el',
+  'gr-lxx-swete' => 'el',
 
   'gr-ru'      => 'ru',
   'gr-en'      => 'en',
