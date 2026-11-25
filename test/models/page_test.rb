@@ -475,6 +475,14 @@ class PageTest < ActiveSupport::TestCase
     assert_not work.is_page_author?
   end
 
+  test "is_page_author? is false for a book lying directly under a links section" do
+    links = create_page(path: 'links_ru', page_type: 4)
+    section = create_page(parent: links, page_type: 4)
+    work = create_page(parent: section, seo_kind: 'book')
+
+    assert_not work.is_page_author?
+  end
+
   test "propagate_is_news copies the flag to all translations" do
     ru = create_page(lang: 'ru', is_news: true)
     en = create_page(lang: 'en', group_lang_id: ru.group_lang_id)

@@ -1,7 +1,13 @@
 # Пастырь Ерма (fr): перевод с греческого, видения и заповеди, партия 1.
+# Сначала импортировать подраздел: db/translations/fr/hrms_00_list.yml (он же заполняет
+# пункт «Œuvres du Ier siècle d'auteurs inconnus» в меню «Ier siècle»).
 # Загрузка: bin/rails pages:import_translations FILE=db/translations/fr/hrms_01_pasteur.yml [DRY_RUN=1] [PUBLISH=1]
+# Перенос уже существующей страницы в меню подраздела: script/translations/fr/pasteur_menu.rb
 lang: fr
-list: 4saQ_Ouvrages_des_anciens_chrétiens
+list: 2Cdc_Œuvres_du_Ier_siècle_dauteurs_inconnus
+folders:
+  - { path: "Enseignements", priority: 1 }
+  - { path: "Autres écrits", priority: 2 }
 pages:
   - src: Пастырь_Ерма
     path: Hrms_Le_Pasteur
@@ -9,7 +15,7 @@ pages:
     title_sub: "Livre des visions, des préceptes et des similitudes"
     meta_desc: "Le Pasteur d’Hermas — traduction française d’après le texte grec : visions, préceptes et similitudes."
     update: true
-    menu: { parent: "Ier siècle/Œuvres du Ier siècle d'auteurs inconnus", title: "Le Pasteur", priority: 1 }
+    menu: { parent: "Autres écrits", title: "Le Pasteur", priority: 1 }
     body: |-
       <h2>Vision I</h2>
       <h3>1</h3>

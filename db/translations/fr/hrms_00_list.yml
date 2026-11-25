@@ -1,0 +1,14 @@
+# «Œuvres du Ier siècle d'auteurs inconnus» (страница-список), французский перевод ru-страницы
+# «Труды I века неизвестных авторов». Загружать до «Le Pasteur» (hrms_01):
+#   bin/rails pages:import_translations FILE=db/translations/fr/hrms_00_list.yml [DRY_RUN=1] [PUBLISH=1]
+# Пункт-заготовка «Œuvres du Ier siècle d'auteurs inconnus» в меню «Ier siècle» заполняется этим импортом.
+lang: fr
+list: 4saQ_Ouvrages_des_anciens_chrétiens
+pages:
+  - src: 1-век-труды-неизвестных-авторов
+    path: 2Cdc_Œuvres_du_Ier_siècle_dauteurs_inconnus
+    title: "Œuvres du Ier siècle d'auteurs inconnus"
+    meta_desc: "Œuvres du Ier siècle dont l’auteur n’est pas établi avec certitude : la Didachè, Le Pasteur d’Hermas et d’autres textes anonymes."
+    menu: { parent: "Ier siècle", title: "Œuvres du Ier siècle d'auteurs inconnus" }
+    body: |-
+      <p>Il existe un certain nombre de textes anciens dont l’auteur ne peut être établi avec certitude. Diverses hypothèses sont proposées. Ces œuvres du Ier siècle sont rassemblées sur cette page.</p>

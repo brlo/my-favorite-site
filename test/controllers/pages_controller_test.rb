@@ -181,6 +181,17 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
     assert_select '#translation-tooltip', count: 0
   end
 
+  test "bibleox translation badge is shown on a work directly under a library section" do
+    links = create_published(path: 'links_ru', page_type: 4)
+    section = create_published(parent: links, page_type: 4)
+    create_published(parent: section, path: 'bibleox_work', page_type: 1, is_bibleox: true, seo_kind: 'book')
+
+    get '/ru/ru/w/bibleox_work'
+
+    assert_response :success
+    assert_select 'button.translation-badge', text: /ИИ \+ человек/
+  end
+
   test "table of contents uses height-based auto-collapse" do
     body = (1..22).map { |i| "<h2>Раздел #{i}</h2><p>Текст раздела #{i}.</p>" }.join
     create_published(path: 'long_toc', body: body)

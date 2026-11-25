@@ -219,6 +219,9 @@ class Page < ApplicationRecord
   def is_page_author?
     return true if self.seo_kind == 'person'
     return true if ::Page.where(group_lang_id: self.group_lang_id, seo_kind: 'person').exists?
+    # труд (SEO book) — не автор: это перевод старого текста, его важно помечать бейджем;
+    # на страницах авторов (новые подборки цитат) бейдж скрыт намеренно
+    return false if self.is_book_kind?
 
     # отцы в разделе «Труды...» лежат вторым уровнем под links_<locale>:
     # links_XX → раздел → автор → труды
