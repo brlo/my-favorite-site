@@ -37,6 +37,7 @@ SOURCES = {
     'diog': {'mode': 'chapters'},
     'athen_res': {'mode': 'chapters'},
     'athen_supp': {'mode': 'chapters'},
+    'greg_pan': {'mode': 'chapters'},
     'barn': {'mode': 'chapters'},
     'did': {'mode': 'chapters'},
 }

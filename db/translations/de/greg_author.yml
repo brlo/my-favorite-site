@@ -1,0 +1,49 @@
+# Григорий Чудотворец: страница автора (немецкая библиотека)
+# Сборка: script/translations/de/build_gregory.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "oJSu_Григорий_Чудотворец_III_век"
+    path: "Gregor_der_Wundertäter"
+    title: "Gregor der Wundertäter, 3. Jh."
+    title_sub: "Heiliger (~213–270), erster Bischof von Neocäsarea. Der Überlieferung nach empfing er eine göttliche Offenbarung über das rechte Bekenntnis der Heiligen Dreifaltigkeit, die er im Glaubensbekenntnis niederschrieb."
+    copy_cover: true
+    menu: { parent: "3. Jahrhundert", title: "Gregor der Wundertäter, Bischof von Neocäsarea, Heiliger (~213–270)", replace: "Gregor der Wundertäter, Bischof von Neocäsarea, Heiliger (~213–270)", priority: 2 }
+    update: true
+    body: |-
+      <p><strong>Gedenktag</strong>: 17. (30.) November</p>
+      <h2>Leben</h2>
+      <h3>Auf dem Weg zum Priestertum</h3>
+      <p>Gregor von Neocäsarea (der Wundertäter) stammte aus einer berühmten, wohlhabenden Familie; er war ein Nachkomme griechischer Siedler.</p>
+      <p>Das genaue Datum seiner Geburt ist unbekannt. Man nimmt an, dass er um das Jahr 213 in Neocäsarea in Pontus zur Welt kam. Der Überlieferung nach hieß er ursprünglich Theodor und erhielt den Namen Gregor vermutlich bei der Taufe.</p>
+      <p>Der Vater Theodors, dem orthodoxen Weltbild fern, erzog seinen Sohn, selbst ein Heide, wie einen Heiden. Da er ein wohlhabender Mann war, bemühte er sich, ihm eine gute weltliche Bildung zu geben. Indessen verlor Theodor im Alter von vierzehn Jahren seinen Vater, und vieles in der vorgesehenen Laufbahn hing nun von seinen Angehörigen und von ihm selbst ab, vor allem aber vom allweisen Gott.</p>
+      <p>Eine Zeit lang lernte Theodor in der Schule des Grammatikers, dann in der Schule des Rhetors, darauf versenkte er sich in die Jurisprudenz; in Vorbereitung auf den Beruf des Advokaten studierte er die Gesetze und das Recht und natürlich auch die damals für die Gesetze verwendete Sprache, das Lateinische. In dem Verlangen, die Grundlagen des römischen Rechts kennenzulernen, beabsichtigte er, nach Rom zu reisen. Doch nach der Vorsehung Gottes gestaltete sich sein Leben anders, als er und sein heidnischer Vater es einst geplant hatten.</p>
+      <p>Als er seine Schwester nach Cäsarea begleitete, deren Mann von den Behörden die Stelle eines Beraters beim Statthalter von Palästina erhalten hatte, hatte Theodor, der dorthin zusammen mit seinem Bruder Athenodor gekommen war, die Möglichkeit, seine Ausbildung in Berytos fortzusetzen, wo sich damals die in der Region bekannte Rechtsschule befand.</p>
+      <p>Doch hier geschah das, was keiner der Angehörigen auch nur geahnt hatte. In jener Zeit wirkte in Cäsarea in Palästina eine theologische Schule, die durch die Bemühungen des berühmten christlichen Lehrers Origenes eingerichtet worden war. Nachdem er sich bei der Ankunft eingelebt hatte, wollte Theodor zusammen mit seinem Bruder, sei es gezielt, sei es aus Neugier, die Predigten des Origenes hören.</p>
+      <p>Bald fand ihre Begegnung statt (es gibt die Auffassung, dass der Bischof Firmilian dazu beigetragen hat). Die Begegnung wuchs zu einer persönlichen Bekanntschaft heran, die das Geschick Theodors auf entschiedenste Weise prägte. Als Theodor die feurigen, beredten Unterweisungen gehört hatte, erfüllte ihn Zuneigung und Achtung für Origenes, und Origenes seinerseits schlug vor, ihn als Schüler aufzunehmen. Auch sein Bruder Athenodor folgte Theodor.</p>
+      <p>Zunächst lehrte Origenes Theodor, die in den philosophischen Systemen enthaltenen Samen der Wahrheit aufzuspüren und zu sammeln, und führte ihn überhaupt in die Philosophie ein. Danach erschloss er ihm der Reihe nach den Sinn der Bücher der Heiligen Schrift und lehrte ihn, der übernatürlichen Offenbarung und der christlichen Lehre zu vertrauen.</p>
+      <p>Nach dem Abschluss der Ausbildung bei Origenes, die, wie man annimmt, nicht weniger als fünf Jahre dauerte, empfing Theodor mit Freude die Taufe, ehrte seinen Lehrer öffentlich mit einem guten Wort und kehrte zusammen mit seinem Bruder in die heimatlichen Gegenden zurück.</p>
+      <p>Bald erhielt (Theodor) Gregor von Origenes ein Schreiben, in dem dieser ihn nachdrücklich ermahnte, seine Fähigkeiten, Kräfte und Kenntnisse dem Heil der eigenen Seele und dem Nutzen der Kirche zu widmen.</p>
+      <h3>Der Hirtendienst</h3>
+      <p>Nachdem er im Christentum verlässliche sittliche Orientierung gefunden hatte, beschloss Gregor nach dem Vorbild vieler großer Asketen, sich von der Eitelkeit der Welt zurückzuziehen und sein Leben dem Dienst an dem zu weihen, der in sich selbst das wahre Leben ist.</p>
+      <p>Um das Jahr 245 weihte der Bischof von Amaseia, Phedimus, ihn zum Bischof von Neocäsarea. Zunächst lehnte Gregor aus demütigem Bewusstsein der eigenen Unwürdigkeit rundweg ab, eine so hohe Würde und Auszeichnung anzunehmen.</p>
+      <p>Als Zeichen der Ablehnung und des Widerstrebens, den Bischofssitz einzunehmen, zog sich Gregor zurück, doch Phedimus sicherte sich gegen dessen Weigerung die Zustimmung Gottes. In der rechten Erkenntnis, dass der Herr ihn und Gregor gleichermaßen sieht, legte Phedimus, nachdem er gebetet hatte, Gregor das Wort statt der Hand auf und übertrug ihm die Leitung der Stadt.</p>
+      <p>Als er von dem Geschehenen erfuhr und wohl auch eine gnadenhafte Erleuchtung verspürte, war Gregor natürlich erstaunt. Einer solch außergewöhnlichen Einsetzung konnte er nicht widerstehen, denn das eine ist es, dem Bischof von Amaseia zu widersprechen, und etwas ganz anderes, dem Herrn des Bischofs zu widerstehen. Nachdem Gregor seine Zustimmung gegeben hatte, wurde er dem Kanon gemäß zum Hierarchen geweiht.</p>
+      <p>In der Ausübung seines Dienstes genoss Bischof Gregor bei seiner Herde außerordentlich tiefe Achtung und Autorität. Indessen übte die Kraft seines Wortes und seines persönlichen Beispiels eine gewaltige Wirkung nicht nur auf die Gläubigen, sondern auch auf die Heiden aus. Davon zeugt beredt die in der Überlieferung festgehaltene Tatsache: zu Beginn seines bischöflichen Dienstes befanden sich in der Stadt nur wenige Gläubige, und am Ende, als er suchte, ob es nicht noch jemanden gebe, der der Hinwendung zum Erlöser bedürfe, fand sich nur noch eine geringe Zahl von Verirrten.</p>
+      <p>Der Ruhm Gregors reichte weit über die Grenzen der Umgebung hinaus. Die heiligen Väter, die nach ihm lebten, nannten ihn mit Recht den Großen, den Berühmten. Wie aus dem im 5. Jahrhundert aufgekommenen Zusatz zu seinem Namen, „der Wundertäter“, hervorgeht, wurde er für die Heiligkeit seines Lebens von Gott auch der Gabe der Wundertaten gewürdigt.</p>
+      <p>Während der Verfolgung des Christentums unter Decius verbarg sich der heilige Gregor in kluger Vorsicht zusammen mit seiner Herde vor den Heiden in den umliegenden Bergen. Und Gott bewahrte ihn. Nach dem Ende der Verfolgung regte der Heilige an, die Praxis der Feiern zu Ehren der Märtyrer für Christus zu verbreiten.</p>
+      <p>Im Jahr 264 nahm Bischof Gregor an der Lokalsynode von Antiochia teil, die gegen den Häretiker Paulus von Samosata einberufen wurde, der über die Heiligste Dreifaltigkeit falsch lehrte und die göttliche Würde Jesu Christi leugnete.</p>
+      <p>Das genaue Todesdatum Gregors des Wundertäters ist uns nicht bekannt. Man nimmt an, dass er zwischen 270 und 275 im Herrn entschlief.</p>
+      <h2>Das literarische Erbe</h2>
+      <p>Trotz der reichen Predigttätigkeit des heiligen Gregor ist die Zahl der auf uns gekommenen schriftlichen Unterweisungen (deren Echtheit nicht bezweifelt wird) nicht groß.</p>
+      <p>Unter ihnen nimmt das nach ihm benannte Symbolum einen besonderen Platz ein (das Glaubensbekenntnis Gregors des Wundertäters, siehe: Darlegung des Glaubens).</p>
+      <p>Es gibt die Überlieferung, dass Gregor den Text dieser kurzen Darlegung der Glaubensdogmen vor seiner Erhebung auf den Stuhl von Neocäsarea empfangen habe. Einst, als er in einer menschenleeren Wüste im Gebet und im Nachdenken über Gott verweilte, traten zwei ungewöhnliche Menschen an ihn heran: ein ehrwürdiger Greis und eine lichtvolle Frau. Auf das Wort der Frau hin lehrte ihr Begleiter Gregor das Symbolum, das er später in der Gemeinde von Neocäsarea einführte. Unter der erschienenen Frau wird seit alters die Gottesgebärerin verstanden, unter dem Greis der Evangelist Johannes der Theologe.</p>
+      <p>Dieses Symbolum wurde von der Kirche seit frühen Zeiten als eine der besten Darlegungen der Glaubensdogmen verehrt.</p>
+      <p>Unter den übrigen Werken sind zu nennen: die Dankrede an Origenes, das kurze Wort an Tatian über die Seele, an Philagrios über die Wesensgleichheit, an Theopompos über die Möglichkeit und Unmöglichkeit des Leidens Gottes, die Kanonischen Regeln der Orthodoxen Kirche mit Erläuterungen. Die Regeln der heiligen Väter – der Kanonische Brief des heiligen Gregor von Neocäsarea aus dem Jahr 262, die ausführliche Darlegung des Glaubens, die Übertragung des Ecclesiastes.</p>
+      <h2>Hymnographie</h2>
+      <p><strong>Tropar an den heiligen Gregor den Wundertäter, Bischof von Neocäsarea, Ton 8</strong></p>
+      <blockquote><p>In Gebeten wachend, in Wundertaten ausharrend, / hast du den Namen der Wachsamkeit wahrhaft erlangt, / doch bete zu Christus Gott, Vater Gregor, // dass er unsere Seelen erleuchte, damit wir nicht einst im Tode entschlafen.</p></blockquote>
+      <p><strong>Kondak an den heiligen Hierarchen, Bischof von Neocäsarea, Ton 2</strong></p>
+      <blockquote><p>Die Wirkung vieler Wunder empfangend, / hast du durch furchtbare Zeichen die Dämonen erschreckt / und die menschlichen Gebrechen vertrieben, allweiser Gregor; / und du wirst „Wundertäter“ genannt, // die Benennung von den Werken empfangend.</p></blockquote>

@@ -14,6 +14,12 @@ translators:
     year: 1912
     status: pd
     evidence: "NK ČR: Ernst Klebba, 1871-1930"
+  - name: "Hermann Bourier"
+    dates: ""
+    works: ["Gregor der Wundertäter, Confessio fidei", "Gregor der Wundertäter, Lobrede auf Origenes"]
+    year: 1911
+    status: free_bkv
+    evidence: "BKV copyrights: тексты вне копирайта; издание 1911"
   - name: "Valentin Gröne"
     dates: "1817–1882"
     works: ["Hippolyt von Rom, De Christo et Antichristo"]

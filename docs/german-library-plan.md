@@ -266,5 +266,10 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   BKV 1872, пер. Valentin Gröne, 73 КБ; меню — «3. Jahrhundert» →
   «Exegetische Werke». Права: `pd`.
 
+- **Григорий Чудотворец** (`Gregor_der_Wundertäter`): автор — перевод RU,
+  обложка с RU; «Glaubensbekenntnis» (BKV 1911, пер. Hermann Bourier) и
+  «Lobrede auf Origenes» (19 глав); в «Werke» также заготовки
+  «Übertragung des Ekklesiastes» и «An Theopompus…», как в RU. Права: `free_bkv`.
+
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).
