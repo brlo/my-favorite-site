@@ -299,8 +299,9 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 
 - **Григорий Нисский** (`Gregor_von_Nyssa`): автор — перевод RU, обложка с RU;
   «Große Katechese» (41 гл., 167 КБ), «Abhandlung über die Ausstattung des
-  Menschen» (31 гл., 193 КБ), «Das Gebet des Herrn» (5 гл., 127 КБ);
-  меню — «4. Jahrhundert» → «Werke». Права: `free_bkv`/`pd`.
+  Menschen» (31 гл., 193 КБ), «Das Gebet des Herrn» (5 гл., 127 КБ),
+  «Acht Homilien über die acht Seligkeiten» (8 гл., 180 КБ), «Vita Macrinae»
+  (66 КБ), «Gespräch mit Makrina» (186 КБ); меню — «4. Jahrhundert» → «Werke». Права: `free_bkv`/`pd`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

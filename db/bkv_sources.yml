@@ -111,6 +111,9 @@ imported:
       - { work: "Oratio catechetica magna", url: "https://bkv.unifr.ch/de/works/cpg-3150/versions/grosse-katechese-bkv", page: "Gregor_Nyssa_Grosse_Katechese" }
       - { work: "De opificio hominis", url: "https://bkv.unifr.ch/de/works/cpg-3154/versions/abhandlung-uber-die-ausstattung-des-menschen-bkv", page: "Gregor_Nyssa_Ausstattung_des_Menschen" }
       - { work: "De oratione dominica", url: "https://bkv.unifr.ch/de/works/cpg-3160/versions/das-gebet-des-herrn-bkv", page: "Gregor_Nyssa_Gebet_des_Herrn" }
+      - { work: "De beatitudinibus", url: "https://bkv.unifr.ch/de/works/cpg-3161/versions/acht-homilien-uber-die-acht-seligkeiten-bkv", page: "Gregor_Nyssa_Seligkeiten" }
+      - { work: "Vita Macrinae", url: "https://bkv.unifr.ch/de/works/cpg-3166/versions/lebensbeschreibung-seiner-schwester-makrina-bkv", page: "Gregor_Nyssa_Makrina_Leben" }
+      - { work: "Dialogus de anima et resurrectione", url: "https://bkv.unifr.ch/de/works/cpg-3149/versions/gesprach-mit-makrina-uber-seele-und-auferstehung-bkv", page: "Gregor_Nyssa_Makrina_Gespraech" }
 
   - author: "Athanasius der Große"
     translator: "Anton Stegmann / Hans Mertel"

@@ -21,8 +21,14 @@ SOURCES = {
              'Heinrich Hand', 'BKV 1. Serie, Bd. 24, Kempten 1874'),
     'orat': ('Das Gebet des Herrn', 'https://bkv.unifr.ch/de/works/cpg-3160/versions/das-gebet-des-herrn-bkv',
              'Übersetzung der BKV-Ausgabe', 'BKV 1. Reihe, Bd. 56, Kempten/München 1927'),
+    'beat': ('Acht Homilien über die acht Seligkeiten', 'https://bkv.unifr.ch/de/works/cpg-3161/versions/acht-homilien-uber-die-acht-seligkeiten-bkv',
+             'Übersetzung der BKV-Ausgabe', 'BKV 1. Reihe, Bd. 56, Kempten/München 1927'),
+    'mak': ('Lebensbeschreibung seiner Schwester Makrina', 'https://bkv.unifr.ch/de/works/cpg-3166/versions/lebensbeschreibung-seiner-schwester-makrina-bkv',
+            'Übersetzung der BKV-Ausgabe', 'BKV 1. Reihe, Bd. 56, Kempten/München 1927'),
+    'dial': ('Gespräch mit Makrina über Seele und Auferstehung', 'https://bkv.unifr.ch/de/works/cpg-3149/versions/gesprach-mit-makrina-uber-seele-und-auferstehung-bkv',
+             'Übersetzung der BKV-Ausgabe', 'BKV 1. Reihe, Bd. 56, Kempten/München 1927'),
 }
-ORDINALS = {'Erste': 1, 'Zweite': 2, 'Dritte': 3, 'Vierte': 4, 'Fünfte': 5}
+ORDINALS = {'Erste': 1, 'Zweite': 2, 'Dritte': 3, 'Vierte': 4, 'Fünfte': 5, 'Sechste': 6, 'Siebte': 7, 'Achte': 8}
 
 
 def block(s):
@@ -54,6 +60,15 @@ def sections(key):
     return ''.join(parts)
 
 
+def plain(key):
+    with zipfile.ZipFile(os.path.join(TMP, 'nys_' + key + '.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    return ''.join(be.para_html(p) for p in doc.xpath('//p'))
+
+
 def source(key):
     title, url, translator, edition = SOURCES[key]
     return (f'<p><strong>Quelle:</strong> Übersetzung von {translator}, '
@@ -61,9 +76,9 @@ def source(key):
             f'<a href="{url}">bkv.unifr.ch</a>; die Anmerkungen der Ausgabe sind weggelassen.</p>')
 
 
-def page(src, path, title, key, priority):
+def page(src, path, title, key, priority, body=None):
     body = (f'<p><em>{title}, übersetzt von {SOURCES[key][2]} '
-            f'({SOURCES[key][3]}).</em></p>' + sections(key))
+            f'({SOURCES[key][3]}).</em></p>' + (body if body is not None else sections(key)))
     return f'''  - src: "{src}"
     path: "{path}"
     title: "{title}"
@@ -77,6 +92,9 @@ def page(src, path, title, key, priority):
 
 
 def main():
+    beat = sections('beat')
+    mak = plain('mak')
+    dial = plain('dial')
     author_html = open(AUTHOR, encoding='utf-8').read().strip()
     author = f'''# Григорий Нисский: страница автора (немецкая библиотека)
 # Сборка: script/translations/de/build_nyssa.py
@@ -107,6 +125,9 @@ pages:
 {page('L4vk_Большое_огласительное_слово', 'Gregor_Nyssa_Grosse_Katechese', 'Große Katechese', 'kate', 1)}
 {page('UXHY_Об_устроении_человека', 'Gregor_Nyssa_Ausstattung_des_Menschen', 'Abhandlung über die Ausstattung des Menschen', 'opif', 2)}
 {page('URHE_Беседы_о_молитве_Господней', 'Gregor_Nyssa_Gebet_des_Herrn', 'Das Gebet des Herrn', 'orat', 3)}
+{page('1zoP_Беседы_о_блаженствах', 'Gregor_Nyssa_Seligkeiten', 'Acht Homilien über die acht Seligkeiten', 'beat', 4)}
+{page('0Tjh_Послание_о_жизни_преподобной_Макрины', 'Gregor_Nyssa_Makrina_Leben', 'Lebensbeschreibung seiner Schwester Makrina', 'mak', 5, mak)}
+{page('aCO3_О_душе_и_воскресении_Диалог_с_сестрой_Макриной', 'Gregor_Nyssa_Makrina_Gespraech', 'Gespräch mit Makrina über Seele und Auferstehung', 'dial', 6, dial)}
 '''
     for name, text in (('nyssa_author.yml', author), ('nyssa_works.yml', works)):
         path = os.path.join(DB, name)
