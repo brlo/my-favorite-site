@@ -27,6 +27,9 @@ SOURCES = {
     'uxor': ('An die Gattin', 'https://bkv.unifr.ch/de/works/cpl-12/versions/tert-uxor-bkv'),
     'iud': ('Gegen die Juden', 'https://bkv.unifr.ch/de/works/cpl-33/versions/gegen-die-juden-bkv'),
     'spec': ('Über die Schauspiele', 'https://bkv.unifr.ch/de/works/cpl-6/versions/uber-die-schauspiele-bkv'),
+    'mart': ('An die Märtyrer', 'https://bkv.unifr.ch/de/works/cpl-1/versions/tert-mart-bkv'),
+    'scap': ('An Scapula', 'https://bkv.unifr.ch/de/works/cpl-24/versions/an-scapula-bkv'),
+    'test': ('Das Zeugnis der Seele', 'https://bkv.unifr.ch/de/works/cpl-4/versions/das-zeugnis-der-seele-bkv'),
 }
 
 
@@ -120,6 +123,9 @@ pages:
 {page('wUzN_Послание_к_жене', 'Tertullian_Ad_uxorem', 'An die Gattin', 'uxor', 13, uxor_sections())}
 {page('oZSL_Против_иудеев', 'Tertullian_Adversus_Iudaeos', 'Gegen die Juden', 'iud', 14)}
 {page('Vyit_О_зрелищах', 'Tertullian_De_spectaculis', 'Über die Schauspiele', 'spec', 15)}
+{page('WbSq_Послание_к_мученикам', 'Tertullian_Ad_martyres', 'An die Märtyrer', 'mart', 16)}
+{page('wb6X_К_Скапуле', 'Tertullian_Ad_Scapulam', 'An Scapula', 'scap', 17)}
+{page('JYEk_О_свидетельстве_души', 'Tertullian_De_testimonio_animae', 'Das Zeugnis der Seele', 'test', 18)}
 '''
     for name, text in (('tert_author.yml', author), ('tert_works.yml', works)):
         path = os.path.join(DB, name)
