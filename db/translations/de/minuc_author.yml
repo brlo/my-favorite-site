@@ -12,4 +12,4 @@ pages:
     menu: { parent: "3. Jahrhundert", title: "Minucius Felix († um 250)", replace: "Minucius Felix († um 250)", priority: 3 }
     update: true
     body: |-
-      <h2>Biographie</h2><p>Der Lateiner Marcus Minucius Felix wurde in Afrika als Heide geboren. Er erhielt eine gute rhetorische Ausbildung und wurde römischer Anwalt. Er bekehrte sich erst im reifen Alter zum Christentum, erschüttert durch die erhabene Lehre des Evangeliums und den Mut der christlichen Märtyrer.</p>
+      <h2>Biographie</h2><p>Der lateinische Schriftsteller Marcus Minucius Felix wurde in Afrika als Heide geboren. Er erhielt eine gute rhetorische Ausbildung und wurde römischer Anwalt. Er bekehrte sich erst im reifen Alter zum Christentum, erschüttert durch die erhabene Lehre des Evangeliums und den Mut der christlichen Märtyrer.</p>

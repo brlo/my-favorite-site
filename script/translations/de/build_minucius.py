@@ -8,7 +8,7 @@ SRC = os.path.join(ROOT, 'tmp', 'de_bkv', 'out', 'minuc.html')
 
 AUTHOR = (
     '<h2>Biographie</h2>'
-    '<p>Der Lateiner Marcus Minucius Felix wurde in Afrika als Heide geboren. '
+    '<p>Der lateinische Schriftsteller Marcus Minucius Felix wurde in Afrika als Heide geboren. '
     'Er erhielt eine gute rhetorische Ausbildung und wurde römischer Anwalt. '
     'Er bekehrte sich erst im reifen Alter zum Christentum, erschüttert durch die '
     'erhabene Lehre des Evangeliums und den Mut der christlichen Märtyrer.</p>'
@@ -23,7 +23,7 @@ SOURCE = (
     '<em>Frühchristliche Apologeten</em> (Bibliothek der Kirchenväter, 1. Reihe, Bd. 14), '
     'München 1913. Text nach '
     '<a href="https://bkv.unifr.ch/de/works/cpl-37/versions/dialog-octavius-bkv">bkv.unifr.ch</a>; '
-    'die Anmerkungen der Ausgabe sind weggelassen.</p>'
+    'die Anmerkungen der Ausgabe sind weggelassen. Die Schlussbemerkungen (in der russischen Ausgabe Kap. 41) stehen in der BKV-Ausgabe am Ende von Kap. 40.</p>'
 )
 
 
