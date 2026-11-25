@@ -1,0 +1,15 @@
+# Феофил Антиохийский: страница автора (немецкая библиотека)
+# Сборка: script/translations/de/build_theophilus.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "Феофил_Антиохийский"
+    path: "Theophilus_von_Antiochien"
+    title: "Theophilus von Antiochien, 2. Jh."
+    title_sub: "Heiliger, christlicher Schriftsteller, Apologet und Polemiker († 183)"
+    menu: { parent: "2. Jahrhundert", title: "Theophilus von Antiochien, Heiliger († 183)", replace: "Theophilus von Antiochien, Heiliger († 183)", priority: 3 }
+    update: true
+    body: |-
+      <h2>Biographie</h2><p>Gedenktag: 13. (26.) Oktober</p><p>Theophilus von Antiochien (griech. Θεόφιλος Αντιοχείας) wurde in Syrien geboren. Nach der «Kirchengeschichte» des Eusebius war Theophilus der sechste Bischof von Antiochien nach den Aposteln.</p><p>Er stammte aus einer heidnischen Familie. Er war ein gut gebildeter Mann und studierte die griechische Literatur. Das zeigt sich in seiner einzigen erhaltenen Schrift (An Autolykus): Er zitiert Dichter, Historiker und heidnische Philosophen. Vor seiner Annahme des Christentums studierte er die Bücher des Alten Testaments (vor allem die prophetischen). Danach überzeugte er sich von der unbestreitbaren Überlegenheit des Christentums über andere Religionen. Auf ähnlichen Wegen kamen auch seine Zeitgenossen Justin der Philosoph, Athenagoras von Athen und Tatian zum Christentum. Als Heide war Theophilus ein erbitterter Gegner des Christentums; nachdem er den christlichen Glauben angenommen hatte, wurde er zu dessen eifrigem Verteidiger und Bekenner.</p><p>Er hatte den antiochenischen Stuhl 168 inne. Wie lange Theophilus Bischof war, ist nicht genau bekannt. Bekannt ist, dass er während der Regierung des römischen Kaisers Commodus, in den 80er Jahren des zweiten Jahrhunderts, starb.</p><p>Leider sind alle zahlreichen Schriften des Theophilus verloren gegangen. Bekannt ist nur, dass darunter Schriften gegen Häretiker (Gnostizismus, die Lehre Markions), gegen Heiden sowie apologetische und polemische Schriften waren.</p><p>Den Begriff «Trinität» verwendete in seinen Schriften als erster Theophilus: «Die drei Tage [der Schöpfung]», sagt der Apologet, «die vor [der Erschaffung] der Gestirne waren, sind Bilder der Trinität (τύποι είσι της τριάδος): Gottes, seines Wortes und seiner Weisheit».</p>

@@ -30,5 +30,5 @@ translators:
     dates: ""
     works: ["Theophilus von Antiochien, Ad Autolycum"]
     year: 1913
-    status: check
-    evidence: "дата смерти не подтверждена"
+    status: free_bkv
+    evidence: "BKV copyrights: тексты вне копирайта; издание 1913"
