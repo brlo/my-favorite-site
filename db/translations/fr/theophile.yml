@@ -8,36 +8,30 @@ pages:
   - src: "Феофил_Антиохийский"
     path: "Théophile_d_Antioche"
     title: "Théophile d’Antioche, IIe siècle"
-    title_sub: "Évêque d’Antioche, apologète († vers 183)"
-    meta_desc: "Théophile d’Antioche, évêque et apologète du IIe siècle : sa vie, son enseignement sur la Trinité et ses trois livres À Autolyque."
-    menu: { parent: "IIe siècle", title: "Théophile d’Antioche", replace: "Théophile d'Antioche, saint (†183)", priority: 2 }
+    title_sub: "saint, écrivain chrétien, apologète et polémiste (†183)"
+    meta_desc: ""
+    menu: { parent: "IIe siècle", title: "Théophile d'Antioche, saint (†183)", replace: "Théophile d'Antioche, saint (†183)", priority: 2 }
     update: true
     body: |-
-      <p>La section des œuvres de Théophile d’Antioche <strong>en grec</strong> se trouve <a href="https://bibleox.com/fr/grc/w/fZzL_%CE%98%CE%B5%CF%8C%CF%86%CE%B9%CE%BB%CE%BF%CF%82_%CE%BF_%CE%91%CE%BD%CF%84%CE%B9%CE%BF%CF%87%CE%B5%CE%AF%CE%B1%CF%82_2%CE%BF%CF%82_%CE%B1%CE%B9%CF%8E%CE%BD%CE%B1%CF%82">ici</a>. Les autres langues se changent au-dessus de la liste des œuvres.</p>
+      <h2>Biographie</h2>
 
-      <p><strong>Mémoire</strong> : 13 (26) octobre</p>
+      <p>Mémoire : 13 (26) octobre</p>
 
-      <h2>Vie</h2>
+      <p>Théophile d’Antioche (en grec Θεόφιλος Ἀντιοχείας) naquit en Syrie. Selon l’« Histoire ecclésiastique » d’Eusèbe, Théophile fut le sixième évêque d’Antioche après les apôtres.</p>
 
-      <p>Théophile d’Antioche (en grec Θεόφιλος Ἀντιοχείας) naquit en Syrie, dans une famille païenne. Selon l’« Histoire ecclésiastique » d’Eusèbe de Césarée, il fut le sixième évêque d’Antioche après les apôtres. Homme cultivé, formé à la littérature grecque, il cite dans son unique ouvrage conservé les poètes, les historiens et les philosophes païens. Avant sa conversion, il étudia surtout les livres prophétiques de l’Ancien Testament et fut convaincu de la supériorité du christianisme. D’abord adversaire acharné de la foi, il en devint ensuite un défenseur ardent.</p>
+      <p>Il était issu d’une famille païenne. Homme cultivé, il étudia la littérature grecque. Cela se voit dans son unique ouvrage conservé (À Autolyque) : il y cite les poètes, les historiens et les philosophes païens. Avant d’embrasser le christianisme, il étudia les livres de l’Ancien Testament (surtout les prophétiques). Il fut ensuite convaincu de la supériorité incontestable du christianisme sur les autres religions. Ses contemporains Justin le Philosophe, Athénagore d’Athènes et Tatien parvinrent au christianisme par des chemins semblables. Païen, Théophile était un adversaire acharné du christianisme ; ayant embrassé la foi chrétienne, il en devint un défenseur et un confesseur fervent.</p>
 
-      <p>Il occupa le siège d’Antioche à partir de 168. On ignore combien de temps il fut évêque ; il mourut sous l’empereur Commode, dans les années 180.</p>
+      <p>Il occupa le siège d’Antioche en 168. On ne sait pas exactement combien de temps Théophile fut évêque. On sait qu’il mourut sous le règne de l’empereur romain Commode, dans les années 180.</p>
 
-      <p>Tous ses nombreux écrits — contre les hérétiques (gnosticisme, marcionisme), contre les païens, apologies et traités polémiques — ont été perdus, à l’exception des trois livres <em>À Autolyque</em>. C’est dans cet ouvrage qu’apparaît pour la première fois le mot « Trinité » :</p>
+      <p>Malheureusement, tous les nombreux écrits de Théophile ont été perdus. On sait seulement que, parmi eux, se trouvaient des écrits contre les hérétiques (le gnosticisme, la doctrine de Marcion), contre les païens, des écrits apologétiques et polémiques.</p>
 
-      <blockquote><p>Les trois jours qui précédèrent les corps lumineux sont l’image de la Trinité, c’est-à-dire de Dieu, de son Verbe et de son Esprit. (<a href="https://bibleox.com/fr/fr/w/Theophile_A_Autolyque#HH-2">À Autolyque, livre II</a>)</p></blockquote>
-
-      <h2>À Autolyque</h2>
-
-      <p>L’ouvrage est adressé à un païen cultivé, Autolyque, qui raillait les chrétiens et leur Dieu invisible. Théophile lui répond en trois livres : le premier traite de la connaissance de Dieu et de la résurrection, le deuxième de la création du monde et de l’Écriture, le troisième de la supériorité de la loi chrétienne sur la philosophie païenne. C’est un témoignage important sur la foi de l’Église du II<sup>e</sup> siècle et sur la lecture chrétienne de l’Ancien Testament.</p>
-
-      <blockquote><p>Pour moi, je n’adore point l’empereur, je me contente de l’honorer et de prier pour lui ; mais j’adore le Dieu véritable, l’être par excellence, parce que je sais que c’est lui qui fait les rois. (<a href="https://bibleox.com/fr/fr/w/Theophile_A_Autolyque#HH-1">À Autolyque, livre I</a>)</p></blockquote>
+      <p>C’est Théophile qui, le premier, employa le terme « Trinité » dans ses écrits : « Les trois jours [de la création], — dit l’apologète, — qui précédèrent [la création] des luminaires, sont les figures de la Trinité (τύποι είσι της τριάδος) : Dieu, son Verbe et sa Sagesse. »</p>
 
   - src: "Феофил-послание_к_Автолику"
     path: "Theophile_A_Autolyque"
     title: "À Autolyque"
     meta_desc: "Trois livres à Autolyque de Théophile d’Antioche, traduction de M. de Genoude (1838)."
-    menu: { parent: "IIe siècle/Théophile d’Antioche", title: "À Autolyque", priority: 1 }
+    menu: { parent: "IIe siècle/Théophile d'Antioche, saint (†183)", title: "À Autolyque", priority: 1 }
     update: true
     body: |-
       <p><em>Trois livres à Autolyque, traduction de M. de Genoude (1838).</em></p>

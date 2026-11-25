@@ -1,0 +1,19 @@
+# Немецкий раздел «Труды...»: перевод русского эталона church_writers
+# Загрузка: bin/rails pages:import_translations FILE=db/translations/de/section.yml PUBLISH=1
+lang: de
+list: links_de
+pages:
+  - src: "church_writers"
+    path: "Kirchenvaeter"
+    title: "Werke der alten heiligen Väter und Kirchenlehrer"
+    title_sub: ""
+    meta_desc: ""
+    update: true
+    body: |-
+      <p>In diesem Bereich werden die Werke der alten heiligen Väter und Kirchenlehrer gesammelt. Die Texte sind in verschiedenen Sprachen verfügbar und werden hier nach und nach durch die Bemühungen mehrerer Mitarbeiter zusammengetragen.</p>
+
+      <p><strong>Zur Orientierung: die Sprachkarte von Byzanz um 550 n. Chr. und die Karte der Völker dieser Region.</strong></p>
+
+      <img src="https://res.bibleox.com/s/img/image/simple/461/s_p_sYyLFdrdKPtsXa2W.jpg"><p>[<a href="https://res.bibleox.com/s/img/image/simple/461/m_p_sYyLFdrdKPtsXa2W.jpg">größer</a>]</p>
+
+      <img src="https://res.bibleox.com/s/img/image/simple/460/s_p_1X8UML3idrzBfeo3.jpg"><p>[<a href="https://res.bibleox.com/s/img/image/simple/460/m_p_1X8UML3idrzBfeo3.jpg">größer</a>]</p>

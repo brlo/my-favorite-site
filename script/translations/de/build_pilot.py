@@ -69,6 +69,9 @@ def page_yaml(page, first=False):
     lines.append('    update: true')
     lines.append('    body: |-')
     lines.append(yaml_block(page['body']))
+    if page.get('references'):
+        lines.append('    references: |-')
+        lines.append(yaml_block(page['references']))
     return '\n'.join(lines)
 
 
@@ -95,7 +98,7 @@ def main():
         'path': 'Klemens_von_Rom',
         'title': 'Klemens von Rom, 1. Jh.',
         'title_sub': 'Hieromärtyrer († um 101), Bischof von Rom, Schüler der Apostel',
-        'meta_desc': 'Klemens von Rom, Hieromärtyrer und Bischof von Rom, Schüler der Apostel: sein Leben, das Zeugnis des Irenäus von Lyon und seine Lehre über Glaube und Werke.',
+        'meta_desc': 'Klemens von Rom, Hieromärtyrer, Bischof von Rom, einer der Männer der apostolischen Zeit († um 101).',
         'menu': {'parent': '1. Jahrhundert', 'title': 'Klemens von Rom', 'priority': 1},
         'body': author_body('klemens.html'),
     }
@@ -129,9 +132,10 @@ def main():
         'path': 'Ignatius_von_Antiochien',
         'title': 'Ignatius von Antiochien, 1. Jh.',
         'title_sub': 'Hieromärtyrer (um 35–107), Bischof von Antiochien, Gottesträger',
-        'meta_desc': 'Ignatius von Antiochien, Hieromärtyrer und Bischof von Antiochien: sein Leben, seine sieben Briefe und sein Zeugnis für die Einheit der Kirche.',
+        'meta_desc': 'Hieromärtyrer (um 35–107), Bischof von Antiochien.',
         'menu': {'parent': '1. Jahrhundert', 'title': 'Ignatius von Antiochien', 'priority': 2},
         'body': author_body('ignatius.html'),
+        'references': '<ol><li><p><a href="https://bibleox.com/de/de/w/IgnAnt_Rom#HH-4">Ignatius von Antiochien, Brief an die Römer, Kap. 4, 3</a></p></li></ol>',
     }
     ign_links = [
         ('ИгнАн_Еф', 'IgnAnt_Eph', 'An die Epheser', 'ign-ignatius-an-die-epheser', 1),
@@ -161,7 +165,7 @@ def main():
         'path': 'Polykarp_von_Smyrna',
         'title': 'Polykarp von Smyrna, 1.–2. Jh.',
         'title_sub': 'Hieromärtyrer (69–155), Bischof von Smyrna, Schüler des Apostels Johannes',
-        'meta_desc': 'Polykarp von Smyrna, Hieromärtyrer und Bischof von Smyrna, Schüler des Apostels Johannes: sein Leben, sein Brief an die Philipper und sein Martyrium.',
+        'meta_desc': 'Polykarp, Bischof von Smyrna, Hieromärtyrer (69–155), Schüler des Johannes des Theologen.',
         'menu': {'parent': '2. Jahrhundert', 'title': 'Polykarp von Smyrna', 'priority': 1},
         'body': author_body('polykarp.html'),
     }

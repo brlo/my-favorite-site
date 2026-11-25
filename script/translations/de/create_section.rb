@@ -37,12 +37,14 @@ else
   puts "создана страница: #{list.path} (id #{list.id})"
 end
 
-menu = ::Menu.find_by(page_id: links.id, title: '📚 Schriften der alten Christen')
+menu_title = '📚 Werke der alten heiligen Väter und Kirchenlehrer'
+menu = ::Menu.find_by(page_id: links.id, path: list.path) ||
+       ::Menu.find_by(page_id: links.id, title: '📚 Schriften der alten Christen')
 if menu.nil?
-  puts 'ВНИМАНИЕ: не найден пункт меню «📚 Schriften der alten Christen»'
-elsif menu.path != list.path
-  menu.update!(path: list.path)
-  puts "пункт меню обновлён: #{menu.title} -> #{list.path}"
+  puts 'ВНИМАНИЕ: не найден пункт меню раздела отцов'
+elsif menu.path != list.path || menu.title != menu_title
+  menu.update!(path: list.path, title: menu_title)
+  puts "пункт меню обновлён: #{menu_title} -> #{list.path}"
 else
   puts "пункт меню уже ведёт на #{list.path}"
 end
