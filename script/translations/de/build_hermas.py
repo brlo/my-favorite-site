@@ -24,7 +24,7 @@ PREFACE = (
 )
 
 SOURCE = (
-    '<hr><p><strong>Quelle:</strong> Übersetzung von Franz Zeller, '
+    '<p><strong>Quelle:</strong> Übersetzung von Franz Zeller, '
     '<em>Der Hirte des Hermas</em> (Bibliothek der Kirchenväter, 1. Reihe, Bd. 35), '
     'München 1918. Text nach '
     '<a href="https://bkv.unifr.ch/de/works/cpg-1052/versions/der-hirte-des-hermas-bkv">bkv.unifr.ch</a>; '
@@ -53,7 +53,7 @@ def work_body():
 
 
 def main():
-    work = work_body() + SOURCE
+    work = work_body()
     work = PREFACE + work
     works = f'''# Пастырь Ерма (немецкая библиотека)
 # Сборка: script/translations/de/build_hermas.py
@@ -70,6 +70,8 @@ pages:
     update: true
     body: |-
 {block(work)}
+    references: |-
+{block(SOURCE)}
 '''
     path = os.path.join(DB, 'herm_works.yml')
     open(path, 'w', encoding='utf-8').write(works)

@@ -19,7 +19,7 @@ WORK_INTRO = (
     '(Bibliothek der Kirchenväter, 1. Reihe, Bd. 14, München 1913).</em></p>'
 )
 SOURCE = (
-    '<hr><p><strong>Quelle:</strong> Übersetzung von Dr. Alfons Müller, '
+    '<p><strong>Quelle:</strong> Übersetzung von Dr. Alfons Müller, '
     '<em>Frühchristliche Apologeten</em> (Bibliothek der Kirchenväter, 1. Reihe, Bd. 14), '
     'München 1913. Text nach '
     '<a href="https://bkv.unifr.ch/de/works/cpl-37/versions/dialog-octavius-bkv">bkv.unifr.ch</a>; '
@@ -66,7 +66,9 @@ pages:
     menu: {{ title: "Octavius", priority: 1 }}
     update: true
     body: |-
-{block(WORK_INTRO + body + SOURCE)}
+{block(WORK_INTRO + body)}
+    references: |-
+{block(SOURCE)}
 '''
     for name, text in (('minuc_author.yml', author), ('minuc_works.yml', works)):
         path = os.path.join(DB, name)

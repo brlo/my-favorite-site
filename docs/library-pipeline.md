@@ -49,6 +49,8 @@ bin/rails pages:import_translations FILE=... PUBLISH=1
 
 ## 4. Метаданные — существующими скриптами
 
+Источник/переводчик — в `references`, не в `body` после `<hr>`.
+
 | Что | Чем |
 |---|---|
 | Обложка (+ оверлеи) | `copy_cover: true` в YAML автора или `script/translations/copy_covers.rb LANG` |

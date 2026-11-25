@@ -10,7 +10,7 @@ PARENT = (
     '<p>Hier werden die Werke unbekannter Autoren des 2. Jahrhunderts gesammelt.</p>'
 )
 SOURCE = (
-    '<hr><p><strong>Quelle:</strong> Übersetzung von Dr. Gerhard Rauschen, '
+    '<p><strong>Quelle:</strong> Übersetzung von Dr. Gerhard Rauschen, '
     '<em>Brief an Diognet</em> (Bibliothek der Kirchenväter, 1. Reihe, Bd. 12), '
     'München 1913. Text nach '
     '<a href="https://bkv.unifr.ch/de/works/cpg-1108/versions/brief-an-diognet-bkv">bkv.unifr.ch</a>; '
@@ -54,7 +54,9 @@ pages:
     menu: {{ parent: "Briefe", title: "Brief an Diognet", priority: 1 }}
     update: true
     body: |-
-{block('<p><em>Brief an Diognet, übersetzt von Dr. Gerhard Rauschen (Bibliothek der Kirchenväter, 1. Reihe, Bd. 12, München 1913).</em></p>' + body + SOURCE)}
+{block('<p><em>Brief an Diognet, übersetzt von Dr. Gerhard Rauschen (Bibliothek der Kirchenväter, 1. Reihe, Bd. 12, München 1913).</em></p>' + body)}
+    references: |-
+{block(SOURCE)}
 '''
     for name, text in (('diog_parent.yml', parent), ('diog_works.yml', works)):
         path = os.path.join(DB, name)

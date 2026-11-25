@@ -41,7 +41,7 @@ AUTHOR = (
 )
 
 SOURCE = (
-    '<hr><p><strong>Quelle:</strong> Übersetzung von J. Leitl, '
+    '<p><strong>Quelle:</strong> Übersetzung von J. Leitl, '
     '<em>Frühchristliche Apologeten</em> (Bibliothek der Kirchenväter, 1. Reihe, Bd. 14), '
     'München 1913. Text nach '
     '<a href="https://bkv.unifr.ch/de/works/cpg-1107/versions/an-autolykus-bkv">bkv.unifr.ch</a>; '
@@ -103,7 +103,9 @@ pages:
     menu: {{ title: "An Autolykus", priority: 1 }}
     update: true
     body: |-
-{block(work_body() + SOURCE)}
+{block(work_body())}
+    references: |-
+{block(SOURCE)}
 '''
     for name, text in (('theoph_author.yml', author), ('theoph_works.yml', works)):
         path = os.path.join(DB, name)

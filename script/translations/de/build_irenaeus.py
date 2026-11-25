@@ -67,17 +67,17 @@ def demonstratio():
 def source(kind, book=None):
     if kind == 'contra':
         label = f'Gegen die Häresien, Buch {book}'
-        return (f'<hr><p><strong>Quelle:</strong> Übersetzung von E. Klebba, '
+        return (f'<p><strong>Quelle:</strong> Übersetzung von E. Klebba, '
                 f'<em>{label}</em> (Bibliothek der Kirchenväter, 1. Reihe, Bd. 3–4), '
                 f'München 1912. Text nach <a href="{CONTRA_URL}">bkv.unifr.ch</a>; '
                 f'die Anmerkungen der Ausgabe sind weggelassen.</p>')
-    return (f'<hr><p><strong>Quelle:</strong> Übersetzung von E. Klebba, '
+    return (f'<p><strong>Quelle:</strong> Übersetzung von E. Klebba, '
             f'<em>Erweis der apostolischen Verkündigung</em> (Bibliothek der Kirchenväter, '
             f'1. Reihe, Bd. 4), München 1912. Text nach '
             f'<a href="{DEM_URL}">bkv.unifr.ch</a>; die Anmerkungen der Ausgabe sind weggelassen.</p>')
 
 
-def work_page(src, path, title, body, menu_title, priority):
+def work_page(src, path, title, body, menu_title, priority, refs):
     return f'''  - src: "{src}"
     path: "{path}"
     title: "{title}"
@@ -85,6 +85,8 @@ def work_page(src, path, title, body, menu_title, priority):
     update: true
     body: |-
 {block(body)}
+    references: |-
+{block(refs)}
 '''
 
 
@@ -99,7 +101,7 @@ def main():
         if preface:
             body += '<h2>0</h2>' + ''.join(preface)
         body += ''.join(f'<h2>{n}</h2>{text}' for n, text in chapters)
-        body += source('contra', i)
+        refs = source('contra', i)
         print(f'  Buch {i}: {len(chapters)} Kapitel, {len(body)} байт')
         ru_path = ('Ириней_Лионский-Против_ересей' if i == 1 else
                    'Ириней_Лионский-Против_Ересей-2' if i == 2 else
@@ -107,17 +109,18 @@ def main():
         parts.append(work_page(ru_path,
                                f'Irenaeus_Gegen_die_Haeresien_{i}',
                                f'Gegen die Häresien — Buch {i}',
-                               body, f'Gegen die Häresien — Buch {i}', i))
+                               body, f'Gegen die Häresien — Buch {i}', i, refs))
 
     dem = demonstratio()
     dem_body = (f'<p><em>Erweis der apostolischen Verkündigung, übersetzt von E. Klebba '
                 f'(Bibliothek der Kirchenväter, 1. Reihe, Bd. 4, München 1912).</em></p>'
-                + dem + source('dem'))
+                + dem)
+    dem_refs = source('dem')
     print(f'  Demonstratio: {len(dem)} байт')
     parts.append(work_page('Ириней_Лионский-Доказательство_апостольской_проповеди',
                            'Irenaeus_Demonstratio',
                            'Erweis der apostolischen Verkündigung',
-                           dem_body, 'Erweis der apostolischen Verkündigung', 6))
+                           dem_body, 'Erweis der apostolischen Verkündigung', 6, dem_refs))
 
     works = ('# Ириней Лионский: труды (немецкая библиотека)\n'
              '# Сборка: script/translations/de/build_irenaeus.py\n\n'

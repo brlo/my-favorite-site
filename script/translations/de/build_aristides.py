@@ -54,7 +54,7 @@ AUTHOR = (
 )
 
 SOURCE = (
-    '<hr><p><strong>Quelle:</strong> Übersetzung von Dr. Kaspar Julius, '
+    '<p><strong>Quelle:</strong> Übersetzung von Dr. Kaspar Julius, '
     '<em>Apologie</em> (Bibliothek der Kirchenväter, 1. Reihe, Bd. 12), München 1913. '
     'Text nach <a href="https://bkv.unifr.ch/de/works/cpg-1062/versions/apologie-bkv">bkv.unifr.ch</a>; '
     'die Anmerkungen der Ausgabe sind weggelassen.</p>'
@@ -73,7 +73,7 @@ def main():
     body = open(SRC, encoding='utf-8').read().strip().replace('<h2>0</h2>', '')
     work = ('<p><em>Apologie, übersetzt von Dr. Kaspar Julius '
             '(Bibliothek der Kirchenväter, 1. Reihe, Bd. 12, München 1913).</em></p>'
-            + body + SOURCE)
+            + body)
     author = f'''# Аристид Афинский: страница автора (немецкая библиотека)
 # Сборка: script/translations/de/build_aristides.py
 
@@ -104,6 +104,8 @@ pages:
     update: true
     body: |-
 {block(work)}
+    references: |-
+{block(SOURCE)}
 '''
     for name, text in (('arist_author.yml', author), ('arist_works.yml', works)):
         path = os.path.join(DB, name)

@@ -8,7 +8,7 @@ SRC = os.path.join(ROOT, 'tmp', 'de_bkv', 'out', 'barn.html')
 AUTHOR = os.path.join(ROOT, 'script', 'translations', 'de', 'authors', 'barnabas.html')
 
 SOURCE = (
-    '<hr><p><strong>Quelle:</strong> Übersetzung von Franz Zeller, '
+    '<p><strong>Quelle:</strong> Übersetzung von Franz Zeller, '
     '<em>Barnabasbrief</em> (Bibliothek der Kirchenväter, 1. Reihe, Bd. 35), '
     'München 1918. Text nach '
     '<a href="https://bkv.unifr.ch/de/works/cpg-1050/versions/barnabasbrief-bkv">bkv.unifr.ch</a>; '
@@ -24,7 +24,7 @@ def main():
     body = open(SRC, encoding='utf-8').read().strip()
     work = ('<p><em>Barnabasbrief, übersetzt von Franz Zeller '
             '(Bibliothek der Kirchenväter, 1. Reihe, Bd. 35, München 1918).</em></p>'
-            + body + SOURCE)
+            + body)
     author_html = open(AUTHOR, encoding='utf-8').read().strip()
     author = f'''# Варнава, апостол: страница автора (немецкая библиотека)
 # Сборка: script/translations/de/build_barnabas.py
@@ -57,6 +57,8 @@ pages:
     update: true
     body: |-
 {block(work)}
+    references: |-
+{block(SOURCE)}
 '''
     for name, text in (('barn_author.yml', author), ('barn_works.yml', works)):
         path = os.path.join(DB, name)

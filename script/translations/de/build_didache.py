@@ -12,7 +12,7 @@ PARENT = (
     'werden dieser Seite zugeordnet.</p>'
 )
 SOURCE = (
-    '<hr><p><strong>Quelle:</strong> Übersetzung von Franz Zeller, '
+    '<p><strong>Quelle:</strong> Übersetzung von Franz Zeller, '
     '<em>Lehre der zwölf Apostel</em> (Bibliothek der Kirchenväter, 1. Reihe, Bd. 35), '
     'München 1918. Text nach '
     '<a href="https://bkv.unifr.ch/de/works/cpg-1753/versions/didache-lehre-der-zwolf-apostel-bkv">bkv.unifr.ch</a>; '
@@ -28,7 +28,7 @@ def main():
     body = open(SRC, encoding='utf-8').read().strip().replace('<h2>0</h2>', '')
     work = (f'<p><em>Lehre der zwölf Apostel, übersetzt von Franz Zeller '
             f'(Bibliothek der Kirchenväter, 1. Reihe, Bd. 35, München 1918).</em></p>'
-            + body + SOURCE)
+            + body)
     parent = f'''# Труды I века неизвестных авторов (немецкая библиотека)
 # Сборка: script/translations/de/build_didache.py
 # После импорта меню (категории «Unterweisungen»/«Übriges») правит
@@ -62,6 +62,8 @@ pages:
     update: true
     body: |-
 {block(work)}
+    references: |-
+{block(SOURCE)}
 '''
     for name, text in (('did_parent.yml', parent), ('did_works.yml', works)):
         path = os.path.join(DB, name)
