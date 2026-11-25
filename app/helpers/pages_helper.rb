@@ -33,10 +33,19 @@ module PagesHelper
   # или начинаются с одного слова и номера части («Глава 1», «Книга IV»),
   # то это переключатель частей одного материала, а не похожие страницы.
   def similar_materials_part?(chapters)
+    similar_materials_part_without_word?(chapters) || similar_materials_worded_part?(chapters)
+  end
+
+  # Пункты-номера без слов: #1, #2, «— 3 —»
+  def similar_materials_part_without_word?(chapters)
+    chapters.present? && chapters.all? { |title, _path, _gold| title.to_s.strip.match?(/\A[^\p{L}]+\z/) }
+  end
+
+  # Пункты с общим первым словом и номером части: «Глава 1», «Книга IV», «Liber 7 (1/2)»
+  def similar_materials_worded_part?(chapters)
     return false if chapters.blank?
 
     titles = chapters.map { |title, _path, _gold| title.to_s.strip }
-    return true if titles.all? { |title| title.match?(/\A[^\p{L}]+\z/) }
     return false if titles.any?(&:blank?)
 
     first_word = titles.first[FIRST_TITLE_WORD]&.downcase
@@ -45,6 +54,12 @@ module PagesHelper
     titles.all? do |title|
       title[FIRST_TITLE_WORD]&.downcase == first_word && title.sub(FIRST_TITLE_WORD, '').match?(PART_NUMBER)
     end
+  end
+
+  # Подпись «Часть» сверху нужна только пунктам-номерам: если у пунктов есть общее слово,
+  # оно уже видно в списке и подпись лишь дублировала бы его.
+  def similar_materials_title_needed?(chapters)
+    !similar_materials_worded_part?(chapters)
   end
 
   def similar_materials_title(chapters)

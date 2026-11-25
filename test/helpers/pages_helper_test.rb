@@ -27,6 +27,9 @@ class PagesHelperTest < ActionView::TestCase
     assert similar_materials_part?([['Liber 7 (1/2)', 'one', false], ['Liber 7 (2/2)', 'two', false]])
     assert similar_materials_part?([['Слово 1-е, о законе', 'one', false], ['Слово 2-е, о молитве', 'two', false]])
     assert similar_materials_part?([['глава 1', 'one', false], ['Глава 2', 'two', false]])
+
+    assert similar_materials_worded_part?([['Глава 1', 'one', false], ['Глава 2', 'two', false]])
+    refute similar_materials_worded_part?([['#1', 'one', false], ['2', 'two', false]])
   end
 
   test "similar materials are not parts when a common word is not followed by a number" do
@@ -34,5 +37,12 @@ class PagesHelperTest < ActionView::TestCase
     refute similar_materials_part?([['The Didache', 'one', false], ['The Life of Paulus', 'two', false]])
     refute similar_materials_part?([['Глава 1', 'one', false], ['Глава вторая', 'two', false]])
     refute similar_materials_part?([['Глава 1', 'one', false], ['Предисловие', 'two', false]])
+  end
+
+  test "parts label is shown only when titles have no common word" do
+    assert similar_materials_title_needed?([['#1', 'one', false], ['2', 'two', false]])
+    assert similar_materials_title_needed?([['Введение', 'one', false], ['Обзор', 'two', false]])
+    refute similar_materials_title_needed?([['Глава 1', 'one', false], ['Глава 2', 'two', false]])
+    refute similar_materials_title_needed?([['Книга I', 'one', false], ['Книга II', 'two', false]])
   end
 end

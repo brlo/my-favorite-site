@@ -462,8 +462,12 @@ class PagesControllerTest < ActionDispatch::IntegrationTest
 
     assert_response :success
     assert_select '#chapter-header #links-sub ~ .similar-materials'
-    assert_select '.same-subject-static', text: 'Часть'
-    assert_select '.same-subject-toggle span', text: 'Часть'
+    assert_select '.menu-tree .items .menu-link', count: 3
+    # у пунктов есть общее слово, поэтому подпись «Часть» не дублируем
+    assert_select '.same-subject-static', count: 0
+    assert_select '.same-subject-toggle span', count: 0
+    assert_select 'button.same-subject-toggle[aria-label="Часть"]'
+    assert_select 'button.same-subject-toggle svg.same-subject-chevron'
   end
 
   test "list page shows its tree menu with visit counters" do

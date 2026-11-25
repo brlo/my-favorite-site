@@ -1,12 +1,17 @@
 <% centered = local_assigns.fetch(:centered, false) %>
+<% show_title = similar_materials_title_needed?(@chapters) %>
+<% label = similar_materials_title(@chapters) %>
 <div class="menu-tree <%= 'similar-materials' if centered %> collapsed" dir="<%= content_direction %>"
      data-controller="auto-collapse" data-auto-collapse-max-rows-value="2">
   <button type="button" class="bar-description same-subject-toggle" aria-expanded="false" aria-controls="same-subject-list" hidden
+          <% unless show_title %>aria-label="<%= label %>"<% end %>
           data-auto-collapse-target="button" data-action="auto-collapse#toggle">
-    <span><%= similar_materials_title(@chapters) %></span>
+    <% if show_title %><span><%= label %></span><% end %>
     <svg class="same-subject-chevron" width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6l5 5 5-5"/></svg>
   </button>
-  <div class="bar-description same-subject-static" data-auto-collapse-target="static"><%= similar_materials_title(@chapters) %></div>
+  <% if show_title %>
+    <div class="bar-description same-subject-static" data-auto-collapse-target="static"><%= label %></div>
+  <% end %>
   <div class="items" id="same-subject-list" data-auto-collapse-target="content">
     <% @chapters.each.with_index do |(title, path, is_gold), i| %>
       <% classes = "menu-unit menu-link" %>
