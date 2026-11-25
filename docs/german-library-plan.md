@@ -275,8 +275,10 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   (11 КБ), обложка с RU; три трактата BKV 1918, пер. Julius Baer:
   «Über die Einheit der katholischen Kirche» (48 КБ), «Über die Sterblichkeit»
   (37 КБ), «Über Eifersucht und Neid» (28 КБ), «Über die Gefallenen» (60 КБ),
-  «Über das Gebet des Herrn» (55 КБ), «Über gute Werke und Almosen» (45 КБ);
-  меню — «3. Jahrhundert» → «Abhandlungen». Права: `free_bkv`.
+  «Über das Gebet des Herrn» (55 КБ), «Über gute Werke und Almosen» (45 КБ),
+  «An Demetrianus» (44 КБ), «Vom Segen der Geduld» (39 КБ), «Über die Haltung
+  der Jungfrauen» (38 КБ); меню — «3. Jahrhundert» → «Briefe»/«Abhandlungen»,
+  недостающие труды — заготовками, как в RU. Права: `free_bkv`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

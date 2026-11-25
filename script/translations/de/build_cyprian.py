@@ -20,6 +20,9 @@ SOURCES = {
     'laps': ('Über die Gefallenen', 'https://bkv.unifr.ch/de/works/cpl-42/versions/uber-die-gefallenen-bkv'),
     'orat': ('Über das Gebet des Herrn', 'https://bkv.unifr.ch/de/works/cpl-43/versions/uber-das-gebet-des-herrn-bkv'),
     'opere': ('Über gute Werke und Almosen', 'https://bkv.unifr.ch/de/works/cpl-47/versions/uber-gute-werke-und-almosen-bkv'),
+    'demet': ('An Demetrianus', 'https://bkv.unifr.ch/de/works/cpl-46/versions/an-demetrianus-bkv'),
+    'pat': ('Vom Segen der Geduld', 'https://bkv.unifr.ch/de/works/cpl-48/versions/vom-segen-der-geduld-bkv'),
+    'virg': ('Über die Haltung der Jungfrauen', 'https://bkv.unifr.ch/de/works/cpl-40/versions/uber-die-haltung-der-jungfrauen-bkv'),
 }
 
 
@@ -94,6 +97,9 @@ pages:
 {page('02jQL1xq_Книга_о_падших__Киприан_Карфагенский', 'Cyprian_De_lapsis', 'Über die Gefallenen', 'laps', 'Über die Gefallenen', 7)}
 {page('hag3Fns9_О_молитве_Господней__Киприан_Карфагенский', 'Cyprian_De_orations', 'Über das Gebet des Herrn', 'orat', 'Über das Gebet des Herrn', 8)}
 {page('sgL9EHzT_Книга_о_благотворении_и_милостынях__Киприан_Карфагенский', 'Cyprian_De_opere', 'Über gute Werke und Almosen', 'opere', 'Über gute Werke und Almosen', 10)}
+{page('GPb0Tnh8_Книга_к_Деметриану__Киприан_Карфагенский', 'Cyprian_Ad_Demetrianum', 'An Demetrianus', 'demet', 'An Demetrianus', 2)}
+{page('nMFHuImz_Книга_о_благе_терпения__Киприан_Карфагенский', 'Cyprian_De_bono_patientiae', 'Vom Segen der Geduld', 'pat', 'Vom Segen der Geduld', 11)}
+{page('qEs7HBOd_Книга_об_одежде_девствениц__Киприан_Карфагенский', 'Cyprian_De_habitu_virginum', 'Über die Haltung der Jungfrauen', 'virg', 'Über die Haltung der Jungfrauen', 6)}
 '''
     for name, text in (('cyp_author.yml', author), ('cyp_works.yml', works)):
         path = os.path.join(DB, name)
