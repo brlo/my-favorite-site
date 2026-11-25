@@ -82,6 +82,20 @@ CONFIG.each do |lang, pairs|
     dst_list_menu = ::Menu.find_by(page_id: dst.parent_id, path: dst.path)
     copy_menu_gold(src_list_menu, dst_list_menu, is_dry_run)
 
+    # место автора/раздела: папка-век в меню списка должна совпадать с RU.
+    # Папки-века в разных языках имеют один и тот же priority (1 — I век, 2 — II…).
+    if src_list_menu&.parent_id && dst_list_menu
+      src_parent = ::Menu.find_by(id: src_list_menu.parent_id)
+      if src_parent && src_parent.path.blank?
+        dst_parent = ::Menu.where(page_id: dst.parent_id, path: [nil, ''])
+                           .find_by(priority: src_parent.priority)
+        if dst_parent && dst_list_menu.parent_id != dst_parent.id
+          puts "  меню: перенос в «#{dst_parent.title}»"
+          dst_list_menu.update!(parent_id: dst_parent.id) unless is_dry_run
+        end
+      end
+    end
+
     # пункты в меню самой страницы (труды автора)
     next unless src.page_type.to_i == ::Page::PAGE_TYPES['список'] && dst.page_type.to_i == ::Page::PAGE_TYPES['список']
 

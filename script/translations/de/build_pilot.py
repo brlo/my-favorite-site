@@ -166,7 +166,7 @@ def main():
         'title': 'Polykarp von Smyrna, 1.–2. Jh.',
         'title_sub': 'Hieromärtyrer (69–155), Bischof von Smyrna, Schüler des Apostels Johannes',
         'meta_desc': 'Polykarp, Bischof von Smyrna, Hieromärtyrer (69–155), Schüler des Johannes des Theologen.',
-        'menu': {'parent': '2. Jahrhundert', 'title': 'Polykarp von Smyrna', 'priority': 1},
+        'menu': {'parent': '1. Jahrhundert', 'title': 'Polykarp von Smyrna', 'priority': 3},
         'body': author_body('polykarp.html'),
     }
     with open(os.path.join(WORKS, 'martyrdom.html'), encoding='utf-8') as f:

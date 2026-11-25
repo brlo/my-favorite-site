@@ -11,7 +11,7 @@ pages:
     title: "Polykarp von Smyrna, 1.–2. Jh."
     title_sub: "Hieromärtyrer (69–155), Bischof von Smyrna, Schüler des Apostels Johannes"
     meta_desc: "Polykarp, Bischof von Smyrna, Hieromärtyrer (69–155), Schüler des Johannes des Theologen."
-    menu: { parent: "2. Jahrhundert", title: "Polykarp von Smyrna", priority: 1 }
+    menu: { parent: "1. Jahrhundert", title: "Polykarp von Smyrna", priority: 3 }
     update: true
     body: |-
       <p>Den Bereich mit den Werken des Polykarp von Smyrna <strong>in griechischer Sprache</strong> finden Sie <a href="https://bibleox.com/de/grc/w/%CE%A0%CE%BF%CE%BB%CF%8D%CE%BA%CE%B1%CF%81%CF%80%CE%BF%CF%82_%CE%A3%CE%BC%CF%8D%CF%81%CE%BD%CE%B7%CF%82/">hier</a>. Die Umschaltung auf andere Sprachen ist ebenfalls oben über der Werkliste möglich.</p>
