@@ -27,6 +27,12 @@ SOURCES = {
               'Übersetzung der BKV-Ausgabe', 'BKV 1. Reihe, Bd. 13, Kempten/München 1913'),
     'apol': ('Schutzschrift gegen die Arianer', 'https://bkv.unifr.ch/de/works/cpg-2123/versions/des-hl-athanasius-schutzschrift-gegen-die-arianer-bkv',
              'Jos. Fisch', 'BKV 1. Serie, Bd. 29, Kempten 1875'),
+    'niz': ('Über die Beschlüsse der Synode von Nizäa', 'https://bkv.unifr.ch/de/works/cpg-2120/versions/uber-die-beschlusse-der-synode-von-nizaa-bkv',
+            'Übersetzung des 19. Jahrhunderts', 'BKV 1. Serie, Bd. 14, Kempten 1836'),
+    'syn': ('Abhandlung über die Synoden zu Rimini und Seleucia', 'https://bkv.unifr.ch/de/works/cpg-2128/versions/abhandlung-uber-die-synoden-zu-rimini-in-italien-und-zu-seleucia-in-isaurien-bkv',
+            'Übersetzung des 19. Jahrhunderts', 'BKV 1. Serie, Bd. 16, Kempten 1836'),
+    'afr': ('Brief an die Bischöfe in Afrika', 'https://bkv.unifr.ch/de/works/cpg-2133/versions/brief-an-die-bischofe-in-afrika-bkv',
+            'Übersetzung des 19. Jahrhunderts', 'BKV 1. Serie, Bd. 17, Kempten 1837'),
 }
 
 
@@ -84,6 +90,9 @@ def main():
     hist = open(os.path.join(OUT, 'ath_hist.html'), encoding='utf-8').read().strip()
     serap = letters('serap')
     apol = open(os.path.join(OUT, 'ath_apol.html'), encoding='utf-8').read().strip()
+    niz = paragraphs('niz')
+    syn = paragraphs('syn')
+    afr = paragraphs('afr')
     author_html = open(AUTHOR, encoding='utf-8').read().strip()
     author = f'''# Афанасий Великий: страница автора (немецкая библиотека)
 # Сборка: script/translations/de/build_athanasius.py
@@ -117,6 +126,9 @@ pages:
 {page('1wPr_История_ариан', 'Athanasius_Geschichte_der_Arianer', 'Geschichte der Arianer', 'hist', '<p><em>Geschichte der Arianer, BKV 1. Serie, Bd. 15, Kempten 1836.</em></p>' + hist, 4)}
 {page('Послания_к_Серапиону_епископу_Тмуисскому', 'Athanasius_Briefe_an_Serapion', 'Vier Briefe an Serapion von Thmuis', 'serap', '<p><em>Vier Briefe an Serapion von Thmuis, BKV 1. Reihe, Bd. 13, Kempten/München 1913.</em></p>' + serap, 5)}
 {page('tm9D_Защитительное_слово_против_ариан', 'Athanasius_Schutzschrift_gegen_die_Arianer', 'Schutzschrift gegen die Arianer', 'apol', '<p><em>Schutzschrift gegen die Arianer, übersetzt von Jos. Fisch (BKV 1. Serie, Bd. 29, Kempten 1875).</em></p>' + apol, 6)}
+{page('pEW1_Послание_о_постановлениях_Никейского_Собора', 'Athanasius_Nizaea', 'Über die Beschlüsse der Synode von Nizäa', 'niz', '<p><em>Über die Beschlüsse der Synode von Nizäa, BKV 1. Serie, Bd. 14, Kempten 1836.</em></p>' + niz, 7)}
+{page('6daQ_Послание_о_Соборах_бывших_в_Аримине_италийском_и_в_Селевкии_исаврийской', 'Athanasius_Synoden', 'Abhandlung über die Synoden zu Rimini und Seleucia', 'syn', '<p><em>Abhandlung über die Synoden zu Rimini und Seleucia, BKV 1. Serie, Bd. 16, Kempten 1836.</em></p>' + syn, 8)}
+{page('qO9Y_Послание_к_Епископам_африканским', 'Athanasius_Afrikanische_Bischöfe', 'Brief an die Bischöfe in Afrika', 'afr', '<p><em>Brief an die Bischöfe in Afrika, BKV 1. Serie, Bd. 17, Kempten 1837.</em></p>' + afr, 9)}
 '''
     for name, text in (('athan_author.yml', author), ('athan_works.yml', works)):
         path = os.path.join(DB, name)

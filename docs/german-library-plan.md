@@ -292,7 +292,9 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Gegen die Heiden» (132 КБ), «Über die Menschwerdung des Logos» (147 КБ),
   «Leben des heiligen Antonius» (139 КБ), «Geschichte der Arianer» (147 КБ),
   «Vier Briefe an Serapion» (177 КБ), «Schutzschrift gegen die Arianer»
-  (222 КБ); меню — «4. Jahrhundert» → «Werke».
+  (222 КБ), «Über die Beschlüsse der Synode von Nizäa» (96 КБ), «Über die
+  Synoden zu Rimini und Seleucia» (155 КБ), «Brief an die Bischöfe in Afrika»
+  (28 КБ); меню — «4. Jahrhundert» → «Werke».
   Права: `free_bkv`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),

@@ -114,6 +114,9 @@ imported:
       - { work: "Historia Arianorum", url: "https://bkv.unifr.ch/de/works/cpg-2127/versions/geschichte-der-arianer-bkv", page: "Athanasius_Geschichte_der_Arianer" }
       - { work: "Epistulae ad Serapion", url: "https://bkv.unifr.ch/de/works/cpg-2094/versions/vier-briefe-an-serapion-v-thmuis-bkv", page: "Athanasius_Briefe_an_Serapion" }
       - { work: "Apologia contra Arianos", url: "https://bkv.unifr.ch/de/works/cpg-2123/versions/des-hl-athanasius-schutzschrift-gegen-die-arianer-bkv", page: "Athanasius_Schutzschrift_gegen_die_Arianer" }
+      - { work: "De decretis Nicaenae synodi", url: "https://bkv.unifr.ch/de/works/cpg-2120/versions/uber-die-beschlusse-der-synode-von-nizaa-bkv", page: "Athanasius_Nizaea" }
+      - { work: "De synodis", url: "https://bkv.unifr.ch/de/works/cpg-2128/versions/abhandlung-uber-die-synoden-zu-rimini-in-italien-und-zu-seleucia-in-isaurien-bkv", page: "Athanasius_Synoden" }
+      - { work: "Epistula ad Afros", url: "https://bkv.unifr.ch/de/works/cpg-2133/versions/brief-an-die-bischofe-in-afrika-bkv", page: "Athanasius_Afrikanische_Bischöfe" }
 
   - author: "Eusebius von Cäsarea"
     translator: "Phil. Häuser"
