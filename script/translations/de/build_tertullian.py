@@ -12,6 +12,9 @@ SOURCES = {
     'caro': ('Über den Leib Christi', 'https://bkv.unifr.ch/de/works/cpl-18/versions/uber-den-leib-christi-bkv'),
     'res': ('Über die Auferstehung des Fleisches', 'https://bkv.unifr.ch/de/works/CPL-19/versions/uber-die-auferstehung-des-fleisches-bkv'),
     'anima': ('Über die Seele', 'https://bkv.unifr.ch/de/works/cpl-17/versions/uber-die-seele-bkv'),
+    'prax': ('Gegen Praxeas', 'https://bkv.unifr.ch/de/works/cpl-26/versions/gegen-praxeas-bkv'),
+    'apol': ('Apologeticum', 'https://bkv.unifr.ch/de/works/cpl-3/versions/apologetikum-bkv'),
+    'bapt': ('Über die Taufe', 'https://bkv.unifr.ch/de/works/cpl-8/versions/uber-die-taufe-bkv'),
 }
 
 
@@ -73,6 +76,9 @@ pages:
 {page('aI3W_О_плоти_Христа', 'Tertullian_De_carne_Christi', 'Über den Leib Christi', 'caro', 1)}
 {page('pdqe_О_воскресении_плоти', 'Tertullian_De_resurrectione_carnis', 'Über die Auferstehung des Fleisches', 'res', 2)}
 {page('XyG2_О_душе_1', 'Tertullian_De_anima', 'Über die Seele', 'anima', 3)}
+{page('Enzr_Против_Праксея', 'Tertullian_Adversus_Praxean', 'Gegen Praxeas', 'prax', 4)}
+{page('cjtQ_Апологетик', 'Tertullian_Apologeticum', 'Apologeticum', 'apol', 5)}
+{page('9JXy_О_крещении', 'Tertullian_De_baptismo', 'Über die Taufe', 'bapt', 6)}
 '''
     for name, text in (('tert_author.yml', author), ('tert_works.yml', works)):
         path = os.path.join(DB, name)

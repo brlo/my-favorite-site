@@ -305,7 +305,8 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 
 - **Тертуллиан** (`Tertullian`): автор — перевод RU (60 КБ), обложка с RU;
   BKV/Кельн 1882, пер. K. A. H. Kellner: «Über den Leib Christi» (25 гл.),
-  «Über die Auferstehung des Fleisches» (63 гл.), «Über die Seele» (58 гл.);
+  «Über die Auferstehung des Fleisches» (63 гл.), «Über die Seele» (58 гл.),
+  «Gegen Praxeas» (31 гл.), «Apologeticum» (48 гл.), «Über die Taufe» (20 гл.);
   меню — «2. Jahrhundert» → «Werke». Права: `pd`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),

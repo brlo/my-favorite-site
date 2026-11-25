@@ -111,6 +111,9 @@ imported:
       - { work: "De carne Christi", url: "https://bkv.unifr.ch/de/works/cpl-18/versions/uber-den-leib-christi-bkv", page: "Tertullian_De_carne_Christi" }
       - { work: "De resurrectione carnis", url: "https://bkv.unifr.ch/de/works/CPL-19/versions/uber-die-auferstehung-des-fleisches-bkv", page: "Tertullian_De_resurrectione_carnis" }
       - { work: "De anima", url: "https://bkv.unifr.ch/de/works/cpl-17/versions/uber-die-seele-bkv", page: "Tertullian_De_anima" }
+      - { work: "Adversus Praxean", url: "https://bkv.unifr.ch/de/works/cpl-26/versions/gegen-praxeas-bkv", page: "Tertullian_Adversus_Praxean" }
+      - { work: "Apologeticum", url: "https://bkv.unifr.ch/de/works/cpl-3/versions/apologetikum-bkv", page: "Tertullian_Apologeticum" }
+      - { work: "De baptismo", url: "https://bkv.unifr.ch/de/works/cpl-8/versions/uber-die-taufe-bkv", page: "Tertullian_De_baptismo" }
 
   - author: "Gregor von Nyssa"
     translator: "BKV-Ausgabe / Heinrich Hand"
