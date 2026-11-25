@@ -1,0 +1,13 @@
+# Труды II века неизвестных авторов (немецкая библиотека)
+# Сборка: script/translations/de/build_diognetus.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "Труды_II_века_неизвестных_авторов"
+    path: "Werke_unbekannter_Autoren_des_2_Jahrhunderts"
+    title: "Werke unbekannter Autoren des 2. Jahrhunderts"
+    update: true
+    body: |-
+      <p>Hier werden die Werke unbekannter Autoren des 2. Jahrhunderts gesammelt.</p>

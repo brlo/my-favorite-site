@@ -26,6 +26,12 @@ translators:
     year: 1919
     status: check
     evidence: "дата смерти не найдена"
+  - name: "Gerhard Rauschen"
+    dates: ""
+    works: ["Diognet, Brief an Diognet"]
+    year: 1913
+    status: free_bkv
+    evidence: "BKV copyrights: тексты вне копирайта; издание 1913"
   - name: "Franz Zeller"
     dates: ""
     works: ["Barnabas, Barnabasbrief", "Didache, Lehre der zwölf Apostel"]

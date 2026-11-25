@@ -246,5 +246,10 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Werke unbekannter Autoren» → «Übriges» (прямая ссылка). Меню правит
   `script/translations/de/unknown_authors_menu.rb`. Права: `free_bkv`.
 
-Осталось из партии 1: Варнава, Дидахе, Ерм, Диогнет, Аристид (тексты BKV есть),
+- **Диогнет** (`Diognetus_Brief`): «Brief an Diognet», BKV 1913, пер. Gerhard
+  Rauschen, 12 глав; страница «Werke unbekannter Autoren des 2. Jahrhunderts»
+  (перевод RU) с категориями «Briefe»/«Schriften». Как в RU, отдельного пункта
+  в главном меню библиотеки нет. Права: `free_bkv`.
+
+Осталось из партии 1: Ерм, Папий, Кодрат (тексты BKV есть),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

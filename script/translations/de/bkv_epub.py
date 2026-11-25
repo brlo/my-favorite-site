@@ -34,6 +34,7 @@ SOURCES = {
     'ign': {'mode': 'letters'},
     'minuc': {'mode': 'chapters'},
     'arist': {'mode': 'chapters'},
+    'diog': {'mode': 'chapters'},
     'barn': {'mode': 'chapters'},
     'did': {'mode': 'chapters'},
 }
