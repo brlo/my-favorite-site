@@ -14,6 +14,12 @@ translators:
     year: 1912
     status: pd
     evidence: "NK ČR: Ernst Klebba, 1871-1930"
+  - name: "Karl Adam Heinrich Kellner"
+    dates: "1811–1893"
+    works: ["Tertullian, De carne Christi", "Tertullian, De resurrectione carnis", "Tertullian, De anima"]
+    year: 1882
+    status: pd
+    evidence: "издание 1882"
   - name: "Heinrich Hand"
     dates: ""
     works: ["Gregor von Nyssa, De opificio hominis"]

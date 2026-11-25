@@ -1,0 +1,84 @@
+#!/usr/bin/env python3
+"""Сборка немецкого Тертуллиана: автор + три трактата (Kellner 1882)."""
+import os
+import sys
+
+ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
+DB = os.path.join(ROOT, 'db', 'translations', 'de')
+OUT = os.path.join(ROOT, 'tmp', 'de_bkv', 'out')
+AUTHOR = os.path.join(ROOT, 'script', 'translations', 'de', 'authors', 'tertullian.html')
+
+SOURCES = {
+    'caro': ('Über den Leib Christi', 'https://bkv.unifr.ch/de/works/cpl-18/versions/uber-den-leib-christi-bkv'),
+    'res': ('Über die Auferstehung des Fleisches', 'https://bkv.unifr.ch/de/works/CPL-19/versions/uber-die-auferstehung-des-fleisches-bkv'),
+    'anima': ('Über die Seele', 'https://bkv.unifr.ch/de/works/cpl-17/versions/uber-die-seele-bkv'),
+}
+
+
+def block(s):
+    return '\n'.join('      ' + line if line else '' for line in s.split('\n'))
+
+
+def source(key):
+    title, url = SOURCES[key]
+    return (f'<p><strong>Quelle:</strong> Übersetzung von Karl Adam Heinrich Kellner, '
+            f'<em>{title}</em> (Tertullians sämtliche Schriften, Köln 1882). '
+            f'Text nach <a href="{url}">bkv.unifr.ch</a>; die Anmerkungen der Ausgabe '
+            f'sind weggelassen.</p>')
+
+
+def page(src, path, title, key, priority):
+    body = (f'<p><em>{title}, übersetzt von Karl Adam Heinrich Kellner (Köln 1882).</em></p>'
+            + open(os.path.join(OUT, 'tert_' + key + '.html'), encoding='utf-8').read().strip())
+    return f'''  - src: "{src}"
+    path: "{path}"
+    title: "{title}"
+    menu: {{ parent: "Werke", title: "{title}", priority: {priority} }}
+    update: true
+    body: |-
+{block(body)}
+    references: |-
+{block(source(key))}
+'''
+
+
+def main():
+    author_html = open(AUTHOR, encoding='utf-8').read().strip()
+    author = f'''# Тертуллиан: страница автора (немецкая библиотека)
+# Сборка: script/translations/de/build_tertullian.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "тертуллиан"
+    path: "Tertullian"
+    title: "Tertullian, 2.–3. Jh."
+    title_sub: "(~155–220) einer der hervorragenden frühchristlichen Schriftsteller, Apologeten und Polemiker. Begründete die lateinische Patristik und die kirchliche Latinität. Später neigte er zur montanistischen Häresie."
+    copy_cover: true
+    menu: {{ parent: "2. Jahrhundert", title: "Tertullian (~155–220)", replace: "Tertullian (~155–220)", priority: 20 }}
+    update: true
+    body: |-
+{block(author_html)}
+'''
+    works = f'''# Тертуллиан: труды (немецкая библиотека)
+# Сборка: script/translations/de/build_tertullian.py
+
+lang: de
+list: "Tertullian"
+folders:
+  - {{ path: "Werke", priority: 1 }}
+pages:
+
+{page('aI3W_О_плоти_Христа', 'Tertullian_De_carne_Christi', 'Über den Leib Christi', 'caro', 1)}
+{page('pdqe_О_воскресении_плоти', 'Tertullian_De_resurrectione_carnis', 'Über die Auferstehung des Fleisches', 'res', 2)}
+{page('XyG2_О_душе_1', 'Tertullian_De_anima', 'Über die Seele', 'anima', 3)}
+'''
+    for name, text in (('tert_author.yml', author), ('tert_works.yml', works)):
+        path = os.path.join(DB, name)
+        open(path, 'w', encoding='utf-8').write(text)
+        print('написан', os.path.relpath(path, ROOT), os.path.getsize(path), 'байт')
+
+
+if __name__ == '__main__':
+    main()

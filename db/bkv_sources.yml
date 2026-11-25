@@ -103,6 +103,15 @@ imported:
       - { work: "De habitu virginum", url: "https://bkv.unifr.ch/de/works/cpl-40/versions/uber-die-haltung-der-jungfrauen-bkv", page: "Cyprian_De_habitu_virginum" }
       - { work: "Ad Demetrianum", url: "https://bkv.unifr.ch/de/works/cpl-46/versions/an-demetrianus-bkv", page: "Cyprian_Ad_Demetrianum" }
 
+  - author: "Tertullian"
+    translator: "Karl Adam Heinrich Kellner"
+    edition: "Tertullians sämtliche Schriften, Köln 1882"
+    rights: pd
+    works:
+      - { work: "De carne Christi", url: "https://bkv.unifr.ch/de/works/cpl-18/versions/uber-den-leib-christi-bkv", page: "Tertullian_De_carne_Christi" }
+      - { work: "De resurrectione carnis", url: "https://bkv.unifr.ch/de/works/CPL-19/versions/uber-die-auferstehung-des-fleisches-bkv", page: "Tertullian_De_resurrectione_carnis" }
+      - { work: "De anima", url: "https://bkv.unifr.ch/de/works/cpl-17/versions/uber-die-seele-bkv", page: "Tertullian_De_anima" }
+
   - author: "Gregor von Nyssa"
     translator: "BKV-Ausgabe / Heinrich Hand"
     edition: "BKV 1. Reihe, Bd. 56 (1927); Bd. 24 (1874)"

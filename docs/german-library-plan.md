@@ -303,5 +303,10 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Acht Homilien über die acht Seligkeiten» (8 гл., 180 КБ), «Vita Macrinae»
   (66 КБ), «Gespräch mit Makrina» (186 КБ); меню — «4. Jahrhundert» → «Werke». Права: `free_bkv`/`pd`.
 
+- **Тертуллиан** (`Tertullian`): автор — перевод RU (60 КБ), обложка с RU;
+  BKV/Кельн 1882, пер. K. A. H. Kellner: «Über den Leib Christi» (25 гл.),
+  «Über die Auferstehung des Fleisches» (63 гл.), «Über die Seele» (58 гл.);
+  меню — «2. Jahrhundert» → «Werke». Права: `pd`.
+
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).
