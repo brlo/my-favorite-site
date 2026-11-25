@@ -39,6 +39,15 @@ CONFIG.each do |lang, authors|
       next
     end
 
+    if author.seo_kind != 'person'
+      if is_dry_run
+        puts "[DRY RUN] #{lang}/#{author_path}: seo_kind -> person"
+      else
+        author.update!(seo_kind: 'person')
+        puts "#{lang}/#{author_path}: seo_kind -> person"
+      end
+    end
+
     list = author.parent
     item = ::Menu.find_by(page_id: list&.id, path: author.path)
     unless item
