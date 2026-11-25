@@ -280,5 +280,12 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   der Jungfrauen» (38 КБ); меню — «3. Jahrhundert» → «Briefe»/«Abhandlungen»,
   недостающие труды — заготовками, как в RU. Права: `free_bkv`.
 
+- **Евсевий Кесарийский** (`Eusebius_von_Cäsarea`): автор — перевод RU
+  (2,5 КБ); «Kirchengeschichte» BKV 1932, пер. Phil. Häuser, 10 книг
+  (`Eusebius_Kirchengeschichte_1…10`); меню — «4. Jahrhundert» → «Geschichte»
+  → «Kirchengeschichte» + заготовки «Chronik» и «Leben des Kaisers Konstantin».
+  Права: `free_bkv`.
+  Реестр источников (включая будущего Оригена): `db/bkv_sources.yml`.
+
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

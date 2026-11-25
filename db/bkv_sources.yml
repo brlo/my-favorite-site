@@ -1,0 +1,135 @@
+# Реестр источников BKV для немецкой библиотеки.
+# Здесь — откуда берутся тексты, чтобы можно было вернуться и добрать
+# пропущенное (например, Оригена), не разыскивая заново.
+#
+# Каталог: https://bkv.unifr.ch/de/works
+# Метаданные версий: tmp/bkv/versions.json (script/translations/bkv/versions.py)
+# Права: db/bkv_translators.yml; BKV: https://bkv.unifr.ch/about/copyrights
+# У каждого импортированного труда ссылка на BKV также стоит в его references.
+
+imported:
+  - author: "Minucius Felix"
+    translator: "Alfons Müller"
+    edition: "BKV 1. Reihe, Bd. 14, München 1913"
+    rights: free_bkv
+    works:
+      - { work: "Octavius", url: "https://bkv.unifr.ch/de/works/cpl-37/versions/dialog-octavius-bkv", page: "MinFl_Octavius" }
+
+  - author: "Theophilus von Antiochien"
+    translator: "J. Leitl"
+    edition: "BKV 1. Reihe, Bd. 14, München 1913"
+    rights: free_bkv
+    works:
+      - { work: "Ad Autolycum", url: "https://bkv.unifr.ch/de/works/cpg-1107/versions/an-autolykus-bkv", page: "Theophilus_Autolykus" }
+
+  - author: "Irenäus von Lyon"
+    translator: "E. Klebba"
+    edition: "BKV 1. Reihe, Bd. 3–4, München 1912"
+    rights: pd
+    works:
+      - { work: "Contra Haereses I–V", url: "https://bkv.unifr.ch/de/works/cpg-1306/versions/gegen-die-haeresien-bkv", page: "Irenaeus_Gegen_die_Haeresien_1 … _5" }
+      - { work: "Demonstratio", url: "https://bkv.unifr.ch/de/works/cpg-1307/versions/erweis-der-apostolischen-verkundigung-bkv", page: "Irenaeus_Demonstratio" }
+
+  - author: "Aristides von Athen"
+    translator: "Kaspar Julius"
+    edition: "BKV 1. Reihe, Bd. 12, München 1913"
+    rights: free_bkv
+    works:
+      - { work: "Apologia", url: "https://bkv.unifr.ch/de/works/cpg-1062/versions/apologie-bkv", page: "Aristides_Apologie" }
+
+  - author: "Didache"
+    translator: "Franz Zeller"
+    edition: "BKV 1. Reihe, Bd. 35, München 1918"
+    rights: free_bkv
+    works:
+      - { work: "Doctrina XII apostolorum", url: "https://bkv.unifr.ch/de/works/cpg-1753/versions/didache-lehre-der-zwolf-apostel-bkv", page: "Didache_Lehre_der_zwolf_Apostel" }
+
+  - author: "Barnabas"
+    translator: "Franz Zeller"
+    edition: "BKV 1. Reihe, Bd. 35, München 1918"
+    rights: free_bkv
+    works:
+      - { work: "Epistula Barnabae", url: "https://bkv.unifr.ch/de/works/cpg-1050/versions/barnabasbrief-bkv", page: "Barnabasbrief" }
+
+  - author: "Diognet"
+    translator: "Gerhard Rauschen"
+    edition: "BKV 1. Reihe, Bd. 12, München 1913"
+    rights: free_bkv
+    works:
+      - { work: "Epistula ad Diognetum", url: "https://bkv.unifr.ch/de/works/cpg-1108/versions/brief-an-diognet-bkv", page: "Diognetus_Brief" }
+
+  - author: "Hermas"
+    translator: "Franz Zeller"
+    edition: "BKV 1. Reihe, Bd. 35, München 1918"
+    rights: free_bkv
+    works:
+      - { work: "Pastor Hermae", url: "https://bkv.unifr.ch/de/works/cpg-1052/versions/der-hirte-des-hermas-bkv", page: "Hirte_des_Hermas" }
+
+  - author: "Athenagoras von Athen"
+    translator: "Anselm Eberhard"
+    edition: "BKV 1. Reihe, Bd. 12, München 1913"
+    rights: free_bkv
+    works:
+      - { work: "Supplicatio", url: "https://bkv.unifr.ch/de/works/cpg-1070/versions/bittschrift-fur-die-christen-bkv", page: "Athenagoras_Bittschrift" }
+      - { work: "De resurrectione", url: "https://bkv.unifr.ch/de/works/cpg-1071/versions/uber-die-auferstehung-der-toten-bkv", page: "Athenagoras_Auferstehung" }
+
+  - author: "Hippolyt von Rom"
+    translator: "Valentin Gröne"
+    edition: "BKV 1. Serie, Bd. 28, Kempten 1872"
+    rights: pd
+    works:
+      - { work: "De Christo et Antichristo", url: "https://bkv.unifr.ch/de/works/cpg-1910/versions/das-buch-uber-christus-und-den-antichrist-bkv", page: "Hippolyt_Antichrist" }
+
+  - author: "Gregor der Wundertäter"
+    translator: "Hermann Bourier"
+    edition: "BKV 1. Reihe, Bd. 2, Kempten/München 1911"
+    rights: free_bkv
+    works:
+      - { work: "Confessio fidei", url: "https://bkv.unifr.ch/de/works/cpg-1766/versions/glaubenserklarung-bkv", page: "Gregor_Glaubensbekenntnis" }
+      - { work: "In Origenem oratio panegyrica", url: "https://bkv.unifr.ch/de/works/cpg-1765/versions/lobrede-auf-origenes-bkv", page: "Gregor_Lobrede_auf_Origenes" }
+
+  - author: "Cyprian von Karthago"
+    translator: "Julius Baer"
+    edition: "BKV 1. Reihe, Bd. 34, München 1918"
+    rights: free_bkv
+    works:
+      - { work: "De unitate", url: "https://bkv.unifr.ch/de/works/cpl-41/versions/uber-die-einheit-der-katholischen-kirche-bkv", page: "Cyprian_De_unitate" }
+      - { work: "De lapsis", url: "https://bkv.unifr.ch/de/works/cpl-42/versions/uber-die-gefallenen-bkv", page: "Cyprian_De_lapsis" }
+      - { work: "De dominica oratione", url: "https://bkv.unifr.ch/de/works/cpl-43/versions/uber-das-gebet-des-herrn-bkv", page: "Cyprian_De_orations" }
+      - { work: "De mortalitate", url: "https://bkv.unifr.ch/de/works/cpl-44/versions/uber-die-sterblichkeit-bkv", page: "Cyprian_De_mortalitate" }
+      - { work: "De opere et eleemosynis", url: "https://bkv.unifr.ch/de/works/cpl-47/versions/uber-gute-werke-und-almosen-bkv", page: "Cyprian_De_opere" }
+      - { work: "De bono patientiae", url: "https://bkv.unifr.ch/de/works/cpl-48/versions/vom-segen-der-geduld-bkv", page: "Cyprian_De_bono_patientiae" }
+      - { work: "De zelo et livore", url: "https://bkv.unifr.ch/de/works/cpl-49/versions/uber-eifersucht-und-neid-bkv", page: "Cyprian_De_zelo" }
+      - { work: "De habitu virginum", url: "https://bkv.unifr.ch/de/works/cpl-40/versions/uber-die-haltung-der-jungfrauen-bkv", page: "Cyprian_De_habitu_virginum" }
+      - { work: "Ad Demetrianum", url: "https://bkv.unifr.ch/de/works/cpl-46/versions/an-demetrianus-bkv", page: "Cyprian_Ad_Demetrianum" }
+
+  - author: "Eusebius von Cäsarea"
+    translator: "Phil. Häuser"
+    edition: "BKV 2. Reihe, Bd. 1, München 1932"
+    rights: free_bkv
+    works:
+      - { work: "Historia Ecclesiastica I–X", url: "https://bkv.unifr.ch/de/works/cpg-3495/versions/kirchengeschichte-bkv-2", page: "Eusebius_Kirchengeschichte_1 … _10" }
+
+pending:
+  - author: "Origenes"
+    note: "RU-страница и труды есть; в немецкую библиотеку пока не импортирован."
+    works:
+      - { work: "De oratione", url: "https://bkv.unifr.ch/de/works/cpg-1477/versions/vom-gebet-bkv", edition: "BKV 1. Reihe, Bd. 48, München 1926", translator: "Paul Koetschau", rights: pd }
+      - { work: "Exhortatio ad martyrium", url: "https://bkv.unifr.ch/de/works/cpg-1475/versions/ermahnung-zum-martyrium-bkv", edition: "BKV 1. Reihe, Bd. 48, München 1926", translator: "Paul Koetschau", rights: pd }
+      - { work: "Contra Celsum", url: "https://bkv.unifr.ch/de/works/cpg-1476/versions/gegen-celsus-bkv", edition: "BKV 1. Reihe, Bd. 52–53, München 1926", translator: "Paul Koetschau", rights: pd }
+      - { work: "De principiis", url: "https://bkv.unifr.ch/de/works/cpg-1482/versions/uber-die-grundlehren-der-glaubenswissenschaft-bkv", edition: "BKV 1. Reihe, Bd. 48/…, 1926", translator: "Karl Fr. Schnitzer", rights: pd }
+
+  - author: "Eusebius von Cäsarea"
+    note: "Остальные тексты того же тома 1913/1836."
+    works:
+      - { work: "Vita Constantini", url: "https://bkv.unifr.ch/de/works/cpg-3496/versions/vier-bucher-uber-das-leben-des-kaisers-konstantin-und-des-kaisers-konstantin-rede-an-die-versammlung-der-heiligen-bkv", edition: "BKV 1. Reihe, Bd. 9, München 1913", translator: "J. M. Pfättisch / A. Bigelmair", rights: free_bkv }
+      - { work: "De martyribus Palaestinae", url: "https://bkv.unifr.ch/de/works/cpg-3490/versions/uber-die-martyrer-in-palastina-bkv", edition: "BKV 1. Reihe, Bd. 9, München 1913", translator: "J. M. Pfättisch / A. Bigelmair", rights: free_bkv }
+      - { work: "Epistula ad Ecclesiam Caesariensem", url: "https://bkv.unifr.ch/de/works/cpg-3502/versions/brief-des-eusebius-von-casarea-an-seine-diocesanen-bkv", edition: "Kempten 1836", translator: "—", rights: pd }
+
+  - author: "Cyprian von Karthago"
+    note: "Осталось: письма, Ad Fortunatum, Ad Quirinum, De idolorum vanitate, Vita/Acta."
+    works: []
+
+  - author: "Laktanz"
+    note: "Пропущен: в русской библиотеке его нет."
+    works: []
