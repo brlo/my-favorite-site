@@ -120,6 +120,9 @@ imported:
       - { work: "De oratione", url: "https://bkv.unifr.ch/de/works/cpl-7/versions/uber-das-gebet-bkv", page: "Tertullian_De_oratione" }
       - { work: "De patientia", url: "https://bkv.unifr.ch/de/works/cpl-9/versions/uber-die-geduld-bkv", page: "Tertullian_De_patientia" }
       - { work: "De paenitentia", url: "https://bkv.unifr.ch/de/works/cpl-10/versions/uber-die-busse-bkv", page: "Tertullian_De_paenitentia" }
+      - { work: "Ad uxorem", url: "https://bkv.unifr.ch/de/works/cpl-12/versions/tert-uxor-bkv", page: "Tertullian_Ad_uxorem" }
+      - { work: "Adversus Iudaeos", url: "https://bkv.unifr.ch/de/works/cpl-33/versions/gegen-die-juden-bkv", page: "Tertullian_Adversus_Iudaeos" }
+      - { work: "De spectaculis", url: "https://bkv.unifr.ch/de/works/cpl-6/versions/uber-die-schauspiele-bkv", page: "Tertullian_De_spectaculis" }
 
   - author: "Gregor von Nyssa"
     translator: "BKV-Ausgabe / Heinrich Hand"

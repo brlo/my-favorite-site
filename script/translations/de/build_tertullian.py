@@ -2,9 +2,12 @@
 """Сборка немецкого Тертуллиана: автор + три трактата (Kellner 1882)."""
 import os
 import sys
+import zipfile
+from lxml import html as LH
 
 ROOT = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 DB = os.path.join(ROOT, 'db', 'translations', 'de')
+TMP = os.path.join(ROOT, 'tmp', 'de_bkv')
 OUT = os.path.join(ROOT, 'tmp', 'de_bkv', 'out')
 AUTHOR = os.path.join(ROOT, 'script', 'translations', 'de', 'authors', 'tertullian.html')
 
@@ -21,6 +24,9 @@ SOURCES = {
     'orat': ('Über das Gebet', 'https://bkv.unifr.ch/de/works/cpl-7/versions/uber-das-gebet-bkv'),
     'pat': ('Über die Geduld', 'https://bkv.unifr.ch/de/works/cpl-9/versions/uber-die-geduld-bkv'),
     'paen': ('Über die Buße', 'https://bkv.unifr.ch/de/works/cpl-10/versions/uber-die-busse-bkv'),
+    'uxor': ('An die Gattin', 'https://bkv.unifr.ch/de/works/cpl-12/versions/tert-uxor-bkv'),
+    'iud': ('Gegen die Juden', 'https://bkv.unifr.ch/de/works/cpl-33/versions/gegen-die-juden-bkv'),
+    'spec': ('Über die Schauspiele', 'https://bkv.unifr.ch/de/works/cpl-6/versions/uber-die-schauspiele-bkv'),
 }
 
 
@@ -36,9 +42,29 @@ def source(key):
             f'sind weggelassen.</p>')
 
 
-def page(src, path, title, key, priority):
+def uxor_sections():
+    with zipfile.ZipFile(os.path.join(TMP, 'tert5_uxor.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    import bkv_epub as be
+    be.clean_doc(doc)
+    parts = []
+    for book in doc.xpath('//h2'):
+        number = ''.join(book.itertext()).strip().split()[0]
+        parts.append(f'<h2>Teil {number}</h2>')
+        for chapter in book.getparent().xpath('./section'):
+            heading = chapter.find('h3')
+            n = be.chapter_number(heading) if heading is not None else None
+            body = ''.join(be.para_html(p) for p in chapter.xpath('.//p'))
+            if body:
+                parts.append(f'<h2>{n if n is not None else 0}</h2>{body}')
+    return ''.join(parts)
+
+
+def page(src, path, title, key, priority, custom_body=None):
     body = (f'<p><em>{title}, übersetzt von Karl Adam Heinrich Kellner (Köln 1882).</em></p>'
-            + open(os.path.join(OUT, 'tert_' + key + '.html'), encoding='utf-8').read().strip())
+            + (custom_body if custom_body is not None else open(os.path.join(OUT, 'tert_' + key + '.html'), encoding='utf-8').read().strip()))
     return f'''  - src: "{src}"
     path: "{path}"
     title: "{title}"
@@ -91,6 +117,9 @@ pages:
 {page('S9zX_О_молитве', 'Tertullian_De_oratione', 'Über das Gebet', 'orat', 10)}
 {page('NdP5_О_терпении', 'Tertullian_De_patientia', 'Über die Geduld', 'pat', 11)}
 {page('JqFh_О_покаянии', 'Tertullian_De_paenitentia', 'Über die Buße', 'paen', 12)}
+{page('wUzN_Послание_к_жене', 'Tertullian_Ad_uxorem', 'An die Gattin', 'uxor', 13, uxor_sections())}
+{page('oZSL_Против_иудеев', 'Tertullian_Adversus_Iudaeos', 'Gegen die Juden', 'iud', 14)}
+{page('Vyit_О_зрелищах', 'Tertullian_De_spectaculis', 'Über die Schauspiele', 'spec', 15)}
 '''
     for name, text in (('tert_author.yml', author), ('tert_works.yml', works)):
         path = os.path.join(DB, name)
