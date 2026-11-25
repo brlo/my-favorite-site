@@ -252,7 +252,7 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   в главном меню библиотеки нет. Права: `free_bkv`.
 
 - **Ерм** (`Hirte_des_Hermas`): «Der Hirte des Hermas», BKV 1918, пер. Franz
-  Zeller, 211 КБ; 27 разделов (видения/заповеди/подобия) по делению BKV;
+  Zeller, 211 КБ; 28 разделов (предисловие + видения/заповеди/подобия);
   страница-труд под списком, пункт — в «Werke unbekannter Autoren» →
   «Übriges», как в RU. Права: `free_bkv`.
 
