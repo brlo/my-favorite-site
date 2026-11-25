@@ -15,6 +15,9 @@ SOURCES = {
     'prax': ('Gegen Praxeas', 'https://bkv.unifr.ch/de/works/cpl-26/versions/gegen-praxeas-bkv'),
     'apol': ('Apologeticum', 'https://bkv.unifr.ch/de/works/cpl-3/versions/apologetikum-bkv'),
     'bapt': ('Über die Taufe', 'https://bkv.unifr.ch/de/works/cpl-8/versions/uber-die-taufe-bkv'),
+    'prae': ('Die Prozesseinreden gegen die Häretiker', 'https://bkv.unifr.ch/de/works/cpl-5/versions/die-prozesseinreden-gegen-die-haretiker-bkv'),
+    'cor': ('Vom Kranze des Soldaten', 'https://bkv.unifr.ch/de/works/cpl-21/versions/vom-kranze-des-soldaten-bkv'),
+    'idol': ('Über den Götzendienst', 'https://bkv.unifr.ch/de/works/cpl-23/versions/uber-den-gotzendienst-bkv'),
 }
 
 
@@ -79,6 +82,9 @@ pages:
 {page('Enzr_Против_Праксея', 'Tertullian_Adversus_Praxean', 'Gegen Praxeas', 'prax', 4)}
 {page('cjtQ_Апологетик', 'Tertullian_Apologeticum', 'Apologeticum', 'apol', 5)}
 {page('9JXy_О_крещении', 'Tertullian_De_baptismo', 'Über die Taufe', 'bapt', 6)}
+{page('37Jr_О_прескрипции_против_еретиков_1', 'Tertullian_De_praescriptione', 'Die Prozesseinreden gegen die Häretiker', 'prae', 7)}
+{page('iPSC_О_венце_воина', 'Tertullian_De_corona', 'Vom Kranze des Soldaten', 'cor', 8)}
+{page('cVDs_Об_идолопоклонстве', 'Tertullian_De_idololatria', 'Über den Götzendienst', 'idol', 9)}
 '''
     for name, text in (('tert_author.yml', author), ('tert_works.yml', works)):
         path = os.path.join(DB, name)
