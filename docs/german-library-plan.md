@@ -290,7 +290,9 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 - **Афанасий Великий** (`Athanasius_der_Große`): автор — перевод RU,
   обложка с RU; BKV 1917, пер. Anton Stegmann / Hans Mertel:
   «Gegen die Heiden» (132 КБ), «Über die Menschwerdung des Logos» (147 КБ),
-  «Leben des heiligen Antonius» (139 КБ); меню — «4. Jahrhundert» → «Werke».
+  «Leben des heiligen Antonius» (139 КБ), «Geschichte der Arianer» (147 КБ),
+  «Vier Briefe an Serapion» (177 КБ), «Schutzschrift gegen die Arianer»
+  (222 КБ); меню — «4. Jahrhundert» → «Werke».
   Права: `free_bkv`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),

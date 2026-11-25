@@ -111,6 +111,9 @@ imported:
       - { work: "Contra Gentes", url: "https://bkv.unifr.ch/de/works/cpg-2090/versions/gegen-die-heiden-bkv", page: "Athanasius_Gegen_die_Heiden" }
       - { work: "De incarnatione", url: "https://bkv.unifr.ch/de/works/cpg-2091/versions/uber-die-menschwerdung-des-logos-und-dessen-leibliche-erscheinung-unter-uns-bkv", page: "Athanasius_Menschwerdung" }
       - { work: "Vita Antonii", url: "https://bkv.unifr.ch/de/works/cpg-2101/versions/leben-des-heiligen-antonius-bkv", page: "Athanasius_Leben_des_Antonius" }
+      - { work: "Historia Arianorum", url: "https://bkv.unifr.ch/de/works/cpg-2127/versions/geschichte-der-arianer-bkv", page: "Athanasius_Geschichte_der_Arianer" }
+      - { work: "Epistulae ad Serapion", url: "https://bkv.unifr.ch/de/works/cpg-2094/versions/vier-briefe-an-serapion-v-thmuis-bkv", page: "Athanasius_Briefe_an_Serapion" }
+      - { work: "Apologia contra Arianos", url: "https://bkv.unifr.ch/de/works/cpg-2123/versions/des-hl-athanasius-schutzschrift-gegen-die-arianer-bkv", page: "Athanasius_Schutzschrift_gegen_die_Arianer" }
 
   - author: "Eusebius von Cäsarea"
     translator: "Phil. Häuser"

@@ -38,6 +38,12 @@ SOURCES = {
     'athen_res': {'mode': 'chapters'},
     'athen_supp': {'mode': 'chapters'},
     'greg_pan': {'mode': 'chapters'},
+    'ath_vita': {'mode': 'chapters'},
+    'ath_inc': {'mode': 'chapters'},
+    'ath_gent': {'mode': 'chapters'},
+    'ath_apol': {'mode': 'chapters'},
+    'ath_serap': {'mode': 'chapters'},
+    'ath_hist': {'mode': 'chapters'},
     'barn': {'mode': 'chapters'},
     'did': {'mode': 'chapters'},
 }

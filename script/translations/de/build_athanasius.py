@@ -15,9 +15,18 @@ OUT = os.path.join(TMP, 'out')
 AUTHOR = os.path.join(ROOT, 'script', 'translations', 'de', 'authors', 'athanasius.html')
 
 SOURCES = {
-    'gent': ('Gegen die Heiden', 'https://bkv.unifr.ch/de/works/cpg-2090/versions/gegen-die-heiden-bkv'),
-    'inc': ('Über die Menschwerdung des Logos', 'https://bkv.unifr.ch/de/works/cpg-2091/versions/uber-die-menschwerdung-des-logos-und-dessen-leibliche-erscheinung-unter-uns-bkv'),
-    'vita': ('Leben des heiligen Antonius', 'https://bkv.unifr.ch/de/works/cpg-2101/versions/leben-des-heiligen-antonius-bkv'),
+    'gent': ('Gegen die Heiden', 'https://bkv.unifr.ch/de/works/cpg-2090/versions/gegen-die-heiden-bkv',
+             'Anton Stegmann und Hans Mertel', 'BKV 1. Reihe, Bd. 31, München 1917'),
+    'inc': ('Über die Menschwerdung des Logos', 'https://bkv.unifr.ch/de/works/cpg-2091/versions/uber-die-menschwerdung-des-logos-und-dessen-leibliche-erscheinung-unter-uns-bkv',
+            'Anton Stegmann und Hans Mertel', 'BKV 1. Reihe, Bd. 31, München 1917'),
+    'vita': ('Leben des heiligen Antonius', 'https://bkv.unifr.ch/de/works/cpg-2101/versions/leben-des-heiligen-antonius-bkv',
+             'Anton Stegmann und Hans Mertel', 'BKV 1. Reihe, Bd. 31, München 1917'),
+    'hist': ('Geschichte der Arianer', 'https://bkv.unifr.ch/de/works/cpg-2127/versions/geschichte-der-arianer-bkv',
+             'Übersetzung des 19. Jahrhunderts', 'BKV 1. Serie, Bd. 15, Kempten 1836'),
+    'serap': ('Vier Briefe an Serapion von Thmuis', 'https://bkv.unifr.ch/de/works/cpg-2094/versions/vier-briefe-an-serapion-v-thmuis-bkv',
+              'Übersetzung der BKV-Ausgabe', 'BKV 1. Reihe, Bd. 13, Kempten/München 1913'),
+    'apol': ('Schutzschrift gegen die Arianer', 'https://bkv.unifr.ch/de/works/cpg-2123/versions/des-hl-athanasius-schutzschrift-gegen-die-arianer-bkv',
+             'Jos. Fisch', 'BKV 1. Serie, Bd. 29, Kempten 1875'),
 }
 
 
@@ -34,12 +43,25 @@ def paragraphs(key):
     return ''.join(be.para_html(p) for p in doc.xpath('//p'))
 
 
+def letters(key):
+    with zipfile.ZipFile(os.path.join(TMP, 'ath_' + key + '.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    parts = []
+    for heading in doc.xpath('//h2'):
+        title = ''.join(heading.itertext()).strip()
+        body = ''.join(be.para_html(p) for p in heading.getparent().xpath('.//p'))
+        parts.append(f'<h2>{title}</h2>{body}')
+    return ''.join(parts)
+
+
 def source(key):
-    title, url = SOURCES[key]
-    return (f'<p><strong>Quelle:</strong> Übersetzung von Anton Stegmann und Hans Mertel, '
-            f'<em>{title}</em> (Bibliothek der Kirchenväter, 1. Reihe, Bd. 31), '
-            f'München 1917. Text nach <a href="{url}">bkv.unifr.ch</a>; '
-            f'die Anmerkungen der Ausgabe sind weggelassen.</p>')
+    title, url, translator, edition = SOURCES[key]
+    return (f'<p><strong>Quelle:</strong> Übersetzung von {translator}, '
+            f'<em>{title}</em> ({edition}). Text nach '
+            f'<a href="{url}">bkv.unifr.ch</a>; die Anmerkungen der Ausgabe sind weggelassen.</p>')
 
 
 def page(src, path, title, key, body, priority):
@@ -59,6 +81,9 @@ def main():
     gent = paragraphs('gent')
     inc = open(os.path.join(OUT, 'ath_inc.html'), encoding='utf-8').read().strip()
     vita = open(os.path.join(OUT, 'ath_vita.html'), encoding='utf-8').read().strip()
+    hist = open(os.path.join(OUT, 'ath_hist.html'), encoding='utf-8').read().strip()
+    serap = letters('serap')
+    apol = open(os.path.join(OUT, 'ath_apol.html'), encoding='utf-8').read().strip()
     author_html = open(AUTHOR, encoding='utf-8').read().strip()
     author = f'''# Афанасий Великий: страница автора (немецкая библиотека)
 # Сборка: script/translations/de/build_athanasius.py
@@ -89,6 +114,9 @@ pages:
 {page('8vHZ_Слово_на_язычников', 'Athanasius_Gegen_die_Heiden', 'Gegen die Heiden', 'gent', '<p><em>Gegen die Heiden, übersetzt von Anton Stegmann und Hans Mertel (Bibliothek der Kirchenväter, 1. Reihe, Bd. 31, München 1917).</em></p>' + gent, 1)}
 {page('QFHf_Слово_о_воплощении_БогаСлова', 'Athanasius_Menschwerdung', 'Über die Menschwerdung des Logos', 'inc', '<p><em>Über die Menschwerdung des Logos, übersetzt von Anton Stegmann und Hans Mertel (Bibliothek der Kirchenväter, 1. Reihe, Bd. 31, München 1917).</em></p>' + inc, 2)}
 {page('5Wxn_Житие_преп_Антония_Великого', 'Athanasius_Leben_des_Antonius', 'Leben des heiligen Antonius', 'vita', '<p><em>Leben des heiligen Antonius, übersetzt von Anton Stegmann und Hans Mertel (Bibliothek der Kirchenväter, 1. Reihe, Bd. 31, München 1917).</em></p>' + vita, 3)}
+{page('1wPr_История_ариан', 'Athanasius_Geschichte_der_Arianer', 'Geschichte der Arianer', 'hist', '<p><em>Geschichte der Arianer, BKV 1. Serie, Bd. 15, Kempten 1836.</em></p>' + hist, 4)}
+{page('Послания_к_Серапиону_епископу_Тмуисскому', 'Athanasius_Briefe_an_Serapion', 'Vier Briefe an Serapion von Thmuis', 'serap', '<p><em>Vier Briefe an Serapion von Thmuis, BKV 1. Reihe, Bd. 13, Kempten/München 1913.</em></p>' + serap, 5)}
+{page('tm9D_Защитительное_слово_против_ариан', 'Athanasius_Schutzschrift_gegen_die_Arianer', 'Schutzschrift gegen die Arianer', 'apol', '<p><em>Schutzschrift gegen die Arianer, übersetzt von Jos. Fisch (BKV 1. Serie, Bd. 29, Kempten 1875).</em></p>' + apol, 6)}
 '''
     for name, text in (('athan_author.yml', author), ('athan_works.yml', works)):
         path = os.path.join(DB, name)
