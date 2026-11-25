@@ -17,6 +17,9 @@ SOURCES = {
     'unit': ('Über die Einheit der katholischen Kirche', 'https://bkv.unifr.ch/de/works/cpl-41/versions/uber-die-einheit-der-katholischen-kirche-bkv'),
     'mort': ('Über die Sterblichkeit', 'https://bkv.unifr.ch/de/works/cpl-44/versions/uber-die-sterblichkeit-bkv'),
     'zelo': ('Über Eifersucht und Neid', 'https://bkv.unifr.ch/de/works/cpl-49/versions/uber-eifersucht-und-neid-bkv'),
+    'laps': ('Über die Gefallenen', 'https://bkv.unifr.ch/de/works/cpl-42/versions/uber-die-gefallenen-bkv'),
+    'orat': ('Über das Gebet des Herrn', 'https://bkv.unifr.ch/de/works/cpl-43/versions/uber-das-gebet-des-herrn-bkv'),
+    'opere': ('Über gute Werke und Almosen', 'https://bkv.unifr.ch/de/works/cpl-47/versions/uber-gute-werke-und-almosen-bkv'),
 }
 
 
@@ -88,6 +91,9 @@ pages:
 {page('fqde5EZK_О_единстве_Церкви_De_unitate__Киприан_Карфагенский', 'Cyprian_De_unitate', 'Über die Einheit der katholischen Kirche', 'unit', 'Über die Einheit der katholischen Kirche', 5)}
 {page('sTfINaYq_Книга_о_смертности__Киприан_Карфагенский', 'Cyprian_De_mortalitate', 'Über die Sterblichkeit', 'mort', 'Über die Sterblichkeit', 9)}
 {page('Vvl2JTrw_Книга_о_ревности_и_зависти__Киприан_Карфагенский', 'Cyprian_De_zelo', 'Über Eifersucht und Neid', 'zelo', 'Über Eifersucht und Neid', 12)}
+{page('02jQL1xq_Книга_о_падших__Киприан_Карфагенский', 'Cyprian_De_lapsis', 'Über die Gefallenen', 'laps', 'Über die Gefallenen', 7)}
+{page('hag3Fns9_О_молитве_Господней__Киприан_Карфагенский', 'Cyprian_De_orations', 'Über das Gebet des Herrn', 'orat', 'Über das Gebet des Herrn', 8)}
+{page('sgL9EHzT_Книга_о_благотворении_и_милостынях__Киприан_Карфагенский', 'Cyprian_De_opere', 'Über gute Werke und Almosen', 'opere', 'Über gute Werke und Almosen', 10)}
 '''
     for name, text in (('cyp_author.yml', author), ('cyp_works.yml', works)):
         path = os.path.join(DB, name)
