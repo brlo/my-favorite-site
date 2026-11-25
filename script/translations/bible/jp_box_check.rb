@@ -20,7 +20,18 @@ all_text = +''
 chapters = ::Verse.where(tr_code: 'jp-box', book: book).distinct.order(:chapter).pluck(:chapter)
 
 chapters.each do |ch|
-  base = ::Verse.where(tr_code: base_tr, book: book, chapter: ch).pluck(:line).sort
+  # Греческий модуль хранит Ездру и Неемию одной книгой `ezd` (23 главы):
+  # 1–10 — Ездра, 11–23 — Неемия. На сайте это две книги, поэтому сверяем
+  # `neem N` с `ezd (N+10)`, а `ezd` — только с главами 1–10.
+  gr_book = book
+  gr_ch = ch
+  if base_tr == 'gr-lxx-byz'
+    if book == 'neem'
+      gr_book = 'ezd'
+      gr_ch = ch + 10
+    end
+  end
+  base = ::Verse.where(tr_code: base_tr, book: gr_book, chapter: gr_ch).pluck(:line).sort
   if book == 'ps'
     base = (base + ps_gaps.fetch(ch, [])).uniq.sort
     # в gr-lxx-byz у Пс 115 текст сдвинут на 9 строк (1–9 стоят как «.»), сверяем с ru
