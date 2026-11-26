@@ -100,6 +100,30 @@ AUTHORS = {
       'Священное Писание Ветхого Завета' => ['Heilige Schrift des Alten Testaments', 2],
     },
   },
+
+  'Johannes_von_Damaskus' => {
+    ru: 'aOY9_Иоанн_Дамаскин_VIIVIII_вв',
+    de: 'Johannes_von_Damaskus',
+    folders: {
+      'Догматические и философские труды' => ['Dogmatische und philosophische Werke', 1],
+      'Полемические труды' => ['Polemische Werke', 2],
+      'Аскетические и нравственные труды' => ['Asketische und moralische Werke', 3],
+      'Слова' => ['Reden', 4],
+      'Гимнография' => ['Hymnographie', 5],
+      'Приписываемые сочинения' => ['Zugeschriebene Schriften', 6],
+    },
+  },
+  'Gregor_von_Nazianz' => {
+    ru: 'uSyc_Григорий_Богослов_IV_век',
+    de: 'Gregor_von_Nazianz',
+    folders: {
+      'Стихотворения' => ['Gedichte', 1],
+      'Сборники' => ['Sammlungen', 2],
+      'Симфонии или указатели' => ['Symphonien oder Register', 3],
+      'Слова' => ['Reden', 4],
+      'Письма' => ['Briefe', 5],
+    },
+  },
   'Tertullian' => {
     ru: 'тертуллиан',
     de: 'Tertullian',
