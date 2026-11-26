@@ -33,6 +33,19 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bkv_epub as be  # noqa: E402
 
 
+def ps_sections():
+    with zipfile.ZipFile(os.path.join(ROOT, 'tmp', 'de_bkv', 'hil_ps.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    parts = []
+    for i, heading in enumerate(doc.xpath('//h2'), 1):
+        body = ''.join(be.para_html(p) for p in heading.getparent().xpath('.//p'))
+        parts.append(f'<h2>{i}</h2>{body}')
+    return ''.join(parts)
+
+
 def trin_sections():
     with zipfile.ZipFile(os.path.join(ROOT, 'tmp', 'de_bkv', 'hil_trin.epub')) as z:
         name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
@@ -90,6 +103,7 @@ lang: de
 list: "Hilarius_von_Poitiers"
 folders:
   - {{ path: "Dogmatische Werke", priority: 1 }}
+  - {{ path: "Exegetische Werke", priority: 2 }}
 pages:
 
   - src: "VtDG_Против_ариан_или_Против_Авксентия"
@@ -111,6 +125,16 @@ pages:
 {block('<p><em>Zwölf Bücher über die Dreieinigkeit (Bibliothek der Kirchenväter).</em></p>' + trin_sections())}
     references: |-
 {block('<p><strong>Quelle:</strong> Übersetzung der BKV-Ausgabe, <em>Zwölf Bücher über die Dreieinigkeit</em>. Text nach <a href="https://bkv.unifr.ch/de/works/cpl-433/versions/zwolf-bucher-uber-die-dreieinigkeit-bkv">bkv.unifr.ch</a>; die Anmerkungen der Ausgabe sind weggelassen.</p>')}
+
+  - src: "EAJa_Беседа_на_псалом_130"
+    path: "Hilarius_Psalmen"
+    title: "Abhandlungen über die Psalmen"
+    menu: {{ parent: "Exegetische Werke", title: "Abhandlungen über die Psalmen", priority: 1 }}
+    update: true
+    body: |-
+{block('<p><em>Abhandlungen über die Psalmen (Bibliothek der Kirchenväter).</em></p>' + ps_sections())}
+    references: |-
+{block('<p><strong>Quelle:</strong> Übersetzung der BKV-Ausgabe, <em>Abhandlungen über die Psalmen</em>. Text nach <a href="https://bkv.unifr.ch/de/works/cpl-428/versions/abhandlungen-uber-die-psalmen-bkv">bkv.unifr.ch</a>; die Anmerkungen der Ausgabe sind weggelassen.</p>')}
 '''
     for name, text in (('hil_author.yml', author), ('hil_works.yml', works)):
         path = os.path.join(DB, name)
