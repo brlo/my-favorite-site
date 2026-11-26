@@ -359,8 +359,9 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 
 - **Иларий Пиктавийский** (`Hilarius_von_Poitiers`): автор — перевод RU,
   обложка с RU; «Gegen die Arianer, oder gegen Auxentius von Mailand» (21 КБ),
-  «Zwölf Bücher über die Dreieinigkeit» (1,1 МБ); меню — «4. Jahrhundert» →
-  «Dogmatische Werke». Права: `pd`.
+  «Zwölf Bücher über die Dreieinigkeit» (1,1 МБ), «Abhandlungen über die
+  Psalmen»; меню — «4. Jahrhundert» → «Dogmatische/Exegetische Werke».
+  Права: `pd`.
 
 - **Кирилл Иерусалимский** (`Cyrill_von_Jerusalem`): автор — перевод RU,
   обложка с RU; «Katechesen an die Täuflinge» (19 гл., 580 КБ),
@@ -397,8 +398,9 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   Права: `free_bkv`.
 
 - **Ефрем Сирин** (`Ephraem_der_Syrer`): автор — перевод RU, обложка с RU;
-  «Rede über die Auferweckung des Lazarus» (23 КБ); меню — «4. Jahrhundert» →
-  «Predigten». Права: `free_bkv`.
+  «Rede über die Auferweckung des Lazarus» (23 КБ), «Hymnen gegen die
+  Irrlehren» (56 гимнов, 298 КБ); меню — «4. Jahrhundert» →
+  «Predigten/Werke». Права: `free_bkv`.
 
 - **Епифаний Кипрский** (`Epiphanius_von_Salamis`): автор — перевод RU,
   обложка с RU; «Der Festgeankerte (Ancoratus)» (308 КБ); меню —
@@ -414,6 +416,10 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 - **Григорий Богослов** (`Gregor_von_Nazianz`): автор — перевод RU, обложка
   с RU; «Ausgewählte Reden» (Auswahl, 20 слов); меню — «4. Jahrhundert» →
   «Reden». Права: `free_bkv`.
+
+- Добавлены BKV-труды без RU-эталона: «Kommentar zum Matthäusevangelium»
+  Илария, «Vita Constantini» Евсевия, «Sieben Gespräche» Кирилла
+  Александрийского. «Панарион» Епифания убран (в BKV только пересказ/фрагмент).
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

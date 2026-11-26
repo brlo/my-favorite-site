@@ -109,6 +109,7 @@ imported:
     rights: free_bkv
     works:
       - { work: "De martyribus Palaestinae", url: "https://bkv.unifr.ch/de/works/cpg-3490/versions/uber-die-martyrer-in-palastina-bkv", page: "Eusebius_Maertyrer_Palaestinas" }
+      - { work: "Vita Constantini", url: "https://bkv.unifr.ch/de/works/cpg-3496/versions/vier-bucher-uber-das-leben-des-kaisers-konstantin-und-des-kaisers-konstantin-rede-an-die-versammlung-der-heiligen-bkv", page: "Eusebius_Vita_Constantini" }
 
   - author: "Johannes von Damaskus"
     translator: "BKV-Ausgabe"
@@ -130,6 +131,13 @@ imported:
     rights: free_bkv
     works:
       - { work: "Rede über die Auferweckung des Lazarus", url: "https://bkv.unifr.ch/de/works/-18c/versions/rede-uber-die-auferweckung-des-lazarus-joh-11-43-bkv", page: "Ephraem_Lazarus" }
+      - { work: "Hymnen gegen die Irrlehren", url: "https://bkv.unifr.ch/de/works/cpg-3949/versions/hymnen-gegen-die-irrlehren-bkv", page: "Ephraem_Hymnen_gegen_die_Irrlehren" }
+      - { work: "Drei Reden über den Glauben", url: "https://bkv.unifr.ch/de/works/cpg-3961/versions/drei-reden-uber-den-glauben-bkv", page: "Ephraem_Drei_Reden_ueber_den_Glauben" }
+      - { work: "Rede über die Verklärung Christi", url: "https://bkv.unifr.ch/de/works/cpg-3939/versions/rede-uber-die-verklarung-christi-bkv", page: "Ephraem_Rede_ueber_die_Verklarung" }
+      - { work: "Rede über den Propheten Jonas", url: "https://bkv.unifr.ch/de/works/cpg-4082/versions/rede-uber-den-propheten-jonas-und-die-busse-der-niniviten-jonas-32-3-bkv", page: "Ephraem_Rede_ueber_Jonas" }
+      - { work: "Vier Lieder über Julian den Apostaten", url: "https://bkv.unifr.ch/de/works/cpg-4027/versions/vier-lieder-uber-julian-den-apostaten-bkv", page: "Ephraem_Vier_Lieder_ueber_Julian" }
+      - { work: "Auswahl asketischer Abhandlungen", url: "https://bkv.unifr.ch/de/works/-38b/versions/auswahl-ascetischer-abhandlungen-uber-die-christliche-tugend-und-vollkommenheit-bkv", page: "Ephraem_Asketische_Abhandlungen" }
+      - { work: "Ausgewählte nisibische Hymnen", url: "https://bkv.unifr.ch/de/works/-13b/versions/ausgewahlte-nisibenische-hymnen-bkv", page: "Ephraem_Nisibische_Hymnen" }
 
   - author: "Augustinus von Hippo"
     translator: "BKV-Ausgabe"
@@ -176,6 +184,7 @@ imported:
       - { work: "Erklärung des nicäischen Glaubensbekenntnisses", url: "https://bkv.unifr.ch/de/works/cpg-5355/versions/erklarung-des-nizanischen-glaubensbekenntnisses-bkv", page: "Cyrill_Alexandrien_Symbol" }
       - { work: "De recta fide ad imperatorem", url: "https://bkv.unifr.ch/de/works/cpg-3218/versions/uber-den-rechten-glauben-an-den-kaiser-bkv", page: "Cyrill_Alexandrien_Rechter_Glaube" }
       - { work: "Drei ökumenische Briefe", url: "https://bkv.unifr.ch/de/works/123x/versions/drei-okumenische-briefe-bkv", page: "Cyrill_Alexandrien_Oekumenische_Briefe" }
+      - { work: "De sancta Trinitate dialogi VII", url: "https://bkv.unifr.ch/de/works/-42x/versions/sieben-gesprache-uber-die-heilige-und-wesensgleiche-dreieinigkeit-bkv", page: "Cyrill_Alexandrien_Sieben_Gespraeche" }
 
   - author: "Cyrill von Jerusalem"
     translator: "BKV-Ausgabe"
@@ -192,6 +201,8 @@ imported:
     works:
       - { work: "Contra Arianos", url: "https://bkv.unifr.ch/de/works/cpl-462/versions/gegen-die-arianer-oder-gegen-auxentius-von-mailand-bkv", page: "Hilarius_Gegen_die_Arianer" }
       - { work: "De Trinitate", url: "https://bkv.unifr.ch/de/works/cpl-433/versions/zwolf-bucher-uber-die-dreieinigkeit-bkv", page: "Hilarius_De_Trinitate" }
+      - { work: "Commentarius in Matthaeum", url: "https://bkv.unifr.ch/de/works/cpl-430/versions/kommentar-zum-evangelium-des-matthaus-bkv", page: "Hilarius_Matthaeuskommentar" }
+      - { work: "Tractatus super psalmos", url: "https://bkv.unifr.ch/de/works/cpl-428/versions/abhandlungen-uber-die-psalmen-bkv", page: "Hilarius_Psalmen" }
 
   - author: "Johannes Chrysostomus"
     translator: "Joh. Chrysostomus Baur / Chrysostomus Mitterrutzner"
