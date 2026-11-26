@@ -22,7 +22,8 @@ class BibleChapterPage
 
   def book_name(kind)
     if orthodox_names?
-      name = ::JP_BOX_ORTHODOX_BOOKS[book_code]
+      map = kind == :short ? ::JP_BOX_ORTHODOX_SHORT : ::JP_BOX_ORTHODOX_BOOKS
+      name = map[book_code]
       return name if name.present?
     end
     ::I18n.t("books.#{kind}.#{book_code}")

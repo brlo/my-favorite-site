@@ -365,7 +365,8 @@ module ApplicationHelper
   # церковную форму (JP_BOX_ORTHODOX_BOOKS), иначе — обычную из локали.
   def bib_book_name(code, kind = :full, locale: nil)
     if defined?(@content_lang) && @content_lang == 'jp-box' && calque_orthodox?
-      name = ::JP_BOX_ORTHODOX_BOOKS[code.to_s]
+      map = kind == :short ? ::JP_BOX_ORTHODOX_SHORT : ::JP_BOX_ORTHODOX_BOOKS
+      name = map[code.to_s]
       return name if name.present?
     end
     ::I18n.t("books.#{kind}.#{code}", locale: locale || ::I18n.locale)

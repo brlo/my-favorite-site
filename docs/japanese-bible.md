@@ -288,7 +288,10 @@ docker exec bibleox bash -lc 'cd /app && bin/rails runner script/translations/bi
 (Руфь, Ездра, Неемия, Есфирь, Товит, Иудифь, Маккавейские, Песнь Песней, Сирах,
 3-я Ездры) — традиционные церковные формы (ルフ記, エズラ記, マカウェイ記第一…).
 Хелпер — `bib_book_name(code, kind)`, для заголовков страницы —
-`BibleChapterPage#book_name`. Тест: `test/services/bible_chapter_page_test.rb`.
+`BibleChapterPage#book_name`. Короткие формы для ссылок и копирования цитат —
+`JP_BOX_ORTHODOX_SHORT` (創, 出エギペト, 列王一…四, 歴代上/下, マカ一…三, マトフェイ,
+コリンフ前, エウレイ…); в цитате получается, например, 「…」（列王一. 17:1）.
+Тест: `test/services/bible_chapter_page_test.rb`.
 
 ## Процесс на главу
 

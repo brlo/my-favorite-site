@@ -144,6 +144,7 @@ class BibleChapterPageTest < ActiveSupport::TestCase
       orthodox = BibleChapterPage.new(content_lang: 'jp-box', book_code: '1ts', chapter: 1,
                                       ui_locale: 'ja', orthodox: true)
       assert_includes orthodox.title, JP_BOX_ORTHODOX_BOOKS['1ts']
+      assert_equal JP_BOX_ORTHODOX_SHORT['1ts'], orthodox.book_name(:short)
       assert_includes orthodox.meta_description, JP_BOX_ORTHODOX_BOOKS['1ts']
 
       common = BibleChapterPage.new(content_lang: 'jp-box', book_code: '1ts', chapter: 1,
