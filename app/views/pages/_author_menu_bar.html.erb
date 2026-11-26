@@ -14,13 +14,13 @@
 
   <div class="author-menu-edit-actions">
     <% if can_create %>
-      <button type="button" class="author-menu-edit-btn"
-              data-action="author-hub#open" data-author-hub-mode-param="article">＋ Новая статья</button>
+      <%= link_to edit_label, edit_admin_page_path(page, locale: nil), class: 'author-menu-edit-link' %>
     <% end %>
     <%= link_to '✎ Редактировать меню на странице', "#{my_page_link_to("/#{page.path}")}?author_menu=edit",
           class: 'author-menu-edit-btn author-menu-edit-btn-light' %>
     <% if can_create %>
-      <%= link_to edit_label, edit_admin_page_path(page, locale: nil), class: 'author-menu-edit-link' %>
+      <button type="button" class="author-menu-edit-btn"
+              data-action="author-hub#open" data-author-hub-mode-param="article">＋ Новая статья</button>
     <% end %>
   </div>
 

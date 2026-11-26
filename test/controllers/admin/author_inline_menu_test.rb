@@ -26,6 +26,10 @@ class AuthorInlineMenuTest < ActionDispatch::IntegrationTest
     assert_select '.author-menu-edit-btn', text: /Редактировать меню на странице/
     assert_select '.menu-tree[data-menu-filter-target="tree"]', count: 1
     assert_select '.author-menu-inline', count: 0
+
+    # ссылка «Редактировать страницу» идёт перед кнопкой «Новая статья»
+    actions = css_select('.author-menu-edit-actions').first.to_s
+    assert_operator actions.index('author-menu-edit-link'), :<, actions.index('<button')
   end
 
   test 'режим редактирования меню открывается на месте публичного меню' do
