@@ -7,11 +7,25 @@ class BibleChapterPage
   attr_reader :content_lang, :book_code, :chapter, :ui_locale
 
   # content_lang - код перевода Библии (ru, eng-nkjv, gr-ru...), ui_locale - язык интерфейса
-  def initialize(content_lang:, book_code:, chapter:, ui_locale:)
+  def initialize(content_lang:, book_code:, chapter:, ui_locale:, orthodox: false)
     @content_lang = content_lang
     @book_code = book_code
     @chapter = chapter.to_i
     @ui_locale = ui_locale.to_s
+    @orthodox = orthodox
+  end
+
+  # В jp-box с кнопкой 「正教」 названия книг — церковные (см. JP_BOX_ORTHODOX_BOOKS).
+  def orthodox_names?
+    @content_lang == 'jp-box' && @orthodox
+  end
+
+  def book_name(kind)
+    if orthodox_names?
+      name = ::JP_BOX_ORTHODOX_BOOKS[book_code]
+      return name if name.present?
+    end
+    ::I18n.t("books.#{kind}.#{book_code}")
   end
 
   # Запрошен подстрочник
@@ -109,7 +123,7 @@ class BibleChapterPage
   end
 
   def title
-    t = ::I18n.t("books.mid.#{book_code}") +
+    t = book_name(:mid) +
         ", #{ is_psalm? ? ::I18n.t('psalm') : ::I18n.t('chapter') }" +
         " #{chapter} / " +
         ::I18n.t('bible')
@@ -119,7 +133,7 @@ class BibleChapterPage
   end
 
   def meta_description
-    desc = ::I18n.t("books.full.#{book_code}")
+    desc = book_name(:full)
     desc += ': ' + verses.first(4).pluck(:text).join(' ')[0..200] if verses.any?
     desc
   end
@@ -136,7 +150,7 @@ class BibleChapterPage
   end
 
   def meta_book_tags
-    [*breadcrumbs, ::I18n.t("books.mid.#{book_code}")]
+    [*breadcrumbs, book_name(:mid)]
   end
 
   private

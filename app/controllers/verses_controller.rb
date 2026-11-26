@@ -159,6 +159,7 @@ class VersesController < ApplicationController
       book_code: params[:book_code] || 'gen',
       chapter: params[:chapter] || 1,
       ui_locale: ::I18n.locale,
+      orthodox: cookies[:calque].to_s == 'orthodox',
     )
 
     @content_lang = chapter.content_lang

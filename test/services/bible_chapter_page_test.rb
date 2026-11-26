@@ -138,4 +138,21 @@ class BibleChapterPageTest < ActiveSupport::TestCase
     assert page.book_missing?
     assert_equal %w[en-nrsv], page.other_translations_for_book
   end
+
+  test "orthodox book names are used for jp-box with the Church toggle on" do
+    I18n.with_locale(:ja) do
+      orthodox = BibleChapterPage.new(content_lang: 'jp-box', book_code: '1ts', chapter: 1,
+                                      ui_locale: 'ja', orthodox: true)
+      assert_includes orthodox.title, JP_BOX_ORTHODOX_BOOKS['1ts']
+      assert_includes orthodox.meta_description, JP_BOX_ORTHODOX_BOOKS['1ts']
+
+      common = BibleChapterPage.new(content_lang: 'jp-box', book_code: '1ts', chapter: 1,
+                                    ui_locale: 'ja', orthodox: false)
+      assert_includes common.title, I18n.t('books.mid.1ts')
+
+      other_lang = BibleChapterPage.new(content_lang: 'jp-ni', book_code: '1ts', chapter: 1,
+                                        ui_locale: 'ja', orthodox: true)
+      assert_includes other_lang.title, I18n.t('books.mid.1ts')
+    end
+  end
 end

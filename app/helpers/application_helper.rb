@@ -361,6 +361,16 @@ module ApplicationHelper
     cookies[:calque].to_s == 'orthodox'
   end
 
+  # Название книги Библии. В jp-box с включённой кнопкой 「正教」 показываем
+  # церковную форму (JP_BOX_ORTHODOX_BOOKS), иначе — обычную из локали.
+  def bib_book_name(code, kind = :full, locale: nil)
+    if defined?(@content_lang) && @content_lang == 'jp-box' && calque_orthodox?
+      name = ::JP_BOX_ORTHODOX_BOOKS[code.to_s]
+      return name if name.present?
+    end
+    ::I18n.t("books.#{kind}.#{code}", locale: locale || ::I18n.locale)
+  end
+
   # Термины в {A|B} — попарно, там где важен контекст (恵み/恩寵 и т.п.).
   # Имена Христа и Святого Духа подставляются автоматически: они однозначны.
   JP_BOX_ORTHODOX_NAMES = {

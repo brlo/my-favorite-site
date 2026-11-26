@@ -40,7 +40,7 @@
         <option value='z2' <% if @search_books == 'z2' %>selected<% end %>><%= I18n.t('search_page.new_testament') %></option>
         <option value='e4' <% if @search_books == 'e4' %>selected<% end %>><%= I18n.t('search_page.gospel') %></option>
         <% BOOKS.each do |book, params| %>
-          <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= I18n.t("books.mid.#{book}") %></option>
+          <option value='<%= book %>' <% if @search_books == book %>selected<% end %> ><%= bib_book_name(book, :mid) %></option>
         <% end %>
       </select>
     </span>

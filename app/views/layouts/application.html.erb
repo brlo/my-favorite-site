@@ -195,7 +195,7 @@
                     href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>"
                     title="<%= data[:desc] %>"
                     data-books-menu-target="bookLink">
-                    <span><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></span>
+                    <span><%= bib_book_name(book_code, :mid, locale: @locale_by_bib) %></span>
                   </a>
                 </div>
               <% end %>
@@ -216,7 +216,7 @@
                     href="<%= "/#{locale}/#{current_bib_lang}/#{book_code}/1/" %>"
                     title="<%= data[:desc] %>"
                     data-books-menu-target="bookLink">
-                    <span><%= ::I18n.t("books.mid.#{book_code}", locale: @locale_by_bib) %></span>
+                    <span><%= bib_book_name(book_code, :mid, locale: @locale_by_bib) %></span>
                   </a>
                 </div>
               <% end %>
