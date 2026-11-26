@@ -103,6 +103,64 @@ imported:
       - { work: "De habitu virginum", url: "https://bkv.unifr.ch/de/works/cpl-40/versions/uber-die-haltung-der-jungfrauen-bkv", page: "Cyprian_De_habitu_virginum" }
       - { work: "Ad Demetrianum", url: "https://bkv.unifr.ch/de/works/cpl-46/versions/an-demetrianus-bkv", page: "Cyprian_Ad_Demetrianum" }
 
+  - author: "Epiphanius von Salamis"
+    translator: "BKV-Ausgabe"
+    edition: "Bibliothek der Kirchenväter"
+    rights: free_bkv
+    works:
+      - { work: "Ancoratus", url: "https://bkv.unifr.ch/de/works/cpg-3744/versions/der-festgeankerte-bkv", page: "Epiphanius_Ancoratus" }
+
+  - author: "Ephräm der Syrer"
+    translator: "BKV-Ausgabe"
+    edition: "Bibliothek der Kirchenväter"
+    rights: free_bkv
+    works:
+      - { work: "Rede über die Auferweckung des Lazarus", url: "https://bkv.unifr.ch/de/works/-18c/versions/rede-uber-die-auferweckung-des-lazarus-joh-11-43-bkv", page: "Ephraem_Lazarus" }
+
+  - author: "Augustinus von Hippo"
+    translator: "BKV-Ausgabe"
+    edition: "Bibliothek der Kirchenväter"
+    rights: free_bkv
+    works:
+      - { work: "Enchiridion", url: "https://bkv.unifr.ch/de/works/cpl-295/versions/enchiridion-oder-buch-vom-glauben-von-der-hoffnung-und-von-der-liebe-bkv", page: "Augustinus_Enchiridion" }
+      - { work: "De doctrina christiana", url: "https://bkv.unifr.ch/de/works/cpl-263/versions/vier-bucher-uber-die-christliche-lehre-bkv", page: "Augustinus_Christliche_Lehre" }
+      - { work: "De catechizandis rudibus", url: "https://bkv.unifr.ch/de/works/cpl-297/versions/vom-ersten-katechetischen-unterricht-bkv", page: "Augustinus_Katechetischer_Unterricht" }
+      - { work: "De symbolo ad catechumenos", url: "https://bkv.unifr.ch/de/works/cpl-309/versions/vier-bucher-uber-das-symbolum-an-die-katechumenen-bkv-buch-2-4-ist-von-quodvultdeus", page: "Augustinus_Symbolum" }
+      - { work: "Confessiones", url: "https://bkv.unifr.ch/de/works/cpl-251/versions/aug-conf-bkv", page: "Augustinus_Bekenntnisse_1–2" }
+      - { work: "De Trinitate", url: "https://bkv.unifr.ch/de/works/cpl-329/versions/funfzehn-bucher-uber-die-dreieinigkeit", page: "Augustinus_De_Trinitate" }
+      - { work: "Epistulae (Auswahl)", url: "https://bkv.unifr.ch/de/works/cpl-262/versions/ausgewahlte-briefe-erster-teil-bkv", page: "Augustinus_Ausgewaehlte_Briefe" }
+
+  - author: "Johannes Cassianus"
+    translator: "BKV-Ausgabe"
+    edition: "Bibliothek der Kirchenväter"
+    rights: free_bkv
+    works:
+      - { work: "De institutis coenobiorum", url: "https://bkv.unifr.ch/de/works/cpl-513/versions/von-den-einrichtungen-der-kloster-bkv", page: "Cassian_Institutionen" }
+      - { work: "De incarnatione Domini contra Nestorium", url: "https://bkv.unifr.ch/de/works/cpl-514/versions/sieben-bucher-uber-die-menschwerdung-christi-bkv", page: "Cassian_Menschwerdung" }
+      - { work: "Collationes patrum", url: "https://bkv.unifr.ch/de/works/cpl-512/versions/vierundzwanzig-unterredungen-mit-den-vatern-bkv", page: "Cassian_Unterredungen_1–2" }
+
+  - author: "Hieronymus"
+    translator: "BKV-Ausgabe"
+    edition: "Bibliothek der Kirchenväter"
+    rights: free_bkv
+    works:
+      - { work: "Dialogi contra Pelagianos", url: "https://bkv.unifr.ch/de/works/cpl-615/versions/dialog-gegen-die-pelagianer-bkv", page: "Hieronymus_Dialog_gegen_die_Pelagianer" }
+      - { work: "Vita Pauli", url: "https://bkv.unifr.ch/de/works/cpl-617/versions/leben-des-hl-paulus-des-ersten-einsiedlers-bkv", page: "Hieronymus_Vita_Pauli" }
+      - { work: "Vita Hilarii", url: "https://bkv.unifr.ch/de/works/cpl-618/versions/leben-des-hl-einsiedlers-hilarion-bkv", page: "Hieronymus_Vita_Hilarion" }
+      - { work: "Adversus Helvidium", url: "https://bkv.unifr.ch/de/works/cpl-609/versions/uber-die-bestandige-jungfrauschaft-mariens-gegen-helvidius-bkv", page: "Hieronymus_Gegen_Helvidius" }
+      - { work: "Vita Malchi", url: "https://bkv.unifr.ch/de/works/cpl-619/versions/leben-und-gefangenschaft-des-monches-malchus-bkv", page: "Hieronymus_Vita_Malchi" }
+      - { work: "Epistulae (Auswahl)", url: "https://bkv.unifr.ch/de/works/cpl-620/versions/briefe-bkv-2", page: "Hieronymus_Ausgewaehlte_Briefe" }
+
+  - author: "Cyrill von Alexandrien"
+    translator: "BKV-Ausgabe"
+    edition: "Bibliothek der Kirchenväter"
+    rights: free_bkv
+    works:
+      - { work: "De incarnatione unigeniti", url: "https://bkv.unifr.ch/de/works/-43a/versions/uber-die-menschwerdung-des-eingeborenen-bkv", page: "Cyrill_Alexandrien_Menschwerdung" }
+      - { work: "Erklärung des nicäischen Glaubensbekenntnisses", url: "https://bkv.unifr.ch/de/works/cpg-5355/versions/erklarung-des-nizanischen-glaubensbekenntnisses-bkv", page: "Cyrill_Alexandrien_Symbol" }
+      - { work: "De recta fide ad imperatorem", url: "https://bkv.unifr.ch/de/works/cpg-3218/versions/uber-den-rechten-glauben-an-den-kaiser-bkv", page: "Cyrill_Alexandrien_Rechter_Glaube" }
+      - { work: "Drei ökumenische Briefe", url: "https://bkv.unifr.ch/de/works/123x/versions/drei-okumenische-briefe-bkv", page: "Cyrill_Alexandrien_Oekumenische_Briefe" }
+
   - author: "Cyrill von Jerusalem"
     translator: "BKV-Ausgabe"
     edition: "Bibliothek der Kirchenväter"
@@ -117,6 +175,7 @@ imported:
     rights: pd
     works:
       - { work: "Contra Arianos", url: "https://bkv.unifr.ch/de/works/cpl-462/versions/gegen-die-arianer-oder-gegen-auxentius-von-mailand-bkv", page: "Hilarius_Gegen_die_Arianer" }
+      - { work: "De Trinitate", url: "https://bkv.unifr.ch/de/works/cpl-433/versions/zwolf-bucher-uber-die-dreieinigkeit-bkv", page: "Hilarius_De_Trinitate" }
 
   - author: "Johannes Chrysostomus"
     translator: "Joh. Chrysostomus Baur / Chrysostomus Mitterrutzner"
@@ -143,6 +202,7 @@ imported:
       - { work: "In epistulam ad Titum", url: "https://bkv.unifr.ch/de/works/cpg-4438/versions/homilien-uber-den-brief-an-titus-bkv", page: "Chrysostomus_Titus" }
       - { work: "In epistulam ad Philemonem", url: "https://bkv.unifr.ch/de/works/cpg-4439/versions/homilien-uber-den-brief-an-philemon-bkv", page: "Chrysostomus_Philemon" }
       - { work: "In epistulam ad Hebraeos", url: "https://bkv.unifr.ch/de/works/cpg-4440/versions/homilien-uber-den-brief-an-die-hebraer-bkv", page: "Chrysostomus_Hebraeerbrief_1–2" }
+      - { work: "Epistulae ad Olympiadem", url: "https://bkv.unifr.ch/de/works/cpg-4402-4403-4405/versions/briefe-an-olympias-und-papst-innocentius", page: "Chrysostomus_Briefe_an_Olympias" }
 
   - author: "Ambrosius von Mailand"
     translator: "BKV-Ausgabe / Joh. Ev. Niederhuber / Franz Xaver Schulte"

@@ -7,6 +7,99 @@
 apply = ARGV.include?('APPLY=1')
 
 AUTHORS = {
+
+  'Johannes_Chrysostomus' => {
+    ru: 'Иоанн_Златоуст',
+    de: 'Johannes_Chrysostomus',
+    folders: {
+      'Новозаветные толкования' => ['Neutestamentliche Kommentare', 1],
+      'Ветхозаветные толкования' => ['Alttestamentliche Kommentare', 2],
+      'Догматические труды' => ['Dogmatische Werke', 3],
+      'Пастырские и катехизические' => ['Pastorale und katechetische Werke', 4],
+      'Нравственно-аскетические труды' => ['Moralisch-asketische Werke', 5],
+      'Праздничные слова и беседы' => ['Festpredigten und Reden', 6],
+      'Похвальные слова' => ['Lobrede', 7],
+      'Автобиографические беседы и слова' => ['Autobiographische Reden und Homilien', 8],
+      'Гомилии на разные случаи' => ['Homilien zu verschiedenen Anlässen', 9],
+      'Письма' => ['Briefe', 10],
+    },
+  },
+  'Hieronymus' => {
+    ru: 'r6fC_Иероним_Стридонский_IV_век',
+    de: 'Hieronymus',
+    folders: {
+      'Догматико-полемические труды' => ['Dogmatisch-polemische Werke', 1],
+      'Экзегетические творения' => ['Exegetische Werke', 2],
+      'Исторические труды' => ['Historische Werke', 3],
+      'Агиографические труды' => ['Hagiographische Werke', 4],
+      'Письма' => ['Briefe', 5],
+      'Переводы Священного Писания' => ['Bibelübersetzungen', 6],
+    },
+  },
+  'Cyrill_von_Alexandrien' => {
+    ru: 'g1QT_Кирилл_Александрийский_V_век',
+    de: 'Cyrill_von_Alexandrien',
+    folders: {
+      'Экзегетические сочинения' => ['Exegetische Werke', 1],
+      'Гомилетические сочинения' => ['Homiletische Werke', 2],
+      'Догматико-полемические труды' => ['Dogmatisch-polemische Werke', 3],
+      'Послания' => ['Briefe', 4],
+      'Spuria (приписываемые)' => ['Spuria (zugeschriebene Schriften)', 100],
+    },
+  },
+  'Johannes_Cassianus' => {
+    ru: '49Rq_Иоанн_Кассиан_Римлянин_IVV_вв',
+    de: 'Johannes_Cassianus',
+    folders: {
+      'Собеседования египетских подвижников' => ['Unterredungen mit den Vätern', 1],
+      'Нравственно-аскетические труды' => ['Moralisch-asketische Werke', 2],
+    },
+  },
+  'Augustinus_von_Hippo' => {
+    ru: 'Аврелий_Августин',
+    de: 'Augustinus_von_Hippo',
+    folders: {
+      'Апологетические сочинения' => ['Apologetische Werke', 1],
+      'Догматические сочинения' => ['Dogmatische Werke', 2],
+      'Пастырские сочинения' => ['Pastorale Werke', 3],
+      'Письма' => ['Briefe', 4],
+      'Полемические сочинения' => ['Polemische Werke', 5],
+      'Сборники, фрагменты' => ['Sammlungen und Fragmente', 6],
+      'Философские и литературные сочинения' => ['Philosophische und literarische Werke', 7],
+      'Экзегетические сочинения' => ['Exegetische Werke', 8],
+      'Автобиографические сочинения' => ['Autobiographische Werke', 9],
+    },
+  },
+  'Ephraem_der_Syrer' => {
+    ru: 'LAUq_Ефрем_Сирин_преподобный_306373',
+    de: 'Ephraem_der_Syrer',
+    folders: {
+      'Творения' => ['Werke', 1],
+      'Современные переводы' => ['Moderne Übersetzungen', 2],
+      'Нравственно-аскетические труды' => ['Moralisch-asketische Werke', 3],
+      'Гимнография' => ['Hymnographie', 4],
+      'Священное Писание Ветхого Завета' => ['Altes Testament', 5],
+      'Священное Писание Нового Завета' => ['Neues Testament', 6],
+      'Сборники, симфонии, указатели' => ['Sammlungen und Register', 7],
+    },
+  },
+  'Epiphanius_von_Salamis' => {
+    ru: 'K60r_Епифаний_Кипрский_IV_век',
+    de: 'Epiphanius_von_Salamis',
+    folders: {
+      'Догматико-полемические труды' => ['Dogmatisch-polemische Werke', 1],
+      'Библейско-исагогические и экзегетические' => ['Biblisch-isagogische und exegetische Werke', 2],
+      'Spuria (приписываемые)' => ['Spuria (zugeschriebene Schriften)', 3],
+    },
+  },
+  'Hilarius_von_Poitiers' => {
+    ru: '97nZ_Иларий_Пиктавийский_святитель_315367',
+    de: 'Hilarius_von_Poitiers',
+    folders: {
+      'Догматическое богословие' => ['Dogmatische Theologie', 1],
+      'Священное Писание Ветхого Завета' => ['Heilige Schrift des Alten Testaments', 2],
+    },
+  },
   'Tertullian' => {
     ru: 'тертуллиан',
     de: 'Tertullian',
@@ -66,8 +159,9 @@ def top_category(menu)
 end
 
 AUTHORS.each do |de_path, cfg|
-  ru_author = ::Page.find_by!(lang: 'ru', path: cfg[:ru])
-  de_author = ::Page.find_by!(lang: 'de', path: cfg[:de])
+  ru_author = ::Page.find_by(lang: 'ru', path: cfg[:ru])
+  de_author = ::Page.find_by(lang: 'de', path: cfg[:de])
+  next if ru_author.nil? || de_author.nil?
   folders = {}
   cfg[:folders].each do |ru_title, (de_title, priority)|
     folder = ::Menu.find_by(page_id: de_author.id, parent_id: nil, title: de_title)
@@ -105,8 +199,10 @@ AUTHORS.each do |de_path, cfg|
     end
   end
 
-  old = ::Menu.find_by(page_id: de_author.id, parent_id: nil, title: 'Werke')
-  old.destroy if old && ::Menu.where(parent_id: old.id).none?
+  allowed = cfg[:folders].values.map(&:first)
+  ::Menu.where(page_id: de_author.id, parent_id: nil).where.not(title: allowed).find_each do |folder|
+    folder.destroy if ::Menu.where(parent_id: folder.id).none?
+  end
 end
 
 puts apply ? 'ПРИМЕНЕНО' : 'DRY RUN (APPLY=1 для записи)'

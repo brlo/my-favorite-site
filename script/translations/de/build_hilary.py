@@ -33,6 +33,19 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import bkv_epub as be  # noqa: E402
 
 
+def trin_sections():
+    with zipfile.ZipFile(os.path.join(ROOT, 'tmp', 'de_bkv', 'hil_trin.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    parts = []
+    for i, heading in enumerate(doc.xpath('//h2'), 1):
+        body = ''.join(be.para_html(p) for p in heading.getparent().xpath('.//p'))
+        parts.append(f'<h2>{i}</h2>{body}')
+    return ''.join(parts)
+
+
 def arian_sections():
     with zipfile.ZipFile(os.path.join(ROOT, 'tmp', 'de_bkv', 'hil_arian.epub')) as z:
         name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
@@ -88,6 +101,16 @@ pages:
 {block(body)}
     references: |-
 {block(SOURCE)}
+'''
+    works += f'''  - src: "r6LM_О_Троице_фрагменты"
+    path: "Hilarius_De_Trinitate"
+    title: "Zwölf Bücher über die Dreieinigkeit"
+    menu: {{ parent: "Dogmatische Werke", title: "Zwölf Bücher über die Dreieinigkeit", priority: 2 }}
+    update: true
+    body: |-
+{block('<p><em>Zwölf Bücher über die Dreieinigkeit (Bibliothek der Kirchenväter).</em></p>' + trin_sections())}
+    references: |-
+{block('<p><strong>Quelle:</strong> Übersetzung der BKV-Ausgabe, <em>Zwölf Bücher über die Dreieinigkeit</em>. Text nach <a href="https://bkv.unifr.ch/de/works/cpl-433/versions/zwolf-bucher-uber-die-dreieinigkeit-bkv">bkv.unifr.ch</a>; die Anmerkungen der Ausgabe sind weggelassen.</p>')}
 '''
     for name, text in (('hil_author.yml', author), ('hil_works.yml', works)):
         path = os.path.join(DB, name)

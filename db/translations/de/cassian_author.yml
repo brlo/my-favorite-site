@@ -1,0 +1,68 @@
+# Иоанн Кассиан: страница автора (немецкая библиотека)
+# Сборка: script/translations/de/build_cassian.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "49Rq_Иоанн_Кассиан_Римлянин_IVV_вв"
+    path: "Johannes_Cassianus"
+    title: "Johannes Cassianus, 4.–5. Jh."
+    title_sub: "Heiliger (~360–435), asketischer Schriftsteller, Mönch, Theologe, Begründer des Mönchtums in Gallien, der die Regeln der östlichen Klöster in den Westen übertrug"
+    copy_cover: true
+    menu: { parent: "5. Jahrhundert", title: "Johannes Cassianus, Heiliger (~360–435)", replace: "Johannes Cassianus, Heiliger (~360–435)", priority: 2 }
+    update: true
+    body: |-
+      <p><strong>Gedenktag</strong>: in gewöhnlichen Jahren am 28. Februar (13. März), in Schaltjahren am 29. Februar (13. März)</p>
+      <h2>Biografie</h2>
+      <h3>Vorbemerkungen</h3>
+      <p>Die biografischen Angaben über Kindheit und Jugend des ehrwürdigen Johannes Cassianus, des Römers, sind äußerst spärlich. Weder der Ort noch das genaue Datum seiner Geburt sind bekannt.</p>
+      <p>Nach der verbreitetsten Auffassung war Kleinskythien (eine römische Provinz; heute das Gebiet Rumäniens) die Heimat des Johannes Cassianus. Als ungefähre Geburtszeit gilt gemeinhin der Zeitraum von 360 bis 365.</p>
+      <p>Wir wissen nicht mit Sicherheit, wann und von wem er den Namen Johannes erhielt. Einer Version zufolge wurde er ihm bei der Taufe gegeben, einer anderen zufolge bei der Mönchstonsur. Es gibt jedoch Grund zu der Annahme, dass er diesen Namen selbst annahm, zu Ehren seines Lehrers und Erzbischofs, des heiligen Johannes Chrysostomus.</p>
+      <p>Johannes Cassianus stammte aus einer frommen, recht wohlhabenden Familie. Die ersten Regeln des Glaubens und der christlichen Sittlichkeit wurden ihm schon in der Kindheit eingepflanzt.</p>
+      <p>Zur rechten Zeit erhielt er eine vielseitige Bildung klassischen Zuschnitts; er studierte gründlich Philosophie, antike Dichtung, Astronomie und Rhetorik. Neben dem Lateinischen beherrschte er auch das Griechische.</p>
+      <p>Mit der Zeit trugen die geistliche Erziehung, der Eifer und die persönlichen Gaben des Johannes Früchte: Der ihm offenstehenden Karriere eines weltlichen Mannes zog er den Weg des demütigen mönchischen Lebens vor.</p>
+      <h3>Mönchtum</h3>
+      <p>Um das Jahr 380 unternahm Johannes Cassianus, der Römer, eine Pilgerreise nach Palästina. Während der Pilgerfahrt begleitete ihn sein alter Freund Germanus.</p>
+      <p>Hier, im Heiligen Land, beschlossen die Freunde, sich von den Versuchungen des eitlen Lebens in der Welt loszusagen, und traten, nachdem sie den nötigen Segen empfangen hatten, in das Bethlehemer Kloster ein. Es gibt die Auffassung, dass dieses Kloster auf dem Hirtenfeld lag.</p>
+      <p>Im Kloster verweilend, widmeten sich die Freunde dem Gebet, lauschten der Predigt, leisteten Gehorsam und hielten die Fasten. Als die Zeit gekommen war, legten sie die gebührenden Gelübde ab und empfingen das Mönchsgewand.</p>
+      <p>Nachdem sie in Jahren eifriger Arbeit die Anfangsgründe der asketischen Erfahrung erworben hatten, wollten sie mehr über das asketische Leben erfahren und ihre Taten mehren, und sie gedachten, in die Heimat des Mönchtums, nach Ägypten, zu ziehen.</p>
+      <h3>Die ägyptische Periode</h3>
+      <p>Nachdem sie vor der Reise gebührend gebetet, den Segen erbeten und dem Vorsteher versprochen hatten, in das Kloster zurückzukehren, machten sich die Freunde auf den Weg. Der Weg war beschwerlich, aber Gott war ihnen zur Hilfe.</p>
+      <p>Über das Meer gelangten sie mit dem Schiff zum Hafen Tanis und von dort in Begleitung des Bischofs Archebios nach Panephysis. Dort befand sich das Kloster des bekannten Aba Pinufius. Der Herr führte sie mit den Mönchen zusammen, die zwischen den Salzseen und auf den dortigen Hügeln lebten und sich abmühten, sowie mit den Abas Nestor und Chairemon und mit Aba Pinufius, der nahe dem Kloster in einer Zelle lebte.</p>
+      <p>Nachdem sie einige Zeit in Panephysis geblieben waren, dankten Johannes und Germanus Gott und zogen weiter; sie kamen in die Stadt Diolkos. Hier schöpften sie Weisheit im Umgang mit den Vätern: Archebios, Johannes, Piammon und anderen.</p>
+      <p>Als nächsten Punkt der Pilgerreise wählten sie die Wüste Sketis. Im 4. Jahrhundert lebte in ihr eine Vielzahl frommer Einsiedler.</p>
+      <p>Die dortigen Asketen besuchend, nahmen die Freunde an gemeinsamen Gebeten teil, interessierten sich für die verschiedenen asketischen Übungen, stellten Fragen, erbaten Ratschläge und hörten seelenfördernde Ermahnungen an.</p>
+      <p>Sie hatten das Glück, mit geistlich reifen Vätern zu verkehren: Paphnutius, Moses, Isaak, Serapion, Theonas und Daniel.</p>
+      <p>Bald traten Johannes und Germanus in die Gemeinschaft ein, die unter der Leitung des Aba Paphnutius stand. Dieser Aba war Origenist und diente als Presbyter in einer der Kirchen von Sketis. An Samstagen und Sonntagen füllte sich die Kirche mit den Einsiedlern, die sich zum Gottesdienst versammelten. Während seines Aufenthalts in Sketis kasteite Johannes Cassianus, der Römer, seinen Leib mit Fasten und körperlicher Arbeit und betete viel und aufrichtig.</p>
+      <p>Es wird berichtet, dass er in dieser Zeit zusammen mit Germanus die Wüste Kellia besuchte, die etwa 80 Meilen von Sketis entfernt lag. Dort trafen die Freunde mit Aba Theodor zusammen.</p>
+      <p>Nach sieben Jahren unablässigen asketischen Wirkens in Ägypten begab sich Johannes wiederum zusammen mit Germanus nach Palästina. Die Freunde wollten das Versprechen erfüllen, das sie dem Vorsteher des Bethlehemer Klosters gegeben hatten, der sie zur Pilgerreise gesegnet hatte, als sie sich erst auf die Reise durch Ägypten vorbereiteten.</p>
+      <p>In Bethlehem blieben sie indessen nicht lange und kehrten durch die Vorsehung Gottes bald wieder nach Ägypten zurück.</p>
+      <p>Die gesamte Zeit des Aufenthalts des Johannes Cassianus auf dem Gebiet Ägyptens bestimmen die Forscher mit zehn Jahren. In dieser Zeit wuchs er an geistlicher Reife, erwarb unschätzbare asketische Erfahrung, erlangte Weisheit und sammelte Material für seine künftigen Werke.</p>
+      <h3>Die Konstantinopler und die römische Periode</h3>
+      <p>Im Jahr 399 entstanden in Ägypten Unruhen im Zusammenhang mit der Kritik an der Lehre der Anthropomorphiten – von Häretikern, die behaupteten, Gott besitze Züge, die denen des menschlichen Leibes ähnlich seien.</p>
+      <p>Die kritische Stellungnahme zu den Anthropomorphiten, die aus dem Mund des Erzbischofs Theophilus von Alexandria erklang, fand Zustimmung bei den Brüdern der Gemeinschaft des Aba Paphnutius und überhaupt bei vielen Wüstenbewohnern.</p>
+      <p>Die über diesen Verlauf der Ereignisse unzufriedenen Häretiker strömten in Alexandria zusammen und begannen, Theophilus zu bedrohen. Sie forderten von ihm die Abschwörung von den origenistischen Ansichten, und er schenkte ihnen Gehör.</p>
+      <p>Im Jahr 400 entlarvte Theophilus die Irrlehre des Origenes öffentlich. Die bald darauf in Alexandria und Nitria abgehaltenen Synoden verurteilten den Origenismus offiziell.</p>
+      <p>Und so wurden die origenistischen Mönche sowohl von der Geistlichkeit als auch von den staatlichen Behörden verfolgt und aus Ägypten verdrängt. Viele Mönche waren gezwungen, Obdach, Nahrung und Unterstützung auf dem Gebiet anderer Länder zu suchen.</p>
+      <p>Etwa 50 Mönche fanden Mitgefühl beim Oberhaupt der Konstantinopler Kirche, dem heiligen Johannes Chrysostomus. Es wird angenommen, dass unter diesen fünfzig Angekommenen Johannes Cassianus, der Römer, und Germanus waren.</p>
+      <p>In Konstantinopel bemerkte man die Vorzüge der Freunde. Johannes wurde in den Rang eines Diakons erhoben. Außerdem vertraute man ihm das Amt des Comes der Schatzkammer an der Kathedrale an. Germanus seinerseits wurde zum Priester geweiht.</p>
+      <p>Als der heilige Johannes Chrysostomus unverdient der Amtsmissbräuche beschuldigt und dann aus Konstantinopel verbannt wurde, begaben sich die Väter Johannes Cassianus, der Römer, und Germanus nach Westen, um beim römischen Bischof Innozenz I. Unterstützung zu suchen. Der Konstantinopler Klerus stattete sie mit einem besonderen Schreiben aus, das sie an seinen Bestimmungsort überbrachten.</p>
+      <p>Danach blieb Johannes Cassianus zum Dienst in Rom, ebenso wie sein Freund, Vater Germanus.</p>
+      <p>In Rom blieb Vater Johannes etwa 12 Jahre. Es gibt Grund zu der Annahme, dass er gerade hier zum Priester geweiht wurde, wonach er das Amt eines Beraters des römischen Bischofs erhielt.</p>
+      <p>Während seines Aufenthalts in Rom lernte Johannes Cassianus den künftigen Papst Leo den Großen kennen.</p>
+      <h3>Die gallische Periode</h3>
+      <p>Im Jahr 415 kam der ehrwürdige Johannes Cassianus, der Römer, sei es aus Streben nach einsamer Beschauung, sei es wegen des Einfalls der Goten, in die Stadt Massilia (heute Marseille) in Südgallien, wo er dem dortigen Bischof Proculus nähertrat.</p>
+      <p>Bald wurden durch seine Bemühungen zwei Klöster gegründet: ein Männer- und ein Frauenkloster. Das Männerkloster leitete Vater Johannes selbst. Später wurde dieses Kloster als Kloster des heiligen Viktor bezeichnet (weil es neben dem Grab dieses Märtyrers lag).</p>
+      <p>Allmählich mehrte sich das Kloster an Brüdern. Die Erfahrung des Aufenthalts von Vater Johannes Cassianus in Ägypten trug zu einer guten Ordnung des inneren Lebens des Klosters bei.</p>
+      <p>Mit der Zeit überschritt sein Ruhm als guter geistlicher Führer die Grenzen Massilias und verbreitete sich über ganz Südgallien.</p>
+      <p>In den 20er Jahren des 5. Jahrhunderts stellte Vater Johannes auf Bitte der örtlichen Bischöfe eine Sammlung von Regeln für die gemeinschaftlichen Klöster zusammen. Außerdem arbeitete er in dieser Zeit an einem nicht weniger bedeutenden Werk, den „Gesprächen …“.</p>
+      <p>Um das Jahr 426 nahm der ehrwürdige Vater Johannes an den semipelagianischen Streitigkeiten teil (an der Polemik, die mit dem Verständnis der Rolle der persönlichen Freiheit und der Rolle der göttlichen Gnade im Werk der Erlösung zusammenhing).</p>
+      <p>Als erfahrener Hirte und arbeitsamer Mönch konnte er weder der Lehre zustimmen, die die Bedeutung der persönlichen Bemühungen des Asketen zunichtemacht, noch dem entgegengesetzten Extrem – der Lehre, die die Bedeutung der Rolle der göttlichen Gnade minimiert. In diesem Zusammenhang wies Johannes Cassianus, der Römer, sanft auf die Ungenauigkeiten hin, die dem seligen Augustinus unterliefen.</p>
+      <p>Zugleich war Vater Johannes mit der Abfassung der Schrift gegen den Häretiker Nestorius „Über die Menschwerdung des Herrn“ beschäftigt.</p>
+      <p>Am Ende seines Lebens begann der ehrwürdige Johannes Cassianus, der Römer, seine körperlichen Kräfte zu verlieren. Der Tod des Asketen trat um das Jahr 435 ein. Sein Leib wurde im Kloster des heiligen Viktor beigesetzt.</p>
+      <h2>Hymnographie</h2>
+      <p><strong>Troparion an den ehrwürdigen Johannes Cassianus, den Römer, 8. Ton</strong></p>
+      <blockquote><p>Durch Fasten geläutert, / hast du die Erkenntnis der Weisheit erlangt, / und von den gottragenden Vätern der Wüste / hast du die Zügelung der Leidenschaften gelernt. / Darum schenke uns durch deine Gebete / Gehorsam des Fleisches gegenüber dem Geist: / denn du bist ein Lehrer, ehrwürdiger Cassianus, // für alle, die in Christus dein Gedächtnis besingen.</p></blockquote>
+      <p><strong>Kondakion an den ehrwürdigen Johannes Cassianus, den Römer, 4. Ton</strong></p>
+      <blockquote><p>Ehrwürdig geworden, hast du dich Gott dargebracht, / und durch gute Werke erleuchtend, Cassianus, / hast du wie die Sonne gestrahlt / im Glanz deiner göttlichen Lehren, / indem du allezeit die Herzen aller erleuchtest, die dich verehren. / Doch flehe inständig zu Christus // für die, die dich in Liebe innig preisen.</p></blockquote>

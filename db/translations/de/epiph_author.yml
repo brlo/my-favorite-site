@@ -1,0 +1,16 @@
+# Епифаний Кипрский: страница автора (немецкая библиотека)
+# Сборка: script/translations/de/build_epiphanius.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "K60r_Епифаний_Кипрский_IV_век"
+    path: "Epiphanius_von_Salamis"
+    title: "Epiphanius von Salamis, 4. Jh."
+    title_sub: "Heiliger (~315–403), berühmter Kirchenvater und Wundertäter, Kämpfer gegen verschiedene Häresien"
+    copy_cover: true
+    menu: { parent: "4. Jahrhundert", title: "Epiphanius von Salamis, Heiliger (~315–403)", replace: "Epiphanius von Salamis, Heiliger (~315–403)", priority: 12 }
+    update: true
+    body: |-
+      <p><strong>Gedenktag:</strong> 12. (25.) Mai</p><h2>Biographie</h2><p>Über sein Leben ist äußerst wenig bekannt. Es gilt, dass er seiner Herkunft nach Phönizier war und im Hause eines reichen Juden erzogen wurde. Nach dem Tod seines Lehrers nahm er das Christentum an und zog sich nach Ägypten zurück. Er kehrte nach Palästina zurück, wo er Schüler des Abba Hilarion wurde. Nach langen asketischen Übungen siedelte er nach Zypern über und wurde 367 zum Bischof von Salamis geweiht.</p><p>Im Jahr 403 begab er sich auf Anstiftung des Theophilus von Alexandrien nach Konstantinopel, um den heiligen Johannes Chrysostomus des Origenismus anzuklagen; nach einer persönlichen Begegnung überzeugte er sich jedoch von der Falschheit der Anschuldigungen und dem politischen Hintergrund der Pläne des Theophilus. Als er sich nach Zypern begab, starb er während der Seereise unweit der Küste der Insel. Der Überlieferung der Väter zufolge wurde er mit sechzig Jahren Bischof und stand fünfundfünfzig Jahre im bischöflichen Dienst; er starb im Alter von einhundertsechzehn Jahren.</p><h2>Hymnographie</h2><p><strong>Tropar der heiligen Epiphanius von Zypern und Germanus von Konstantinopel, 4. Ton</strong></p><blockquote><p>Gott unserer Väter, / der du allezeit mit uns nach deiner Sanftmut handelst, / nimm deine Barmherzigkeit nicht von uns, / sondern durch ihre Gebete // lenke unser Leben in Frieden.</p></blockquote><p><strong>Kondak der heiligen Epiphanius von Zypern und Germanus von Konstantinopel, 4. Ton</strong></p><blockquote><p>Das wunderbare Paar der heiligen Hierarchen lasst uns, ihr Gläubigen, gebührend preisen, / mit Germanus den göttlichen Epiphanius: / Denn sie verbrannten die gottlosen Zungen / und legten allen die weisesten Dogmen vor, // die dem orthodoxen Bekenntnis das große Geheimnis der Frömmigkeit singen.</p></blockquote><p><strong>Verherrlichung</strong></p><blockquote><p>Wir verherrlichen euch, / ihr großen Hierarchen Epiphanius und Germanus, / und ehren euer heiliges Gedächtnis, // denn ihr bittet für uns Christus, unseren Gott.</p></blockquote>

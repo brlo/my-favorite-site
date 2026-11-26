@@ -51,6 +51,8 @@ SOURCES = {
             'BKV-Ausgabe', 'BKV'),
     'heb': ('Homilien über den Hebräerbrief', 'https://bkv.unifr.ch/de/works/cpg-4440/versions/homilien-uber-den-brief-an-die-hebraer-bkv',
             'BKV-Ausgabe', 'BKV'),
+    'olymp': ('Briefe an Olympias und Papst Innocentius', 'https://bkv.unifr.ch/de/works/cpg-4402-4403-4405/versions/briefe-an-olympias-und-papst-innocentius',
+              'BKV-Ausgabe', 'BKV'),
 }
 
 
@@ -250,6 +252,32 @@ def eph_parts():
     return ''.join(chapters[:17]), ''.join(chapters[17:])
 
 
+def red_sections():
+    with zipfile.ZipFile(os.path.join(ROOT, 'tmp', 'de_bkv', 'chr11_red.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    parts = []
+    for i, heading in enumerate(doc.xpath('//h2'), 1):
+        body = ''.join(be.para_html(p) for p in heading.getparent().xpath('.//p'))
+        parts.append(f'<h2>{i}</h2>{body}')
+    return ''.join(parts)
+
+
+def olymp_sections():
+    with zipfile.ZipFile(os.path.join(ROOT, 'tmp', 'de_bkv', 'chr2_olymp.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    parts = []
+    for i, heading in enumerate(doc.xpath('//h2'), 1):
+        body = ''.join(be.para_html(p) for p in heading.getparent().xpath('.//p'))
+        parts.append(f'<h2>{i}</h2>{body}')
+    return ''.join(parts)
+
+
 def paragraphs2(key):
     with zipfile.ZipFile(os.path.join(ROOT, 'tmp', 'de_bkv', 'chr2_' + key + '.epub')) as z:
         name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
@@ -323,6 +351,7 @@ folders:
   - {{ path: "Moralisch-asketische Werke", priority: 2 }}
   - {{ path: "Homilien zu verschiedenen Anlässen", priority: 3 }}
   - {{ path: "Neutestamentliche Kommentare", priority: 4 }}
+  - {{ path: "Briefe", priority: 5 }}
 pages:
 
 {page('wpDj_Шесть_слов_о_священстве', 'Chrysostomus_Ueber_das_Priestertum', 'Über das Priestertum', 'sac', 'Pastorale und katechetische Werke', 1, sac_sections())}
@@ -358,6 +387,7 @@ pages:
 {page('b3GF_Толкование_на_послание_к_Филимону', 'Chrysostomus_Philemon', 'Homilien über den Philemonbrief', 'phm', 'Neutestamentliche Kommentare', 25, ''.join(epistle10('phm')))}
 {page('yHrs_Толкование_на_послание_к_Евреям_1', 'Chrysostomus_Hebraeerbrief_1', 'Homilien über den Hebräerbrief — Teil 1', 'heb', 'Neutestamentliche Kommentare', 26, heb1)}
 {page('UDdp_Толкование_на_послание_к_Евреям_2', 'Chrysostomus_Hebraeerbrief_2', 'Homilien über den Hebräerbrief — Teil 2', 'heb', 'Neutestamentliche Kommentare', 27, heb2)}
+{page('eMwT_Письма_к_разным_лицам', 'Chrysostomus_Briefe_an_Olympias', 'Briefe an Olympias und Papst Innocentius (Auswahl)', 'olymp', 'Briefe', 1, olymp_sections())}
 '''
     for name, text in (('chrys_author.yml', author), ('chrys_works.yml', works)):
         path = os.path.join(DB, name)

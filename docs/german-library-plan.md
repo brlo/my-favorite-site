@@ -346,18 +346,55 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Homilien über den Philipperbrief» (16 гл., 437 КБ), «Homilien über den
   Kolosserbrief» (12 гл., 363 КБ), «Homilien über den 1./2. Thessalonicherbrief»
   (11+5 гл., 299+121 КБ), «Timotheus/Titus/Philemon» (19+10+6+4 гл.),
-  «Hebräerbrief» (2 части, 16+18 гл.); меню —
+  «Hebräerbrief» (2 части, 16+18 гл.), «Briefe an Olympias» (Auswahl, 283 КБ);
+  меню —
   «4. Jahrhundert» → «Pastorale und katechetische/Moralisch-asketische Werke».
   Права: `free_bkv`/`pd`.
 
 - **Иларий Пиктавийский** (`Hilarius_von_Poitiers`): автор — перевод RU,
-  обложка с RU; «Gegen die Arianer, oder gegen Auxentius von Mailand» (21 КБ);
-  меню — «4. Jahrhundert» → «Dogmatische Werke». Права: `pd`.
+  обложка с RU; «Gegen die Arianer, oder gegen Auxentius von Mailand» (21 КБ),
+  «Zwölf Bücher über die Dreieinigkeit» (1,1 МБ); меню — «4. Jahrhundert» →
+  «Dogmatische Werke». Права: `pd`.
 
 - **Кирилл Иерусалимский** (`Cyrill_von_Jerusalem`): автор — перевод RU,
   обложка с RU; «Katechesen an die Täuflinge» (19 гл., 580 КБ),
   «Mystagogische Katechesen» (5 гл., 42 КБ); меню — «4. Jahrhundert» →
   «Katechetische Werke». Права: `free_bkv`.
+
+- **Кирилл Александрийский** (`Cyrill_von_Alexandrien`): автор — перевод RU,
+  обложка с RU; «Über die Menschwerdung des Eingeborenen» (93 КБ),
+  «Erklärung des nicäischen Glaubensbekenntnisses» (45 КБ), «Über den rechten
+  Glauben an den Kaiser» (100 КБ), «Drei ökumenische Briefe» (48 КБ); меню —
+  «5. Jahrhundert» → «Dogmatische Werke». Права: `free_bkv`.
+
+- **Иероним Стридонский** (`Hieronymus`): автор — перевод RU, обложка с RU;
+  «Dialog gegen die Pelagianer» (4 гл., 286 КБ), «Vita Pauli» (22 КБ),
+  «Vita Hilarion» (69 КБ), «Gegen Helvidius» (61 КБ), «Vita Malchi» (20 КБ),
+  «Ausgewählte Briefe» (Auswahl); меню — «4. Jahrhundert» →
+  «Dogmatische/Hagiographische Werke». Права: `free_bkv`.
+
+- **Иоанн Кассиан** (`Johannes_Cassianus`): автор — перевод RU, обложка с RU;
+  «Von den Einrichtungen der Klöster» (12 гл., 401 КБ), «Sieben Bücher über die
+  Menschwerdung Christi» (8 гл., 333 КБ), «Vierundzwanzig Unterredungen»
+  (2 части, 610+607 КБ); меню — «5. Jahrhundert» →
+  «Asketische/Dogmatische Werke». Права: `free_bkv`.
+
+- **Августин** (`Augustinus_von_Hippo`): автор — перевод RU, обложка с RU;
+  «Enchiridion» (204 КБ), «Vier Bücher über die christliche Lehre» (400 КБ),
+  «Vom ersten katechetischen Unterricht» (142 КБ), «Vier Bücher über das
+  Symbolum» (181 КБ), «Bekenntnisse» (2 части, 299+424 КБ), «Fünfzehn Bücher
+  über die Dreieinigkeit» (1,0 МБ), «Ausgewählte Briefe» (Auswahl); меню —
+  «5. Jahrhundert» →
+  «Dogmatische/Exegetische/Pastorale Werke».
+  Права: `free_bkv`.
+
+- **Ефрем Сирин** (`Ephraem_der_Syrer`): автор — перевод RU, обложка с RU;
+  «Rede über die Auferweckung des Lazarus» (23 КБ); меню — «4. Jahrhundert» →
+  «Predigten». Права: `free_bkv`.
+
+- **Епифаний Кипрский** (`Epiphanius_von_Salamis`): автор — перевод RU,
+  обложка с RU; «Der Festgeankerte (Ancoratus)» (308 КБ); меню —
+  «4. Jahrhundert» → «Dogmatische Werke». Права: `free_bkv`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).
