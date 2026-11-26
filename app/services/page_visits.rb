@@ -49,12 +49,20 @@ class PageVisits
         hincr("bots#{day}", BotDetector.bot_name(browser) || 'другие')
       else
         # все не-боты попадают в топ IP (в том числе подозрительные)
-        ::RedisConnectionPool.zincrby("zips#{day}", 1, ip.to_s) if ip.present?
+        if ip.present?
+          ::RedisConnectionPool.zincrby("zips#{day}", 1, ip.to_s)
+          # zset и гиперлоглог создаются только здесь, поэтому TTL ставим сразу:
+          # иначе дневные ключи копятся в Redis вечно
+          ::RedisConnectionPool.expire("zips#{day}", TTL)
+        end
         if ip_count > SUSPICIOUS_DAY_LIMIT
           prefix = 's-'
         else
           prefix = ''
-          ::RedisConnectionPool.pfadd("uip#{day}", ip.to_s) if ip.present?
+          if ip.present?
+            ::RedisConnectionPool.pfadd("uip#{day}", ip.to_s)
+            ::RedisConnectionPool.expire("uip#{day}", TTL)
+          end
           hincr("langs#{day}", lang.to_s.presence || '?') if lang.present?
         end
       end

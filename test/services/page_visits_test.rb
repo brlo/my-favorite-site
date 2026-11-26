@@ -22,6 +22,16 @@ class PageVisitsTest < ActiveSupport::TestCase
     assert_equal [['10.0.0.1', 1]], PageVisits.day_top_ips(@day)
   end
 
+  test 'дневные ключи топ IP и уникальных IP получают TTL, а не копятся вечно' do
+    PageVisits.day_visit(browser: CHROME, ip: '10.0.0.8', lang: :ru)
+
+    %w[zips uip].each do |prefix|
+      ttl = ::RedisConnectionPool.ttl("#{prefix}#{@day}")
+      assert_operator ttl, :>, 0, "#{prefix}: у ключа нет TTL"
+      assert_operator ttl, :<=, PageVisits::TTL
+    end
+  end
+
   test 'day_count возвращает просмотры людей за сегодня, ничего не увеличивая' do
     assert_equal '0', PageVisits.day_count
 
