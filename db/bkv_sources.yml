@@ -129,6 +129,9 @@ imported:
       - { work: "Adversus Hermogenem", url: "https://bkv.unifr.ch/de/works/cpl-13/versions/gegen-hermogenes-bkv", page: "Tertullian_Adversus_Hermogenem" }
       - { work: "Adversus Valentinianos", url: "https://bkv.unifr.ch/de/works/cpl-16/versions/gegen-die-valentinianer-bkv", page: "Tertullian_Adversus_Valentinianos" }
       - { work: "Scorpiace", url: "https://bkv.unifr.ch/de/works/cpl-22/versions/arznei-gegen-skorpionstich-bkv", page: "Tertullian_Scorpiace" }
+      - { work: "De pallio", url: "https://bkv.unifr.ch/de/works/cpl-15/versions/uber-das-pallium-oder-den-philosophenmantel-bkv", page: "Tertullian_De_pallio" }
+      - { work: "De fuga in persecutione", url: "https://bkv.unifr.ch/de/works/cpl-25/versions/uber-das-fliehen-in-der-verfolgung-bkv", page: "Tertullian_De_fuga" }
+      - { work: "De monogamia", url: "https://bkv.unifr.ch/de/works/cpl-28/versions/uber-die-einmalige-ehe-bkv", page: "Tertullian_De_monogamia" }
 
   - author: "Gregor von Nyssa"
     translator: "BKV-Ausgabe / Heinrich Hand"

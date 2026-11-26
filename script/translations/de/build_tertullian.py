@@ -33,6 +33,9 @@ SOURCES = {
     'herm': ('Gegen Hermogenes', 'https://bkv.unifr.ch/de/works/cpl-13/versions/gegen-hermogenes-bkv'),
     'val': ('Gegen die Valentinianer', 'https://bkv.unifr.ch/de/works/cpl-16/versions/gegen-die-valentinianer-bkv'),
     'scorp': ('Arznei gegen den Skorpionstich', 'https://bkv.unifr.ch/de/works/cpl-22/versions/arznei-gegen-skorpionstich-bkv'),
+    'pall': ('Über das Pallium oder den Philosophenmantel', 'https://bkv.unifr.ch/de/works/cpl-15/versions/uber-das-pallium-oder-den-philosophenmantel-bkv'),
+    'fuga': ('Über das Fliehen in der Verfolgung', 'https://bkv.unifr.ch/de/works/cpl-25/versions/uber-das-fliehen-in-der-verfolgung-bkv'),
+    'mono': ('Über die einmalige Ehe', 'https://bkv.unifr.ch/de/works/cpl-28/versions/uber-die-einmalige-ehe-bkv'),
 }
 
 
@@ -132,6 +135,9 @@ pages:
 {page('dINv_Против_Гермогена_1', 'Tertullian_Adversus_Hermogenem', 'Gegen Hermogenes', 'herm', 19)}
 {page('n4PQ_Против_Валентиниан', 'Tertullian_Adversus_Valentinianos', 'Gegen die Valentinianer', 'val', 20)}
 {page('QvjN_Скорпиак_или_противоядие_от_угрызения_скорпионов', 'Tertullian_Scorpiace', 'Arznei gegen den Skorpionstich', 'scorp', 21)}
+{page('XOpx_О_плаще', 'Tertullian_De_pallio', 'Über das Pallium oder den Philosophenmantel', 'pall', 22)}
+{page('iRVv_О_бегстве_во_время_гонений', 'Tertullian_De_fuga', 'Über das Fliehen in der Verfolgung', 'fuga', 23)}
+{page('4xbT_О_единоженстве', 'Tertullian_De_monogamia', 'Über die einmalige Ehe', 'mono', 24)}
 '''
     for name, text in (('tert_author.yml', author), ('tert_works.yml', works)):
         path = os.path.join(DB, name)

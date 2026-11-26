@@ -313,7 +313,9 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   (19 гл.), «Gegen die Juden» (14 гл.), «Über die Schauspiele» (30 гл.),
   «An die Märtyrer» (6 гл.), «An Scapula» (5 гл.), «Das Zeugnis der Seele»
   (6 гл.), «Gegen Hermogenes» (45 гл.), «Gegen die Valentinianer» (39 гл.),
-  «Arznei gegen den Skorpionstich» (15 гл.); меню — «2. Jahrhundert» → «Werke». Права: `pd`.
+  «Arznei gegen den Skorpionstich» (15 гл.), «Über das Pallium» (6 гл.),
+  «Über das Fliehen in der Verfolgung» (11 гл.), «Über die einmalige Ehe»
+  (17 гл.); меню — «2. Jahrhundert» → «Werke». Права: `pd`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).
