@@ -23,7 +23,7 @@ Bibleox combines Scripture and Sacred Tradition in one place. Interface in 25 la
 - [Church Slavonic with Russian glosses (ELZ-RU)](https://bibleox.com/ru/csl-ru/mf/1/)
 - [Japanese, New Interconfessional Translation](https://bibleox.com/ja/jp-ni/mf/1/)
 - [Japanese, Japanese Orthodox Translation](https://bibleox.com/ja/jp-joc/mf/1/) — New Testament and Psalms complete; Old Testament: liturgical readings only
-- [Japanese, Bibleox Translation (ビブレオックス訳)](https://bibleox.com/ja/jp-box/mf/1/) — Orthodox, modern Japanese; based on the Church text; New Testament and Psalms (in progress)
+- [Japanese, Bibleox Translation (ビブレオックス訳)](https://bibleox.com/ja/jp-box/mf/1/) — Orthodox, modern Japanese; based on the Church text; the whole Bible, 77 books
 - [Chinese, Studium Biblicum (思高本), simplified](https://bibleox.com/zh-Hans/cn-sb/mf/1/), [traditional](https://bibleox.com/zh-Hant/cn-sbt/mf/1/)
 - [Chinese Union Version (和合本), simplified](https://bibleox.com/zh-Hans/cn-cuv/mf/1/), [traditional](https://bibleox.com/zh-Hant/cn-cuvt/mf/1/)
 - [Korean Revised Version (개역개정, NKRV)](https://bibleox.com/ko/ko-nkrv/mf/1/) — no deuterocanonical books; New Testament from the critical text.

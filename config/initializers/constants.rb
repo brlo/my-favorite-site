@@ -361,7 +361,6 @@ JP_BOX_ABOUT_PATH = 'О_переводе_японской_Библии'
 BIB_LANGS_NOT_INDEXED = {
   'csl-pnm' => true,
   'en-nrsv' => true,
-  'jp-box' => true, # перевод ещё не готов целиком — не индексировать
 }
 
 # для routes.rb (редиректы со старого на новое)
