@@ -10,19 +10,19 @@ WORKS = [
   {
     parent: 'Hilarius_von_Poitiers', category: 'Exegetische Werke',
     path: 'Hilarius_Matthaeuskommentar', title: 'Kommentar zum Matthäusevangelium',
-    body: 'tmp/external/hil_mat.html', priority: 1,
+    body: 'db/translations/de/external/hil_mat.html', priority: 1,
     source: ['Kommentar zum Matthäusevangelium', 'https://bkv.unifr.ch/de/works/cpl-430/versions/kommentar-zum-evangelium-des-matthaus-bkv'],
   },
   {
     parent: 'Cyrill_von_Alexandrien', category: 'Dogmatisch-polemische Werke',
     path: 'Cyrill_Alexandrien_Sieben_Gespraeche', title: 'Sieben Gespräche über die heilige und wesensgleiche Dreieinigkeit',
-    body: 'tmp/external/cyr_dial.html', priority: 6,
+    body: 'db/translations/de/external/cyr_dial.html', priority: 6,
     source: ['Sieben Gespräche über die heilige und wesensgleiche Dreieinigkeit', 'https://bkv.unifr.ch/de/works/-42x/versions/sieben-gesprache-uber-die-heilige-und-wesensgleiche-dreieinigkeit-bkv'],
   },
   {
     parent: 'Eusebius_von_Cäsarea', category: 'Geschichte',
     path: 'Eusebius_Vita_Constantini', title: 'Vier Bücher über das Leben des Kaisers Konstantin',
-    body: 'tmp/external/eus_vita.html', priority: 11,
+    body: 'db/translations/de/external/eus_vita.html', priority: 11,
     source: ['Vier Bücher über das Leben des Kaisers Konstantin', 'https://bkv.unifr.ch/de/works/cpg-3496/versions/vier-bucher-uber-das-leben-des-kaisers-konstantin-und-des-kaisers-konstantin-rede-an-die-versammlung-der-heiligen-bkv'],
   },
 ].freeze

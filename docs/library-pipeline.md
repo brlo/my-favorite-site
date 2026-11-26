@@ -85,6 +85,26 @@ bin/rails pages:import_translations FILE=... PUBLISH=1
 - Массовое переименование или удаление чужих пунктов меню без согласования.
 - Импорт на прод без `DRY_RUN=1` и без явной команды пользователя.
 
+
+## 8. Труды без RU-эталона и меню по книгам
+
+- Если у труда **нет RU-страницы**, не подставлять чужой `src`: импортёр
+  привяжет текст к неправильной группе. Использовать
+  `script/translations/de/import_external_works.rb` (DE-only страница,
+  HTML-тела — в `db/translations/de/external/`, источник — в `references`).
+  Это исключение, а не замена обычному двум-YAML конвейеру.
+- «Пересказы» и фрагменты не выдавать за полный труд: пример — «Панарион»
+  Епифания, где BKV даёт только `Anakephalaiosis` и Haer. 78; такие вещи
+  лучше не публиковать.
+- Верхние категории автора — `mirror_author_folders.rb`; дубли-заготовки —
+  `cleanup_duplicate_authors.rb`; части книг — `restructure_chrysostom_nt.rb`
+  и `group_author_parts.rb`.
+- Для французских меню: `script/translations/fr/fix_chrysostom_menu.rb`,
+  `fix_tertullian_menu.rb` — оставлять только французскую часть названия,
+  части книг группировать под книгой.
+- После любых правок меню: `check_library_structure.rb LANG`, 200 на
+  страницах, отсутствие кириллицы/латинских дублей в меню.
+
 ## 7. Где детали
 
 - `docs/translations.md` — общие правила перевода/импорта.
