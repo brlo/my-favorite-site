@@ -36,6 +36,9 @@ SOURCES = {
     'pall': ('Über das Pallium oder den Philosophenmantel', 'https://bkv.unifr.ch/de/works/cpl-15/versions/uber-das-pallium-oder-den-philosophenmantel-bkv'),
     'fuga': ('Über das Fliehen in der Verfolgung', 'https://bkv.unifr.ch/de/works/cpl-25/versions/uber-das-fliehen-in-der-verfolgung-bkv'),
     'mono': ('Über die einmalige Ehe', 'https://bkv.unifr.ch/de/works/cpl-28/versions/uber-die-einmalige-ehe-bkv'),
+    'cast': ('Über die Aufforderung zur Keuschheit', 'https://bkv.unifr.ch/de/works/cpl-20/versions/uber-die-aufforderung-zur-keuschheit-bkv'),
+    'ieiun': ('Über das Fasten gegen die Psychiker', 'https://bkv.unifr.ch/de/works/cpl-29/versions/uber-das-fasten-gegen-die-psychiker-bkv'),
+    'virg': ('Über die Verschleierung der Jungfrauen', 'https://bkv.unifr.ch/de/works/cpl-27/versions/uber-die-verschleierung-der-jungfrauen-bkv'),
 }
 
 
@@ -138,6 +141,9 @@ pages:
 {page('XOpx_О_плаще', 'Tertullian_De_pallio', 'Über das Pallium oder den Philosophenmantel', 'pall', 22)}
 {page('iRVv_О_бегстве_во_время_гонений', 'Tertullian_De_fuga', 'Über das Fliehen in der Verfolgung', 'fuga', 23)}
 {page('4xbT_О_единоженстве', 'Tertullian_De_monogamia', 'Über die einmalige Ehe', 'mono', 24)}
+{page('yTgS_О_целомудрии', 'Tertullian_De_exhortatione_castitatis', 'Über die Aufforderung zur Keuschheit', 'cast', 25)}
+{page('NqoW_О_посте', 'Tertullian_De_ieiunio', 'Über das Fasten gegen die Psychiker', 'ieiun', 26)}
+{page('2dNZ_О_покрывале_девственниц', 'Tertullian_De_virginibus_velandis', 'Über die Verschleierung der Jungfrauen', 'virg', 27)}
 '''
     for name, text in (('tert_author.yml', author), ('tert_works.yml', works)):
         path = os.path.join(DB, name)

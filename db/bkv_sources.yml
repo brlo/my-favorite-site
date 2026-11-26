@@ -132,6 +132,9 @@ imported:
       - { work: "De pallio", url: "https://bkv.unifr.ch/de/works/cpl-15/versions/uber-das-pallium-oder-den-philosophenmantel-bkv", page: "Tertullian_De_pallio" }
       - { work: "De fuga in persecutione", url: "https://bkv.unifr.ch/de/works/cpl-25/versions/uber-das-fliehen-in-der-verfolgung-bkv", page: "Tertullian_De_fuga" }
       - { work: "De monogamia", url: "https://bkv.unifr.ch/de/works/cpl-28/versions/uber-die-einmalige-ehe-bkv", page: "Tertullian_De_monogamia" }
+      - { work: "De exhortatione castitatis", url: "https://bkv.unifr.ch/de/works/cpl-20/versions/uber-die-aufforderung-zur-keuschheit-bkv", page: "Tertullian_De_exhortatione_castitatis" }
+      - { work: "De ieiunio", url: "https://bkv.unifr.ch/de/works/cpl-29/versions/uber-das-fasten-gegen-die-psychiker-bkv", page: "Tertullian_De_ieiunio" }
+      - { work: "De virginibus velandis", url: "https://bkv.unifr.ch/de/works/cpl-27/versions/uber-die-verschleierung-der-jungfrauen-bkv", page: "Tertullian_De_virginibus_velandis" }
 
   - author: "Gregor von Nyssa"
     translator: "BKV-Ausgabe / Heinrich Hand"

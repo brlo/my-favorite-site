@@ -315,6 +315,8 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   (6 гл.), «Gegen Hermogenes» (45 гл.), «Gegen die Valentinianer» (39 гл.),
   «Arznei gegen den Skorpionstich» (15 гл.), «Über das Pallium» (6 гл.),
   «Über das Fliehen in der Verfolgung» (11 гл.), «Über die einmalige Ehe»
+  (17 гл.), «Über die Aufforderung zur Keuschheit» (13 гл.), «Über das Fasten
+  gegen die Psychiker» (17 гл.), «Über die Verschleierung der Jungfrauen»
   (17 гл.); меню — «2. Jahrhundert» → «Werke». Права: `pd`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
