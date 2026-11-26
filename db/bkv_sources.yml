@@ -103,6 +103,20 @@ imported:
       - { work: "De habitu virginum", url: "https://bkv.unifr.ch/de/works/cpl-40/versions/uber-die-haltung-der-jungfrauen-bkv", page: "Cyprian_De_habitu_virginum" }
       - { work: "Ad Demetrianum", url: "https://bkv.unifr.ch/de/works/cpl-46/versions/an-demetrianus-bkv", page: "Cyprian_Ad_Demetrianum" }
 
+  - author: "Eusebius von Cäsarea"
+    translator: "BKV-Ausgabe"
+    edition: "Bibliothek der Kirchenväter"
+    rights: free_bkv
+    works:
+      - { work: "De martyribus Palaestinae", url: "https://bkv.unifr.ch/de/works/cpg-3490/versions/uber-die-martyrer-in-palastina-bkv", page: "Eusebius_Maertyrer_Palaestinas" }
+
+  - author: "Johannes von Damaskus"
+    translator: "BKV-Ausgabe"
+    edition: "Bibliothek der Kirchenväter"
+    rights: free_bkv
+    works:
+      - { work: "Expositio fidei", url: "https://bkv.unifr.ch/de/works/cpg-8043/versions/genaue-darlegung-des-orthodoxen-glaubens-bkv", page: "Johannes_Damaskus_Expositio_1–4" }
+
   - author: "Epiphanius von Salamis"
     translator: "BKV-Ausgabe"
     edition: "Bibliothek der Kirchenväter"
@@ -129,6 +143,7 @@ imported:
       - { work: "Confessiones", url: "https://bkv.unifr.ch/de/works/cpl-251/versions/aug-conf-bkv", page: "Augustinus_Bekenntnisse_1–2" }
       - { work: "De Trinitate", url: "https://bkv.unifr.ch/de/works/cpl-329/versions/funfzehn-bucher-uber-die-dreieinigkeit", page: "Augustinus_De_Trinitate" }
       - { work: "Epistulae (Auswahl)", url: "https://bkv.unifr.ch/de/works/cpl-262/versions/ausgewahlte-briefe-erster-teil-bkv", page: "Augustinus_Ausgewaehlte_Briefe" }
+      - { work: "Tractatus in Evangelium Iohannis", url: "https://bkv.unifr.ch/de/works/cpl-278/versions/vortrage-uber-das-johannes-evangelium-bkv", page: "Augustinus_Johannes_Evangelium" }
 
   - author: "Johannes Cassianus"
     translator: "BKV-Ausgabe"
@@ -150,6 +165,7 @@ imported:
       - { work: "Adversus Helvidium", url: "https://bkv.unifr.ch/de/works/cpl-609/versions/uber-die-bestandige-jungfrauschaft-mariens-gegen-helvidius-bkv", page: "Hieronymus_Gegen_Helvidius" }
       - { work: "Vita Malchi", url: "https://bkv.unifr.ch/de/works/cpl-619/versions/leben-und-gefangenschaft-des-monches-malchus-bkv", page: "Hieronymus_Vita_Malchi" }
       - { work: "Epistulae (Auswahl)", url: "https://bkv.unifr.ch/de/works/cpl-620/versions/briefe-bkv-2", page: "Hieronymus_Ausgewaehlte_Briefe" }
+      - { work: "Contra Vigilantium", url: "https://bkv.unifr.ch/de/works/cpl-611/versions/gegen-vigilantius-bkv", page: "Hieronymus_Gegen_Vigilantius" }
 
   - author: "Cyrill von Alexandrien"
     translator: "BKV-Ausgabe"
@@ -227,6 +243,9 @@ imported:
     rights: free_bkv
     works:
       - { work: "Homiliae in Hexaemeron", url: "https://bkv.unifr.ch/de/works/cpg-2835/versions/homilien-uber-das-hexaemeron-bkv", page: "Basilius_Hexaemeron" }
+      - { work: "Epistulae (Auswahl)", url: "https://bkv.unifr.ch/de/works/cpg-2900/versions/ausgewahlte-briefe-bkv", page: "Basilius_Ausgewaehlte_Briefe" }
+      - { work: "Homiliae diversae (Auswahl)", url: "https://bkv.unifr.ch/de/works/CPG-2845-2869/versions/ausgewahlte-predigten-bkv-3", page: "Basilius_Ausgewaehlte_Predigten" }
+      - { work: "313 kurze Vorschriften", url: "https://bkv.unifr.ch/de/works/cpg-2875/versions/313-kurzgefasste-vorschriften-bkv", page: "Basilius_Kurze_Vorschriften" }
 
   - author: "Tertullian"
     translator: "Karl Adam Heinrich Kellner"
@@ -263,6 +282,13 @@ imported:
       - { work: "De pudicitia", url: "https://bkv.unifr.ch/de/works/cpl-30/versions/uber-die-ehrbarkeit-bkv", page: "Tertullian_De_pudicitia" }
       - { work: "De cultu feminarum I–II", url: "https://bkv.unifr.ch/de/works/cpl-11/versions/uber-den-weiblichen-putz-bkv", page: "Tertullian_De_cultu_feminarum_1/2" }
 
+  - author: "Gregor von Nazianz"
+    translator: "BKV-Ausgabe"
+    edition: "Bibliothek der Kirchenväter"
+    rights: free_bkv
+    works:
+      - { work: "Ausgewählte Reden", url: "https://bkv.unifr.ch/de/works/cpg-3010/versions/reden-bkv", page: "Gregor_Nazianz_Ausgewaehlte_Reden" }
+
   - author: "Gregor von Nyssa"
     translator: "BKV-Ausgabe / Heinrich Hand"
     edition: "BKV 1. Reihe, Bd. 56 (1927); Bd. 24 (1874)"
@@ -274,6 +300,7 @@ imported:
       - { work: "De beatitudinibus", url: "https://bkv.unifr.ch/de/works/cpg-3161/versions/acht-homilien-uber-die-acht-seligkeiten-bkv", page: "Gregor_Nyssa_Seligkeiten" }
       - { work: "Vita Macrinae", url: "https://bkv.unifr.ch/de/works/cpg-3166/versions/lebensbeschreibung-seiner-schwester-makrina-bkv", page: "Gregor_Nyssa_Makrina_Leben" }
       - { work: "Dialogus de anima et resurrectione", url: "https://bkv.unifr.ch/de/works/cpg-3149/versions/gesprach-mit-makrina-uber-seele-und-auferstehung-bkv", page: "Gregor_Nyssa_Makrina_Gespraech" }
+      - { work: "Ausgewählte Reden", url: "https://bkv.unifr.ch/de/works/-44a/versions/ausgewahlte-reden-bkv", page: "Gregor_Nyssa_* (ausgewählte Predigten)" }
 
   - author: "Athanasius der Große"
     translator: "Anton Stegmann / Hans Mertel"
@@ -289,6 +316,19 @@ imported:
       - { work: "De decretis Nicaenae synodi", url: "https://bkv.unifr.ch/de/works/cpg-2120/versions/uber-die-beschlusse-der-synode-von-nizaa-bkv", page: "Athanasius_Nizaea" }
       - { work: "De synodis", url: "https://bkv.unifr.ch/de/works/cpg-2128/versions/abhandlung-uber-die-synoden-zu-rimini-in-italien-und-zu-seleucia-in-isaurien-bkv", page: "Athanasius_Synoden" }
       - { work: "Epistula ad Afros", url: "https://bkv.unifr.ch/de/works/cpg-2133/versions/brief-an-die-bischofe-in-afrika-bkv", page: "Athanasius_Afrikanische_Bischöfe" }
+      - { work: "Epistula ad Iovianum", url: "https://bkv.unifr.ch/de/works/cpg-2135/versions/brief-an-den-kaiser-jovianus-bkv", page: "Athanasius_Brief_an_Jovian" }
+      - { work: "Epistula ad Maximum", url: "https://bkv.unifr.ch/de/works/cpg-2100/versions/brief-an-den-philosophen-maximus-bkv", page: "Athanasius_Brief_an_Maximus" }
+      - { work: "Epistula ad Dracontium", url: "https://bkv.unifr.ch/de/works/cpg-2132/versions/unseres-heiligen-vaters-athanasius-erzbischofes-von-alexandrien-brief-an-den-dracontius-bkv", page: "Athanasius_Brief_an_Dracontius" }
+      - { work: "Epistula ad Rufinianum", url: "https://bkv.unifr.ch/de/works/cpg-2107/versions/brief-an-den-rufinianus-bkv", page: "Athanasius_Brief_an_Rufinianus" }
+      - { work: "Orationes contra Arianos", url: "https://bkv.unifr.ch/de/works/cpg-2093/versions/vier-reden-gegen-die-arianer-bkv", page: "Athanasius_Gegen_die_Arianer_1–4" }
+      - { work: "Apologia ad Constantium", url: "https://bkv.unifr.ch/de/works/cpg-2129/versions/des-hl-athanasius-schutzschrift-an-kaiser-constantius-bkv", page: "Athanasius_Schutzschrift_an_Constantius" }
+      - { work: "De fuga sua", url: "https://bkv.unifr.ch/de/works/cpg-2122/versions/rechtfertigung-wegen-seiner-entweichung-bkv", page: "Athanasius_Rechtfertigung_der_Flucht" }
+      - { work: "De sententia Dionysii", url: "https://bkv.unifr.ch/de/works/cpg-2121/versions/vertheidigung-der-lehre-des-heiligen-dionysius-von-alexandrien-bkv", page: "Athanasius_Dionysius" }
+      - { work: "Expositiones in Psalmos", url: "https://bkv.unifr.ch/de/works/cpg-2140/versions/des-hl-athanasius-erklarung-der-psalmen-bkv", page: "Athanasius_Psalmen_1–3" }
+      - { work: "Epistula ad Marcellinum", url: "https://bkv.unifr.ch/de/works/cpg-2097/versions/des-hl-athanasius-brief-an-marcellinus-uber-die-erklarung-der-psalmen-bkv", page: "Athanasius_Brief_an_Marcellinus" }
+      - { work: "Tomus ad Antiochenos", url: "https://bkv.unifr.ch/de/works/cpg-2134/versions/schreiben-an-die-antiochier-bkv", page: "Athanasius_Tomus_an_die_Antiochener" }
+      - { work: "Epistula encyclica", url: "https://bkv.unifr.ch/de/works/cpg-2124/versions/umlaufschreiben-des-heiligen-athanasius-bischofs-von-alexandrien-bkv", page: "Athanasius_Enzyklika" }
+      - { work: "Epistula ad episcopos Aegypti et Libyae", url: "https://bkv.unifr.ch/de/works/cpg-2092/versions/rundschreiben-an-die-bischofe-agyptens-und-libyens-bkv", page: "Athanasius_Brief_an_die_Bischoefe_Aegyptens" }
 
   - author: "Eusebius von Cäsarea"
     translator: "Phil. Häuser"

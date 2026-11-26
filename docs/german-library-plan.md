@@ -294,14 +294,19 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Vier Briefe an Serapion» (177 КБ), «Schutzschrift gegen die Arianer»
   (222 КБ), «Über die Beschlüsse der Synode von Nizäa» (96 КБ), «Über die
   Synoden zu Rimini und Seleucia» (155 КБ), «Brief an die Bischöfe in Afrika»
-  (28 КБ); меню — «4. Jahrhundert» → «Werke».
+  (28 КБ), письма к Иовиану, Максиму, Драконтию, Руфиниану, Маркеллину,
+  антиохийцам, окружное, к епископам Египта, четыре слова против ариан,
+  защита перед Констанцием, оправдание бегства, о Дионисии, объяснение
+  псалмов (3 части); меню — «4. Jahrhundert» →
+  «Briefe».
   Права: `free_bkv`.
 
 - **Григорий Нисский** (`Gregor_von_Nyssa`): автор — перевод RU, обложка с RU;
   «Große Katechese» (41 гл., 167 КБ), «Abhandlung über die Ausstattung des
   Menschen» (31 гл., 193 КБ), «Das Gebet des Herrn» (5 гл., 127 КБ),
   «Acht Homilien über die acht Seligkeiten» (8 гл., 180 КБ), «Vita Macrinae»
-  (66 КБ), «Gespräch mit Makrina» (186 КБ); меню — «4. Jahrhundert» → «Werke». Права: `free_bkv`/`pd`.
+  (66 КБ), «Gespräch mit Makrina» (186 КБ), шесть проповедей из «Ausgewählte
+  Reden» (всего 16 проповедей); меню — «4. Jahrhundert» → «Werke/Predigten». Права: `free_bkv`/`pd`.
 
 - **Тертуллиан** (`Tertullian`): автор — перевод RU (60 КБ), обложка с RU;
   BKV/Кельн 1882, пер. K. A. H. Kellner: «Über den Leib Christi» (25 гл.),
@@ -321,8 +326,9 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   (2 книги, 9+13 гл.); меню — «2. Jahrhundert» → «Werke». Права: `pd`.
 
 - **Василий Великий** (`Basilius_der_Große`): автор — перевод RU, обложка с RU;
-  «Homilien über das Hexaemeron» BKV 1925, 9 бесед, 270 КБ; меню —
-  «4. Jahrhundert» → «Werke». Права: `free_bkv`.
+  «Homilien über das Hexaemeron» BKV 1925, 9 бесед, 270 КБ, «Ausgewählte
+  Briefe» (Auswahl, 111 писем), «Ausgewählte Predigten» (Auswahl, 20 бесед);
+  меню — «4. Jahrhundert» → «Werke/Briefe/Predigten». Права: `free_bkv`.
 
 - **Амвросий Медиоланский** (`Ambrosius_von_Mailand`): автор — перевод RU,
   обложка с RU; «Über die Mysterien» (41 КБ), «Exameron» (496 КБ, 6 частей),
@@ -370,7 +376,8 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 - **Иероним Стридонский** (`Hieronymus`): автор — перевод RU, обложка с RU;
   «Dialog gegen die Pelagianer» (4 гл., 286 КБ), «Vita Pauli» (22 КБ),
   «Vita Hilarion» (69 КБ), «Gegen Helvidius» (61 КБ), «Vita Malchi» (20 КБ),
-  «Ausgewählte Briefe» (Auswahl); меню — «4. Jahrhundert» →
+  «Ausgewählte Briefe» (Auswahl), «Gegen Vigilantius» (35 КБ); меню —
+  «4. Jahrhundert» →
   «Dogmatische/Hagiographische Werke». Права: `free_bkv`.
 
 - **Иоанн Кассиан** (`Johannes_Cassianus`): автор — перевод RU, обложка с RU;
@@ -383,7 +390,8 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Enchiridion» (204 КБ), «Vier Bücher über die christliche Lehre» (400 КБ),
   «Vom ersten katechetischen Unterricht» (142 КБ), «Vier Bücher über das
   Symbolum» (181 КБ), «Bekenntnisse» (2 части, 299+424 КБ), «Fünfzehn Bücher
-  über die Dreieinigkeit» (1,0 МБ), «Ausgewählte Briefe» (Auswahl); меню —
+  über die Dreieinigkeit» (1,0 МБ), «Ausgewählte Briefe» (Auswahl),
+  «Vorträge über das Johannesevangelium» (124 беседы, 2,2 МБ); меню —
   «5. Jahrhundert» →
   «Dogmatische/Exegetische/Pastorale Werke».
   Права: `free_bkv`.
@@ -395,6 +403,17 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 - **Епифаний Кипрский** (`Epiphanius_von_Salamis`): автор — перевод RU,
   обложка с RU; «Der Festgeankerte (Ancoratus)» (308 КБ); меню —
   «4. Jahrhundert» → «Dogmatische Werke». Права: `free_bkv`.
+
+- **Иоанн Дамаскин** (`Johannes_von_Damaskus`): автор — перевод RU, обложка
+  с RU; «Genaue Darlegung des orthodoxen Glaubens» в 4 книгах; меню —
+  «8. Jahrhundert» → «Dogmatische Werke». Права: `free_bkv`.
+
+- **Евсевий**: добавлены «Die Märtyrer in Palästina» (BKV, EN-оригинал);
+  меню — «Märtyrer».
+
+- **Григорий Богослов** (`Gregor_von_Nazianz`): автор — перевод RU, обложка
+  с RU; «Ausgewählte Reden» (Auswahl, 20 слов); меню — «4. Jahrhundert» →
+  «Reden». Права: `free_bkv`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

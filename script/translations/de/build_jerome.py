@@ -38,11 +38,21 @@ SOURCES = {
     'helv': ('Über die beständige Jungfräulichkeit Mariens gegen Helvidius', 'https://bkv.unifr.ch/de/works/cpl-609/versions/uber-die-bestandige-jungfrauschaft-mariens-gegen-helvidius-bkv'),
     'malch': ('Leben und Gefangenschaft des Mönches Malchus', 'https://bkv.unifr.ch/de/works/cpl-619/versions/leben-und-gefangenschaft-des-monches-malchus-bkv'),
     'letters': ('Ausgewählte Briefe', 'https://bkv.unifr.ch/de/works/cpl-620/versions/briefe-bkv-2'),
+    'vig': ('Gegen Vigilantius', 'https://bkv.unifr.ch/de/works/cpl-611/versions/gegen-vigilantius-bkv'),
 }
 
 
 def block(s):
     return '\n'.join('      ' + line if line else '' for line in s.split('\n'))
+
+
+def vig_sections():
+    with zipfile.ZipFile(os.path.join(TMP, 'hier_vig.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    return ''.join(be.para_html(p) for p in doc.xpath('//p'))
 
 
 def letter_sections():
@@ -145,6 +155,7 @@ pages:
 {page('sWy9_О_Приснодевстве_блаженной_Марии', 'Hieronymus_Gegen_Helvidius', 'Über die beständige Jungfräulichkeit Mariens gegen Helvidius', 'helv', 'Dogmatische Werke', 2, paragraphs2('helv'))}
 {page('K3RD_Жизнь_пленного_монаха_Малха', 'Hieronymus_Vita_Malchi', 'Leben und Gefangenschaft des Mönches Malchus', 'malch', 'Hagiographische Werke', 3, paragraphs2('malch'))}
 {page('uA9f_Письма_143_1', 'Hieronymus_Ausgewaehlte_Briefe', 'Ausgewählte Briefe (Auswahl)', 'letters', 'Briefe', 1, letter_sections())}
+{page('rKmV_Книга_против_Вигилянция', 'Hieronymus_Gegen_Vigilantius', 'Gegen Vigilantius', 'vig', 'Dogmatische Werke', 3, vig_sections())}
 '''
     for name, text in (('hier_author.yml', author), ('hier_works.yml', works)):
         path = os.path.join(DB, name)

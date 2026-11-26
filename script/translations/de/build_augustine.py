@@ -37,6 +37,19 @@ def sections(key):
     return ''.join(parts)
 
 
+def joh_sections():
+    with zipfile.ZipFile(os.path.join(TMP, 'aug_joh.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    parts = []
+    for i, heading in enumerate(doc.xpath('//h2'), 1):
+        body = ''.join(be.para_html(p) for p in heading.getparent().xpath('.//p'))
+        parts.append(f'<h2>{i}</h2>{body}')
+    return ''.join(parts)
+
+
 def letter_sections():
     with zipfile.ZipFile(os.path.join(TMP, 'aug_letters.epub')) as z:
         name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
@@ -218,6 +231,16 @@ pages:
 {block('<p><em>Ausgewählte Briefe (Bibliothek der Kirchenväter).</em></p>' + letter_sections())}
     references: |-
 {block('<p><strong>Quelle:</strong> Übersetzung der BKV-Ausgabe, <em>Ausgewählte Briefe</em> (erster Teil). Text nach <a href="https://bkv.unifr.ch/de/works/cpl-262/versions/ausgewahlte-briefe-erster-teil-bkv">bkv.unifr.ch</a>; die Anmerkungen der Ausgabe sind weggelassen.</p>')}
+'''
+    works += f'''  - src: "2imO_Рассуждения_на_Евангелие_от_Иоанна"
+    path: "Augustinus_Johannes_Evangelium"
+    title: "Vorträge über das Johannesevangelium"
+    menu: {{ parent: "Exegetische Werke", title: "Vorträge über das Johannesevangelium", priority: 2 }}
+    update: true
+    body: |-
+{block('<p><em>Vorträge über das Johannesevangelium (Bibliothek der Kirchenväter).</em></p>' + joh_sections())}
+    references: |-
+{block('<p><strong>Quelle:</strong> Übersetzung der BKV-Ausgabe, <em>Vorträge über das Johannesevangelium</em>. Text nach <a href="https://bkv.unifr.ch/de/works/cpl-278/versions/vortrage-uber-das-johannes-evangelium-bkv">bkv.unifr.ch</a>; die Anmerkungen der Ausgabe sind weggelassen.</p>')}
 '''
     for name, text in (('augustine_author.yml', author), ('augustine_works.yml', works)):
         path = os.path.join(DB, name)
