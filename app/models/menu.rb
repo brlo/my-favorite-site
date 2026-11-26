@@ -23,6 +23,7 @@ class Menu < ApplicationRecord
       title: self.title,
       path: self.path,
       priority: self.priority,
+      position: self.position,
       is_gold: self.is_gold,
       is_empty: self.is_empty,
       created_at: self.created_at&.strftime("%Y-%m-%d %H:%M:%S"),
@@ -54,6 +55,54 @@ class Menu < ApplicationRecord
 
   def self.tree(page_id)
     records = self.where(page_id: page_id).to_a
+  end
+
+  # Порядок пунктов меню для показа. Совпадает с TreeBuilder:
+  # явная position главнее старого правила «сначала без подпунктов».
+  def self.all_in_display_order(page_id)
+    items = where(page_id:).to_a
+    by_parent = items.group_by(&:parent_id)
+    items.sort_by { |item| display_sort_key(item, has_children: by_parent[item.id].present?) }
+  end
+
+  def self.siblings_in_display_order(page_id, parent_id = nil)
+    items = where(page_id:, parent_id:).to_a
+    return [] if items.empty?
+
+    child_parent_ids = where(page_id:, parent_id: items.map(&:id)).distinct.pluck(:parent_id).to_set
+    items.sort_by { |item| display_sort_key(item, has_children: child_parent_ids.include?(item.id)) }
+  end
+
+  def self.display_sort_key(item, has_children:)
+    [
+      item.position.nil? ? 1 : 0,
+      item.position.to_i,
+      has_children ? 1 : 0,
+      item.priority.to_i,
+      item.id,
+    ]
+  end
+
+  # Если в группе есть пункты без position, проставляем позиции по текущему порядку
+  def self.ensure_positions!(page_id, parent_id = nil)
+    items = where(page_id:, parent_id:).to_a
+    return if items.empty? || items.none? { |item| item.position.nil? }
+
+    siblings_in_display_order(page_id, parent_id).each_with_index do |item, index|
+      item.update_columns(position: index, priority: index) # rubocop:disable Rails/SkipsModelValidations
+    end
+  end
+
+  def self.next_position(page_id, parent_id = nil)
+    ensure_positions!(page_id, parent_id)
+    max = where(page_id:, parent_id:).maximum(:position)
+    max ? max + 1 : 0
+  end
+
+  # Добавить пункт в конец группы с правильным порядком
+  def self.append_item!(page_id:, parent_id: nil, title:, path: nil, **attrs)
+    position = next_position(page_id, parent_id)
+    create!(page_id:, parent_id:, title:, path:, position:, priority: position, **attrs)
   end
 
   def self.subpages_ids_of_page(page)

@@ -1,0 +1,133 @@
+<%
+  inline = local_assigns.fetch(:inline, false)
+  mode_params = inline ? {mode: 'inline'} : {}
+  frame_id = inline ? 'author_menu_inline' : 'author_workspace'
+%>
+<% by_parent[parent_id].to_a.each do |item| %>
+  <% page = item.path.present? ? pages_by_path[item.path.downcase] : nil %>
+  <li class="aw-node">
+    <div class="aw-row <%= 'is-section' if item.path.blank? %> <%= 'is-hidden' if page && !page.is_published %>"
+         data-author-workspace-target="row"
+         data-item-id="<%= item.id %>"
+         data-parent-id="<%= item.parent_id %>"
+         data-action="dragover->author-workspace#dragOver drop->author-workspace#drop">
+      <span class="aw-grip" draggable="true" title="Перетащите, чтобы поменять порядок" aria-hidden="true"
+            data-action="dragstart->author-workspace#dragStart dragend->author-workspace#dragEnd">⠿</span>
+
+      <div class="aw-info">
+        <div class="aw-title-line">
+          <% if page %>
+            <a class="aw-title" href="<%= admin_public_page_path(page) %>" target="_blank" rel="noopener"
+               data-turbo-frame="_top"><%= item.title %></a>
+          <% else %>
+            <span class="aw-title"><%= item.title %></span>
+          <% end %>
+
+          <% if item.path.blank? %>
+            <span class="aw-badge aw-badge-section">раздел</span>
+          <% end %>
+          <% if page && !page.is_published %>
+            <span class="aw-badge aw-badge-hidden">скрыта</span>
+          <% end %>
+          <% if item.path.present? && page.nil? %>
+            <span class="aw-badge aw-badge-missing">нет статьи</span>
+          <% end %>
+          <% if item.is_empty %>
+            <span class="aw-badge">пустая</span>
+          <% end %>
+        </div>
+
+        <div class="aw-meta">
+          <% if page %>
+            <span><%= page.updated_at.strftime('%d.%m.%Y') %></span>
+            <span><%= number_with_delimiter(page.body.to_s.length) %> зн.</span>
+          <% elsif item.path.present? %>
+            <span>адрес: <%= item.path %></span>
+          <% else %>
+            <span>заголовок-папка без своей страницы</span>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="aw-tools">
+        <span class="aw-move" role="group" aria-label="Переместить">
+          <%= link_to '↑', move_admin_author_item_path(author_page, item, direction: 'up', **mode_params), class: 'aw-icon', title: 'Выше',
+                data: { turbo_method: :patch, turbo_frame: frame_id } %>
+          <%= link_to '↓', move_admin_author_item_path(author_page, item, direction: 'down', **mode_params), class: 'aw-icon', title: 'Ниже',
+                data: { turbo_method: :patch, turbo_frame: frame_id } %>
+          <%= link_to '⇥', move_admin_author_item_path(author_page, item, direction: 'in', **mode_params), class: 'aw-icon', title: 'Вложить в пункт выше',
+                data: { turbo_method: :patch, turbo_frame: frame_id } %>
+          <%= link_to '⇤', move_admin_author_item_path(author_page, item, direction: 'out', **mode_params), class: 'aw-icon', title: 'Вынести на уровень выше',
+                data: { turbo_method: :patch, turbo_frame: frame_id } %>
+        </span>
+
+        <% if page %>
+          <%= link_to '✎ статья', edit_admin_page_path(page), class: 'aw-btn aw-btn-text', title: 'Редактировать статью',
+                data: { turbo_frame: '_top' } %>
+        <% elsif item.path.present? %>
+          <%= button_to '＋ Статья', page_admin_author_item_path(author_page, item), method: :post,
+                class: 'aw-btn aw-btn-text', title: 'Создать статью для этого пункта меню', form_class: 'aw-form',
+                form: { data: { turbo_frame: '_top' } } %>
+        <% end %>
+
+        <% subtree_ids = [item.id] + author_menu_subtree_ids(by_parent, item.id) %>
+        <details class="aw-details">
+          <summary class="aw-icon" title="Название и раздел">✏</summary>
+          <div class="aw-pop">
+            <h4>Название и раздел</h4>
+            <p class="aw-hint">Название изменится и в меню, и в заголовке статьи. Раздел можно сменить здесь же.</p>
+            <%= form_with url: admin_author_item_path(author_page, item, **mode_params), method: :patch, class: 'aw-edit-form' do %>
+              <div class="aw-create-row">
+                <input type="text" name="title" class="aw-input" value="<%= item.title %>" required
+                       aria-label="Название" autocomplete="off">
+              </div>
+              <div class="aw-create-row">
+                <%= select_tag :parent_id,
+                      options_for_select([['— верхний уровень —', '']] + author_menu_options(by_parent, excluded_ids: subtree_ids), item.parent_id),
+                      id: nil, class: 'aw-select', 'aria-label': 'Раздел' %>
+                <button type="submit" class="aw-btn aw-btn-primary">Сохранить</button>
+              </div>
+            <% end %>
+
+            <% if page %>
+              <div class="aw-danger-zone">
+                <p class="aw-hint">Удаление статьи необратимо: текст исчезнет, восстановить его будет нельзя.</p>
+                <%= link_to '🗑 Удалить статью навсегда', admin_destroy_page_author_item_path(author_page, item, **mode_params),
+                      class: 'aw-btn aw-btn-danger',
+                      data: {
+                        turbo_method: :delete,
+                        turbo_frame: frame_id,
+                        turbo_confirm: "Удалить статью «#{item.title}»? Статья и её текст будут удалены без возможности восстановления.",
+                      } %>
+              </div>
+            <% end %>
+          </div>
+        </details>
+
+        <details class="aw-details">
+          <summary class="aw-icon" title="Добавить внутри">＋</summary>
+          <div class="aw-pop aw-pop-wide">
+            <h4>Добавить внутри «<%= item.title %>»</h4>
+            <%= render 'admin/author_workspace/create_form', author_page: author_page, by_parent: by_parent,
+                  parent_id: item.id, show_parent_select: false, inline: inline %>
+          </div>
+        </details>
+
+        <%= link_to '✕', admin_author_item_path(author_page, item, **mode_params), class: 'aw-icon',
+              title: page ? 'Убрать из меню (статья останется на сайте)' : 'Убрать раздел из меню',
+              data: {
+                turbo_method: :delete,
+                turbo_frame: frame_id,
+                turbo_confirm: page ? "Убрать статью «#{item.title}» из меню? Сама статья останется на сайте." : "Убрать раздел «#{item.title}» из меню?",
+              } %>
+      </div>
+    </div>
+
+    <% if by_parent[item.id].present? %>
+      <ul class="aw-children">
+        <%= render 'admin/author_workspace/branch', author_page: author_page, by_parent: by_parent,
+              pages_by_path: pages_by_path, parent_id: item.id, inline: inline %>
+      </ul>
+    <% end %>
+  </li>
+<% end %>

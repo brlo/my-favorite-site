@@ -1,0 +1,35 @@
+<% can_create = author_workspace_available?(page) %>
+<% my_page = page.owned_by?(current_user) || page.user_id == current_user.id %>
+<% edit_label = my_page && page.is_page_author? ? 'Редактировать мою главную страницу' : 'Редактировать страницу' %>
+<div class="author-menu-edit-bar"
+     <% if can_create %>
+     data-controller="author-hub"
+     data-author-hub-workspace-url-value="<%= admin_author_workspace_path(page, create: 1, locale: nil) %>"
+     data-author-hub-tour-key-value="bibleox_author_tour_v1_<%= current_user.id %>"
+     <% end %>>
+  <div class="author-menu-edit-copy">
+    <span class="author-menu-edit-title"><%= my_page ? 'Это ваше меню' : 'Меню страницы' %></span>
+    <span class="author-menu-edit-hint">Перетаскивайте, переименовывайте и создавайте пункты прямо здесь</span>
+  </div>
+
+  <div class="author-menu-edit-actions">
+    <% if can_create %>
+      <button type="button" class="author-menu-edit-btn"
+              data-action="author-hub#open" data-author-hub-mode-param="article">＋ Новая статья</button>
+    <% end %>
+    <%= link_to '✎ Редактировать меню на странице', "#{my_page_link_to("/#{page.path}")}?author_menu=edit",
+          class: 'author-menu-edit-btn author-menu-edit-btn-light' %>
+    <% if can_create %>
+      <%= link_to edit_label, edit_admin_page_path(page, locale: nil), class: 'author-menu-edit-link' %>
+    <% end %>
+  </div>
+
+  <% if can_create %>
+    <dialog class="author-dialog" data-author-hub-target="dialog" data-action="click->author-hub#closeOnBackdrop">
+      <div id="author_workspace_flash" class="author-dialog-flash" data-controller="flash"></div>
+      <div class="author-dialog-inner">
+        <turbo-frame id="author_workspace" data-author-hub-target="frame"></turbo-frame>
+      </div>
+    </dialog>
+  <% end %>
+</div>

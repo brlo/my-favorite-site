@@ -78,18 +78,13 @@ class PageParagraphSearchPgroonga
   # === Логика Поиска (Стратегии) ===
 
   def build_groonga_queries(keywords)
-    queries = []
     joined = keywords.join(' ')
 
-    if true
-      # тут учитывается близость слов друг ко другу на удалении N-слов
-      queries << "*N#{PROXIMITY_DISTANCE}\"#{joined}\""
-    else
-      # слова не обязательно рядом другом с другом
-      queries << "#{joined}"
-    end
+    # Для одного слова близость не нужна: pgroonga не находит одиночное слово
+    # в запросе вида *N"слово". Для нескольких слов учитываем близость.
+    return [joined] if keywords.size == 1
 
-    queries
+    ["*N#{PROXIMITY_DISTANCE}\"#{joined}\""]
   end
 
   # === Работа с БД ===

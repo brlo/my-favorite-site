@@ -1,0 +1,73 @@
+<%
+  inline = local_assigns.fetch(:inline, false)
+  create_only = local_assigns.fetch(:create_only, false)
+  frame_id = inline ? 'author_menu_inline' : 'author_workspace'
+  mode_params = inline ? {mode: 'inline'} : {}
+%>
+<%= turbo_frame_tag frame_id, data: (inline ? {} : {author_hub_target: 'frame'}) do %>
+  <div class="aw-page">
+  <div class="aw <%= 'aw-inline' if inline %>"
+       data-controller="author-workspace"
+       data-author-workspace-move-url-value="<%= move_admin_author_item_path(author_page, '__ID__', **mode_params) %>">
+    <header class="aw-head">
+      <div>
+        <div class="aw-kicker"><%= inline ? 'Меню страницы' : 'Кабинет автора' %></div>
+        <h2><%= create_only ? 'Новая статья' : (inline ? 'Режим редактирования меню' : 'Мои статьи') %></h2>
+        <p class="aw-lead">
+          <% if create_only %>
+            Введите название и выберите пункт меню — сразу откроется редактор.
+          <% elsif inline %>
+            Перетаскивайте, переименовывайте и создавайте пункты прямо здесь. Изменения сразу видно читателям.
+          <% else %>
+            Страница «<%= author_page.title %>». Всё, что вы здесь измените, сразу появится на странице.
+          <% end %>
+        </p>
+      </div>
+      <% if inline %>
+        <%= link_to 'Готово', ::Page.path_for(author_page.lang, author_page.path), class: 'aw-btn aw-btn-primary',
+              data: {turbo_frame: '_top'} %>
+      <% else %>
+        <button type="button" class="aw-close" data-action="author-hub#close" title="Закрыть" aria-label="Закрыть">×</button>
+      <% end %>
+    </header>
+
+    <section class="aw-create">
+      <% unless create_only %>
+        <h3>Новая статья</h3>
+      <% end %>
+      <%= render 'admin/author_workspace/create_form', author_page: author_page, by_parent: by_parent,
+            parent_id: new_parent_id, show_parent_select: true, inline: inline, simple: create_only %>
+    </section>
+
+    <% unless create_only %>
+    <% if items.empty? %>
+      <div class="aw-empty">
+        <div class="aw-empty-emoji">📝</div>
+        <h3>Пока здесь ни одной статьи</h3>
+        <p>Введите название выше и нажмите «Создать статью» — она сразу появится на вашей странице.</p>
+      </div>
+    <% else %>
+      <ul class="aw-tree">
+        <%= render 'admin/author_workspace/branch', author_page: author_page, by_parent: by_parent,
+              pages_by_path: pages_by_path, parent_id: nil, inline: inline %>
+      </ul>
+
+      <p class="aw-legend">
+        <span>⠿ — перетащите, чтобы поменять порядок</span>
+        <span>↑ ↓ — выше или ниже</span>
+        <span>⇥ — вложить в пункт выше</span>
+        <span>⇤ — вынести на уровень выше</span>
+        <span>✏ — переименовать и перенести в другой раздел</span>
+      </p>
+    <% end %>
+    <% end %>
+
+    <form data-author-workspace-target="moveForm" method="post" action="#" hidden>
+      <input type="hidden" name="_method" value="patch">
+      <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+      <input type="hidden" name="target_id" value="">
+      <input type="hidden" name="position" value="after">
+    </form>
+  </div>
+  </div>
+<% end %>

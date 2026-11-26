@@ -32,29 +32,15 @@ class TreeBuilder
         end
       end
 
-      # TODO: ПЕРЕПИСАТЬ НОРМАЛЬНО!
+      # Сортировка пунктов меню.
       #
-      # Такая вот пока что кривая сортировка. Потом напишу нормально
-      # Сейчас пока три уровня вглубину сортируем.
+      # Если автор задал явную позицию (menus.position), она главнее: тогда
+      # порядок в кабинете автора совпадает с порядком на странице и авторы
+      # могут свободно переставлять статьи и разделы.
       #
-      # Здесь сделана двойная сортировка: сначала по наличию вложенных эелментов
-      # (без детей идут на первом месте), а потом сортируются по приоритету
-      tree = tree.sort_by { |c| [  c[:childs].present? ? 1 : 0,   c[:priority].to_i  ] }
-      # первый элемент пустой и единственный?
-      tree.each do |item|
-        # Первый уровень вложенности, это и есть корневые элементы? Похоже, что так.
-        next if item[:childs].nil?
-        item[:childs] = item[:childs].sort_by { |c| [  c[:childs].present? ? 1 : 0,   c[:priority].to_i  ] }
-        item[:childs].each do |i2|
-          next if i2[:childs].nil?
-          i2[:childs] = i2[:childs].sort_by { |c| [  c[:childs].present? ? 1 : 0,   c[:priority].to_i  ] }
-          i2[:childs].each do |i3|
-            next if i3[:childs].nil?
-            i3[:childs] = i3[:childs].sort_by { |c| [  c[:childs].present? ? 1 : 0,   c[:priority].to_i  ] }
-            i3[:childs]
-          end
-        end
-      end
+      # Меню без position (импорт, старые страницы) сохраняют прежний порядок:
+      # сначала пункты без подпунктов, потом разделы, внутри — по priority.
+      sort_nodes!(tree)
 
       # Возвращаем хеш дерева
       tree
@@ -70,6 +56,24 @@ class TreeBuilder
 
       # id__object = objects.index_by { |o| o[field_id] }
       # objects_tree = tree_ids_to_objects(ids_tree, id__object)
+    end
+
+    def sort_nodes!(nodes)
+      nodes.sort_by! do |item|
+        [
+          item[:position].nil? ? 1 : 0,
+          item[:position].to_i,
+          item[:childs].present? ? 1 : 0,
+          item[:priority].to_i,
+          item[:id].to_i,
+        ]
+      end
+
+      nodes.each do |item|
+        sort_nodes!(item[:childs]) if item[:childs].present?
+      end
+
+      nodes
     end
 
     # Вернёт полноценное дерево из объектов, в таком виде:

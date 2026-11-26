@@ -11,6 +11,7 @@ module Admin
       if @menu_item.save
         expire_menu_cache
         @page.touch
+        append_to_position_order(@menu_item)
         render_menu(notice: 'Пункт меню добавлен')
       else
         render_menu(alert: "Ошибка: #{@menu_item.errors.full_messages.join(', ')}", status: :unprocessable_entity)
@@ -22,6 +23,11 @@ module Admin
 
       if @menu_item.update(menu_item_params)
         @page.touch
+        # ручное изменение приоритета в админке возвращает группу к обычной
+        # сортировке по priority (порядок автора из кабинета сбрасывается)
+        reset_position_order(@menu_item.parent_id) if @menu_item.saved_change_to_priority?
+        # перенос в другую группу: позиция из старой группы больше не подходит
+        @menu_item.update_columns(position: nil) if @menu_item.saved_change_to_parent_id? # rubocop:disable Rails/SkipsModelValidations
         render_menu(notice: 'Пункт меню обновлён')
       else
         render_menu(alert: "Ошибка: #{@menu_item.errors.full_messages.join(', ')}", status: :unprocessable_entity)
@@ -52,6 +58,23 @@ module Admin
 
     def menu_item_params
       params.require(:menu_item).permit(:title, :path, :parent_id, :priority, :is_gold)
+    end
+
+    # Группа упорядочена автором: новый пункт из админки добавляем в конец,
+    # чтобы не ломать этот порядок.
+    def append_to_position_order(item)
+      siblings = ::Menu.where(page_id: @page.id, parent_id: item.parent_id)
+      return unless siblings.where.not(position: nil).exists?
+
+      max = siblings.maximum(:position)
+      position = max ? max + 1 : 0
+      item.update_columns(position:, priority: position) # rubocop:disable Rails/SkipsModelValidations
+    end
+
+    # В группе был явный порядок из кабинета автора — сбрасываем его,
+    # чтобы ручной приоритет из админки снова работал как раньше.
+    def reset_position_order(parent_id)
+      ::Menu.where(page_id: @page.id, parent_id:).update_all(position: nil) # rubocop:disable Rails/SkipsModelValidations
     end
 
     def reject_by_update_privs

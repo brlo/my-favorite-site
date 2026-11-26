@@ -14,6 +14,7 @@ module Admin
       'blocked'       => 'Заблокированные',
       'locked'        => 'Вход заморожен',
       'staff'         => 'С привилегиями',
+      'authors'       => 'Авторы (есть личная страница)',
       'admins'        => 'Админы',
     }.freeze
 
@@ -39,6 +40,7 @@ module Admin
         when 'blocked'       then @users.where(is_blocked: true)
         when 'locked'        then @users.where.not(lock_expires_at: nil)
         when 'staff'         then @users.where("privs <> '{}'::jsonb OR cardinality(pages_owner) > 0 OR is_admin")
+        when 'authors'       then @users.where('cardinality(pages_owner) > 0')
         when 'admins'        then @users.where(is_admin: true)
         else @users
         end
@@ -47,6 +49,67 @@ module Admin
     end
 
     def edit
+    end
+
+    # Создать пользователю личную страницу-список и сразу дать права на управление
+    def create_author_page
+      title = params[:title].to_s.squish.presence || @user.name
+      lang = params[:lang].presence_in(::PAGE_LANGS.keys) || 'ru'
+      parent = author_parent_from_params
+      return redirect_to_user(alert: 'Выберите раздел, где появится авторская страница') if parent.nil?
+      return redirect_to_user(alert: 'Раздел должен быть страницей-списком (например, «Авторские публикации»)') unless parent.is_page_menu?
+
+      page = nil
+      ::ActiveRecord::Base.transaction do
+        page = ::Page.new(
+          title:, lang:, page_type: ::Page::PAGE_TYPES['список'], seo_kind: 'person',
+          is_published: true, is_search: true, is_show_parent: true,
+          parent_id: parent.id, user_id: current_user.id, body: author_page_placeholder(lang),
+        )
+        page.save!
+        ::Menu.append_item!(page_id: parent.id, title: page.title, path: page.path)
+        grant_author_page_access!(page)
+      end
+
+      expire_page_cache(parent.path, parent.lang)
+      ::Rails.cache.delete("pg_m_inf_#{parent.id}")
+      redirect_to_user(notice: "Авторская страница «#{page.title}» создана. Пользователь может управлять ею на самой странице.")
+    rescue ::ActiveRecord::RecordInvalid => e
+      redirect_to_user(alert: "Не удалось создать авторскую страницу: #{e.record.errors.full_messages.to_sentence}")
+    end
+
+    # Привязать уже существующую страницу-список к пользователю
+    def attach_author_page
+      page = ::Page.find_by(id: params[:page_id])
+      return redirect_to_user(alert: 'Выберите страницу') if page.nil?
+      return redirect_to_user(alert: 'Привязать можно только страницу-список') unless page.is_page_menu?
+      return redirect_to_user(notice: "Страница «#{page.title}» уже привязана к пользователю") if @user.pages_owner.to_a.include?(page.id)
+
+      grant_author_page_access!(page)
+      redirect_to_user(notice: "Страница «#{page.title}» теперь доступна пользователю. Он управляет ею на самой странице.")
+    rescue ::ActiveRecord::RecordInvalid => e
+      redirect_to_user(alert: "Не удалось привязать страницу: #{e.record.errors.full_messages.to_sentence}")
+    end
+
+    # Снять права на страницу (сама страница и её пункт меню остаются на сайте)
+    def detach_author_page
+      page = ::Page.find_by(id: params[:page_id])
+      return redirect_to_user(alert: 'Страница не найдена') if page.nil?
+
+      @user.update!(pages_owner: @user.pages_owner.to_a - [page.id])
+      redirect_to_user(notice: "Страница «#{page.title}» отвязана от пользователя. Сама страница осталась на сайте.")
+    rescue ::ActiveRecord::RecordInvalid => e
+      redirect_to_user(alert: "Не удалось отвязать страницу: #{e.record.errors.full_messages.to_sentence}")
+    end
+
+    # Ручная правка ID (для опытных): полностью заменяет список страниц
+    def update_author_pages
+      ids = params[:pages_owner].to_s.scan(/\d+/).map(&:to_i).uniq
+      privs = ids.any? ? @user.privs.to_h.merge('pages_create' => true) : @user.privs.to_h
+      @user.update!(pages_owner: ids, privs:)
+      redirect_to_user(notice: 'Список авторских страниц сохранён')
+    rescue ::ActiveRecord::RecordInvalid => e
+      redirect_to_user(alert: "Не удалось сохранить: #{e.record.errors.full_messages.to_sentence}")
     end
 
     def update
@@ -146,6 +209,47 @@ module Admin
 
     def set_user
       @user = ::User.find(params[:id])
+    end
+
+    # Страницы, которыми пользователь сейчас владеет; их можно отвязать или открыть
+    def author_pages
+      @author_pages ||= ::Page.where(id: @user.pages_owner.to_a).order(:title).to_a
+    end
+    helper_method :author_pages
+
+    # Раздел «Авторские публикации» — обычное место для новых авторских страниц
+    def default_author_parent
+      @default_author_parent ||= ::Page.find_by(path_low: 'authors')
+    end
+    helper_method :default_author_parent
+
+    def author_parent_from_params
+      if params.key?(:parent_id)
+        ::Page.find_by(id: params[:parent_id])
+      else
+        default_author_parent
+      end
+    end
+
+    # Создание авторской страницы сразу даёт пользователю право создавать статьи
+    # в своём кабинете и делает страницу доступной для управления.
+    def grant_author_page_access!(page)
+      @user.update!(
+        pages_owner: (@user.pages_owner.to_a | [page.id]),
+        privs: @user.privs.to_h.merge('pages_create' => true),
+      )
+    end
+
+    def author_page_placeholder(lang)
+      if lang.to_s == 'ru'
+        '<p>Страница автора. Скоро здесь появятся публикации.</p>'
+      else
+        '<p>Author page. Publications will appear here soon.</p>'
+      end
+    end
+
+    def redirect_to_user(**messages)
+      redirect_to edit_admin_user_path(@user), **messages, status: :see_other
     end
 
     def protect_self

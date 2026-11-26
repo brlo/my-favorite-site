@@ -1,3 +1,4 @@
+<% inline_menu = author_menu_edit_available?(@page) && params[:author_menu] == 'edit' %>
 <div id="chapter-header" class="<%= 'has-cover-overlay' if @page.is_cover_overlay? %>" data-controller="menu-filter">
 
 <% if @page.cover? %>
@@ -65,14 +66,14 @@
   <% end %>
 
   <%# ссылка на редактирование — только тем, кто может редактировать (страница не кэшируется целиком) %>
-  <% if logged_in? && current_user.admin_area_access? && current_user.allow_ip?(request.ip) && @page.editable_by?(current_user) %>
+  <% if logged_in? && current_user.admin_area_access? && current_user.allow_ip?(request.ip) && @page.editable_by?(current_user) && !author_workspace_available?(@page) %>
     <div class="page-edit-top">
       <a rel="nofollow" href="<%= edit_admin_page_path(@page, locale: nil) %>">✎ <%= I18n.t('quote_page.edit_link') %></a>
     </div>
   <% end %>
 
 
-<% if @tree_menu.present? %>
+<% if @tree_menu.present? && !inline_menu %>
   <% if @page.is_search %>
     <form class="tree-search page-search-form" action="<%= my_page_link_to("/#{@page.path}/search", page_lang: @page.lang) %>">
       <div class="search-tree-input-area">
@@ -107,7 +108,15 @@
   </article>
 <% end %>
 
-<% if @tree_menu.present? %>
+<% if author_menu_edit_available?(@page) && !inline_menu %>
+  <%= render 'pages/author_menu_bar', page: @page %>
+<% end %>
+
+<% if inline_menu %>
+  <div class="author-menu-inline">
+    <%= render 'admin/author_workspace/workspace', **author_inline_menu_locals(@page) %>
+  </div>
+<% elsif @tree_menu.present? %>
 
   <div class="menu-tree" data-menu-filter-target="tree" dir="<%= content_direction %>">
     <div>

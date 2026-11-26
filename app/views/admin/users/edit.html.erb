@@ -69,6 +69,87 @@
   <% end %>
 </div>
 
+<h2>Авторские страницы</h2>
+<div class="box author-page-admin">
+  <% if author_pages.any? %>
+    <p class="hint">Пользователь может добавлять статьи, менять меню и оформление этих страниц — через кабинет автора на самой странице.</p>
+    <ul class="author-page-list">
+      <% author_pages.each do |page| %>
+        <li>
+          <div class="author-page-main">
+            <%= link_to page.title, edit_admin_page_path(page), class: 'author-page-title' %>
+            <span class="muted"><%= page.path %></span>
+            <% if page.is_published %>
+              <span class="badge green">опубликована</span>
+            <% else %>
+              <span class="badge">скрыта</span>
+            <% end %>
+          </div>
+          <div class="author-page-actions">
+            <%= link_to 'На сайте', admin_public_page_path(page), target: '_blank', rel: 'noopener', class: 'btn btn-small' %>
+            <%= link_to 'Кабинет', "#{admin_public_page_path(page)}?author_workspace=1", target: '_blank', rel: 'noopener', class: 'btn btn-small' %>
+            <%= button_to 'Отвязать', detach_author_page_admin_user_path(@user, page_id: page.id), method: :delete,
+                  class: 'btn btn-small btn-danger', form_class: 'inline-form',
+                  form: { data: { turbo_confirm: "Отвязать «#{page.title}»? Страница и её меню останутся на сайте, но пользователь не сможет ею управлять." } } %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p class="hint">У пользователя пока нет авторской страницы. Создайте её ниже — и он получит кабинет автора.</p>
+  <% end %>
+
+  <h3>Создать новую страницу</h3>
+  <%= form_with url: create_author_page_admin_user_path(@user), method: :post, class: 'author-page-create',
+        data: { turbo_confirm: "Создать авторскую страницу для пользователя «#{@user.name}»?" } do %>
+    <div class="field-row">
+      <div class="field">
+        <%= label_tag :title, 'Название' %>
+        <%= text_field_tag :title, @user.name, required: true %>
+        <div class="hint">Обычно имя автора. Адрес страницы создастся сам.</div>
+      </div>
+      <div class="field">
+        <%= label_tag :lang, 'Язык' %>
+        <%= select_tag :lang, options_for_select(admin_lang_options, 'ru') %>
+      </div>
+    </div>
+
+    <div class="field">
+      <label for="author_parent_picker">Раздел, где появится страница</label>
+      <%= admin_page_picker 'parent_id', default_author_parent&.id, key: 'id', kind: 'list',
+            label: default_author_parent&.title || '', id: 'author_parent_picker',
+            placeholder: 'Например, «Авторские публикации»',
+            note: default_author_parent ? 'Пункт меню добавится в конец этого раздела' : 'Выберите страницу-список' %>
+      <div class="hint">В меню выбранного раздела добавится пункт с новой страницей.</div>
+    </div>
+
+    <div class="actions-bar">
+      <%= submit_tag 'Создать страницу', class: 'btn' %>
+    </div>
+  <% end %>
+
+  <h3>Привязать существующую страницу</h3>
+  <p class="hint">Если страница уже есть на сайте, найдите её по названию — пользователь получит к ней доступ.</p>
+  <%= form_with url: attach_author_page_admin_user_path(@user), method: :post, class: 'author-page-attach' do %>
+    <div class="field">
+      <%= admin_page_picker 'page_id', nil, key: 'id', kind: 'list', label: '', placeholder: 'Название страницы-списка' %>
+      <div class="hint">Привязать можно только страницу-список.</div>
+    </div>
+    <div class="actions-bar">
+      <%= submit_tag 'Привязать', class: 'btn btn-light' %>
+    </div>
+  <% end %>
+
+  <details class="author-page-advanced">
+    <summary>ID вручную (для опытных)</summary>
+    <%= form_with url: update_author_pages_admin_user_path(@user), method: :patch, class: 'author-page-ids' do %>
+      <%= text_field_tag :pages_owner, @user.pages_owner.to_a.join(', '), class: 'author-page-ids-input' %>
+      <%= submit_tag 'Сохранить ID', class: 'btn btn-small btn-light' %>
+    <% end %>
+    <div class="hint">Полностью заменяет список. ID через запятую.</div>
+  </details>
+</div>
+
 <h2>Профиль и права</h2>
 <%= form_with model: @user, url: admin_user_path(@user), data: { turbo_confirm: 'Сохранить изменения пользователя?' } do |f| %>
   <% if @user.errors.any? %>
@@ -134,17 +215,10 @@
     <p class="hint">Устаревшие привилегии будут удалены при сохранении: <%= unknown.join(', ') %></p>
   <% end %>
 
-  <div class="field-row">
-    <div class="field">
-      <%= f.label :pages_owner, 'Хозяин страниц (ID через запятую)' %>
-      <%= f.text_field :pages_owner, value: @user.pages_owner.to_a.join(', ') %>
-      <div class="hint">Хозяин может всё со своими страницами и их дочерними страницами.</div>
-    </div>
-    <div class="field">
-      <%= f.label :allow_ips, 'Вход в админку только с IP (через запятую)' %>
-      <%= f.text_field :allow_ips, value: @user.allow_ips.to_a.join(', ') %>
-      <div class="hint">Пусто — с любого IP.</div>
-    </div>
+  <div class="field" style="max-width: 460px">
+    <%= f.label :allow_ips, 'Вход в админку только с IP (через запятую)' %>
+    <%= f.text_field :allow_ips, value: @user.allow_ips.to_a.join(', ') %>
+    <div class="hint">Пусто — с любого IP.</div>
   </div>
 
   <div class="actions-bar">

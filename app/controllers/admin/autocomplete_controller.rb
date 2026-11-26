@@ -9,6 +9,8 @@ module Admin
 
       scope = ::Page.where('title ILIKE :t OR path ILIKE :t', t: "%#{::Page.sanitize_sql_like(term)}%")
       scope = scope.or(::Page.where(id: term.to_i)) if term.match?(/\A\d+\z/)
+      # для авторских страниц и разделов подсказываем только страницы-списки
+      scope = scope.where(page_type: ::Page::PAGE_TYPES['список']) if params[:kind] == 'list'
       pages = scope.order(updated_at: :desc).limit(20).pluck(:id, :title, :path, :group_lang_id, :lang)
 
       render json: pages.map { |id, title, path, group_lang_id, lang|

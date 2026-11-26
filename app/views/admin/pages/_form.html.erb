@@ -1,10 +1,18 @@
 <%# Форма статьи: текст. Настройки — ниже меню (_settings), их поля привязаны к этой форме атрибутом form. %>
 <% editable = page.new_record? || page_editable?(page) %>
+<% returns_to_author_page = page.persisted? && return_to_author_page?(page) %>
 <% submit_label = page.new_record? ? 'Опубликовать статью' : 'Сохранить' %>
+<% confirm_text = if page.new_record?
+                    'Опубликовать новую статью?'
+                  elsif returns_to_author_page
+                    'Сохранить статью и вернуться на страницу?'
+                  else
+                    'Сохранить изменения в статье?'
+                  end %>
 
-<%# подтверждение срабатывает и для кнопки «Сохранить» под настройками (она привязана к форме атрибутом form) %>
+<%# подтверждение срабатывает и для кнопки под настройками (она привязана к форме атрибутом form) %>
 <%= form_with model: page, url: (page.new_record? ? admin_pages_path : admin_page_path(page)), id: 'page-form', class: 'page-editor',
-      data: { turbo_confirm: (page.new_record? ? 'Опубликовать новую статью?' : 'Сохранить изменения в статье?') } do |f| %>
+      data: { turbo_confirm: confirm_text } do |f| %>
   <% if page.errors.any? %>
     <div class="errors">
       <div class="error-title">Не удалось сохранить:</div>
@@ -14,7 +22,12 @@
 
   <div class="publish-bar">
     <% if editable %>
-      <%= f.submit submit_label, class: 'btn' %>
+      <% if returns_to_author_page %>
+        <button type="submit" name="return_to" value="parent" class="btn"
+                title="Сохранить и вернуться на свою страницу автора">Готово</button>
+      <% else %>
+        <%= f.submit submit_label, class: 'btn' %>
+      <% end %>
     <% else %>
       <span class="access-info cannot">✕ Только просмотр</span>
     <% end %>
@@ -38,7 +51,6 @@
 
   <% if page.new_record? && @menu_id.present? %>
     <%= hidden_field_tag 'page[menu_id]', @menu_id %>
-    <p class="hint">Статья будет привязана к пункту меню #<%= @menu_id %>.</p>
   <% end %>
 
   <% if !super_user? && page.new_record? %>
@@ -101,7 +113,13 @@
 
   <% if editable %>
     <div class="actions-bar">
-      <%= f.submit submit_label, class: 'btn' %>
+      <% if returns_to_author_page %>
+        <button type="submit" name="return_to" value="parent" class="btn"
+                title="Сохранить и вернуться на свою страницу автора">Готово</button>
+        <span class="hint">«Готово» сохранит текст и вернёт вас на вашу страницу.</span>
+      <% else %>
+        <%= f.submit submit_label, class: 'btn' %>
+      <% end %>
     </div>
   <% end %>
 <% end %>

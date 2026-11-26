@@ -64,7 +64,7 @@ module Admin
       if @page.save
         link_created_page_to_menu
         @page.sync_tag_list!(tag_names_param) if params[:page].key?(:tag_names)
-        redirect_to edit_admin_page_path(@page), notice: 'Статья создана'
+        redirect_to new_page_redirect_path(@page), notice: 'Статья создана'
       else
         render :new, status: :unprocessable_entity
       end
@@ -85,7 +85,8 @@ module Admin
         @page.sync_tag_list!(tag_names_param) if params[:page].key?(:tag_names)
         # флаг ленты — тоже свойство содержания, а не отдельного перевода
         @page.propagate_is_news if @page.saved_change_to_is_news?
-        redirect_to edit_admin_page_path(@page), notice: 'Статья сохранена'
+        sync_menu_title if @page.saved_change_to_title?
+        redirect_to after_save_page_path(@page), notice: 'Статья сохранена'
       else
         flash.now[:alert] = 'Не удалось сохранить статью'
         render :edit, status: :unprocessable_entity
@@ -160,6 +161,36 @@ module Admin
     end
 
     private
+
+    # После создания статьи автору сразу показываем подсказку, что делать дальше
+    def new_page_redirect_path(page)
+      if page.parent_id.present? && current_user.pages_owner.to_a.include?(page.parent_id)
+        edit_admin_page_path(page, welcome: 'author')
+      else
+        edit_admin_page_path(page)
+      end
+    end
+
+    # Если автор переименовал статью в редакторе, пункт меню на его странице
+    # должен называться так же — иначе в кабинете и на странице будут разные имена.
+    def sync_menu_title
+      parent = @page.parent
+      return unless parent
+      # статья на странице автора или сама авторская страница в меню раздела
+      return unless page_owner?(parent) || @page.owned_by?(current_user)
+
+      ::Menu.where(page_id: parent.id, path: @page.path).update_all(title: @page.title, updated_at: ::Time.current) # rubocop:disable Rails/SkipsModelValidations
+      expire_page_cache(parent.path, parent.lang)
+    end
+
+    # «Готово» в редакторе: сохранить и вернуться на свою публичную страницу
+    def after_save_page_path(page)
+      if params[:return_to] == 'parent' && page.parent_id.present?
+        ::Page.path_for(page.parent.lang, page.parent.path)
+      else
+        edit_admin_page_path(page)
+      end
+    end
 
     def set_page
       @page = ::Page.find(params[:id])

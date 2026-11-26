@@ -36,6 +36,37 @@ module AdminHelper
     'book' => 'Страница книги: поисковики увидят Book, автор подтянется из меню страницы-автора.',
   }.freeze
 
+  # Варианты для выбора раздела в кабинете автора: «— — Название»
+  def author_menu_options(by_parent, parent_id = nil, depth = 0, excluded_ids: [])
+    by_parent[parent_id].to_a.flat_map do |item|
+      next [] if excluded_ids.include?(item.id)
+
+      [["#{'— ' * depth}#{item.title}", item.id]] +
+        author_menu_options(by_parent, item.id, depth + 1, excluded_ids:)
+    end
+  end
+
+  # id пункта и всех его подпунктов: их нельзя выбрать новым разделом
+  def author_menu_subtree_ids(by_parent, item_id)
+    result = []
+    queue = [item_id]
+    until queue.empty?
+      children = by_parent[queue.shift].to_a
+      result.concat(children.map(&:id))
+      queue.concat(children.map(&:id))
+    end
+    result
+  end
+
+  # «Готово» и возврат к странице автора нужны не только хозяину (pages_owner),
+  # но и админу, который открыл авторскую страницу и её статьи.
+  def return_to_author_page?(page)
+    parent = page.parent
+    return false unless parent
+
+    page_owner?(parent) || (current_user&.is_admin? && parent.is_page_author?)
+  end
+
   # адрес статьи на сайте
   def admin_public_page_path(page)
     lang = page.lang.to_s
@@ -64,7 +95,9 @@ module AdminHelper
   end
 
   def admin_page_picker(name, value, key: 'path', **opts)
-    admin_combobox(name, value, url: admin_autocomplete_pages_path, key:,
+    kind = opts.delete(:kind)
+    url = kind ? admin_autocomplete_pages_path(kind:) : admin_autocomplete_pages_path
+    admin_combobox(name, value, url:, key:,
                    placeholder: opts.delete(:placeholder) || 'Начните вводить название статьи', **opts)
   end
 
@@ -104,6 +137,7 @@ module AdminHelper
   def admin_user_badges(user)
     safe_join([
       (tag.i('админ', class: 'badge blue') if user.is_admin),
+      (tag.i('автор', class: 'badge green') if user.pages_owner.to_a.any?),
       (tag.i('заблокирован', class: 'badge red') if user.is_blocked),
       (tag.i('вход заморожен', class: 'badge red') if user.lock_expires_at.present?),
       admin_activation_badge(user),

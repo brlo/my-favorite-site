@@ -1,0 +1,44 @@
+<%# Форма создания: основная кнопка создаёт статью и сразу открывает редактор,
+    а раздел (пункт меню без текста) создаётся отдельной формой и остаётся в кабинете. %>
+<%
+  inline = local_assigns.fetch(:inline, false)
+  simple = local_assigns.fetch(:simple, false)
+  mode_params = inline ? {mode: 'inline'} : {}
+  simple_params = simple ? {create: 1} : {}
+%>
+<div class="aw-create-box">
+  <%= form_with url: admin_author_items_path(author_page, **mode_params, **simple_params), method: :post, class: 'aw-create-main',
+        data: { turbo_frame: '_top' } do %>
+    <div class="aw-create-row">
+      <input type="text" name="title" class="aw-input" placeholder="Название статьи" required autocomplete="off"
+             aria-label="Название статьи" id="aw_title_<%= parent_id || 'root' %>">
+      <% if show_parent_select %>
+        <%= select_tag :parent_id,
+              options_for_select([['В корень страницы', '']] + author_menu_options(by_parent), parent_id),
+              id: nil, class: 'aw-select', 'aria-label': 'Куда добавить' %>
+      <% elsif !simple %>
+        <%= hidden_field_tag :parent_id, parent_id, id: nil %>
+      <% end %>
+      <button type="submit" class="aw-btn aw-btn-primary">Создать статью</button>
+    </div>
+  <% end %>
+
+  <% unless simple %>
+  <details class="aw-section-create">
+    <summary>＋ Создать родительский раздел в меню</summary>
+    <p class="aw-hint">Раздел — это заголовок-папка. Сам по себе он не открывается, а внутри него можно собрать статьи по темам.</p>
+    <%= form_with url: admin_author_items_path(author_page, **mode_params), method: :post, class: 'aw-create-row' do %>
+      <input type="text" name="title" class="aw-input" placeholder="Название раздела" required autocomplete="off"
+             aria-label="Название раздела">
+      <% if show_parent_select %>
+        <%= select_tag :parent_id,
+              options_for_select([['В корень страницы', '']] + author_menu_options(by_parent), parent_id),
+              id: nil, class: 'aw-select', 'aria-label': 'Куда добавить раздел' %>
+      <% else %>
+        <%= hidden_field_tag :parent_id, parent_id, id: nil %>
+      <% end %>
+      <button type="submit" name="kind" value="section" class="aw-btn">Создать раздел</button>
+    <% end %>
+  </details>
+  <% end %>
+</div>

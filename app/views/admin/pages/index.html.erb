@@ -7,6 +7,20 @@
   <% end %>
 </div>
 
+<% owner_pages = current_user.pages_owner.to_a.any? ? ::Page.where(id: current_user.pages_owner.to_a).order(:title).to_a : [] %>
+<% if owner_pages.any? %>
+  <section class="author-admin-callout">
+    <div class="author-admin-callout__title">Вашими статьями теперь удобнее управлять прямо на странице</div>
+    <p>Откройте свою страницу: над меню есть кнопки «＋ Новая статья» и «✎ Редактировать меню на странице».</p>
+    <div class="author-admin-callout__links">
+      <% owner_pages.each do |owner_page| %>
+        <%= link_to owner_page.title, admin_public_page_path(owner_page), class: 'btn btn-small',
+              target: '_blank', rel: 'noopener' %>
+      <% end %>
+    </div>
+  </section>
+<% end %>
+
 <%= form_with url: admin_pages_path, method: :get, class: 'search-form',
       data: { controller: 'auto-submit', turbo_frame: 'pages_list', turbo_action: 'replace' } do %>
   <%= search_field_tag :term, @term, placeholder: 'Поиск по заголовку (от 3 букв)', autofocus: true,

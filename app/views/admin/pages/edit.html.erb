@@ -1,8 +1,14 @@
 <% @page_title = @page.title %>
 
+<% parent_owned = return_to_author_page?(@page) %>
+
 <div class="page-head">
   <div class="crumbs">
-    <%= link_to '← Статьи', admin_pages_path %>
+    <% if parent_owned %>
+      <%= link_to (page_owner?(@page.parent) ? '← К моим статьям' : '← К странице автора'), admin_public_page_path(@page.parent) %>
+    <% else %>
+      <%= link_to '← Статьи', admin_pages_path %>
+    <% end %>
     <% if @page.parent %>
       / <%= link_to @page.parent.title, edit_admin_page_path(@page.parent) %>
     <% end %>
@@ -10,10 +16,22 @@
   <h1>Редактирование статьи <%= admin_page_badges(@page) %></h1>
 </div>
 
+<% if params[:welcome] == 'author' %>
+  <div class="author-editor-welcome">
+    <strong>Статья создана.</strong>
+    Напишите текст и нажмите «<%= return_to_author_page?(@page) ? 'Готово' : 'Сохранить' %>» — статья сразу появится на вашей странице.
+  </div>
+<% end %>
+
 <%= render 'form', page: @page %>
 
 <% if @page.is_page_menu? %>
-  <%= render 'admin/menus/menu', page: @page %>
+  <div class="author-menu-callout">
+    Меню статьи теперь настраивается прямо на странице: откройте её и нажмите
+    <b>«✎ Редактировать меню на странице»</b> над меню.
+    <%= link_to 'Открыть страницу', admin_public_page_path(@page), target: '_blank', rel: 'noopener' %>.
+  </div>
 <% end %>
+
 
 <%= render 'settings', page: @page %>

@@ -74,6 +74,53 @@ module PagesHelper
     strip_tags(page.body.to_s).squish.length >= CHAT_INVITE_MIN_TEXT_LENGTH
   end
 
+  # Панель управления показываем хозяину страницы-списка (автору).
+  # Админу — на его собственной странице и на авторских страницах (он и так
+  # может ими управлять); на остальных страницах — только по явной ссылке
+  # ?author_workspace=1, чтобы панель не мозолила глаза.
+  def author_workspace_available?(page)
+    return false if page.blank? || !page.is_page_menu?
+    return false unless logged_in?
+    return false unless current_user.admin_area_access? && current_user.allow_ip?(request.ip)
+    return true if page.owned_by?(current_user)
+    return false unless current_user.is_admin?
+
+    page.user_id == current_user.id || page.is_page_author? || params[:author_workspace] == '1'
+  end
+
+  # Кто может включить редактирование меню прямо на странице-списке:
+  # хозяин страницы и админ (на любой странице-списке, включая разделы библиотеки).
+  def author_menu_edit_available?(page)
+    return false if page.blank? || !page.is_page_menu?
+    return false unless logged_in?
+    return false unless current_user.admin_area_access? && current_user.allow_ip?(request.ip)
+
+    page.owned_by?(current_user) || current_user.is_admin?
+  end
+
+  # Данные для режима редактирования меню прямо на странице автора
+  def author_inline_menu_locals(page)
+    items = ::Menu.all_in_display_order(page.id)
+    paths = items.filter_map { _1.path.presence&.downcase }
+    pages_by_path = paths.any? ? ::Page.where(path_low: paths).index_by(&:path_low) : {}
+
+    {
+      author_page: page,
+      items:,
+      pages_by_path:,
+      by_parent: items.group_by(&:parent_id),
+      new_parent_id: nil,
+      inline: true,
+    }
+  end
+
+  # «Статей: 12 · Скрыто: 2»
+  def author_workspace_stats(page)
+    paths = ::Menu.where(page_id: page.id).where.not(path: [nil, '']).pluck(:path).map(&:downcase)
+    pages = paths.any? ? ::Page.where(path_low: paths).to_a : []
+    {total: paths.size, hidden: pages.count { !_1.is_published }}
+  end
+
   # JSON-LD по виду страницы (page.seo_kind): Person - автор, Book - книга, Article - обычная статья
   def page_structured_data(og_image)
     if @page.is_person_kind?

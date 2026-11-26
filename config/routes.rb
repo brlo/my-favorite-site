@@ -35,6 +35,16 @@ Rails.application.routes.draw do
       resources :menus, only: %i[create update destroy]
     end
 
+    # Кабинет автора: управление меню и статьями прямо с публичной страницы автора
+    get 'author/:page_id', to: 'author_workspace#show', as: :author_workspace
+    resources :author_items, path: 'author/:page_id/items', only: %i[create update destroy], controller: 'author_workspace' do
+      member do
+        patch :move
+        post :page, action: :create_page_for_item
+      end
+    end
+    delete 'author/:page_id/items/:id/page', to: 'author_workspace#destroy_page', as: :destroy_page_author_item
+
     resources :images, only: %i[index create update destroy]
 
     resources :tags, only: %i[index edit update destroy]
@@ -55,6 +65,11 @@ Rails.application.routes.draw do
         post :send_password_reset
         post :unlock
         post :toggle_block
+        # Авторская страница пользователя: создать, привязать существующую, отвязать
+        post :create_author_page
+        post :attach_author_page
+        delete :detach_author_page
+        patch :update_author_pages
       end
     end
 
