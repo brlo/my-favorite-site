@@ -14,6 +14,18 @@ translators:
     year: 1912
     status: pd
     evidence: "NK ČR: Ernst Klebba, 1871-1930"
+  - name: "Joh. Chrysostomus Baur"
+    dates: "1875–1962"
+    works: ["Johannes Chrysostomus, De sacerdotio"]
+    year: 1916
+    status: free_bkv
+    evidence: "BKV 1916"
+  - name: "Chrysostomus Mitterrutzner"
+    dates: ""
+    works: ["Johannes Chrysostomus, De virginitate"]
+    year: 1890
+    status: pd
+    evidence: "издание 1890"
   - name: "Karl Adam Heinrich Kellner"
     dates: "1811–1893"
     works: ["Tertullian, De carne Christi", "Tertullian, De resurrectione carnis", "Tertullian, De anima"]

@@ -103,6 +103,47 @@ imported:
       - { work: "De habitu virginum", url: "https://bkv.unifr.ch/de/works/cpl-40/versions/uber-die-haltung-der-jungfrauen-bkv", page: "Cyprian_De_habitu_virginum" }
       - { work: "Ad Demetrianum", url: "https://bkv.unifr.ch/de/works/cpl-46/versions/an-demetrianus-bkv", page: "Cyprian_Ad_Demetrianum" }
 
+  - author: "Cyrill von Jerusalem"
+    translator: "BKV-Ausgabe"
+    edition: "Bibliothek der Kirchenväter"
+    rights: free_bkv
+    works:
+      - { work: "Catecheses ad illuminandos", url: "https://bkv.unifr.ch/de/works/cpg-3585/versions/katechesen-an-die-tauflinge-bkv", page: "Cyrill_Katechesen" }
+      - { work: "Catecheses mystagogicae", url: "https://bkv.unifr.ch/de/works/cpg-3586/versions/mystagogische-katechesen-an-die-neugetauften-bkv", page: "Cyrill_Mystagogische_Katechesen" }
+
+  - author: "Hilarius von Poitiers"
+    translator: "Übersetzung des 19. Jahrhunderts"
+    edition: "Sämmtliche Werke der Kirchen-Väter 9, Kempten 1833"
+    rights: pd
+    works:
+      - { work: "Contra Arianos", url: "https://bkv.unifr.ch/de/works/cpl-462/versions/gegen-die-arianer-oder-gegen-auxentius-von-mailand-bkv", page: "Hilarius_Gegen_die_Arianer" }
+
+  - author: "Johannes Chrysostomus"
+    translator: "Joh. Chrysostomus Baur / Chrysostomus Mitterrutzner"
+    edition: "BKV 1. Reihe, Bd. 27 (1916); 1. Serie, Bd. 3 (1890)"
+    rights: free_bkv
+    works:
+      - { work: "De sacerdotio", url: "https://bkv.unifr.ch/de/works/cpg-4316/versions/uber-das-priestertum-bkv", page: "Chrysostomus_Ueber_das_Priestertum" }
+      - { work: "De virginitate", url: "https://bkv.unifr.ch/de/works/cpg-4313/versions/vom-jungfraulichen-stande-bkv", page: "Chrysostomus_Ueber_die_Jungfraeulichkeit" }
+      - { work: "Ad Theodorum lapsum I", url: "https://bkv.unifr.ch/de/works/cpg-4305/versions/erster-brief-an-theodor-bkv", page: "Chrysostomus_An_Theodor" }
+      - { work: "De paenitentia homiliae", url: "https://bkv.unifr.ch/de/works/cpg-4333/versions/homilien-uber-die-busse-bkv", page: "Chrysostomus_Homilien_ueber_die_Busse" }
+      - { work: "Ad populum Antiochenum homiliae", url: "https://bkv.unifr.ch/de/works/cpg-4330/versions/homilien-uber-die-bildsaulen-bkv", page: "Chrysostomus_Bildsaeulen_1/2" }
+      - { work: "In Matthaeum homiliae", url: "https://bkv.unifr.ch/de/works/cpg-4424/versions/kommentar-zum-evangelium-des-hl-matthaus-bkv", page: "Chrysostomus_Matthaeus_1–6" }
+      - { work: "In epistulam ad Romanos", url: "https://bkv.unifr.ch/de/works/cpg-4427/versions/kommentar-zum-briefe-des-hl-paulus-an-die-romer-bkv", page: "Chrysostomus_Roemerbrief_1–3" }
+      - { work: "In epistulam i ad Corinthios", url: "https://bkv.unifr.ch/de/works/cpg-4428/versions/homilien-uber-den-ersten-brief-an-die-korinther-bkv", page: "Chrysostomus_1_Korinther_1–3" }
+      - { work: "In epistulam ii ad Corinthios", url: "https://bkv.unifr.ch/de/works/cpg-4429/versions/homilien-uber-den-zweiten-brief-an-die-korinther-bkv", page: "Chrysostomus_2_Korinther_1–2" }
+      - { work: "In epistulam ad Galatas", url: "https://bkv.unifr.ch/de/works/cpg-4430/versions/kommentar-zu-den-briefen-des-hl-paulus-an-die-galater-bkv", page: "Chrysostomus_Galaterbrief" }
+      - { work: "In epistulam ad Ephesios", url: "https://bkv.unifr.ch/de/works/cpg-4431/versions/kommentar-zu-den-briefen-des-hl-paulus-an-die-epheser-bkv", page: "Chrysostomus_Epheserbrief_1–2" }
+      - { work: "In epistulam ad Philippenses", url: "https://bkv.unifr.ch/de/works/cpg-4432/versions/kommentar-zum-briefe-des-hl-paulus-an-die-philipper-bkv", page: "Chrysostomus_Philipperbrief" }
+      - { work: "In epistulam ad Colossenses", url: "https://bkv.unifr.ch/de/works/cpg-4433/versions/kommentar-zum-briefe-des-hl-paulus-an-die-kolosser-bkv", page: "Chrysostomus_Kolosserbrief" }
+      - { work: "In epistulam i ad Thessalonicenses", url: "https://bkv.unifr.ch/de/works/cpg-4434/versions/homilien-uber-den-i-thessalonicher-brief-bkv", page: "Chrysostomus_1_Thessalonicher" }
+      - { work: "In epistulam ii ad Thessalonicenses", url: "https://bkv.unifr.ch/de/works/cpg-4435/versions/homilien-uber-den-ii-thessalonicher-brief-bkv", page: "Chrysostomus_2_Thessalonicher" }
+      - { work: "In epistulam i ad Timotheum", url: "https://bkv.unifr.ch/de/works/cpg-4436/versions/homilien-uber-den-i-brief-an-timotheus-bkv", page: "Chrysostomus_1_Timotheus" }
+      - { work: "In epistulam ii ad Timotheum", url: "https://bkv.unifr.ch/de/works/cpg-4437/versions/homilien-uber-den-ii-brief-an-timotheus-bkv", page: "Chrysostomus_2_Timotheus" }
+      - { work: "In epistulam ad Titum", url: "https://bkv.unifr.ch/de/works/cpg-4438/versions/homilien-uber-den-brief-an-titus-bkv", page: "Chrysostomus_Titus" }
+      - { work: "In epistulam ad Philemonem", url: "https://bkv.unifr.ch/de/works/cpg-4439/versions/homilien-uber-den-brief-an-philemon-bkv", page: "Chrysostomus_Philemon" }
+      - { work: "In epistulam ad Hebraeos", url: "https://bkv.unifr.ch/de/works/cpg-4440/versions/homilien-uber-den-brief-an-die-hebraer-bkv", page: "Chrysostomus_Hebraeerbrief_1–2" }
+
   - author: "Ambrosius von Mailand"
     translator: "BKV-Ausgabe / Joh. Ev. Niederhuber / Franz Xaver Schulte"
     edition: "BKV, Kösel"
@@ -111,6 +152,14 @@ imported:
       - { work: "De mysteriis", url: "https://bkv.unifr.ch/de/works/cpl-155/versions/uber-die-mysterien-bkv", page: "Ambrosius_De_mysteriis" }
       - { work: "Exameron", url: "https://bkv.unifr.ch/de/works/cpl-123/versions/exameron-bkv", page: "Ambrosius_Exameron" }
       - { work: "De paenitentia", url: "https://bkv.unifr.ch/de/works/cpl-156/versions/uber-die-busse-bkv-2", page: "Ambrosius_De_paenitentia" }
+      - { work: "De bono mortis", url: "https://bkv.unifr.ch/de/works/cpl-129/versions/der-tod-ein-gut-bkv", page: "Ambrosius_De_bono_mortis" }
+      - { work: "De excessu fratris Satyri", url: "https://bkv.unifr.ch/de/works/cpl-157/versions/uber-den-tod-seines-bruders-satyrus-bkv", page: "Ambrosius_De_excessu_fratris" }
+      - { work: "De obitu Theodosii", url: "https://bkv.unifr.ch/de/works/cpl-159/versions/trauerrede-auf-kaiser-theodosius-d-gr-bkv", page: "Ambrosius_Trauerrede_Theodosius" }
+      - { work: "De fuga saeculi", url: "https://bkv.unifr.ch/de/works/cpl-133/versions/die-flucht-vor-der-welt-bkv", page: "Ambrosius_De_fuga_saeculi" }
+      - { work: "De viduis", url: "https://bkv.unifr.ch/de/works/cpl-146/versions/uber-die-wittwen-bkv", page: "Ambrosius_De_viduis" }
+      - { work: "De virginitate", url: "https://bkv.unifr.ch/de/works/cpl-147/versions/uber-die-jungfraulichkeit-bkv", page: "Ambrosius_De_virginitate" }
+      - { work: "De virginibus", url: "https://bkv.unifr.ch/de/works/cpl-145/versions/ambr-virg-bkv", page: "Ambrosius_De_virginibus" }
+      - { work: "De officiis ministrorum", url: "https://bkv.unifr.ch/de/works/cpl-144/versions/von-den-pflichten-der-kirchendiener-bkv", page: "Ambrosius_De_officiis" }
 
   - author: "Basilius der Große"
     translator: "BKV-Ausgabe"

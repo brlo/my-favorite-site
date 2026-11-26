@@ -326,8 +326,38 @@ Polykarp, Hermas, Aristides), оформление ссылок.
 
 - **Амвросий Медиоланский** (`Ambrosius_von_Mailand`): автор — перевод RU,
   обложка с RU; «Über die Mysterien» (41 КБ), «Exameron» (496 КБ, 6 частей),
-  «Über die Buße» (148 КБ, 30 глав); меню — «4. Jahrhundert» →
+  «Über die Buße» (148 КБ, 30 глав), «Der Tod ist ein Gut» (84 КБ),
+  «Über den Tod seines Bruders Satyrus» (187 КБ), «Trauerrede auf Kaiser
+  Theodosius» (49 КБ), «Die Flucht vor der Welt» (42 КБ), «Über die Witwen»
+  (39 КБ), «Über die Jungfräulichkeit» (47 КБ), «Über die Jungfrauen» (71 КБ),
+  «Über die Pflichten der Kirchendiener» (208 КБ); меню — «4. Jahrhundert» →
   «Dogmatische/Exegetische/Moralisch-asketische Werke». Права: `free_bkv`.
+
+- **Иоанн Златоуст** (`Johannes_Chrysostomus`): автор — перевод RU (63 КБ),
+  обложка с RU; «Über das Priestertum» (6 книг, 272 КБ), «Vom jungfräulichen
+  Stande» (85 гл., 239 КБ), «Erster Brief an Theodor» (107 КБ),
+  «Homilien über die Buße» (9 бесед, 246 КБ), «Homilien über die Bildsäulen»
+  (2 части, 14+7 бесед, 514+251 КБ), «Homilien über das Matthäusevangelium»
+  (6 частей, 12+12+15+16+16+19 бесед), «Homilien über den Römerbrief»
+  (3 части, 13+11+9 бесед), «Homilien über den 1. Korintherbrief»
+  (3 части, 16+14+14 бесед), «Homilien über den 2. Korintherbrief»
+  (2 части, 12+18 бесед), «Kommentar zum Galaterbrief» (6 гл., 244 КБ),
+  «Homilien über den Epheserbrief» (2 части, 17+7, 402+207 КБ),
+  «Homilien über den Philipperbrief» (16 гл., 437 КБ), «Homilien über den
+  Kolosserbrief» (12 гл., 363 КБ), «Homilien über den 1./2. Thessalonicherbrief»
+  (11+5 гл., 299+121 КБ), «Timotheus/Titus/Philemon» (19+10+6+4 гл.),
+  «Hebräerbrief» (2 части, 16+18 гл.); меню —
+  «4. Jahrhundert» → «Pastorale und katechetische/Moralisch-asketische Werke».
+  Права: `free_bkv`/`pd`.
+
+- **Иларий Пиктавийский** (`Hilarius_von_Poitiers`): автор — перевод RU,
+  обложка с RU; «Gegen die Arianer, oder gegen Auxentius von Mailand» (21 КБ);
+  меню — «4. Jahrhundert» → «Dogmatische Werke». Права: `pd`.
+
+- **Кирилл Иерусалимский** (`Cyrill_von_Jerusalem`): автор — перевод RU,
+  обложка с RU; «Katechesen an die Täuflinge» (19 гл., 580 КБ),
+  «Mystagogische Katechesen» (5 гл., 42 КБ); меню — «4. Jahrhundert» →
+  «Katechetische Werke». Права: `free_bkv`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

@@ -35,6 +35,14 @@ SOURCES = {
     'myst': ('Über die Mysterien', 'https://bkv.unifr.ch/de/works/cpl-155/versions/uber-die-mysterien-bkv', 'BKV-Ausgabe'),
     'exam': ('Exameron', 'https://bkv.unifr.ch/de/works/cpl-123/versions/exameron-bkv', 'Joh. Ev. Niederhuber'),
     'paen': ('Über die Buße', 'https://bkv.unifr.ch/de/works/cpl-156/versions/uber-die-busse-bkv-2', 'Franz Xaver Schulte'),
+    'bon': ('Der Tod ist ein Gut', 'https://bkv.unifr.ch/de/works/cpl-129/versions/der-tod-ein-gut-bkv', 'BKV-Ausgabe'),
+    'sat': ('Über den Tod seines Bruders Satyrus', 'https://bkv.unifr.ch/de/works/cpl-157/versions/uber-den-tod-seines-bruders-satyrus-bkv', 'BKV-Ausgabe'),
+    'theo': ('Trauerrede auf Kaiser Theodosius den Großen', 'https://bkv.unifr.ch/de/works/cpl-159/versions/trauerrede-auf-kaiser-theodosius-d-gr-bkv', 'BKV-Ausgabe'),
+    'fuga': ('Die Flucht vor der Welt', 'https://bkv.unifr.ch/de/works/cpl-133/versions/die-flucht-vor-der-welt-bkv', 'BKV-Ausgabe'),
+    'vid': ('Über die Witwen', 'https://bkv.unifr.ch/de/works/cpl-146/versions/uber-die-wittwen-bkv', 'BKV-Ausgabe'),
+    'virg': ('Über die Jungfräulichkeit', 'https://bkv.unifr.ch/de/works/cpl-147/versions/uber-die-jungfraulichkeit-bkv', 'BKV-Ausgabe'),
+    'virgines': ('Über die Jungfrauen', 'https://bkv.unifr.ch/de/works/cpl-145/versions/ambr-virg-bkv', 'BKV-Ausgabe'),
+    'off': ('Über die Pflichten der Kirchendiener', 'https://bkv.unifr.ch/de/works/cpl-144/versions/von-den-pflichten-der-kirchendiener-bkv', 'BKV-Ausgabe'),
 }
 
 
@@ -64,6 +72,33 @@ def exameron_sections():
     return ''.join(parts)
 
 
+def paragraphs2(key):
+    with zipfile.ZipFile(os.path.join(TMP, 'amb2_' + key + '.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    return ''.join(be.para_html(p) for p in doc.xpath('//p'))
+
+
+def paragraphs3(key):
+    with zipfile.ZipFile(os.path.join(TMP, 'amb3_' + key + '.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    return ''.join(be.para_html(p) for p in doc.xpath('//p'))
+
+
+def paragraphs4(key):
+    with zipfile.ZipFile(os.path.join(TMP, 'amb4_' + key + '.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    return ''.join(be.para_html(p) for p in doc.xpath('//p'))
+
+
 def paenitentia():
     with zipfile.ZipFile(os.path.join(TMP, 'amb_paen.epub')) as z:
         name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
@@ -79,6 +114,23 @@ def paenitentia():
             body = ''.join(be.para_html(p) for p in chapter.xpath('.//p'))
             if body:
                 parts.append(f'<h2>{n if n is not None else 0}</h2>{body}')
+    return ''.join(parts)
+
+
+def sections(key):
+    with zipfile.ZipFile(os.path.join(TMP, 'amb2_' + key + '.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    be.clean_doc(doc)
+    words = {'Erstes': 1, 'Zweites': 2, 'Drittes': 3}
+    parts = []
+    for heading in doc.xpath('//h2'):
+        title = ''.join(heading.itertext()).strip()
+        n = be.chapter_number(heading)
+        n = n or next((v for k, v in words.items() if title.startswith(k)), 0)
+        body = ''.join(be.para_html(p) for p in heading.getparent().xpath('.//p'))
+        parts.append(f'<h2>{n}</h2>{body}')
     return ''.join(parts)
 
 
@@ -138,6 +190,14 @@ pages:
 {page('Амвросий_Медиоланский-О_тайнах', 'Ambrosius_De_mysteriis', 'Über die Mysterien', 'myst', 'Dogmatische Werke', 1)}
 {page('nCFH_Шестоднев', 'Ambrosius_Exameron', 'Exameron', 'exam', 'Exegetische Werke', 1, exameron_sections())}
 {page('hRFw_О_покаянии_две_книги', 'Ambrosius_De_paenitentia', 'Über die Buße', 'paen', 'Moralisch-asketische Werke', 1, paenitentia())}
+{page('LPW4_О_благе_смерти', 'Ambrosius_De_bono_mortis', 'Der Tod ist ein Gut', 'bon', 'Moralisch-asketische Werke', 2, sections('bon'))}
+{page('VaoB_О_смерти_брата_две_книги', 'Ambrosius_De_excessu_fratris', 'Über den Tod seines Bruders Satyrus', 'sat', 'Moralisch-asketische Werke', 3, sections('sat'))}
+{page('1TUg_Слово_на_смерть_Феодосия_Великого', 'Ambrosius_Trauerrede_Theodosius', 'Trauerrede auf Kaiser Theodosius den Großen', 'theo', 'Moralisch-asketische Werke', 4, paragraphs2('theo'))}
+{page('L6ly_О_бегстве_от_мира', 'Ambrosius_De_fuga_saeculi', 'Die Flucht vor der Welt', 'fuga', 'Moralisch-asketische Werke', 5, paragraphs3('fuga'))}
+{page('gB8v_О_вдовицах', 'Ambrosius_De_viduis', 'Über die Witwen', 'vid', 'Moralisch-asketische Werke', 6, paragraphs3('vid'))}
+{page('qCKc_О_девстве', 'Ambrosius_De_virginitate', 'Über die Jungfräulichkeit', 'virg', 'Moralisch-asketische Werke', 7, paragraphs3('virg'))}
+{page('FIyd_О_девственницах', 'Ambrosius_De_virginibus', 'Über die Jungfrauen', 'virgines', 'Moralisch-asketische Werke', 8, paragraphs4('virgines'))}
+{page('5xQB_Об_обязанностях_священнослужителей_1', 'Ambrosius_De_officiis', 'Über die Pflichten der Kirchendiener', 'off', 'Moralisch-asketische Werke', 9, paragraphs4('off'))}
 '''
     for name, text in (('amb_author.yml', author), ('amb_works.yml', works)):
         path = os.path.join(DB, name)

@@ -1,0 +1,16 @@
+# Кирилл Иерусалимский: страница автора (немецкая библиотека)
+# Сборка: script/translations/de/build_cyril.py
+
+lang: de
+list: "Kirchenvaeter"
+pages:
+
+  - src: "rXYx_Кирилл_Иерусалимский_IV_век"
+    path: "Cyrill_von_Jerusalem"
+    title: "Cyrill von Jerusalem, 4. Jh."
+    title_sub: "Heiliger (315–386), Kirchenvater, Bischof von Jerusalem (350–386), Asket und Prediger"
+    copy_cover: true
+    menu: { parent: "4. Jahrhundert", title: "Cyrill von Jerusalem, Heiliger (315–386)", replace: "Cyrill von Jerusalem, Heiliger (315–386)", priority: 9 }
+    update: true
+    body: |-
+      <p>Gedenktag: 18. (31.) März</p><h2>Biographie</h2><p>Kirchenvater, Bischof von Jerusalem (350–386), Asket und Prediger, der bestrebt war, die Bedeutung Jerusalems als Zentrum der gesamten christlichen Kirche zu erhöhen. Jerusalem war damals dem Metropoliten von Cäsarea unterstellt, was den heiligen Cyrill keineswegs zufriedenstellte. Dreimal wurde er auf Betreiben des Bischofs von Cäsarea, Akakios, abgesetzt, der von Cyrill die Annahme des Arianismus verlangte. Anlässlich eines himmlischen Zeichens – der Erscheinung des Kreuzes des Herrn am Himmel über Jerusalem am Pfingstfest 351 – sandte Cyrill den „Brief an den frommen Kaiser Constantius“. Cyrill verwendete viel Kraft auf die Befriedung der Jerusalemer Herde und den Kampf gegen die Häretiker, gegen die er auf dem Zweiten Ökumenischen Konzil die Verurteilung unterzeichnete.</p><h2>Hymnographie</h2><p><strong>Kondak des heiligen Cyrill, Erzbischof von Jerusalem, 4. Ton</strong></p><blockquote><p><em>Mit deiner Zunge, du Weiser, / hast du durch göttliche Eingebungen dein Volk erleuchtet, / die eine Dreieinigkeit zu verehren, / von Natur ungeteilt, in den Personen aber geteilt. / Darum feiern wir freudig dein allheiliges Gedächtnis, // und tragen dich als Fürbitter zu Gott empor.</em></p></blockquote>
