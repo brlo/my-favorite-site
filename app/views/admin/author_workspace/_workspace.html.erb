@@ -1,6 +1,7 @@
 <%
   inline = local_assigns.fetch(:inline, false)
   create_only = local_assigns.fetch(:create_only, false)
+  attachable_pages = local_assigns.fetch(:attachable_pages, [])
   frame_id = inline ? 'author_menu_inline' : 'author_workspace'
   mode_params = inline ? {mode: 'inline'} : {}
 %>
@@ -36,7 +37,8 @@
         <h3>Новая статья</h3>
       <% end %>
       <%= render 'admin/author_workspace/create_form', author_page: author_page, by_parent: by_parent,
-            parent_id: new_parent_id, show_parent_select: true, inline: inline, simple: create_only %>
+            parent_id: new_parent_id, show_parent_select: true, inline: inline, simple: create_only,
+            attachable_pages: attachable_pages %>
     </section>
 
     <% unless create_only %>
@@ -49,7 +51,8 @@
     <% else %>
       <ul class="aw-tree">
         <%= render 'admin/author_workspace/branch', author_page: author_page, by_parent: by_parent,
-              pages_by_path: pages_by_path, parent_id: nil, inline: inline %>
+              pages_by_path: pages_by_path, parent_id: nil, inline: inline,
+              attachable_pages: attachable_pages %>
       </ul>
 
       <p class="aw-legend">

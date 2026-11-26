@@ -1,5 +1,6 @@
 <%
   inline = local_assigns.fetch(:inline, false)
+  attachable_pages = local_assigns.fetch(:attachable_pages, [])
   mode_params = inline ? {mode: 'inline'} : {}
   frame_id = inline ? 'author_menu_inline' : 'author_workspace'
 %>
@@ -109,7 +110,8 @@
           <div class="aw-pop aw-pop-wide">
             <h4>Добавить внутри «<%= item.title %>»</h4>
             <%= render 'admin/author_workspace/create_form', author_page: author_page, by_parent: by_parent,
-                  parent_id: item.id, show_parent_select: false, inline: inline %>
+                  parent_id: item.id, show_parent_select: false, inline: inline,
+                  attachable_pages: attachable_pages %>
           </div>
         </details>
 
@@ -126,7 +128,8 @@
     <% if by_parent[item.id].present? %>
       <ul class="aw-children">
         <%= render 'admin/author_workspace/branch', author_page: author_page, by_parent: by_parent,
-              pages_by_path: pages_by_path, parent_id: item.id, inline: inline %>
+              pages_by_path: pages_by_path, parent_id: item.id, inline: inline,
+              attachable_pages: attachable_pages %>
       </ul>
     <% end %>
   </li>

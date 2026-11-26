@@ -33,6 +33,30 @@ module Admin
       end
     end
 
+    # Добавить в меню уже существующую статью (например, после того как её
+    # убрали из меню). Сама страница не создаётся и не меняется.
+    def attach_item
+      page_id = params[:article_page_id].to_i
+      parent_id = params[:parent_id].presence&.to_i
+      return render_workspace(alert: 'Выберите статью', status: :unprocessable_entity) if page_id.zero?
+      if parent_id && !author_menu_ids.include?(parent_id)
+        return render_workspace(alert: 'Раздел не найден. Обновите страницу и попробуйте снова.', status: :unprocessable_entity)
+      end
+
+      page = ::Page.where(parent_id: @author_page.id, lang: @author_page.lang).find_by(id: page_id)
+      return render_workspace(alert: 'Статья не найдена на этой странице', status: :unprocessable_entity) if page.nil? || page.path.blank?
+      return render_workspace(alert: 'Нет прав добавить эту статью', status: :forbidden) unless page_owner?(@author_page) || can_manage_page?(page)
+      if ::Menu.where(page_id: @author_page.id).where('LOWER(path) = ?', page.path.downcase).exists?
+        return render_workspace(alert: 'Эта статья уже есть в меню', status: :unprocessable_entity)
+      end
+
+      position = ::Menu.next_position(@author_page.id, parent_id)
+      ::Menu.create!(page_id: @author_page.id, parent_id:, title: page.title, path: page.path, priority: position, position:)
+      render_workspace(notice: "Статья «#{page.title}» добавлена в меню")
+    rescue ::ActiveRecord::RecordInvalid => e
+      render_workspace(alert: "Не удалось добавить статью: #{e.record.errors.full_messages.to_sentence}", status: :unprocessable_entity)
+    end
+
     # Переименование и перенос в другой раздел
     def update
       title = params[:title].to_s.squish
@@ -175,6 +199,7 @@ module Admin
         pages_by_path:,
         by_parent: items.group_by(&:parent_id),
         new_parent_id: params[:parent_id].presence&.to_i,
+        attachable_pages: attachable_pages(items),
         inline: inline_mode?,
         create_only:,
       }
@@ -234,6 +259,13 @@ module Admin
                   notice: 'Статья создана. Напишите текст и нажмите «Готово».'
     rescue ::ActiveRecord::RecordInvalid => e
       render_workspace(alert: "Не удалось создать статью: #{e.record.errors.full_messages.to_sentence}", status: :unprocessable_entity)
+    end
+
+    def attachable_pages(items)
+      linked_paths = items.filter_map { _1.path.presence&.downcase }
+      scope = ::Page.where(parent_id: @author_page.id, lang: @author_page.lang)
+      scope = scope.where.not(path_low: linked_paths) if linked_paths.any?
+      scope.where.not(path_low: nil).where.not(path_low: '').order(:title)
     end
 
     def page_for_item(item)

@@ -66,6 +66,61 @@ class Admin::AuthorWorkspaceControllerTest < ActionDispatch::IntegrationTest
     assert_nil menu.path
   end
 
+  test 'существующую статью можно вернуть в меню' do
+    sign_in(@owner)
+    page = create_author_page('Возвращаемая')
+
+    assert_difference -> { ::Menu.count }, 1 do
+      post "/admin/author/#{@author.id}/items/attach", params: {article_page_id: page.id}
+    end
+
+    assert_response :success
+    menu = ::Menu.order(:id).last
+    assert_equal page.path, menu.path
+    assert_equal 'Возвращаемая', menu.title
+  end
+
+  test 'удалённый из меню пункт можно вернуть на место' do
+    sign_in(@owner)
+    page = create_author_page('Возврат')
+    menu = create_menu('Возврат', path: page.path)
+
+    delete "/admin/author/#{@author.id}/items/#{menu.id}"
+    assert ::Page.exists?(page.id)
+
+    assert_no_difference -> { ::Page.count } do
+      assert_difference -> { ::Menu.count }, 1 do
+        post "/admin/author/#{@author.id}/items/attach", params: {article_page_id: page.id}
+      end
+    end
+
+    assert_response :success
+    assert_equal page.path, ::Menu.order(:id).last.path
+  end
+
+  test 'нельзя добавить в меню статью с чужой страницы' do
+    sign_in(@owner)
+    foreign = create_page(title: 'Чужая', path: 'foreign_attach_check', parent_id: nil, lang: @author.lang)
+
+    assert_no_difference -> { ::Menu.count } do
+      post "/admin/author/#{@author.id}/items/attach", params: {article_page_id: foreign.id}
+    end
+
+    assert_response :unprocessable_entity
+  end
+
+  test 'нельзя добавить одну статью в меню дважды' do
+    sign_in(@owner)
+    page = create_author_page('Дубликат')
+    create_menu('Дубликат', path: page.path)
+
+    assert_no_difference -> { ::Menu.count } do
+      post "/admin/author/#{@author.id}/items/attach", params: {article_page_id: page.id}
+    end
+
+    assert_response :unprocessable_entity
+  end
+
   test 'новая статья создаёт страницу, пункт меню и ведёт в редактор' do
     sign_in(@owner)
 
@@ -276,6 +331,8 @@ class Admin::AuthorWorkspaceRenderingTest < ActionDispatch::IntegrationTest
                            path: 'author_article_render')
     @section = ::Menu.create!(page_id: @author.id, title: 'Раздел', priority: 0)
     @menu = ::Menu.create!(page_id: @author.id, title: 'Статья', path: @article.path, priority: 1)
+    @unlinked = create_page(title: 'Свободная', parent_id: @author.id, lang: @author.lang,
+                            path: 'author_free_article', is_published: true)
   end
 
   test 'кабинет показывает статьи, разделы и кнопки управления' do
@@ -298,6 +355,15 @@ class Admin::AuthorWorkspaceRenderingTest < ActionDispatch::IntegrationTest
     form = Nokogiri::HTML(response.body).at_css('.aw-section-create form')
     html = form.to_html
     assert_operator html.index('name="title"'), :<, html.index('name="parent_id"')
+  end
+
+  test 'в редакторе можно вернуть в меню существующую статью' do
+    sign_in(@owner)
+    get "/admin/author/#{@author.id}", headers: {'Turbo-Frame' => 'author_workspace'}
+
+    assert_response :success
+    assert_select '.aw-attach-existing', minimum: 1
+    assert_select 'select[name="article_page_id"] option', text: /Свободная/
   end
 
   test 'в меню отдельно убрать из меню и отдельно удалить статью' do

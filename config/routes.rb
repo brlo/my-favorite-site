@@ -44,6 +44,7 @@ Rails.application.routes.draw do
       end
     end
     delete 'author/:page_id/items/:id/page', to: 'author_workspace#destroy_page', as: :destroy_page_author_item
+    post 'author/:page_id/items/attach', to: 'author_workspace#attach_item', as: :attach_author_item
 
     resources :images, only: %i[index create update destroy]
 

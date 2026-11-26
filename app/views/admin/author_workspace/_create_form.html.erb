@@ -3,6 +3,7 @@
 <%
   inline = local_assigns.fetch(:inline, false)
   simple = local_assigns.fetch(:simple, false)
+  attachable_pages = local_assigns.fetch(:attachable_pages, [])
   mode_params = inline ? {mode: 'inline'} : {}
   simple_params = simple ? {create: 1} : {}
 %>
@@ -40,5 +41,26 @@
       <button type="submit" name="kind" value="section" class="aw-btn">Создать раздел</button>
     <% end %>
   </details>
+
+  <% if attachable_pages.any? %>
+    <details class="aw-section-create aw-attach-existing">
+      <summary>＋ Добавить уже существующую статью</summary>
+      <p class="aw-hint">Статья уже есть на сайте — просто поставьте её в меню.</p>
+      <%= form_with url: admin_attach_author_item_path(author_page, **mode_params), method: :post, class: 'aw-create-row' do %>
+        <%= select_tag :article_page_id,
+              options_for_select(attachable_pages.map { |p| ["#{p.title} — /#{p.path}", p.id] }),
+              include_blank: 'Выберите статью', required: true,
+              class: 'aw-select', 'aria-label': 'Существующая статья' %>
+        <% if show_parent_select %>
+          <%= select_tag :parent_id,
+                options_for_select([['В корень страницы', '']] + author_menu_options(by_parent), parent_id),
+                id: nil, class: 'aw-select', 'aria-label': 'Куда добавить' %>
+        <% else %>
+          <%= hidden_field_tag :parent_id, parent_id, id: nil %>
+        <% end %>
+        <button type="submit" class="aw-btn">Добавить в меню</button>
+      <% end %>
+    </details>
+  <% end %>
   <% end %>
 </div>
