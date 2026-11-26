@@ -320,5 +320,9 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   (17 гл.), «Über die Ehrbarkeit» (22 гл.), «Über den weiblichen Putz»
   (2 книги, 9+13 гл.); меню — «2. Jahrhundert» → «Werke». Права: `pd`.
 
+- **Василий Великий** (`Basilius_der_Große`): автор — перевод RU, обложка с RU;
+  «Homilien über das Hexaemeron» BKV 1925, 9 бесед, 270 КБ; меню —
+  «4. Jahrhundert» → «Werke». Права: `free_bkv`.
+
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

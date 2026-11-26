@@ -103,6 +103,13 @@ imported:
       - { work: "De habitu virginum", url: "https://bkv.unifr.ch/de/works/cpl-40/versions/uber-die-haltung-der-jungfrauen-bkv", page: "Cyprian_De_habitu_virginum" }
       - { work: "Ad Demetrianum", url: "https://bkv.unifr.ch/de/works/cpl-46/versions/an-demetrianus-bkv", page: "Cyprian_Ad_Demetrianum" }
 
+  - author: "Basilius der Große"
+    translator: "BKV-Ausgabe"
+    edition: "BKV 1. Reihe, Bd. 47, Kempten/München 1925"
+    rights: free_bkv
+    works:
+      - { work: "Homiliae in Hexaemeron", url: "https://bkv.unifr.ch/de/works/cpg-2835/versions/homilien-uber-das-hexaemeron-bkv", page: "Basilius_Hexaemeron" }
+
   - author: "Tertullian"
     translator: "Karl Adam Heinrich Kellner"
     edition: "Tertullians sämtliche Schriften, Köln 1882"
