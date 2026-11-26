@@ -12,7 +12,7 @@ book = ENV['BOOK'].presence || 'mk'
 base_tr = if ::BOOKS[book][:zavet] == 1
             if book == '3mak'
               'ru' # в csl-ru 3-й Маккавейской нет; нумерация — по Синодальному
-            elsif %w[ier pier iez dan os iol naum ag mal mih zah 1mak 2mak].include?(book)
+            elsif %w[ier pier iez dan os iol naum ag mal mih zah 1mak 2mak 3ezd].include?(book)
               'csl-ru'
             else
               'gr-lxx-byz'
@@ -43,7 +43,10 @@ chapters.each do |ch|
       gr_ch = ch + 10
     end
   end
-  base = ::Verse.where(tr_code: base_tr, book: gr_book, chapter: gr_ch).pluck(:line).sort
+  # 3-я Ездры: в слав. модуле глава 7 короче (70 стихов); по решению её полный
+  # объём (140) взят по Синодальному, поэтому гл. 7 сверяем с ru, остальные — с csl.
+  ch_base = (book == '3ezd' && ch == 7) ? 'ru' : base_tr
+  base = ::Verse.where(tr_code: ch_base, book: gr_book, chapter: gr_ch).pluck(:line).sort
   # prsir 1: в gr-lxx-byz пролог разбит на 1:1–35, а глава 1 втиснута в 1:36 (дефект
   # модуля). По решению пользователя глава 1 идёт по церковному образцу csl-pnm:
   # 30 стихов, пролог и 1:1 — в первом стихе.
