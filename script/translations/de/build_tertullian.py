@@ -30,6 +30,9 @@ SOURCES = {
     'mart': ('An die Märtyrer', 'https://bkv.unifr.ch/de/works/cpl-1/versions/tert-mart-bkv'),
     'scap': ('An Scapula', 'https://bkv.unifr.ch/de/works/cpl-24/versions/an-scapula-bkv'),
     'test': ('Das Zeugnis der Seele', 'https://bkv.unifr.ch/de/works/cpl-4/versions/das-zeugnis-der-seele-bkv'),
+    'herm': ('Gegen Hermogenes', 'https://bkv.unifr.ch/de/works/cpl-13/versions/gegen-hermogenes-bkv'),
+    'val': ('Gegen die Valentinianer', 'https://bkv.unifr.ch/de/works/cpl-16/versions/gegen-die-valentinianer-bkv'),
+    'scorp': ('Arznei gegen den Skorpionstich', 'https://bkv.unifr.ch/de/works/cpl-22/versions/arznei-gegen-skorpionstich-bkv'),
 }
 
 
@@ -126,6 +129,9 @@ pages:
 {page('WbSq_Послание_к_мученикам', 'Tertullian_Ad_martyres', 'An die Märtyrer', 'mart', 16)}
 {page('wb6X_К_Скапуле', 'Tertullian_Ad_Scapulam', 'An Scapula', 'scap', 17)}
 {page('JYEk_О_свидетельстве_души', 'Tertullian_De_testimonio_animae', 'Das Zeugnis der Seele', 'test', 18)}
+{page('dINv_Против_Гермогена_1', 'Tertullian_Adversus_Hermogenem', 'Gegen Hermogenes', 'herm', 19)}
+{page('n4PQ_Против_Валентиниан', 'Tertullian_Adversus_Valentinianos', 'Gegen die Valentinianer', 'val', 20)}
+{page('QvjN_Скорпиак_или_противоядие_от_угрызения_скорпионов', 'Tertullian_Scorpiace', 'Arznei gegen den Skorpionstich', 'scorp', 21)}
 '''
     for name, text in (('tert_author.yml', author), ('tert_works.yml', works)):
         path = os.path.join(DB, name)

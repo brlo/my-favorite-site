@@ -312,7 +312,8 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Über die Geduld» (16 гл.), «Über die Buße» (12 гл.), «An die Gattin»
   (19 гл.), «Gegen die Juden» (14 гл.), «Über die Schauspiele» (30 гл.),
   «An die Märtyrer» (6 гл.), «An Scapula» (5 гл.), «Das Zeugnis der Seele»
-  (6 гл.); меню — «2. Jahrhundert» → «Werke». Права: `pd`.
+  (6 гл.), «Gegen Hermogenes» (45 гл.), «Gegen die Valentinianer» (39 гл.),
+  «Arznei gegen den Skorpionstich» (15 гл.); меню — «2. Jahrhundert» → «Werke». Права: `pd`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).
