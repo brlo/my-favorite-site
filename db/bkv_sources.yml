@@ -135,6 +135,8 @@ imported:
       - { work: "De exhortatione castitatis", url: "https://bkv.unifr.ch/de/works/cpl-20/versions/uber-die-aufforderung-zur-keuschheit-bkv", page: "Tertullian_De_exhortatione_castitatis" }
       - { work: "De ieiunio", url: "https://bkv.unifr.ch/de/works/cpl-29/versions/uber-das-fasten-gegen-die-psychiker-bkv", page: "Tertullian_De_ieiunio" }
       - { work: "De virginibus velandis", url: "https://bkv.unifr.ch/de/works/cpl-27/versions/uber-die-verschleierung-der-jungfrauen-bkv", page: "Tertullian_De_virginibus_velandis" }
+      - { work: "De pudicitia", url: "https://bkv.unifr.ch/de/works/cpl-30/versions/uber-die-ehrbarkeit-bkv", page: "Tertullian_De_pudicitia" }
+      - { work: "De cultu feminarum I–II", url: "https://bkv.unifr.ch/de/works/cpl-11/versions/uber-den-weiblichen-putz-bkv", page: "Tertullian_De_cultu_feminarum_1/2" }
 
   - author: "Gregor von Nyssa"
     translator: "BKV-Ausgabe / Heinrich Hand"

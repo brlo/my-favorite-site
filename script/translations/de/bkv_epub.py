@@ -71,6 +71,7 @@ SOURCES = {
     'tert9_virg': {'mode': 'chapters'},
     'tert9_ieiun': {'mode': 'chapters'},
     'tert9_cast': {'mode': 'chapters'},
+    'tert10_pud': {'mode': 'chapters'},
     'ath_apol': {'mode': 'chapters'},
     'ath_serap': {'mode': 'chapters'},
     'ath_hist': {'mode': 'chapters'},

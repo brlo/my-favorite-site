@@ -39,6 +39,8 @@ SOURCES = {
     'cast': ('Über die Aufforderung zur Keuschheit', 'https://bkv.unifr.ch/de/works/cpl-20/versions/uber-die-aufforderung-zur-keuschheit-bkv'),
     'ieiun': ('Über das Fasten gegen die Psychiker', 'https://bkv.unifr.ch/de/works/cpl-29/versions/uber-das-fasten-gegen-die-psychiker-bkv'),
     'virg': ('Über die Verschleierung der Jungfrauen', 'https://bkv.unifr.ch/de/works/cpl-27/versions/uber-die-verschleierung-der-jungfrauen-bkv'),
+    'pud': ('Über die Ehrbarkeit', 'https://bkv.unifr.ch/de/works/cpl-30/versions/uber-die-ehrbarkeit-bkv'),
+    'cult': ('Über den weiblichen Putz', 'https://bkv.unifr.ch/de/works/cpl-11/versions/uber-den-weiblichen-putz-bkv'),
 }
 
 
@@ -74,6 +76,26 @@ def uxor_sections():
     return ''.join(parts)
 
 
+def cult_books():
+    with zipfile.ZipFile(os.path.join(TMP, 'tert10_cult.epub')) as z:
+        name = max([n for n in z.namelist() if n.startswith('EPUB/text/')],
+                   key=lambda n: z.getinfo(n).file_size)
+        doc = LH.fromstring(z.read(name))
+    import bkv_epub as be
+    be.clean_doc(doc)
+    result = []
+    for book in doc.xpath('//h2'):
+        parts = []
+        for chapter in book.getparent().xpath('./section'):
+            heading = chapter.find('h3')
+            n = be.chapter_number(heading) if heading is not None else None
+            body = ''.join(be.para_html(p) for p in chapter.xpath('.//p'))
+            if body:
+                parts.append(f'<h2>{n if n is not None else 0}</h2>{body}')
+        result.append(''.join(parts))
+    return result
+
+
 def page(src, path, title, key, priority, custom_body=None):
     body = (f'<p><em>{title}, übersetzt von Karl Adam Heinrich Kellner (Köln 1882).</em></p>'
             + (custom_body if custom_body is not None else open(os.path.join(OUT, 'tert_' + key + '.html'), encoding='utf-8').read().strip()))
@@ -90,6 +112,7 @@ def page(src, path, title, key, priority, custom_body=None):
 
 
 def main():
+    cult1, cult2 = cult_books()
     author_html = open(AUTHOR, encoding='utf-8').read().strip()
     author = f'''# Тертуллиан: страница автора (немецкая библиотека)
 # Сборка: script/translations/de/build_tertullian.py
@@ -144,6 +167,9 @@ pages:
 {page('yTgS_О_целомудрии', 'Tertullian_De_exhortatione_castitatis', 'Über die Aufforderung zur Keuschheit', 'cast', 25)}
 {page('NqoW_О_посте', 'Tertullian_De_ieiunio', 'Über das Fasten gegen die Psychiker', 'ieiun', 26)}
 {page('2dNZ_О_покрывале_девственниц', 'Tertullian_De_virginibus_velandis', 'Über die Verschleierung der Jungfrauen', 'virg', 27)}
+{page('wvx9_О_стыдливости_De_Pudicitia', 'Tertullian_De_pudicitia', 'Über die Ehrbarkeit', 'pud', 30)}
+{page('ZF4v_О_женских_украшениях__книга_1', 'Tertullian_De_cultu_feminarum_1', 'Über den weiblichen Putz — Buch 1', 'cult', 28, cult1)}
+{page('EQVa_О_женских_украшениях', 'Tertullian_De_cultu_feminarum_2', 'Über den weiblichen Putz — Buch 2', 'cult', 29, cult2)}
 '''
     for name, text in (('tert_author.yml', author), ('tert_works.yml', works)):
         path = os.path.join(DB, name)

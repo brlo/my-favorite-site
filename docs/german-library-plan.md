@@ -317,7 +317,8 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Über das Fliehen in der Verfolgung» (11 гл.), «Über die einmalige Ehe»
   (17 гл.), «Über die Aufforderung zur Keuschheit» (13 гл.), «Über das Fasten
   gegen die Psychiker» (17 гл.), «Über die Verschleierung der Jungfrauen»
-  (17 гл.); меню — «2. Jahrhundert» → «Werke». Права: `pd`.
+  (17 гл.), «Über die Ehrbarkeit» (22 гл.), «Über den weiblichen Putz»
+  (2 книги, 9+13 гл.); меню — «2. Jahrhundert» → «Werke». Права: `pd`.
 
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).
