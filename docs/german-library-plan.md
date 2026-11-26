@@ -324,5 +324,10 @@ Polykarp, Hermas, Aristides), оформление ссылок.
   «Homilien über das Hexaemeron» BKV 1925, 9 бесед, 270 КБ; меню —
   «4. Jahrhundert» → «Werke». Права: `free_bkv`.
 
+- **Амвросий Медиоланский** (`Ambrosius_von_Mailand`): автор — перевод RU,
+  обложка с RU; «Über die Mysterien» (41 КБ), «Exameron» (496 КБ, 6 частей),
+  «Über die Buße» (148 КБ, 30 глав); меню — «4. Jahrhundert» →
+  «Dogmatische/Exegetische/Moralisch-asketische Werke». Права: `free_bkv`.
+
 Осталось из партии 1: Папий, Кодрат (свои переводы),
 Папий и Кодрат (переводы с греческого), «О девстве» Климента (нет немецкого PD).

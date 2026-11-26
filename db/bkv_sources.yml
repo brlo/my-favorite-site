@@ -103,6 +103,15 @@ imported:
       - { work: "De habitu virginum", url: "https://bkv.unifr.ch/de/works/cpl-40/versions/uber-die-haltung-der-jungfrauen-bkv", page: "Cyprian_De_habitu_virginum" }
       - { work: "Ad Demetrianum", url: "https://bkv.unifr.ch/de/works/cpl-46/versions/an-demetrianus-bkv", page: "Cyprian_Ad_Demetrianum" }
 
+  - author: "Ambrosius von Mailand"
+    translator: "BKV-Ausgabe / Joh. Ev. Niederhuber / Franz Xaver Schulte"
+    edition: "BKV, Kösel"
+    rights: free_bkv
+    works:
+      - { work: "De mysteriis", url: "https://bkv.unifr.ch/de/works/cpl-155/versions/uber-die-mysterien-bkv", page: "Ambrosius_De_mysteriis" }
+      - { work: "Exameron", url: "https://bkv.unifr.ch/de/works/cpl-123/versions/exameron-bkv", page: "Ambrosius_Exameron" }
+      - { work: "De paenitentia", url: "https://bkv.unifr.ch/de/works/cpl-156/versions/uber-die-busse-bkv-2", page: "Ambrosius_De_paenitentia" }
+
   - author: "Basilius der Große"
     translator: "BKV-Ausgabe"
     edition: "BKV 1. Reihe, Bd. 47, Kempten/München 1925"
