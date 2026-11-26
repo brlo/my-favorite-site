@@ -12,7 +12,7 @@ book = ENV['BOOK'].presence || 'mk'
 base_tr = if ::BOOKS[book][:zavet] == 1
             if book == '3mak'
               'ru' # в csl-ru 3-й Маккавейской нет; нумерация — по Синодальному
-            elsif %w[ier pier iez dan os iol naum ag mal mih zah 1mak 2mak 3ezd gen chis 1ts 3ts 4ts 1par 2par 2ezd is ekl iov pr prsir esf].include?(book)
+            elsif %w[ier pier iez dan os iol naum ag mal mih zah 1mak 2mak 3ezd gen chis 1ts 3ts 4ts 1par 2par 2ezd is ekl iov pr prsir esf ps].include?(book)
               'csl-ru'
             else
               'gr-lxx-byz'
@@ -51,7 +51,9 @@ chapters.each do |ch|
   # модуля). По решению пользователя глава 1 идёт по церковному образцу csl-pnm:
   # 30 стихов, пролог и 1:1 — в первом стихе.
   base = (1..30).to_a if book == 'prsir' && ch == 1
-  if book == 'ps'
+  # Для Псалтири сверяемся с gr-lxx-byz, пока нумерация стихов не приведена
+  # к слав. (после переразбивки — с csl-ru, и тогда эти поправки не нужны).
+  if book == 'ps' && ch_base == 'gr-lxx-byz'
     base = (base + ps_gaps.fetch(ch, [])).uniq.sort
     # в gr-lxx-byz у Пс 115 текст сдвинут на 9 строк (1–9 стоят как «.»), сверяем с ru
     base = ::Verse.where(tr_code: 'ru', book: 'ps', chapter: 115).pluck(:line).sort if ch == 115
