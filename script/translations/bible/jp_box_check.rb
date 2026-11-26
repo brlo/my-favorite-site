@@ -12,7 +12,7 @@ book = ENV['BOOK'].presence || 'mk'
 base_tr = if ::BOOKS[book][:zavet] == 1
             if book == '3mak'
               'ru' # в csl-ru 3-й Маккавейской нет; нумерация — по Синодальному
-            elsif %w[ier pier iez dan os iol naum ag mal mih zah 1mak 2mak 3ezd].include?(book)
+            elsif %w[ier pier iez dan os iol naum ag mal mih zah 1mak 2mak 3ezd gen chis 1ts 3ts 4ts 1par 2par 2ezd is ekl iov pr].include?(book)
               'csl-ru'
             else
               'gr-lxx-byz'
