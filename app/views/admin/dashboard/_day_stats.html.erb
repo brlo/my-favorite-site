@@ -1,0 +1,32 @@
+<%# locals: stats:, title:, note: — дневной срез посещений (боты, языки, топ IP, топ статей) %>
+<section class="dash-card" id="day-stats-<%= stats.date %>">
+  <h2 class="dash-card__title"><%= title %>, <%= stats.date.strftime('%d.%m.%Y') %></h2>
+  <p class="dash-card__lead"><%= note %></p>
+
+  <% bots = stats.bots.first(10) %>
+  <% langs = stats.langs.first(10) %>
+  <% top_ips = stats.top_ips.first(10) %>
+  <% top_pages = stats.top_pages.to_a.first(10) %>
+
+  <% if bots.any? || langs.any? || top_ips.any? || top_pages.any? %>
+    <div class="dash-stat-grid">
+      <% if bots.any? %>
+        <%= render 'admin/dashboard/stat_card', title: 'Топ ботов (запросов)', rows: bots %>
+      <% end %>
+
+      <% if langs.any? %>
+        <%= render 'admin/dashboard/stat_card', title: 'Языки интерфейса (люди)', rows: langs %>
+      <% end %>
+
+      <% if top_ips.any? %>
+        <%= render 'admin/dashboard/stat_card', title: 'Топ IP (без ботов)', rows: top_ips %>
+      <% end %>
+
+      <% if top_pages.any? %>
+        <%= render 'admin/dashboard/stat_card', title: 'Популярные статьи (без ботов)', rows: top_pages %>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="dash-card__empty">Данных за эти сутки нет.</p>
+  <% end %>
+</section>

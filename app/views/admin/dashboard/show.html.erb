@@ -101,26 +101,11 @@
     </div>
   </section>
 
-  <section class="dash-card">
-    <h2 class="dash-card__title">Вчера, <%= @yesterday.strftime('%d.%m.%Y') %></h2>
-    <div class="dash-stat-grid">
-      <% if @day_bots.any? %>
-        <%= render 'admin/dashboard/stat_card', title: 'Топ ботов (запросов)', rows: @day_bots.first(10).to_a %>
-      <% end %>
+  <%= render 'admin/dashboard/day_stats', stats: @today_stats, title: 'Сегодня',
+        note: 'Незакрытые сутки: цифры растут до полуночи по Москве.' %>
 
-      <% if @day_langs.any? %>
-        <%= render 'admin/dashboard/stat_card', title: 'Языки интерфейса (люди)', rows: @day_langs.first(10).to_a %>
-      <% end %>
-
-      <% if @day_top_ips.any? %>
-        <%= render 'admin/dashboard/stat_card', title: 'Топ IP (без ботов)', rows: @day_top_ips.to_a %>
-      <% end %>
-
-      <% if @day_top_pages && @day_top_pages.any? %>
-        <%= render 'admin/dashboard/stat_card', title: 'Популярные статьи (без ботов)', rows: @day_top_pages.to_a %>
-      <% end %>
-    </div>
-  </section>
+  <%= render 'admin/dashboard/day_stats', stats: @yesterday_stats, title: 'Вчера',
+        note: 'Сутки закрыты, числа не меняются.' %>
 
   <% if @pages %>
     <section class="dash-card">

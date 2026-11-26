@@ -5,7 +5,9 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     clean_reading
     @editor = create_user(privs: { 'pages_read' => true })
     sign_in(@editor)
+    @today = Date.today.to_s
     @yday = Date.yesterday.to_s
+    clean_stats
   end
 
   teardown do
@@ -20,7 +22,7 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     get '/admin'
     assert_response :success
 
-    # пять недельных карточек и три вчерашних
+    # четыре недельных карточки и четыре вчерашних; за сегодня данных нет — заглушка
     assert_select 'div.dash-stat', count: 8
     assert_match(/Подозрительные/, response.body)
     assert_match(/Уникальные IP/, response.body)
@@ -34,6 +36,46 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_match(/Популярные статьи/, response.body)
     assert_match(/Иконы и почитание/, response.body)
     assert_select '.dash-stat__value', text: '3'
+  end
+
+  test 'сегодняшняя статистика выводится рядом с вчерашней' do
+    today_page = create_page(title: 'Сегодняшняя статья')
+    yday_page = create_page(title: 'Вчерашняя статья')
+    seed_stats(today_page.id, day: @today, bot: 'ClaudeBot', bot_hits: 2, lang: 'en',
+               lang_hits: 4, ip: '10.7.7.7', top_hits: 1)
+    seed_stats(yday_page.id, day: @yday, bot: 'ChatGPT', bot_hits: 5, lang: 'ru',
+               lang_hits: 7, ip: '10.9.9.9', top_hits: 3)
+
+    get '/admin'
+    assert_response :success
+
+    assert_select "#day-stats-#{@today}" do
+      assert_select 'h2', text: "Сегодня, #{Date.today.strftime('%d.%m.%Y')}"
+      assert_select '.dash-stat', count: 4
+      assert_select '.dash-stat__label', text: 'ClaudeBot'
+      assert_select '.dash-stat__label', text: '10.7.7.7'
+      assert_select '.dash-stat__label', text: 'Сегодняшняя статья'
+      assert_select '.dash-stat__label', text: '10.9.9.9', count: 0
+    end
+
+    assert_select "#day-stats-#{@yday}" do
+      assert_select 'h2', text: "Вчера, #{Date.yesterday.strftime('%d.%m.%Y')}"
+      assert_select '.dash-stat', count: 4
+      assert_select '.dash-stat__label', text: 'ChatGPT'
+      assert_select '.dash-stat__label', text: '10.9.9.9'
+      assert_select '.dash-stat__label', text: 'Вчерашняя статья'
+      assert_select '.dash-stat__label', text: '10.7.7.7', count: 0
+    end
+  end
+
+  test 'за сегодня без визитов показывается заглушка' do
+    seed_stats(create_page(title: 'Иконы и почитание').id)
+
+    get '/admin'
+    assert_response :success
+
+    assert_select "#day-stats-#{@today} .dash-card__empty", text: 'Данных за эти сутки нет.'
+    assert_select "#day-stats-#{@today} .dash-stat", count: 0
   end
 
   test 'у пользователей без pages_read блоки статей не выводятся' do
@@ -119,20 +161,22 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
 
   private
 
-  def seed_stats(page_id)
+  def seed_stats(page_id, day: @yday, bot: 'ChatGPT', bot_hits: 5, lang: 'ru',
+                 lang_hits: 7, ip: '10.9.9.9', top_hits: 3)
     pool = ::RedisConnectionPool
-    pool.hincrby("bots#{@yday}", 'ChatGPT', 5)
-    pool.expire("bots#{@yday}", 3600)
-    pool.hincrby("langs#{@yday}", 'ru', 7)
-    pool.expire("langs#{@yday}", 3600)
-    pool.zincrby("zips#{@yday}", 1, '10.9.9.9')
-    pool.expire("zips#{@yday}", 3600)
-    pool.hincrby("top#{@yday}", page_id, 3)
-    pool.expire("top#{@yday}", 3600)
+    pool.hincrby("bots#{day}", bot, bot_hits)
+    pool.expire("bots#{day}", 3600)
+    pool.hincrby("langs#{day}", lang, lang_hits)
+    pool.expire("langs#{day}", 3600)
+    pool.zincrby("zips#{day}", 1, ip)
+    pool.expire("zips#{day}", 3600)
+    pool.hincrby("top#{day}", page_id, top_hits)
+    pool.expire("top#{day}", 3600)
   end
 
   def clean_stats
-    ::RedisConnectionPool.del(["bots#{@yday}", "langs#{@yday}", "zips#{@yday}", "top#{@yday}"])
+    keys = %w[bots langs zips top].flat_map { |name| ["#{name}#{@today}", "#{name}#{@yday}"] }
+    ::RedisConnectionPool.del(keys)
   end
 
   def clean_reading
