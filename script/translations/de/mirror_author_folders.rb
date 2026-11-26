@@ -16,6 +16,33 @@ AUTHORS = {
       'Монтанистический — 213-220 гг.' => ['Montanismus (213–220)', 4],
     },
   },
+  'Gregor_von_Nyssa' => {
+    ru: 'Григорий_Нисский',
+    de: 'Gregor_von_Nyssa',
+    folders: {
+      'Догматико-полемические труды' => ['Dogmatisch-polemische Werke', 1],
+      'Экзегетические труды' => ['Exegetische Werke', 2],
+      'Нравственно-аскетические труды' => ['Moralisch-asketische Werke', 3],
+      'Проповеди' => ['Predigten', 4],
+      'Письма' => ['Briefe', 5],
+      'Dubia (сомнительные)' => ['Dubia (zweifelhafte Schriften)', 99],
+    },
+  },
+  'Basilius_der_Große' => {
+    ru: 'mz9h_Василий_Великий_IV_век',
+    de: 'Basilius_der_Große',
+    folders: {
+      'Экзегетические труды' => ['Exegetische Werke', 1],
+      'Аскетические труды' => ['Asketische Werke', 2],
+      'Гимнография. Каноническое право' => ['Hymnographie und Kirchenrecht', 3],
+      'Догматические труды' => ['Dogmatische Werke', 4],
+      'Нравственно-аскетические труды' => ['Moralisch-asketische Werke', 5],
+      'Письма' => ['Briefe', 6],
+      'Молитвы' => ['Gebete', 10],
+      'Симфонии или указатели' => ['Symphonien oder Register', 100],
+      'Spuria (приписываемые)' => ['Spuria (zugeschriebene Schriften)', 200],
+    },
+  },
   'Athanasius_der_Große' => {
     ru: 'Афанасий-Великий',
     de: 'Athanasius_der_Große',
