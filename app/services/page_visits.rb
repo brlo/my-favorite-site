@@ -21,6 +21,15 @@ class PageVisits
   # для пометки языка и ссылки на главу.
   BIBLE_MEMBER_PREFIX = 'b:'.freeze
 
+  # Счётчики читателей переводов Библии (их двигает heartbeat главы):
+  # 'vis:b:<код перевода>' — всего читателей, 'btop<дата>' — дневной топ переводов.
+  BIBLE_VISITS_PREFIX = 'vis:b:'.freeze
+  BIBLE_VISITS_DAY_PREFIX = 'btop'.freeze
+
+  # Сколько живёт метка «этот читатель уже учтён в этом переводе»: как у статей,
+  # повторный заход с того же IP в течение 12 часов счётчик не двигает.
+  BIBLE_VISIT_MARKER_TTL = 12 * 60 * 60
+
   # total_readers — сколько разных читателей сейчас на сайте,
   # pages — [[page_id, читателей], ...] по убыванию,
   # bibles — [[код перевода, код книги, читателей], ...] по убыванию
@@ -148,15 +157,32 @@ class PageVisits
     end
 
     # Отметка «читает главу Библии»: запоминаем книгу и язык перевода, без главы.
+    # Здесь же считаем читателя перевода: тот же heartbeat, новых запросов не нужно.
     def touch_bible_reading(book_code, ip:, content_lang: nil)
       book = book_code.to_s
       return unless ::BOOKS.key?(book)
 
       lang = bible_content_lang(content_lang)
+      register_bible_visit(lang, user_ip: ip)
       now = Time.now.to_f
       ::RedisConnectionPool.zremrangebyscore(READING_KEY, 0, now - READING_WINDOW)
       ::RedisConnectionPool.zadd(READING_KEY, now, "#{BIBLE_MEMBER_PREFIX}#{lang}:#{book}:#{reader_digest(ip)}")
       ::RedisConnectionPool.expire(READING_KEY, READING_TTL)
+    end
+
+    # Читатель открыл главу перевода: увеличиваем счётчики один раз за 12 часов
+    # на пару «IP + перевод». Вызывается из heartbeat'а главы, боты до него не доходят.
+    def register_bible_visit(content_lang, user_ip:)
+      lang = content_lang.to_s
+      return unless ::BIB_LANG_TO_LOCALE.key?(lang)
+      return if user_ip.blank?
+
+      marker_key = "bvis:#{lang}=#{user_ip}"
+      return if ::RedisConnectionPool.exists?(marker_key)
+
+      ::RedisConnectionPool.setex(marker_key, BIBLE_VISIT_MARKER_TTL, nil)
+      ::RedisConnectionPool.incr("#{BIBLE_VISITS_PREFIX}#{lang}")
+      hincr("#{BIBLE_VISITS_DAY_PREFIX}#{Date.today}", lang)
     end
 
     # Читатель ушёл с главы Библии
@@ -175,6 +201,23 @@ class PageVisits
       return lang if ::BIB_LANG_TO_LOCALE.key?(lang)
 
       ::LOCALE_TO_BIB_LANG[::I18n.locale.to_s] || 'ru'
+    end
+
+    # Счётчик читателей перевода без увеличения (для вывода на странице главы)
+    def bible_translation_count(content_lang)
+      int_to_human_s(::RedisConnectionPool.get("#{BIBLE_VISITS_PREFIX}#{content_lang}"))
+    end
+
+    # Читатели всех переводов: {код перевода => число, ...}
+    def bible_visits
+      codes = ::BIB_LANG_TO_LOCALE.keys
+      values = ::RedisConnectionPool.mget(codes.map { |code| "#{BIBLE_VISITS_PREFIX}#{code}" })
+      codes.zip(values.map(&:to_i)).to_h
+    end
+
+    # код перевода => читателей за дату
+    def day_top_bibles(date)
+      stat_hash("#{BIBLE_VISITS_DAY_PREFIX}#{date}")
     end
 
     # Кто читает сейчас: общее число читателей, топ страниц и книг Библии

@@ -157,6 +157,24 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
     assert_response :success
     assert_select '#reading-now', count: 0
     assert_select '#reactions', count: 0
+    assert_select '#bible-visits', count: 0
+  end
+
+  test 'сводка показывает читателей переводов Библии' do
+    PageVisits.touch_bible_reading('gen', ip: '10.0.8.20', content_lang: 'eng-nkjv')
+    PageVisits.touch_bible_reading('in', ip: '10.0.8.21', content_lang: 'eng-nkjv')
+    PageVisits.touch_bible_reading('gen', ip: '10.0.8.20', content_lang: 'ru')
+
+    get '/admin'
+    assert_response :success
+
+    assert_select '#bible-visits .dash-list__row:first-child' do
+      assert_select '.dash-list__title', text: 'Английский'
+      assert_select '.dash-badge', text: 'NKJV'
+      assert_select '.dash-count', text: '2'
+      assert_select '.dash-list__meta', text: /сегодня 2 · вчера 0/
+    end
+    assert_select '#bible-visits .dash-list__row', count: 2
   end
 
   private
@@ -176,6 +194,11 @@ class Admin::DashboardControllerTest < ActionDispatch::IntegrationTest
 
   def clean_stats
     keys = %w[bots langs zips top].flat_map { |name| ["#{name}#{@today}", "#{name}#{@yday}"] }
+    keys.concat(::RedisConnectionPool.pool.with do |redis|
+      redis.keys('vis:b:*') + redis.keys('bvis:*')
+    end)
+    keys.concat(["#{::PageVisits::BIBLE_VISITS_DAY_PREFIX}#{@today}",
+                 "#{::PageVisits::BIBLE_VISITS_DAY_PREFIX}#{@yday}"])
     ::RedisConnectionPool.del(keys)
   end
 

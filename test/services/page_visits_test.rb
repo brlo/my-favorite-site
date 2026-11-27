@@ -145,6 +145,27 @@ class PageVisitsTest < ActiveSupport::TestCase
     assert_empty reading.pages
   end
 
+  test 'heartbeat главы считает читателей перевода с защитой от повторов' do
+    PageVisits.touch_bible_reading('gen', ip: '10.0.5.1', content_lang: 'eng-nkjv')
+    # тот же читатель в другой книге того же перевода — не второй
+    PageVisits.touch_bible_reading('in', ip: '10.0.5.1', content_lang: 'eng-nkjv')
+    PageVisits.touch_bible_reading('gen', ip: '10.0.5.2', content_lang: 'eng-nkjv')
+    # другой перевод того же читателя считается отдельно
+    PageVisits.touch_bible_reading('gen', ip: '10.0.5.1', content_lang: 'ru')
+
+    assert_equal '2', PageVisits.bible_translation_count('eng-nkjv')
+    assert_equal '1', PageVisits.bible_translation_count('ru')
+    assert_equal({ 'eng-nkjv' => 2, 'ru' => 1 }, PageVisits.day_top_bibles(@day))
+    assert_equal 2, PageVisits.bible_visits['eng-nkjv']
+  end
+
+  test 'неизвестная книга не двигает счётчик читателей перевода' do
+    PageVisits.touch_bible_reading('nope', ip: '10.0.5.3', content_lang: 'eng-nkjv')
+
+    assert_equal '0', PageVisits.bible_translation_count('eng-nkjv')
+    assert_empty PageVisits.day_top_bibles(@day)
+  end
+
   test 'язык перевода сохраняется в отметке чтения книги' do
     PageVisits.touch_bible_reading('gen', ip: '10.0.4.10', content_lang: 'eng-nkjv')
     PageVisits.touch_bible_reading('gen', ip: '10.0.4.11', content_lang: 'ru')
@@ -200,8 +221,16 @@ class PageVisitsTest < ActiveSupport::TestCase
     keys << "ipvis#{@day}:10.0.0.1" << "ipvis#{@day}:10.0.0.2" << "ipvis#{@day}:10.0.0.9"
     keys << "vis:42" << "vis:42=10.0.2.1" << "vis:42=10.0.2.2" << "vis:42=10.0.2.3"
     keys << ::PageVisits::READING_KEY
+    keys.concat(bible_stat_keys)
     (0..2).each { |i| keys << "ipvis#{@day}:10.0.1.#{i}" }
     (1..3).each { |i| keys << "ipvis#{@day}:10.0.2.#{i}" }
     ::RedisConnectionPool.del(keys)
+  end
+
+  # счётчики переводов и метки «уже учтён»: их заводят все тесты с heartbeat'ом главы
+  def bible_stat_keys
+    ::RedisConnectionPool.pool.with do |redis|
+      redis.keys('vis:b:*') + redis.keys('bvis:*') + redis.keys("#{::PageVisits::BIBLE_VISITS_DAY_PREFIX}#{@day}")
+    end
   end
 end

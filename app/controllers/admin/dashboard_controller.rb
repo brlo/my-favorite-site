@@ -23,6 +23,7 @@ module Admin
         @today_stats.top_pages = top_pages(today)
         @yesterday_stats.top_pages = top_pages(yesterday)
 
+        prepare_bible_visits(today, yesterday)
         prepare_reading_now
         prepare_reactions
       end
@@ -51,6 +52,13 @@ module Admin
       day_top = ::PageVisits.day_top_pages(date).first(10)
       titles = ::Page.where(id: day_top.map(&:first)).pluck(:id, :title).to_h
       day_top.map { |id, count| [titles[id.to_i], count] }
+    end
+
+    # Читатели переводов Библии: всего и за сегодня/вчера (heartbeat главы)
+    def prepare_bible_visits(today, yesterday)
+      @bible_visits = ::PageVisits.bible_visits
+      @today_bible_visits = ::PageVisits.day_top_bibles(today)
+      @yesterday_bible_visits = ::PageVisits.day_top_bibles(yesterday)
     end
 
     # Страницы всех языков и книги Библии, которые читают прямо сейчас (общий Redis-ключ «reading»)

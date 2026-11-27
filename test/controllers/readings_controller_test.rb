@@ -60,6 +60,16 @@ class ReadingsControllerTest < ActionDispatch::IntegrationTest
     assert_equal [['eng-nkjv', 'gen', 1]], PageVisits.reading_now.bibles
   end
 
+  test 'heartbeat главы Библии считает читателя перевода, а бот — нет' do
+    post '/reading', params: {book: 'gen', lang: 'eng-nkjv', t: PageVisits.bible_visit_token('gen')},
+                     headers: {'HTTP_USER_AGENT' => CHROME_UA}
+    assert_equal '1', PageVisits.bible_translation_count('eng-nkjv')
+
+    post '/reading', params: {book: 'gen', lang: 'ru', t: PageVisits.bible_visit_token('gen')},
+                     headers: {'HTTP_USER_AGENT' => GPTBOT_UA}
+    assert_equal '0', PageVisits.bible_translation_count('ru')
+  end
+
   test 'heartbeat Библии с чужим токеном отклоняется' do
     post '/reading', params: {book: 'gen', t: PageVisits.visit_token(0)},
                      headers: {'HTTP_USER_AGENT' => CHROME_UA}
@@ -82,6 +92,10 @@ class ReadingsControllerTest < ActionDispatch::IntegrationTest
   private
 
   def clean_reading
-    ::RedisConnectionPool.del(::PageVisits::READING_KEY)
+    keys = ::RedisConnectionPool.pool.with do |redis|
+      redis.keys('vis:b:*') + redis.keys('bvis:*') + redis.keys("#{::PageVisits::BIBLE_VISITS_DAY_PREFIX}#{Date.today}")
+    end
+    keys << ::PageVisits::READING_KEY
+    ::RedisConnectionPool.del(keys)
   end
 end

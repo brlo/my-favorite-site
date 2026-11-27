@@ -58,6 +58,38 @@
     </section>
   <% end %>
 
+  <% if @bible_visits %>
+    <% bible_rows = @bible_visits.select { |_code, total| total.positive? }
+                             .sort_by { |code, total| [-total, code] } %>
+    <section id="bible-visits" class="dash-card">
+      <h2 class="dash-card__title">Переводы Библии</h2>
+      <p class="dash-card__lead">
+        Читатели переводов по сердцебиению главы (JS-маячок). Один IP учитывается
+        в переводе раз в 12 часов; боты не считаются. «Сегодня» — незакрытые сутки,
+        «вчера» — закрытые.
+      </p>
+
+      <% if bible_rows.any? %>
+        <ul class="dash-list">
+          <% bible_rows.each do |code, total| %>
+            <li class="dash-list__row">
+              <span class="dash-list__main">
+                <span class="dash-list__title"><%= ::I18n.t("bib_translations.#{code}", default: code) %></span>
+                <span class="dash-badge"><%= ::BIB_LANG_SHORT[code] || code %></span>
+              </span>
+              <span class="dash-list__meta">
+                сегодня <%= @today_bible_visits[code].to_i %> · вчера <%= @yesterday_bible_visits[code].to_i %>
+              </span>
+              <span class="dash-count" title="Всего читателей"><%= ::PageVisits.int_to_human_s(total) %></span>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <p class="dash-card__empty">Пока нет данных: счётчик начнёт заполняться после открытия глав.</p>
+      <% end %>
+    </section>
+  <% end %>
+
   <% if @reactions_total %>
     <section id="reactions" class="dash-card">
       <h2 class="dash-card__title">
